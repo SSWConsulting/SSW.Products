@@ -33,7 +33,6 @@ export default function DocPostClient({
   
 }: DocPostClientProps) {
 
-    console.log(body);
   return (
     <>
       <div className="p-4 lg:pt-32 md:pt-32 mt-20 font-semibold max-w-3xl mx-auto text-white">
