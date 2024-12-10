@@ -12,3 +12,18 @@ query getAllBlogs {
     }
   }
 }
+
+query getAllDocs {
+  docsConnection {
+    totalCount
+    edges {
+      node {
+        _sys {
+          filename
+          path
+        }
+        ...DocsParts
+      }
+    }
+  }
+}

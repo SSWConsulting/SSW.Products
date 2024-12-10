@@ -7,26 +7,25 @@ import { getBlogsForProduct } from "../../utils/fetchBlogs"; // Updated import
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
+import { getDocsForProduct } from "../../utils/fetchDocs";
 
-const BlogCard = ({
+const DocsCard = ({
   title,
   author,
   date,
   body,
-  readLength,
-  blogPostLink,
+  blogPostLink: docPostLink,
 }: {
   title: string;
   author: string;
   date: string;
   body: TinaMarkdownContent;
-  readLength: string;
   blogPostLink: string;
 }) => {
   const blurb = extractBlurbAsTinaMarkdownContent(body, 3); // extract 3 sentences in blurb.
 
   return (
-    <Link href={`/blog/${blogPostLink}`}>
+    <Link href={`/docs/${docPostLink}`}>
       <div className="mx-8 md:mx-20 lg:mx-40 p-6 rounded-2xl shadow-2xl bg-stone-700/30 mb-6 text-white border-opacity-15 border-2 hover:border-opacity-85 border-slate-300">
         <h2 className="text-2xl mb-2 tracking-wider">{title}</h2>
         <div className="font-light text-base">
@@ -36,7 +35,6 @@ const BlogCard = ({
               "default",
               { month: "long" }
             )} ${new Date(date).getFullYear()}`}</span>
-            <span>{` | ${readLength}`}</span>
           </div>
           <div className="mt-4">
             <TinaMarkdown content={blurb} />
@@ -57,29 +55,29 @@ interface BlogIndexClientProps {
   product: string;
 }
 
-export default function BlogIndexClient({
+export default function DocsIndexClient({
   data,
   product,
 }: BlogIndexClientProps) {
-  const [blogs, setBlogs] = useState(data);
+  const [docs, setDocs] = useState(data);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(5);
   const [hasMore, setHasMore] = useState(true);
 
-  const loadMoreBlogs = useCallback(async () => {
+  const loadMoreDocs = useCallback(async () => {
     if (loading || !hasMore) return;
 
     setLoading(true);
 
-    const moreBlogs = await getBlogsForProduct(product, offset, 5);
+    const moreDocs = await getDocsForProduct(product, offset, 5);
 
-    if (moreBlogs) {
-      setBlogs((prevBlogs: any) => {
-        const updatedBlogs = [...prevBlogs, ...moreBlogs.data];
+    if (moreDocs) {
+      setDocs((prevBlogs: any) => {
+        const updatedBlogs = [...prevBlogs, ...moreDocs.data];
         return updatedBlogs;
       });
       setOffset(offset + 5);
-      setHasMore(moreBlogs.hasMore);
+      setHasMore(moreDocs.hasMore);
     }
 
     setLoading(false);
@@ -89,7 +87,7 @@ export default function BlogIndexClient({
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          loadMoreBlogs();
+          loadMoreDocs();
         }
       },
       { threshold: 1.0 }
@@ -103,22 +101,21 @@ export default function BlogIndexClient({
     return () => {
       if (target) observer.unobserve(target);
     };
-  }, [loadMoreBlogs]);
+  }, [loadMoreDocs]);
 
   return (
     <div className="p-4 lg:pt-32 md:pt-32 mx-auto w-full">
       <h1 className="text-white font-semibold mb-6 text-3xl lg:mx-40">
-        Blogs for {product}
+        Docs for {product}
       </h1>
       <div>
-        {blogs?.map((blog: any, index: number) => (
-          <BlogCard
+        {docs?.map((blog: any, index: number) => (
+          <DocsCard
             key={index}
             title={blog.title}
             author={blog.author}
             date={blog.date}
             body={blog.body}
-            readLength={blog.readLength}
             blogPostLink={blog._sys.filename}
           />
         ))}

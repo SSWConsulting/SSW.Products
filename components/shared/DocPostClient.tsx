@@ -6,20 +6,17 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text"; // Assuming TinaMarkdown is used for rendering markdown content
 import { DocAndBlogMarkdownStyle } from "./DocAndBlogMarkdownStyle";
 
-interface BlogPostClientProps {
+interface DocPostClientProps {
   title: string;
-  author: string;
   date: string;
   body: TinaMarkdownContent;
-  sswPeopleLink?: string;
-  readLength: string;
   filename: string;
 }
 
 const BreadCrumbs = ({ title }: { title: string }) => {
     return (
       <div className="font-light mb-4 text-base inline-flex items-center">
-        <Link href="/blog">BLOG</Link> 
+        <Link href="/docs">DOCS</Link> 
         <span className="mx-2">
           <MdOutlineKeyboardArrowRight size={20} />
         </span>
@@ -27,46 +24,33 @@ const BreadCrumbs = ({ title }: { title: string }) => {
       </div>
     );
   };
-export default function BlogPostClient({
+export default function DocPostClient({
   title,
-  author,
   date,
   body,
-  sswPeopleLink,
-  readLength,
   
-}: BlogPostClientProps) {
 
-  console.log(body);
+  
+}: DocPostClientProps) {
+
+    console.log(body);
   return (
     <>
-      <div className="p-4 lg:pt-32 md:pt-20 mt-20 font-semibold max-w-3xl mx-auto text-white">
+      <div className="p-4 lg:pt-32 md:pt-32 mt-20 font-semibold max-w-3xl mx-auto text-white">
         <BreadCrumbs title={title} />
         <h2 className="text-3xl mb-2 tracking-wide">{title}</h2>
 
         <div className="text-base mb-4">
-          <span>
-            by{" "}
-            {sswPeopleLink ? (
-              <Link target="_blank" href={sswPeopleLink} className="underline">
-                {author}
-              </Link>
-            ) : (
-              <span>{author}</span>
-            )}
-          </span>
-
           <div>
             <span>{`${new Date(date).getDate()} ${new Date(date).toLocaleString(
               "default",
               { month: "long" }
             )} ${new Date(date).getFullYear()}`}</span>
-            <span>{` | ${readLength}`}</span>
           </div>
         </div>
 
         <div className="text-base font-light lg:prose-xl">
-          <TinaMarkdown content={body} components={DocAndBlogMarkdownStyle} />
+          <TinaMarkdown content={body} components={DocAndBlogMarkdownStyle}/>
         </div>
       </div>
     </>
