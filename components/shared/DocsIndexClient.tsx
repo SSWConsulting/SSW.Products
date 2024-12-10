@@ -3,7 +3,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { getBlogsForProduct } from "../../utils/fetchBlogs"; // Updated import
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";

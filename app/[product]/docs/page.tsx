@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { getBlogsForProduct } from "../../../utils/fetchBlogs"; 
 import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
 import NavBarServer from "../../../components/shared/NavBarServer";
 import FooterServer from "../../../components/shared/FooterServer";
