@@ -9,6 +9,11 @@ export function middleware(request: NextRequest) {
 
   const pathSegments = pathname.split('/').filter(segment => segment.length > 0);
 
+  // Explicitly allow access to YakShaver's .well-known JSON file
+  if (hostname === 'www.yakshaver.ai' && pathname === '/.well-known/microsoft-identity-association.json') {
+    return NextResponse.next();
+  }
+
   // Allow TinaCMS admin paths to be handled without rewriting
   if (pathname.startsWith('/admin')) {
     return NextResponse.next();
