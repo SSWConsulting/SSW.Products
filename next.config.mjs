@@ -13,6 +13,11 @@ const nextConfig = {
         destination: '/docs/recording-work-item-snagit',
         permanent: true,
       },
+      {
+        source: '/blog/recording-work-item-and-tips',
+        destination: '/docs/recording-work-item-and-tips',
+        permanent: true,
+      }
     ];
   }
 };
