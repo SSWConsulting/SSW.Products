@@ -5,6 +5,16 @@ const nextConfig = {
   images: {
     domains: ['assets.tina.io'],
   },
+  async redirects()
+  {
+    return [
+      {
+        source: '/blog/recording-work-item-snagit',
+        destination: '/docs/recording-work-item-snagit,',
+        permanent: true,
+      },
+    ];
+  }
 };
 
 export default nextConfig;
