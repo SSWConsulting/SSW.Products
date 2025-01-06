@@ -10,7 +10,7 @@ const nextConfig = {
     return [
       {
         source: '/blog/recording-work-item-snagit',
-        destination: '/docs/recording-work-item-snagit,',
+        destination: '/docs/recording-work-item-snagit',
         permanent: true,
       },
     ];
