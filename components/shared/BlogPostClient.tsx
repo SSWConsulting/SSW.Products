@@ -18,7 +18,7 @@ interface BlogPostClientProps {
 
 const BreadCrumbs = ({ title }: { title: string }) => {
     return (
-      <div className="font-light mb-4 text-base inline-flex items-center">
+      <div className="font-light mb-8 text-base inline-flex items-top">
         <Link href="/blog">BLOG</Link> 
         <span className="mx-2">
           <MdOutlineKeyboardArrowRight size={20} />
