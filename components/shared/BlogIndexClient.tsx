@@ -27,7 +27,7 @@ const BlogCard = ({
 
   return (
     <Link href={`/blog/${blogPostLink}`}>
-      <div className="mx-4 md:mx-20 lg:mx-40 p-6 rounded-2xl shadow-2xl bg-stone-700/30 mb-6 text-white border-opacity-15 border-2 hover:border-opacity-85 border-slate-300">
+      <div className="p-6 rounded-2xl shadow-2xl bg-stone-700/30 mb-6 text-white border-opacity-15 border-2 hover:border-opacity-85 border-slate-300">
         <h2 className="text-2xl mb-2">{title}</h2>
         <div className="font-light text-base">
           <span>by {author} </span>
@@ -110,7 +110,7 @@ export default function BlogIndexClient({
       <h1 className="text-white font-semibold mb-6 text-3xl md:mx-20 lg:mx-40">
         Blogs for {product}
       </h1>
-      <div>
+      <div className="mx-4 md:mx-20 lg:mx-40">
         {blogs?.map((blog: any, index: number) => (
           <BlogCard
             key={index}
