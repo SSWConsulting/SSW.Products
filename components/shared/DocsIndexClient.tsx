@@ -10,13 +10,11 @@ import { getDocsForProduct } from "../../utils/fetchDocs";
 
 const DocsCard = ({
   title,
-  author,
   date,
   body,
   blogPostLink: docPostLink,
 }: {
   title: string;
-  author: string;
   date: string;
   body: TinaMarkdownContent;
   blogPostLink: string;
@@ -111,7 +109,6 @@ export default function DocsIndexClient({
           <DocsCard
             key={index}
             title={blog.title}
-            author={blog.author}
             date={blog.date}
             body={blog.body}
             blogPostLink={blog._sys.filename}
