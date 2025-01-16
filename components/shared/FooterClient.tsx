@@ -70,7 +70,7 @@ export default function FooterClient({ results }: FooterClientProps) {
         </div>
 
         {/* Footer Title */}
-        <div className="text-center lg:text-left md:text-sm text-xs lg:text-base lg:order-1">
+        <div className="text-center lg:text-left md:text-sm text-xs lg:order-1">
           {footerTitle || "Default Footer Title"}
         </div>
       </div>
