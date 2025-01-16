@@ -23,7 +23,7 @@ const DocsCard = ({
 
   return (
     <Link href={`/docs/${docPostLink}`}>
-      <div className="mx-6 md:mx-20 lg:mx-40 p-6 rounded-2xl shadow-2xl bg-stone-700/30 mb-6 text-white border-opacity-15 border-2 hover:border-opacity-85 border-slate-300">
+      <div className="mx-4 md:mx-20 lg:mx-40 p-6 rounded-2xl shadow-2xl bg-stone-700/30 mb-6 text-white border-opacity-15 border-2 hover:border-opacity-85 border-slate-300">
         <h2 className="text-2xl mb-2 tracking-wider">{title}</h2>
         <div className="font-light text-base">
           <div>
