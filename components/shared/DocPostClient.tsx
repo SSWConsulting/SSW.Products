@@ -39,7 +39,7 @@ export default function DocPostClient({
         <BreadCrumbs title={title} />
         <h2 className="text-3xl mb-2 tracking-wide">{title}</h2>
 
-        <div className="text-base mb-4">
+        <div className="text-sm font-light text-gray-300 uppercase mb-4">
           <div>
             <span>{`${new Date(date).getDate()} ${new Date(date).toLocaleString(
               "default",
