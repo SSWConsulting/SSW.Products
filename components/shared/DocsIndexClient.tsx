@@ -23,11 +23,11 @@ const DocsCard = ({
 
   return (
     <Link href={`/docs/${docPostLink}`}>
-      <div className="mx-8 md:mx-20 lg:mx-40 p-6 rounded-2xl shadow-2xl bg-stone-700/30 mb-6 text-white border-opacity-15 border-2 hover:border-opacity-85 border-slate-300">
-        <h2 className="text-2xl mb-2 tracking-wider">{title}</h2>
+      <div className="p-6 rounded-2xl shadow-2xl bg-stone-700/30 mb-6 text-white border-opacity-15 border-2 hover:border-opacity-85 border-slate-300">
+        <h2 className="text-2xl mb-2">{title}</h2>
         <div className="font-light text-base">
           <div>
-            <span>{`${new Date(date).getDate()} ${new Date(date).toLocaleString(
+            <span className="text-sm text-gray-300 uppercase">{`${new Date(date).getDate()} ${new Date(date).toLocaleString(
               "default",
               { month: "long" }
             )} ${new Date(date).getFullYear()}`}</span>
@@ -100,11 +100,11 @@ export default function DocsIndexClient({
   }, [loadMoreDocs]);
 
   return (
-    <div className="p-4 lg:pt-32 md:pt-32 mx-auto w-full">
-      <h1 className="text-white font-semibold mb-6 text-3xl lg:mx-40">
+    <div className="p-4 lg:pt-32 mt-20 md:mt-0 md:pt-32 mx-auto w-full">
+      <h1 className="text-white font-semibold mb-6 text-3xl md:mx-20 lg:mx-40">
         Docs for {product}
       </h1>
-      <div>
+      <div className="mx-4 md:mx-20 lg:mx-40">
         {docs?.map((blog: any, index: number) => (
           <DocsCard
             key={index}
