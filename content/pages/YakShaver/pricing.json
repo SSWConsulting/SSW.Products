@@ -37,7 +37,7 @@
         },
         {
           "planTier": "Team",
-          "planDescription": "20 to 100 users",
+          "planDescription": "21 to 100 users",
           "price": "$3.00",
           "subPriceText": "/user per month",
           "actions": {
@@ -50,7 +50,7 @@
         },
         {
           "planTier": "Business",
-          "planDescription": "100 to 150 users",
+          "planDescription": "101 to 150 users",
           "price": "$2.50",
           "subPriceText": "/user per month",
           "actions": {
