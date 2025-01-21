@@ -36,12 +36,12 @@
           }
         },
         {
-          "planTier": "Pro",
-          "planDescription": "Up to 100 users",
+          "planTier": "Team",
+          "planDescription": "21 to 100 users",
           "price": "$3.00",
           "subPriceText": "/user per month",
           "actions": {
-            "label": "GET PRO",
+            "label": "GET TEAM",
             "variant": "solidRed",
             "size": "medium",
             "url": "/",
@@ -50,7 +50,7 @@
         },
         {
           "planTier": "Business",
-          "planDescription": "Up to 150 users",
+          "planDescription": "101 to 150 users",
           "price": "$2.50",
           "subPriceText": "/user per month",
           "actions": {
