@@ -111,7 +111,7 @@ const FeatureHorizontalCarousel = ({ data }: FeatureCarouselProps) => {
     >
       {!isSmallOrMediumScreen ? (
         <div className="flex justify-center mb-4">
-          <div className="tab-titles flex justify-center rounded-lg bg-black max-w-fit">
+          <div className="tab-titles flex justify-center rounded-xl bg-black max-w-fit">
             {data.carouselItems.map((item, index) => (
               <button
                 key={index}
