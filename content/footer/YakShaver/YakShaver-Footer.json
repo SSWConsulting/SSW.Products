@@ -29,6 +29,10 @@
     {
       "footerItemIcon": "FaGithub",
       "footerItemLink": "https://www.github.com/sswconsulting"
+    },
+    {
+      "footerItemIcon": "FaDiscord",
+      "footerItemLink": "https://discord.gg/Jp9dyxKFjR"
     }
   ]
 }

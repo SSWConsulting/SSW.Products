@@ -8,6 +8,7 @@ const footerItemIcon = [
   "FaInstagram",
   "FaTiktok",
   "FaGithub",
+  "FaDiscord",
 ];
 
 export const footerCollection: Collection = {

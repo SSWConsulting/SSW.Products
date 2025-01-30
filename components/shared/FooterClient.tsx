@@ -10,6 +10,7 @@ import {
   FaInstagram,
   FaTiktok,
   FaGithub,
+  FaDiscord,
 } from "react-icons/fa";
 
 interface FooterClientProps {
@@ -24,6 +25,7 @@ const iconMap: { [key: string]: JSX.Element } = {
   FaInstagram: <FaInstagram />,
   FaTiktok: <FaTiktok />,
   FaGithub: <FaGithub />,
+  FaDiscord: <FaDiscord />,
 };
 
 export default function FooterClient({ results }: FooterClientProps) {
