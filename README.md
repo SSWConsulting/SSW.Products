@@ -16,6 +16,8 @@ yarn install
 
 ```
 
+**Note for Windows**: Remove `TINA_PUBLIC_IS_LOCAL=true` from `package.json`, only keeping the `tinacms` command.
+
 3. Run the development server:
 
 ```bash
@@ -23,8 +25,6 @@ yarn install
 yarn dev
 
 ```
-
-**Note**: If you're getting the Error `'TINA_PUBLIC_IS_LOCAL' is not recognized as an internal or external commmand...`, remove `TINA_PUBLIC_IS_LOCAL=true` from `package.json` file, and only keep the `tinacms` command.
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
