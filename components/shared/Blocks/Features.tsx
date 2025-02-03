@@ -91,7 +91,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
         "PagesPageBlocksFeaturesFeatureItemMediaThumbnailToExternalLink"
       ) {
         return (
-          <div className="relative group">
+          <div className="relative group cursor-pointer">
             <Link href={mediaItem.src || ""}>
               <Image
                 src={mediaItem.image || ""}
