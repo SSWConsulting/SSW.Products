@@ -92,7 +92,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
       ) {
         return (
           <div className="relative group cursor-pointer">
-            <Link href={mediaItem.src || ""}>
+            <Link href={mediaItem.src || ""} target="_blank">
               <Image
                 src={mediaItem.image || ""}
                 alt="Home-page thumbnail image"
