@@ -53,6 +53,21 @@ export const blogCollection: Collection = {
       parser: {
         type: "mdx",
       },
+      templates: [
+        {
+          name: 'Youtube',
+          label: 'Youtube Embed',
+          fields: [
+            {
+              type: 'string',
+              name: 'embedSrc',
+              label: 'Embed URL',
+              description:
+                '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+            },
+          ],
+        },
+      ]
     },
   ],
 };
