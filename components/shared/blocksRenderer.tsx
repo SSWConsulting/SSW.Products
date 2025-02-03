@@ -3,6 +3,7 @@ import FAQ from "./Blocks/FAQ";
 import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import Pricing from "./Blocks/Pricing";
 import Banner from "./Blocks/Banner";
+import VideoDisplay from "./Blocks/VideoDisplay";
 
 interface Block {
   __typename: string;
@@ -66,6 +67,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksBanner":
         // @ts-expect-error investigate after
         return <Banner key={index} data={block} />;
+      case "PagesPageBlocksVideoDisplay":
+        return <VideoDisplay key={index} data={block} />;
       default:
         return null;
     }

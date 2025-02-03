@@ -57,6 +57,12 @@
       "_template": "featureCarousel"
     },
     {
+      "altText": "Making the Perfect PBI | YakShaver",
+      "title": "Want to Learn More? ",
+      "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+      "_template": "videoDisplay"
+    },
+    {
       "headline": "Frequently Asked Questions",
       "text": "",
       "questions": [
