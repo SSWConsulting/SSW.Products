@@ -95,7 +95,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
             <Link href={mediaItem.src || ""}>
               <Image
                 src={mediaItem.image || ""}
-                alt="test"
+                alt="Home-page thumbnail image"
                 width={1000}
                 height={1000}
                 className="rounded-lg shadow-lg"
