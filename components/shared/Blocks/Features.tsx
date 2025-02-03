@@ -9,6 +9,7 @@ import {
 } from "tinacms/dist/rich-text";
 import { YouTubeEmbed } from "../YouTubeEmbed";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
+import Link from "next/link";
 
 type ActionButton = {
   label: string;
@@ -52,6 +53,7 @@ export const featureComponents: Components<Record<string, unknown>> = {
 };
 
 const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
+  console.log(feature);
   const renderMedia = () => {
     if (feature.media && feature.media.length > 0) {
       const mediaItem = feature.media[0];
@@ -81,6 +83,33 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
         return (
           <div className="w-full h-full flex items-center justify-center">
             <YouTubeEmbed src={mediaItem.src} />
+          </div>
+        );
+      }
+      if (
+        mediaItem.__typename ===
+        "PagesPageBlocksFeaturesFeatureItemMediaThumbnailToExternalLink"
+      ) {
+        return (
+          <div className="relative group">
+            <Link href={mediaItem.src || ""}>
+              <Image
+                src={mediaItem.image || ""}
+                alt="test"
+                width={1000}
+                height={1000}
+                className="rounded-lg shadow-lg"
+              />
+              <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Image
+                  src="/svg/play-button.svg"
+                  alt="Play Button"
+                  width={100}
+                  height={100}
+                />
+              </div>
+            </Link>
           </div>
         );
       }
