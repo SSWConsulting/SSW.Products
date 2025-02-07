@@ -22,7 +22,7 @@ Furthermore, this feature requires your video files to be stored in a blob stora
 
 The short answer is we didn't, we just removed the parts that Whisper doesn't need - the visuals that take up the majority of bytes in a video file.
 
-We use a library that implements [FFmpeg](https://ffmpeg.org/) in code, called [Xabe.FFmpeg](https://ffmpeg.xabe.net/index.html), which allows us to manipulate and process media files. By converting from a video file (.mp4, .mov, etc) to an audio file (.mp3), we significantly reduce the size to only have the data that matters for a transcription service, the audio.
+We use a library that implements [FFmpeg](https://ffmpeg.org/) in code, called [Xabe.FFmpeg](https://ffmpeg.xabe.net/index.html), which allows us to manipulate and process media files. By extracting only the audio from the video file, we significantly reduce the size to only have the data that matters for a transcription service, the audio.
 
 | Here are some examples of what it has done to the file size before transcription: |
 | --------------------------------------------------------------------------------- |
