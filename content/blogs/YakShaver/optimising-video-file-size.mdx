@@ -14,7 +14,7 @@ We are using [Azure OpenAI's Whisper AI model](https://learn.microsoft.com/en-us
 
 #### Azure OpenAI's Whisper AI model allows you to [batch transcribe](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/batch-transcription), why not do that?
 
-By giving no hard limits on the size and truncating the video into 25MB chunks to be batched process is not a great idea in the long run, it can be used to waste a great amount of processing power and can be easily abused to be sent an extremely large file if no checks are in place.
+Giving no hard limits on the size and truncating the video into 25MB chunks to be batched process is not a great idea in the long run. It can be used to waste a great amount of processing power and can be easily abused to be sent an extremely large file if no checks are in place.
 
 Furthermore, this feature requires your video files to be stored in a blob storage, which means greater costs in order to process longer videos.
 
