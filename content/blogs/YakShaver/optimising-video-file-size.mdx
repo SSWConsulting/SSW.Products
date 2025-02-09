@@ -24,7 +24,6 @@ The short answer is we didn't, we just removed the parts that Whisper doesn't ne
 
 We use a library that implements [FFmpeg](https://ffmpeg.org/) in code, called [Xabe.FFmpeg](https://ffmpeg.xabe.net/index.html), which allows us to manipulate and process media files. By extracting only the audio from the video file, we significantly reduce the size to only have the data that matters for a transcription service, the audio.
 
-| Here are some examples of what it has done to the file size before transcription: |
-| --------------------------------------------------------------------------------- |
-| 1-minute video in 4K - 38.87 MB -> 0.62 MB audio .mp3 (1.5% of the video size)    |
-| 30-minute video in 2K - 209.89 MB -> 7.95 MB audio .mp3 (3.8% of the video size)  |
+Here are some examples of what it has done to the file size before transcription:
+1-minute video in 4K - 38.87 MB -> 0.62 MB audio .mp3 (1.5% of the video size)
+30-minute video in 2K - 209.89 MB -> 7.95 MB audio .mp3 (3.8% of the video size)
