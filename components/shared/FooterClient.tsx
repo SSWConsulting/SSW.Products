@@ -61,7 +61,7 @@ export default function FooterClient({ results }: FooterClientProps) {
                   href={item.footerItemLink ?? "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-lg md:text-2xl"
+                  className="flex items-center space-x-2 text-lg md:text-2xl hover:-translate-y-1 animation ease-in-out duration-300"
                 >
                   {item.footerItemIcon && iconMap[item.footerItemIcon]}
                 </a>
