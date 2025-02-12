@@ -38,7 +38,7 @@ export default function DocPostClient({
     data: pageData,
   });
 
-  console.log('Fetched data:', data);
+  
 
   if (!data?.docs) {
     return <p className="text-center text-white">No content available.</p>;

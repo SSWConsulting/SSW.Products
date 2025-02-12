@@ -53,7 +53,7 @@ export const featureComponents: Components<Record<string, unknown>> = {
 };
 
 const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
-  console.log(feature);
+  
   const renderMedia = () => {
     if (feature.media && feature.media.length > 0) {
       const mediaItem = feature.media[0];
