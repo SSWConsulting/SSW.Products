@@ -9,7 +9,7 @@ import { Docs } from '../../tina/__generated__/types';
 
 interface DocPostClientProps {
   query: string;
-  variables: Record<string, unknown>;
+  variables: object;
   pageData: { docs: Docs };
 }
 

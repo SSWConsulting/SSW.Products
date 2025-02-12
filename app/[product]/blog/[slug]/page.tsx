@@ -3,7 +3,8 @@ import InteractiveBackground from "../../../../components/shared/Background/Inte
 import NavBarServer from "../../../../components/shared/NavBarServer";
 import FooterServer from "../../../../components/shared/FooterServer";
 import client from "../../../../tina/__generated__/client";
-import BlogPostClient from "../../../../components/shared/BlogPostClient"; // Import the client component
+import BlogPostClient from "../../../../components/shared/BlogPostClient";
+import { Blogs } from "../../../../tina/__generated__/types";
 
 interface BlogPostProps {
   params: {
@@ -15,12 +16,10 @@ interface BlogPostProps {
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = params;
 
-  const data = await getBlogPost(product, slug);
-  if (!data) {
+  const documentData = await getBlogPost(product, slug);
+  if (!documentData) {
     return notFound();
   }
-
-  
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -29,13 +28,9 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
       <div className="flex-grow">
         <BlogPostClient
-          title={data.title}
-          author={data.author || ""}
-          date={data.date || ""}
-          body={data.body}
-          sswPeopleLink={data.sswPeopleLink || ""}
-          readLength={data.readLength || ""}
-          filename={data._sys.filename || ""}
+          query={documentData.query}
+          variables={documentData.variables}
+          pageData={{ blogs: documentData.blogs }}
         />
       </div>
 
@@ -50,13 +45,15 @@ async function getBlogPost(product: string, slug: string) {
       relativePath: `${product}/${slug}.mdx`,
     });
 
-    const blog = res.data?.blogs;
-
-    if (!blog) {
+    if (!res?.data?.blogs) {
       return null;
     }
 
-    return blog;
+    return {
+      query: res.query,
+      variables: res.variables,
+      blogs: res.data.blogs as Blogs,
+    };
   } catch (error) {
     console.error("Error fetching blog post:", error);
     return null;
