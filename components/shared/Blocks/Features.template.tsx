@@ -35,9 +35,22 @@ export const FeaturesTemplate: Template = {
       fields: [
         {
           name: "headline",
-          label: "Headline",
+          label: "Headline Text Before Rotate Animation",
           type: "string" as const,
           required: true,
+        },
+        {
+          name: "words",
+          label: "Words for Rotate Animation",
+          type: 'string',
+          list: true,
+          required: false,
+        },
+        {
+          name: "headlineAfter",
+          label: "Headline Text After Rotate Animation",
+          type: "string" as const,
+          required: false,
         },
         {
           name: "text",

@@ -4,8 +4,15 @@
     {
       "featureItem": [
         {
-          "headline": "Make the perfect task, ticket, or email in 30 seconds",
-          "text": "Don't waste another minute figuring out who can fix the problem. With YakShaver, the right person gets notified instantly, saving you hours of frustration\n",
+          "headline": "Make the perfect",
+          "words": [
+            "PBI",
+            "email",
+            "ticket",
+            "task"
+          ],
+          "headlineAfter": "in seconds",
+          "text": "Don't waste another minute figuring out who can fix the problem. With the **YakShaver AI agent**, the right person gets notified instantly, saving you hours of frustration\n",
           "buttons": [
             {
               "label": "BOOK A DEMO",

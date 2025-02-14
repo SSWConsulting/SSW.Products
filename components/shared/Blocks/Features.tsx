@@ -10,6 +10,7 @@ import {
 import { YouTubeEmbed } from "../YouTubeEmbed";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
 import Link from "next/link";
+import { WordRotate } from "@/components/magicui/word-rotate";
 
 type ActionButton = {
   label: string;
@@ -20,6 +21,8 @@ type ActionButton = {
 
 export type FeatureItem = {
   headline: string;
+  headlineAfter: string;
+  words: string[];
   text: TinaMarkdownContent;
   buttons: ActionButton[];
   media: Array<{
@@ -53,7 +56,6 @@ export const featureComponents: Components<Record<string, unknown>> = {
 };
 
 const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
-  
   const renderMedia = () => {
     if (feature.media && feature.media.length > 0) {
       const mediaItem = feature.media[0];
@@ -119,18 +121,63 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
 
   return (
     <div
-      className={`flex flex-col-reverse lg:flex-row w-full items-center lg:gap-12 gap-8 ${
+      className={`flex flex-col-reverse lg:flex-row w-full items-center lg:gap-12 gap-8 px-8 ${
         feature.isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
-      }  pb-10 lg:pb-0 px-8 3xl:px-20`}
+      }  pb-10 lg:pb-0 3xl:px-20`}
     >
-      <div className="lg:w-2/7 w-full flex flex-col gap-2">
-        <h1
-          className="text-3xl text-white font-semibold tracking-wide"
-          data-tina-field={tinaField(feature, "headline")}
-        >
-          {feature.headline}
-        </h1>
-        <div className="text-base">
+      <div className="w-full flex flex-col gap-2 xl:pl-20">
+        <div className="flex flex-wrap items-center text-3xl lg:text-4xl text-white font-semibold">
+          <div className="view-mode-1 block md:hidden lg:block">
+            {/* First line: Headline (always on the first line) */}
+            <div className="w-full md:w-auto lg:w-full xl:w-auto flex items-center">
+              <h1
+                className="inline"
+                data-tina-field={tinaField(feature, "headline")}
+              >
+                {feature.headline}
+              </h1>
+              {/* Words should be on first line for sm, md, xl but on second line for lg */}
+              <span className="inline-block pl-2 pr-2  text-[#CC4141] lg:hidden xl:inline-block">
+                <WordRotate words={feature.words} className="inline-flex" />
+              </span>
+            </div>
+
+            {/* Second line: Words (only on lg) & HeadlineAfter (on second line for sm, lg, xl) */}
+            <div className="w-full flex items-center lg:w-full">
+              <span className="hidden lg:inline-block xl:hidden pl-2 pr-2 lg:pl-0 text-[#CC4141]">
+                <WordRotate words={feature.words} className="inline-flex" />
+              </span>
+              <h1
+                className="w-full md:w-auto lg:w-auto xl:w-full md:inline-flex"
+                data-tina-field={tinaField(feature, "headlineAfter")}
+              >
+                {feature.headlineAfter}
+              </h1>
+            </div>
+          </div>
+          <div className="view-mode-2 hidden md:block lg:hidden">
+            <div className="w-full flex flex-wrap items-center">
+              {/* First line: Headline, Words, and HeadlineAfter (all on the same line) */}
+              <h1
+                className="inline"
+                data-tina-field={tinaField(feature, "headline")}
+              >
+                {feature.headline}
+              </h1>
+              <span className="inline-block px-2 text-[#CC4141]">
+                <WordRotate words={feature.words} className="inline-flex" />
+              </span>
+              <h1
+                className="inline"
+                data-tina-field={tinaField(feature, "headlineAfter")}
+              >
+                {feature.headlineAfter}
+              </h1>
+            </div>
+          </div>
+        </div>
+
+        <div className="text-base ">
           <TinaMarkdown content={feature.text} components={featureComponents} />
         </div>
         <div className="flex flex-col lg:flex-row lg:justify-start lg:items-center gap-4 xl:gap-0">
