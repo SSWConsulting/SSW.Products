@@ -1,0 +1,17 @@
+{
+  "Logo": "/EagleEye/Logo.svg",
+  "leftNavItem": [
+    {
+      "label": "Videos",
+      "href": "https://www.youtube.com/@SSWEagleEye",
+      "_template": "stringItem"
+    }
+  ],
+  "rightNavItem": [
+    {
+      "Title": "TALK TO US",
+      "JotFormId": "233468468973070",
+      "_template": "BookingButton"
+    }
+  ]
+}

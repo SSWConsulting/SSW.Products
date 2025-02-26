@@ -1,0 +1,110 @@
+{
+  "title": "EagleEye",
+  "pageBlocks": [
+    {
+      "featureItem": [
+        {
+          "headline": "Transform Company Data into Epic Insights",
+          "headlineAfter": "",
+          "text": "Discover Patterns, Enhance Productivity & Drive Decisions with EagleEye\n",
+          "buttons": [
+            {
+              "label": "BOOK A DEMO",
+              "variant": "solidRed",
+              "size": "large",
+              "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "image": "/EagleEye/Thumbnail.jpg",
+              "src": "https://www.youtube.com/watch?v=-7c6uagBBBM",
+              "_template": "thumbnailToExternalLink"
+            }
+          ],
+          "isReversed": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "headline": "Secure and Compliant",
+      "carouselItems": [
+        {
+          "tabTitle": "AI-Driven Insights",
+          "title": "AI-Driven Insights",
+          "description": "Unlock comprehensive insights with EagleEye's AI-powered analytics, adept at parsing both email interactions and developer activities. Dive deep into your organizational data, from email content to pull-request metrics, pinpoint efficiencies and inconsistencies, and let data lead the way to a smarter workflow.",
+          "image": "/EagleEye/AI Driven Insights.png"
+        },
+        {
+          "tabTitle": "Power BI Integration",
+          "title": "Power BI Integration",
+          "description": "EagleEye seamlessly melds with PowerBI to turn complex email data into compelling visual stories. Discover patterns, compare trends, and make informed decisions with interactive reports that highlight the heartbeat of your business communication.",
+          "image": "/EagleEye/Power BI Report.png"
+        },
+        {
+          "tabTitle": "Customer Portal",
+          "title": "Customer Portal",
+          "description": "Our Customer Portal offers seamless integration with Power BI reports, providing real-time data insights at your fingertips. Easily manage tags, organize your workflow, and track ongoing and completed jobs. With features to sync historical data and view daily job reports, the portal simplifies operations and enhances decision-making in one convenient platform.\n\n",
+          "image": "/EagleEye/Customer Portal.png"
+        },
+        {
+          "tabTitle": "Enhanced Productivity",
+          "title": "Enhanced Productivity",
+          "description": "Revolutionize your team's productivity with EagleEye's streamlined analysis. By providing a clear overview of communication flows, EagleEye identifies opportunities to balance workloads and encourages collaborative efforts, ensuring that every team member can perform at their peak.",
+          "image": "/EagleEye/Enhanced Productivity.png"
+        },
+        {
+          "tabTitle": "Data-Driven Decisions",
+          "title": "Data-Driven Decisions",
+          "description": "With EagleEye, dive deep into the digital dialogue of your enterprise. Harness the power of data-driven decisions as you uncover hidden trends and gain insights into team performance and engagement, fostering a culture of continuous improvement.",
+          "image": "/EagleEye/Data Driven Decisions.png"
+        }
+      ],
+      "_template": "featureCarousel"
+    },
+    {
+      "altText": "Making the Perfect PBI | YakShaver",
+      "title": "Want to Learn More? ",
+      "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+      "_template": "videoDisplay"
+    },
+    {
+      "headline": "Frequently Asked Questions",
+      "text": "",
+      "questions": [
+        {
+          "question": "What kind of reports will I receive?",
+          "answer": "You will receive three key reports: Emails with Mentions, which uses AI to automatically extract people mentioned in the email body and tag them; Emails Sent, displaying all sent emails categorized by different tags; and Emails Received, which shows incoming emails with various tags for easy sorting and management. These reports offer detailed insights into your email communication, helping you track and monitor both outgoing and incoming messages effectively."
+        },
+        {
+          "question": "How often is my email data scanned?",
+          "answer": "We perform daily scans that analyze the previous day's email data at midnight. Additionally, you can sync and access historical scans anytime through the Portal. This allows you to keep up with any past emails that may need to be reviewed or reanalyzed."
+        },
+        {
+          "question": "Is my email data secure? ",
+          "answer": "Yes, your email data is fully secure. We provision Azure resources directly on your side, giving you complete control over your data and security settings. With this setup, you can manage access, configure encryption, and ensure that your data remains within your preferred environment. Our platform is designed to align with your security requirements, offering full transparency and control at every step."
+        }
+      ],
+      "_template": "faq"
+    },
+    {
+      "backgroundColour": "#080808",
+      "textColour": "#FFFFFF",
+      "headline": "Talk to an EagleEye Expert",
+      "text": "Evaluating EagleEye for your project? Book a 30-minute call with a EagleEye architect",
+      "buttons": [
+        {
+          "label": "SCHEDULE CALL",
+          "variant": "solidRed",
+          "size": "medium",
+          "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
+          "_template": "actions"
+        }
+      ],
+      "image": "/YakShaver/UlyPoint.png",
+      "_template": "Banner"
+    }
+  ]
+}

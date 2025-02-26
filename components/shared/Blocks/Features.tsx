@@ -131,7 +131,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
             {/* First line: Headline (always on the first line) */}
             <div className="w-full md:w-auto lg:w-full xl:w-auto flex items-center">
               <h1
-                className="inline"
+                className="inline leading-1.5"
                 data-tina-field={tinaField(feature, "headline")}
               >
                 {feature.headline}

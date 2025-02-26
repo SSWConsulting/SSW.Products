@@ -1,0 +1,34 @@
+{
+  "footerTitle": "2025 SSW EagleEye. All Rights Reserved",
+  "footerColor": "#000000",
+  "footer": [
+    {
+      "footerItemIcon": "FaYouTube",
+      "footerItemLink": "https://www.youtube.com/user/sswtechtalks/"
+    },
+    {
+      "footerItemIcon": "FaLinkedIn",
+      "footerItemLink": "https://www.linkedin.com/company/ssw/"
+    },
+    {
+      "footerItemIcon": "FaFacebook",
+      "footerItemLink": "https://www.facebook.com/SSW.page"
+    },
+    {
+      "footerItemIcon": "FaTwitter",
+      "footerItemLink": "https://x.com/SSW_TV"
+    },
+    {
+      "footerItemIcon": "FaInstagram",
+      "footerItemLink": "https://www.instagram.com/ssw_tv"
+    },
+    {
+      "footerItemIcon": "FaTiktok",
+      "footerItemLink": "https://www.tiktok.com/@ssw_tv"
+    },
+    {
+      "footerItemIcon": "FaGithub",
+      "footerItemLink": "https://www.github.com/sswconsulting"
+    }
+  ]
+}
