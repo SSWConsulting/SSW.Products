@@ -1,0 +1,303 @@
+import { NumberTicker } from "@/components/magicui/number-ticker";
+import Image from "next/image";
+import { IoIosTimer } from "react-icons/io";
+import { FaVideo } from "react-icons/fa6";
+import { AnimatedBeamMultipleOutputDemo } from "./AnimatedBeam";
+
+const YakShaverGray = "bg-[#131313] shadow-2xl";
+
+function IconBox() {
+  return (
+    <div className="relative rounded-2xl w-[60px] h-[60px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
+      <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+      <div className="relative rounded-2xl border border-gray-600 flex items-center justify-center w-full h-full">
+        <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center h-12 w-12">
+          <Image
+            src={"/svg/github-mark-white.svg"}
+            alt="icon"
+            width={30}
+            height={30}
+            className="rounded-full"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ExampleYakShaverCard() {
+  return (
+    <div className="bg-[#1E1E20] border-2  text-xs border-[#4D4D4E] shadow-2xl rounded-xl p-4  text-white ">
+      <h2 className=" font-semibold pb-2">
+        {" "}
+        ✅ Done - ✨ A Work Item has been created by YakShaver.ai 🐂
+      </h2>
+      <h3 className="pb-1">Project</h3>
+      <span className="mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
+        {" "}
+        tina.io{" "}
+      </span>
+      <h3 className="pb-1">Work Item #2818</h3>
+      <span className="mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F] whitespace-nowrap overflow-hidden text-ellipsis">
+        {" "}
+        🐛 Fix event display issue on tina.io homepage{" "}
+      </span>
+      <h3 className="pb-1">Assigned to</h3>
+      <span className="mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
+        {" "}
+        Betty Bondoc
+      </span>
+      <h3 className="pb-1">Mentioned Users</h3>
+      <span className="mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
+        {" "}
+        Adam Cogan, Matt Wicks
+      </span>
+    </div>
+  );
+}
+
+function YaksShavedCounterBox() {
+  return (
+    <div className={`${YakShaverGray} h-28 rounded-xl p-5`}>
+      <div className="flex flex-row gap-2 text-lg text-gray-200">
+        <Image src={"/svg/yak-icon.svg"} alt="yak" width={20} height={20} />
+        Yaks Shaved
+      </div>
+      <div className=" text-2xl md:text-4xl font-semibold pt-2">
+        <NumberTicker value={15460} className="text-white" />
+      </div>
+    </div>
+  );
+}
+
+function MdView() {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      <div className="col-span-1">
+        <YaksShavedCounterBox />
+      </div>
+      <div className="col-span-1">
+        <TimeSavedCounterBox />
+      </div>
+      <div className="col-span-2">
+        <PhotoBox />
+      </div>
+      <div
+        className={`${YakShaverGray} rounded-xl col-span-2 relative overflow-hidden h-96 md:h-64 flex flex-col sm:flex-row`}
+      >
+        <div className="absolute left-0 top-0 h-full w-full sm:w-[36%] bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] z-10"></div>
+
+        <Image
+          src={"/YakShaver/Arrow-bg.png"}
+          alt="yak"
+          layout="fill"
+          objectFit="contain"
+          className="rounded-xl z-20"
+        />
+
+        <div className="pt-16 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
+          <AnimatedBeamMultipleOutputDemo />
+        </div>
+
+        <div className="pt-20 flex flex-col justify-center p-6 sm:p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
+          <h2 className="text-white text-xl font-semibold">
+            Automated Task Creation
+          </h2>
+          <span className="text-gray-400 text-sm">
+            Unlock the power of automation with generative AI that seamlessly
+            converts videos, images and documents into actionable work items
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LgView() {
+  return (
+    <div className="grid md:grid-cols-2 grid-cols-1 pt-4 gap-4 h-96">
+      {/* Left column (Sub-grid) */}
+      <div className="grid gap-2">
+        {/* First sub-row (Two columns) */}
+        <div className="grid grid-cols-2 gap-4">
+          {/* Left small box */}
+          <YaksShavedCounterBox />
+          {/* Right small box */}
+          <TimeSavedCounterBox />
+        </div>
+        {/* Second sub-row (Full width) */}
+        <PhotoBox />
+      </div>
+      {/* Right column (Full height box) */}
+      <BeamBox />
+      {/* Large merged box */}
+    </div>
+  );
+}
+
+function BeamBox() {
+  return (
+    <div className={`${YakShaverGray} rounded-xl relative overflow-hidden`}>
+      <Image
+        src={"/YakShaver/Arrow-bg.png"}
+        alt="yak"
+        layout="fill"
+        objectFit="cover"
+        className="h-full w-full rounded-xl"
+      />
+      <div className="absolute inset-0 flex items-end">
+        <AnimatedBeamMultipleOutputDemo />
+      </div>
+      <div className="absolute bottom-0 w-full p-10">
+        <h2 className="text-white text-2xl font-semibold">
+          {" "}
+          Automated Task Creation
+        </h2>
+        <span className="text-gray-400 text-sm">
+          Unlock the power of automation with generative AI that seamlessly
+          converts videos, images and documents into actionable work items
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function PhotoBox() {
+  return (
+    <div className={`${YakShaverGray} h-64 rounded-xl relative`}>
+      <Image
+        src={"/YakShaver/The-Yak.png"}
+        alt="yak"
+        layout="fill"
+        objectFit="cover"
+        className="h-full w-full rounded-xl filter grayscale"
+      />
+    </div>
+  );
+}
+
+function TimeSavedCounterBox() {
+  return (
+    <div className={`${YakShaverGray} h-28 rounded-xl p-5`}>
+      <div className="flex flex-row items-center gap-2 text-lg text-gray-200">
+        <IoIosTimer />
+        Saving Users
+      </div>
+      <div className=" pt-2 flex flex-row gap-2">
+        <div className="text-2xl md:text-4xl font-semibold">
+          <NumberTicker value={25030} className="text-white" />
+        </div>
+        <div className="text-gray-400 text-sm place-self-end pb-1">Minutes</div>
+      </div>
+    </div>
+  );
+}
+
+export default function BentoBox() {
+  return (
+    <div className="pt-40">
+      <div className="flex justify-center">
+        <div className="inline-flex py-2 px-4 rounded-xl bg-[#131313] justify-center items-center text-white border border-gray-400 hover:text-[#CC4141] hover:border-[#CC4141] transition-all hover:font-bold duration-500">
+          Powered by SSW{" "}
+          <Image
+            src={"/svg/ssw-4-square.svg"}
+            alt="ssw-4-square"
+            className="ml-2"
+            width={20}
+            height={20}
+          />
+        </div>
+      </div>
+      <div className="text-white text-center lg:text-4xl text-3xl font-semibold py-6">
+        Meet your new assistant,{" "}
+        <span className="text-white">
+          {"YakShaver".split("").map((char, index) => (
+            <span
+              key={index}
+              className="inline-block"
+              style={{
+                animation: `colorChange 2000ms ease-in-out forwards ${
+                  index * 100
+                }ms`,
+              }}
+            >
+              {char}
+            </span>
+          ))}
+        </span>
+      </div>
+      <style jsx>{`
+        @keyframes colorChange {
+          to {
+            color: #cc4141;
+          }
+        }
+      `}</style>
+      <div className="text-white p-6 mx-auto max-w-6xl">
+        {/* Container */}
+        <div className=" grid gap-4">
+          {/* Row 1 (Single row, 2 columns) */}
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-4  relative">
+            {/* Left box with glowing effect */}
+            <div className="relative md:col-span-2 col-span-1 rounded-xl md:h-72">
+              <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div
+                className={`${YakShaverGray} relative rounded-xl w-full h-full p-4`}
+              >
+                {/* Status bar */}
+                <div className="flex flex-row gap-2">
+                  <div className="bg-red-500 w-3 h-3 rounded-full"></div>
+                  <div className="bg-yellow-500 w-3 h-3 rounded-full"></div>
+                  <div className="bg-green-500 w-3 h-3 rounded-full"></div>
+                </div>
+                <div className="w-full mt-6 mx-3">
+                  <h2 className="text-white text-4xl font-semibold">
+                    Work with your favorite software development and
+                    collaboration tools
+                  </h2>
+                </div>
+                <div className="mt-8 flex items-center flex-row justify-center gap-6">
+                  <IconBox />
+                  <IconBox />
+                  <IconBox />
+                  <IconBox />
+                  <IconBox />
+                </div>
+              </div>
+            </div>
+            {/* Right box with glowing effect */}
+            <div className="relative col-span-1 rounded-xl md:h-72 overflow-hidden">
+              <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div
+                className={`${YakShaverGray} relative rounded-xl w-full h-full`}
+              >
+                <div className="p-6">
+                  <h2 className="text-white text-2xl font-semibold">
+                    Real-Time PBIs
+                  </h2>
+                  <p className="text-gray-400 text-sm">
+                    Get real-time updates on your projects and tasks with our
+                    real-time PBIs.
+                  </p>
+                </div>
+                <div className="text-white flex justify-center items-center p-4 scale-75 -mt-10 md:-mt-16">
+                  <ExampleYakShaverCard />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Row 2 (2 Rows) */}
+        <div className="pt-4 lg:pt-0">
+          <div className="hidden lg:block">
+            <LgView />
+          </div>
+          <div className="lg:hidden block">
+            <MdView />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

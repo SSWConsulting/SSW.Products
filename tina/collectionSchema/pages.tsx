@@ -5,6 +5,7 @@ import { CarouselFeatureTemplate } from "../../components/shared/Blocks/FeatureC
 import { pricingTemplate } from "../../components/shared/Blocks/Pricing.template";
 import { BannerTemplate } from "../../components/shared/Blocks/Banner.template";
 import { videoDisplayTemplate } from "../../components/shared/Blocks/VideoDisplay.template";
+import { bentoBoxTemplate } from "../../components/shared/Blocks/BentoBox.template";
 
 export const PagesSchema: Collection = {
   label: "Product Pages",
@@ -31,7 +32,7 @@ export const PagesSchema: Collection = {
       ui: {
         visualSelector: true,
       },
-      templates: [FeaturesTemplate, FAQTemplate, CarouselFeatureTemplate, pricingTemplate, BannerTemplate, videoDisplayTemplate],
+      templates: [FeaturesTemplate, FAQTemplate, CarouselFeatureTemplate, pricingTemplate, BannerTemplate, videoDisplayTemplate, bentoBoxTemplate],
     },
   ],
 };

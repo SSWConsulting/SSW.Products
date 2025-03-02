@@ -4,6 +4,7 @@ import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import Pricing from "./Blocks/Pricing";
 import Banner from "./Blocks/Banner";
 import VideoDisplay from "./Blocks/VideoDisplay";
+import BentoBox from "./Blocks/BentoBox";
 
 interface Block {
   __typename: string;
@@ -69,6 +70,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <Banner key={index} data={block} />;
       case "PagesPageBlocksVideoDisplay":
         return <VideoDisplay key={index} data={block} />;
+      case "PagesPageBlocksBentoBox":
+        return <BentoBox/>;
       default:
         return null;
     }
