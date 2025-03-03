@@ -5,6 +5,16 @@ import { CarouselFeatureTemplate } from "../../components/shared/Blocks/FeatureC
 import { pricingTemplate } from "../../components/shared/Blocks/Pricing.template";
 import { BannerTemplate } from "../../components/shared/Blocks/Banner.template";
 import { videoDisplayTemplate } from "../../components/shared/Blocks/VideoDisplay.template";
+import {
+  breadcrumbBlock,
+  buttonBlock,
+  cardCarouselBlock,
+  imageTextBlock,
+  logoCarouselBlock,
+  accordionBlock,
+  // replace this with a relative path node modules directory (See known issues)
+} from "../../node_modules/ssw-tinacms-landingkit/dist";
+import * as AntIcons from "../../node_modules/react-icons/ai";
 
 export const PagesSchema: Collection = {
   label: "Product Pages",
@@ -31,7 +41,40 @@ export const PagesSchema: Collection = {
       ui: {
         visualSelector: true,
       },
-      templates: [FeaturesTemplate, FAQTemplate, CarouselFeatureTemplate, pricingTemplate, BannerTemplate, videoDisplayTemplate],
+      templates: [
+        FeaturesTemplate,
+        FAQTemplate,
+        CarouselFeatureTemplate,
+        pricingTemplate,
+        BannerTemplate,
+        videoDisplayTemplate,
+        breadcrumbBlock(
+          "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/breadcrumbs.jpg?raw=true"
+        ),
+        logoCarouselBlock(
+          "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/logo-carousel.png?raw=true?raw=true"
+        ),
+        buttonBlock({
+          icons: AntIcons,
+          previewSrc:
+            "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/button.png?raw=true",
+        }),
+        cardCarouselBlock({
+          icons: AntIcons,
+          previewSrc:
+            "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/card-carousel.jpg?raw=true",
+        }),
+        imageTextBlock({
+          icons: AntIcons,
+          previewSrc:
+            "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/image-text-block.png?raw=true",
+        }),
+        accordionBlock({
+          icons: AntIcons,
+          previewSrc:
+            "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/accordion.png?raw=true",
+        }),
+      ],
     },
   ],
 };

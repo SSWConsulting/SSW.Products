@@ -4,6 +4,14 @@ import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import Pricing from "./Blocks/Pricing";
 import Banner from "./Blocks/Banner";
 import VideoDisplay from "./Blocks/VideoDisplay";
+import {
+  Accordion,
+  Button,
+  CardCarousel,
+  ImageTextBlock,
+  LogoCarousel,
+} from "ssw-tinacms-landingkit";
+import * as AntIcons from "react-icons/ai";
 
 interface Block {
   __typename: string;
@@ -29,7 +37,6 @@ interface PlanActions {
   size?: string | null;
 }
 
-
 interface BlocksProps {
   blocks: Block[] | null;
 }
@@ -52,7 +59,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
           );
         }
         return null;
-        //TODO: remove ts-expect error https://github.com/SSWConsulting/SSW.Products/issues/15
+      //TODO: remove ts-expect error https://github.com/SSWConsulting/SSW.Products/issues/15
       case "PagesPageBlocksFaq":
         // @ts-expect-error investigate after
         return <FAQ key={index} data={block} index={index} />;
@@ -69,6 +76,20 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <Banner key={index} data={block} />;
       case "PagesPageBlocksVideoDisplay":
         return <VideoDisplay key={index} data={block} />;
+      case "PagesPageBlocksLogoCarousel":
+        //@ts-expect-error investigate after 
+        return <LogoCarousel key={index} data={block} />;
+      case "PagesPageBlocksCardCarousel":
+        //@ts-expect-error 
+        return <CardCarousel icons={AntIcons} data={block} />;
+      case "PagesPageBlocksButton":
+        //@ts-expect-error investigate after 
+        return <Button icons={AntIcons} data={block} />;
+      case "PagesPageBlocksImageTextBlock":
+        //@ts-expect-error investigate after 
+        return <ImageTextBlock icons={AntIcons} data={block}></ImageTextBlock>;
+      case "PagesPageBlocksAccordion":
+        return <Accordion callbackFunctions={null} icons={AntIcons} data={block}></Accordion>;
       default:
         return null;
     }
