@@ -94,6 +94,7 @@ export function AnimatedBeamMultipleOutput({
   data: any;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  //ts-ignore: Component used from MagicUI
   const divRefs = Array.from({ length: 6 }, () => useRef<HTMLDivElement>(null));
   return (
     <div
