@@ -5,6 +5,7 @@ import { FaMinus, FaXmark } from "react-icons/fa6";
 import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
 import { FaExpandAlt } from "react-icons/fa";
+import { TypingAnimation } from "@/components/magicui/typing-animation";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
@@ -35,25 +36,23 @@ function ExampleYakShaverCard() {
         ✅ Done - ✨ A Work Item has been created by YakShaver.ai 🐂
       </h2>
       <h3 className="pb-1">Project</h3>
-      <span className="mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
-        {" "}
-        tina.io{" "}
-      </span>
+
+      <TypingAnimation className="h-[24px] items-center text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
+        tina.io
+      </TypingAnimation>
+
       <h3 className="pb-1">Work Item #2818</h3>
-      <span className="mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F] whitespace-nowrap overflow-hidden text-ellipsis">
-        {" "}
-        🐛 Fix event display issue on tina.io homepage{" "}
-      </span>
+      <TypingAnimation delay={1000} className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F] whitespace-nowrap overflow-hidden text-ellipsis">
+        🐛 Fix event display issue on tina.io homepage
+      </TypingAnimation>
       <h3 className="pb-1">Assigned to</h3>
-      <span className="mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
-        {" "}
+      <TypingAnimation delay={5300} className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
         Betty Bondoc
-      </span>
+      </TypingAnimation>
       <h3 className="pb-1">Mentioned Users</h3>
-      <span className="mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
-        {" "}
+      <TypingAnimation delay={5600} className="items-center h-[24px] text-xs font-normal  mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
         Adam Cogan, Matt Wicks
-      </span>
+      </TypingAnimation>
     </div>
   );
 }
