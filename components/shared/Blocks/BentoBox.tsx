@@ -1,21 +1,12 @@
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import Image from "next/image";
 import { IoIosTimer } from "react-icons/io";
-import { FaFile, FaImage, FaMinus, FaVideo, FaXmark } from "react-icons/fa6";
+import { FaMinus, FaXmark } from "react-icons/fa6";
 import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
-import { IoChatbox } from "react-icons/io5";
 import { FaExpandAlt } from "react-icons/fa";
 
-
 const YakShaverGray = "bg-[#131313] shadow-2xl";
-
-const icons = {
-  FaVideo,
-  IoChatbox,
-  FaImage,
-  FaFile,
-};
 
 function IconBox({ icon }: { icon: string }) {
   return (
@@ -290,10 +281,10 @@ export default function BentoBox({ data }: { data: any }) {
                     <FaXmark className="hidden group-hover:block absolute text-[8px] text-black" />
                   </div>
                   <div className="bg-yellow-500 w-3 h-3 rounded-full relative flex items-center justify-center group">
-                  <FaMinus className="hidden group-hover:block absolute text-[8px] text-black" />
+                    <FaMinus className="hidden group-hover:block absolute text-[8px] text-black" />
                   </div>
                   <div className="bg-green-500 w-3 h-3 rounded-full relative flex items-center justify-center group">
-                  <FaExpandAlt className="hidden group-hover:block absolute text-[8px] text-black" />
+                    <FaExpandAlt className="hidden group-hover:block absolute text-[8px] text-black" />
                   </div>
                 </div>
                 <div className="w-full mt-6 mx-3">
