@@ -95,8 +95,6 @@ export function AnimatedBeamMultipleOutput({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const divRefs = Array.from({ length: 6 }, () => useRef<HTMLDivElement>(null));
-
-  console.log("In AnimatedBeam.tsx", data);
   return (
     <div
       className={cn(

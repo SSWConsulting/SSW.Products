@@ -79,7 +79,7 @@ function YaksShavedCounterBox() {
   );
 }
 
-function MdView({ data }: { data: any }) {
+function SmAndMdView({ data }: { data: any }) {
   return (
     <div className="grid grid-cols-2 gap-4">
       <div className="col-span-1">
@@ -123,7 +123,6 @@ function MdView({ data }: { data: any }) {
 }
 
 function LgView({ data }: { data: any }) {
-  console.log(data);
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 pt-4 gap-4 h-96">
       {/* Left column (Sub-grid) */}
@@ -329,7 +328,7 @@ export default function BentoBox({ data }: { data: any }) {
             <LgView data={data} />
           </div>
           <div className="lg:hidden block">
-            <MdView data={data.bottomRightBox} />
+            <SmAndMdView data={data.bottomRightBox} />
           </div>
         </div>
       </div>
