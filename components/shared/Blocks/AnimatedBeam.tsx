@@ -1,7 +1,6 @@
 "use client";
 
-import React, { forwardRef, useRef } from "react";
-
+import React, { forwardRef, useRef, useMemo, createRef } from "react";
 import { cn } from "@/lib/utils";
 import { AnimatedBeam } from "@/components/magicui/animated-beam";
 import Image from "next/image";
@@ -9,16 +8,16 @@ import { FaFile, FaImage, FaVideo } from "react-icons/fa";
 import { IoChatbox } from "react-icons/io5";
 
 const icons = {
-    FaVideo,
-    IoChatbox,
-    FaImage,
-    FaFile,
-    };
+  FaVideo,
+  IoChatbox,
+  FaImage,
+  FaFile,
+};
 
 const OutputPill = forwardRef<HTMLDivElement, { title: string }>(
   ({ title }, ref) => {
     return (
-      <div className="relative inline-flex gap-2 items-center p-1 rounded-3xl top-0  transition-all duration-300 group">
+      <div className="relative inline-flex gap-2 items-center p-1 rounded-3xl top-0 transition-all duration-300 group">
         <div className="absolute -inset-1 bg-gradient-to-br from-[#57FEFE] to-white rounded-3xl blur opacity-10 "></div>
         <div
           ref={ref}
@@ -67,35 +66,29 @@ const CircleLogo = forwardRef<HTMLDivElement, { media: string }>(
 CircleLogo.displayName = "CircleLogo";
 
 const InputBadge = forwardRef<HTMLDivElement, { icon: keyof typeof icons; title: string }>(
-    ({ icon, title }, ref) => {
-      const Icon = icons[icon as keyof typeof icons];
-  
-      return (
-        <div ref={ref} className="inline-flex w-fit border border-gray-600 rounded-full z-50">
-          <div className="relative inline-flex flex-row items-center gap-2 md:gap-4 text-sm rounded-full bg-[#131313] p-1 pr-2 md:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.5)]">
-            <div className="bg-[#F8F8F8] bg-opacity-10 rounded-full p-2">
-              {Icon && <Icon />}
-            </div>
-            {title}
+  ({ icon, title }, ref) => {
+    const Icon = icons[icon as keyof typeof icons];
+
+    return (
+      <div ref={ref} className="inline-flex w-fit border border-gray-600 rounded-full z-50">
+        <div className="relative inline-flex flex-row items-center gap-2 md:gap-4 text-sm rounded-full bg-[#131313] p-1 pr-2 md:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.5)]">
+          <div className="bg-[#F8F8F8] bg-opacity-10 rounded-full p-2">
+            {Icon && <Icon />}
           </div>
+          {title}
         </div>
-      );
-    }
-  );
-  
+      </div>
+    );
+  }
+);
 
 InputBadge.displayName = "InputBadge";
 
-
-export function AnimatedBeamMultipleOutput({
-  className, data
-}: {
-  className?: string;
-  data: any;
-}) {
+export function AnimatedBeamMultipleOutput({ className, data }: { className?: string; data: any; }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  //ts-ignore: Component used from MagicUI
-  const divRefs = Array.from({ length: 6 }, () => useRef<HTMLDivElement>(null));
+
+  const divRefs = useMemo(() => Array.from({ length: 6 }, () => createRef<HTMLDivElement>()), []);
+
   return (
     <div
       className={cn(
@@ -135,4 +128,3 @@ export function AnimatedBeamMultipleOutput({
     </div>
   );
 }
-
