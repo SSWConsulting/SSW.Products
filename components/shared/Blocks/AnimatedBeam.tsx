@@ -66,8 +66,8 @@ const CircleLogo = forwardRef<HTMLDivElement, { media: string }>(
 
 CircleLogo.displayName = "CircleLogo";
 
-const InputBadge = forwardRef<HTMLDivElement, { children?: React.ReactNode; icon: keyof typeof icons; title: string }>(
-    ({ children, icon, title }, ref) => {
+const InputBadge = forwardRef<HTMLDivElement, { icon: keyof typeof icons; title: string }>(
+    ({ icon, title }, ref) => {
       const Icon = icons[icon as keyof typeof icons];
   
       return (
