@@ -3,9 +3,16 @@
   "pageBlocks": [
     {
       "badge": "Powered by SSW",
-      "title": "Meet your new assistant YakShaver",
+      "title": "Meet your new assistant, YakShaver",
       "topLeftBox": {
-        "title": "Work with your favourite software development and collaborative tools "
+        "title": "Work with your favourite software development and collaborative tools ",
+        "icons": [
+          "/svg/Microsoft Office Teams 2018.svg",
+          "/SSW Product Sites.svg",
+          "/svg/SSW Product Sites Clip Path Group.svg",
+          "/svg/github-mark-white.svg",
+          "/svg/devops.svg"
+        ]
       },
       "topRightBox": {
         "title": "Real-Time PBIs",
@@ -19,24 +26,32 @@
         "title": "Saving Users",
         "counterMetric": "MinutesSaved"
       },
+      "bottomLeftBox": {
+        "media": "/YakShaver/The-Yak.png"
+      },
       "bottomRightBox": {
         "title": "Automated Task Creation: From idea to action",
         "description": "Unlock the power of automation with generative AI that seamlessly converts videos, images and documents into actionable product backlog items. ",
         "inputItem": [
           {
-            "name": "Video"
+            "name": "Video",
+            "icon": "FaVideo"
           },
           {
-            "name": "Image"
+            "name": "Image",
+            "icon": "FaImage"
           },
           {
-            "name": "Chat"
+            "name": "Chat",
+            "icon": "IoChatbox"
           },
           {
-            "name": "Document"
+            "name": "Document",
+            "icon": "FaFile"
           }
         ],
-        "outputText": "Product Backlog Item"
+        "middleLogo": "/svg/yak-icon-fill.svg",
+        "outputText": "Work Item"
       },
       "_template": "BentoBox"
     },

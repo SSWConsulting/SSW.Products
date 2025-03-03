@@ -1,19 +1,28 @@
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import Image from "next/image";
 import { IoIosTimer } from "react-icons/io";
-import { FaVideo } from "react-icons/fa6";
-import { AnimatedBeamMultipleOutputDemo } from "./AnimatedBeam";
+import { FaFile, FaImage, FaVideo } from "react-icons/fa6";
+import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
+import client from "../../../tina/__generated__/client";
+import { IoChatbox } from "react-icons/io5";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
-function IconBox() {
+const icons = {
+    FaVideo,
+    IoChatbox,
+    FaImage,
+    FaFile,
+    };
+
+function IconBox({ icon }: { icon: string }) {
   return (
     <div className="relative rounded-2xl w-[60px] h-[60px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
       <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
       <div className="relative rounded-2xl border border-gray-600 flex items-center justify-center w-full h-full">
         <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center h-12 w-12">
           <Image
-            src={"/svg/github-mark-white.svg"}
+            src={icon || "/svg/github-mark-white.svg"}
             alt="icon"
             width={30}
             height={30}
@@ -80,7 +89,7 @@ function MdView() {
         <TimeSavedCounterBox />
       </div>
       <div className="col-span-2">
-        <PhotoBox />
+        <PhotoBox photo={"/YakShaver/The-Yak.png"} />
       </div>
       <div
         className={`${YakShaverGray} rounded-xl col-span-2 relative overflow-hidden h-96 md:h-64 flex flex-col sm:flex-row`}
@@ -96,7 +105,7 @@ function MdView() {
         />
 
         <div className="pt-16 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
-          <AnimatedBeamMultipleOutputDemo />
+          <AnimatedBeamMultipleOutput />
         </div>
 
         <div className="pt-20 flex flex-col justify-center p-6 sm:p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
@@ -113,29 +122,43 @@ function MdView() {
   );
 }
 
-function LgView() {
+function LgView({ data }: { data: any }) {
+  console.log(data);
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 pt-4 gap-4 h-96">
       {/* Left column (Sub-grid) */}
       <div className="grid gap-2">
         {/* First sub-row (Two columns) */}
         <div className="grid grid-cols-2 gap-4">
-          {/* Left small box */}
-          <YaksShavedCounterBox />
-          {/* Right small box */}
-          <TimeSavedCounterBox />
+          {/* Counter Box 1 - LHSsmall box */}
+          {data.counterBox1?.counterMetric === "YakShaved" ? (
+            <YaksShavedCounterBox />
+          ) : data.counterBox1?.counterMetric === "MinutesSaved" ? (
+            <TimeSavedCounterBox />
+          ) : (
+            <YaksShavedCounterBox />
+          )}
+
+          {/* Counter Box 2- RHS small box */}
+          {data.counterBox2?.counterMetric === "YakShaved" ? (
+            <YaksShavedCounterBox />
+          ) : data.counterBox2?.counterMetric === "MinutesSaved" ? (
+            <TimeSavedCounterBox />
+          ) : (
+            <YaksShavedCounterBox />
+          )}
         </div>
         {/* Second sub-row (Full width) */}
-        <PhotoBox />
+        <PhotoBox photo={data?.bottomLeftBox?.media} />
       </div>
       {/* Right column (Full height box) */}
-      <BeamBox />
+      <BeamBox data={data?.bottomRightBox} />
       {/* Large merged box */}
     </div>
   );
 }
 
-function BeamBox() {
+function BeamBox({ data }: { data: any }) {
   return (
     <div className={`${YakShaverGray} rounded-xl relative overflow-hidden`}>
       <Image
@@ -146,27 +169,21 @@ function BeamBox() {
         className="h-full w-full rounded-xl"
       />
       <div className="absolute inset-0 flex items-end">
-        <AnimatedBeamMultipleOutputDemo />
+        <AnimatedBeamMultipleOutput  data={data}    />
       </div>
       <div className="absolute bottom-0 w-full p-10">
-        <h2 className="text-white text-2xl font-semibold">
-          {" "}
-          Automated Task Creation
-        </h2>
-        <span className="text-gray-400 text-sm">
-          Unlock the power of automation with generative AI that seamlessly
-          converts videos, images and documents into actionable work items
-        </span>
+        <h2 className="text-white text-xl font-semibold">{data?.title}</h2>
+        <span className="text-gray-400 text-sm">{data?.description}</span>
       </div>
     </div>
   );
 }
 
-function PhotoBox() {
+function PhotoBox({ photo }: { photo: string }) {
   return (
     <div className={`${YakShaverGray} h-64 rounded-xl relative`}>
       <Image
-        src={"/YakShaver/The-Yak.png"}
+        src={photo || "/YakShaver/The-Yak.png"}
         alt="yak"
         layout="fill"
         objectFit="cover"
@@ -193,25 +210,37 @@ function TimeSavedCounterBox() {
   );
 }
 
-export default function BentoBox() {
+function SSWBadge({ title }: { title: string }) {
   return (
-    <div className="pt-40">
-      <div className="flex justify-center">
-        <div className="inline-flex py-2 px-4 rounded-xl bg-[#131313] justify-center items-center text-white border border-gray-400 hover:text-[#CC4141] hover:border-[#CC4141] transition-all hover:font-bold duration-500">
-          Powered by SSW{" "}
-          <Image
-            src={"/svg/ssw-4-square.svg"}
-            alt="ssw-4-square"
-            className="ml-2"
-            width={20}
-            height={20}
-          />
-        </div>
+    <div className="flex justify-center">
+      <div className="inline-flex py-2 px-4 rounded-xl bg-[#131313] justify-center items-center text-white border border-gray-400 hover:text-[#CC4141] hover:border-[#CC4141] transition-all hover:font-bold duration-500">
+        {title}
+        <Image
+          src={"/svg/ssw-4-square.svg"}
+          alt="ssw-4-square"
+          className="ml-2"
+          width={20}
+          height={20}
+        />
       </div>
+    </div>
+  );
+}
+
+function TitleFadeIn({ title }: { title: string }) {
+  const words = title.split(" ");
+
+  const lastWord = words.pop();
+
+  const firstPart = words.join(" ");
+
+  return (
+    <>
       <div className="text-white text-center lg:text-4xl text-3xl font-semibold py-6">
-        Meet your new assistant,{" "}
+        {firstPart}
+        {firstPart ? " " : ""}
         <span className="text-white">
-          {"YakShaver".split("").map((char, index) => (
+          {lastWord?.split("").map((char, index) => (
             <span
               key={index}
               className="inline-block"
@@ -233,6 +262,16 @@ export default function BentoBox() {
           }
         }
       `}</style>
+    </>
+  );
+}
+
+export default function BentoBox({ data }: { data: any }) {
+  const { topLeftBox, topRightBox } = data;
+  return (
+    <div className="pt-40">
+      <SSWBadge title={data.badge} />
+      <TitleFadeIn title={data.title} />
       <div className="text-white p-6 mx-auto max-w-6xl">
         {/* Container */}
         <div className=" grid gap-4">
@@ -252,16 +291,13 @@ export default function BentoBox() {
                 </div>
                 <div className="w-full mt-6 mx-3">
                   <h2 className="text-white text-4xl font-semibold">
-                    Work with your favorite software development and
-                    collaboration tools
+                    {topLeftBox.title}
                   </h2>
                 </div>
                 <div className="mt-8 flex items-center flex-row justify-center gap-6">
-                  <IconBox />
-                  <IconBox />
-                  <IconBox />
-                  <IconBox />
-                  <IconBox />
+                  {topLeftBox.icons.map((icon: string) => (
+                    <IconBox icon={icon} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -273,11 +309,10 @@ export default function BentoBox() {
               >
                 <div className="p-6">
                   <h2 className="text-white text-2xl font-semibold">
-                    Real-Time PBIs
+                    {topRightBox.title}
                   </h2>
                   <p className="text-gray-400 text-sm">
-                    Get real-time updates on your projects and tasks with our
-                    real-time PBIs.
+                    {topRightBox.description}
                   </p>
                 </div>
                 <div className="text-white flex justify-center items-center p-4 scale-75 -mt-10 md:-mt-16">
@@ -291,7 +326,7 @@ export default function BentoBox() {
         {/* Row 2 (2 Rows) */}
         <div className="pt-4 lg:pt-0">
           <div className="hidden lg:block">
-            <LgView />
+            <LgView data={data} />
           </div>
           <div className="lg:hidden block">
             <MdView />

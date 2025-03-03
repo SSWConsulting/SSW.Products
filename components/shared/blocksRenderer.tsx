@@ -71,7 +71,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksVideoDisplay":
         return <VideoDisplay key={index} data={block} />;
       case "PagesPageBlocksBentoBox":
-        return <BentoBox/>;
+        return <BentoBox data={block} />;
       default:
         return null;
     }
