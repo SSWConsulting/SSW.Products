@@ -2,6 +2,39 @@
   "title": "test-YakShaver",
   "pageBlocks": [
     {
+      "featureItem": [
+        {
+          "headline": "Make the perfect",
+          "words": [
+            "PBI",
+            "email",
+            "ticket",
+            "task"
+          ],
+          "headlineAfter": "in seconds",
+          "text": "Don't waste another minute figuring out who can fix the problem. With the **YakShaver AI agent**, the right person gets notified instantly, saving you hours of frustration\n",
+          "buttons": [
+            {
+              "label": "BOOK A DEMO",
+              "variant": "solidRed",
+              "size": "large",
+              "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
+              "_template": "actions"
+            }
+          ],
+          "media": [
+            {
+              "image": "/YakShaver/What-Is-YakShaver.png",
+              "src": "https://www.youtube.com/shorts/0TPo98R1tnI",
+              "_template": "thumbnailToExternalLink"
+            }
+          ],
+          "isReversed": false
+        }
+      ],
+      "_template": "features"
+    },
+    {
       "badge": "Powered by SSW",
       "title": "Meet your new assistant, YakShaver",
       "topLeftBox": {
@@ -54,68 +87,6 @@
         "outputText": "Work Item"
       },
       "_template": "BentoBox"
-    },
-    {
-      "featureItem": [
-        {
-          "headline": "Make the perfect",
-          "words": [
-            "PBI",
-            "email",
-            "ticket",
-            "task"
-          ],
-          "headlineAfter": "in seconds",
-          "text": "Don't waste another minute figuring out who can fix the problem. With the **YakShaver AI agent**, the right person gets notified instantly, saving you hours of frustration\n",
-          "buttons": [
-            {
-              "label": "BOOK A DEMO",
-              "variant": "solidRed",
-              "size": "large",
-              "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
-              "_template": "actions"
-            }
-          ],
-          "media": [
-            {
-              "image": "/YakShaver/What-Is-YakShaver.png",
-              "src": "https://www.youtube.com/shorts/0TPo98R1tnI",
-              "_template": "thumbnailToExternalLink"
-            }
-          ],
-          "isReversed": false
-        }
-      ],
-      "_template": "features"
-    },
-    {
-      "carouselItems": [
-        {
-          "tabTitle": "Auto Delegation",
-          "title": "Auto Delegation",
-          "description": "Effortlessly assigns tasks to the correct team member based on their responsibilities or expertise ",
-          "image": "/YakShaver/Features/Auto Delegation 5.png"
-        },
-        {
-          "tabTitle": "Seamless Integration",
-          "title": "Seamless Integration",
-          "description": "Connect with your tools for smooth communicaiton such as Microsoft Teams",
-          "image": "/YakShaver/Features/Seamless Integration 3.png"
-        },
-        {
-          "tabTitle": "Time Saving Automation",
-          "title": "Time Saving Automation",
-          "description": "Remove bottlenecks and reduce downtime by eliminating the task of figuring out responsiblity",
-          "image": "/YakShaver/Features/Time Saving Automation 5.png"
-        },
-        {
-          "tabTitle": "Real-Time PBIs",
-          "title": "Real-Time PBIs",
-          "description": "Stay updated instantly with alerts when PBIs have been assigned, completed or require follow-up",
-          "image": "/YakShaver/Features/Detailed Work Items 5.png"
-        }
-      ],
-      "_template": "featureCarousel"
     },
     {
       "altText": "Making the Perfect PBI | YakShaver",

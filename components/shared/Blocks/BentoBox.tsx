@@ -268,7 +268,7 @@ function TitleFadeIn({ title }: { title: string }) {
 export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
-    <div className="pt-40">
+    <div className="py-40">
       <SSWBadge title={data.badge} />
       <TitleFadeIn title={data.title} />
       <div className="text-white p-6 mx-auto max-w-6xl">
