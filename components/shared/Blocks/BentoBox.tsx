@@ -303,7 +303,7 @@ export default function BentoBox({ data }: { data: any }) {
                 </div>
                 <div className="mt-8 flex items-center flex-row justify-center gap-6">
                   {topLeftBox.icons.map((icon: string) => (
-                    <IconBox icon={icon} />
+                    <IconBox icon={icon} key={icon} />
                   ))}
                 </div>
               </div>
