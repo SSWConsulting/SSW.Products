@@ -45,8 +45,8 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             key={index}
             className="flex items-center lg:px-3 xl:px-0 py-1 px-2"
           >
-            <Link href={item.href} className="hover:underline text-md">
-              {item.label}
+            <Link href={item.href} className="hover:underline underline-offset-4 decoration-[#CC4141] text-md">
+              {item.label.toUpperCase()}
             </Link>
           </li>
         );
@@ -58,7 +58,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             <ul className="absolute top-full left-0 bg-white text-black hidden group-hover:block mt-2 space-y-1 p-2 rounded shadow-lg">
               {item.items?.map((subItem: any, subIndex: number) => (
                 <li key={subIndex}>
-                  <Link href={subItem.href} className="hover:underline">
+                  <Link href={subItem.href}>
                     {subItem.label}
                   </Link>
                 </li>
@@ -85,7 +85,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         );
       case "NavigationBarRightNavItemBookingButton":
         return (
-          <li key={index} className="flex items-center py-2">
+          <li key={index} className="flex items-center">
             <BookingButton title={item.Title} jotFormId={item.JotFormId} />
           </li>
         );
@@ -99,13 +99,13 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       <nav
         className={`${
           scrolled
-            ? "bg-stone-700 bg-opacity-90 backdrop-blur-md"
-            : "bg-transparent mt-6"
-        } text-gray-300 fixed top-0 left-0 w-full z-50 transition-colors duration-300 flex justify-between items-center h-[70px]`}
+            ? "bg-[#131313] bg-opacity-90 backdrop-blur-md border-b border-white/50"
+            : "bg-transparent "
+        } text-gray-300 fixed top-0 inset-x-0 w-full z-50 transition-colors duration-300 flex justify-between place-items-end h-[100px] pb-6 `}
       >
-        <div className="flex items-center md:justify-between lg:justify-normal  w-full px-4 md:px-20">
+        <div className="flex items-end md:justify-between lg:justify-normal  w-full px-4 md:px-20">
           {logo && (
-            <Link href="/" className="pb-1 lg:px-3 xl:px-0 md:px-3 px-2">
+            <Link href="/" className=" lg:px-3 xl:px-0 md:px-3 px-2">
               <Image src={logo} alt="Logo" width={200} height={200} />
             </Link>
           )}
