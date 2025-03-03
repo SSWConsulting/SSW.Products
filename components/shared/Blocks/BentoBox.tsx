@@ -1,19 +1,21 @@
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import Image from "next/image";
 import { IoIosTimer } from "react-icons/io";
-import { FaFile, FaImage, FaVideo } from "react-icons/fa6";
+import { FaFile, FaImage, FaMinus, FaVideo, FaXmark } from "react-icons/fa6";
 import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
-import client from "../../../tina/__generated__/client";
+
 import { IoChatbox } from "react-icons/io5";
+import { FaExpandAlt } from "react-icons/fa";
+
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
 const icons = {
-    FaVideo,
-    IoChatbox,
-    FaImage,
-    FaFile,
-    };
+  FaVideo,
+  IoChatbox,
+  FaImage,
+  FaFile,
+};
 
 function IconBox({ icon }: { icon: string }) {
   return (
@@ -168,7 +170,7 @@ function BeamBox({ data }: { data: any }) {
         className="h-full w-full rounded-xl"
       />
       <div className="absolute inset-0 flex items-end">
-        <AnimatedBeamMultipleOutput data={data}    />
+        <AnimatedBeamMultipleOutput data={data} />
       </div>
       <div className="absolute bottom-0 w-full pb-6 px-6">
         <h2 className="text-white text-xl font-semibold">{data?.title}</h2>
@@ -284,9 +286,15 @@ export default function BentoBox({ data }: { data: any }) {
               >
                 {/* Status bar */}
                 <div className="flex flex-row gap-2">
-                  <div className="bg-red-500 w-3 h-3 rounded-full"></div>
-                  <div className="bg-yellow-500 w-3 h-3 rounded-full"></div>
-                  <div className="bg-green-500 w-3 h-3 rounded-full"></div>
+                  <div className="bg-red-500 w-3 h-3 rounded-full relative flex items-center justify-center group">
+                    <FaXmark className="hidden group-hover:block absolute text-[8px] text-black" />
+                  </div>
+                  <div className="bg-yellow-500 w-3 h-3 rounded-full relative flex items-center justify-center group">
+                  <FaMinus className="hidden group-hover:block absolute text-[8px] text-black" />
+                  </div>
+                  <div className="bg-green-500 w-3 h-3 rounded-full relative flex items-center justify-center group">
+                  <FaExpandAlt className="hidden group-hover:block absolute text-[8px] text-black" />
+                  </div>
                 </div>
                 <div className="w-full mt-6 mx-3">
                   <h2 className="text-white text-4xl font-semibold">
