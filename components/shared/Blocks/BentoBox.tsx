@@ -79,7 +79,7 @@ function YaksShavedCounterBox() {
   );
 }
 
-function MdView() {
+function MdView({ data }: { data: any }) {
   return (
     <div className="grid grid-cols-2 gap-4">
       <div className="col-span-1">
@@ -105,7 +105,7 @@ function MdView() {
         />
 
         <div className="pt-16 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
-          <AnimatedBeamMultipleOutput />
+          <AnimatedBeamMultipleOutput data={data} />
         </div>
 
         <div className="pt-20 flex flex-col justify-center p-6 sm:p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
@@ -169,9 +169,9 @@ function BeamBox({ data }: { data: any }) {
         className="h-full w-full rounded-xl"
       />
       <div className="absolute inset-0 flex items-end">
-        <AnimatedBeamMultipleOutput  data={data}    />
+        <AnimatedBeamMultipleOutput data={data}    />
       </div>
-      <div className="absolute bottom-0 w-full p-10">
+      <div className="absolute bottom-0 w-full pb-6 px-6">
         <h2 className="text-white text-xl font-semibold">{data?.title}</h2>
         <span className="text-gray-400 text-sm">{data?.description}</span>
       </div>
@@ -329,7 +329,7 @@ export default function BentoBox({ data }: { data: any }) {
             <LgView data={data} />
           </div>
           <div className="lg:hidden block">
-            <MdView />
+            <MdView data={data.bottomRightBox} />
           </div>
         </div>
       </div>

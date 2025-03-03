@@ -150,6 +150,7 @@ export const bentoBoxTemplate: Template = {
                 description:
                   "Can't find the icon you want? ask a developer to add it",
                 ui: {
+                    //@ts-ignore - TODO: Investigate
                   component: wrapFieldsWithMeta(IconSelector),
                 },
               },

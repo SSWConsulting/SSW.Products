@@ -12,12 +12,12 @@ FaImage,
 FaFile,
 };
 
-const IconSelector = ({ input }) => {
+const IconSelector = ({ input }: { input: any }) => {
   const iconKeys = Object.keys(icons);
   const [selectedIcon, setSelectedIcon] = useState(input.value || '');
   const [isMinimized, setIsMinimized] = useState(true);
 
-  const handleIconChange = (iconKey) => {
+  const handleIconChange = (iconKey: string) => {
     setSelectedIcon(iconKey);
     input.onChange(iconKey);
   };
@@ -59,7 +59,7 @@ const IconSelector = ({ input }) => {
             <span className="text-xs">No Icon</span>
           </div>
           {iconKeys.map((key) => {
-            const IconComponent = icons[key];
+            const IconComponent = icons[key as keyof typeof icons];
             const trimmedKey = key.slice(2);
             return (
               <div

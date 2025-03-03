@@ -66,9 +66,9 @@ const CircleLogo = forwardRef<HTMLDivElement, { media: string }>(
 
 CircleLogo.displayName = "CircleLogo";
 
-const InputBadge = forwardRef<HTMLDivElement, { children?: React.ReactNode; icon: string; title: string }>(
+const InputBadge = forwardRef<HTMLDivElement, { children?: React.ReactNode; icon: keyof typeof icons; title: string }>(
     ({ children, icon, title }, ref) => {
-      const Icon = icons[icon];
+      const Icon = icons[icon as keyof typeof icons];
   
       return (
         <div ref={ref} className="inline-flex w-fit border border-gray-600 rounded-full z-50">
@@ -100,17 +100,17 @@ export function AnimatedBeamMultipleOutput({
   return (
     <div
       className={cn(
-        "relative flex h-[500px] w-full items-center justify-center overflow-hidden p-4 md:p-10",
+        "relative flex h-[500px] w-full items-center justify-center overflow-hidden p-4 md:p-6",
         className
       )}
       ref={containerRef}
     >
       <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-10">
         <div className="flex flex-col justify-center gap-3">
-          <InputBadge ref={divRefs[0]} title={data?.inputItem[0].name} icon={data?.inputItem[0].icon} />
-          <InputBadge ref={divRefs[1]} title={data?.inputItem[1].name} icon={data?.inputItem[1].icon} />
-          <InputBadge ref={divRefs[2]} title={data?.inputItem[2].name} icon={data?.inputItem[2].icon} />
-          <InputBadge ref={divRefs[3]} title={data?.inputItem[3].name} icon={data?.inputItem[3].icon} />
+          <InputBadge ref={divRefs[0]} title={data?.inputItem[0]?.name} icon={data?.inputItem[0]?.icon} />
+          <InputBadge ref={divRefs[1]} title={data?.inputItem[1]?.name} icon={data?.inputItem[1]?.icon} />
+          <InputBadge ref={divRefs[2]} title={data?.inputItem[2]?.name} icon={data?.inputItem[2]?.icon} />
+          <InputBadge ref={divRefs[3]} title={data?.inputItem[3]?.name} icon={data?.inputItem[3]?.icon} />
         </div>
         <div className="flex flex-col justify-center">
           <CircleLogo ref={divRefs[4]} media={data?.middleLogo} />
