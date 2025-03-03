@@ -69,24 +69,24 @@ const Blocks = ({ blocks }: BlocksProps) => {
           <FeatureHorizontalCarousel key={index} data={block} index={index} />
         );
       case "PagesPageBlocksPricing":
-        // @ts-expect-error investigate after
+        // @ts-expect-error typing issue with data
         return <Pricing key={index} data={block} />;
       case "PagesPageBlocksBanner":
-        // @ts-expect-error investigate after
+        // @ts-expect-error typing issue with data
         return <Banner key={index} data={block} />;
       case "PagesPageBlocksVideoDisplay":
         return <VideoDisplay key={index} data={block} />;
       case "PagesPageBlocksLogoCarousel":
-        //@ts-expect-error investigate after 
+        //@ts-expect-error typing issue with data
         return <LogoCarousel key={index} data={block} />;
       case "PagesPageBlocksCardCarousel":
-        //@ts-expect-error 
+        //@ts-expect-error typing issue with data
         return <CardCarousel icons={AntIcons} data={block} />;
       case "PagesPageBlocksButton":
-        //@ts-expect-error investigate after 
+        //@ts-expect-error typing issue with data
         return <Button icons={AntIcons} data={block} />;
       case "PagesPageBlocksImageTextBlock":
-        //@ts-expect-error investigate after 
+        //@ts-expect-error typing issue with data
         return <ImageTextBlock icons={AntIcons} data={block}></ImageTextBlock>;
       case "PagesPageBlocksAccordion":
         return <Accordion callbackFunctions={null} icons={AntIcons} data={block}></Accordion>;
