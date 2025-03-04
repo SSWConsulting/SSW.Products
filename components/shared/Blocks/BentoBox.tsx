@@ -11,17 +11,18 @@ const YakShaverGray = "bg-[#131313] shadow-2xl";
 
 function IconBox({ icon }: { icon: string }) {
   return (
-    <div className="relative rounded-2xl w-[60px] h-[60px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
+    <div className="relative rounded-2xl md:w-[60px] md:h-[60px] w-[50px] h-[50px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
       <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
       <div className="relative rounded-2xl border border-gray-600 flex items-center justify-center w-full h-full">
-        <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center h-14 w-14">
-          <Image
-            src={icon || "/svg/github-mark-white.svg"}
-            alt="icon"
-            width={30}
-            height={30}
-            className=""
-          />
+        <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center md:h-14 md:w-14 h-10 w-10">
+          <div className="w-5 h-5 md:w-7 md:h-7 relative">
+            <Image
+              src={icon || "/svg/github-mark-white.svg"}
+              alt="icon"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -59,7 +60,7 @@ function ExampleYakShaverCard() {
 
 function YaksShavedCounterBox() {
   return (
-    <div className={`${YakShaverGray} h-28 rounded-xl p-5`}>
+    <div className={`${YakShaverGray} h-28 rounded-xl px-2 md:px-5 flex flex-col justify-center items-center md:items-start`}>
       <div className="flex flex-row gap-2 text-lg text-gray-200">
         <Image src={"/svg/yak-icon.svg"} alt="yak" width={20} height={20} />
         Yaks Shaved
@@ -72,6 +73,7 @@ function YaksShavedCounterBox() {
 }
 
 function SmAndMdView({ data }: { data: any }) {
+  console.log(data);
   return (
     <div className="grid grid-cols-2 gap-4">
       <div className="col-span-1">
@@ -102,11 +104,10 @@ function SmAndMdView({ data }: { data: any }) {
 
         <div className="pt-20 flex flex-col justify-center p-6 sm:p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
           <h2 className="text-white text-xl font-semibold">
-            Automated Task Creation
+            {data.title}
           </h2>
           <span className="text-gray-400 text-sm">
-            Unlock the power of automation with generative AI that seamlessly
-            converts videos, images and documents into actionable work items
+            {data.description}
           </span>
         </div>
       </div>
@@ -172,7 +173,7 @@ function BeamBox({ data }: { data: any }) {
 
 function PhotoBox({ photo }: { photo: string }) {
   return (
-    <div className={`${YakShaverGray} h-64 rounded-xl relative`}>
+    <div className={`${YakShaverGray} md:h-64 h-32 rounded-xl relative`}>
       <Image
         src={photo || "/YakShaver/The-Yak.png"}
         alt="yak"
@@ -186,7 +187,7 @@ function PhotoBox({ photo }: { photo: string }) {
 
 function TimeSavedCounterBox() {
   return (
-    <div className={`${YakShaverGray} h-28 rounded-xl p-5`}>
+    <div className={`${YakShaverGray} h-28 rounded-xl px-2 md:px-5 flex flex-col justify-center items-center md:items-start`}>
       <div className="flex flex-row items-center gap-2 text-lg text-gray-200">
         <IoIosTimer />
         Saving Users
@@ -291,7 +292,7 @@ export default function BentoBox({ data }: { data: any }) {
                     {topLeftBox.title}
                   </h2>
                 </div>
-                <div className="mt-8 flex items-center flex-row justify-center gap-6">
+                <div className="md:mt-8 mt-4 flex items-center flex-row justify-center gap-4 md:gap-6">
                   {topLeftBox.icons.map((icon: string) => (
                     <IconBox icon={icon} key={icon} />
                   ))}
