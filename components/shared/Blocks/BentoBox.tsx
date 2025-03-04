@@ -260,7 +260,7 @@ function TitleFadeIn({ title }: { title: string }) {
 export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
-    <div className="py-40">
+    <div className="lg:py-40 md:py-10">
       <SSWBadge title={data.badge} />
       <TitleFadeIn title={data.title} />
       <div className="text-white p-6 mx-auto max-w-6xl">
@@ -269,7 +269,7 @@ export default function BentoBox({ data }: { data: any }) {
           {/* Row 1 (Single row, 2 columns) */}
           <div className="grid md:grid-cols-3 grid-cols-1 gap-4  relative">
             {/* Left box with glowing effect */}
-            <div className="relative md:col-span-2 col-span-1 rounded-xl md:h-72">
+            <div className="relative md:col-span-2 col-span-1 rounded-xl md:h-80 lg:h-72">
               <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
               <div
                 className={`${YakShaverGray} relative rounded-xl w-full h-full p-4`}
@@ -287,7 +287,7 @@ export default function BentoBox({ data }: { data: any }) {
                   </div>
                 </div>
                 <div className="w-full mt-6 mx-3">
-                  <h2 className="text-white text-4xl font-semibold">
+                  <h2 className="text-white md:text-3xl lg:text-4xl font-semibold">
                     {topLeftBox.title}
                   </h2>
                 </div>
@@ -299,7 +299,7 @@ export default function BentoBox({ data }: { data: any }) {
               </div>
             </div>
             {/* Right box with glowing effect */}
-            <div className="relative col-span-1 rounded-xl md:h-72 overflow-hidden">
+            <div className="relative col-span-1 rounded-xl md:h-80 lg:h-72 overflow-hidden">
               <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
               <div
                 className={`${YakShaverGray} relative rounded-xl w-full h-full`}
