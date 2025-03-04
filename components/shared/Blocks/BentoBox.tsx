@@ -97,7 +97,7 @@ function SmAndMdView({ data }: { data: any }) {
           className="h-full w-full rounded-xl z-20"
         />
 
-        <div className="pt-10 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
+        <div className="pt-5 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
           <AnimatedBeamMultipleOutput data={data} />
         </div>
 
