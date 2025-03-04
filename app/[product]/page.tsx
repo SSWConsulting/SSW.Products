@@ -3,9 +3,16 @@ import HomePageClient from "../../components/shared/HomePageClient";
 import NavBarServer from "../../components/shared/NavBarServer";
 import FooterServer from "../../components/shared/FooterServer";
 import InteractiveBackground from "../../components/shared/Background/InteractiveBackground";
-
+import { setPageMetadata } from "../../utils/setPageMetaData";
 interface ProductPageProps {
   params: { product: string };
+}
+
+export async function generateMetadata({ params }: ProductPageProps) {
+  const { product } = params;
+  const productData = await getPage(product);
+  const metadata =  setPageMetadata(productData.data?.pages?.seo, product);
+  return metadata;
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {

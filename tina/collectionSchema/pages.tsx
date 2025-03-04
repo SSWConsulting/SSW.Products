@@ -1,4 +1,4 @@
-import { Collection } from "tinacms";
+import { Collection, TinaField } from "tinacms";
 import { FeaturesTemplate } from "../../components/shared/Blocks/Features.template";
 import { FAQTemplate } from "../../components/shared/Blocks/FAQ.template";
 import { CarouselFeatureTemplate } from "../../components/shared/Blocks/FeatureCarousel.template";
@@ -15,6 +15,7 @@ import {
   // replace this with a relative path node modules directory (See known issues)
 } from "../../node_modules/ssw-tinacms-landingkit/dist";
 import * as AntIcons from "../../node_modules/react-icons/ai";
+import { seoInformation } from "../shared/SEOInformation";
 
 export const PagesSchema: Collection = {
   label: "Product Pages",
@@ -28,6 +29,7 @@ export const PagesSchema: Collection = {
   //   },
   // },
   fields: [
+    seoInformation as TinaField,
     {
       type: "string",
       name: "title",

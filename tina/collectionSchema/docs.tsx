@@ -1,4 +1,5 @@
-import { Collection } from "tinacms";
+import { Collection, TinaField } from "tinacms";
+import { seoInformation } from "../shared/SEOInformation";
 
 export const docsCollection: Collection = {
   label: "Docs",
@@ -6,6 +7,7 @@ export const docsCollection: Collection = {
   path: "content/docs/",
   format: "mdx",
   fields: [
+    seoInformation as TinaField,
     {
       type: "string",
       name: "title",
