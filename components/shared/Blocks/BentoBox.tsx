@@ -94,15 +94,15 @@ function SmAndMdView({ data }: { data: any }) {
           src={"/YakShaver/Arrow-bg.png"}
           alt="yak"
           layout="fill"
-          objectFit="contain"
-          className="rounded-xl z-20"
+          objectFit="cover"
+          className="h-full w-full rounded-xl z-20"
         />
 
-        <div className="pt-16 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
+        <div className="pt-20 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
           <AnimatedBeamMultipleOutput data={data} />
         </div>
 
-        <div className="pt-20 flex flex-col justify-center p-6 sm:p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
+        <div className="pt-10 md:pt-20 flex flex-col justify-center p-6 sm:p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
           <h2 className="text-white text-xl font-semibold">
             {data.title}
           </h2>

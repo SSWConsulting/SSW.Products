@@ -71,8 +71,8 @@ const InputBadge = forwardRef<HTMLDivElement, { icon: keyof typeof icons; title:
 
     return (
       <div ref={ref} className="inline-flex border border-gray-600 rounded-full z-50">
-        <div className="relative inline-flex flex-row items-center gap-2 md:gap-4 text-sm rounded-full bg-[#131313] p-1 pr-2 md:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.5)] w-full">
-          <div className="bg-[#F8F8F8] bg-opacity-10 rounded-full p-2">
+        <div className="relative inline-flex flex-row items-center gap-1 md:gap-4 md:text-sm text-xs rounded-full bg-[#131313] p-1 pr-2 md:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.5)] w-full">
+          <div className="bg-[#F8F8F8] bg-opacity-10 rounded-full p-1 md:p-2">
             {Icon && <Icon />}
           </div>
           {title}
@@ -97,7 +97,7 @@ export function AnimatedBeamMultipleOutput({ className, data }: { className?: st
       )}
       ref={containerRef}
     >
-      <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-10">
+      <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-4 md:gap-10">
         <div className="flex flex-col justify-center gap-3">
           <InputBadge ref={divRefs[0]} title={data?.inputItem[0]?.name} icon={data?.inputItem[0]?.icon} />
           <InputBadge ref={divRefs[1]} title={data?.inputItem[1]?.name} icon={data?.inputItem[1]?.icon} />
