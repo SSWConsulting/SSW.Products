@@ -14,13 +14,13 @@ function IconBox({ icon }: { icon: string }) {
     <div className="relative rounded-2xl w-[60px] h-[60px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
       <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
       <div className="relative rounded-2xl border border-gray-600 flex items-center justify-center w-full h-full">
-        <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center h-12 w-12">
+        <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center h-14 w-14">
           <Image
             src={icon || "/svg/github-mark-white.svg"}
             alt="icon"
             width={30}
             height={30}
-            className="rounded-full"
+            className=""
           />
         </div>
       </div>
