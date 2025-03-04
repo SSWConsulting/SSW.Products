@@ -308,7 +308,7 @@ export default function BentoBox({ data }: { data: any }) {
                   <h2 className="text-white text-2xl font-semibold">
                     {topRightBox.title}
                   </h2>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-gray-400 text-xs">
                     {topRightBox.description}
                   </p>
                 </div>
