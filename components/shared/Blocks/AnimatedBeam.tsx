@@ -70,8 +70,8 @@ const InputBadge = forwardRef<HTMLDivElement, { icon: keyof typeof icons; title:
     const Icon = icons[icon as keyof typeof icons];
 
     return (
-      <div ref={ref} className="inline-flex w-fit border border-gray-600 rounded-full z-50">
-        <div className="relative inline-flex flex-row items-center gap-2 md:gap-4 text-sm rounded-full bg-[#131313] p-1 pr-2 md:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.5)]">
+      <div ref={ref} className="inline-flex border border-gray-600 rounded-full z-50">
+        <div className="relative inline-flex flex-row items-center gap-2 md:gap-4 text-sm rounded-full bg-[#131313] p-1 pr-2 md:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.5)] w-full">
           <div className="bg-[#F8F8F8] bg-opacity-10 rounded-full p-2">
             {Icon && <Icon />}
           </div>
