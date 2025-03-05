@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "Welcome to YakShaver",
-    "googleStructuredData": "{\n\"type\": \"offer\"\n}"
+    "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}"
   },
   "title": "test-YakShaver",
   "pageBlocks": [
