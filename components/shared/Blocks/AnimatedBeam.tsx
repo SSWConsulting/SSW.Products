@@ -56,6 +56,7 @@ const CircleLogo = forwardRef<HTMLDivElement, { media: string }>(
             alt="yak"
             width={50}
             height={50}
+            className="flex justify-center items-center pt-1 md:pt-0"
           />
         </div>
       </div>

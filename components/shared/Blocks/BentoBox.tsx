@@ -32,7 +32,7 @@ function IconBox({ icon }: { icon: string }) {
 function ExampleYakShaverCard() {
   return (
     <div className="bg-[#1E1E20] border-2  text-xs border-[#4D4D4E] shadow-2xl rounded-xl p-4  text-white ">
-      <h2 className=" font-semibold pb-2 px lg:whitespace-nowrap">
+      <h2 className=" font-semibold pb-2 px lg:whitespace-nowrap whitespace-nowrap md:whitespace-normal">
         {" "}
         ✅ Done - ✨ A Work Item has been created by YakShaver.ai 🐂
       </h2>
@@ -43,15 +43,24 @@ function ExampleYakShaverCard() {
       </TypingAnimation>
 
       <h3 className="pb-1">Work Item #2818</h3>
-      <TypingAnimation delay={1000} className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F] whitespace-nowrap overflow-hidden text-ellipsis">
+      <TypingAnimation
+        delay={1000}
+        className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F] whitespace-nowrap overflow-hidden text-ellipsis"
+      >
         🐛 Fix event display issue on tina.io homepage
       </TypingAnimation>
       <h3 className="pb-1">Assigned to</h3>
-      <TypingAnimation delay={5300} className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
+      <TypingAnimation
+        delay={5300}
+        className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]"
+      >
         Betty Bondoc
       </TypingAnimation>
       <h3 className="pb-1">Mentioned Users</h3>
-      <TypingAnimation delay={5600} className="items-center h-[24px] text-xs font-normal  mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
+      <TypingAnimation
+        delay={5600}
+        className="items-center h-[24px] text-xs font-normal  mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]"
+      >
         Adam Cogan, Matt Wicks
       </TypingAnimation>
     </div>
@@ -60,12 +69,14 @@ function ExampleYakShaverCard() {
 
 function YaksShavedCounterBox() {
   return (
-    <div className={`${YakShaverGray} h-28 rounded-xl px-2 md:px-5 flex flex-col justify-center items-center md:items-start`}>
-      <div className="flex flex-row gap-2 text-lg text-gray-200">
+    <div
+      className={`${YakShaverGray} h-24 md:h-28 rounded-xl px-6 md:px-5 flex flex-col justify-center items-start md:items-start`}
+    >
+      <div className="flex flex-row gap-2 md:text-lg text-md  text-gray-200">
         <Image src={"/svg/yak-icon.svg"} alt="yak" width={20} height={20} />
         Yaks Shaved
       </div>
-      <div className=" text-2xl md:text-4xl font-semibold pt-2">
+      <div className="text-3xl md:text-4xl font-semibold pt-2">
         <NumberTicker value={15460} className="text-white" />
       </div>
     </div>
@@ -75,15 +86,17 @@ function YaksShavedCounterBox() {
 function SmAndMdView({ data }: { data: any }) {
   return (
     <div className="grid grid-cols-2 gap-4">
-      <div className="col-span-1">
+      <div className="col-span-2">
         <YaksShavedCounterBox />
       </div>
-      <div className="col-span-1">
+      <div className="col-span-2">
         <TimeSavedCounterBox />
       </div>
+
       <div className="col-span-2">
         <PhotoBox photo={"/YakShaver/The-Yak.png"} />
       </div>
+
       <div
         className={`${YakShaverGray} rounded-xl col-span-2 relative overflow-hidden h-96 md:h-64 flex flex-col sm:flex-row`}
       >
@@ -94,25 +107,22 @@ function SmAndMdView({ data }: { data: any }) {
           alt="yak"
           layout="fill"
           objectFit="cover"
-          className="h-full w-full rounded-xl z-20"
+          className="h-full w-full flex rounded-xl z-20"
         />
 
-        <div className="pt-5 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
+        <div className="pt-14 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
           <AnimatedBeamMultipleOutput data={data} />
         </div>
 
-        <div className="pt-10 md:pt-10 lg:pt-20 flex flex-col justify-center p-6 sm:p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
-          <h2 className="text-white text-xl font-semibold">
-            {data.title}
-          </h2>
-          <span className="text-gray-400 text-sm">
-            {data.description}
-          </span>
+        <div className="pt-10 md:pt-6 lg:pt-20 flex flex-col justify-center p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
+          <h2 className="text-white text-xl font-semibold">{data.title}</h2>
+          <span className="text-[#797979] text-xs">{data.description}</span>
         </div>
       </div>
     </div>
   );
 }
+
 
 function LgView({ data }: { data: any }) {
   return (
@@ -186,13 +196,15 @@ function PhotoBox({ photo }: { photo: string }) {
 
 function TimeSavedCounterBox() {
   return (
-    <div className={`${YakShaverGray} h-28 rounded-xl px-2 md:px-5 flex flex-col justify-center items-center md:items-start`}>
-      <div className="flex flex-row items-center gap-2 text-lg text-gray-200">
+    <div
+      className={`${YakShaverGray} h-24 md:h-28 rounded-xl px-6 md:px-5 flex flex-col justify-center items-start md:items-start`}
+    >
+      <div className="flex flex-row items-center gap-2 md:text-lg text-md text-gray-200">
         <IoIosTimer />
         Saving Users
       </div>
       <div className=" pt-2 flex flex-row gap-2">
-        <div className="text-2xl md:text-4xl font-semibold">
+        <div className="text-3xl md:text-4xl font-semibold">
           <NumberTicker value={25030} className="text-white" />
         </div>
         <div className="text-gray-400 text-sm place-self-end pb-1">Minutes</div>
@@ -260,7 +272,7 @@ function TitleFadeIn({ title }: { title: string }) {
 export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
-    <div className="lg:py-40 md:py-10">
+    <div className="lg:py-40 md:pb-10 ">
       <SSWBadge title={data.badge} />
       <TitleFadeIn title={data.title} />
       <div className="text-white p-6 mx-auto max-w-6xl">
@@ -291,7 +303,7 @@ export default function BentoBox({ data }: { data: any }) {
                     {topLeftBox.title}
                   </h2>
                 </div>
-                <div className="md:mt-8 mt-4 flex items-center flex-row justify-center gap-4 md:gap-6">
+                <div className="md:mt-12 mt-4 flex items-center flex-row justify-center gap-4 md:gap-6">
                   {topLeftBox.icons.map((icon: string) => (
                     <IconBox icon={icon} key={icon} />
                   ))}
@@ -299,12 +311,12 @@ export default function BentoBox({ data }: { data: any }) {
               </div>
             </div>
             {/* Right box with glowing effect */}
-            <div className="relative col-span-1 rounded-xl md:h-80 lg:h-72 overflow-hidden">
+            <div className="relative col-span-1 rounded-xl h-80 md:h-80 lg:h-72 overflow-hidden">
               <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
               <div
                 className={`${YakShaverGray} relative rounded-xl w-full h-full`}
               >
-                <div className="p-6">
+                <div className="p-6 pb-0 md:pb-6">
                   <h2 className="text-white text-2xl font-semibold">
                     {topRightBox.title}
                   </h2>
@@ -312,7 +324,7 @@ export default function BentoBox({ data }: { data: any }) {
                     {topRightBox.description}
                   </p>
                 </div>
-                <div className="text-white flex justify-center items-center p-4 scale-75 -mt-10 md:-mt-16">
+                <div className="text-white flex justify-center items-center p-4 scale-75 md:scale-[65%] -mt-10 md:-mt-16">
                   <ExampleYakShaverCard />
                 </div>
               </div>
