@@ -2,40 +2,6 @@
   "title": "test-YakShaver",
   "pageBlocks": [
     {
-      "topLabel": {
-        "labelText": "Lorem Ipsum"
-      },
-      "heading": "Lorem Ipsum",
-      "isH1": false,
-      "description": "",
-      "chips": {
-        "filledChipText": "Lorem",
-        "clearChipText": "Ipsum"
-      },
-      "featureColumns": {
-        "twoColumns": true,
-        "features": [
-          {
-            "heading": "Lorem",
-            "description": "Ipsum dolor sit amet, consectetur adipiscing elit."
-          },
-          {
-            "heading": "Ipsum",
-            "description": "Lorem dolor sit amet, consectetur adipiscing elit."
-          }
-        ]
-      },
-      "buttons": [
-        {
-          "buttonText": "Lorem Ipsum"
-        },
-        {
-          "buttonText": "Dolor Sit"
-        }
-      ],
-      "_template": "imageTextBlock"
-    },
-    {
       "featureItem": [
         {
           "headline": "Make the perfect",
