@@ -29,6 +29,8 @@ export default async function DocsIndex({ params }: BlogIndex) {
   try {
     const docs = await getDocsForProduct(product);
 
+    
+
     if (!docs) {
       return notFound();
     }

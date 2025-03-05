@@ -5,7 +5,10 @@ import FooterServer from "../../../../components/shared/FooterServer";
 import client from "../../../../tina/__generated__/client";
 import DocPostClient from "../../../../components/shared/DocPostClient";
 import { Docs } from "../../../../tina/__generated__/types";
-import { setPageMetadata } from "../../../../utils/setPageMetaData";
+import {
+  setPageMetadata,
+  setPageStructuredData,
+} from "../../../../utils/setPageMetaData";
 
 interface DocPostProps {
   params: {
@@ -25,6 +28,7 @@ export default async function DocPost({ params }: DocPostProps) {
   const { slug, product } = params;
 
   const documentData = await getDocPost(product, slug);
+
   if (!documentData) {
     return notFound();
   }
@@ -38,11 +42,21 @@ export default async function DocPost({ params }: DocPostProps) {
         <DocPostClient
           query={documentData.query}
           variables={documentData.variables}
-          pageData={{ docs: documentData.docs }} 
+          pageData={{ docs: documentData.docs }}
         />
       </div>
 
       <FooterServer product={product} />
+      {(documentData?.docs?.seo?.googleStructuredData) && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              documentData?.docs?.seo?.googleStructuredData
+            ),
+          }}
+        />
+      )}
     </div>
   );
 }

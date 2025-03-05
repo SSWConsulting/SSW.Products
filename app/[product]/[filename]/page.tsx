@@ -4,7 +4,10 @@ import InteractiveBackground from "../../../components/shared/Background/Interac
 import NavBarServer from "../../../components/shared/NavBarServer";
 import FooterServer from "../../../components/shared/FooterServer";
 import HomePageClient from "../../../components/shared/HomePageClient";
-import { setPageMetadata } from "../../../utils/setPageMetaData";
+import {
+  setPageMetadata,
+  setPageStructuredData,
+} from "../../../utils/setPageMetaData";
 
 interface FilePageProps {
   params: { product: string; filename: string };
@@ -32,6 +35,16 @@ export default async function FilePage({ params }: FilePageProps) {
         variables={{ relativePath: `${product}/${filename}.json` }}
       />
       <FooterServer product={product} />
+      {fileData.data?.pages?.seo?.googleStructuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              fileData.data?.pages?.seo?.googleStructuredData
+            ),
+          }}
+        />
+      )}
     </div>
   );
 }

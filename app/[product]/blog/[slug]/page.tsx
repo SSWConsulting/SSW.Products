@@ -5,7 +5,7 @@ import FooterServer from "../../../../components/shared/FooterServer";
 import client from "../../../../tina/__generated__/client";
 import BlogPostClient from "../../../../components/shared/BlogPostClient";
 import { Blogs } from "../../../../tina/__generated__/types";
-import { setPageMetadata } from "../../../../utils/setPageMetaData";
+import { setPageMetadata, setPageStructuredData } from "../../../../utils/setPageMetaData";
 
 interface BlogPostProps {
   params: {
@@ -39,6 +39,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = params;
 
   const documentData = await getBlogPost(product, slug);
+
   if (!documentData) {
     return notFound();
   }
@@ -57,6 +58,12 @@ export default async function BlogPost({ params }: BlogPostProps) {
       </div>
 
       <FooterServer product={product} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(documentData?.blogs.seo?.googleStructuredData),
+        }}
+      />
     </div>
   );
 }
