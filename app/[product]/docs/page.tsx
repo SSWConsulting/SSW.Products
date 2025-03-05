@@ -9,11 +9,27 @@ interface BlogIndex {
   params: { product: string };
 }
 
+export async function generateMetadata({ params }: BlogIndex) {
+  const { product } = params;
+  return{
+    title: `${product} Docs`,
+    description: `Find out more about ${product}, guides and documentation`,
+    openGraph: {
+      title: `${product} Docs`,
+      description: `Find out more about ${product}, guides and documentation`,
+      images: `./public/default-images/${product}-default.png`,
+    },
+  }
+}
+
+
 export default async function DocsIndex({ params }: BlogIndex) {
   const { product } = params;
 
   try {
     const docs = await getDocsForProduct(product);
+
+    
 
     if (!docs) {
       return notFound();

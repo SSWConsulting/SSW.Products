@@ -9,6 +9,19 @@ interface BlogIndex {
   params: { product: string };
 }
 
+export async function generateMetadata({ params }: BlogIndex) {
+  const { product } = params;
+  return{
+    title: `${product} Blogs`,
+    description: `Find out more about ${product}, the latest news and updates posted on our blog.`,
+    openGraph: {
+      title: `${product} Blogs`,
+      description: `Find out more about ${product}, the latest news and updates posted on our blog.`,
+      images: `./public/default-images/${product}-default.png`,
+    },
+  }
+}
+
 export default async function BlogIndex({ params }: BlogIndex) {
   const { product } = params;
 
