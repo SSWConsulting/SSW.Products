@@ -35,33 +35,58 @@
       "_template": "features"
     },
     {
-      "carouselItems": [
-        {
-          "tabTitle": "Auto Delegation",
-          "title": "Auto Delegation",
-          "description": "Effortlessly assigns tasks to the correct team member based on their responsibilities or expertise ",
-          "image": "/YakShaver/Features/Auto Delegation 5.png"
-        },
-        {
-          "tabTitle": "Seamless Integration",
-          "title": "Seamless Integration",
-          "description": "Connect with your tools for smooth communicaiton such as Microsoft Teams",
-          "image": "/YakShaver/Features/Seamless Integration 3.png"
-        },
-        {
-          "tabTitle": "Time Saving Automation",
-          "title": "Time Saving Automation",
-          "description": "Remove bottlenecks and reduce downtime by eliminating the task of figuring out responsiblity",
-          "image": "/YakShaver/Features/Time Saving Automation 5.png"
-        },
-        {
-          "tabTitle": "Real-Time PBIs",
-          "title": "Real-Time PBIs",
-          "description": "Stay updated instantly with alerts when PBIs have been assigned, completed or require follow-up",
-          "image": "/YakShaver/Features/Detailed Work Items 5.png"
-        }
-      ],
-      "_template": "featureCarousel"
+      "badge": "Powered by SSW",
+      "title": "Meet your new assistant, YakShaver",
+      "topLeftBox": {
+        "title": "Work with your favourite software development and collaborative tools ",
+        "icons": [
+          "/svg/Microsoft Office Teams 2018.svg",
+          "/SSW Product Sites.svg",
+          "/svg/SSW Product Sites Clip Path Group.svg",
+          "/svg/github-mark-white.svg",
+          "/svg/devops.svg"
+        ]
+      },
+      "topRightBox": {
+        "title": "Real-Time PBIs",
+        "description": "Stay updated instantly with alerts when PBIs have been assigned, completed or required follow-up"
+      },
+      "counterBox1": {
+        "title": "Yaks Shaved",
+        "counterMetric": "YakShaved"
+      },
+      "counterBox2": {
+        "title": "Saving Users",
+        "counterMetric": "MinutesSaved"
+      },
+      "bottomLeftBox": {
+        "media": "/YakShaver/The-Yak.png"
+      },
+      "bottomRightBox": {
+        "title": "Automated Task Creation: From idea to action",
+        "description": "Unlock the power of automation with generative AI that seamlessly converts videos, images and documents into actionable product backlog items ",
+        "inputItem": [
+          {
+            "name": "Video",
+            "icon": "FaVideo"
+          },
+          {
+            "name": "Image",
+            "icon": "FaImage"
+          },
+          {
+            "name": "Chat",
+            "icon": "IoChatbox"
+          },
+          {
+            "name": "Document",
+            "icon": "FaFile"
+          }
+        ],
+        "middleLogo": "/svg/yak-icon-fill.svg",
+        "outputText": "Work Item"
+      },
+      "_template": "BentoBox"
     },
     {
       "altText": "Making the Perfect PBI | YakShaver",

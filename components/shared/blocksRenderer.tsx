@@ -4,6 +4,9 @@ import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import Pricing from "./Blocks/Pricing";
 import Banner from "./Blocks/Banner";
 import VideoDisplay from "./Blocks/VideoDisplay";
+
+import BentoBox from "./Blocks/BentoBox";
+
 import {
   Accordion,
   Button,
@@ -12,6 +15,7 @@ import {
   LogoCarousel,
 } from "ssw-tinacms-landingkit";
 import * as AntIcons from "react-icons/ai";
+
 
 interface Block {
   __typename: string;
@@ -76,6 +80,10 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <Banner key={index} data={block} />;
       case "PagesPageBlocksVideoDisplay":
         return <VideoDisplay key={index} data={block} />;
+
+      case "PagesPageBlocksBentoBox":
+        return <BentoBox data={block} />;
+
       case "PagesPageBlocksLogoCarousel":
         //@ts-expect-error typing issue with data
         return <LogoCarousel key={index} data={block} />;

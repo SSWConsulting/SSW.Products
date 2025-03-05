@@ -5,6 +5,9 @@ import { CarouselFeatureTemplate } from "../../components/shared/Blocks/FeatureC
 import { pricingTemplate } from "../../components/shared/Blocks/Pricing.template";
 import { BannerTemplate } from "../../components/shared/Blocks/Banner.template";
 import { videoDisplayTemplate } from "../../components/shared/Blocks/VideoDisplay.template";
+
+import { bentoBoxTemplate } from "../../components/shared/Blocks/BentoBox.template";
+
 import {
   breadcrumbBlock,
   buttonBlock,
@@ -15,6 +18,7 @@ import {
   // replace this with a relative path node modules directory (See known issues)
 } from "../../node_modules/ssw-tinacms-landingkit/dist";
 import * as AntIcons from "../../node_modules/react-icons/ai";
+
 
 export const PagesSchema: Collection = {
   label: "Product Pages",
@@ -48,6 +52,7 @@ export const PagesSchema: Collection = {
         pricingTemplate,
         BannerTemplate,
         videoDisplayTemplate,
+        bentoBoxTemplate,
         breadcrumbBlock(
           "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/breadcrumbs.jpg?raw=true"
         ),
