@@ -6,8 +6,7 @@ import client from "../../../../tina/__generated__/client";
 import DocPostClient from "../../../../components/shared/DocPostClient";
 import { Docs } from "../../../../tina/__generated__/types";
 import {
-  setPageMetadata,
-  setPageStructuredData,
+  setPageMetadata
 } from "../../../../utils/setPageMetaData";
 
 interface DocPostProps {

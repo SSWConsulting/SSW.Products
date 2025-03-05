@@ -4,8 +4,7 @@ import NavBarServer from "../../components/shared/NavBarServer";
 import FooterServer from "../../components/shared/FooterServer";
 import InteractiveBackground from "../../components/shared/Background/InteractiveBackground";
 import {
-  setPageMetadata,
-  setPageStructuredData,
+  setPageMetadata
 } from "../../utils/setPageMetaData";
 interface ProductPageProps {
   params: { product: string };

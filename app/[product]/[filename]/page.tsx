@@ -5,8 +5,7 @@ import NavBarServer from "../../../components/shared/NavBarServer";
 import FooterServer from "../../../components/shared/FooterServer";
 import HomePageClient from "../../../components/shared/HomePageClient";
 import {
-  setPageMetadata,
-  setPageStructuredData,
+  setPageMetadata
 } from "../../../utils/setPageMetaData";
 
 interface FilePageProps {
