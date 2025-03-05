@@ -55,5 +55,58 @@ export const seoInformation = {
       name: "openGraphImage",
       description: "Recommended size of 1200x630px",
     },
+    {
+      type: 'object',
+      label: 'Google Structured Data',
+      name: 'googleStructuredData',
+      fields: [
+        {
+          type: 'string',
+          label: 'context',
+          name: 'context',
+          
+        },
+        {
+          type: 'string',
+          label: 'type',
+          name: 'type',
+        },
+        {
+          type: 'string',
+          label: 'name',
+          name: 'name',
+        },
+        {
+          type: 'string',
+          label: 'applicationCategory',
+          name: 'applicationCategory',
+        },
+        {
+          type: 'string',
+          label: 'operatingSystem',
+          name: 'operatingSystem',
+        },
+        {
+          type: 'object',
+          name: 'aggregateRating',
+          label: 'aggregateRating',
+          fields: [
+            { type: 'string', label: 'type', name: 'type'},
+            { type: 'string', label: 'ratingValue', name: 'ratingValue'},
+            { type: 'string', label: 'ratingCount', name: 'ratingCount'},
+          ]
+        },
+        {
+          type: 'object',
+          label: 'offers',
+          name: 'offers',
+          fields: [
+            { type: 'string', label: '@type', name: 'type'},
+            { type: 'string', label: 'price', name: 'price'},
+            { type: 'string', label: 'priceCurrency', name: 'priceCurrency'},
+          ]
+        },
+      ]
+    }
   ],
 };
