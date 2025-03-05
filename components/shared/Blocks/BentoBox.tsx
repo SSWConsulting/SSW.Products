@@ -14,7 +14,7 @@ function IconBox({ icon }: { icon: string }) {
     <div className="relative rounded-2xl md:w-[60px] md:h-[60px] w-[50px] h-[50px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
       <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
       <div className="relative rounded-2xl border border-gray-600 flex items-center justify-center w-full h-full">
-        <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center md:h-14 md:w-14 h-10 w-10">
+        <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center md:h-12 md:w-12 h-10 w-10">
           <div className="w-5 h-5 md:w-7 md:h-7 relative">
             <Image
               src={icon || "/svg/github-mark-white.svg"}
@@ -32,7 +32,7 @@ function IconBox({ icon }: { icon: string }) {
 function ExampleYakShaverCard() {
   return (
     <div className="bg-[#1E1E20] border-2  text-xs border-[#4D4D4E] shadow-2xl rounded-xl p-4  text-white ">
-      <h2 className=" font-semibold pb-2">
+      <h2 className=" font-semibold pb-2 px lg:whitespace-nowrap">
         {" "}
         ✅ Done - ✨ A Work Item has been created by YakShaver.ai 🐂
       </h2>
@@ -159,12 +159,12 @@ function BeamBox({ data }: { data: any }) {
         objectFit="cover"
         className="h-full w-full rounded-xl"
       />
-      <div className="absolute inset-0 flex items-end">
+      <div className="absolute inset-0 -bottom-2 flex items-end">
         <AnimatedBeamMultipleOutput data={data} />
       </div>
       <div className="absolute bottom-0 w-full pb-4  px-6">
         <h2 className="text-white text-xl font-semibold">{data?.title}</h2>
-        <span className="text-gray-400 text-sm">{data?.description}</span>
+        <span className="text-[#797979] text-xs">{data?.description}</span>
       </div>
     </div>
   );
@@ -308,7 +308,7 @@ export default function BentoBox({ data }: { data: any }) {
                   <h2 className="text-white text-2xl font-semibold">
                     {topRightBox.title}
                   </h2>
-                  <p className="text-gray-400 text-xs">
+                  <p className="text-[#797979] text-xs">
                     {topRightBox.description}
                   </p>
                 </div>
