@@ -20,9 +20,10 @@
     "react-dom": "^18",
     "react-responsive-modal": "^6.4.2",
     "sass": "^1.79.3",
+    "ssw-tinacms-landingkit": "^2.0.3",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
-    "tinacms": "^2.2.8"
+    "tinacms": "^2.7.2"
   },
   "devDependencies": {
     "@tinacms/cli": "^1.6.8",
