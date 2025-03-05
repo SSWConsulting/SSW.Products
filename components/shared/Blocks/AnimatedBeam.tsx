@@ -21,23 +21,23 @@ const OutputPill = forwardRef<HTMLDivElement, { title: string }>(
         <div className="absolute -inset-1 bg-gradient-to-br from-[#57FEFE] to-white rounded-3xl blur opacity-10 "></div>
         <div
           ref={ref}
-          className="relative inline-flex gap-2 items-center py-3 md:px-4 px-2 rounded-3xl bg-gradient-to-br from-[#CB4542] to-[#7A2C2A] border border-gray-400 text-xs z-50 text-black"
+          className="relative inline-flex gap-2 py-3 lg:py-2 justify-center items-center md:px-4 px-2 rounded-3xl bg-gradient-to-br from-[#CB4542] to-[#7A2C2A] border border-gray-400 text-xs z-50 text-black"
         >
           <Image
             src={"/svg/github-mark-white.svg"}
             alt="icon"
             width={20}
             height={20}
-            className="rounded-full"
+            
           />
           <Image
             src={"/svg/devops.svg"}
             alt="icon"
             width={20}
             height={20}
-            className="rounded-full"
+            
           />
-          <div className="hidden lg:block text-white">{title}</div>
+          <div className="hidden xl:block text-white">{title}</div>
         </div>
       </div>
     );

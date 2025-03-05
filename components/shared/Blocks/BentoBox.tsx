@@ -85,20 +85,23 @@ function YaksShavedCounterBox() {
 
 function SmAndMdView({ data }: { data: any }) {
   return (
-    <div className="grid grid-cols-2 gap-4">
-      <div className="col-span-2">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {/* Counter Boxes */}
+      <div className="col-span-1">
         <YaksShavedCounterBox />
       </div>
-      <div className="col-span-2">
+      <div className="col-span-1">
         <TimeSavedCounterBox />
       </div>
 
-      <div className="col-span-2">
+      {/* Photo Box */}
+      <div className="col-span-1 md:col-span-2">
         <PhotoBox photo={"/YakShaver/The-Yak.png"} />
       </div>
 
+      {/* Large Box with Animated Content */}
       <div
-        className={`${YakShaverGray} rounded-xl col-span-2 relative overflow-hidden h-96 md:h-64 flex flex-col sm:flex-row`}
+        className={`${YakShaverGray} rounded-xl col-span-1 md:col-span-2 relative overflow-hidden h-96 md:h-64 flex flex-col sm:flex-row`}
       >
         <div className="absolute left-0 top-0 h-full w-full sm:w-[36%] bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] z-10"></div>
 
@@ -116,13 +119,14 @@ function SmAndMdView({ data }: { data: any }) {
 
         <div className="pt-10 md:pt-6 lg:pt-20 flex flex-col justify-center p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
           <h2 className="text-white text-xl font-semibold">{data.title}</h2>
-          <span className="text-[#797979] text-xs">{data.description}</span>
+          <span className="text-[#797979] text-xs">
+            {data.description}
+          </span>
         </div>
       </div>
     </div>
   );
 }
-
 
 function LgView({ data }: { data: any }) {
   return (
@@ -232,30 +236,30 @@ function SSWBadge({ title }: { title: string }) {
 
 function TitleFadeIn({ title }: { title: string }) {
   const words = title.split(" ");
-
   const lastWord = words.pop();
-
   const firstPart = words.join(" ");
 
   return (
     <>
       <div className="text-white text-center lg:text-4xl text-3xl font-semibold py-6">
-        {firstPart}
-        {firstPart ? " " : ""}
-        <span className="text-white">
-          {lastWord?.split("").map((char, index) => (
-            <span
-              key={index}
-              className="inline-block"
-              style={{
-                animation: `colorChange 2000ms ease-in-out forwards ${
-                  index * 100
-                }ms`,
-              }}
-            >
-              {char}
-            </span>
-          ))}
+        <span className="inline-block max-w-full break-words">
+          {firstPart}
+          {firstPart ? " " : ""}
+          <span className="whitespace-nowrap">
+            {lastWord?.split("").map((char, index) => (
+              <span
+                key={index}
+                className="inline-block"
+                style={{
+                  animation: `colorChange 2000ms ease-in-out forwards ${
+                    index * 100
+                  }ms`,
+                }}
+              >
+                {char}
+              </span>
+            ))}
+          </span>
         </span>
       </div>
       <style jsx>{`
@@ -272,10 +276,10 @@ function TitleFadeIn({ title }: { title: string }) {
 export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
-    <div className="lg:py-40 md:pb-10 ">
+    <div className="lg:py-20 md:pb-10 ">
       <SSWBadge title={data.badge} />
       <TitleFadeIn title={data.title} />
-      <div className="text-white p-6 mx-auto max-w-6xl">
+      <div className="text-white p-6 mx-auto max-w-7xl">
         {/* Container */}
         <div className=" grid gap-4">
           {/* Row 1 (Single row, 2 columns) */}
@@ -299,7 +303,7 @@ export default function BentoBox({ data }: { data: any }) {
                   </div>
                 </div>
                 <div className="w-full mt-6 mx-3">
-                  <h2 className="text-white md:text-3xl lg:text-4xl font-semibold">
+                  <h2 className="text-white md:text-2xl lg:text-4xl font-semibold">
                     {topLeftBox.title}
                   </h2>
                 </div>
