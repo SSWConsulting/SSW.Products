@@ -59,7 +59,8 @@ export const seoInformation = {
       name: 'googleStructuredData',
       label: 'someJsonField',
       type: 'string',
-      ui: { component: 'textarea'}
+      ui: { component: 'textarea'},
+      description: '⚠️ DO NOT TOUCH IF YOU DONT KNOW WHAT THIS IS'
     },
     // TODO: Reimplement when we know which type of Structured Data we want
     // {
