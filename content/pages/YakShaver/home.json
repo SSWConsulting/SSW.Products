@@ -1,19 +1,7 @@
 {
   "seo": {
     "title": "Welcome to YakShaver",
-    "someJsonField": "{\n\"type\": \"offer\"\n}",
-    "googleStructuredData": {
-      "context": "https://schema.org",
-      "type": "SoftwareApplication",
-      "name": "YakShaver",
-      "applicationCategory": "GameApplication",
-      "operatingSystem": "ANDROID",
-      "offers": {
-        "type": "offer",
-        "price": "1.00",
-        "priceCurrency": "USD"
-      }
-    }
+    "googleStructuredData": "{\n\"type\": \"offer\"\n}"
   },
   "title": "test-YakShaver",
   "pageBlocks": [
