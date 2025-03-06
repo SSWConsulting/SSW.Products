@@ -278,8 +278,8 @@ export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
     <div className="lg:py-20 md:pb-10 ">
-      <SSWBadge title={data.badge} link={data.badgeLink} />
-      <TitleFadeIn title={data.title} />
+      <SSWBadge title={data?.badge} link={data?.badgeLink} />
+      <TitleFadeIn title={data?.title} />
       <div className="text-white p-6 mx-auto max-w-7xl">
         {/* Container */}
         <div className=" grid gap-4">
