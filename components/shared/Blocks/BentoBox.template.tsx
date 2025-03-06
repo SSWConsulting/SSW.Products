@@ -11,6 +11,11 @@ export const bentoBoxTemplate: Template = {
       type: "string",
     },
     {
+      name: "badgeLink",
+      label: "Badge Link",
+      type: "string",
+    },
+    {
       name: "title",
       label: "Title",
       type: "string",
@@ -144,16 +149,16 @@ export const bentoBoxTemplate: Template = {
           fields: [
             { name: "name", label: "Name", type: "string" },
             {
-                name: 'icon',
-                label: 'Icon',
-                type: 'string',
-                description:
-                  "Can't find the icon you want? ask a developer to add it",
-                ui: {
-                    // @ts-expect-error - TOOD Investigate
-                  component: wrapFieldsWithMeta(IconSelector),
-                },
+              name: "icon",
+              label: "Icon",
+              type: "string",
+              description:
+                "Can't find the icon you want? ask a developer to add it",
+              ui: {
+                // @ts-expect-error - TOOD Investigate
+                component: wrapFieldsWithMeta(IconSelector),
               },
+            },
           ],
         },
         {

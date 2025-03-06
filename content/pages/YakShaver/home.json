@@ -36,6 +36,7 @@
     },
     {
       "badge": "Powered by SSW",
+      "badgeLink": "https://ssw.com.au",
       "title": "Meet your new assistant, YakShaver",
       "topLeftBox": {
         "title": "Work with your favourite software development and collaborative tools ",

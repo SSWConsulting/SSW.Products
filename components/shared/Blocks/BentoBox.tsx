@@ -6,6 +6,7 @@ import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
 import { FaExpandAlt } from "react-icons/fa";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
+import Link from "next/link";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
@@ -119,9 +120,7 @@ function SmAndMdView({ data }: { data: any }) {
 
         <div className="pt-10 md:pt-6 lg:pt-20 flex flex-col justify-center p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
           <h2 className="text-white text-xl font-semibold">{data.title}</h2>
-          <span className="text-[#797979] text-xs">
-            {data.description}
-          </span>
+          <span className="text-[#797979] text-xs">{data.description}</span>
         </div>
       </div>
     </div>
@@ -217,19 +216,21 @@ function TimeSavedCounterBox() {
   );
 }
 
-function SSWBadge({ title }: { title: string }) {
+function SSWBadge({ title, link }: { title: string; link?: string }) {
   return (
     <div className="flex justify-center">
-      <div className="inline-flex py-2 px-4 rounded-xl bg-[#131313] justify-center items-center text-white border border-gray-400 hover:text-[#CC4141] hover:border-[#CC4141] transition-all hover:font-bold duration-500">
-        {title}
-        <Image
-          src={"/svg/ssw-4-square.svg"}
-          alt="ssw-4-square"
-          className="ml-2"
-          width={20}
-          height={20}
-        />
-      </div>
+      <Link href={link || ''} target="_blank">
+        <div className="inline-flex py-2 px-4 rounded-xl bg-[#131313] justify-center items-center text-white border border-gray-400 hover:text-[#CC4141] hover:border-[#CC4141] transition-all hover:font-bold duration-500">
+          {title}
+          <Image
+            src={"/svg/ssw-4-square.svg"}
+            alt="ssw-4-square"
+            className="ml-2"
+            width={20}
+            height={20}
+          />
+        </div>
+      </Link>
     </div>
   );
 }
@@ -277,7 +278,7 @@ export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
     <div className="lg:py-20 md:pb-10 ">
-      <SSWBadge title={data.badge} />
+      <SSWBadge title={data.badge} link={data.badgeLink} />
       <TitleFadeIn title={data.title} />
       <div className="text-white p-6 mx-auto max-w-7xl">
         {/* Container */}
