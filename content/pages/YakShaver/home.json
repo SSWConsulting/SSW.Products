@@ -50,7 +50,7 @@
       },
       "topRightBox": {
         "title": "Real-Time PBIs",
-        "description": "Stay updated instantly with alerts when PBIs have been assigned, completed or required follow-up"
+        "description": "Stay updated instantly with alerts when PBIs have been created, assigned, or require follow-up"
       },
       "counterBox1": {
         "title": "Yaks Shaved",
@@ -64,8 +64,8 @@
         "media": "/YakShaver/The-Yak.png"
       },
       "bottomRightBox": {
-        "title": "Automated Task Creation: From idea to action",
-        "description": "Unlock the power of automation with generative AI that seamlessly converts videos, images and documents into actionable product backlog items ",
+        "title": "Automated task creation: From idea to action",
+        "description": "Unlock the power of automation with generative AI that seamlessly converts videos, audio and screenshares into actionable product backlog items ",
         "inputItem": [
           {
             "name": "Video",
