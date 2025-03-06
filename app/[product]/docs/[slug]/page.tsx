@@ -39,6 +39,9 @@ export default async function DocPost({ params }: DocPostProps) {
   );
 }
 
+// Add revalidation - page wouldn't update although GraphQL was updated. TODO: remove this once @wicksipedia created the global revalidation route.
+export const revalidate = 600;
+
 async function getDocPost(product: string, slug: string) {
   try {
     const res = await client.queries.docs({
