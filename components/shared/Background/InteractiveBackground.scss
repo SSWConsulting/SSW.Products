@@ -5,15 +5,17 @@ html, body {
     padding: 0;
   }
   
+// rgba(204, 65, 65, 1) -> CC4141
+
   :root {
-    --color-bg1: #333; /* Dark gray */
+    --color-bg1: #000; /* Dark gray */
     --color-bg2: #000; /* Black */
     --color1: 128, 128, 128; /* Medium gray */
     --color2: 77, 77, 77; /* Medium gray */
     --color3: 77, 77, 77; /* Darker gray */
     --color4: 51, 51, 51; /* Even darker gray */
     --color5: 128, 128, 128; /* Darker gray */    --color-interactive: 192, 192, 192; /* Light gray */
-    --circle-size: 80%;
+    --circle-size: 50%;
     --blending: hard-light;
   }
   
