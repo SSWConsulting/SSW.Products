@@ -1,6 +1,7 @@
 import "../globals.css";
 import "ssw-tinacms-landingkit/dist/style.css";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 const inter = Inter({
   weight: ["400", "700"],
   subsets: ["latin"],
@@ -8,11 +9,21 @@ const inter = Inter({
 
 export default function RootLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: { product: string };
 }) {
   return (
     <html lang="en">
+      <head>
+        {params?.product === "YakShaver" && (
+          <Script
+            data-domain="yakshaver.ai"
+            src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
+          />
+        )}
+      </head>
       <body
         className={`min-h-screen ${inter.className}`}
         style={{
