@@ -123,7 +123,7 @@ export default function Hero({ data }: { data: any }) {
 
       {/* Content (z-10 to appear above the background) */}
       <div className="z-10 flex flex-col items-center justify-center w-full">
-        <div className="flex flex-col font-bold items-center justify-center text-5xl  text-white">
+        <div className="flex flex-col font-bold items-center justify-center text-2xl md:text-5xl  text-white">
           <div className="pt-20 flex items-center justify-center gap-2">
             <h1>{data.titleBeforeRotate}</h1>
             <span className="text-[#CC4141] pl-1">
