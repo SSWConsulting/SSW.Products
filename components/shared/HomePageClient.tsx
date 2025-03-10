@@ -4,7 +4,6 @@
 
 import { useTina } from "tinacms/dist/react";
 import { blocksRenderer as BlocksRenderer } from "./blocksRenderer";
-import Hero from "./Blocks/Hero";
 
 interface HomePageClientProps {
   query: any;
