@@ -31,6 +31,24 @@ export const HeroTemplate: Template = {
     },
     // Placeholder for the buttons
     {
+      name: 'ctaLeft',
+      label: '<LEFT> CTA button',
+      type: 'object',
+      fields: [
+        { name: 'title', label: 'Title', type: 'string' },
+        { name: 'link', label: 'Link', type: 'string' },
+      ]
+    },
+    {
+      name: 'ctaRight',
+      label: '<RIGHT> CTA button',
+      type: 'object',
+      fields: [
+        { name: 'title', label: 'Title', type: 'string' },
+        { name: 'link', label: 'Link', type: 'string' },
+      ]
+    },
+    {
       name: "buttonSubtext",
       label: "Button Subtext",
       type: "string",
