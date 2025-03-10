@@ -45,6 +45,12 @@ export function WordRotate({
           key={words[index]}
           className={cn(className)}
           {...motionProps}
+          style={{
+            backgroundImage: 'linear-gradient(to bottom right, #FCA5A5, #CC4141)',
+            WebkitBackgroundClip: 'text',
+            color: 'transparent'
+          }}
+          
         >
           {words[index]}
         </motion.h1>

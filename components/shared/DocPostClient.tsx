@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { DocAndBlogMarkdownStyle } from './DocAndBlogMarkdownStyle';
-import { useTina } from 'tinacms/dist/react';
-import { Docs } from '../../tina/__generated__/types';
+import Link from "next/link";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { DocAndBlogMarkdownStyle } from "../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
+import { useTina } from "tinacms/dist/react";
+import { Docs } from "../../tina/__generated__/types";
 
 interface DocPostClientProps {
   query: string;
@@ -38,8 +38,6 @@ export default function DocPostClient({
     data: pageData,
   });
 
-  
-
   if (!data?.docs) {
     return <p className="text-center text-white">No content available.</p>;
   }
@@ -48,9 +46,12 @@ export default function DocPostClient({
 
   // Ensure the date is valid before formatting
   const parsedDate = date ? new Date(date) : null;
-  const formattedDate = parsedDate && !isNaN(parsedDate.getTime()) 
-    ? `${parsedDate.getDate()} ${parsedDate.toLocaleString('default', { month: 'long' })} ${parsedDate.getFullYear()}`
-    : 'Unknown Date';
+  const formattedDate =
+    parsedDate && !isNaN(parsedDate.getTime())
+      ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", {
+          month: "long",
+        })} ${parsedDate.getFullYear()}`
+      : "Unknown Date";
 
   return (
     <div className="p-4 lg:pt-32 md:pt-32 mt-20 font-semibold max-w-3xl mx-auto text-white">
@@ -64,7 +65,10 @@ export default function DocPostClient({
       </div>
 
       <div className="text-base font-light lg:prose-xl">
-        <TinaMarkdown content={body ?? { type: 'root', children: [] }} components={DocAndBlogMarkdownStyle} />
+        <TinaMarkdown
+          content={body ?? { type: "root", children: [] }}
+          components={DocAndBlogMarkdownStyle}
+        />
       </div>
     </div>
   );

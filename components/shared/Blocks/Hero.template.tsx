@@ -20,28 +20,14 @@ export const HeroTemplate: Template = {
       type: "string",
       list: true,
     },
-    {
-        name: 'test',
-        label: 'Test',
-        type: 'rich-text',
-        templates:[
-            {
-                name: "MdxGradient",
-                label: "Gradient Text",
-                fields: [
-                  {
-                    name: "children",
-                    label: "Text",
-                    type: "string",
-                  },
-                ],
-            },
-        ]
-    },
+  
     {
       name: "byLine",
       label: "By Line",
       type: "string",
+      ui: {
+        component: "textarea",
+      },
     },
     // Placeholder for the buttons
     {

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { DocAndBlogMarkdownStyle } from "./DocAndBlogMarkdownStyle";
+import { DocAndBlogMarkdownStyle } from "../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import { useTina } from "tinacms/dist/react";
 import { Blogs } from "../../tina/__generated__/types";
 
@@ -38,19 +38,18 @@ export default function BlogPostClient({
     data: pageData,
   });
 
-  
-
   if (!data?.blogs) {
     return <p className="text-center text-white">No content available.</p>;
   }
 
   const { title, date, sswPeopleLink, readLength, author, body } = data.blogs;
 
-  
   const parsedDate = date ? new Date(date) : null;
   const formattedDate =
     parsedDate && !isNaN(parsedDate.getTime())
-      ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", { month: "long" })} ${parsedDate.getFullYear()}`
+      ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", {
+          month: "long",
+        })} ${parsedDate.getFullYear()}`
       : "Unknown Date";
 
   return (
@@ -77,7 +76,10 @@ export default function BlogPostClient({
       </div>
 
       <div className="text-base font-light lg:prose-xl">
-        <TinaMarkdown content={body ?? { type: "root", children: [] }} components={DocAndBlogMarkdownStyle} />
+        <TinaMarkdown
+          content={body ?? { type: "root", children: [] }}
+          components={DocAndBlogMarkdownStyle}
+        />
       </div>
     </div>
   );

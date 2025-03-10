@@ -1,13 +1,9 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
-import Actions, { ActionButton } from "./ActionsButton";
-import { ButtonVariant } from "./buttonEnum";
-import { ButtonSize } from "./buttonEnum";
-import { GradientButton } from "@/components/ui/gradient-button";
-import Link from "next/link";
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import Image from "next/image";
-import { TestMarkdownStyle } from "./testMarkdownstyle";
+import { FaExpandAlt, FaMinus } from "react-icons/fa";
+import { FaXmark } from "react-icons/fa6";
 
 const TranscriptBox = ({ data }: { data: any }) => {
   console.log(data);
@@ -53,19 +49,29 @@ const TranscriptBox = ({ data }: { data: any }) => {
         </div>
         {/* Empty Circle Buttons (for now) */}
         <div className="pt-4 flex gap-4">
-          <div className="bg-gray-600 rounded-full w-10 h-10">{""}</div>
-          <div className="bg-gray-600 rounded-full w-10 h-10">{""}</div>
+          <div className="bg-gray-600 rounded-full w-10 h-10 animate-pulse">
+            {""}
+          </div>
+          <div className="bg-gray-600 rounded-full w-10 h-10 animate-pulse">
+            {""}
+          </div>
         </div>
       </div>
       {/* RHS */}
       <div className="bg-gray-800 w-1/2 items-center flex justify-center rounded-tr-xl rounded-br-xl border border-gray-600">
         <div className="py-6 px-6 flex flex-col items-center justify-center w-full">
           {/* Top Line */}
-          <div className="flex gap-2 items-center rounded-t-lg border border-gray-600 px-6 py-2 w-full">
-            <div className="bg-red-500 rounded-full w-3 h-3" />
-            <div className="bg-yellow-500 rounded-full w-3 h-3" />
-            <div className="bg-green-500 rounded-full w-3 h-3" />
-            <span>{data.rightHandSide?.issueReportSummaryTitle}</span>
+          <div className="flex gap-1 items-center rounded-t-lg border border-gray-600 px-6 py-2 w-full">
+            <div className="bg-red-500 w-3 h-3 rounded-full relative flex items-center justify-center group -ml-2">
+              <FaXmark className="hidden group-hover:block absolute text-[8px] text-black" />
+            </div>
+            <div className="bg-yellow-500 w-3 h-3 rounded-full relative flex items-center justify-center group">
+              <FaMinus className="hidden group-hover:block absolute text-[8px] text-black" />
+            </div>
+            <div className="bg-green-500 w-3 h-3 rounded-full relative flex items-center justify-center group">
+              <FaExpandAlt className="hidden group-hover:block absolute text-[8px] text-black" />
+            </div>
+            <span className="ml-2">{data.rightHandSide?.issueReportSummaryTitle}</span>
             <span className="ml-auto text-gray-400"> v2.4.1</span>
           </div>
           {/* Content Box */}
@@ -95,11 +101,28 @@ const TranscriptBox = ({ data }: { data: any }) => {
   );
 };
 
+// This is a work-around for not using markdown. Its a custom 'MDX component' but cant use markdown so we are using a plain string
+// "{ }" indicates text to be highlighted
+const curlyBracketFormatter = (byLine: string) => {
+  return byLine.split(/({.*?})/).map((part, index) =>
+    part.startsWith("{") && part.endsWith("}") ? (
+      <span
+        key={index}
+        className="bg-gradient-to-br from-rose-300 to-[#CC4141] bg-clip-text text-transparent"
+      >
+        {part.slice(1, -1)}
+      </span>
+    ) : (
+      part
+    )
+  );
+};
+
 export default function Hero({ data }: { data: any }) {
   console.log(data);
 
   return (
-    <div className="flex flex-col items-center justify-center mx-auto bg-black pb-20 relative overflow-hidden">
+    <div className="flex flex-col items-center justify-center mx-auto pb-20 relative overflow-hidden">
       {/* Background Yak SVG */}
       <div className="absolute inset-0 z-0 flex justify-end items-center opacity-50 overflow-visible">
         <div className="w-[800px] h-[800px] translate-x-1/4">
@@ -125,21 +148,17 @@ export default function Hero({ data }: { data: any }) {
           <div>
             <h1>{data.titleAfterRotate}</h1>
           </div>
-          <div className="bg-gradient-to-br from-rose-300 to-[#CC4141] text-transparent bg-clip-text">
-            Test
-          </div>
-          <TinaMarkdown content={data.test} components={TestMarkdownStyle} />
         </div>
         <h2 className="text-white text-center text-xl pt-12 max-w-3xl">
-          {data.byLine}
+          {curlyBracketFormatter(data.byLine)}
         </h2>
 
         <div className="flex items-center justify-center pt-12 gap-6">
-          <ShinyButton className="bg-[#CC4141] text-white py-4 px-6 border border-white/30">
+          <ShinyButton className="bg-gradient-to-br from-rose-300 to-[#CC4141] text-white py-4 px-6 border border-white/30 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
             BOOK A DEMO
           </ShinyButton>
 
-          <ShinyButton className="bg-[#131313] text-white py-4 px-6 border border-white/30">
+          <ShinyButton className="bg-[#131313] text-white py-4 px-6 border border-white/30 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
             WATCH VIDEO
           </ShinyButton>
         </div>

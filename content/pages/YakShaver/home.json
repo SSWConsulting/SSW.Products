@@ -10,8 +10,7 @@
         "ticket",
         "email"
       ],
-      "test": "Text\n\n",
-      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. Save hours of frustration with YakShaver",
+      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. {Save hours} of frustration with YakShaver",
       "buttonSubtext": "No credit card required + 14-day free trial",
       "reportUI": {
         "leftHandSide": {

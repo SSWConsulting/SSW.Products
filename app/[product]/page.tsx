@@ -15,7 +15,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <div>
-      <InteractiveBackground />
       <NavBarServer product={product} />
       <HomePageClient
         query={productData.query}
