@@ -10,7 +10,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
-      <div className="bg-gray-800 w-full md:w-1/2 flex flex-col rounded-tl-xl rounded-bl-xl py-6 px-6  border border-gray-600">
+      <div className="bg-gray-800 w-full md:w-1/2 flex flex-col rounded-tl-xl md:rounded-bl-xl rounded-tr-xl md:rounded-tr-none py-6 px-6  border border-gray-600">
         <div className="flex gap-4">
           <div className="bg-red-600 rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
             Y
@@ -46,7 +46,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
         </div>
       </div>
       {/* RHS */}
-      <div className="bg-gray-800 w-full md:w-1/2 items-center flex justify-center rounded-tr-xl rounded-br-xl border border-gray-600">
+      <div className="bg-gray-800 w-full md:w-1/2 items-center flex justify-center md:rounded-tr-xl rounded-bl-xl md:rounded-bl-none  rounded-br-xl border border-gray-600">
         <div className="py-6 px-6 flex flex-col items-center justify-center w-full">
           {/* Top Line */}
           <div className="flex gap-1 items-center rounded-t-lg border border-gray-600 px-6 py-2 w-full">
