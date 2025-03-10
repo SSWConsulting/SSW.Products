@@ -43,6 +43,8 @@ export default function FooterClient({ results }: FooterClientProps) {
   const footerTitle = results?.footer?.footerTitle;
   const footerColor = results.footer.footerColor!;
 
+  const dynamicYear = new Date().getFullYear()
+
   return (
     <footer
       className={`text-white py-6 transition-opacity duration-300 ${
@@ -73,7 +75,7 @@ export default function FooterClient({ results }: FooterClientProps) {
 
         {/* Footer Title */}
         <div className="text-center lg:text-left md:text-sm text-xs lg:order-1">
-          {footerTitle || "Default Footer Title"}
+          {dynamicYear.toString()} {' '} {footerTitle || "Default Footer Title"}
         </div>
       </div>
     </footer>

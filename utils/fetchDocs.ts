@@ -22,6 +22,16 @@ export async function getDocsForProduct(product: string, offset = 0, limit = 5) 
     }
 
     const sortedBlogs = filteredDocs.sort((a: any, b: any) => {
+      // First check if both documents have displayOrder
+      if (a.node.displayOrder != null && b.node.displayOrder != null) {
+        return a.node.displayOrder - b.node.displayOrder;
+      }
+      
+      // If only one has displayOrder, prioritize it
+      if (a.node.displayOrder != null) return -1;
+      if (b.node.displayOrder != null) return 1;
+      
+      // Fall back to date-based sorting
       const dateA = new Date(a.node.date);
       const dateB = new Date(b.node.date);
       return dateB.getTime() - dateA.getTime();

@@ -126,7 +126,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
       }  pb-10 lg:pb-0 3xl:px-20`}
     >
       <div className="w-full flex flex-col gap-2 xl:pl-20">
-        <div className="flex flex-wrap items-center text-3xl lg:text-4xl text-white font-semibold">
+        <div className="flex flex-wrap items-center text-2xl md:text-3xl lg:text-4xl text-white font-semibold">
           <div className="view-mode-1 block md:hidden lg:block">
             {/* First line: Headline (always on the first line) */}
             <div className="w-full md:w-auto lg:w-full xl:w-auto flex items-center">

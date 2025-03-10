@@ -3,6 +3,9 @@
 # Visual Studio files
 .vs/
 
+# JetBrains IDE files
+.idea/
+
 # dependencies
 /node_modules
 /.pnp
