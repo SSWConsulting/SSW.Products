@@ -8,7 +8,7 @@ import { FaXmark } from "react-icons/fa6";
 const TranscriptBox = ({ data }: { data: any }) => {
   console.log(data);
   return (
-    <div className="flex w-full px-10 lg:px-6">
+    <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
       <div className="bg-gray-800 w-full md:w-1/2 flex flex-col rounded-tl-xl rounded-bl-xl py-6 px-6  border border-gray-600">
         <div className="flex gap-4">
