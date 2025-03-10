@@ -4,6 +4,7 @@
 
 import { useTina } from "tinacms/dist/react";
 import { blocksRenderer as BlocksRenderer } from "./blocksRenderer";
+import Hero from "./Blocks/Hero";
 
 interface HomePageClientProps {
   query: any;
@@ -24,6 +25,7 @@ export default function HomePageClient({
 
   return (
     <div className="lg:pt-30 md:pt-10 mx-auto w-full">
+      {/* <Hero/> */}
       <BlocksRenderer
         data={{ pageBlocks: tinaData.data.pages.pageBlocks ?? null }}
       />

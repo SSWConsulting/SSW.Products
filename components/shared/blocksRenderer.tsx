@@ -15,6 +15,7 @@ import {
   LogoCarousel,
 } from "ssw-tinacms-landingkit";
 import * as AntIcons from "react-icons/ai";
+import Hero from "./Blocks/Hero";
 
 
 interface Block {
@@ -49,6 +50,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
   if (!blocks) return null;
 
   return blocks.map((block: Block, index: number) => {
+    
     switch (block.__typename) {
       case "PagesPageBlocksFeatures":
         if (block.featureItem) {
@@ -72,6 +74,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
           // @ts-expect-error investigate after
           <FeatureHorizontalCarousel key={index} data={block} index={index} />
         );
+      case "PagesPageBlocksHero":
+        return <Hero key={index} data={block} />;
       case "PagesPageBlocksPricing":
         // @ts-expect-error typing issue with data
         return <Pricing key={index} data={block} />;

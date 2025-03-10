@@ -7,6 +7,7 @@ import { BannerTemplate } from "../../components/shared/Blocks/Banner.template";
 import { videoDisplayTemplate } from "../../components/shared/Blocks/VideoDisplay.template";
 
 import { bentoBoxTemplate } from "../../components/shared/Blocks/BentoBox.template";
+import { HeroTemplate } from "../../components/shared/Blocks/Hero.template";
 
 import {
   breadcrumbBlock,
@@ -46,6 +47,7 @@ export const PagesSchema: Collection = {
         visualSelector: true,
       },
       templates: [
+        HeroTemplate,
         FeaturesTemplate,
         FAQTemplate,
         CarouselFeatureTemplate,

@@ -1,3 +1,4 @@
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ["class"],
@@ -93,6 +94,21 @@ module.exports = {
           color: '#FFFFFF', 
           border: '1px solid #FFFFFF', 
         },
+		'.shinyRed': {
+			backgroundColor: '#CC4141',
+			color: '#FFFFFF',
+			border: '1px solid #FFFFFF',
+		},
+		'.charcoalNoBorder': {
+			backgroundColor: '#333333',
+			color: '#FFFFFF',
+			border: 'none',
+		},
+		'.charcoalWithBorder': {
+			backgroundColor: '#333333',
+			color: '#FFFFFF',
+			border: '1px solid #FFFFFF',
+		},
         // Size styles
         '.small': {
           padding: '0.25rem 0.5rem', 
