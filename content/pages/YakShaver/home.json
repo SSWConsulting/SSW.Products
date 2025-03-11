@@ -10,7 +10,7 @@
         "ticket",
         "email"
       ],
-      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. {Save hours} of frustration with YakShaver",
+      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent {analyses recordings, generates the task, and allocates it to the correct team instantly}. Save hours of frustration with YakShaver",
       "ctaLeft": {
         "title": "TRY IT NOW",
         "link": "/"
@@ -25,7 +25,7 @@
           "issueReportTitle": "ISSUE REPORT #127",
           "issueReportSubTitle": "Recorded: 10:23 AM",
           "issueReportByline": "Sprint Review #12",
-          "issueReportTranscript": "Issue Details\n\n1\\. Status IDs not displaying in Active Projects\n\n2\\. Fields hidden in project details\n\n3\\. Affects all users in Dynamics CRM\n\n\\\nReported by: Ulysses\n\nPriority: Medium\n\n\\\nVideo evidence attached below\n"
+          "issueReportTranscript": "Ulyssess: Uhh... yeah, I just noticed the status IDs aren't showing up in Active Projects. Can't find the field anywhere in details. Seems like everyone in Dynamics CRM is affected.\n"
         },
         "rightHandSide": {
           "issueReportSummaryTitle": "YakShaver.ai - Issue Summary",
