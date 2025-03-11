@@ -36,6 +36,13 @@ async function getPage(product: string, filename: string) {
   try {
     const res = await client.queries.pages({
       relativePath: `${product}/${filename}.json`,
+    },
+    {
+      fetchOptions: {
+        next: {
+          revalidate: 10,
+        }
+      }
     });
     return {
       query: res.query,
