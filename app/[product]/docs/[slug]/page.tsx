@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
+
 import InteractiveBackground from "../../../../components/shared/Background/InteractiveBackground";
-import NavBarServer from "../../../../components/shared/NavBarServer";
-import FooterServer from "../../../../components/shared/FooterServer";
-import client from "../../../../tina/__generated__/client";
 import DocPostClient from "../../../../components/shared/DocPostClient";
+import FooterServer from "../../../../components/shared/FooterServer";
+import NavBarServer from "../../../../components/shared/NavBarServer";
+import client from "../../../../tina/__generated__/client";
 import { Docs } from "../../../../tina/__generated__/types";
-import {
-  setPageMetadata
-} from "../../../../utils/setPageMetaData";
+import { setPageMetadata } from "../../../../utils/setPageMetaData";
 
 interface DocPostProps {
   params: {
@@ -46,12 +45,12 @@ export default async function DocPost({ params }: DocPostProps) {
       </div>
 
       <FooterServer product={product} />
-      {(documentData?.docs?.seo?.googleStructuredData) && (
+      {documentData?.docs?.seo?.googleStructuredData && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(
-              documentData?.docs?.seo?.googleStructuredData
+              documentData?.docs?.seo?.googleStructuredData ?? {}
             ),
           }}
         />

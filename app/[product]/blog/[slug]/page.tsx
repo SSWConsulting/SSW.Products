@@ -1,9 +1,10 @@
 import { notFound } from "next/navigation";
+
 import InteractiveBackground from "../../../../components/shared/Background/InteractiveBackground";
-import NavBarServer from "../../../../components/shared/NavBarServer";
-import FooterServer from "../../../../components/shared/FooterServer";
-import client from "../../../../tina/__generated__/client";
 import BlogPostClient from "../../../../components/shared/BlogPostClient";
+import FooterServer from "../../../../components/shared/FooterServer";
+import NavBarServer from "../../../../components/shared/NavBarServer";
+import client from "../../../../tina/__generated__/client";
 import { Blogs } from "../../../../tina/__generated__/types";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
 
@@ -31,9 +32,8 @@ export async function generateMetadata({ params }: BlogPostProps) {
   } catch (e) {
     console.error(e);
     notFound();
-  } 
+  }
 }
-
 
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = params;
@@ -61,7 +61,9 @@ export default async function BlogPost({ params }: BlogPostProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(documentData?.blogs.seo?.googleStructuredData),
+          __html: JSON.stringify(
+            documentData?.blogs.seo?.googleStructuredData ?? {}
+          ),
         }}
       />
     </div>

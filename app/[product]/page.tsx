@@ -1,12 +1,8 @@
-import client from "../../tina/__generated__/client";
+import FooterServer from "../../components/shared/FooterServer";
 import HomePageClient from "../../components/shared/HomePageClient";
 import NavBarServer from "../../components/shared/NavBarServer";
-import FooterServer from "../../components/shared/FooterServer";
-
-
-import {
-  setPageMetadata
-} from "../../utils/setPageMetaData";
+import client from "../../tina/__generated__/client";
+import { setPageMetadata } from "../../utils/setPageMetaData";
 
 interface ProductPageProps {
   params: { product: string };
@@ -32,15 +28,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
         variables={{ relativePath: `${product}/home.json` }}
       />
       <FooterServer product={product} />
-      {(productData?.data.pages.seo?.googleStructuredData )&& (
+      {productData?.data.pages.seo?.googleStructuredData && (
         <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html:`${productData?.data.pages.seo?.googleStructuredData}`,
-        }}
-      />
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `${
+              productData?.data.pages.seo?.googleStructuredData ?? {}
+            }`,
+          }}
+        />
       )}
-      
     </div>
   );
 }
