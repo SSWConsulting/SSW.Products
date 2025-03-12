@@ -7,6 +7,8 @@ import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 import { FaExpandAlt } from "react-icons/fa";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import Link from "next/link";
+import YaksShavedCounterBox from "../../utilityComponents/YaksShavedCounter";
+import TimeSavedCounterBox from "../../utilityComponents/TimeSavedCounter";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
@@ -68,21 +70,6 @@ function ExampleYakShaverCard() {
   );
 }
 
-function YaksShavedCounterBox() {
-  return (
-    <div
-      className={`${YakShaverGray} h-24 md:h-28 rounded-xl px-6 md:px-5 flex flex-col justify-center items-start md:items-start`}
-    >
-      <div className="flex flex-row gap-2 md:text-lg text-md  text-gray-200">
-        <Image src={"/svg/yak-icon.svg"} alt="yak" width={20} height={20} />
-        Yaks Shaved
-      </div>
-      <div className="text-3xl md:text-4xl font-semibold pt-2">
-        <NumberTicker value={15460} className="text-white" />
-      </div>
-    </div>
-  );
-}
 
 function SmAndMdView({ data }: { data: any }) {
   return (
@@ -197,24 +184,6 @@ function PhotoBox({ photo }: { photo: string }) {
   );
 }
 
-function TimeSavedCounterBox() {
-  return (
-    <div
-      className={`${YakShaverGray} h-24 md:h-28 rounded-xl px-6 md:px-5 flex flex-col justify-center items-start md:items-start`}
-    >
-      <div className="flex flex-row items-center gap-2 md:text-lg text-md text-gray-200">
-        <IoIosTimer />
-        Saving Users
-      </div>
-      <div className=" pt-2 flex flex-row gap-2">
-        <div className="text-3xl md:text-4xl font-semibold">
-          <NumberTicker value={25030} className="text-white" />
-        </div>
-        <div className="text-gray-400 text-sm place-self-end pb-1">Minutes</div>
-      </div>
-    </div>
-  );
-}
 
 function SSWBadge({ title, link }: { title: string; link?: string }) {
   return (
