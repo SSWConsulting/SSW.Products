@@ -4,19 +4,25 @@ import InteractiveBackground from "../../../components/shared/Background/Interac
 import NavBarServer from "../../../components/shared/NavBarServer";
 import FooterServer from "../../../components/shared/FooterServer";
 import HomePageClient from "../../../components/shared/HomePageClient";
+import {
+  setPageMetadata
+} from "../../../utils/setPageMetaData";
 
 interface FilePageProps {
   params: { product: string; filename: string };
 }
 
+export async function generateMetadata({ params }: FilePageProps) {
+  const { product, filename } = params;
+  const fileData = await getPage(product, filename);
+  const metadata = setPageMetadata(fileData.data?.pages?.seo, product);
+  return metadata;
+}
+
 export default async function FilePage({ params }: FilePageProps) {
   const { product, filename } = params;
 
-  
-
   const fileData = await getPage(product, filename);
-
-
 
   return (
     <div>
@@ -28,6 +34,16 @@ export default async function FilePage({ params }: FilePageProps) {
         variables={{ relativePath: `${product}/${filename}.json` }}
       />
       <FooterServer product={product} />
+      {fileData.data?.pages?.seo?.googleStructuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              fileData.data?.pages?.seo?.googleStructuredData
+            ),
+          }}
+        />
+      )}
     </div>
   );
 }

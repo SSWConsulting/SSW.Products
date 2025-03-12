@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Welcome to YakShaver",
+    "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}"
+  },
   "title": "test-YakShaver",
   "pageBlocks": [
     {
