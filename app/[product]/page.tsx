@@ -3,7 +3,7 @@ import HomePageClient from "../../components/shared/HomePageClient";
 import NavBarServer from "../../components/shared/NavBarServer";
 import FooterServer from "../../components/shared/FooterServer";
 
-import InteractiveBackground from "../../components/shared/Background/InteractiveBackground";
+
 import {
   setPageMetadata
 } from "../../utils/setPageMetaData";
