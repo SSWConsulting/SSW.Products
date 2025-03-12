@@ -1,6 +1,5 @@
-import { NumberTicker } from "@/components/magicui/number-ticker";
 import Image from "next/image";
-import { IoIosTimer } from "react-icons/io";
+
 import { FaMinus, FaXmark } from "react-icons/fa6";
 import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
@@ -69,7 +68,6 @@ function ExampleYakShaverCard() {
     </div>
   );
 }
-
 
 function SmAndMdView({ data }: { data: any }) {
   return (
@@ -184,11 +182,10 @@ function PhotoBox({ photo }: { photo: string }) {
   );
 }
 
-
 function SSWBadge({ title, link }: { title: string; link?: string }) {
   return (
     <div className="flex justify-center">
-      <Link href={link || ''} target="_blank">
+      <Link href={link || ""} target="_blank">
         <div className="inline-flex py-2 px-4 rounded-xl bg-[#131313] justify-center items-center text-white border border-gray-400 hover:text-[#CC4141] hover:border-[#CC4141] transition-all hover:font-bold duration-500">
           {title}
           <Image
