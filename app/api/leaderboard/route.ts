@@ -8,6 +8,7 @@ export async function GET() {
       const data = await response.json();
       return new Response(JSON.stringify(data), { status: 200 });
     } catch (error) {
+      console.error('Failed to fetch leaderboard data:', error);
       return new Response(JSON.stringify({ error: 'Failed to fetch leaderboard data' }), { status: 500 });
     }
   }
