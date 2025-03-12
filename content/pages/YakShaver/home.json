@@ -28,7 +28,7 @@
         "leftHandSide": {
           "issueReportTitle": "ISSUE REPORT #127",
           "issueReportSubTitle": "Recorded: 10:23 AM",
-          "issueReportByline": "Sprint Review #12",
+          "issueReportByline": "Meeting Transcript",
           "issueReportTranscript": "Ulyssess: Uhh... yeah, I just noticed the status IDs aren't showing up in Active Projects. Can't find the field anywhere in details. Louis should know how to fix this. Seems like everyone in Dynamics CRM is affected.\n"
         },
         "rightHandSide": {
