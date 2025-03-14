@@ -46,7 +46,7 @@ export function WordRotate({
           className={cn(className)}
           {...motionProps}
           style={{
-            backgroundImage: 'linear-gradient(to bottom right, #FCA5A5, #CC4141)',
+            backgroundImage: 'linear-gradient(to bottom right, #FF6467, #C10007)',
             WebkitBackgroundClip: 'text',
             color: 'transparent'
           }}
