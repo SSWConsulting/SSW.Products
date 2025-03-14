@@ -1,7 +1,9 @@
-import "../globals.css";
-import "ssw-tinacms-landingkit/dist/style.css";
 import { Inter } from "next/font/google";
 import Script from "next/script";
+
+import "ssw-tinacms-landingkit/dist/style.css";
+import "../globals.css";
+
 const inter = Inter({
   weight: ["400", "700"],
   subsets: ["latin"],
@@ -17,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href={`/favicons/${params.product}.ico`} />
         {params?.product === "YakShaver" && (
           <Script
             data-domain="yakshaver.ai"
