@@ -4,6 +4,7 @@ import InteractiveBackground from "../../../components/shared/Background/Interac
 import NavBarServer from "../../../components/shared/NavBarServer";
 import FooterServer from "../../../components/shared/FooterServer";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
+import client from "../../../tina/__generated__/client";
 
 interface BlogIndex {
   params: { product: string };
@@ -11,7 +12,7 @@ interface BlogIndex {
 
 export async function generateMetadata({ params }: BlogIndex) {
   const { product } = params;
-  return{
+  return {
     title: `${product} Blogs`,
     description: `Find out more about ${product}, the latest news and updates posted on our blog.`,
     openGraph: {
@@ -21,6 +22,16 @@ export async function generateMetadata({ params }: BlogIndex) {
     },
   }
 }
+
+
+export async function generateStaticParams() {
+  const sitePosts = await client.queries.blogsConnection({});
+  return sitePosts.data.blogsConnection?.edges?.map((post) => ({
+    product: post?.node?._sys.breadcrumbs[0]
+  })) || []
+}
+
+
 
 export default async function BlogIndex({ params }: BlogIndex) {
   const { product } = params;
