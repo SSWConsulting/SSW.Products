@@ -70,3 +70,5 @@ async function getPage(product: string, filename: string) {
     notFound();
   }
 }
+
+export const revalidate = 60;
