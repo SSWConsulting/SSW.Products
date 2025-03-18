@@ -1,25 +1,21 @@
 {
   "pageBlocks": [
     {
-      "featureItem": [
-        {
-          "headline": "Roadmap",
-          "text": "Welcome to YakShavers public roadmap! This is a live document and will be updated regularly\n"
-        }
-      ],
-      "_template": "features"
+      "titleBeforeRotate": "YakShaver Roadmap",
+      "byLine": "Welcome to YakShaver's {public roadmap}! This is a live document and will be updated regularly",
+      "_template": "hero"
     },
     {
       "title": "In Progress",
       "items": [
         {
           "title": "Multi-Tenancy",
-          "description": "ex",
+          "description": "here is some example text about what we've been working on with regards to multi-tenancy",
           "badge": "In Progress"
         },
         {
           "title": "Try It Now",
-          "description": "ex",
+          "description": "here is some example text about what we've been working on with regards to multi-tenancy",
           "badge": "In Progress"
         }
       ],

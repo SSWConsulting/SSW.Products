@@ -5,6 +5,11 @@ export const HeroTemplate: Template = {
   name: "hero",
   fields: [
     {
+      name: 'backgroundImageEnabled',
+      label: 'Background Image Enabled',
+      type: 'boolean',
+    },
+    {
       name: "titleBeforeRotate",
       label: "Title Before Rotate Animation",
       type: "string",
@@ -52,6 +57,12 @@ export const HeroTemplate: Template = {
       name: "buttonSubtext",
       label: "Button Subtext",
       type: "string",
+    },
+    {
+      name: 'reportUIEnabled',
+      label: 'Report UI Enabled',
+      type: 'boolean',
+      
     },
     {
       name: "reportUI",

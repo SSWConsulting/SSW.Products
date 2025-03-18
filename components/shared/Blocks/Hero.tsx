@@ -110,15 +110,17 @@ export default function Hero({ data }: { data: any }) {
     <div className="flex items-center justify-center mx-auto pb-20 relative overflow-hidden pt-20 md:pt-0">
       {/* Background Yak SVG */}
       <div className="absolute inset-0 z-0 flex justify-end items-center opacity-50 overflow-visible">
-        <div className="w-[800px] h-[800px] translate-x-1/4">
-          <Image
-            src="/svg/yak-icon-fill-glow.svg"
-            alt="Yak Icon Background"
-            width={1000}
-            height={1000}
-            className="w-full h-full"
-          />
-        </div>
+        {data?.backgroundImageEnabled && (
+          <div className="w-[800px] h-[800px] translate-x-1/4">
+            <Image
+              src="/svg/yak-icon-fill-glow.svg"
+              alt="Yak Icon Background"
+              width={1000}
+              height={1000}
+              className="w-full h-full"
+            />
+          </div>
+        )}
       </div>
 
       {/* Content (z-10 to appear above the background) */}
@@ -160,7 +162,7 @@ export default function Hero({ data }: { data: any }) {
         </span>
         <div className="flex items-center justify-center pt-12 text-white max-w-6xl w-full">
           {/* Transcript Container */}
-          <TranscriptBox data={data?.reportUI} />
+          {data?.reportUIEnabled && <TranscriptBox data={data?.reportUI} />}
         </div>
       </div>
     </div>
