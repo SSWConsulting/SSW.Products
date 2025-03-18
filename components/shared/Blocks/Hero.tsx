@@ -36,7 +36,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
         {/* Transcript Box */}
         <div className="pt-2 font-mono lg:text-sm text-xs">
           <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] flex flex-col p-2 rounded-md border border-white/20">
-            {/* TODO - figure out how to get colour rendering */}
+            
             <TinaMarkdown content={data?.leftHandSide?.issueReportTranscript} />
           </div>
         </div>
@@ -77,7 +77,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
             <span className="pt-4 lg:text-sm text-xs">
               {data?.rightHandSide?.issueReportSummarySubtitle}
             </span>
-            <div className="flex flex-col  bg-gray-800 py-3 px-2 rounded-lg gap-2 relative lg:text-sm text-xs">
+            <div className="flex flex-col  bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] border border-white/20 py-3 px-2 rounded-lg gap-2 relative lg:text-sm text-xs">
               {/* Chat tab indicator */}
               
               <TinaMarkdown content={data?.rightHandSide?.issueReportBody} />
