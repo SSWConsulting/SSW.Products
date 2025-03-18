@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 
-import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
 import FooterServer from "../../../components/shared/FooterServer";
 import HomePageClient from "../../../components/shared/HomePageClient";
 import NavBarServer from "../../../components/shared/NavBarServer";
@@ -33,7 +32,6 @@ export default async function FilePage({ params }: FilePageProps) {
 
   return (
     <div>
-      <InteractiveBackground />
       <NavBarServer product={product} />
       <HomePageClient
         query={fileData.query}

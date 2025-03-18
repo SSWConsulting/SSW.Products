@@ -16,6 +16,7 @@ import {
 } from "ssw-tinacms-landingkit";
 import * as AntIcons from "react-icons/ai";
 import Hero from "./Blocks/Hero";
+import { Timeline } from "./Blocks/Timeline/Timeline";
 
 
 interface Block {
@@ -102,6 +103,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <ImageTextBlock icons={AntIcons} data={block}></ImageTextBlock>;
       case "PagesPageBlocksAccordion":
         return <Accordion callbackFunctions={null} icons={AntIcons} data={block}></Accordion>;
+      case "PagesPageBlocksTimeline":
+        return <Timeline data={block}/>;
       default:
         return null;
     }

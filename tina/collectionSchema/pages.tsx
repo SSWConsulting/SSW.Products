@@ -8,6 +8,7 @@ import { videoDisplayTemplate } from "../../components/shared/Blocks/VideoDispla
 
 import { bentoBoxTemplate } from "../../components/shared/Blocks/BentoBox.template";
 import { HeroTemplate } from "../../components/shared/Blocks/Hero.template";
+import { timelineTemplate } from "../../components/shared/Blocks/Timeline/Timeline.template";
 
 import {
   breadcrumbBlock,
@@ -57,6 +58,7 @@ export const PagesSchema: Collection = {
         BannerTemplate,
         videoDisplayTemplate,
         bentoBoxTemplate,
+        timelineTemplate,
         breadcrumbBlock(
           "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/breadcrumbs.jpg?raw=true"
         ),
