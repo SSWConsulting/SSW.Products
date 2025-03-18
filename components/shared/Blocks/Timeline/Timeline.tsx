@@ -1,5 +1,3 @@
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-
 const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
   return (
     <div className="px-6 flex items-stretch w-full gap-8">
