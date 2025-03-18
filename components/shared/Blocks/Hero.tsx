@@ -143,14 +143,19 @@ export default function Hero({ data }: { data: any }) {
         <div className="flex items-center justify-center pt-12 gap-6">
           {data.ctaLeft?.title && data.ctaLeft?.link && (
             <div>
-              <ShinyButton className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
+
+              <ShinyButton href={data.ctaLeft?.link} className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
                 {data.ctaLeft?.title}
               </ShinyButton>
             </div>
           )}
           {data.ctaRight?.title && data.ctaRight?.link && (
             <div>
+
               <ShinyButton className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
+
+              <ShinyButton href={data.ctaRight?.link} className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
+
                 {data.ctaRight?.title}
               </ShinyButton>
             </div>

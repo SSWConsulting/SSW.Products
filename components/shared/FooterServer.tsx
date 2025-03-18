@@ -6,9 +6,14 @@ interface FooterServerProps {
 }
 
 export default async function FooterServer({ product }: FooterServerProps) {
-  const { data } = await client.queries.footer({
-    relativePath: `${product}/${product}-Footer.json`,
-  });
-
-  return <FooterClient results={data} />;
-}
+  let footerData = null
+  try {
+    const { data } = await client.queries.footer({
+      relativePath: `${product}/${product}-Footer.json`,
+    })
+    footerData = data
+  } catch {
+    // We don't care about this... for the moment
+  }
+  return <FooterClient results={footerData} />;
+} 

@@ -15,6 +15,14 @@ export async function generateMetadata({ params }: ProductPageProps) {
   return metadata;
 }
 
+
+export async function generateStaticParams() {
+  const sitePosts = await client.queries.pagesConnection({});
+  return sitePosts.data.pagesConnection?.edges?.map((post) => ({
+    product: post?.node?._sys.breadcrumbs[0]
+  })) || []
+}
+
 export default async function ProductPage({ params }: ProductPageProps) {
   const product = params.product;
 
@@ -32,9 +40,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: `${
-              productData?.data.pages.seo?.googleStructuredData ?? {}
-            }`,
+            __html: `${productData?.data.pages.seo?.googleStructuredData ?? {}
+              }`,
           }}
         />
       )}

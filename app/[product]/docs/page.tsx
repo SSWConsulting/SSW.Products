@@ -4,6 +4,7 @@ import NavBarServer from "../../../components/shared/NavBarServer";
 import FooterServer from "../../../components/shared/FooterServer";
 import DocsIndexClient from "../../../components/shared/DocsIndexClient";
 import { getDocsForProduct } from "../../../utils/fetchDocs";
+import client from "../../../tina/__generated__/client";
 
 interface BlogIndex {
   params: { product: string };
@@ -11,7 +12,7 @@ interface BlogIndex {
 
 export async function generateMetadata({ params }: BlogIndex) {
   const { product } = params;
-  return{
+  return {
     title: `${product} Docs`,
     description: `Find out more about ${product}, guides and documentation`,
     openGraph: {
@@ -23,13 +24,21 @@ export async function generateMetadata({ params }: BlogIndex) {
 }
 
 
+export async function generateStaticParams() {
+  const sitePosts = await client.queries.docsConnection({});
+  return sitePosts.data.docsConnection?.edges?.map((post) => ({
+    product: post?.node?._sys.breadcrumbs[0]
+  })) || []
+}
+
+
 export default async function DocsIndex({ params }: BlogIndex) {
   const { product } = params;
 
   try {
     const docs = await getDocsForProduct(product);
 
-    
+
 
     if (!docs) {
       return notFound();

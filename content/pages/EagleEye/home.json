@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Welcome to EagleEye",
+    "googleStructuredData": "{\n\"name\": \"EagleEye\",\n\"Description\": \"Discover Patterns, Enhance Productivity & Drive Decisions with EagleEye\"\n}"
+  },
   "title": "EagleEye",
   "pageBlocks": [
     {
