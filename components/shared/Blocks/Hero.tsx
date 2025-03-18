@@ -10,46 +10,51 @@ const TranscriptBox = ({ data }: { data: any }) => {
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
-      <div className="bg-gray-800 w-full md:w-1/2 flex flex-col rounded-tl-xl md:rounded-bl-xl rounded-tr-xl md:rounded-tr-none py-6 px-6  border border-gray-600">
+      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-tl-xl md:rounded-bl-xl rounded-tr-xl md:rounded-tr-none py-6 px-6 border border-white/20 ">
         <div className="flex gap-4">
-          <div className="bg-red-600 rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
+          <div className="bg-red-700 rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
             Y
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col justify-center">
             <span className="font-semibold lg:text-lg text-sm">
               {data?.leftHandSide?.issueReportTitle}
             </span>
-            <span className="lg:text-sm text-xs">
+
+            <span className="lg:text-sm text-xs text-gray-400">
               {data?.leftHandSide?.issueReportSubTitle}
+
+            
             </span>
           </div>
         </div>
 
-        <span className="text-red-600 font-mono lg:pt-4 pt-2 lg:text-sm text-xs">
+
+        <span className="text-gray-400 font-mono lg:pt-4 pt-2 lg:text-sm text-xs">
           {data?.leftHandSide?.issueReportByline}
+
         </span>
         {/* Transcript Box */}
-        <div className="pt-4 font-mono lg:text-sm text-xs">
-          <div className="bg-gray-900 flex flex-col p-2 rounded-md border border-gray-600">
+        <div className="pt-2 font-mono lg:text-sm text-xs">
+          <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] flex flex-col p-2 rounded-md border border-white/20">
             {/* TODO - figure out how to get colour rendering */}
             <TinaMarkdown content={data?.leftHandSide?.issueReportTranscript} />
           </div>
         </div>
         {/* Empty Circle Buttons (for now) */}
         <div className="pt-4 flex gap-4">
-          <div className="bg-gray-600 rounded-full w-10 h-10 animate-pulse">
+          <div className="bg-[#292929] rounded-full w-10 h-10 animate-pulse">
             {""}
           </div>
-          <div className="bg-gray-600 rounded-full w-10 h-10 animate-pulse">
+          {/* <div className="bg-gray-600 rounded-full w-10 h-10 animate-pulse">
             {""}
-          </div>
+          </div> */}
         </div>
       </div>
       {/* RHS */}
-      <div className="bg-gray-800 w-full md:w-1/2 items-center flex justify-center md:rounded-tr-xl rounded-bl-xl md:rounded-bl-none  rounded-br-xl border border-gray-600">
+      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 items-center flex justify-center md:rounded-tr-xl rounded-bl-xl md:rounded-bl-none  rounded-br-xl border border-white/20">
         <div className="py-6 px-6 flex flex-col items-center justify-center w-full">
           {/* Top Line */}
-          <div className="flex gap-1 items-center rounded-t-lg border border-gray-600 px-6 py-2 w-full">
+          <div className="flex gap-1 items-center rounded-t-lg border border-white/20 px-6 py-2 w-full">
             <div className="bg-red-500 w-3 h-3 rounded-full relative flex items-center justify-center group -ml-2">
               <FaXmark className="hidden group-hover:block absolute text-[8px] text-black" />
             </div>
@@ -67,17 +72,19 @@ const TranscriptBox = ({ data }: { data: any }) => {
             </span>
           </div>
           {/* Content Box */}
-          <div className="rounded-b-lg border-b w-full border-r border-l border-gray-600 bg-gray-900 px-4 py-2 flex flex-col gap-2">
-            <span className="pt-4 font-semibold lg:text-sm text-xs">
+
+          <div className="rounded-b-lg border-b w-full border-r border-l border-white/20 bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] px-4 py-2 flex flex-col gap-2">
+            <span className="pt-4 lg:text-sm text-xs">
               {data?.rightHandSide?.issueReportSummarySubtitle}
             </span>
             <div className="flex flex-col  bg-gray-800 py-3 px-2 rounded-lg gap-2 relative lg:text-sm text-xs">
               {/* Chat tab indicator */}
-              <div className="absolute -bottom-2 left-4 w-4 h-2 bg-gray-800 transform -rotate-45 rounded-sm"></div>
+              
               <TinaMarkdown content={data?.rightHandSide?.issueReportBody} />
+
             </div>
             <div className="flex justify-end items-end py-4">
-              <div className="bg-red-600 text-xs py-1 px-2 rounded-lg">
+              <div className="bg-red-700 text-xs py-1 px-2 rounded-md">
                 View Details
               </div>
             </div>
@@ -95,7 +102,7 @@ const curlyBracketFormatter = (byLine: string) => {
     part.startsWith("{") && part.endsWith("}") ? (
       <span
         key={index}
-        className="bg-gradient-to-br from-rose-300 to-[#CC4141] bg-clip-text text-transparent"
+        className="bg-gradient-to-br from-red-400 to-red-700 bg-clip-text text-transparent font-bold"
       >
         {part.slice(1, -1)}
       </span>
@@ -107,7 +114,7 @@ const curlyBracketFormatter = (byLine: string) => {
 
 export default function Hero({ data }: { data: any }) {
   return (
-    <div className="flex items-center justify-center mx-auto pb-20 relative overflow-hidden pt-20 md:pt-0">
+    <div className="flex items-center justify-center mx-auto pb-20 relative overflow-hidden pt-20 md:pt-20">
       {/* Background Yak SVG */}
       <div className="absolute inset-0 z-0 flex justify-end items-center opacity-50 overflow-visible">
         {data?.backgroundImageEnabled && (
@@ -129,7 +136,9 @@ export default function Hero({ data }: { data: any }) {
           <div className="pt-20 flex items-center justify-center gap-2">
             <h1>{data?.titleBeforeRotate}</h1>
             <span className="text-[#CC4141] pl-1">
+
               <WordRotate words={data?.rotatingWords} className="" />
+
             </span>
           </div>
           <div>
@@ -144,15 +153,21 @@ export default function Hero({ data }: { data: any }) {
         <div className="flex items-center justify-center pt-12 gap-6">
           {data?.ctaLeft?.title && data?.ctaLeft?.link && (
             <div>
-              <ShinyButton className="bg-gradient-to-br from-rose-300 to-[#CC4141] text-white py-4 px-6 border border-white/30 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
-                {data?.ctaLeft?.title}
+
+
+              <ShinyButton href={data.ctaLeft?.link} className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
+                {data.ctaLeft?.title}
+
               </ShinyButton>
             </div>
           )}
           {data?.ctaRight?.title && data?.ctaRight?.link && (
             <div>
-              <ShinyButton className="bg-[#131313] text-white py-4 px-6 border border-white/30 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
-                {data?.ctaRight?.title}
+
+
+              <ShinyButton href={data.ctaRight?.link} className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
+                {data.ctaRight?.title}
+
               </ShinyButton>
             </div>
           )}
@@ -168,3 +183,4 @@ export default function Hero({ data }: { data: any }) {
     </div>
   );
 }
+
