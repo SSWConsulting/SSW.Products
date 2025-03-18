@@ -61,6 +61,11 @@
       "title": "Coming Soon",
       "items": [
         {
+          "title": "Redesigned Agentic Workflow",
+          "description": "We're replacing the current workflow with a new agentic system that allows for more automation and better task management",
+          "badge": "Coming soon"
+        },
+        {
           "title": "More Data Source Options (Excel, Active Directory, Google Cloud, etc.)",
           "description": "We’re adding support for people data from sources beyond Dynamics, including Excel, Active Directory, and Google Cloud.",
           "badge": "Coming Soon"
