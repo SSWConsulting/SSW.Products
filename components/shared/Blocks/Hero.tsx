@@ -152,10 +152,7 @@ export default function Hero({ data }: { data: any }) {
           {data.ctaRight?.title && data.ctaRight?.link && (
             <div>
 
-              <ShinyButton className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
-
               <ShinyButton href={data.ctaRight?.link} className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
-
                 {data.ctaRight?.title}
               </ShinyButton>
             </div>
@@ -172,3 +169,4 @@ export default function Hero({ data }: { data: any }) {
     </div>
   );
 }
+
