@@ -38,7 +38,7 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
         {/* Left Column: Text and Buttons */}
         <div className="lg:w-2/5 w-full flex flex-col gap-2 pl-0 lg:pl-20">
           <h2
-            className="text-2xl font-semibold mb-4"
+            className="text-4xl font-semibold mb-4"
             data-tina-field={tinaField(data, "headline")}
           >
             {data.headline}

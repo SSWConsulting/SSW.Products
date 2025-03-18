@@ -14,7 +14,7 @@ const YakShaverGray = "bg-[#131313] shadow-2xl";
 function IconBox({ icon }: { icon: string }) {
   return (
     <div className="relative rounded-2xl md:w-[60px] md:h-[60px] w-[50px] h-[50px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
-      <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+      <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-10 group-hover:opacity-25 transition duration-1000 group-hover:duration-200"></div>
       <div className="relative rounded-2xl border border-gray-600 flex items-center justify-center w-full h-full">
         <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center md:h-12 md:w-12 h-10 w-10">
           <div className="w-5 h-5 md:w-7 md:h-7 relative">
@@ -116,7 +116,7 @@ function LgView({ data }: { data: any }) {
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 pt-4 gap-4 h-96">
       {/* Left column (Sub-grid) */}
-      <div className="grid gap-2">
+      <div className="grid gap-4">
         {/* First sub-row (Two columns) */}
         <div className="grid grid-cols-2 gap-4">
           {/* Counter Box 1 - LHSsmall box */}
@@ -208,7 +208,7 @@ function TitleFadeIn({ title }: { title: string }) {
 
   return (
     <>
-      <div className="text-white text-center lg:text-4xl text-3xl font-semibold py-6">
+      <div className="text-white text-center lg:text-5xl text-3xl font-semibold py-6">
         <span className="inline-block max-w-full break-words">
           {firstPart}
           {firstPart ? " " : ""}
@@ -244,16 +244,16 @@ export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
     <div className="lg:py-20 md:pb-10 ">
-      <SSWBadge title={data?.badge} link={data?.badgeLink} />
+      
       <TitleFadeIn title={data?.title} />
       <div className="text-white p-6 mx-auto max-w-7xl">
         {/* Container */}
         <div className=" grid gap-4">
           {/* Row 1 (Single row, 2 columns) */}
           <div className="grid md:grid-cols-3 grid-cols-1 gap-4  relative">
-            {/* Left box with glowing effect */}
+            {/* Top Left box */}
             <div className="relative md:col-span-2 col-span-1 rounded-xl md:h-80 lg:h-72">
-              <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              
               <div
                 className={`${YakShaverGray} relative rounded-xl w-full h-full p-4`}
               >
@@ -301,6 +301,7 @@ export default function BentoBox({ data }: { data: any }) {
               </div>
             </div>
           </div>
+          
         </div>
 
         {/* Row 2 (2 Rows) */}
@@ -313,6 +314,10 @@ export default function BentoBox({ data }: { data: any }) {
           </div>
         </div>
       </div>
+      <div className="pt-10">
+      <SSWBadge title={data?.badge} link={data?.badgeLink} />
+      </div>
+      
     </div>
   );
 }

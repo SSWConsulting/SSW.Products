@@ -18,7 +18,7 @@ const OutputPill = forwardRef<HTMLDivElement, { title: string }>(
   ({ title }, ref) => {
     return (
       <div className="relative inline-flex gap-2 items-center p-1 rounded-3xl top-0 transition-all duration-300 group">
-        <div className="absolute -inset-1 bg-gradient-to-br from-[#57FEFE] to-white rounded-3xl blur opacity-10 "></div>
+        
         <div
           ref={ref}
           className="relative inline-flex gap-2 py-3 lg:py-2 justify-center items-center md:px-4 px-2 rounded-3xl bg-gradient-to-br from-[#CB4542] to-[#7A2C2A] border border-gray-400 text-xs z-50 text-black"
@@ -72,7 +72,7 @@ const InputBadge = forwardRef<HTMLDivElement, { icon: keyof typeof icons; title:
 
     return (
       <div ref={ref} className="inline-flex border border-gray-600 rounded-full z-50">
-        <div className="relative inline-flex flex-row items-center gap-1 md:gap-2 lg:gap-4 lg:text-sm text-xs rounded-full bg-[#131313] p-1 pr-2 lg:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.5)] w-full">
+        <div className="relative inline-flex flex-row items-center gap-1 md:gap-2 lg:gap-4 lg:text-sm text-xs rounded-full bg-[#131313] p-1 pr-2 lg:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.25)] w-full">
           <div className="bg-[#F8F8F8] bg-opacity-10 rounded-full p-1 lg:p-2">
             {Icon && <Icon />}
           </div>
