@@ -22,11 +22,10 @@ const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
           </h3>
         )}
         {data.description && (
-          <p className="text-muted-foreground">{data.description}</p>
+          <p className="text-muted-foreground text-lg text-gray-200">{data.description}</p>
         )}
-        {data.content && <TinaMarkdown content={data.content} />}
         {data.badge && (
-          <span className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-sm font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
+          <span className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
             {data.badge}
           </span>
         )}
@@ -37,7 +36,7 @@ const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
 
 export function Timeline({ data }: { data: any }) {
   return (
-    <section className="w-full flex flex-col gap-4 px-96">
+    <section className="w-full flex flex-col gap-4 md:px-48 px-24 -mt-20 max-w-7xl mx-auto">
       <h3 className="inline-block text-3xl lg:text-4xl lg:leading-tight text-white font-bold mb-4">
         {data.title}
       </h3>
