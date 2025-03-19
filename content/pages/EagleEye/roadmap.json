@@ -13,6 +13,11 @@
           "title": "Microsoft Graph Integration",
           "description": "Enable seamless access to Microsoft 365 data, allowing EagleEye to scan emails nightly, extract insights, and enhance tagging accuracy based on structured communication data from Outlook and other Microsoft services.",
           "badge": "✅ Live"
+        },
+        {
+          "title": "Synchronization of historical data",
+          "description": "Implement a historical data sync feature to allow users to analyze past email trends, providing deeper insights into communication patterns and workload distribution",
+          "badge": "✅ Live"
         }
       ],
       "_template": "Timeline"
