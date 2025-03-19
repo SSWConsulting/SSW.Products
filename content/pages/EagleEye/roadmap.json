@@ -50,6 +50,11 @@
           "title": "Teams Integration ",
           "description": "Enable Microsoft Teams integration to analyze chat-based communications alongside email insights, providing a holistic view of team collaboration and workload balance",
           "badge": "Coming Soon"
+        },
+        {
+          "title": "Email Response Time Analytics",
+          "description": "Implement analytics to track and visualize email response times, helping organizations identify bottlenecks, improve communication efficiency, and enhance customer support effectiveness. ",
+          "badge": "Coming Soon"
         }
       ],
       "_template": "Timeline"
