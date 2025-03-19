@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
   return (
     <div className="px-6 flex items-stretch w-full gap-8">
@@ -24,9 +26,9 @@ const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
         )}
             {data.badgeTitle && (
               data.badgeLink ? (
-                <a href={data.badgeLink} className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
+                <Link href={data.badgeLink} className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
                   {data.badgeTitle}
-                </a>
+                </Link>
               ) : (
                 <span className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
                   {data.badgeTitle}
