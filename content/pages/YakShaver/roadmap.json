@@ -6,27 +6,23 @@
       "_template": "hero"
     },
     {
-      "title": "Recently Released",
+      "title": "✅ Done",
       "items": [
         {
           "title": "Multi-Organization Support for NDC Melbourne",
-          "description": "The platform is now ready for NDC Melbourne, with multi-tenancy support allowing multiple users and organizations to manage their environments more efficiently.",
-          "badge": "Recently Released"
+          "description": "The platform is now ready for NDC Melbourne, with multi-tenancy support allowing multiple users and organizations to manage their environments more efficiently."
         },
         {
           "title": "Core Improvements from SSW Staff Feedback",
-          "description": "We implemented essential improvements identified by SSW staff, enhancing performance and streamlining common workflow tasks across the platform. ",
-          "badge": "Recently Released"
+          "description": "We implemented essential improvements identified by SSW staff, enhancing performance and streamlining common workflow tasks across the platform. "
         },
         {
           "title": "Updated Website and Pricing Structure",
-          "description": "We refreshed the website and pricing information to clearly communicate available features and options for different customer segments ",
-          "badge": "Recently Released"
+          "description": "We refreshed the website and pricing information to clearly communicate available features and options for different customer segments "
         },
         {
           "title": "Simplified Client Tenant Setup  \t",
-          "description": "Setting up a new client tenant is now easier. The administrative portal has been improved to streamline the onboarding process.",
-          "badge": "Recently Released"
+          "description": "Setting up a new client tenant is now easier. The administrative portal has been improved to streamline the onboarding process."
         }
       ],
       "_template": "Timeline"
@@ -36,23 +32,19 @@
       "items": [
         {
           "title": "Try It Now Feature",
-          "description": "We’re developing a \"Try It Now\" experience for NDC Melbourne attendees. This will allow users to interact with key features before committing to a full setup.",
-          "badge": "In Progress"
+          "description": "We’re developing a \"Try It Now\" experience for NDC Melbourne attendees. This will allow users to interact with key features before committing to a full setup."
         },
         {
           "title": "Support for Zendesk and Jira Integration",
-          "description": "We are expanding integration capabilities beyond GitHub and Azure DevOps to include Zendesk and Jira, enabling teams to maintain their existing workflows. ",
-          "badge": "In Progress"
+          "description": "We are expanding integration capabilities beyond GitHub and Azure DevOps to include Zendesk and Jira, enabling teams to maintain their existing workflows. "
         },
         {
           "title": "Additional Transcript Source Connections ",
-          "description": "We are adding support for additional transcript sources beyond Microsoft Teams and Snagit, including CustomGPT, Loom, and OBS connections. ",
-          "badge": "In Progress"
+          "description": "We are adding support for additional transcript sources beyond Microsoft Teams and Snagit, including CustomGPT, Loom, and OBS connections. "
         },
         {
           "title": "Quality-of-Life Improvements \t",
-          "description": "We are implementing several user-requested enhancements to make the software more intuitive and reduce steps needed for common actions. ",
-          "badge": "In Progress"
+          "description": "We are implementing several user-requested enhancements to make the software more intuitive and reduce steps needed for common actions. "
         }
       ],
       "_template": "Timeline"
@@ -62,18 +54,15 @@
       "items": [
         {
           "title": "Redesigned Agentic Workflow",
-          "description": "We're replacing the current workflow with a new agentic system that allows for more automation and better task management",
-          "badge": "Coming soon"
+          "description": "We're replacing the current workflow with a new agentic system that allows for more automation and better task management"
         },
         {
           "title": "More Data Source Options (Excel, Active Directory, Google Cloud, etc.)",
-          "description": "We’re adding support for people data from sources beyond Dynamics, including Excel, Active Directory, and Google Cloud.",
-          "badge": "Coming Soon"
+          "description": "We’re adding support for people data from sources beyond Dynamics, including Excel, Active Directory, and Google Cloud."
         },
         {
           "title": "More Project Data Source Options (Excel, Salesforce, etc.)",
-          "description": "Support for project data integration is expanding to include Excel and Salesforce, making it easier to manage projects across different platforms.",
-          "badge": "Coming Soon"
+          "description": "Support for project data integration is expanding to include Excel and Salesforce, making it easier to manage projects across different platforms."
         }
       ],
       "_template": "Timeline"

@@ -7,22 +7,19 @@
       "_template": "hero"
     },
     {
-      "title": "Recently Released",
+      "title": "✅ Done",
       "items": [
         {
           "title": "Microsoft Graph Integration",
-          "description": "Enable seamless access to Microsoft 365 data, allowing EagleEye to scan emails nightly, extract insights, and enhance tagging accuracy based on structured communication data from Outlook and other Microsoft services.",
-          "badge": "✅ Live"
+          "description": "Enable seamless access to Microsoft 365 data, allowing EagleEye to scan emails nightly, extract insights, and enhance tagging accuracy based on structured communication data from Outlook and other Microsoft services."
         },
         {
           "title": "Synchronization of historical data",
-          "description": "Implement a historical data sync feature to allow users to analyze past email trends, providing deeper insights into communication patterns and workload distribution",
-          "badge": "✅ Live"
+          "description": "Implement a historical data sync feature to allow users to analyze past email trends, providing deeper insights into communication patterns and workload distribution"
         },
         {
           "title": "Customer Portal",
-          "description": "Develop a self-service portal where customers can access Power BI reports for email insights, manage tags for better categorization, and track email synchronization jobs.",
-          "badge": "✅ Live"
+          "description": "Develop a self-service portal where customers can access Power BI reports for email insights, manage tags for better categorization, and track email synchronization jobs."
         }
       ],
       "_template": "Timeline"
@@ -32,8 +29,7 @@
       "items": [
         {
           "title": "Customer Instance Setup \t",
-          "description": "Automate the provisioning of dedicated EagleEye instances for customers, ensuring secure data isolation, streamlined onboarding, and customized configurations for enterprise users.\t\n",
-          "badge": "In Progress"
+          "description": "Automate the provisioning of dedicated EagleEye instances for customers, ensuring secure data isolation, streamlined onboarding, and customized configurations for enterprise users.\t\n"
         }
       ],
       "_template": "Timeline"
@@ -43,18 +39,15 @@
       "items": [
         {
           "title": "GitHub Integration \t",
-          "description": "Integrate with GitHub to analyze email discussions related to pull requests, issues, and code reviews, helping teams optimize collaboration and workflow efficiency.\t\n",
-          "badge": "Coming Soon"
+          "description": "Integrate with GitHub to analyze email discussions related to pull requests, issues, and code reviews, helping teams optimize collaboration and workflow efficiency.\t\n"
         },
         {
           "title": "Teams Integration ",
-          "description": "Enable Microsoft Teams integration to analyze chat-based communications alongside email insights, providing a holistic view of team collaboration and workload balance",
-          "badge": "Coming Soon"
+          "description": "Enable Microsoft Teams integration to analyze chat-based communications alongside email insights, providing a holistic view of team collaboration and workload balance"
         },
         {
           "title": "Email Response Time Analytics",
-          "description": "Implement analytics to track and visualize email response times, helping organizations identify bottlenecks, improve communication efficiency, and enhance customer support effectiveness. ",
-          "badge": "Coming Soon"
+          "description": "Implement analytics to track and visualize email response times, helping organizations identify bottlenecks, improve communication efficiency, and enhance customer support effectiveness. "
         }
       ],
       "_template": "Timeline"
