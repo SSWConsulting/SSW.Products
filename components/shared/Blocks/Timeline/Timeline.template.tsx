@@ -39,9 +39,15 @@ export const timelineTemplate: Template = {
           },
         },
         {
-          name: "badge",
-          label: "Badge",
+          name: "badgeTitle",
+          label: "Badge Title",
           type: "string",
+        },
+        {
+          name: "badgeLink",
+          label: "Badge Link",
+          type: "string",
+          description: "Optional"
         },
       ],
     },

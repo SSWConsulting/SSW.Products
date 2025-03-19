@@ -22,11 +22,17 @@ const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
         {data.description && (
           <p className="text-muted-foreground text-lg text-gray-200">{data.description}</p>
         )}
-        {data.badge && (
-          <span className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
-            {data.badge}
-          </span>
-        )}
+            {data.badgeTitle && (
+              data.badgeLink ? (
+                <a href={data.badgeLink} className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
+                  {data.badgeTitle}
+                </a>
+              ) : (
+                <span className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
+                  {data.badgeTitle}
+                </span>
+              )
+            )}
       </div>
     </div>
   );
