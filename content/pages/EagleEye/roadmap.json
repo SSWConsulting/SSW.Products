@@ -45,6 +45,11 @@
           "title": "GitHub Integration \t",
           "description": "Integrate with GitHub to analyze email discussions related to pull requests, issues, and code reviews, helping teams optimize collaboration and workflow efficiency.\t\n",
           "badge": "Coming Soon"
+        },
+        {
+          "title": "Teams Integration ",
+          "description": "Enable Microsoft Teams integration to analyze chat-based communications alongside email insights, providing a holistic view of team collaboration and workload balance",
+          "badge": "Coming Soon"
         }
       ],
       "_template": "Timeline"
