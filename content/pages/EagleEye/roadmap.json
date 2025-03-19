@@ -5,6 +5,17 @@
       "titleBeforeRotate": "EagleEye Roadmap",
       "byLine": "Welcome to EagleEye's {public roadmap}! This is a live document and will be updated regularly",
       "_template": "hero"
+    },
+    {
+      "title": "Recently Released",
+      "items": [
+        {
+          "title": "Microsoft Graph Integration",
+          "description": "Enable seamless access to Microsoft 365 data, allowing EagleEye to scan emails nightly, extract insights, and enhance tagging accuracy based on structured communication data from Outlook and other Microsoft services.",
+          "badge": "✅ Live"
+        }
+      ],
+      "_template": "Timeline"
     }
   ]
 }
