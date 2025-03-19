@@ -37,6 +37,17 @@
         }
       ],
       "_template": "Timeline"
+    },
+    {
+      "title": "Coming Soon",
+      "items": [
+        {
+          "title": "GitHub Integration \t",
+          "description": "Integrate with GitHub to analyze email discussions related to pull requests, issues, and code reviews, helping teams optimize collaboration and workflow efficiency.\t\n",
+          "badge": "Coming Soon"
+        }
+      ],
+      "_template": "Timeline"
     }
   ]
 }
