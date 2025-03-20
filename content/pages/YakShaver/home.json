@@ -42,6 +42,27 @@
       "_template": "hero"
     },
     {
+      "topLabel": {
+        "labelText": "Lorem Ipsum"
+      },
+      "heading": "Step 1: Record a Video",
+      "isH1": false,
+      "description": "Found a bug or have an idea? Record your screen voice with any app you like (Teams, Snagit, phone, etc.) and save it where YakShaver can reach it\n",
+      "chips": {
+        "filledChipText": "Lorem",
+        "clearChipText": "Ipsum"
+      },
+      "featureColumns": {
+        "twoColumns": true
+      },
+      "mediaConfiguration": {
+        "mediaType": "image",
+        "verticalPlacement": "Top",
+        "imageSource": ""
+      },
+      "_template": "imageTextBlock"
+    },
+    {
       "badge": "Powered by SSW",
       "badgeLink": "https://ssw.com.au",
       "title": "Meet your new assistant, YakShaver",
