@@ -79,6 +79,22 @@
       "_template": "imageTextBlock"
     },
     {
+      "topLabel": {
+        "labelText": "Lorem Ipsum"
+      },
+      "heading": "Step 3: Creates Tasks for Your Team",
+      "isH1": false,
+      "description": "YakShaver takes the insights and: \n\nAutomatically creates a task, bug report, or feature request in your team's favourite system. If you are not using these systems, YakShaver can send it via email\n\nPopulates all necessary details - provides a clear, descriptive title, concise description and important context. It also attaches your original video to clarify your message\n\nKeeps you Informed - YakShaver always sends you a quick notification with the task or bug it created. Review, confirm, tweak or cancel. It's always under your control\n",
+      "chips": {
+        "filledChipText": "Lorem",
+        "clearChipText": "Ipsum"
+      },
+      "featureColumns": {
+        "twoColumns": true
+      },
+      "_template": "imageTextBlock"
+    },
+    {
       "badge": "Powered by SSW",
       "badgeLink": "https://ssw.com.au",
       "title": "Meet your new assistant, YakShaver",
