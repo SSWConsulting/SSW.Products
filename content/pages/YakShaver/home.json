@@ -63,6 +63,22 @@
       "_template": "imageTextBlock"
     },
     {
+      "topLabel": {
+        "labelText": "Lorem Ipsum"
+      },
+      "heading": "Step 2: YakShaver Takes Over",
+      "isH1": false,
+      "description": "YakShaver watches your video, turns what you say into text, and figures out whats happening\n",
+      "chips": {
+        "filledChipText": "Lorem",
+        "clearChipText": "Ipsum"
+      },
+      "featureColumns": {
+        "twoColumns": true
+      },
+      "_template": "imageTextBlock"
+    },
+    {
       "badge": "Powered by SSW",
       "badgeLink": "https://ssw.com.au",
       "title": "Meet your new assistant, YakShaver",
