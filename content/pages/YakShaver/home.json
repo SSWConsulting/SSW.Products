@@ -80,7 +80,8 @@
     },
     {
       "topLabel": {
-        "labelText": "Lorem Ipsum"
+        "labelText": "",
+        "icon": "AiFillCopy"
       },
       "heading": "Step 3: Creates Tasks for Your Team",
       "isH1": false,
