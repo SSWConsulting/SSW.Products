@@ -43,7 +43,8 @@
     },
     {
       "topLabel": {
-        "labelText": "Lorem Ipsum"
+        "labelText": "",
+        "icon": "AiFillVideoCamera"
       },
       "heading": "Step 1: Record a Video",
       "isH1": false,
