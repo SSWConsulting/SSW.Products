@@ -15,7 +15,7 @@ export default function CardAndImageParent(data: any) {
 
   return (
     <div className="max-w-7xl mx-auto px-12 pb-12">
-      <h2 className="text-4xl text-white font-bold py-12">
+      <h2 className="text-5xl text-white flex justify-center font-bold py-12">
         {data.data.ParentContainerTitle}
       </h2>
       <div className="flex flex-col md:flex-row gap-6">
