@@ -6,7 +6,7 @@ import { FaExpandAlt, FaMinus } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
 const TranscriptBox = ({ data }: { data: any }) => {
-  console.log(data);
+  
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
@@ -97,7 +97,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
 
 // This is a work-around for not using markdown. Its a custom 'MDX component' but cant use markdown so we are using a plain string
 // "{ }" indicates text to be highlighted
-const curlyBracketFormatter = (byLine: string) => {
+export const curlyBracketFormatter = (byLine: string) => {
   return byLine?.split(/({.*?})/).map((part, index) =>
     part.startsWith("{") && part.endsWith("}") ? (
       <span

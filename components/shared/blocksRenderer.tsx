@@ -17,6 +17,7 @@ import {
 import * as AntIcons from "react-icons/ai";
 import Hero from "./Blocks/Hero";
 import { Timeline } from "./Blocks/Timeline/Timeline";
+import CardAndImageParent from "./Blocks/CardAndImage/CardAndImage";
 
 
 interface Block {
@@ -51,8 +52,9 @@ const Blocks = ({ blocks }: BlocksProps) => {
   if (!blocks) return null;
 
   return blocks.map((block: Block, index: number) => {
-    
+    console.log(block.__typename);
     switch (block.__typename) {
+      
       case "PagesPageBlocksFeatures":
         if (block.featureItem) {
           return (
@@ -105,6 +107,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <Accordion callbackFunctions={null} icons={AntIcons} data={block}></Accordion>;
       case "PagesPageBlocksTimeline":
         return <Timeline data={block}/>;
+      case "PagesPageBlocksCardAndImage":
+        return <CardAndImageParent key={index} data={block}/>;
       default:
         return null;
     }
