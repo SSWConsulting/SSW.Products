@@ -7,7 +7,6 @@ import { BookingButton } from "./Blocks/BookingButton";
 import Link from "next/link";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { CgClose } from "react-icons/cg";
-import { IoCaretDown } from "react-icons/io5";
 import { FaChevronRight } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
