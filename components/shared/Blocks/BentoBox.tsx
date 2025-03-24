@@ -11,7 +11,7 @@ import TimeSavedCounterBox from "../../utilityComponents/TimeSavedCounter";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
-function IconBox({ icon }: { icon: string }) {
+function IconBox({ image, tooltipText }: { image: string, tooltipText: string }) {
   return (
     <div className="relative rounded-2xl md:w-[60px] md:h-[60px] w-[50px] h-[50px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
       <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-10 group-hover:opacity-25 transition duration-1000 group-hover:duration-200"></div>
@@ -19,12 +19,16 @@ function IconBox({ icon }: { icon: string }) {
         <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center md:h-12 md:w-12 h-10 w-10">
           <div className="w-5 h-5 md:w-7 md:h-7 relative">
             <Image
-              src={icon || "/svg/github-mark-white.svg"}
+              src={image || "/svg/github-mark-white.svg"}
               alt="icon"
               layout="fill"
               objectFit="contain"
             />
           </div>
+        </div>
+        
+        <div className="absolute opacity-0 group-hover:opacity-100 bottom-full mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded transition-opacity duration-300 whitespace-nowrap">
+          {tooltipText}
         </div>
       </div>
     </div>
@@ -275,8 +279,8 @@ export default function BentoBox({ data }: { data: any }) {
                   </h2>
                 </div>
                 <div className="md:mt-12 mt-4 flex items-center flex-row justify-center gap-4 md:gap-6">
-                  {topLeftBox.icons.map((icon: string) => (
-                    <IconBox icon={icon} key={icon} />
+                  {topLeftBox.icons && topLeftBox.icons.map((icon: any, index: number) => (
+                    <IconBox key={index} image={icon.iconImage} tooltipText={icon.iconToolTipText} />
                   ))}
                 </div>
               </div>
