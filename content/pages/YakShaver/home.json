@@ -48,11 +48,26 @@
       "topLeftBox": {
         "title": "Work with your favourite software development and collaborative tools ",
         "icons": [
-          "/svg/Microsoft Office Teams 2018.svg",
-          "/SSW Product Sites.svg",
-          "/svg/SSW Product Sites Clip Path Group.svg",
-          "/svg/github-mark-white.svg",
-          "/svg/devops.svg"
+          {
+            "iconImage": "/svg/Microsoft Office Teams 2018.svg",
+            "iconToolTipText": "Microsoft Teams"
+          },
+          {
+            "iconImage": "/SSW Product Sites.svg",
+            "iconToolTipText": "Snagit"
+          },
+          {
+            "iconImage": "/svg/SSW Product Sites Clip Path Group.svg",
+            "iconToolTipText": "Microsoft Dynamics 365"
+          },
+          {
+            "iconImage": "/svg/devops.svg",
+            "iconToolTipText": "Azure DevOps"
+          },
+          {
+            "iconImage": "/svg/github-mark-white.svg",
+            "iconToolTipText": "GitHub"
+          }
         ]
       },
       "topRightBox": {
