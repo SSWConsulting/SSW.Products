@@ -39,7 +39,6 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   const logo = navigationBar?.Logo;
 
   const renderNavItem = (item: any, index: number) => {
-    console.log(item);
     switch (item?.__typename) {
       case "NavigationBarLeftNavItemStringItem":
       case "NavigationBarRightNavItemStringItem":
