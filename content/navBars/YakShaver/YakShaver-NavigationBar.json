@@ -22,9 +22,18 @@
       "_template": "stringItem"
     },
     {
-      "label": "Roadmap",
-      "href": "/roadmap",
-      "_template": "stringItem"
+      "label": "COMMUNITY",
+      "items": [
+        {
+          "label": "ROADMAP",
+          "href": "/roadmap"
+        },
+        {
+          "label": "DISCORD",
+          "href": "https://discord.gg/Jp9dyxKFjR"
+        }
+      ],
+      "_template": "groupOfStringItems"
     },
     {
       "label": "Videos",
