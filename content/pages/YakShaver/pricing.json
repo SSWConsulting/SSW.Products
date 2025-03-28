@@ -1,32 +1,27 @@
 {
-  "title": "pricing",
+  "title": "",
   "pageBlocks": [
     {
-      "title": "Pricing",
-      "description": "Pick the right plan for you and get **14 days free** shaving!\n",
-      "allPlans": [
-        {
-          "title": "14 Days Free Trial"
-        },
-        {
-          "title": "Microsoft Teams Integration"
-        },
-        {
-          "title": "AI-Powered Task Routing"
-        },
-        {
-          "title": "Automated Work Item Generation"
-        },
-        {
-          "title": "Team Support"
-        }
-      ],
+      "title": "{Usage-based pricing}",
+      "description": "Pay for what **you** **use**\n",
       "plans": [
         {
-          "planTier": "Basic",
-          "planDescription": "Up to 20 users",
-          "price": "$3.50",
-          "subPriceText": "/user per month",
+          "planTier": "Starter",
+          "planDescription": "For individuals getting starterd",
+          "price": "Free",
+          "subPriceText": "forever",
+          "priceDescription": "With your own OpenAI API key",
+          "timeSaved": "~7.5 hours/mo ",
+          "isRecommended": false,
+          "listTitle": "Get Started with",
+          "listItems": [
+            "{15 credits} per month",
+            "2 projects",
+            "Basic integrations",
+            "2-minute video recordings",
+            "Manual work item assignment",
+            "SharePoint hosting"
+          ],
           "actions": {
             "label": "GET BASIC",
             "variant": "outlinedWhite",
@@ -37,9 +32,24 @@
         },
         {
           "planTier": "Team",
-          "planDescription": "21 to 100 users",
-          "price": "$3.00",
-          "subPriceText": "/user per month",
+          "planDescription": "For teams and small businesses",
+          "price": "$39",
+          "subPriceText": "/month",
+          "priceDescription": "Unlimited seats company-wide",
+          "timeSaved": "~50 hours/mo",
+          "isRecommended": true,
+          "listTitle": "Get Started with",
+          "listItems": [
+            "{100 credits} per month",
+            "{Unlimited projects}",
+            "All integrations",
+            "5-minute video recordings",
+            "Automatic work item assignment",
+            "User management",
+            "Discord support",
+            "Work item prioritization",
+            "Duplicate Item Detection"
+          ],
           "actions": {
             "label": "GET TEAM",
             "variant": "solidRed",
@@ -49,10 +59,21 @@
           }
         },
         {
-          "planTier": "Business",
-          "planDescription": "101 to 150 users",
-          "price": "$2.50",
-          "subPriceText": "/user per month",
+          "planTier": "Growth",
+          "planDescription": "For organizations with multiple teams",
+          "price": "$189",
+          "subPriceText": "/month",
+          "priceDescription": "Unlimited seats company-wide",
+          "timeSaved": "~250 hours/mo",
+          "listTitle": "Get Started with",
+          "listItems": [
+            "{500 credits} per month",
+            "{Everything in Team plan}",
+            "15-minute video recordings",
+            "Advanced analytics dashboard",
+            "Priority support (Discord + email)",
+            "Dedicated account manager"
+          ],
           "actions": {
             "label": "GET BUSINESS",
             "variant": "outlinedWhite",
@@ -63,9 +84,21 @@
         },
         {
           "planTier": "Enterprise",
-          "planDescription": "150+ Users",
+          "planDescription": "For large organizations with {custom} needs",
           "price": "Custom",
-          "subPriceText": "/user per month",
+          "subPriceText": "",
+          "priceDescription": "Contact us for custom pricing",
+          "timeSaved": "Custom",
+          "listTitle": "Contact Sales",
+          "listItems": [
+            "{Custom credits} allocation",
+            "{Everything in Growth plan}",
+            "30-minute video recordings",
+            "Custom training & onboarding",
+            "Dedicated support",
+            "Custom integrations",
+            "Single Sign-On (SSO)"
+          ],
           "actions": {
             "label": "BOOK A DEMO",
             "variant": "outlinedWhite",
