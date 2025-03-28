@@ -69,9 +69,9 @@ const Pricing = ({ data }: PricingProps) => {
         {plans &&
           plans.length > 0 &&
           plans.map((plan, index) => (
-            <div className="flex flex-col" key={index}>
+            <div className="flex flex-col h-full" key={index}>
               {plan.isRecommended ? (
-                <div className="relative">
+                <div className="relative h-full flex flex-col">
                   <ShineBorder
                     borderWidth={2}
                     duration={20}
@@ -88,7 +88,7 @@ const Pricing = ({ data }: PricingProps) => {
                     Most Popular
                   </div>
                   <div
-                    className="plan-card text-white border border-transparent px-6 py-10 shadow-xl bg-opacity-20 hover:bg-opacity-30 transition-opacity duration-200 bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative rounded-b-3xl"
+                    className="plan-card text-white border border-transparent px-6 py-10 shadow-xl bg-opacity-20 hover:bg-opacity-30 transition-opacity duration-200 bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative rounded-b-3xl flex flex-col flex-grow"
                     data-tina-field={tinaField(data, "plans", index)}
                   >
                     {plan.planTier && (
@@ -117,8 +117,8 @@ const Pricing = ({ data }: PricingProps) => {
                         {plan.priceDescription}
                       </div>
                     )}
-                    <TimeSavedBoxed timeSaved={plan.timeSaved} />
-                    <div className="flex-col pb-3">
+                    <TimeSavedBoxed timeSaved={plan.timeSaved} isRecommended={plan.isRecommended}  />
+                    <div className="flex-col pb-3 flex-grow">
                       <h3 className="text-base text-white font-bold pb-1">
                         {plan.listTitle}
                       </h3>
@@ -127,18 +127,17 @@ const Pricing = ({ data }: PricingProps) => {
                           key={index}
                           className="flex items-start gap-2 py-1"
                         >
-                          <TiTick className="text-[#CC4141] bg-[#222121] rounded-full p-1 mt-1 text-xl" />
+                          <TiTick className={`rounded-full p-1 mt-1 text-xl ${plan.isRecommended ? "bg-[#CC4141] text-white" : "bg-[#222121] text-[#CC4141"}`} />
                           <span className="text-white/50">
                             {curlyBracketFormatter(item)}
                           </span>
                         </div>
                       ))}
                     </div>
-                    <div className="flex-col">
+                    <div className="flex-col mt-auto">
                       {plan.actions && (
-
                         <Actions
-                        //@ts-expect-error investigate after
+                          //@ts-expect-error investigate after
                           actions={[plan.actions]}
                           className="w-[100%]"
                         />
@@ -148,7 +147,7 @@ const Pricing = ({ data }: PricingProps) => {
                 </div>
               ) : (
                 <div
-                  className="plan-card text-white border border-opacity-10 border-white px-6 py-10 shadow-xl bg-opacity-20 hover:bg-opacity-30 transition-opacity duration-200 bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative rounded-3xl"
+                  className="plan-card text-white border border-opacity-10 border-white px-6 py-10 shadow-xl bg-opacity-20 hover:bg-opacity-30 transition-opacity duration-200 bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative rounded-3xl h-full flex flex-col"
                   data-tina-field={tinaField(data, "plans", index)}
                 >
                   {plan.planTier && (
@@ -177,21 +176,21 @@ const Pricing = ({ data }: PricingProps) => {
                       {plan.priceDescription}
                     </div>
                   )}
-                  <TimeSavedBoxed timeSaved={plan.timeSaved} />
-                  <div className="flex-col pb-3">
+                  <TimeSavedBoxed timeSaved={plan.timeSaved} isRecommended={plan.isRecommended} />
+                  <div className="flex-col pb-3 flex-grow">
                     <h3 className="text-base text-white font-bold pb-1">
                       {plan.listTitle}
                     </h3>
                     {plan.listItems?.map((item: string, index: number) => (
                       <div key={index} className="flex items-start gap-2 py-1">
-                        <TiTick className="text-[#CC4141] bg-[#222121] rounded-full p-1 mt-1 text-xl" />
+                        <TiTick className={`text-[#CC4141]  rounded-full p-1 mt-1 text-xl ${plan.isRecommended ? "bg-[#CC4141]" : "bg-[#222121]"}`} />
                         <span className="text-white/50">
                           {curlyBracketFormatter(item)}
                         </span>
                       </div>
                     ))}
                   </div>
-                  <div className="flex-col">
+                  <div className="flex-col mt-auto">
                     {plan.actions && (
                       //@ts-expect-error investigate after
                       <Actions actions={[plan.actions]} className="w-[100%]" />
@@ -206,11 +205,12 @@ const Pricing = ({ data }: PricingProps) => {
   );
 };
 
-const TimeSavedBoxed = ({ timeSaved }: { timeSaved: string }) => {
+const TimeSavedBoxed = ({ timeSaved, isRecommended }: { timeSaved: string, isRecommended: boolean }) => {
+  console.log('is it reccomended?' , isRecommended)
   return (
-    <div className="flex flex-col p-2 border border-white/20 bg-[#222121] rounded-lg mb-3">
+    <div className={`flex flex-col p-2 border border-white/20 rounded-lg mb-3 ${isRecommended ? "bg-[#CC4141]/10" : "bg-[#222121]"}`}>
       <div className="flex items-center gap-2 text-[#797979]">
-        <CiClock1 className="text-[#CC4141]" /> <span>Time Saved</span>
+        <CiClock1 className={`text-[#CC4141]`} /> <span>Time Saved</span>
       </div>
       <div className="text-[#CC4141] text-2xl font-bold">{timeSaved}</div>
     </div>
