@@ -125,22 +125,22 @@ const AddOns = ({ addOns }: { addOns: AddOn }) => {
       <div className="flex gap-10">
         <div className="flex flex-col w-1/2">
           <h3 className="text-3xl font-bold text-white mb-2">
-            {curlyBracketFormatter(addOns.title)}
+            {curlyBracketFormatter(addOns?.title)}
           </h3>
-          <span className="text-white/50 mb-2">{addOns.description}</span>
+          <span className="text-white/50 mb-2">{addOns?.description}</span>
           <div className="flex flex-row text-baseline items-baseline gap-2">
             <h3 className="text-3xl font-bold text-white mb-2">
-              {addOns.price}
+              {addOns?.price}
             </h3>
-            <span className="text-white/50">{addOns.subPriceText}</span>
+            <span className="text-white/50">{addOns?.subPriceText}</span>
           </div>
         </div>
         <div className="flex flex-col justify-center text-center w-1/2">
-          <Actions
+          {addOns?.actionButton && (<Actions
             //@ts-expect-error investigate after
-            actions={[addOns.actionButton]}
+            actions={[addOns?.actionButton]}
             className="w-3/4"
-          />
+          />)}
         </div>
       </div>
     </div>
