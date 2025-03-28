@@ -6,7 +6,7 @@ import { FaExpandAlt, FaMinus } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
 const TranscriptBox = ({ data }: { data: any }) => {
-  console.log(data);
+  
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}

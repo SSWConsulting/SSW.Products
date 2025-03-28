@@ -10,7 +10,7 @@
           "planDescription": "For individuals getting starterd",
           "price": "Free",
           "subPriceText": "forever",
-          "priceDescription": "With your own OpenAI API key",
+          "priceDescription": "*With your own OpenAI API key",
           "timeSaved": "~7.5 hours/mo ",
           "isRecommended": false,
           "listTitle": "Get Started with",
@@ -20,7 +20,7 @@
             "Basic integrations",
             "2-minute video recordings",
             "Manual work item assignment",
-            "SharePoint hosting"
+            "SharePoint video hosting"
           ],
           "actions": {
             "label": "GET BASIC",
@@ -35,7 +35,7 @@
           "planDescription": "For teams and small businesses",
           "price": "$39",
           "subPriceText": "/month",
-          "priceDescription": "Unlimited seats company-wide",
+          "priceDescription": "{Unlimited seats} company-wide",
           "timeSaved": "~50 hours/mo",
           "isRecommended": true,
           "listTitle": "Get Started with",
@@ -44,11 +44,9 @@
             "{Unlimited projects}",
             "All integrations",
             "5-minute video recordings",
+            "YouTube video hosting",
             "Automatic work item assignment",
-            "User management",
-            "Discord support",
-            "Work item prioritization",
-            "Duplicate Item Detection"
+            "Discord support"
           ],
           "actions": {
             "label": "GET TEAM",
@@ -63,12 +61,12 @@
           "planDescription": "For organizations with multiple teams",
           "price": "$189",
           "subPriceText": "/month",
-          "priceDescription": "Unlimited seats company-wide",
+          "priceDescription": "{Unlimited seats} company-wide",
           "timeSaved": "~250 hours/mo",
           "listTitle": "Get Started with",
           "listItems": [
             "{500 credits} per month",
-            "{Everything in Team plan}",
+            "{Everything in Team plan, plus:}",
             "15-minute video recordings",
             "Advanced analytics dashboard",
             "Priority support (Discord + email)",
@@ -92,7 +90,7 @@
           "listTitle": "Contact Sales",
           "listItems": [
             "{Custom credits} allocation",
-            "{Everything in Growth plan}",
+            "{Everything in Growth plan, plus:}",
             "30-minute video recordings",
             "Custom training & onboarding",
             "Dedicated support",

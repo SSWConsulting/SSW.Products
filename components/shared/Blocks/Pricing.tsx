@@ -14,6 +14,14 @@ interface PlanAction {
   size?: string;
 }
 
+interface AddOn {
+  title: string;
+  description: string;
+  price: string;
+  subPriceText: string;
+  actionButton: PlanAction;
+}
+
 interface Plan {
   planTier: string;
   planDescription: string;
@@ -27,15 +35,12 @@ interface Plan {
   listItems: string[];
 }
 
-interface AllPlan {
-  title: string | null;
-}
-
 interface PricingData {
   title?: string;
   description?: TinaMarkdownContent;
-  allPlans?: AllPlan[];
+
   plans?: Plan[];
+  addOns: AddOn;
 }
 
 interface PricingProps {
@@ -43,7 +48,9 @@ interface PricingProps {
 }
 
 const Pricing = ({ data }: PricingProps) => {
-  const { title, description, allPlans, plans } = data;
+  const { title, description, plans, addOns } = data;
+
+  console.log("Addons", addOns);
 
   return (
     <div className="pricing-component container mx-auto p-4 mb-14 lg:mb-4 mt-20 lg:mt-32 md:mt-0 lg:pb-40">
@@ -105,6 +112,32 @@ const Pricing = ({ data }: PricingProps) => {
             </div>
           ))}
       </div>
+      {{ addOns } && <AddOns addOns={addOns} />}
+    </div>
+  );
+};
+
+const AddOns = ({ addOns }: { addOns: AddOn }) => {
+  return (
+    <div className="flex max-w-3xl mx-auto my-10 p-10 flex-col w-full bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
+      <div className="flex gap-10">
+        <div className="flex flex-col w-1/2">
+          <h3 className="text-3xl font-bold text-white mb-2">{curlyBracketFormatter(addOns.title)}</h3>
+          <span className="text-white/50 mb-2">{addOns.description}</span>
+          <div className="flex flex-row text-baseline items-baseline gap-2">
+            <h3 className="text-3xl font-bold text-white mb-2">
+              {addOns.price}
+            </h3>
+            <span className="text-white/50">{addOns.subPriceText}</span>
+          </div>
+        </div>
+        <div className="flex flex-col justify-center text-center w-1/2">
+        <Actions
+            //@ts-expect-error investigate after
+            actions={[addOns.actionButton]}
+            className="w-3/4"
+          /></div>
+      </div>
     </div>
   );
 };
@@ -145,7 +178,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
       </div>
       {plan.priceDescription && (
         <div className="text-base text-white/50 pb-3">
-          {plan.priceDescription}
+          {curlyBracketFormatter(plan.priceDescription)}
         </div>
       )}
       <TimeSavedBoxed
@@ -189,7 +222,6 @@ const TimeSavedBoxed = ({
   timeSaved: string;
   isRecommended: boolean;
 }) => {
-  console.log("is it reccomended?", isRecommended);
   return (
     <div
       className={`flex flex-col p-2 border border-white/20 rounded-lg mb-3 ${

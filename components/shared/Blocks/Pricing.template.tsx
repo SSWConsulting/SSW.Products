@@ -116,5 +116,23 @@ export const pricingTemplate: Template = {
         },
       ],
     },
+    {
+      name: 'addOns',
+      label: 'Add Ons Section',
+      type: 'object',
+      fields: [
+        {name: 'title', label: 'Title', type: 'string'},
+        {name: 'description', label: 'Description', type: 'string'},
+        {name: 'price', label: 'Price', type: 'string'},
+        {name: 'subPriceText', label: 'Sub-text next to price', type: 'string'},
+        {
+          name: "actionButton",
+          label: "Action Button",
+          type: "object",
+          fields: [...actionsButtonTemplate.fields],
+        },
+      ]
+    },
+    
   ],
 };
