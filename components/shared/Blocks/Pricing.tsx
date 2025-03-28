@@ -102,12 +102,14 @@ const Pricing = ({ data }: PricingProps) => {
                   />
                 </div>
               ) : (
-                <PlanCard
-                  plan={plan}
-                  index={index}
-                  data={data}
-                  isRecommended={false}
-                />
+                <div className="mt-9 h-full">
+                  <PlanCard
+                    plan={plan}
+                    index={index}
+                    data={data}
+                    isRecommended={false}
+                  />
+                </div>
               )}
             </div>
           ))}
@@ -122,7 +124,9 @@ const AddOns = ({ addOns }: { addOns: AddOn }) => {
     <div className="flex max-w-3xl mx-auto my-10 p-10 flex-col w-full bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
       <div className="flex gap-10">
         <div className="flex flex-col w-1/2">
-          <h3 className="text-3xl font-bold text-white mb-2">{curlyBracketFormatter(addOns.title)}</h3>
+          <h3 className="text-3xl font-bold text-white mb-2">
+            {curlyBracketFormatter(addOns.title)}
+          </h3>
           <span className="text-white/50 mb-2">{addOns.description}</span>
           <div className="flex flex-row text-baseline items-baseline gap-2">
             <h3 className="text-3xl font-bold text-white mb-2">
@@ -132,11 +136,12 @@ const AddOns = ({ addOns }: { addOns: AddOn }) => {
           </div>
         </div>
         <div className="flex flex-col justify-center text-center w-1/2">
-        <Actions
+          <Actions
             //@ts-expect-error investigate after
             actions={[addOns.actionButton]}
             className="w-3/4"
-          /></div>
+          />
+        </div>
       </div>
     </div>
   );
