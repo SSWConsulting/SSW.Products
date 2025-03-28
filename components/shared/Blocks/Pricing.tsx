@@ -87,116 +87,20 @@ const Pricing = ({ data }: PricingProps) => {
                   <div className="text-white text-center bg-gradient-to-br from-red-400 to-red-700 font-bold rounded-t-3xl px-4 py-2">
                     Most Popular
                   </div>
-                  <div
-                    className="plan-card text-white border border-transparent px-6 py-10 shadow-xl bg-opacity-20 hover:bg-opacity-30 transition-opacity duration-200 bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative rounded-b-3xl flex flex-col flex-grow"
-                    data-tina-field={tinaField(data, "plans", index)}
-                  >
-                    {plan.planTier && (
-                      <div className="mb-2 flex items-center justify-between">
-                        <h3 className="text-3xl font-bold">{plan.planTier}</h3>
-                      </div>
-                    )}
-
-                    {plan.planDescription && (
-                      <p className="text-base pb-3 text-white/50 h-14">
-                        {curlyBracketFormatter(plan.planDescription)}
-                      </p>
-                    )}
-                    <div className="flex text-center items-baseline gap-2 pb-3">
-                      {plan.price && (
-                        <p className="text-3xl font-bold ">{plan.price}</p>
-                      )}
-                      {plan.subPriceText && (
-                        <p className="text-base text-white/50">
-                          {plan.subPriceText}
-                        </p>
-                      )}
-                    </div>
-                    {plan.priceDescription && (
-                      <div className="text-base text-white/50 pb-3">
-                        {plan.priceDescription}
-                      </div>
-                    )}
-                    <TimeSavedBoxed timeSaved={plan.timeSaved} isRecommended={plan.isRecommended}  />
-                    <div className="flex-col pb-3 flex-grow">
-                      <h3 className="text-base text-white font-bold pb-1">
-                        {plan.listTitle}
-                      </h3>
-                      {plan.listItems?.map((item: string, index: number) => (
-                        <div
-                          key={index}
-                          className="flex items-start gap-2 py-1"
-                        >
-                          <TiTick className={`rounded-full p-1 mt-1 text-xl ${plan.isRecommended ? "bg-[#CC4141] text-white" : "bg-[#222121] text-[#CC4141"}`} />
-                          <span className="text-white/50">
-                            {curlyBracketFormatter(item)}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="flex-col mt-auto">
-                      {plan.actions && (
-                        <Actions
-                          //@ts-expect-error investigate after
-                          actions={[plan.actions]}
-                          className="w-[100%]"
-                        />
-                      )}
-                    </div>
-                  </div>
+                  <PlanCard
+                    plan={plan}
+                    index={index}
+                    data={data}
+                    isRecommended={true}
+                  />
                 </div>
               ) : (
-                <div
-                  className="plan-card text-white border border-opacity-10 border-white px-6 py-10 shadow-xl bg-opacity-20 hover:bg-opacity-30 transition-opacity duration-200 bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative rounded-3xl h-full flex flex-col"
-                  data-tina-field={tinaField(data, "plans", index)}
-                >
-                  {plan.planTier && (
-                    <div className="mb-2 flex items-center justify-between">
-                      <h3 className="text-3xl font-bold">{plan.planTier}</h3>
-                    </div>
-                  )}
-
-                  {plan.planDescription && (
-                    <p className="text-base pb-3 text-white/50 h-14">
-                      {curlyBracketFormatter(plan.planDescription)}
-                    </p>
-                  )}
-                  <div className="flex text-center items-baseline gap-2 pb-3">
-                    {plan.price && (
-                      <p className="text-3xl font-bold ">{plan.price}</p>
-                    )}
-                    {plan.subPriceText && (
-                      <p className="text-base text-white/50">
-                        {plan.subPriceText}
-                      </p>
-                    )}
-                  </div>
-                  {plan.priceDescription && (
-                    <div className="text-base text-white/50 pb-3">
-                      {plan.priceDescription}
-                    </div>
-                  )}
-                  <TimeSavedBoxed timeSaved={plan.timeSaved} isRecommended={plan.isRecommended} />
-                  <div className="flex-col pb-3 flex-grow">
-                    <h3 className="text-base text-white font-bold pb-1">
-                      {plan.listTitle}
-                    </h3>
-                    {plan.listItems?.map((item: string, index: number) => (
-                      <div key={index} className="flex items-start gap-2 py-1">
-                        <TiTick className={`text-[#CC4141]  rounded-full p-1 mt-1 text-xl ${plan.isRecommended ? "bg-[#CC4141]" : "bg-[#222121]"}`} />
-                        <span className="text-white/50">
-                          {curlyBracketFormatter(item)}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex-col mt-auto">
-                    {plan.actions && (
-                      //@ts-expect-error investigate after
-                      <Actions actions={[plan.actions]} className="w-[100%]" />
-                    )}
-                  </div>
-                </div>
+                <PlanCard
+                  plan={plan}
+                  index={index}
+                  data={data}
+                  isRecommended={false}
+                />
               )}
             </div>
           ))}
@@ -205,10 +109,93 @@ const Pricing = ({ data }: PricingProps) => {
   );
 };
 
-const TimeSavedBoxed = ({ timeSaved, isRecommended }: { timeSaved: string, isRecommended: boolean }) => {
-  console.log('is it reccomended?' , isRecommended)
+interface PlanCardProps {
+  plan: Plan;
+  index: number;
+  data: PricingData;
+  isRecommended: boolean;
+}
+
+const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
   return (
-    <div className={`flex flex-col p-2 border border-white/20 rounded-lg mb-3 ${isRecommended ? "bg-[#CC4141]/10" : "bg-[#222121]"}`}>
+    <div
+      className={`plan-card text-white border ${
+        isRecommended
+          ? "border-transparent rounded-b-3xl"
+          : "border-opacity-10 border-white rounded-3xl"
+      } px-6 py-10 shadow-xl bg-opacity-20 hover:bg-opacity-30 transition-opacity duration-200 bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative h-full flex flex-col flex-grow`}
+      data-tina-field={tinaField(data, "plans", index)}
+    >
+      {plan.planTier && (
+        <div className="mb-2 flex items-center justify-between">
+          <h3 className="text-3xl font-bold">{plan.planTier}</h3>
+        </div>
+      )}
+
+      {plan.planDescription && (
+        <p className="text-base pb-3 text-white/50 h-14">
+          {curlyBracketFormatter(plan.planDescription)}
+        </p>
+      )}
+      <div className="flex text-center items-baseline gap-2 pb-3">
+        {plan.price && <p className="text-3xl font-bold ">{plan.price}</p>}
+        {plan.subPriceText && (
+          <p className="text-base text-white/50">{plan.subPriceText}</p>
+        )}
+      </div>
+      {plan.priceDescription && (
+        <div className="text-base text-white/50 pb-3">
+          {plan.priceDescription}
+        </div>
+      )}
+      <TimeSavedBoxed
+        timeSaved={plan.timeSaved}
+        isRecommended={plan.isRecommended}
+      />
+      <div className="flex-col pb-3 flex-grow">
+        <h3 className="text-base text-white font-bold pb-1">
+          {plan.listTitle}
+        </h3>
+        {plan.listItems?.map((item: string, index: number) => (
+          <div key={index} className="flex items-start gap-2 py-1">
+            <TiTick
+              className={`rounded-full p-1 mt-1 text-xl ${
+                plan.isRecommended
+                  ? "bg-[#CC4141] text-white"
+                  : "bg-[#222121] text-[#CC4141]"
+              }`}
+            />
+            <span className="text-white/50">{curlyBracketFormatter(item)}</span>
+          </div>
+        ))}
+      </div>
+      <div className="flex-col mt-auto">
+        {plan.actions && (
+          <Actions
+            //@ts-expect-error investigate after
+            actions={[plan.actions]}
+            className="w-[100%]"
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
+const TimeSavedBoxed = ({
+  timeSaved,
+  isRecommended,
+}: {
+  timeSaved: string;
+  isRecommended: boolean;
+}) => {
+  console.log("is it reccomended?", isRecommended);
+  return (
+    <div
+      className={`flex flex-col p-2 border border-white/20 rounded-lg mb-3 ${
+        isRecommended ? "bg-[#CC4141]/10" : "bg-[#222121]"
+      }`}
+    >
       <div className="flex items-center gap-2 text-[#797979]">
         <CiClock1 className={`text-[#CC4141]`} /> <span>Time Saved</span>
       </div>
