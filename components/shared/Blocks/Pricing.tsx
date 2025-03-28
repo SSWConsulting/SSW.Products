@@ -114,7 +114,7 @@ const Pricing = ({ data }: PricingProps) => {
             </div>
           ))}
       </div>
-      {{ addOns } && <AddOns addOns={addOns} />}
+      { addOns  && <AddOns addOns={addOns} />}
     </div>
   );
 };
