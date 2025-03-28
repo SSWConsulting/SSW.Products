@@ -2,10 +2,6 @@ import { Template } from "tinacms";
 import { actionsButtonTemplate } from "./ActionsButton.template";
 import { jotFormBookingButtonSchema } from "./BookingButtom.template";
 
-interface AllPlanItem {
-  title?: string;
-}
-
 interface PlanItem {
   planTier?: string;
   planDescription?: string;
