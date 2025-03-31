@@ -4,6 +4,7 @@ module.exports = {
     darkMode: ["class"],
     content: [
     "./app/**/*.{js,ts,jsx,tsx}", 
+	"./tina/**/*.{js,ts,jsx,tsx}",
     "./app/*",
     "./components/**/*.{js,ts,jsx,tsx}", 
   ],
@@ -77,7 +78,7 @@ module.exports = {
   	}
   },
   plugins: [
-    require('@tailwindcss/aspect-ratio'),
+    // require('@tailwindcss/aspect-ratio'),
     function ({ addComponents }) {
       addComponents({
         // Variant styles
@@ -124,6 +125,6 @@ module.exports = {
         },
       });
     },
-      require("tailwindcss-animate")
+    //   require("tailwindcss-animate")
 ],
 };
