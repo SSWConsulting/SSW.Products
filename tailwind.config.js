@@ -78,7 +78,7 @@ module.exports = {
   	}
   },
   plugins: [
-    // require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/aspect-ratio'),
     function ({ addComponents }) {
       addComponents({
         // Variant styles
@@ -125,6 +125,6 @@ module.exports = {
         },
       });
     },
-    //   require("tailwindcss-animate")
+      require("tailwindcss-animate")
 ],
 };
