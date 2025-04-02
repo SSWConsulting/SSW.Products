@@ -45,8 +45,14 @@ export async function generateStaticParams() {
 export default async function BlogIndex({ params }: BlogIndex) {
 
   const blogs = await getBlogsForProduct(params.product);
-
+  
   const featuredBlog = blogs.data[0];
+
+
+
+  const blogPosts = blogs.data.filter((post)=> { 
+    return post?.title != featuredBlog?.title 
+  }).slice(0, 3)  
 
   // const featuredPost = {
 
@@ -67,34 +73,34 @@ export default async function BlogIndex({ params }: BlogIndex) {
   // }
 
 
-    const recentPosts = [
-    {
-      title: "5 Issue Reporting Templates Every Team Should Use",
-      excerpt:
-        "Streamline your issue reporting with these proven templates that keep documentation focused and productive.",
-      image: "/placeholder.svg?height=400&width=600&text=Issue+Templates",
-      date: "February 28, 2025",
-      readTime: "6 min read",
-      category: "Templates",
-    },
-    {
-      title: "The Real Cost of Inefficient Issue Reporting (And How to Fix It)",
-      excerpt:
-        "Research shows the average professional spends 31 hours monthly in unproductive issue documentation. Here's how to reclaim that time.",
-      image: "/placeholder.svg?height=400&width=600&text=Issue+Costs",
-      date: "February 21, 2025",
-      readTime: "5 min read",
-      category: "Research",
-    },
-    {
-      title: "How to Report Issues That Actually Get Resolved",
-      excerpt: "Remote work is here to stay. Learn how to make your issue reporting more effective and actionable.",
-      image: "/placeholder.svg?height=400&width=600&text=Effective+Reporting",
-      date: "February 14, 2025",
-      readTime: "7 min read",
-      category: "Best Practices",
-    },
-  ]
+  //   const recentPosts = [
+  //   {
+  //     title: "5 Issue Reporting Templates Every Team Should Use",
+  //     excerpt:
+  //       "Streamline your issue reporting with these proven templates that keep documentation focused and productive.",
+  //     image: "/placeholder.svg?height=400&width=600&text=Issue+Templates",
+  //     date: "February 28, 2025",
+  //     readTime: "6 min read",
+  //     category: "Templates",
+  //   },
+  //   {
+  //     title: "The Real Cost of Inefficient Issue Reporting (And How to Fix It)",
+  //     excerpt:
+  //       "Research shows the average professional spends 31 hours monthly in unproductive issue documentation. Here's how to reclaim that time.",
+  //     image: "/placeholder.svg?height=400&width=600&text=Issue+Costs",
+  //     date: "February 21, 2025",
+  //     readTime: "5 min read",
+  //     category: "Research",
+  //   },
+  //   {
+  //     title: "How to Report Issues That Actually Get Resolved",
+  //     excerpt: "Remote work is here to stay. Learn how to make your issue reporting more effective and actionable.",
+  //     image: "/placeholder.svg?height=400&width=600&text=Effective+Reporting",
+  //     date: "February 14, 2025",
+  //     readTime: "7 min read",
+  //     category: "Best Practices",
+  //   },
+  // ]
 
   const categories = [
     "All Posts",
@@ -137,6 +143,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   </header> */}
 
   {/* Blog Hero */}
+
   <NavBarServer product={params.product} />
   <section className="relative py-16 bg-gradient-to-b from-gray-950 to-gray-900">
     <div className="container mx-auto px-4 relative z-10">
@@ -186,7 +193,6 @@ export default async function BlogIndex({ params }: BlogIndex) {
       <div className="bg-gray-900 rounded-xl overflow-hidden shadow-xl">
         <div className="grid md:grid-cols-2 gap-0">
           <div className="relative h-64 md:h-auto">
-
 
             {/* TODO: Add Image field to blog post
             <Image
@@ -252,28 +258,37 @@ export default async function BlogIndex({ params }: BlogIndex) {
   {/* Recent Posts */}
   <section className="container mx-auto px-4 py-12">
     <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">Recent Articles</h2>
+    
     <div className="grid md:grid-cols-3 gap-8">
-      {recentPosts.map((post, index) => (
+      {blogPosts.map((post, index) => (
         <div
           key={index}
           className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
         >
           <div className="relative h-48">
-            <Image src={post.image || "/default-images/Placeholder-profile.png"} alt={post.title} fill className="object-cover" />
+            {/*
+            
+            
+            // TODO: add blog post images
+            <Image src={post.image || "/default-images/Placeholder-profile.png"} alt={post.title} fill className="object-cover" /> */}
             <div className="absolute top-4 left-4 bg-[#c41414] text-white text-xs px-3 py-1 rounded-full">
-              {post.category}
+              {"Uncategorized"}
             </div>
           </div>
           <div className="p-6">
             <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
-              <div className="flex items-center gap-1">
+
+
+              {post?.date && <div className="flex items-center gap-1">
                 <Calendar className="h-3 w-3" />
-                <span>{post.date}</span>
-              </div>
+                <span>{formatDate(post?.date)}</span>
+                </div>
+
+              }
               <span>•</span>
               <div className="flex items-center gap-1">
                 <Clock className="h-3 w-3" />
-                <span>{post.readTime}</span>
+                <span>{post?.readLength}</span>
               </div>
             </div>
             <Link
@@ -281,9 +296,12 @@ export default async function BlogIndex({ params }: BlogIndex) {
             >
               <h3 className="text-xl font-bold mb-3 hover:text-[#c41414] transition-colors">{post.title}</h3>
             </Link>
-            <p className="text-gray-300 text-sm mb-4">{post.excerpt}</p>
+          
+            
+            
+            <p className="text-gray-300 text-sm mb-4">{post?.seo?.description}</p>
             <Link
-              href={`/blog/${index === 0 ? "issue-templates" : index === 1 ? "cost-of-inefficient-reporting" : "effective-issue-reporting"}`}
+              href={`/blog/${post?._sys.filename}`}
               className="text-[#c41414] hover:text-[#ff8a8a] inline-flex items-center gap-1"
             >
               Read More <ArrowRight className="h-4 w-4" />
