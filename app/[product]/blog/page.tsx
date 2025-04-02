@@ -286,7 +286,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
       ))}
     </div>
     <div className="text-center mt-12">
-      <Button className="bg-gray-800 hover:bg-gray-700 text-white">View All Articles</Button>
+      <Button variant={"secondary"}>Load More Articles</Button>
     </div>
   </section>
 
