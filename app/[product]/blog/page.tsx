@@ -10,7 +10,6 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
 import FooterServer from "../../../components/shared/FooterServer";
 import NavBarServer from "../../../components/shared/NavBarServer";
-import { ShinyButton } from "../../../components/shiny-button";
 import { Button } from "../../../components/ui/button";
 import client from "../../../tina/__generated__/client";
 import { extractBlurbAsTinaMarkdownContent } from "../../../utils/extractBlurbAsTinaMarkdownContent";
@@ -125,19 +124,24 @@ export default async function BlogIndex({ params }: BlogIndex) {
       </div>
 
       <div className="flex flex-wrap gap-3 justify-center mb-16">
-        {categories.map((category, index) => (
-          <Button
-            key={index}
-            variant={"primary"}
-            className={
-              index === 0
-                ? "bg-[#c41414] hover:bg-[#a51212] text-white"
-                : "border-gray-700 text-gray-300 hover:border-[#c41414]/50 hover:text-[#c41414]"
-            }
-          >
-            {category}
+        {categories.map((category, index) => {
+
+
+        return <Button variant={index === 0 ?  "default" : "ghost" } key={`button ${index}`}>
+          {category}
+          
           </Button>
-        ))}
+          //   key={index}
+          //   variant={"primary"}
+          //   className={
+          //     index === 0
+          //       ? "bg-[#c41414] hover:bg-[#a51212] text-white"
+          //       : "border-gray-700 text-gray-300 hover:border-[#c41414]/50 hover:text-[#c41414]"
+          //   }
+          // >
+            
+          // </Button>
+        })}
       </div>
     </div>
   </section>
@@ -288,7 +292,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
 
   {/* Newsletter */}
   <section className="container mx-auto px-4 py-16">
-    <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12">
+    <div className="rounded-2xl p-8 md:p-12 bg-[#131313]">
       <div className="max-w-3xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-4">Stay in the loop</h2>
         <p className="text-gray-300 mb-8">
@@ -298,11 +302,9 @@ export default async function BlogIndex({ params }: BlogIndex) {
           <input
             type="email"
             placeholder="Your email address"
-            className="flex-grow bg-gray-800 border text-white rounded-lg py-3 px-4  placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#c41414] focus:border-transparent"
+            className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-3 px-4 placeholder:text-gray-300 focus:outline-none"
           />
-          <ShinyButton className="px-6 py-3 bg-[#c41414]">Subscribe</ShinyButton>
         </div>
-        <p className="text-gray-500 text-sm mt-4">We respect your privacy. Unsubscribe at any time.</p>
       </div>
     </div>
   </section>
