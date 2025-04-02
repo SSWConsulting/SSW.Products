@@ -4,13 +4,15 @@ import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+
+import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
+import FooterServer from "../../../components/shared/FooterServer";
 import NavBarServer from "../../../components/shared/NavBarServer";
 import { ShinyButton } from "../../../components/shiny-button";
 import { Button } from "../../../components/ui/button";
 import client from "../../../tina/__generated__/client";
 import { extractBlurbAsTinaMarkdownContent } from "../../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
-
 
 
 const formatDate = (dateString: string) => {
@@ -116,7 +118,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   ]
 
 
-  return <div className="min-h-screen bg-gray-950 text-gray-100">
+  return <div className="min-h-screen text-gray-100">
   
   {/* Header */}
   {/* <header className="container mx-auto py-4 px-4 flex justify-between items-center relative z-50">
@@ -147,6 +149,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   {/* Blog Hero */}
 
   <NavBarServer product={params.product} />
+  <InteractiveBackground />
   <section className="relative py-16 bg-gradient-to-b from-gray-950 to-gray-900">
     <div className="container mx-auto px-4 relative z-10">
       <div className="max-w-3xl mx-auto text-center mb-12">
@@ -189,7 +192,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
 
 
   {featuredBlog && <>
-  <section className="py-12 bg-gray-950">
+  <section className="py-12">
     <section className="container mx-auto px-4">
       <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">Featured Article</h2>
       <div className="bg-[#131313] rounded-xl overflow-hidden shadow-xl">
@@ -349,28 +352,6 @@ export default async function BlogIndex({ params }: BlogIndex) {
       </div>
     </div>
   </section>
-
-  {/* Footer */}
-  <footer className="container mx-auto px-4 py-12 border-t border-gray-800">
-    <div className="flex flex-col md:flex-row justify-between items-center">
-      <div className="mb-6 md:mb-0">
-        <span className="font-bold text-xl">YakShaver.ai</span>
-      </div>
-      <div className="flex gap-6 text-sm text-gray-400">
-        <a href="#" className="hover:text-white">
-          Privacy
-        </a>
-        <a href="#" className="hover:text-white">
-          Terms
-        </a>
-        <a href="#" className="hover:text-white">
-          Contact
-        </a>
-        <a href="#" className="hover:text-white">
-          © 2025
-        </a>
-      </div>
-    </div>
-  </footer>
+  <FooterServer product={params.product} />
 </div>
 }
