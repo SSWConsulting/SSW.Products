@@ -3,10 +3,12 @@ import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 import NavBarServer from "../../../components/shared/NavBarServer";
 import { ShinyButton } from "../../../components/shiny-button";
 import { Button } from "../../../components/ui/button";
 import client from "../../../tina/__generated__/client";
+import { extractBlurbAsTinaMarkdownContent } from "../../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
 
 
@@ -228,7 +230,10 @@ export default async function BlogIndex({ params }: BlogIndex) {
               </h3>
             </Link>
             {/* TODO: add excerpt */}
-            {/* <p className="text-gray-300 mb-6">{featuredBlog.excerpt}</p> */}
+            <p className="text-gray-300 mb-6">
+              
+              <TinaMarkdown content={extractBlurbAsTinaMarkdownContent(featuredBlog.body, 3)}  />
+              </p>
             <div className="flex justify-between items-center">
               <div className="flex  items-center gap-3">
                 
@@ -294,12 +299,12 @@ export default async function BlogIndex({ params }: BlogIndex) {
             <Link
               href={`/blog/${index === 0 ? "issue-templates" : index === 1 ? "cost-of-inefficient-reporting" : "effective-issue-reporting"}`}
             >
-              <h3 className="text-xl font-bold mb-3 hover:text-[#c41414] transition-colors">{post.title}</h3>
+              <h3 className="text-xl font-bold mb-3 hover:text-[#c41414] transition-colors">{post?.title}</h3>
             </Link>
           
-            
-            
-            <p className="text-gray-300 text-sm mb-4">{post?.seo?.description}</p>
+            <p className="text-gray-300 text-sm mb-4">
+            <TinaMarkdown content={extractBlurbAsTinaMarkdownContent(post?.body, 3)}  />
+            </p>
             <Link
               href={`/blog/${post?._sys.filename}`}
               className="text-[#c41414] hover:text-[#ff8a8a] inline-flex items-center gap-1"
