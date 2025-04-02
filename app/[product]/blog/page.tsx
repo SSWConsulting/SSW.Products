@@ -1,5 +1,7 @@
 
 import dayjs from "dayjs";
+
+
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -56,55 +58,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
 
   const blogPosts = blogs.data.filter((post)=> { 
     return post?.title != featuredBlog?.title 
-  }).slice(0, 3)  
-
-  // const featuredPost = {
-
-  // }  
-  // const featuredPost = {
-  //   title: "How AI is Transforming Issue Reporting and Team Productivity",
-  //   excerpt:
-  //     "Discover how artificial intelligence is revolutionizing the way teams capture, document, and resolve issues.",
-  //   image: "/placeholder.svg?height=600&width=1200&text=Featured+Blog+Post",
-  //   date: "March 5, 2025",
-  //   readTime: "8 min read",
-  //   author: {
-  //     name: "Sarah Johnson",
-  //     role: "Head of Product",
-  //     avatar: "/placeholder.svg?height=100&width=100",
-  //   },
-  //   category: "Productivity",
-  // }
-
-
-  //   const recentPosts = [
-  //   {
-  //     title: "5 Issue Reporting Templates Every Team Should Use",
-  //     excerpt:
-  //       "Streamline your issue reporting with these proven templates that keep documentation focused and productive.",
-  //     image: "/placeholder.svg?height=400&width=600&text=Issue+Templates",
-  //     date: "February 28, 2025",
-  //     readTime: "6 min read",
-  //     category: "Templates",
-  //   },
-  //   {
-  //     title: "The Real Cost of Inefficient Issue Reporting (And How to Fix It)",
-  //     excerpt:
-  //       "Research shows the average professional spends 31 hours monthly in unproductive issue documentation. Here's how to reclaim that time.",
-  //     image: "/placeholder.svg?height=400&width=600&text=Issue+Costs",
-  //     date: "February 21, 2025",
-  //     readTime: "5 min read",
-  //     category: "Research",
-  //   },
-  //   {
-  //     title: "How to Report Issues That Actually Get Resolved",
-  //     excerpt: "Remote work is here to stay. Learn how to make your issue reporting more effective and actionable.",
-  //     image: "/placeholder.svg?height=400&width=600&text=Effective+Reporting",
-  //     date: "February 14, 2025",
-  //     readTime: "7 min read",
-  //     category: "Best Practices",
-  //   },
-  // ]
+  }).slice(0, 3) 
 
   const categories = [
     "All Posts",
@@ -118,7 +72,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   ]
 
 
-  return <div className="min-h-screen text-gray-100">
+  return <div className="min-h-screen text-gray-100 lg:pt-32 mt-20 ">
   
   {/* Header */}
   {/* <header className="container mx-auto py-4 px-4 flex justify-between items-center relative z-50">
@@ -149,8 +103,8 @@ export default async function BlogIndex({ params }: BlogIndex) {
   {/* Blog Hero */}
 
   <NavBarServer product={params.product} />
-  <InteractiveBackground />
-  <section className="relative py-16 bg-gradient-to-b from-gray-950 to-gray-900">
+  <InteractiveBackground fogColor="red" />
+  <section className="relative py-16 bg-gradient-to-b bg-[#131313]">
     <div className="container mx-auto px-4 relative z-10">
       <div className="max-w-3xl mx-auto text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">YakShaver.ai Blog</h1>
@@ -164,7 +118,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
           <input
             type="text"
             placeholder="Search articles..."
-            className="w-full bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 pl-12 text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c41414] focus:border-transparent"
+            className="w-full bg-ssw-charcoal border text-white border-gray-700 rounded-lg py-3 px-4 pl-12 placeholder:text-white  focus:outline-none focus:ring-2 focus:ring-ssw-red focus:border-transparent"
           />
           <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
         </div>
@@ -231,7 +185,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
             </div>
             </div>
             <Link href="/blog/ai-transforming-issue-reporting">
-              <h3 className="text-2xl font-bold mb-4 hover:text-[#c41414] transition-colors">
+              <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
                 {featuredBlog.title}
               </h3>
             </Link>
@@ -299,7 +253,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
                 <Clock className="h-3 w-3" />
                 <span>{post?.readLength}</span>
               </div>
-              <div className="bg-ssw-charcoal text-white text-xs px-3 py-1 rounded-full">
+              <div className=" text-white text-xs px-3 py-1 bg-ssw-charcoal rounded-full">
                 {"Uncategorized"}
               </div>
               
