@@ -6,7 +6,6 @@ export function middleware(request: NextRequest) {
 
   const isLocal = hostname?.includes('localhost') || hostname?.includes('127.0.0.1');
   const isStaging = hostname?.includes('vercel.app');
-  console.log('Node environment', process.env.NODE_ENV)
   const productList = process.env.NEXT_PUBLIC_PRODUCT_LIST ? JSON.parse(process.env.NEXT_PUBLIC_PRODUCT_LIST) : [];
 
   // Allow .well-known paths without rewriting
