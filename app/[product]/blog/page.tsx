@@ -1,4 +1,5 @@
 
+import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,8 +7,14 @@ import NavBarServer from "../../../components/shared/NavBarServer";
 import { ShinyButton } from "../../../components/shiny-button";
 import { Button } from "../../../components/ui/button";
 import client from "../../../tina/__generated__/client";
+import { getBlogsForProduct } from "../../../utils/fetchBlogs";
 
 
+
+const formatDate = (dateString: string) => {
+  const date = dayjs(dateString);
+  return date.format("MMM D, YYYY");
+}
 interface BlogIndex {
   params: { product: string };
 }
@@ -24,7 +31,7 @@ export async function generateMetadata({ params }: BlogIndex) {
     },
   }
 }
-
+// ...WHY?!
 
 export async function generateStaticParams() {
   const sitePosts = await client.queries.blogsConnection({});
@@ -36,21 +43,28 @@ export async function generateStaticParams() {
 
 
 export default async function BlogIndex({ params }: BlogIndex) {
-  NavBarServer({ product: params.product });
-  const featuredPost = {
-    title: "How AI is Transforming Issue Reporting and Team Productivity",
-    excerpt:
-      "Discover how artificial intelligence is revolutionizing the way teams capture, document, and resolve issues.",
-    image: "/placeholder.svg?height=600&width=1200&text=Featured+Blog+Post",
-    date: "March 5, 2025",
-    readTime: "8 min read",
-    author: {
-      name: "Sarah Johnson",
-      role: "Head of Product",
-      avatar: "/placeholder.svg?height=100&width=100",
-    },
-    category: "Productivity",
-  }
+
+  const blogs = await getBlogsForProduct(params.product);
+
+  const featuredBlog = blogs.data[0];
+
+  // const featuredPost = {
+
+  // }  
+  // const featuredPost = {
+  //   title: "How AI is Transforming Issue Reporting and Team Productivity",
+  //   excerpt:
+  //     "Discover how artificial intelligence is revolutionizing the way teams capture, document, and resolve issues.",
+  //   image: "/placeholder.svg?height=600&width=1200&text=Featured+Blog+Post",
+  //   date: "March 5, 2025",
+  //   readTime: "8 min read",
+  //   author: {
+  //     name: "Sarah Johnson",
+  //     role: "Head of Product",
+  //     avatar: "/placeholder.svg?height=100&width=100",
+  //   },
+  //   category: "Productivity",
+  // }
 
 
     const recentPosts = [
@@ -123,6 +137,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   </header> */}
 
   {/* Blog Hero */}
+  <NavBarServer product={params.product} />
   <section className="relative py-16 bg-gradient-to-b from-gray-950 to-gray-900">
     <div className="container mx-auto px-4 relative z-10">
       <div className="max-w-3xl mx-auto text-center mb-12">
@@ -162,52 +177,65 @@ export default async function BlogIndex({ params }: BlogIndex) {
   </section>
 
   {/* Featured Post */}
+
+
+  {featuredBlog && <>
   <section className="py-12 bg-gray-950">
     <section className="container mx-auto px-4">
       <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">Featured Article</h2>
       <div className="bg-gray-900 rounded-xl overflow-hidden shadow-xl">
         <div className="grid md:grid-cols-2 gap-0">
           <div className="relative h-64 md:h-auto">
+
+
+            {/* TODO: Add Image field to blog post
             <Image
               src={featuredPost.image || "/placeholder.svg"}
               alt={featuredPost.title}
               fill
               className="object-cover"
-            />
+            /> */}
+
+
+
+
+            {/* Todo: 
             <div className="absolute top-4 left-4 bg-[#c41414] text-white text-xs px-3 py-1 rounded-full">
-              {featuredPost.category}
-            </div>
+              {featuredPost.category || "Uncategorized"} 
+            </div> */}
           </div>
           <div className="p-8">
             <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
-                <span>{featuredPost.date}</span>
+                <span>{featuredBlog.date && formatDate(featuredBlog.date)}</span>
               </div>
               <span>•</span>
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                <span>{featuredPost.readTime}</span>
+                <span>{featuredBlog?.readLength}</span>
               </div>
             </div>
             <Link href="/blog/ai-transforming-issue-reporting">
               <h3 className="text-2xl font-bold mb-4 hover:text-[#c41414] transition-colors">
-                {featuredPost.title}
+                {featuredBlog.title}
               </h3>
             </Link>
-            <p className="text-gray-300 mb-6">{featuredPost.excerpt}</p>
+            {/* TODO: add excerpt */}
+            {/* <p className="text-gray-300 mb-6">{featuredBlog.excerpt}</p> */}
             <div className="flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <Image
-                  src={featuredPost.author.avatar || "/placeholder.svg"}
-                  alt={featuredPost.author.name}
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
+              <div className="flex  items-center gap-3">
+                
+              <div className="size-8 relative rounded-full overflow-hidden">
+                <Image src={"/default-images/Placeholder-profile.png"} alt="placeholder blog author" fill className="object-cover" />
+              </div>
                 <div>
-                  <p className="font-medium text-sm">{featuredPost.author.name}</p>
-                  <p className="text-gray-500 text-xs">{featuredPost.author.role}</p>
+                  <p className="font-medium text-sm">{featuredBlog.author}</p>
+
+                  {/*
+                  TODO: Add author roles? (Could use cronjob from SSW People)
+                  
+                  <p className="text-gray-500 text-xs">{featuredPost.author.role}</p> */}
                 </div>
               </div>
               <Link href="/blog/ai-transforming-issue-reporting">
@@ -219,6 +247,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
       </div>
     </section>
   </section>
+  </>}
 
   {/* Recent Posts */}
   <section className="container mx-auto px-4 py-12">
@@ -230,7 +259,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
           className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
         >
           <div className="relative h-48">
-            <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" />
+            <Image src={post.image || "/default-images/Placeholder-profile.png"} alt={post.title} fill className="object-cover" />
             <div className="absolute top-4 left-4 bg-[#c41414] text-white text-xs px-3 py-1 rounded-full">
               {post.category}
             </div>
