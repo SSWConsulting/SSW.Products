@@ -153,7 +153,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   <section className="py-12">
     <section className="container mx-auto px-4">
       <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">Featured Article</h2>
-      <div className="bg-[#131313] rounded-xl overflow-hidden shadow-xl">
+      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
         <div className="grid md:grid-cols-2 gap-0">
           <div className="relative h-64 md:h-auto">
 
@@ -184,7 +184,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
                 <Clock className="h-4 w-4" />
                 <span>{featuredBlog?.readLength}</span>
               </div>
-              <div className="bg-ssw-charcoal text-white text-xs px-3 py-1 rounded-full">
+              <div className="bg-ssw-charcoal  text-white text-xs px-3 py-1 rounded-full">
               {"Uncategorized"}
             </div>
             </div>
