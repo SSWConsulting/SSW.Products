@@ -17,6 +17,7 @@ import {
 import * as AntIcons from "react-icons/ai";
 import Hero from "./Blocks/Hero";
 import { Timeline } from "./Blocks/Timeline/Timeline";
+import ComparisonTable from "./Blocks/ComparisonTable";
 
 
 interface Block {
@@ -105,6 +106,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <Accordion callbackFunctions={null} icons={AntIcons} data={block}></Accordion>;
       case "PagesPageBlocksTimeline":
         return <Timeline data={block}/>;
+      case "PagesPageBlocksComparisonTable":
+        return <ComparisonTable data={block}/>;
       default:
         return null;
     }

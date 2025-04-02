@@ -53,7 +53,7 @@ const Pricing = ({ data }: PricingProps) => {
   console.log("Addons", addOns);
 
   return (
-    <div className="pricing-component container mx-auto p-4 mb-14 lg:mb-4 mt-20 lg:mt-32 md:mt-0 lg:pb-40">
+    <div className="pricing-component container mx-auto p-4 mb-14 lg:mb-4 mt-20 lg:mt-32 md:mt-0 lg:pb-20">
       {title && (
         <h1
           className="text-4xl text-center font-semibold text-white mb-4"
@@ -121,7 +121,7 @@ const Pricing = ({ data }: PricingProps) => {
 
 const AddOns = ({ addOns }: { addOns: AddOn }) => {
   return (
-    <div className="flex max-w-3xl mx-auto my-10 p-10 flex-col w-full bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
+    <div className="flex max-w-3xl mx-auto p-10 my-10 flex-col w-full bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
       <div className="flex gap-10">
         <div className="flex flex-col w-1/2">
           <h3 className="text-3xl font-bold text-white mb-2">
