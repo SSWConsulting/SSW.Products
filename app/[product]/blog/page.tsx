@@ -302,6 +302,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
               
             </div>
             <Link
+              className="w-fit"
               href={`/blog/${index === 0 ? "issue-templates" : index === 1 ? "cost-of-inefficient-reporting" : "effective-issue-reporting"}`}
             >
               <h3 className="text-xl font-bold mb-3 hover:text-ssw-red transition-colors">{post?.title}</h3>
@@ -313,8 +314,9 @@ export default async function BlogIndex({ params }: BlogIndex) {
 
             </section>
             <Link
+
               href={`/blog/${post?._sys.filename}`}
-              className="text-[#c41414] bottom-0 hover:text-[#ff8a8a] mt-auto inline-flex items-center gap-1"
+              className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
             >
               Read More <ArrowRight className="h-4 w-4" />
             </Link>
