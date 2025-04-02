@@ -184,7 +184,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
                 <Clock className="h-4 w-4" />
                 <span>{featuredBlog?.readLength}</span>
               </div>
-              <div className="bg-ssw-red text-white text-xs px-3 py-1 rounded-full">
+              <div className="bg-ssw-charcoal text-white text-xs px-3 py-1 rounded-full">
               {"Uncategorized"}
             </div>
             </div>
