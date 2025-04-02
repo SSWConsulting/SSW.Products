@@ -107,7 +107,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   <section className="relative py-16 bg-gradient-to-b bg-[#131313]">
     <div className="container mx-auto px-4 relative z-10">
       <div className="max-w-3xl mx-auto text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">YakShaver.ai Blog</h1>
+        <h1 className="text-4xl font-bold  mb-4">YakShaver.ai Blog</h1>
         <p className="text-xl text-gray-300">
           Insights, tips, and stories about issue reporting and AI-powered productivity
         </p>
@@ -118,9 +118,9 @@ export default async function BlogIndex({ params }: BlogIndex) {
           <input
             type="text"
             placeholder="Search articles..."
-            className="w-full bg-ssw-charcoal border text-white border-gray-700 rounded-lg py-3 px-4 pl-12 placeholder:text-white  focus:outline-none focus:ring-2 focus:ring-ssw-red focus:border-transparent"
+            className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-3 px-4 pl-12 placeholder:text-gray-300 focus:outline-none"
           />
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 h-5 w-5" />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 h-5 w-5" />
         </div>
       </div>
 
@@ -298,7 +298,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
           <input
             type="email"
             placeholder="Your email address"
-            className="flex-grow bg-gray-800 border border-gray-700 rounded-lg py-3 px-4 text-gray-100 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c41414] focus:border-transparent"
+            className="flex-grow bg-gray-800 border text-white rounded-lg py-3 px-4  placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-[#c41414] focus:border-transparent"
           />
           <ShinyButton className="px-6 py-3 bg-[#c41414]">Subscribe</ShinyButton>
         </div>
