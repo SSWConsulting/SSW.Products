@@ -206,7 +206,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
 
 
 
-
+              
             {/* Todo: 
             <div className="absolute top-4 left-4 bg-[#c41414] text-white text-xs px-3 py-1 rounded-full">
               {featuredPost.category || "Uncategorized"} 
@@ -223,6 +223,9 @@ export default async function BlogIndex({ params }: BlogIndex) {
                 <Clock className="h-4 w-4" />
                 <span>{featuredBlog?.readLength}</span>
               </div>
+              <div className="bg-[#c41414] text-white text-xs px-3 py-1 rounded-full">
+              {"Uncategorized"}
+            </div>
             </div>
             <Link href="/blog/ai-transforming-issue-reporting">
               <h3 className="text-2xl font-bold mb-4 hover:text-[#c41414] transition-colors">
@@ -230,10 +233,9 @@ export default async function BlogIndex({ params }: BlogIndex) {
               </h3>
             </Link>
             {/* TODO: add excerpt */}
-            <p className="text-gray-300 mb-6">
-              
-              <TinaMarkdown content={extractBlurbAsTinaMarkdownContent(featuredBlog.body, 3)}  />
-              </p>
+            <section className="text-gray-300 mb-6">
+              <TinaMarkdown content={extractBlurbAsTinaMarkdownContent(featuredBlog.body, 2)}  />
+            </section>
             <div className="flex justify-between items-center">
               <div className="flex  items-center gap-3">
                 
@@ -268,19 +270,18 @@ export default async function BlogIndex({ params }: BlogIndex) {
       {blogPosts.map((post, index) => (
         <div
           key={index}
-          className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+          className=" border bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
         >
-          <div className="relative h-48">
+          {/* <div className="relative h-48">
             {/*
             
             
             // TODO: add blog post images
-            <Image src={post.image || "/default-images/Placeholder-profile.png"} alt={post.title} fill className="object-cover" /> */}
-            <div className="absolute top-4 left-4 bg-[#c41414] text-white text-xs px-3 py-1 rounded-full">
-              {"Uncategorized"}
-            </div>
-          </div>
-          <div className="p-6">
+            <Image src={post.image || "/default-images/Placeholder-profile.png"} alt={post.title} fill className="object-cover" /> 
+            
+          </div> */}
+          <div className="p-6 h-full flex flex-col flex-grow">
+            
             <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
 
 
@@ -295,19 +296,25 @@ export default async function BlogIndex({ params }: BlogIndex) {
                 <Clock className="h-3 w-3" />
                 <span>{post?.readLength}</span>
               </div>
+              <div className="bg-ssw-charcoal text-white text-xs px-3 py-1 rounded-full">
+                {"Uncategorized"}
+              </div>
+              
             </div>
             <Link
               href={`/blog/${index === 0 ? "issue-templates" : index === 1 ? "cost-of-inefficient-reporting" : "effective-issue-reporting"}`}
             >
-              <h3 className="text-xl font-bold mb-3 hover:text-[#c41414] transition-colors">{post?.title}</h3>
+              <h3 className="text-xl font-bold mb-3 hover:text-ssw-red transition-colors">{post?.title}</h3>
             </Link>
           
-            <p className="text-gray-300 text-sm mb-4">
+
+              <section className="text-gray-300 text-sm mb-4">
             <TinaMarkdown content={extractBlurbAsTinaMarkdownContent(post?.body, 3)}  />
-            </p>
+
+            </section>
             <Link
               href={`/blog/${post?._sys.filename}`}
-              className="text-[#c41414] hover:text-[#ff8a8a] inline-flex items-center gap-1"
+              className="text-[#c41414] bottom-0 hover:text-[#ff8a8a] mt-auto inline-flex items-center gap-1"
             >
               Read More <ArrowRight className="h-4 w-4" />
             </Link>
