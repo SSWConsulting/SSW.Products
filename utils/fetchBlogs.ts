@@ -21,7 +21,8 @@ export async function getBlogsForProduct(product: string, offset = 0, limit = 5)
       throw new Error("No documents found");
     }
 
-    const sortedBlogs = filteredBlogs.sort((a: any, b: any) => {
+    const sortedBlogs = filteredBlogs.sort((a ,b) => {
+      if(!a?.node?.date || !b?.node?.date) return 0;
       const dateA = new Date(a.node.date);
       const dateB = new Date(b.node.date);
       return dateB.getTime() - dateA.getTime();
@@ -31,7 +32,10 @@ export async function getBlogsForProduct(product: string, offset = 0, limit = 5)
 
     return {
       query: res.query,
-      data: paginatedBlogs.map((edge: any) => edge.node),
+      data: paginatedBlogs.map((edge) => {
+        if(!edge?.node) return null;
+          return edge.node
+      }),
       hasMore: sortedBlogs.length > offset + limit,
     };
   } catch (error) {
