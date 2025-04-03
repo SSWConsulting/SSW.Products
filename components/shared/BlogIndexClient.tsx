@@ -14,9 +14,12 @@ import { Button } from "../ui/button";
 export const getProducts = async (pageParam = 1 ,product: string) => {
   console.log("product", product)
   const products = await getBlogsForProduct(product, pageParam * 3, 3)
-  return products
+  console.log("products", JSON.stringify(product))
 
+  return products
 }
+
+
 // type Blogs = Awaited<ReturnType<typeof getBlogsForProduct>>["data"]
 
 
@@ -80,7 +83,7 @@ export default function BlogIndexClient({
   
   
   const {data} = useInfiniteQuery({
-    queryKey: ["test"],
+    queryKey: ["blogs"],
     queryFn:({pageParam})=> getProducts(pageParam,product ),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages)=> {
