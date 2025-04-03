@@ -22,6 +22,7 @@ import {
 import * as AntIcons from "../../node_modules/react-icons/ai";
 import { seoInformation } from "../shared/SEOInformation";
 import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
+import { CalculatorTemplate } from "../../components/shared/Blocks/Calculator.template";
 
 
 export const PagesSchema: Collection = {
@@ -61,6 +62,7 @@ export const PagesSchema: Collection = {
         bentoBoxTemplate,
         timelineTemplate,
         ComparisonTable,
+        CalculatorTemplate,
         breadcrumbBlock(
           "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/breadcrumbs.jpg?raw=true"
         ),

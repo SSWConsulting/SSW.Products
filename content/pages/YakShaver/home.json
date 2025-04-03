@@ -6,6 +6,77 @@
   "title": "YakShaver",
   "pageBlocks": [
     {
+      "title": "ROI Section",
+      "desc": "Your ROI Section",
+      "tiers": [
+        {
+          "tier": "Starter",
+          "desc": "For individuals getting started",
+          "price": 0,
+          "priceDescription": "forever",
+          "tierDescription": "15 credits per month\n\n\\~7.5 hours saved\n",
+          "actions": {
+            "label": "Get Started",
+            "variant": "outlinedWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "Team",
+          "desc": "For teams and small businesses",
+          "price": 39,
+          "priceDescription": "per month",
+          "tierDescription": "100 credits per month\n\n\\~50 hours saved\n",
+          "actions": {
+            "label": "Get Started",
+            "variant": "solidRed",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "Growth",
+          "desc": "For organizations with multiple teams",
+          "price": 189,
+          "priceDescription": "per month",
+          "tierDescription": "500 credits per month\n\n\\~250 hours saved\n",
+          "actions": {
+            "label": "Get Started",
+            "variant": "outlinedWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "Enterprise",
+          "desc": "For large organizations with custom needs",
+          "price": 99999,
+          "tierDescription": "The limits are endless\n",
+          "actions": {
+            "label": "Get Started",
+            "variant": "solidWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        }
+      ],
+      "addOns": {
+        "title": "Credit Pack",
+        "description": "Need a top up? Add some credits",
+        "price": "25",
+        "subPriceText": "per 50 credits",
+        "actionButton": {
+          "label": "View Full Pricing Details",
+          "variant": "outlinedWhite",
+          "size": "medium",
+          "url": "/pricing"
+        }
+      },
+      "bottomBox": "How we calculate this: YakShaver.ai reduces issue reporting time by 90%, from an average of 5 hours per week to just 30 minutes. We multiply the time saved by your team size and hourly rate to calculate your total savings.\n",
+      "_template": "calculator"
+    },
+    {
       "backgroundImageEnabled": true,
       "titleBeforeRotate": "Make the perfect",
       "titleAfterRotate": "in seconds",

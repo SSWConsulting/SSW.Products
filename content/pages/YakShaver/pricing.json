@@ -7,13 +7,13 @@
       "plans": [
         {
           "planTier": "Starter",
-          "planDescription": "For individuals getting starterd",
+          "planDescription": "For individuals getting started",
           "price": "Free",
           "subPriceText": "forever *",
           "priceDescription": "* With your own OpenAI API key",
           "timeSaved": "~7.5 hours/mo ",
           "isRecommended": false,
-          "listTitle": "Get Started with",
+          "listTitle": "Get started with",
           "listItems": [
             "{15 credits} per month",
             "{~7.5 hours saved} per month",
@@ -39,7 +39,7 @@
           "priceDescription": "Unlimited seats company-wide",
           "timeSaved": "~50 hours/mo",
           "isRecommended": true,
-          "listTitle": "Get Started with",
+          "listTitle": "Get your team onboard with",
           "listItems": [
             "{100 credits} per month",
             "{~50 hours saved} per month",
@@ -65,11 +65,10 @@
           "subPriceText": "/month",
           "priceDescription": "Unlimited seats company-wide",
           "timeSaved": "~250 hours/mo",
-          "listTitle": "Get Started with",
+          "listTitle": "Everything in Team plan, plus",
           "listItems": [
-            "{~250 hours saved} per month",
             "{500 credits} per month",
-            "{Everything in Team plan, plus:}",
+            "{~250 hours saved} per month",
             "15-minute video recordings",
             "Advanced analytics dashboard",
             "Priority support (Discord + email)",
@@ -90,10 +89,9 @@
           "subPriceText": "",
           "priceDescription": "Contact us for custom pricing",
           "timeSaved": "Custom",
-          "listTitle": "Contact Sales",
+          "listTitle": "Everything in Growth plan, plus",
           "listItems": [
             "{Custom credits} allocation",
-            "{Everything in Growth plan, plus:}",
             "30-minute video recordings",
             "Custom training & onboarding",
             "Dedicated support",

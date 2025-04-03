@@ -155,7 +155,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
       } px-6 py-10 shadow-xl bg-opacity-20  rounded-3xl hover:bg-opacity-30 transition-opacity duration-200 bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative h-full flex flex-col flex-grow`}
       data-tina-field={tinaField(data, "plans", index)}
     >
-      <div className="flex gap-2 items-center justify-between">
+      <div className="flex gap-2 items-center ">
         {plan.planTier && (
           <div className="mb-2 flex items-center justify-between">
             <h3 className="text-3xl font-bold">{plan.planTier}</h3>
@@ -163,7 +163,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
         )}
 
         {isRecommended && (
-          <div className="text-white text-center text-base bg-gradient-to-br from-red-400 to-red-700 rounded-full h-auto px-4 py-1 -mt-1">
+          <div className="text-white text-center text-xs bg-gradient-to-br from-red-400 to-red-700 rounded-full h-auto px-4 py-1 -mt-1">
             Most Popular
           </div>
         )}
@@ -180,9 +180,18 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
           <p className="text-base text-white/50">{plan.subPriceText}</p>
         )}
       </div>
+      <div className="flex-col mt-auto py-6 ">
+        {plan.actions && (
+          <Actions
+            //@ts-expect-error investigate after
+            actions={[plan.actions]}
+            className="w-[100%]"
+          />
+        )}
+      </div>
 
       <div className="flex-col pb-3 flex-grow">
-        <h3 className="text-base text-white font-bold pb-1">
+        <h3 className="text-base text-white pb-1">
           {plan.listTitle}
         </h3>
         {plan.listItems?.map((item: string, index: number) => (
@@ -201,15 +210,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
           {curlyBracketFormatter(plan.priceDescription)}
         </div>
       )}
-      <div className="flex-col mt-auto">
-        {plan.actions && (
-          <Actions
-            //@ts-expect-error investigate after
-            actions={[plan.actions]}
-            className="w-[100%]"
-          />
-        )}
-      </div>
+      
     </div>
   );
 };
