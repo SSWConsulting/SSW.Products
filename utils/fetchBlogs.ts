@@ -29,7 +29,7 @@ export async function getBlogsForProduct({endCursor, limit, product, keyword}: G
     res.data.blogsConnection.edges = res.data.blogsConnection.edges?.filter((
       edge) =>{
 
-        return edge?.node?._sys?.path?.includes(`/blogs/${product}/`) && (!keyword || edge?.node?.title.includes(keyword))
+        return edge?.node?._sys?.path?.includes(`/blogs/${product}/`) && (!keyword || edge?.node?.title.toLowerCase().includes(keyword.toLowerCase()))
       }
     );
 
