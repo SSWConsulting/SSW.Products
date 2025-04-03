@@ -5,12 +5,12 @@ type GetBlogsForProductProps = {
   endCursor?: string,
   offset?: number,
   limit?: number
-
+  keyword?: string
   product: string
 }
 
 
-export async function getBlogsForProduct({endCursor, limit, product}: GetBlogsForProductProps){
+export async function getBlogsForProduct({endCursor, limit, product, keyword}: GetBlogsForProductProps){
 
   try {
 
@@ -27,8 +27,10 @@ export async function getBlogsForProduct({endCursor, limit, product}: GetBlogsFo
 
 
     res.data.blogsConnection.edges = res.data.blogsConnection.edges?.filter((
-      edge: any) =>
-      edge.node?._sys?.path?.includes(`/blogs/${product}/`)
+      edge) =>{
+
+        return edge?.node?._sys?.path?.includes(`/blogs/${product}/`) && (!keyword || edge?.node?.title.includes(keyword))
+      }
     );
 
     return res.data.blogsConnection;

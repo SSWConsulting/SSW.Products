@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
@@ -71,12 +72,23 @@ export default function BlogIndexClient({
   // data,
   product,
 }: BlogIndexClientProps) {
-  
-  
+
+  const debounceTime = 1000;
+
+  const [searchKey, setSearchKey] = useState("")
+  const [searchTerm, setSearchTerm] = useState("")
+
+  useEffect(()=> {
+    const timeout = setTimeout(()=> {
+      setSearchKey(searchTerm)
+    }, debounceTime)
+    return ()=> clearTimeout(timeout)
+
+  }, [searchTerm])
   const {data, fetchNextPage} = useInfiniteQuery({
-    queryKey: ["blogs"],
+    queryKey: [`blogs${searchKey}`],
     queryFn:({pageParam})=> {
-      return getBlogsForProduct({product, endCursor: pageParam})
+      return getBlogsForProduct({product, endCursor: pageParam, keyword: searchKey})
     },
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.pageInfo.endCursor
@@ -107,6 +119,9 @@ export default function BlogIndexClient({
       <div className="relative">
         <input
           type="text"
+
+          onChange={(e)=> {setSearchTerm(e.target.value)}}
+          value={searchTerm}
           placeholder="Search articles..."
           className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-3 px-4 pl-12 placeholder:text-gray-300 focus:outline-none"
         />
@@ -266,10 +281,11 @@ export default function BlogIndexClient({
   </div>
 
   <div className="text-center mt-12">
-    
+  {data?.pages[data.pages.length -1 ].pageInfo.hasNextPage && 
     <Button onClick={()=> { 
       console.log("fetching new page")
-      fetchNextPage()}} variant={"secondary"}>Load More Articles</Button>
+      fetchNextPage() }} variant={"secondary"}>Load More Articles</Button>
+    }
   </div>
 </section>
 
