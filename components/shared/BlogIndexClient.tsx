@@ -1,7 +1,7 @@
 "use client";
 
 
-
+import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
@@ -11,8 +11,13 @@ import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTin
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { Button } from "../ui/button";
 
+export const getProducts = async (pageParam = 1 ,product: string) => {
+  console.log("product", product)
+  const products = await getBlogsForProduct(product, pageParam * 3, 3)
+  return products
 
-type Blogs = Awaited<ReturnType<typeof getBlogsForProduct>>["data"]
+}
+// type Blogs = Awaited<ReturnType<typeof getBlogsForProduct>>["data"]
 
 
 const formatDate = (dateString: string) => {
@@ -64,21 +69,25 @@ const formatDate = (dateString: string) => {
 // };
 
 interface BlogIndexClientProps {
-  data: Blogs;
-  // product: string;
+  product: string;
 }
 
 export default function BlogIndexClient({
-  data,
-  // product,
+  // data,
+  product,
 }: BlogIndexClientProps) {
-  const featuredBlog = data[0];
-
-
-  const blogPosts = data.filter((post)=> { 
-    return post?.title != featuredBlog?.title 
-  }).slice(0, 3) 
-
+  // const featuredBlog = data[0];
+  
+  
+  const {data} = useInfiniteQuery({
+    queryKey: ["test"],
+    queryFn:({pageParam})=> getProducts(pageParam,product ),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages)=> {
+      return allPages.length ++ 
+    }
+  })
+  const featuredBlog = data?.pages[0]?.data[0]
   const categories = [
     "All Posts",
     "Productivity",
@@ -215,54 +224,40 @@ export default function BlogIndexClient({
   <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">Recent Articles</h2>
   
   <div className="grid md:grid-cols-3 gap-8">
-    {blogPosts.map((post, index) => (
+
+{data?.pages.map((page) => 
+    page.data.map((post, index) => (
       <div
         key={index}
-        className=" border bg-gradient-to-r shadow-lg to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+        className="border bg-gradient-to-r shadow-lg to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
       >
-        {/* <div className="relative h-48">
-          {/*
-          
-          
-          // TODO: add blog post images
-          <Image src={post.image || "/default-images/Placeholder-profile.png"} alt={post.title} fill className="object-cover" /> 
-          
-        </div> */}
         <div className="p-6 h-full flex flex-col flex-grow">
-          
           <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
-
-            
-            {post?.date && <div className="flex items-center gap-1">
-              <Calendar className="h-3 w-3" />
-              <span>{formatDate(post?.date)}</span>
+            {post?.date && (
+              <div className="flex items-center gap-1">
+                <Calendar className="h-3 w-3" />
+                <span>{formatDate(post?.date)}</span>
               </div>
-
-            }
+            )}
             <span>•</span>
             <div className="flex items-center gap-1">
               <Clock className="h-3 w-3" />
               <span>{post?.readLength}</span>
             </div>
-            <div className=" text-white text-xs px-3 py-1 bg-ssw-charcoal rounded-full">
+            <div className="text-white text-xs px-3 py-1 bg-ssw-charcoal rounded-full">
               {"Uncategorized"}
             </div>
-            
           </div>
           <Link
             className="w-fit"
-            href={`/blog/${index === 0 ? "issue-templates" : index === 1 ? "cost-of-inefficient-reporting" : "effective-issue-reporting"}`}
+            href={`/blog/${post?._sys.filename}`}
           >
             <h3 className="text-xl font-bold mb-3 hover:text-ssw-red transition-colors">{post?.title}</h3>
           </Link>
-        
-
-            <section className="text-gray-300 text-sm mb-4">
-          <TinaMarkdown content={extractBlurbAsTinaMarkdownContent(post?.body, 3)}  />
-
+          <section className="text-gray-300 text-sm mb-4">
+            <TinaMarkdown content={extractBlurbAsTinaMarkdownContent(post?.body, 3)} />
           </section>
           <Link
-
             href={`/blog/${post?._sys.filename}`}
             className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
           >
@@ -270,9 +265,12 @@ export default function BlogIndexClient({
           </Link>
         </div>
       </div>
-    ))}
+    ))
+)}
   </div>
+
   <div className="text-center mt-12">
+    
     <Button variant={"secondary"}>Load More Articles</Button>
   </div>
 </section>

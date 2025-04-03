@@ -1,6 +1,8 @@
 import client from '../tina/__generated__/client';
 
 export async function getBlogsForProduct(product: string, offset = 0, limit = 5) {
+
+  console.log("product", product)
   try {
     const res = await client.queries.getAllBlogs();
 

@@ -1,16 +1,10 @@
-
-
-
-
-
-import BlogIndexClient from "../../../components/shared/BlogIndexClient";
-
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query';
+import QueryProvider from '../../../components/providers/QueryProvider';
 import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
+import BlogIndexClient, { getProducts } from "../../../components/shared/BlogIndexClient";
 import FooterServer from "../../../components/shared/FooterServer";
 import NavBarServer from "../../../components/shared/NavBarServer";
 import client from "../../../tina/__generated__/client";
-import { getBlogsForProduct } from "../../../utils/fetchBlogs";
-
 interface BlogIndex {
   params: { product: string };
 }
@@ -40,8 +34,11 @@ export async function generateStaticParams() {
 
 export default async function BlogIndex({ params }: BlogIndex) {
 
-  const blogs = await getBlogsForProduct(params.product);
-  
+  //const blogs = await getBlogsForProduct(params.product);
+  console.log("params", params)
+  const product = params.product
+
+  console.log("product", product)
   // const featuredBlog = blogs.data[0];
 
 
@@ -60,6 +57,20 @@ export default async function BlogIndex({ params }: BlogIndex) {
   //   "Research",
   //   "Product Updates",
   // ]
+
+  const client = new QueryClient()
+
+
+  
+  client.prefetchInfiniteQuery({
+    queryKey: ["test", product], // Ensure queryKey matches usage in BlogIndexClient
+    queryFn: ({ pageParam = 1 }) => getProducts(pageParam, product),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => allPages.length + 1, // Define next page logic
+  })
+
+
+  const dehydratedState = dehydrate(client)
 
 
   return <div className="min-h-screen text-gray-100 lg:pt-32 mt-20 ">
@@ -91,12 +102,13 @@ export default async function BlogIndex({ params }: BlogIndex) {
   </header> */}
 
   {/* Blog Hero */}
-
+  <QueryProvider>
   <NavBarServer product={params.product} />
   <InteractiveBackground fogColor="red" />
-
-
-  <BlogIndexClient data={blogs.data}></BlogIndexClient>
+  <HydrationBoundary state={dehydratedState}>
+    <BlogIndexClient product={product} />
+  </HydrationBoundary>
+  </QueryProvider>
   <FooterServer product={params.product} />
 </div>
 }
