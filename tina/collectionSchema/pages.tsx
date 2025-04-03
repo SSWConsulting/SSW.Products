@@ -21,6 +21,7 @@ import {
 } from "../../node_modules/ssw-tinacms-landingkit/dist";
 import * as AntIcons from "../../node_modules/react-icons/ai";
 import { seoInformation } from "../shared/SEOInformation";
+import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
 
 
 export const PagesSchema: Collection = {
@@ -59,6 +60,7 @@ export const PagesSchema: Collection = {
         videoDisplayTemplate,
         bentoBoxTemplate,
         timelineTemplate,
+        ComparisonTable,
         breadcrumbBlock(
           "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/breadcrumbs.jpg?raw=true"
         ),

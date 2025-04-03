@@ -7,6 +7,7 @@ module.exports = {
 	"./tina/**/*.{js,ts,jsx,tsx}",
     "./app/*",
     "./components/**/*.{js,ts,jsx,tsx}", 
+	"./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
   	extend: {
@@ -74,6 +75,15 @@ module.exports = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		animation: {
+			shine: 'shine var(--duration, 14s) linear infinite',
+  		},
+  		keyframes: {
+			shine: {
+				'0%': { backgroundPosition: '-200% 0%' },
+				'100%': { backgroundPosition: '200% 0%' },
+			  },
   		}
   	}
   },

@@ -12,7 +12,6 @@ export default function YaksShavedCounterBox() {
       fetch("/api/leaderboard") 
         .then((res) => res.json())
         .then((data) => {
-          console.log("Fetched data:", data);
           setYaksShaved(data.totalShaves);
         })
         .catch((error) =>
