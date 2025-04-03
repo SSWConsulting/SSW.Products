@@ -105,6 +105,21 @@ export const curlyBracketFormatter = (byLine: string) => {
   );
 };
 
+export const SSWRedCurlyBracketFormatter = (byLine: string) => {
+  return byLine?.split(/({.*?})/).map((part, index) =>
+    part.startsWith("{") && part.endsWith("}") ? (
+      <span
+        key={index}
+        className="text-[#CC4141]"
+      >
+        {part.slice(1, -1)}
+      </span>
+    ) : (
+      part
+    )
+  );
+};
+
 export default function Hero({ data }: { data: any }) {
   return (
     <div className="flex items-center justify-center mx-auto pb-20 relative overflow-hidden pt-20 md:pt-20">

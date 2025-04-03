@@ -9,13 +9,14 @@
           "planTier": "Starter",
           "planDescription": "For individuals getting starterd",
           "price": "Free",
-          "subPriceText": "forever",
-          "priceDescription": "*With your own OpenAI API key",
+          "subPriceText": "forever *",
+          "priceDescription": "* With your own OpenAI API key",
           "timeSaved": "~7.5 hours/mo ",
           "isRecommended": false,
           "listTitle": "Get Started with",
           "listItems": [
             "{15 credits} per month",
+            "{~7.5 hours saved} per month",
             "2 projects",
             "Basic integrations",
             "2-minute video recordings",
@@ -35,12 +36,13 @@
           "planDescription": "For teams and small businesses",
           "price": "$39",
           "subPriceText": "/month",
-          "priceDescription": "{Unlimited seats} company-wide",
+          "priceDescription": "Unlimited seats company-wide",
           "timeSaved": "~50 hours/mo",
           "isRecommended": true,
           "listTitle": "Get Started with",
           "listItems": [
             "{100 credits} per month",
+            "{~50 hours saved} per month",
             "{Unlimited projects}",
             "All integrations",
             "5-minute video recordings",
@@ -61,10 +63,11 @@
           "planDescription": "For organizations with multiple teams",
           "price": "$189",
           "subPriceText": "/month",
-          "priceDescription": "{Unlimited seats} company-wide",
+          "priceDescription": "Unlimited seats company-wide",
           "timeSaved": "~250 hours/mo",
           "listTitle": "Get Started with",
           "listItems": [
+            "{~250 hours saved} per month",
             "{500 credits} per month",
             "{Everything in Team plan, plus:}",
             "15-minute video recordings",
@@ -82,7 +85,7 @@
         },
         {
           "planTier": "Enterprise",
-          "planDescription": "For large organizations with {custom} needs",
+          "planDescription": "For large organizations with custom needs",
           "price": "Custom",
           "subPriceText": "",
           "priceDescription": "Contact us for custom pricing",
@@ -122,7 +125,7 @@
     },
     {
       "headline": "{Feature Comparison}",
-      "sectionDescription": "Compare all features across our different plans to find the perfect fit for {your needs}.",
+      "sectionDescription": "Compare all features across our different plans to find the perfect fit for your needs",
       "table": [
         {
           "title": "Overview",
@@ -176,7 +179,7 @@
         },
         {
           "title": "Core Capture & Processing",
-          "footerText": " ",
+          "footerText": "",
           "rows": [
             {
               "column1": "Feature",
@@ -213,7 +216,7 @@
         },
         {
           "title": "Developer Integrations",
-          "footerText": " ",
+          "footerText": "",
           "rows": [
             {
               "column1": "Feature",
@@ -331,7 +334,7 @@
         },
         {
           "title": "Support & Security",
-          "footerText": " ",
+          "footerText": "",
           "rows": [
             {
               "column1": "Feature",

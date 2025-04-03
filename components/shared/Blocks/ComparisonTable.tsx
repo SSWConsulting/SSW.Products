@@ -7,7 +7,7 @@ import { FaCheck } from "react-icons/fa6";
 
 // Component for a single table
 const Table = ({ table }: { table: any }) => {
-  const regularBoxStyling = "text-white p-4 text-center";
+  const regularBoxStyling = "text-white/60 p-4 text-center";
   const primaryBoxStyling =
     " text-white bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] p-4";
 
@@ -38,7 +38,7 @@ const Table = ({ table }: { table: any }) => {
             <tr>
               <td
                 colSpan={5}
-                className={`${primaryBoxStyling} text-center font-semibold rounded-t-xl`}
+                className={`text-white bg-[#141414] p-4 text-center font-semibold rounded-t-xl`}
               >
                 {table.title}
               </td>
@@ -59,7 +59,7 @@ const Table = ({ table }: { table: any }) => {
                 </td>
                 <td
                   className={`${regularBoxStyling} ${
-                    rowIndex === 0 ? "font-bold" : "font-medium"
+                    rowIndex === 0 ? "font-bold bg-[#141414]" : "font-medium"
                   }`}
                 >
                   {renderContent(row.column2)}
@@ -71,17 +71,17 @@ const Table = ({ table }: { table: any }) => {
                 </td>
                 <td
                   className={`${regularBoxStyling} ${
-                    rowIndex === 0 ? "font-bold" : "font-medium"
+                    rowIndex === 0 ? "font-bold bg-[#141414]" : "font-medium"
                   } relative`}
                 >
-                  <div className="absolute inset-0 bg-red-500/10 h-full z-0"></div>
-                  <div className="relative z-10">
+                  <div className="absolute inset-0 bg-[#13131394] h-full z-0"></div>
+                  <div className="relative z-10 text-white/75">
                     {renderContent(row.column3)}
-                    {rowIndex === 0 && row.column3 === "Team" && (
+                    {/* {rowIndex === 0 && row.column3 === "Team" && (
                       <span className="ml-2 inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-red-600 text-white justify-center pt-1 font-bold">
                         Popular
                       </span>
-                    )}
+                    )} */}
                     {row.column3SubText && (
                       <div className="text-white/50 text-xs mt-1">
                         {row.column3SubText}
@@ -91,7 +91,7 @@ const Table = ({ table }: { table: any }) => {
                 </td>
                 <td
                   className={`${regularBoxStyling} ${
-                    rowIndex === 0 ? "font-bold" : "font-medium"
+                    rowIndex === 0 ? "font-bold bg-[#141414]" : "font-medium"
                   }`}
                 >
                   {renderContent(row.column4)}
@@ -103,7 +103,7 @@ const Table = ({ table }: { table: any }) => {
                 </td>
                 <td
                   className={`${regularBoxStyling} ${
-                    rowIndex === 0 ? "font-bold" : "font-medium"
+                    rowIndex === 0 ? "font-bold bg-[#141414]" : "font-medium"
                   }`}
                 >
                   {renderContent(row.column5)}
