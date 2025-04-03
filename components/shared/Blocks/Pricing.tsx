@@ -1,10 +1,10 @@
 import React from "react";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
-import { TiTick } from "react-icons/ti";
+
 import Actions from "./ActionsButton";
 import { tinaField } from "tinacms/dist/react";
 import { curlyBracketFormatter, SSWRedCurlyBracketFormatter } from "./Hero";
-import { CiClock1 } from "react-icons/ci";
+
 import { ShineBorder } from "@/components/magicui/shine-border";
 import { BsCheck } from "react-icons/bs";
 
