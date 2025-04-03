@@ -51,8 +51,6 @@ interface PricingProps {
 const Pricing = ({ data }: PricingProps) => {
   const { title, description, plans, addOns } = data;
 
-  console.log("Addons", addOns);
-
   return (
     <div className="pricing-component container mx-auto p-4 mb-14 lg:mb-4 mt-20 lg:mt-32 md:mt-0 lg:pb-20">
       {title && (
