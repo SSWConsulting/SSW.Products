@@ -23,16 +23,6 @@ export async function generateMetadata({ params }: BlogIndex) {
   }
 }
 
-
-
-export const getProducts = async (pageParam = 1 ,product: string) => {
-  console.log("product", product)
-  const products = await getBlogsForProduct(product, pageParam * 3, 3)
-  console.log("products", JSON.stringify(product))
-
-  return products
-}
-
 export async function generateStaticParams() {
   const sitePosts = await client.queries.blogsConnection({});
   return sitePosts.data.blogsConnection?.edges?.map((post) => ({
@@ -46,9 +36,8 @@ export default async function BlogIndex({ params }: BlogIndex) {
   const client = new QueryClient()
   await client.prefetchInfiniteQuery({
     queryKey: ["blogs"], // Ensure queryKey matches BlogIndexClient
-    queryFn: ({ pageParam }) => getProducts(pageParam, product),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages) => allPages.length + 1, // Define next page logic
+    queryFn: () => getBlogsForProduct({product, limit: 3 }),
+    initialPageParam: undefined,
   });
   
   const dehydratedState = dehydrate(client, {

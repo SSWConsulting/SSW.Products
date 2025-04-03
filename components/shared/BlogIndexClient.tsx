@@ -11,14 +11,6 @@ import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTin
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { Button } from "../ui/button";
 
-export const getProducts = async (pageParam = 1 ,product: string) => {
-  console.log("product", product)
-  const products = await getBlogsForProduct(product, pageParam * 3, 3)
-  console.log("products", JSON.stringify(product))
-
-  return products
-}
-
 
 // type Blogs = Awaited<ReturnType<typeof getBlogsForProduct>>["data"]
 
@@ -79,18 +71,18 @@ export default function BlogIndexClient({
   // data,
   product,
 }: BlogIndexClientProps) {
-  // const featuredBlog = data[0];
   
   
-  const {data} = useInfiniteQuery({
+  const {data, fetchNextPage} = useInfiniteQuery({
     queryKey: ["blogs"],
-    queryFn:({pageParam})=> getProducts(pageParam,product ),
-    initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages)=> {
-      return allPages.length ++ 
-    }
+    queryFn:({pageParam})=> {
+      return getBlogsForProduct({product, endCursor: pageParam})
+    },
+    initialPageParam: "",
+    getNextPageParam: (lastPage) => lastPage.pageInfo.endCursor
   })
-  const featuredBlog = data?.pages[0]?.data[0]
+  const featuredBlog = data?.pages?.[0]?.edges?.[0]?.node;
+
   const categories = [
     "All Posts",
     "Productivity",
@@ -229,10 +221,11 @@ export default function BlogIndexClient({
   <div className="grid md:grid-cols-3 gap-8">
 
 {data?.pages.map((page) => 
-    page.data.map((post, index) => (
-      <div
+    page?.edges?.map((edge, index) => {
+      const post = edge?.node
+      return <div
         key={index}
-        className="border bg-gradient-to-r shadow-lg to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+        className="border bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
       >
         <div className="p-6 h-full flex flex-col flex-grow">
           <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
@@ -268,13 +261,15 @@ export default function BlogIndexClient({
           </Link>
         </div>
       </div>
-    ))
+})
 )}
   </div>
 
   <div className="text-center mt-12">
     
-    <Button variant={"secondary"}>Load More Articles</Button>
+    <Button onClick={()=> { 
+      console.log("fetching new page")
+      fetchNextPage()}} variant={"secondary"}>Load More Articles</Button>
   </div>
 </section>
 
