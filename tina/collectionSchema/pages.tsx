@@ -28,12 +28,12 @@ export const PagesSchema: Collection = {
   name: "pages",
   path: "content/pages/",
   format: "json",
-  //This ui is needed because of the dynamic routing with [filename] -> tina is looking for a static path (i.e pages/TimePro, pages/YakShaver)
-  // ui: {
-  //   router: ({ document }) => {
-  //     return `/${document?._sys.filename}`;
-  //   },
-  // },
+  // This ui is needed because of the dynamic routing with [filename] -> tina is looking for a static path (i.e pages/TimePro, pages/YakShaver)
+  ui: {
+    router: ({ document }) => {
+      return `/${document?._sys.filename}`;
+    },
+  },
   fields: [
     seoInformation as TinaField,
     {
