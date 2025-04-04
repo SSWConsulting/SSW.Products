@@ -115,7 +115,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
 
   console.log(data);
   return (
-    <div className="max-w-7xl mx-auto py-20">
+    <div className="max-w-7xl mx-auto py-20 px-10">
       <h2 className="text-4xl text-center font-semibold text-white mb-4">
         {" "}
         {curlyBracketFormatter(data?.title)}
@@ -133,7 +133,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
         ))}
       </div>
       <div className="grid grid-cols-5 gap-4 w-full py-4">
-        <div className="col-span-3 bg-[#131313]  text-white rounded-xl p-6 w-full">
+        <div className="col-span-5 md:col-span-3 bg-[#131313]  text-white rounded-xl p-6 w-full">
           <div className="flex flex-col gap-4">
             <SliderBoxContent
               hourlyRate={hourlyRate}
@@ -144,7 +144,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
             </div>
           </div>
         </div>
-        <div className="col-span-2 bg-[#131313]  text-white rounded-xl p-6 w-full">
+        <div className="col-span-5 md:col-span-2 bg-[#131313]  text-white rounded-xl p-6 w-full">
           <EstimatedSavingsContent
             hourlyRate={hourlyRate}
             estimatedHoursSaved={hoursSaved}
@@ -153,7 +153,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
           />
         </div>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center py-6">
         <Actions actions={[data?.bottomAction]} />
       </div>
     </div>
