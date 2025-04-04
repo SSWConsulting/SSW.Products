@@ -4,9 +4,12 @@ import { seoInformation } from "../shared/SEOInformation";
 export const privacyPolicyCollection: Collection = {
   label: "Privacy Policy",
   ui: {
+    router: ({ document }) => {
+      return document?._sys?.filename;
+    },
     allowedActions: {
-        create: false,
-        delete: false,
+      create: false,
+      delete: false,
     },
   },
   name: "privacy",
