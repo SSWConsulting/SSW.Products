@@ -6,70 +6,43 @@ import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import client from "../../tina/__generated__/client";
+import {
+  BlogsIndexBlocks as Block,
+  Maybe,
+} from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { Button } from "../ui/button";
 
-// type Blogs = Awaited<ReturnType<typeof getBlogsForProduct>>["data"]
+type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 
 const formatDate = (dateString: string) => {
   const date = dayjs(dateString);
   return date.format("MMM D, YYYY");
 };
 
-// const BlogCard = ({
-//   title,
-//   author,
-//   date,
-//   body,
-//   readLength,
-//   blogPostLink,
-// }: {
-//   title: string;
-//   author: string;
-//   date: string;
-//   body: TinaMarkdownContent;
-//   readLength: string;
-//   blogPostLink: string;
-// }) => {
-//   const blurb = extractBlurbAsTinaMarkdownContent(body, 3); // extract 3 sentences in blurb.
-
-//   return (
-//     <Link href={`/blog/${blogPostLink}`}>
-//       <div className="p-6 rounded-2xl shadow-2xl bg-stone-700/30 mb-6 text-white border-opacity-15 border-2 hover:border-opacity-85 border-slate-300">
-//         <h2 className="text-2xl mb-2">{title}</h2>
-//         <div className="font-light text-base">
-//           <span>by {author} </span>
-//           <div>
-//             <span className="text-sm text-gray-300 uppercase">{`${new Date(date).getDate()} ${new Date(date).toLocaleString(
-//               "default",
-//               { month: "long" }
-//             )} ${new Date(date).getFullYear()}`}</span>
-//             <span>{` | ${readLength}`}</span>
-//           </div>
-//           <div className="mt-4">
-//             <TinaMarkdown content={blurb} />
-//           </div>
-//           <div className="mt-4 flex items-center font-light">
-//             <span>READ MORE</span>
-//             <HiOutlineArrowNarrowRight className="ml-2 transform scale-x-150 scale-y-125" />
-//           </div>
-//         </div>
-//       </div>
-//     </Link>
-//   );
-// };
-
 interface BlogIndexClientProps {
   product: string;
 }
 
 export default function BlogIndexClient({
-  // data,
+  data: pageData,
+  query,
+  variables,
   product,
-}: BlogIndexClientProps) {
+}: BlogIndexClientProps & BlogTinaProps) {
   const debounceTime = 1000;
+
+  const blogData = useTina({
+    data: pageData,
+    query,
+    variables,
+  });
+
+  const blogsIndex = blogData.data.blogsIndex;
 
   const [searchKey, setSearchKey] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -80,7 +53,7 @@ export default function BlogIndexClient({
     }, debounceTime);
     return () => clearTimeout(timeout);
   }, [searchTerm]);
-  const { data, fetchNextPage } = useInfiniteQuery({
+  const { data: queryData, fetchNextPage } = useInfiniteQuery({
     queryKey: [`blogs${searchKey}`],
     queryFn: ({ pageParam }) => {
       return getBlogsForProduct({
@@ -92,21 +65,23 @@ export default function BlogIndexClient({
     initialPageParam: "",
     getNextPageParam: (lastPage) => lastPage.pageInfo.endCursor,
   });
-  const featuredBlog = data?.pages?.[0]?.edges?.[0]?.node;
+  const featuredBlog = queryData?.pages?.[0]?.edges?.[0]?.node;
 
-  const categories = [
-    "All Posts",
-    "Productivity",
-    "AI",
-    "Templates",
-    "Best Practices",
-    "Case Studies",
-    "Research",
-    "Product Updates",
-  ];
+  // const categories = [
+  //   "All Posts",
+  //   "Productivity",
+  //   "AI",
+  //   "Templates",
+  //   "Best Practices",
+  //   "Case Studies",
+  //   "Research",
+  //   "Product Updates",
+  // ];
   return (
     <>
-      <div className="grow"></div>
+      <div className="grow">
+        {blogsIndex.blocks && <Blocks blocks={blogsIndex.blocks} />}
+      </div>
     </>
   );
 
@@ -263,127 +238,161 @@ const FeaturedArticle = () => (
     </section>
   </section>
 );
+
+type BlocksProps = {
+  blocks: Maybe<Block>[];
+};
+
+const Blocks = ({ blocks }: BlocksProps) => {
+  return (
+    <>
+      {blocks.map((block) => {
+        const match = block?.__typename?.match(/Blocks(.*)/);
+        if (!match) return <></>;
+        const blockName = match[1];
+
+        switch (blockName) {
+          case "HeroSearch":
+            return <HeroSearch />;
+
+          case "ArticleList":
+            return <RecentArticles />;
+
+          case "FeaturedBlog":
+            return <FeaturedArticle />;
+          default:
+            return <></>;
+        }
+      })}
+    </>
+  );
+};
+
 const RecentArticles = () => {
-  <section className="container mx-auto px-4 py-12">
-    <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">
-      Recent Articles
-    </h2>
+  return (
+    <section className="container mx-auto px-4 py-12">
+      <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">
+        Recent Articles
+      </h2>
 
-    <div className="grid md:grid-cols-3 gap-8">
-      {data?.pages.map((page) =>
-        page?.edges?.map((edge, index) => {
-          const post = edge?.node;
-          return (
-            <div
-              key={index}
-              className="border bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-            >
-              <div className="p-6 h-full flex flex-col flex-grow">
-                <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
-                  {post?.date && (
+      <div className="grid md:grid-cols-3 gap-8">
+        {data?.pages.map((page) =>
+          page?.edges?.map((edge, index) => {
+            const post = edge?.node;
+            return (
+              <div
+                key={index}
+                className="border bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              >
+                <div className="p-6 h-full flex flex-col flex-grow">
+                  <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
+                    {post?.date && (
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        <span>{formatDate(post?.date)}</span>
+                      </div>
+                    )}
+                    <span>•</span>
                     <div className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      <span>{formatDate(post?.date)}</span>
+                      <Clock className="h-3 w-3" />
+                      <span>{post?.readLength}</span>
                     </div>
-                  )}
-                  <span>•</span>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    <span>{post?.readLength}</span>
+                    <div className="text-white text-xs px-3 py-1 bg-ssw-charcoal rounded-full">
+                      {"Uncategorized"}
+                    </div>
                   </div>
-                  <div className="text-white text-xs px-3 py-1 bg-ssw-charcoal rounded-full">
-                    {"Uncategorized"}
-                  </div>
+                  <Link className="w-fit" href={`/blog/${post?._sys.filename}`}>
+                    <h3 className="text-xl font-bold mb-3 hover:text-ssw-red transition-colors">
+                      {post?.title}
+                    </h3>
+                  </Link>
+                  <section className="text-gray-300 text-sm mb-4">
+                    <TinaMarkdown
+                      content={extractBlurbAsTinaMarkdownContent(post?.body, 3)}
+                    />
+                  </section>
+                  <Link
+                    href={`/blog/${post?._sys.filename}`}
+                    className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
+                  >
+                    Read More <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
-                <Link className="w-fit" href={`/blog/${post?._sys.filename}`}>
-                  <h3 className="text-xl font-bold mb-3 hover:text-ssw-red transition-colors">
-                    {post?.title}
-                  </h3>
-                </Link>
-                <section className="text-gray-300 text-sm mb-4">
-                  <TinaMarkdown
-                    content={extractBlurbAsTinaMarkdownContent(post?.body, 3)}
-                  />
-                </section>
-                <Link
-                  href={`/blog/${post?._sys.filename}`}
-                  className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
-                >
-                  Read More <ArrowRight className="h-4 w-4" />
-                </Link>
               </div>
-            </div>
-          );
-        })
-      )}
-    </div>
+            );
+          })
+        )}
+      </div>
 
-    <div className="text-center mt-12">
-      {data?.pages[data.pages.length - 1].pageInfo.hasNextPage && (
-        <Button
-          onClick={() => {
-            console.log("fetching new page");
-            fetchNextPage();
-          }}
-          variant={"secondary"}
-        >
-          Load More Articles
-        </Button>
-      )}
-    </div>
-  </section>;
+      <div className="text-center mt-12">
+        {data?.pages[data.pages.length - 1].pageInfo.hasNextPage && (
+          <Button
+            onClick={() => {
+              console.log("fetching new page");
+              fetchNextPage();
+            }}
+            variant={"secondary"}
+          >
+            Load More Articles
+          </Button>
+        )}
+      </div>
+    </section>
+  );
 };
 
 const HeroSearch = () => {
-  <section className="relative py-16 bg-gradient-to-b bg-[#131313]">
-    <div className="container mx-auto px-4 relative z-10">
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <h1 className="text-4xl font-bold  mb-4">YakShaver.ai Blog</h1>
-        <p className="text-xl text-gray-300">
-          Insights, tips, and stories about issue reporting and AI-powered
-          productivity
-        </p>
-      </div>
+  return (
+    <section className="relative py-16 bg-gradient-to-b bg-[#131313]">
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <h1 className="text-4xl font-bold  mb-4">YakShaver.ai Blog</h1>
+          <p className="text-xl text-gray-300">
+            Insights, tips, and stories about issue reporting and AI-powered
+            productivity
+          </p>
+        </div>
 
-      <div className="relative max-w-xl mx-auto mb-16">
-        <div className="relative">
-          <input
-            type="text"
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-            }}
-            value={searchTerm}
-            placeholder="Search articles..."
-            className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-3 px-4 pl-12 placeholder:text-gray-300 focus:outline-none"
-          />
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 h-5 w-5" />
+        <div className="relative max-w-xl mx-auto mb-16">
+          <div className="relative">
+            <input
+              type="text"
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+              value={searchTerm}
+              placeholder="Search articles..."
+              className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-3 px-4 pl-12 placeholder:text-gray-300 focus:outline-none"
+            />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 h-5 w-5" />
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-3 justify-center mb-16">
+          {categories.map((category, index) => {
+            return (
+              <Button
+                variant={index === 0 ? "default" : "ghost"}
+                key={`button ${index}`}
+              >
+                {category}
+              </Button>
+            );
+            //   key={index}
+            //   variant={"primary"}
+            //   className={
+            //     index === 0
+            //       ? "bg-[#c41414] hover:bg-[#a51212] text-white"
+            //       : "border-gray-700 text-gray-300 hover:border-[#c41414]/50 hover:text-[#c41414]"
+            //   }
+            // >
+
+            // </Button>
+          })}
         </div>
       </div>
-
-      <div className="flex flex-wrap gap-3 justify-center mb-16">
-        {categories.map((category, index) => {
-          return (
-            <Button
-              variant={index === 0 ? "default" : "ghost"}
-              key={`button ${index}`}
-            >
-              {category}
-            </Button>
-          );
-          //   key={index}
-          //   variant={"primary"}
-          //   className={
-          //     index === 0
-          //       ? "bg-[#c41414] hover:bg-[#a51212] text-white"
-          //       : "border-gray-700 text-gray-300 hover:border-[#c41414]/50 hover:text-[#c41414]"
-          //   }
-          // >
-
-          // </Button>
-        })}
-      </div>
-    </div>
-  </section>;
+    </section>
+  );
 };
 
 const Newsletter = () => {
