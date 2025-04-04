@@ -3,7 +3,7 @@ import { curlyBracketFormatter } from "./Hero";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Actions from "./ActionsButton";
 import { IoIosInformationCircleOutline } from "react-icons/io";
-import Image from "next/image";
+
 
 interface CalculatorTier {
   tier: string;

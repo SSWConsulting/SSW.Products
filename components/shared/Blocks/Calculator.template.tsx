@@ -1,6 +1,5 @@
 import { Template } from "tinacms";
 import { actionsButtonTemplate } from "./ActionsButton.template";
-import { jotFormBookingButtonSchema } from "./BookingButtom.template";
 
 export const CalculatorTemplate: Template = {
   name: "calculator",
