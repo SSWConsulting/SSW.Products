@@ -1,4 +1,4 @@
-import { Collection, TinaField } from "tinacms";
+import { Collection, Template, TinaField } from "tinacms";
 import { seoInformation } from "../shared/SEOInformation";
 
 export const blogCollection: Collection = {
@@ -6,6 +6,7 @@ export const blogCollection: Collection = {
   name: "blogs",
   path: "content/blogs/",
   format: "mdx",
+
   fields: [
     seoInformation as TinaField,
     {
@@ -73,3 +74,65 @@ export const blogCollection: Collection = {
     },
   ],
 };
+
+const heroSearchTemplate : Template =  {
+  label: "Hero Search",
+  name: "heroSearch",
+  fields: [{
+    name: "placeholder",
+    label: "placeholder",
+    type: "string"
+  }]
+}
+
+const newsletterTemplate: Template = {
+  label: "Newsletter", 
+  name: "newsletter",
+  fields: [{
+    name: "placeholder",
+    label: "placeholder",
+    type: "string"
+  }]
+}
+
+const featuredBlogTemplate: Template = { 
+  label: "Featured Blog",
+  name: "featuredBlog",
+  fields: [{
+    name: "placeholder",
+    label: "placeholder",
+    type: "string"
+  }]
+}
+
+const articleListTemplate: Template = {
+  label: "Article List", 
+  name: "articleList",
+  fields: [{
+    name: "placeholder",
+    label: "placeholder",
+    type: "string"
+  }]
+}
+
+
+
+export const blogIndexCollection: Collection =  {
+  path: "content/blogs",
+  format: "json",
+  label: "Blog Index",
+  name: "blogsIndex",
+  fields: [
+    {
+      name: "blocks",
+      type: "object",
+      list: true,
+      label: "Blocks",
+      templates: [heroSearchTemplate, articleListTemplate, featuredBlogTemplate, newsletterTemplate]
+    }]
+}
+
+
+
+
+
