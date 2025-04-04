@@ -4,16 +4,14 @@ import { seoInformation } from "../shared/SEOInformation";
 export const privacyPolicyCollection: Collection = {
   label: "Privacy Policy",
   ui: {
-    router: ({ document }) => {
-      return document?._sys?.filename;
-    },
+    router: () => `/privacy`,
     allowedActions: {
       create: false,
       delete: false,
     },
   },
   name: "privacy",
-  path: "content/pages/",
+  path: "content/privacy/",
   format: "mdx",
   fields: [
     seoInformation as TinaField,
@@ -30,14 +28,6 @@ export const privacyPolicyCollection: Collection = {
             return "Title can not be more then 70 characters long";
           }
         },
-      },
-    },
-    {
-      type: "string",
-      name: "date",
-      label: "Date Created",
-      ui: {
-        component: "date",
       },
     },
     {

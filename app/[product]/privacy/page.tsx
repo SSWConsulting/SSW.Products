@@ -27,7 +27,7 @@ export async function generateMetadata({
 async function getPrivacyPolicy(product: string) {
   try {
     const res = await client.queries.privacy({
-      relativePath: `${product}/privacy.mdx`,
+      relativePath: `${product}/index.mdx`,
     });
 
     return res;
