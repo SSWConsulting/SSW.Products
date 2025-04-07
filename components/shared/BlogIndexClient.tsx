@@ -146,8 +146,8 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
   return (
     <>
       {featuredBlog && !searchTerm && (
-        <section className="py-12 lg:px-20 xl:px-40 px-8">
-          <section className="container mx-auto">
+        <section className="py-12 container mx-auto">
+          <section className="">
             {featuredBlog.title && (
               <h2
                 data-tina-field={tinaField(props, "title")}
@@ -289,7 +289,7 @@ const RecentArticles = ({
   });
 
   return (
-    <section className="container xl:px-40 lg:px-20 px-8  mx-auto py-12">
+    <section className="container mx-auto py-12">
       {props.title && (
         <h2
           data-tina-field={tinaField(props, "title")}
@@ -387,8 +387,8 @@ const HeroSearch = (props: HeroSearchProps) => {
   ];
 
   return (
-    <section className="container relative py-16 bg-gradient-to-b bg-[#131313]">
-      <div className="mx-auto px-4 relative z-10">
+    <section className=" relative py-16  bg-gradient-to-b bg-[#131313]">
+      <div className="mx-auto container relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
           {props.title && (
             <h1
@@ -452,39 +452,45 @@ const HeroSearch = (props: HeroSearchProps) => {
 
 const CallToAction = (props: CallToActionProps) => {
   return (
-    <section className="container mx-auto xl:px-40 lg:px-20 px-8 py-16 ">
+    <section className=" container mx-auto py-16 ">
       <div className="rounded-2xl md:p-12 bg-[#131313] relative">
-        <div className="max-w-3xl mx-auto text-center ">
-          {props.title && (
-            <h2 className="text-3xl font-bold mb-4">{props.title}</h2>
-          )}
-          {props.description && (
-            <p className="text-gray-300 mb-8">{props.description}</p>
-          )}
+        <section className="px-6 pt-6 pb-0 2xl:pb-6">
+          <div className="max-w-3xl mx-auto text-center ">
+            {props.title && (
+              <h2 className="sm:text-3xl text-xl font-bold mb-4">
+                {props.title}
+              </h2>
+            )}
+            {props.description && (
+              <p className="text-gray-300 text-sm sm:text-base mb-8">
+                {props.description}
+              </p>
+            )}
 
-          {props.button && (
-            <ShinyButton
-              className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
-              href={props.button.buttonLink || ""}
-            >
-              {props?.button?.buttonText}
-            </ShinyButton>
-          )}
+            {props.button && (
+              <ShinyButton
+                className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
+                href={props.button.buttonLink || ""}
+              >
+                {props?.button?.buttonText}
+              </ShinyButton>
+            )}
 
-          {props.image?.image && (
-            <div className="absolute right-0 bottom-0 size-72">
-              <div className="h-full relative max-w-72 aspect-1">
-                <Image
-                  alt={""}
-                  className="object-bottom"
-                  objectFit="contain"
-                  fill
-                  src={props.image?.image}
-                />
+            {props.image?.image && (
+              <div className="2xl:absolute mx-auto 2xl:right-0 translate-x-0.5 bottom-0 size-72 sm:size-96">
+                <div className="h-full relative size-72 sm:size-96 aspect-1">
+                  <Image
+                    alt={""}
+                    className="object-bottom"
+                    objectFit="contain"
+                    fill
+                    src={props.image?.image}
+                  />
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        </section>
       </div>
     </section>
   );
