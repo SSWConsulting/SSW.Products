@@ -126,10 +126,15 @@ const featuredBlogTemplate: Template = {
 const articleListTemplate: Template = {
   label: "Article List",
   name: "articleList",
+  ui: {
+    defaultItem: () => {
+      return { title: "Recent Articles" };
+    },
+  },
   fields: [
     {
-      name: "placeholder",
-      label: "placeholder",
+      name: "title",
+      label: "The title above the article list",
       type: "string",
     },
   ],

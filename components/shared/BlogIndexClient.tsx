@@ -4,7 +4,10 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
-import { BlogsIndexBlocksHeroSearch as HeroSearchProps } from "../../tina/__generated__/types";
+import {
+  BlogsIndexBlocksArticleList as ArticleListProps,
+  BlogsIndexBlocksHeroSearch as HeroSearchProps,
+} from "../../tina/__generated__/types";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -137,16 +140,20 @@ export default function BlogIndexClient({
   // );
 }
 
-const FeaturedArticle = ({ featuredBlog }: FeaturedBlog) => (
-  <section className="py-12">
-    <section className="container mx-auto px-4">
-      <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">
-        Featured Article
-      </h2>
-      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
-        <div className="grid md:grid-cols-2 gap-0">
-          <div className="relative h-64 md:h-auto">
-            {/* TODO: Add Image field to blog post
+const FeaturedArticle = ({ featuredBlog }: FeaturedBlog) => {
+  const { searchTerm } = useBlogSearch();
+  return (
+    <>
+      {featuredBlog && !searchTerm && (
+        <section className="py-12">
+          <section className="container mx-auto px-4">
+            <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">
+              Featured Article
+            </h2>
+            <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
+              <div className="grid md:grid-cols-2 gap-0">
+                <div className="relative h-64 md:h-auto">
+                  {/* TODO: Add Image field to blog post
           <Image
             src={featuredPost.image || "/placeholder.svg"}
             alt={featuredPost.title}
@@ -154,73 +161,78 @@ const FeaturedArticle = ({ featuredBlog }: FeaturedBlog) => (
             className="object-cover"
           /> */}
 
-            {/* Todo: 
+                  {/* Todo: 
           <div className="absolute top-4 left-4 bg-[#c41414] text-white text-xs px-3 py-1 rounded-full">
             {featuredPost.category || "Uncategorized"} 
           </div> */}
-          </div>
-          <div className="p-8">
-            <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
-              <div className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                <span>
-                  {featuredBlog?.date && formatDate(featuredBlog.date)}
-                </span>
-              </div>
-              <span>•</span>
-              <div className="flex items-center gap-1">
-                <Clock className="h-4 w-4" />
-                <span>{featuredBlog?.readLength}</span>
-              </div>
-              <div className="bg-ssw-charcoal  text-white text-xs px-3 py-1 rounded-full">
-                {"Uncategorized"}
-              </div>
-            </div>
-            <Link href="/blog/ai-transforming-issue-reporting">
-              <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
-                {featuredBlog?.title}
-              </h3>
-            </Link>
-            {/* TODO: add excerpt */}
-            <section className="text-gray-300 mb-6">
-              <TinaMarkdown
-                content={extractBlurbAsTinaMarkdownContent(
-                  featuredBlog?.body,
-                  2
-                )}
-              />
-            </section>
-            <div className="flex justify-between items-center">
-              <div className="flex  items-center gap-3">
-                <div className="size-8 relative rounded-full overflow-hidden">
-                  <Image
-                    src={"/default-images/Placeholder-profile.png"}
-                    alt="placeholder blog author"
-                    fill
-                    className="object-cover"
-                  />
                 </div>
-                <div>
-                  <p className="font-medium text-sm">{featuredBlog?.author}</p>
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="h-4 w-4" />
+                      <span>
+                        {featuredBlog?.date && formatDate(featuredBlog.date)}
+                      </span>
+                    </div>
+                    <span>•</span>
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      <span>{featuredBlog?.readLength}</span>
+                    </div>
+                    <div className="bg-ssw-charcoal  text-white text-xs px-3 py-1 rounded-full">
+                      {"Uncategorized"}
+                    </div>
+                  </div>
+                  <Link href="/blog/ai-transforming-issue-reporting">
+                    <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
+                      {featuredBlog?.title}
+                    </h3>
+                  </Link>
+                  {/* TODO: add excerpt */}
+                  <section className="text-gray-300 mb-6">
+                    <TinaMarkdown
+                      content={extractBlurbAsTinaMarkdownContent(
+                        featuredBlog?.body,
+                        2
+                      )}
+                    />
+                  </section>
+                  <div className="flex justify-between items-center">
+                    <div className="flex  items-center gap-3">
+                      <div className="size-8 relative rounded-full overflow-hidden">
+                        <Image
+                          src={"/default-images/Placeholder-profile.png"}
+                          alt="placeholder blog author"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-medium text-sm">
+                          {featuredBlog?.author}
+                        </p>
 
-                  {/*
+                        {/*
                 TODO: Add author roles? (Could use cronjob from SSW People)
                 
                 <p className="text-gray-500 text-xs">{featuredPost.author.role}</p> */}
+                      </div>
+                    </div>
+                    <Link href="/blog/ai-transforming-issue-reporting">
+                      <Button className="bg-[#c41414] hover:bg-[#a51212] text-white">
+                        Read Article
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-              <Link href="/blog/ai-transforming-issue-reporting">
-                <Button className="bg-[#c41414] hover:bg-[#a51212] text-white">
-                  Read Article
-                </Button>
-              </Link>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </section>
-);
+          </section>
+        </section>
+      )}
+    </>
+  );
+};
 
 type BlocksProps = {
   blocks: Maybe<Block>[];
@@ -242,8 +254,7 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
             return <RecentArticles {...block} product={product} />;
 
           case "BlogsIndexBlocksFeaturedBlog":
-            return <></>;
-            return <FeaturedArticle />;
+            return <FeaturedArticle {...block} />;
           default:
             return <></>;
         }
@@ -252,7 +263,10 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
   );
 };
 
-const RecentArticles = ({ product }: { product: string }) => {
+const RecentArticles = ({
+  product,
+  ...props
+}: ArticleListProps & { product: string }) => {
   const { searchTerm } = useBlogSearch();
   const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: [`blogs${searchTerm}`],
@@ -269,9 +283,14 @@ const RecentArticles = ({ product }: { product: string }) => {
 
   return (
     <section className="container mx-auto px-4 py-12">
-      <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">
-        Recent Articles
-      </h2>
+      {props.title && (
+        <h2
+          data-tina-field={tinaField(props, "title")}
+          className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4 w-fit"
+        >
+          {props.title}
+        </h2>
+      )}
 
       <div className="grid md:grid-cols-3 gap-8">
         {data?.pages.map((page) =>

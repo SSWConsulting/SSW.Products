@@ -4,6 +4,17 @@
       "title": "YakShaver.ai Blog",
       "description": "Insights, tips, and stories about issue reporting and AI-powered productivity",
       "_template": "heroSearch"
+    },
+    {
+      "featuredBlog": "content/blogs/EagleEye/what-is-eagleeye.mdx",
+      "_template": "featuredBlog"
+    },
+    {
+      "title": "Recent Articles",
+      "_template": "articleList"
+    },
+    {
+      "_template": "newsletter"
     }
   ]
 }
