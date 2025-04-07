@@ -366,17 +366,20 @@ const HeroSearch = (props: HeroSearchProps) => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h1
-            data-tina-field={props.description}
+            data-tina-field={tinaField(props, "title")}
             className="text-4xl font-bold  mb-4"
           >
             {props.title || "Title"}
           </h1>
-          <p
-            className="text-xl text-gray-300"
-            data-tina-field={tinaField(props, "description")}
-          >
-            {props.description || "description"}
-          </p>
+
+          {props.description && (
+            <p
+              className="text-xl text-gray-300"
+              data-tina-field={tinaField(props, "description")}
+            >
+              {props.description || "description"}
+            </p>
+          )}
         </div>
 
         <div className="relative max-w-xl mx-auto mb-16">

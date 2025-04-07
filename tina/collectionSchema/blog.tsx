@@ -79,6 +79,12 @@ export const blogCollection: Collection = {
 const heroSearchTemplate: Template = {
   label: "Hero Search",
   name: "heroSearch",
+  ui: {
+    defaultItem: {
+      description: "description",
+      title: "title",
+    },
+  },
   fields: [
     {
       name: "title",
