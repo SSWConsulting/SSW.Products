@@ -38,15 +38,16 @@ export const blogCollection: Collection = {
       label: "Author",
     },
     {
-      type: 'string',
-      name: 'sswPeopleLink',
-      label: 'Author SSW People Link'
+      type: "string",
+      name: "sswPeopleLink",
+      label: "Author SSW People Link",
     },
     {
-      type: 'string',
-      name: 'readLength',
-      label: 'Read (time) length',
-      description: 'Want to get an accurate read length? Use a read-o-meter! https://niram.org/read/'
+      type: "string",
+      name: "readLength",
+      label: "Read (time) length",
+      description:
+        "Want to get an accurate read length? Use a read-o-meter! https://niram.org/read/",
     },
     {
       type: "rich-text",
@@ -58,66 +59,72 @@ export const blogCollection: Collection = {
       },
       templates: [
         {
-          name: 'Youtube',
-          label: 'Youtube Embed',
+          name: "Youtube",
+          label: "Youtube Embed",
           fields: [
             {
-              type: 'string',
-              name: 'embedSrc',
-              label: 'Embed URL',
+              type: "string",
+              name: "embedSrc",
+              label: "Embed URL",
               description:
-                '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
+                "⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY",
             },
           ],
         },
-      ]
+      ],
     },
   ],
 };
 
-const heroSearchTemplate : Template =  {
+const heroSearchTemplate: Template = {
   label: "Hero Search",
   name: "heroSearch",
-  fields: [{
-    name: "placeholder",
-    label: "placeholder",
-    type: "string"
-  }]
-}
+  fields: [
+    {
+      name: "placeholder",
+      label: "placeholder",
+      type: "string",
+    },
+  ],
+};
 
 const newsletterTemplate: Template = {
-  label: "Newsletter", 
+  label: "Newsletter",
   name: "newsletter",
-  fields: [{
-    name: "placeholder",
-    label: "placeholder",
-    type: "string"
-  }]
-}
+  fields: [
+    {
+      name: "placeholder",
+      label: "placeholder",
+      type: "string",
+    },
+  ],
+};
 
-const featuredBlogTemplate: Template = { 
+const featuredBlogTemplate: Template = {
   label: "Featured Blog",
   name: "featuredBlog",
-  fields: [{
-    name: "placeholder",
-    label: "placeholder",
-    type: "string"
-  }]
-}
+  fields: [
+    {
+      name: "featuredBlog",
+      type: "reference",
+      collections: ["blogs"],
+    },
+  ],
+};
 
 const articleListTemplate: Template = {
-  label: "Article List", 
+  label: "Article List",
   name: "articleList",
-  fields: [{
-    name: "placeholder",
-    label: "placeholder",
-    type: "string"
-  }]
-}
+  fields: [
+    {
+      name: "placeholder",
+      label: "placeholder",
+      type: "string",
+    },
+  ],
+};
 
-
-
-export const blogIndexCollection: Collection =  {
+export const blogIndexCollection: Collection = {
   path: "content/blogs",
   format: "json",
   label: "Blog Index",
@@ -128,11 +135,12 @@ export const blogIndexCollection: Collection =  {
       type: "object",
       list: true,
       label: "Blocks",
-      templates: [heroSearchTemplate, articleListTemplate, featuredBlogTemplate, newsletterTemplate]
-    }]
-}
-
-
-
-
-
+      templates: [
+        heroSearchTemplate,
+        articleListTemplate,
+        featuredBlogTemplate,
+        newsletterTemplate,
+      ],
+    },
+  ],
+};

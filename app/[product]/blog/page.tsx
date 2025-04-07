@@ -3,6 +3,8 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import { notFound } from "next/navigation";
+import { BlogSearchProvider } from "../../../components/providers/BlogSearchProvider";
 import QueryProvider from "../../../components/providers/QueryProvider";
 import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
@@ -27,6 +29,17 @@ export async function generateMetadata({ params }: BlogIndex) {
   };
 }
 
+const getBlogPageData = async (product: string) => {
+  try {
+    const res = await client.queries.blogsIndex({
+      relativePath: `${product}/blog/index.json`,
+    });
+    return res;
+  } catch (error) {
+    console.error("Error fetching blog page data:", error);
+    return notFound();
+  }
+};
 export async function generateStaticParams() {
   const sitePosts = await client.queries.blogsConnection({});
   return (
@@ -39,18 +52,17 @@ export async function generateStaticParams() {
 export default async function BlogIndex({ params }: BlogIndex) {
   const product = params.product;
 
-  const client = new QueryClient();
-  await client.prefetchInfiniteQuery({
+  const tinaData = await getBlogPageData(product);
+
+  const queryClient = new QueryClient();
+  await queryClient.prefetchInfiniteQuery({
     queryKey: ["blogs"], // Ensure queryKey matches BlogIndexClient
     queryFn: () => getBlogsForProduct({ product, limit: 3 }),
     initialPageParam: undefined,
   });
 
-  const dehydratedState = dehydrate(client, {});
+  const dehydratedState = dehydrate(queryClient, {});
 
-  console.log("dehydrated state", JSON.stringify(dehydratedState));
-
-  console.log("dehy");
   return (
     <div className="text-gray-100 flex flex-col">
       <NavBarServer product={params.product} />
@@ -60,7 +72,9 @@ export default async function BlogIndex({ params }: BlogIndex) {
         <div className="flex flex-col min-h-screen pt-[124px]">
           <InteractiveBackground fogColor="red" />
           <HydrationBoundary state={dehydratedState}>
-            <BlogIndexClient product={product} />
+            <BlogSearchProvider>
+              <BlogIndexClient {...tinaData} product={product} />
+            </BlogSearchProvider>
           </HydrationBoundary>
           <FooterServer product={params.product} />
         </div>

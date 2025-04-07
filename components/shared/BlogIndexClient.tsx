@@ -4,10 +4,13 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__generated__/types";
+
 import client from "../../tina/__generated__/client";
 import {
   BlogsIndexBlocks as Block,
@@ -15,6 +18,7 @@ import {
 } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
+import { useBlogSearch } from "../providers/BlogSearchProvider";
 import { Button } from "../ui/button";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
@@ -34,8 +38,6 @@ export default function BlogIndexClient({
   variables,
   product,
 }: BlogIndexClientProps & BlogTinaProps) {
-  const debounceTime = 1000;
-
   const blogData = useTina({
     data: pageData,
     query,
@@ -43,29 +45,6 @@ export default function BlogIndexClient({
   });
 
   const blogsIndex = blogData.data.blogsIndex;
-
-  const [searchKey, setSearchKey] = useState("");
-  const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSearchKey(searchTerm);
-    }, debounceTime);
-    return () => clearTimeout(timeout);
-  }, [searchTerm]);
-  const { data: queryData, fetchNextPage } = useInfiniteQuery({
-    queryKey: [`blogs${searchKey}`],
-    queryFn: ({ pageParam }) => {
-      return getBlogsForProduct({
-        product,
-        endCursor: pageParam,
-        keyword: searchKey,
-      });
-    },
-    initialPageParam: "",
-    getNextPageParam: (lastPage) => lastPage.pageInfo.endCursor,
-  });
-  const featuredBlog = queryData?.pages?.[0]?.edges?.[0]?.node;
 
   // const categories = [
   //   "All Posts",
@@ -77,10 +56,13 @@ export default function BlogIndexClient({
   //   "Research",
   //   "Product Updates",
   // ];
+
   return (
     <>
       <div className="grow">
-        {blogsIndex.blocks && <Blocks blocks={blogsIndex.blocks} />}
+        {blogsIndex.blocks && (
+          <Blocks product={product} blocks={blogsIndex.blocks} />
+        )}
       </div>
     </>
   );
@@ -154,7 +136,7 @@ export default function BlogIndexClient({
   // );
 }
 
-const FeaturedArticle = () => (
+const FeaturedArticle = ({ featuredBlog }: FeaturedBlog) => (
   <section className="py-12">
     <section className="container mx-auto px-4">
       <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">
@@ -187,7 +169,7 @@ const FeaturedArticle = () => (
               <span>•</span>
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                <span>{featuredBlog?.readLength}</span>
+                <span>{featuredBlog.readLength}</span>
               </div>
               <div className="bg-ssw-charcoal  text-white text-xs px-3 py-1 rounded-full">
                 {"Uncategorized"}
@@ -241,9 +223,10 @@ const FeaturedArticle = () => (
 
 type BlocksProps = {
   blocks: Maybe<Block>[];
+  product: string;
 };
 
-const Blocks = ({ blocks }: BlocksProps) => {
+const Blocks = ({ blocks, product }: BlocksProps) => {
   return (
     <>
       {blocks.map((block) => {
@@ -256,7 +239,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
             return <HeroSearch />;
 
           case "ArticleList":
-            return <RecentArticles />;
+            return <RecentArticles product={product} />;
 
           case "FeaturedBlog":
             return <FeaturedArticle />;
@@ -268,7 +251,21 @@ const Blocks = ({ blocks }: BlocksProps) => {
   );
 };
 
-const RecentArticles = () => {
+const RecentArticles = ({ product }: { product: string }) => {
+  const { searchTerm } = useBlogSearch();
+  const { data, fetchNextPage } = useInfiniteQuery({
+    queryKey: [`blogs${searchTerm}`],
+    queryFn: ({ pageParam }) => {
+      return getBlogsForProduct({
+        product,
+        endCursor: pageParam,
+        keyword: searchTerm,
+      });
+    },
+    initialPageParam: "",
+    getNextPageParam: (lastPage) => lastPage.pageInfo.endCursor,
+  });
+
   return (
     <section className="container mx-auto px-4 py-12">
       <h2 className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4">
@@ -342,6 +339,27 @@ const RecentArticles = () => {
 };
 
 const HeroSearch = () => {
+  const debounceTime = 1000;
+
+  const { updateSearchTerm } = useBlogSearch();
+  const [searchTerm, setSearchTerm] = useState("");
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (updateSearchTerm) updateSearchTerm(searchTerm);
+    }, debounceTime);
+    return () => clearTimeout(timeout);
+  }, [searchTerm]);
+  const categories = [
+    "All Posts",
+    "Productivity",
+    "AI",
+    "Templates",
+    "Best Practices",
+    "Case Studies",
+    "Research",
+    "Product Updates",
+  ];
+
   return (
     <section className="relative py-16 bg-gradient-to-b bg-[#131313]">
       <div className="container mx-auto px-4 relative z-10">
@@ -360,7 +378,6 @@ const HeroSearch = () => {
               onChange={(e) => {
                 setSearchTerm(e.target.value);
               }}
-              value={searchTerm}
               placeholder="Search articles..."
               className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-3 px-4 pl-12 placeholder:text-gray-300 focus:outline-none"
             />
