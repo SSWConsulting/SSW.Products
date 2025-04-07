@@ -1,9 +1,10 @@
 import { defineConfig } from "tinacms";
-import { PagesSchema } from "./collectionSchema/pages";
-import { navigationBarCollection } from "./collectionSchema/navbar";
-import { footerCollection } from "./collectionSchema/footer";
 import { blogCollection } from "./collectionSchema/blog";
 import { docsCollection } from "./collectionSchema/docs";
+import { footerCollection } from "./collectionSchema/footer";
+import { navigationBarCollection } from "./collectionSchema/navbar";
+import { PagesSchema } from "./collectionSchema/pages";
+import { privacyPolicyCollection } from "./collectionSchema/privacy";
 
 const branch =
   process.env.GITHUB_BRANCH ||
@@ -30,6 +31,7 @@ export default defineConfig({
   // Define the schema
   schema: {
     collections: [
+      privacyPolicyCollection,
       PagesSchema, 
       navigationBarCollection,
       footerCollection,
