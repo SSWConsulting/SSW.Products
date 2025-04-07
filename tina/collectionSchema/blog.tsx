@@ -137,7 +137,20 @@ const newsletterTemplate: Template = {
     {
       name: "image",
       label: "Image",
-      type: "image",
+      type: "object",
+      fields: [
+        {
+          name: "image",
+          type: "image",
+          label: "Image",
+        },
+        {
+          name: "altText",
+          label: "Alt Text",
+          description: "Alt text for the Image field",
+          type: "string",
+        },
+      ],
     },
   ],
 };

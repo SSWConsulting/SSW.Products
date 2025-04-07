@@ -21,6 +21,10 @@
         "buttonText": "Schedule a Call",
         "buttonLink": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink"
       },
+      "image": {
+        "image": "/YakShaver/UlyPoint.png",
+        "altText": "Ulysses profile"
+      },
       "_template": "callToAction"
     }
   ]
