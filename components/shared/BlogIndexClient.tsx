@@ -1,11 +1,12 @@
 "use client";
-
+import { ShinyButton } from "@/components/magicui/shiny-button";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
 import {
   BlogsIndexBlocksArticleList as ArticleListProps,
+  BlogsIndexBlocksCallToAction,
   BlogsIndexBlocksHeroSearch as HeroSearchProps,
 } from "../../tina/__generated__/types";
 
@@ -254,7 +255,8 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
               return <HeroSearch {...block} />;
             }
             return null;
-
+          case "BlogsIndexBlocksCallToAction":
+            return <CallToAction {...block} />;
           case "BlogsIndexBlocksArticleList":
             return <RecentArticles {...block} product={product} />;
 
@@ -350,7 +352,6 @@ const RecentArticles = ({
         {data?.pages[data.pages.length - 1].pageInfo.hasNextPage && (
           <Button
             onClick={() => {
-              console.log("fetching new page");
               fetchNextPage();
             }}
             variant={"secondary"}
@@ -373,7 +374,7 @@ const HeroSearch = (props: HeroSearchProps) => {
       if (updateSearchTerm) updateSearchTerm(searchTerm);
     }, debounceTime);
     return () => clearTimeout(timeout);
-  }, [searchTerm]);
+  }, [searchTerm, updateSearchTerm]);
   const categories = [
     "All Posts",
     "Productivity",
@@ -389,19 +390,21 @@ const HeroSearch = (props: HeroSearchProps) => {
     <section className="relative py-16 bg-gradient-to-b bg-[#131313]">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h1
-            data-tina-field={tinaField(props, "title")}
-            className="text-4xl font-bold  mb-4"
-          >
-            {props.title || "Title"}
-          </h1>
+          {props.title && (
+            <h1
+              data-tina-field={tinaField(props, "title")}
+              className="text-4xl font-bold  mb-4"
+            >
+              {props.title}
+            </h1>
+          )}
 
           {props.description && (
             <p
               className="text-xl text-gray-300"
               data-tina-field={tinaField(props, "description")}
             >
-              {props.description || "description"}
+              {props.description}
             </p>
           )}
         </div>
@@ -447,23 +450,25 @@ const HeroSearch = (props: HeroSearchProps) => {
   );
 };
 
-const Newsletter = () => {
+const CallToAction = (props: BlogsIndexBlocksCallToAction) => {
   return (
     <section className="container mx-auto px-4 py-16">
       <div className="rounded-2xl p-8 md:p-12 bg-[#131313]">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay in the loop</h2>
-          <p className="text-gray-300 mb-8">
-            Get the latest articles, product updates, and productivity tips
-            delivered straight to your inbox.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-3 px-4 placeholder:text-gray-300 focus:outline-none"
-            />
-          </div>
+          {props.title && (
+            <h2 className="text-3xl font-bold mb-4">{props.title}</h2>
+          )}
+          {props.description && (
+            <p className="text-gray-300 mb-8">{props.description}</p>
+          )}
+          {props.button && (
+            <ShinyButton
+              className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
+              href={props.button.buttonLink || ""}
+            >
+              {props?.button?.buttonText}
+            </ShinyButton>
+          )}
         </div>
       </div>
     </section>

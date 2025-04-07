@@ -100,13 +100,44 @@ const heroSearchTemplate: Template = {
 };
 
 const newsletterTemplate: Template = {
-  label: "Newsletter",
-  name: "newsletter",
+  label: "Call To Action",
+  name: "callToAction",
+  ui: {
+    defaultItem: () => {
+      return { title: "Title" };
+    },
+  },
   fields: [
     {
-      name: "placeholder",
-      label: "placeholder",
+      name: "title",
+      label: "Title",
       type: "string",
+    },
+    {
+      name: "description",
+      label: "Description",
+      type: "string",
+    },
+    {
+      name: "button",
+      type: "object",
+      fields: [
+        {
+          name: "buttonText",
+          label: "Button Text",
+          type: "string",
+        },
+        {
+          name: "buttonLink",
+          label: "Button Text",
+          type: "string",
+        },
+      ],
+    },
+    {
+      name: "image",
+      label: "Image",
+      type: "image",
     },
   ],
 };
