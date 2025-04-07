@@ -183,7 +183,7 @@ const EstimatedSavingsContent = ({
       <h3 className="text-2xl text-white font-bold">Your ROI with YakShaver</h3>
       <div className="flex flex-col">
         <p className="text-white/50">Monthly Detailed Work Items</p>
-        <p className="text-white font-bold text-2xl">
+        <p className={`text-white font-bold ${isCustomTier ? 'text-xl' : 'text-2xl'}`}>
           <div className="flex gap-2 align-baseline items-baseline">
             {isCustomTier
               ? "Enough to fill a warehouse"
@@ -198,8 +198,8 @@ const EstimatedSavingsContent = ({
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
         </div>
-        <p className="text-emerald-400 font-bold text-2xl">
-          {isCustomTier ? "Let's just say... your devs with notice" : `${estimatedHoursSaved} hours`}
+        <p className={`text-emerald-400 font-bold ${isCustomTier ? 'text-xl' : 'text-2xl'}`}>
+          {isCustomTier ? "Let's just say... your devs will notice" : `${estimatedHoursSaved} hours`}
         </p>
       </div>
       <div className="flex flex-col">
@@ -209,7 +209,7 @@ const EstimatedSavingsContent = ({
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
         </div>
-        <p className="text-emerald-400 font-bold text-2xl">
+        <p className={`text-emerald-400 font-bold ${isCustomTier ? 'text-xl' : 'text-2xl'}`}>
           {isCustomTier
             ? "Ask your CFO (after they stop smiling)"
             : `$${monthlyValueReclaimed.toLocaleString()}`}
@@ -222,7 +222,7 @@ const EstimatedSavingsContent = ({
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
         </div>
-        <p className="text-emerald-400 font-bold text-2xl">
+        <p className={`text-emerald-400 font-bold ${isCustomTier ? 'text-xl' : 'text-2xl'}`}>
           {isCustomTier
             ? "You'll want a meeting for this one"
             : `$${annualValueReclaimed.toLocaleString()}`}
