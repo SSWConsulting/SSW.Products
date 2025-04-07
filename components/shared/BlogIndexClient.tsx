@@ -146,8 +146,8 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
   return (
     <>
       {featuredBlog && !searchTerm && (
-        <section className="py-12">
-          <section className="container mx-auto px-4">
+        <section className="py-12 lg:px-20 xl:px-40 px-8">
+          <section className="container mx-auto">
             {featuredBlog.title && (
               <h2
                 data-tina-field={tinaField(props, "title")}
@@ -289,7 +289,7 @@ const RecentArticles = ({
   });
 
   return (
-    <section className="container mx-auto px-4 py-12">
+    <section className="container xl:px-40 lg:px-20 px-8  mx-auto py-12">
       {props.title && (
         <h2
           data-tina-field={tinaField(props, "title")}
@@ -387,8 +387,8 @@ const HeroSearch = (props: HeroSearchProps) => {
   ];
 
   return (
-    <section className="relative py-16 bg-gradient-to-b bg-[#131313]">
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="container relative py-16 bg-gradient-to-b bg-[#131313]">
+      <div className="mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
           {props.title && (
             <h1
@@ -452,7 +452,7 @@ const HeroSearch = (props: HeroSearchProps) => {
 
 const CallToAction = (props: CallToActionProps) => {
   return (
-    <section className="container mx-auto px-4 py-16 ">
+    <section className="container mx-auto xl:px-40 lg:px-20 px-8 py-16 ">
       <div className="rounded-2xl md:p-12 bg-[#131313] relative">
         <div className="max-w-3xl mx-auto text-center ">
           {props.title && (

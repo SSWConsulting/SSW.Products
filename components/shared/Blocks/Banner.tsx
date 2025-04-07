@@ -1,7 +1,6 @@
-import React from "react";
 import Image from "next/image";
-import Actions from "./ActionsButton";
 import { tinaField } from "tinacms/dist/react";
+import Actions from "./ActionsButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
 
 interface BannerProps {
@@ -21,7 +20,6 @@ interface BannerProps {
 }
 
 const Banner = ({ data }: { data: BannerProps["data"] }) => {
-
   const gradientBackground = `linear-gradient(135deg, ${data.backgroundColour}33, ${data.backgroundColour})`;
 
   return (
@@ -43,7 +41,10 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
           >
             {data.headline}
           </h2>
-          <p className="text-base mb-6" data-tina-field={tinaField(data, "text")}>
+          <p
+            className="text-base mb-6"
+            data-tina-field={tinaField(data, "text")}
+          >
             {data.text}
           </p>
 
