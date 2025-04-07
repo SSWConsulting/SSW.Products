@@ -100,7 +100,7 @@ const Tooltip = ({
 
 export default function CalculatorComponent({ data }: { data: any }) {
   const [selectedTier, setSelectedTier] = useState<number>(1);
-  const [hourlyRate, setHourlyRate] = useState(250);
+  const [hourlyRate, setHourlyRate] = useState(100);
   const [hoursSaved, setHoursSaved] = useState(
     data.tiers[selectedTier].estimatedHoursSaved
   );
