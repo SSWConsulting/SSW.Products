@@ -8,7 +8,7 @@ import { BlogsIndexBlocksHeroSearch as HeroSearchProps } from "../../tina/__gene
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useTina } from "tinacms/dist/react";
+import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__generated__/types";
 
@@ -365,8 +365,16 @@ const HeroSearch = (props: HeroSearchProps) => {
     <section className="relative py-16 bg-gradient-to-b bg-[#131313]">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h1 className="text-4xl font-bold  mb-4">{props.title || "Title"}</h1>
-          <p className="text-xl text-gray-300">
+          <h1
+            data-tina-field={props.description}
+            className="text-4xl font-bold  mb-4"
+          >
+            {props.title || "Title"}
+          </h1>
+          <p
+            className="text-xl text-gray-300"
+            data-tina-field={tinaField(props, "description")}
+          >
             {props.description || "description"}
           </p>
         </div>
