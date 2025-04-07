@@ -1,6 +1,6 @@
+import React from "react";
 import { Collection, Template, TinaField } from "tinacms";
 import { seoInformation } from "../shared/SEOInformation";
-
 export const blogCollection: Collection = {
   label: "Blog Posts",
   name: "blogs",
@@ -81,7 +81,7 @@ const heroSearchTemplate: Template = {
   name: "heroSearch",
   ui: {
     defaultItem: {
-      description: "description",
+      label: "Title",
       title: "title",
     },
   },
@@ -114,8 +114,29 @@ const newsletterTemplate: Template = {
 const featuredBlogTemplate: Template = {
   label: "Featured Blog",
   name: "featuredBlog",
+  ui: {
+    defaultItem: () => {
+      return { title: "Featured Article" };
+    },
+  },
   fields: [
     {
+      name: "title",
+      label: "Title",
+      type: "string",
+    },
+    {
+      ui: {
+        optionComponent: (props, _sys) => {
+          const title = props.title || _sys.filename;
+          return (
+            <React.Fragment>
+              <p>{String(title)}</p>
+            </React.Fragment>
+          );
+        },
+      },
+      label: "Featured Blog",
       name: "featuredBlog",
       type: "reference",
       collections: ["blogs"],
@@ -134,7 +155,7 @@ const articleListTemplate: Template = {
   fields: [
     {
       name: "title",
-      label: "The title above the article list",
+      label: "Title",
       type: "string",
     },
   ],
