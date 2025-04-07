@@ -4,6 +4,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
+import { BlogsIndexBlocksHeroSearch as HeroSearchProps } from "../../tina/__generated__/types";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -163,13 +164,13 @@ const FeaturedArticle = ({ featuredBlog }: FeaturedBlog) => (
               <div className="flex items-center gap-1">
                 <Calendar className="h-4 w-4" />
                 <span>
-                  {featuredBlog.date && formatDate(featuredBlog.date)}
+                  {featuredBlog?.date && formatDate(featuredBlog.date)}
                 </span>
               </div>
               <span>•</span>
               <div className="flex items-center gap-1">
                 <Clock className="h-4 w-4" />
-                <span>{featuredBlog.readLength}</span>
+                <span>{featuredBlog?.readLength}</span>
               </div>
               <div className="bg-ssw-charcoal  text-white text-xs px-3 py-1 rounded-full">
                 {"Uncategorized"}
@@ -177,14 +178,14 @@ const FeaturedArticle = ({ featuredBlog }: FeaturedBlog) => (
             </div>
             <Link href="/blog/ai-transforming-issue-reporting">
               <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
-                {featuredBlog.title}
+                {featuredBlog?.title}
               </h3>
             </Link>
             {/* TODO: add excerpt */}
             <section className="text-gray-300 mb-6">
               <TinaMarkdown
                 content={extractBlurbAsTinaMarkdownContent(
-                  featuredBlog.body,
+                  featuredBlog?.body,
                   2
                 )}
               />
@@ -200,7 +201,7 @@ const FeaturedArticle = ({ featuredBlog }: FeaturedBlog) => (
                   />
                 </div>
                 <div>
-                  <p className="font-medium text-sm">{featuredBlog.author}</p>
+                  <p className="font-medium text-sm">{featuredBlog?.author}</p>
 
                   {/*
                 TODO: Add author roles? (Could use cronjob from SSW People)
@@ -230,18 +231,18 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
   return (
     <>
       {blocks.map((block) => {
-        const match = block?.__typename?.match(/Blocks(.*)/);
-        if (!match) return <></>;
-        const blockName = match[1];
+        switch (block?.__typename) {
+          case "BlogsIndexBlocksHeroSearch":
+            if (block?.__typename === "BlogsIndexBlocksHeroSearch") {
+              return <HeroSearch {...block} />;
+            }
+            return null;
 
-        switch (blockName) {
-          case "HeroSearch":
-            return <HeroSearch />;
+          case "BlogsIndexBlocksArticleList":
+            return <RecentArticles {...block} product={product} />;
 
-          case "ArticleList":
-            return <RecentArticles product={product} />;
-
-          case "FeaturedBlog":
+          case "BlogsIndexBlocksFeaturedBlog":
+            return <></>;
             return <FeaturedArticle />;
           default:
             return <></>;
@@ -338,7 +339,7 @@ const RecentArticles = ({ product }: { product: string }) => {
   );
 };
 
-const HeroSearch = () => {
+const HeroSearch = (props: HeroSearchProps) => {
   const debounceTime = 1000;
 
   const { updateSearchTerm } = useBlogSearch();
@@ -364,10 +365,9 @@ const HeroSearch = () => {
     <section className="relative py-16 bg-gradient-to-b bg-[#131313]">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
-          <h1 className="text-4xl font-bold  mb-4">YakShaver.ai Blog</h1>
+          <h1 className="text-4xl font-bold  mb-4">{props.title || "Title"}</h1>
           <p className="text-xl text-gray-300">
-            Insights, tips, and stories about issue reporting and AI-powered
-            productivity
+            {props.description || "description"}
           </p>
         </div>
 

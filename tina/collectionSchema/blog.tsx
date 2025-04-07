@@ -81,8 +81,13 @@ const heroSearchTemplate: Template = {
   name: "heroSearch",
   fields: [
     {
-      name: "placeholder",
-      label: "placeholder",
+      name: "title",
+      label: "The title at the top of the hero component",
+      type: "string",
+    },
+    {
+      name: "description",
+      label: "The description at the top of the hero component",
       type: "string",
     },
   ],
@@ -125,7 +130,7 @@ const articleListTemplate: Template = {
 };
 
 export const blogIndexCollection: Collection = {
-  path: "content/blogs",
+  path: "content/indexPages/",
   format: "json",
   label: "Blog Index",
   name: "blogsIndex",
