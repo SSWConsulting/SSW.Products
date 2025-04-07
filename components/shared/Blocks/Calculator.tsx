@@ -199,7 +199,7 @@ const EstimatedSavingsContent = ({
           </Tooltip>
         </div>
         <p className="text-emerald-400 font-bold text-2xl">
-          {isCustomTier ? "Endless" : `${estimatedHoursSaved}`} hours
+          {isCustomTier ? "Let's just say... your devs with notice" : `${estimatedHoursSaved} hours`}
         </p>
       </div>
       <div className="flex flex-col">
@@ -211,7 +211,7 @@ const EstimatedSavingsContent = ({
         </div>
         <p className="text-emerald-400 font-bold text-2xl">
           {isCustomTier
-            ? "Endless"
+            ? "Ask your CFO (after they stop smiling)"
             : `$${monthlyValueReclaimed.toLocaleString()}`}
         </p>
       </div>
@@ -224,7 +224,7 @@ const EstimatedSavingsContent = ({
         </div>
         <p className="text-emerald-400 font-bold text-2xl">
           {isCustomTier
-            ? "Our calculator doesn't go this high"
+            ? "You'll want a meeting for this one"
             : `$${annualValueReclaimed.toLocaleString()}`}
         </p>
       </div>
