@@ -186,11 +186,13 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
             )}
             <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
               <div className="flex flex-col md:flex-row">
-                <div className="relative w-full flex-grow md:basis-4/12 aspect-video [mask-image:linear-gradient(black,transparent);]">
+                <div className="relative w-full flex-grow md:basis-4/12 aspect-video">
                   <div className="bg-ssw-charcoal absolute drop-shadow-sm z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
                     {"Uncategorized"}
                   </div>
-                  <GridBackground />
+                  <div className="w-full h-full [mask-image:linear-gradient(black,transparent);]">
+                    <GridBackground />
+                  </div>
 
                   {featuredBlog.bannerImage && (
                     <div className="inset-0 flex items-center justify-center absolute">
@@ -340,13 +342,13 @@ const RecentArticles = ({
                 className="border bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="h-full flex flex-col flex-grow flex-shrink-0">
-                  <div className="relative aspect-video [mask-image:linear-gradient(black,transparent);]">
-                    <div className="text-white absolute text-xs w-fit drop-shadow-sm m-3 z-10 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
+                  <div className="relative aspect-video ">
+                    <div className="text-white z-20 absolute text-xs w-fit drop-shadow-sm m-3 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
                       {edge?.node?.category || "Uncategorized"}
                     </div>
                     <div className="inset-0 absolute align-middle items-center justify-center flex">
                       {edge?.node?.bannerImage && (
-                        <div className="rounded-md h-5/6 relative overflow-hidden aspect-video">
+                        <div className="rounded-md z-10 h-5/6 relative overflow-hidden aspect-video">
                           <Image
                             alt=""
                             fill
@@ -357,7 +359,9 @@ const RecentArticles = ({
                         </div>
                       )}
                     </div>
-                    <GridBackground />
+                    <div className="w-full h-full [mask-image:linear-gradient(black,transparent);]">
+                      <GridBackground />
+                    </div>
                   </div>
                   <div className="flex-grow flex-shrink-0 flex flex-col p-6">
                     <div className="flex flex-col gap-3 mb-3 text-xs text-gray-400">
