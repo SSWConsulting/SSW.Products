@@ -517,10 +517,10 @@ const HeroSearch = (props: HeroSearchProps) => {
 
 const CallToAction = (props: CallToActionProps) => {
   return (
-    <section className=" container mx-auto py-16 ">
-      <div className="rounded-2xl md:p-12 bg-[#131313] relative">
-        <section className="px-6 pt-6 pb-0 2xl:pb-6">
-          <div className="max-w-3xl mx-auto text-center ">
+    <section className="container mx-auto py-16">
+      <div className="rounded-2xl bg-[#131313] relative">
+        <div className="max-w-3xl mx-auto text-center ">
+          <section className="p-6">
             {props.title && (
               <h2 className="sm:text-3xl text-xl font-bold mb-4">
                 {props.title}
@@ -540,22 +540,21 @@ const CallToAction = (props: CallToActionProps) => {
                 {props?.button?.buttonText}
               </ShinyButton>
             )}
-
-            {props.image?.image && (
-              <div className="2xl:absolute mx-auto 2xl:right-0 translate-x-0.5 bottom-0 size-72 sm:size-96">
-                <div className="h-full relative size-72 sm:size-96 aspect-1">
-                  <Image
-                    alt={""}
-                    className="object-bottom"
-                    objectFit="cover"
-                    fill={true}
-                    src={props.image?.image}
-                  />
-                </div>
+          </section>
+          {props.image?.image && (
+            <div className="md:absolute inset-0">
+              <div className="h-52 md:h-full mr-auto md:mr-0 ml-auto relative aspect-1 h">
+                <Image
+                  alt={""}
+                  className="object-bottom"
+                  objectFit="cover"
+                  fill={true}
+                  src={props.image?.image}
+                />
               </div>
-            )}
-          </div>
-        </section>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
