@@ -185,8 +185,8 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
               </h2>
             )}
             <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="relative h-64 md:h-auto">
+              <div className="grid  md:grid-cols-2 gap-0">
+                <div className="relative h-64 md:h-auto [mask-image:linear-gradient(black,transparent);]">
                   <GridBackground />
                   {/* TODO: Add Image field to blog post
           <Image
@@ -334,42 +334,50 @@ const RecentArticles = ({
                 key={index}
                 className="border bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="relative h-48 [mask-image:linear-gradient(black,transparent);]">
-                  <GridBackground />
-                </div>
-                <div className="p-6 h-full flex flex-col flex-grow">
-                  <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
-                    {post?.date && (
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        <span>{formatDate(post?.date)}</span>
-                      </div>
-                    )}
-                    <span>•</span>
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      <span>{post?.readLength}</span>
-                    </div>
-                    <div className="text-white text-xs px-3 py-1 bg-ssw-charcoal rounded-full">
-                      {edge?.node?.category || "Uncategorized"}
-                    </div>
+                <div className="h-full flex flex-col flex-grow">
+                  <div className="relative h-48 [mask-image:linear-gradient(black,transparent);]">
+                    <GridBackground />
                   </div>
-                  <Link className="w-fit" href={`/blog/${post?._sys.filename}`}>
-                    <h3 className="text-xl font-bold mb-3 hover:text-ssw-red transition-colors">
-                      {post?.title}
-                    </h3>
-                  </Link>
-                  <section className="text-gray-300 text-sm mb-4">
-                    <TinaMarkdown
-                      content={extractBlurbAsTinaMarkdownContent(post?.body, 3)}
-                    />
-                  </section>
-                  <Link
-                    href={`/blog/${post?._sys.filename}`}
-                    className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
-                  >
-                    Read More <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  <div className="flex-grow flex flex-col p-6">
+                    <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
+                      {post?.date && (
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3" />
+                          <span>{formatDate(post?.date)}</span>
+                        </div>
+                      )}
+                      <span>•</span>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        <span>{post?.readLength}</span>
+                      </div>
+                      <div className="text-white text-xs px-3 py-1 bg-ssw-charcoal rounded-full">
+                        {edge?.node?.category || "Uncategorized"}
+                      </div>
+                    </div>
+                    <Link
+                      className="w-fit"
+                      href={`/blog/${post?._sys.filename}`}
+                    >
+                      <h3 className="text-xl font-bold mb-3 hover:text-ssw-red transition-colors">
+                        {post?.title}
+                      </h3>
+                    </Link>
+                    <section className="text-gray-300 text-sm mb-4">
+                      <TinaMarkdown
+                        content={extractBlurbAsTinaMarkdownContent(
+                          post?.body,
+                          3
+                        )}
+                      />
+                    </section>
+                    <Link
+                      href={`/blog/${post?._sys.filename}`}
+                      className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
+                    >
+                      Read More <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             );
