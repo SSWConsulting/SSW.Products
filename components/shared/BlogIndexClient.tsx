@@ -178,7 +178,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                       {"Uncategorized"}
                     </div>
                   </div>
-                  <Link href="/blog/ai-transforming-issue-reporting">
+                  <Link href={`/blog/${featuredBlog._sys.filename}`}>
                     <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
                       {featuredBlog?.title}
                     </h3>
@@ -214,9 +214,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                       </div>
                     </div>
                     <Link href="/blog/ai-transforming-issue-reporting">
-                      <Button className="bg-[#c41414] hover:bg-[#a51212] text-white">
-                        Read Article
-                      </Button>
+                      <Button variant={"default"}>Read Article</Button>
                     </Link>
                   </div>
                 </div>
