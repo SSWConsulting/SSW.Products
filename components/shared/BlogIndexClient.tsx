@@ -1,4 +1,6 @@
 "use client";
+
+import { GridPattern } from "@/components/magicui/grid-background";
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
@@ -32,6 +34,31 @@ const formatDate = (dateString: string) => {
   const date = dayjs(dateString);
   return date.format("MMM D, YYYY");
 };
+
+// function GridBackground() {
+//   return (
+//     <>
+//       <div
+//         className="absolute inset-0 skew-y-12 w-full h-full [mask-image:radial-gradient(400px_circle_at_center,white,transparent)] "
+//         style={{
+//           backgroundImage: `
+//             linear-gradient(to right, #f0f0f0 1px, transparent 1px),
+//             linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)
+//           `,
+//           backgroundSize: "40px 40px",
+//           backgroundPosition: "center center",
+//         }}
+//       />
+//       <div
+//         className="absolute inset-0 w-full h-full"
+//         style={{
+//           background:
+//             "linear-gradient(135deg, rgba(255,0,0,0.7) 0%, rgba(220,20,60,0.5) 50%, rgba(178,34,34,0.3) 100%)",
+//         }}
+//       />
+//     </>
+//   );
+// }
 
 interface BlogIndexClientProps {
   product: string;
@@ -130,6 +157,18 @@ export default function BlogIndexClient({
   // );
 }
 
+const GridBackground = () => {
+  return (
+    <GridPattern
+      stroke="2rem"
+      className="[mask-image:radial-gradient(400px_circle_at_center,white,transparent)]"
+      strokeDasharray={"4 2"}
+      width={30}
+      height={30}
+    />
+  );
+};
+
 const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
   const { searchTerm } = useBlogSearch();
   return (
@@ -148,6 +187,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
             <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
               <div className="grid md:grid-cols-2 gap-0">
                 <div className="relative h-64 md:h-auto">
+                  <GridBackground />
                   {/* TODO: Add Image field to blog post
           <Image
             src={featuredPost.image || "/placeholder.svg"}
@@ -155,11 +195,6 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
             fill
             className="object-cover"
           /> */}
-
-                  {/* Todo: 
-          <div className="absolute top-4 left-4 bg-[#c41414] text-white text-xs px-3 py-1 rounded-full">
-            {featuredPost.category || "Uncategorized"} 
-          </div> */}
                 </div>
                 <div className="p-8">
                   <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
@@ -195,6 +230,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   <div className="flex justify-between items-center">
                     <div className="flex  items-center gap-3">
                       <div className="size-8 relative rounded-full overflow-hidden">
+                        <GridBackground />
                         <Image
                           src={"/default-images/Placeholder-profile.png"}
                           alt="placeholder blog author"
@@ -298,6 +334,9 @@ const RecentArticles = ({
                 key={index}
                 className="border bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
+                <div className="relative h-48 [mask-image:linear-gradient(black,transparent);]">
+                  <GridBackground />
+                </div>
                 <div className="p-6 h-full flex flex-col flex-grow">
                   <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
                     {post?.date && (
