@@ -123,7 +123,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           scrolled
             ? "bg-[#131313] bg-opacity-90 backdrop-blur-md border-b border-white/50"
             : "bg-transparent "
-        } text-gray-300 fixed top-0 inset-x-0 w-full z-50 transition-colors duration-300 flex justify-between place-items-end h-[100px] pb-6 `}
+        } text-gray-300 fixed top-0 inset-x-0 w-full z-[9999] transition-colors duration-300 flex justify-between place-items-end h-[100px] pb-6 `}
       >
         <div className="flex items-end md:justify-between lg:justify-normal  w-full px-4 md:px-20">
           {logo && (
