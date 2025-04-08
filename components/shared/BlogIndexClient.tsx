@@ -185,8 +185,8 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
               </h2>
             )}
             <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
-              <div className="flex flex-col lg:flex-row">
-                <div className="relative w-full flex-grow aspect-video [mask-image:linear-gradient(black,transparent);]">
+              <div className="flex flex-col md:flex-row">
+                <div className="relative w-full flex-grow md:basis-4/12 aspect-video [mask-image:linear-gradient(black,transparent);]">
                   <div className="bg-ssw-charcoal absolute drop-shadow-sm z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
                     {"Uncategorized"}
                   </div>
@@ -194,7 +194,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
 
                   {featuredBlog.bannerImage && (
                     <div className="inset-0 flex items-center justify-center absolute">
-                      <div className="basis-9/12 rounded-md overflow-hidden h-fit aspect-video relative">
+                      <div className="h-5/6 md:h-auto md:w-5/6 rounded-md overflow-hidden aspect-video relative">
                         <Image
                           aria-hidden={true}
                           src={featuredBlog.bannerImage}
@@ -206,7 +206,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                     </div>
                   )}
                 </div>
-                <div className="p-8">
+                <div className="p-8 md:basis-8/12">
                   <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
@@ -225,7 +225,6 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                       {featuredBlog?.title}
                     </h3>
                   </Link>
-                  {/* TODO: add excerpt */}
                   <section className="text-gray-300 mb-6">
                     <TinaMarkdown
                       content={extractBlurbAsTinaMarkdownContent(
