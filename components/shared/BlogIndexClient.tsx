@@ -423,16 +423,6 @@ const HeroSearch = (props: HeroSearchProps) => {
                 {category || ALL_CATEGORY}
               </Button>
             );
-            //   key={index}
-            //   variant={"primary"}
-            //   className={
-            //     index === 0
-            //       ? "bg-[#c41414] hover:bg-[#a51212] text-white"
-            //       : "border-gray-700 text-gray-300 hover:border-[#c41414]/50 hover:text-[#c41414]"
-            //   }
-            // >
-
-            // </Button>
           })}
         </div>
       </div>
