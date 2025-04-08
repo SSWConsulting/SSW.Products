@@ -187,6 +187,9 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
             <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
               <div className="grid  md:grid-cols-2 gap-0">
                 <div className="relative h-64 md:h-auto [mask-image:linear-gradient(black,transparent);]">
+                  <div className="bg-ssw-charcoal relative z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
+                    {"Uncategorized"}
+                  </div>
                   <GridBackground />
                   {/* TODO: Add Image field to blog post
           <Image
@@ -209,9 +212,6 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                       <Clock className="h-4 w-4" />
                       <span>{featuredBlog?.readLength}</span>
                     </div>
-                    <div className="bg-ssw-charcoal  text-white text-xs px-3 py-1 rounded-full">
-                      {"Uncategorized"}
-                    </div>
                   </div>
                   <Link href={`/blog/${featuredBlog._sys.filename}`}>
                     <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
@@ -230,7 +230,6 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   <div className="flex justify-between items-center">
                     <div className="flex  items-center gap-3">
                       <div className="size-8 relative rounded-full overflow-hidden">
-                        <GridBackground />
                         <Image
                           src={"/default-images/Placeholder-profile.png"}
                           alt="placeholder blog author"
@@ -336,24 +335,42 @@ const RecentArticles = ({
               >
                 <div className="h-full flex flex-col flex-grow">
                   <div className="relative h-48 [mask-image:linear-gradient(black,transparent);]">
+                    <div className="text-white text-xs w-fit relative m-3 z-10 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
+                      {edge?.node?.category || "Uncategorized"}
+                    </div>
                     <GridBackground />
                   </div>
                   <div className="flex-grow flex flex-col p-6">
-                    <div className="flex items-center gap-3 mb-3 text-xs text-gray-400">
-                      {post?.date && (
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          <span>{formatDate(post?.date)}</span>
+                    <div className="flex flex-col gap-3 mb-3 text-xs text-gray-400">
+                      <section className="flex gap-3">
+                        <div className="flex gap-3 items-center">
+                          <div className="size-8 relative rounded-full overflow-hidden">
+                            <Image
+                              src={"/default-images/Placeholder-profile.png"}
+                              alt="placeholder blog author"
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                          <p className="font-medium h-fit text-sm">
+                            {edge?.node?.author}
+                          </p>
                         </div>
-                      )}
-                      <span>•</span>
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        <span>{post?.readLength}</span>
-                      </div>
-                      <div className="text-white text-xs px-3 py-1 bg-ssw-charcoal rounded-full">
-                        {edge?.node?.category || "Uncategorized"}
-                      </div>
+                      </section>
+                      <section className="flex items-center gap-3">
+                        {post?.date && (
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3" />
+                            <span>{formatDate(post?.date)}</span>
+                          </div>
+                        )}
+                        <span>•</span>
+
+                        <div className="flex items-center gap-1">
+                          <Clock className="h-3 w-3" />
+                          <span>{post?.readLength}</span>
+                        </div>
+                      </section>
                     </div>
                     <Link
                       className="w-fit"
