@@ -51,17 +51,6 @@ export default function BlogIndexClient({
 
   const blogsIndex = blogData.data.blogsIndex;
 
-  // const categories = [
-  //   "All Posts",
-  //   "Productivity",
-  //   "AI",
-  //   "Templates",
-  //   "Best Practices",
-  //   "Case Studies",
-  //   "Research",
-  //   "Product Updates",
-  // ];
-
   return (
     <>
       <div className="grow">
@@ -366,25 +355,20 @@ const RecentArticles = ({
 
 const HeroSearch = (props: HeroSearchProps) => {
   const debounceTime = 1000;
-
-  const { updateSearchTerm } = useBlogSearch();
+  const {
+    updateSearchTerm,
+    categories,
+    setSelectedCategory,
+    selectedCategory,
+  } = useBlogSearch();
   const [searchTerm, setSearchTerm] = useState("");
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (updateSearchTerm) updateSearchTerm(searchTerm);
     }, debounceTime);
     return () => clearTimeout(timeout);
   }, [searchTerm, updateSearchTerm]);
-  const categories = [
-    "All Posts",
-    "Productivity",
-    "AI",
-    "Templates",
-    "Best Practices",
-    "Case Studies",
-    "Research",
-    "Product Updates",
-  ];
 
   return (
     <section className=" relative py-16  bg-gradient-to-b bg-[#131313]">
@@ -427,7 +411,10 @@ const HeroSearch = (props: HeroSearchProps) => {
           {categories.map((category, index) => {
             return (
               <Button
-                variant={index === 0 ? "default" : "ghost"}
+                onClick={() => {
+                  if (setSelectedCategory) setSelectedCategory(category);
+                }}
+                variant={category === selectedCategory ? "default" : "ghost"}
                 key={`button ${index}`}
               >
                 {category}

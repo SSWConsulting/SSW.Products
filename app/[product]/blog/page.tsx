@@ -49,12 +49,30 @@ export async function generateStaticParams() {
   );
 }
 
+const getCategories = async (product: string) => {
+  //get all categories in use from the posts
+  const posts = await client.queries.blogsConnection();
+  const filteredPosts = posts.data.blogsConnection.edges?.filter((blog) => {
+    return blog?.node?._sys?.path.includes(product);
+  });
+  let categories: string[] = [];
+  if (filteredPosts) {
+    categories = filteredPosts.reduce<string[]>((acc, curr) => {
+      const category = curr?.node?.category;
+      if (category) return [...acc, category];
+      return acc;
+    }, []);
+  }
+  return categories;
+  //only return the categories in usfilteredPosts.reduce<string[]>((acc, curr) => {
+};
+
 export default async function BlogIndex({ params }: BlogIndex) {
   const product = params.product;
-
+  const categories = await getCategories(product);
   const tinaData = await getBlogPageData(product);
-
   const queryClient = new QueryClient();
+
   await queryClient.prefetchInfiniteQuery({
     queryKey: ["blogs"], // Ensure queryKey matches BlogIndexClient
     queryFn: () => getBlogsForProduct({ product, limit: 3 }),
@@ -72,7 +90,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
         <div className="flex flex-col min-h-screen pt-[124px]">
           <InteractiveBackground fogColor="red" />
           <HydrationBoundary state={dehydratedState}>
-            <BlogSearchProvider>
+            <BlogSearchProvider categories={categories}>
               <BlogIndexClient {...tinaData} product={product} />
             </BlogSearchProvider>
           </HydrationBoundary>

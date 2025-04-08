@@ -1,20 +1,26 @@
-import client from '../tina/__generated__/client';
-
+import client from "../tina/__generated__/client";
 
 type GetBlogsForProductProps = {
-  endCursor?: string,
-  offset?: number,
-  limit?: number
-  keyword?: string
-  product: string
-}
+  endCursor?: string;
+  offset?: number;
+  limit?: number;
+  keyword?: string;
+  product: string;
+};
 
-
-export async function getBlogsForProduct({endCursor, limit, product, keyword}: GetBlogsForProductProps){
-
+export async function getBlogsForProduct({
+  endCursor,
+  limit,
+  product,
+  keyword,
+}: GetBlogsForProductProps) {
   try {
-
-    const res = await client.queries.blogsConnection({after: endCursor, first: limit, sort: "date"})
+    const res = await client.queries.blogsConnection({
+      filter: { category: { eq: null } },
+      after: endCursor,
+      first: limit,
+      sort: "date",
+    });
 
     if (
       !res.data ||
@@ -25,11 +31,13 @@ export async function getBlogsForProduct({endCursor, limit, product, keyword}: G
       throw new Error("No documents found");
     }
 
-
-    res.data.blogsConnection.edges = res.data.blogsConnection.edges?.filter((
-      edge) =>{
-
-        return edge?.node?._sys?.path?.includes(`/blogs/${product}/`) && (!keyword || edge?.node?.title.toLowerCase().includes(keyword.toLowerCase()))
+    res.data.blogsConnection.edges = res.data.blogsConnection.edges?.filter(
+      (edge) => {
+        return (
+          edge?.node?._sys?.path?.includes(`/blogs/${product}/`) &&
+          (!keyword ||
+            edge?.node?.title.toLowerCase().includes(keyword.toLowerCase()))
+        );
       }
     );
 
@@ -48,12 +56,9 @@ export async function getBlogsForProduct({endCursor, limit, product, keyword}: G
 
     // const paginatedBlogs = sortedBlogs.slice(offset, offset + limit);
 
-
-    
-    
     // {
     //   // query: res.query,
-    //   return 
+    //   return
     //   data: filteredBlogs.map((edge) => {
     //     if(!edge?.node) return null;
     //       return edge.node
@@ -61,7 +66,7 @@ export async function getBlogsForProduct({endCursor, limit, product, keyword}: G
     //   // hasMore: filteredBlogs.length > offset + limit,
     // };
   } catch (error) {
-    console.error('Error fetching TinaCMS blog data:', error);
+    console.error("Error fetching TinaCMS blog data:", error);
     throw error;
   }
 }

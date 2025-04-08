@@ -38,6 +38,15 @@ export const blogCollection: Collection = {
       label: "Author",
     },
     {
+      label: "Category",
+      name: "category",
+      type: "string",
+      options: ["What's New", "Getting Started"],
+      ui: {
+        component: "select",
+      },
+    },
+    {
       type: "string",
       name: "sswPeopleLink",
       label: "Author SSW People Link",
