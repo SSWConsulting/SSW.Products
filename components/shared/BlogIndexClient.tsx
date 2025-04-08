@@ -548,7 +548,7 @@ const CallToAction = (props: CallToActionProps) => {
               </ShinyButton>
             )}
           </section>
-          {props.image?.image && (
+          {props.image && (
             <div className="md:absolute inset-0 z-0">
               <div className="h-52 md:h-full mr-auto md:mr-0 ml-auto relative aspect-1 h">
                 <Image
@@ -557,7 +557,7 @@ const CallToAction = (props: CallToActionProps) => {
                   className="object-bottom"
                   objectFit="cover"
                   fill={true}
-                  src={props.image?.image}
+                  src={props.image}
                 />
               </div>
             </div>
