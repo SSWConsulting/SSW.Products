@@ -1,12 +1,17 @@
 import React from "react";
 import { Collection, Template, TinaField } from "tinacms";
+import { DEFAULT_CATEGORY } from "../../components/providers/BlogSearchProvider";
 import { seoInformation } from "../shared/SEOInformation";
 export const blogCollection: Collection = {
   label: "Blog Posts",
   name: "blogs",
   path: "content/blogs/",
   format: "mdx",
-
+  defaultItem: () => {
+    return {
+      category: DEFAULT_CATEGORY,
+    };
+  },
   fields: [
     seoInformation as TinaField,
     {
@@ -40,11 +45,9 @@ export const blogCollection: Collection = {
     {
       label: "Category",
       name: "category",
+      required: true,
       type: "string",
-      options: ["What's New", "Getting Started"],
-      ui: {
-        component: "select",
-      },
+      options: [DEFAULT_CATEGORY, "What's New", "Getting Started"],
     },
     {
       type: "string",

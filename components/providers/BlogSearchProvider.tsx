@@ -2,6 +2,9 @@
 
 import { createContext, useContext, useState } from "react";
 
+export const ALL_CATEGORY = "All";
+export const DEFAULT_CATEGORY = "Uncategorized";
+
 type BlogSearchContextType = {
   updateSearchTerm?: (arg0: string) => void;
   searchTerm: string;
@@ -27,7 +30,7 @@ const BlogSearchProvider = ({
   categories,
 }: BlogSearchProviderProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORY);
 
   return (
     <BlogSearchContext.Provider

@@ -23,7 +23,7 @@ import {
 } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
-import { useBlogSearch } from "../providers/BlogSearchProvider";
+import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import { Button } from "../ui/button";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
@@ -263,14 +263,16 @@ const RecentArticles = ({
   product,
   ...props
 }: ArticleListProps & { product: string }) => {
-  const { searchTerm } = useBlogSearch();
+  const { searchTerm, selectedCategory } = useBlogSearch();
   const { data, fetchNextPage } = useInfiniteQuery({
-    queryKey: [`blogs${searchTerm}`],
+    queryKey: [`blogs${searchTerm}${selectedCategory}`],
     queryFn: ({ pageParam }) => {
       return getBlogsForProduct({
         product,
         endCursor: pageParam,
         keyword: searchTerm,
+        category:
+          selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
       });
     },
     initialPageParam: "",
@@ -311,7 +313,7 @@ const RecentArticles = ({
                       <span>{post?.readLength}</span>
                     </div>
                     <div className="text-white text-xs px-3 py-1 bg-ssw-charcoal rounded-full">
-                      {"Uncategorized"}
+                      {edge?.node?.category || "Uncategorized"}
                     </div>
                   </div>
                   <Link className="w-fit" href={`/blog/${post?._sys.filename}`}>

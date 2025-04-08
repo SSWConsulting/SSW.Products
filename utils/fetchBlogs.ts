@@ -6,17 +6,28 @@ type GetBlogsForProductProps = {
   limit?: number;
   keyword?: string;
   product: string;
+  category?: string;
 };
 
 export async function getBlogsForProduct({
+  category,
   endCursor,
   limit,
   product,
   keyword,
 }: GetBlogsForProductProps) {
   try {
+    const filters = category
+      ? {
+          filter: {
+            category: {
+              eq: category,
+            },
+          },
+        }
+      : {};
     const res = await client.queries.blogsConnection({
-      filter: { category: { eq: null } },
+      ...filters,
       after: endCursor,
       first: limit,
       sort: "date",
