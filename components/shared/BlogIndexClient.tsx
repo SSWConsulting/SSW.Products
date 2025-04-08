@@ -185,8 +185,8 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
               </h2>
             )}
             <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
-              <div className="flex">
-                <div className="relative w-full h-64 md:h-auto [mask-image:linear-gradient(black,transparent);]">
+              <div className="flex flex-col lg:flex-row">
+                <div className="relative w-full flex-grow aspect-video [mask-image:linear-gradient(black,transparent);]">
                   <div className="bg-ssw-charcoal absolute drop-shadow-sm z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
                     {"Uncategorized"}
                   </div>
@@ -194,7 +194,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
 
                   {featuredBlog.bannerImage && (
                     <div className="inset-0 flex items-center justify-center absolute">
-                      <div className="basis-8/12 rounded-md overflow-hidden h-fit aspect-video relative">
+                      <div className="basis-9/12 rounded-md overflow-hidden h-fit aspect-video relative">
                         <Image
                           aria-hidden={true}
                           src={featuredBlog.bannerImage}
@@ -340,14 +340,14 @@ const RecentArticles = ({
                 key={index}
                 className="border bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
               >
-                <div className="h-full flex flex-col flex-grow">
+                <div className="h-full flex flex-col flex-grow flex-shrink-0">
                   <div className="relative h-48 [mask-image:linear-gradient(black,transparent);]">
                     <div className="text-white text-xs w-fit drop-shadow-sm relative m-3 z-10 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
                       {edge?.node?.category || "Uncategorized"}
                     </div>
                     <GridBackground />
                   </div>
-                  <div className="flex-grow flex flex-col p-6">
+                  <div className="flex-grow flex-shrink-0 flex flex-col p-6">
                     <div className="flex flex-col gap-3 mb-3 text-xs text-gray-400">
                       <section className="flex gap-3">
                         <div className="flex gap-3 items-center">
