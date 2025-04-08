@@ -520,20 +520,27 @@ const CallToAction = (props: CallToActionProps) => {
     <section className="container mx-auto py-16">
       <div className="rounded-2xl bg-[#131313] relative">
         <div className="max-w-3xl mx-auto text-center ">
-          <section className="p-6">
+          <section className="p-6 z-10 relative">
             {props.title && (
-              <h2 className="sm:text-3xl text-xl font-bold mb-4">
+              <h2
+                data-tina-field={tinaField(props, "title")}
+                className="sm:text-3xl text-xl font-bold mb-4"
+              >
                 {props.title}
               </h2>
             )}
             {props.description && (
-              <p className="text-gray-300 text-sm sm:text-base mb-8">
+              <p
+                data-tina-field={tinaField(props, "description")}
+                className="text-gray-300 text-sm sm:text-base mb-8"
+              >
                 {props.description}
               </p>
             )}
 
             {props.button && (
               <ShinyButton
+                data-tina-field={tinaField(props, "button")}
                 className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
                 href={props.button.buttonLink || ""}
               >
@@ -542,10 +549,11 @@ const CallToAction = (props: CallToActionProps) => {
             )}
           </section>
           {props.image?.image && (
-            <div className="md:absolute inset-0">
+            <div className="md:absolute inset-0 z-0">
               <div className="h-52 md:h-full mr-auto md:mr-0 ml-auto relative aspect-1 h">
                 <Image
                   alt={""}
+                  aria-hidden="true"
                   className="object-bottom"
                   objectFit="cover"
                   fill={true}
