@@ -547,8 +547,8 @@ const CallToAction = (props: CallToActionProps) => {
                   <Image
                     alt={""}
                     className="object-bottom"
-                    objectFit="contain"
-                    fill
+                    objectFit="cover"
+                    fill={true}
                     src={props.image?.image}
                   />
                 </div>
