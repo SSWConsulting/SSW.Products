@@ -59,7 +59,7 @@ const getCategories = async (product: string) => {
   if (filteredPosts) {
     categories = filteredPosts.reduce<string[]>((acc, curr) => {
       const category = curr?.node?.category;
-      if (category) return [...acc, category];
+      if (category && !acc.includes(category)) return [...acc, category];
       return acc;
     }, []);
   }
@@ -74,7 +74,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({
-    queryKey: ["blogs"], // Ensure queryKey matches BlogIndexClient
+    queryKey: [`blogs`], // Ensure queryKey matches BlogIndexClient
     queryFn: () => getBlogsForProduct({ product, limit: 3 }),
     initialPageParam: undefined,
   });

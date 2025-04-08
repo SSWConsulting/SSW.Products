@@ -30,7 +30,7 @@ const BlogSearchProvider = ({
   categories,
 }: BlogSearchProviderProps) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(ALL_CATEGORY);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   return (
     <BlogSearchContext.Provider
@@ -39,9 +39,7 @@ const BlogSearchProvider = ({
         setSelectedCategory,
         selectedCategory,
         searchTerm,
-        categories: ["All", "Uncategorized", ...categories].sort((a, b) =>
-          a.localeCompare(b)
-        ),
+        categories: ["", ...categories].sort((a, b) => a.localeCompare(b)),
       }}
     >
       {children}

@@ -268,6 +268,7 @@ const RecentArticles = ({
     queryKey: [`blogs${searchTerm}${selectedCategory}`],
     queryFn: ({ pageParam }) => {
       return getBlogsForProduct({
+        limit: 3,
         product,
         endCursor: pageParam,
         keyword: searchTerm,
@@ -419,7 +420,7 @@ const HeroSearch = (props: HeroSearchProps) => {
                 variant={category === selectedCategory ? "default" : "ghost"}
                 key={`button ${index}`}
               >
-                {category}
+                {category || ALL_CATEGORY}
               </Button>
             );
             //   key={index}
