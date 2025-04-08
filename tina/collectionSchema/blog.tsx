@@ -15,6 +15,12 @@ export const blogCollection: Collection = {
   fields: [
     seoInformation as TinaField,
     {
+      type: "image",
+      name: "bannerImage",
+      label: "Banner Image",
+      description: "Ideally use an image with a 16/9 aspect ratio",
+    },
+    {
       type: "string",
       name: "title",
       label: "Title",

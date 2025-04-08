@@ -185,19 +185,26 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
               </h2>
             )}
             <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
-              <div className="grid  md:grid-cols-2 gap-0">
-                <div className="relative h-64 md:h-auto [mask-image:linear-gradient(black,transparent);]">
-                  <div className="bg-ssw-charcoal relative z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
+              <div className="flex">
+                <div className="relative w-full h-64 md:h-auto [mask-image:linear-gradient(black,transparent);]">
+                  <div className="bg-ssw-charcoal absolute drop-shadow-sm z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
                     {"Uncategorized"}
                   </div>
                   <GridBackground />
-                  {/* TODO: Add Image field to blog post
-          <Image
-            src={featuredPost.image || "/placeholder.svg"}
-            alt={featuredPost.title}
-            fill
-            className="object-cover"
-          /> */}
+
+                  {featuredBlog.bannerImage && (
+                    <div className="inset-0 flex items-center justify-center absolute">
+                      <div className="basis-8/12 rounded-md overflow-hidden h-fit aspect-video relative">
+                        <Image
+                          aria-hidden={true}
+                          src={featuredBlog.bannerImage}
+                          alt={""}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="p-8">
                   <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
@@ -335,7 +342,7 @@ const RecentArticles = ({
               >
                 <div className="h-full flex flex-col flex-grow">
                   <div className="relative h-48 [mask-image:linear-gradient(black,transparent);]">
-                    <div className="text-white text-xs w-fit relative m-3 z-10 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
+                    <div className="text-white text-xs w-fit drop-shadow-sm relative m-3 z-10 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
                       {edge?.node?.category || "Uncategorized"}
                     </div>
                     <GridBackground />
