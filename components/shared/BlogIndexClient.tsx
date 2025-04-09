@@ -354,6 +354,14 @@ const RecentArticles = ({
                       {edge?.node?.category || "Uncategorized"}
                     </div>
                     <div className="flex flex-col gap-3 mb-3 text-xs text-gray-400">
+                      <Link
+                        className="w-fit"
+                        href={`/blog/${post?._sys.filename}`}
+                      >
+                        <h3 className="text-xl font-bold mb-3 text-gray-100 hover:text-ssw-red transition-colors">
+                          {post?.title}
+                        </h3>
+                      </Link>
                       <section className="flex gap-3">
                         <div className="flex gap-3 items-center">
                           <div className="size-8 items-center relative rounded-full overflow-hidden">
@@ -396,14 +404,7 @@ const RecentArticles = ({
                         </div>
                       </section>
                     </div>
-                    <Link
-                      className="w-fit"
-                      href={`/blog/${post?._sys.filename}`}
-                    >
-                      <h3 className="text-xl font-bold mb-3 hover:text-ssw-red transition-colors">
-                        {post?.title}
-                      </h3>
-                    </Link>
+
                     <section className="text-gray-300 text-sm mb-4 line-clamp-2">
                       <TinaMarkdown content={post?.body} />
                     </section>
