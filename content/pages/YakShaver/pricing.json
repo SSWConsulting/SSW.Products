@@ -1,34 +1,30 @@
 {
-  "title": "pricing",
+  "title": "",
   "pageBlocks": [
     {
-      "title": "Pricing",
-      "description": "Pick the right plan for you and get **14 days free** shaving!\n",
-      "allPlans": [
-        {
-          "title": "14 Days Free Trial"
-        },
-        {
-          "title": "Microsoft Teams Integration"
-        },
-        {
-          "title": "AI-Powered Task Routing"
-        },
-        {
-          "title": "Automated Work Item Generation"
-        },
-        {
-          "title": "Team Support"
-        }
-      ],
+      "title": "{Simple, Transparent Pricing}",
+      "description": "Choose the plan that's right for your team and **start saving time** on issue reporting **today**\n",
       "plans": [
         {
-          "planTier": "Basic",
-          "planDescription": "Up to 20 users",
-          "price": "$3.50",
-          "subPriceText": "/user per month",
+          "planTier": "Starter",
+          "planDescription": "For individuals getting started",
+          "price": "Free",
+          "subPriceText": "forever *",
+          "priceDescription": "* With your own OpenAI API key",
+          "timeSaved": "~7.5 hours/mo ",
+          "isRecommended": false,
+          "listTitle": "Get started with",
+          "listItems": [
+            "{15 credits} per month",
+            "{~7.5 hours saved} per month",
+            "2 projects",
+            "Basic integrations",
+            "2-minute video recordings",
+            "Manual work item assignment",
+            "SharePoint video hosting"
+          ],
           "actions": {
-            "label": "GET BASIC",
+            "label": "Get Started Free",
             "variant": "outlinedWhite",
             "size": "medium",
             "url": "/",
@@ -37,11 +33,25 @@
         },
         {
           "planTier": "Team",
-          "planDescription": "21 to 100 users",
-          "price": "$3.00",
-          "subPriceText": "/user per month",
+          "planDescription": "For teams and small businesses",
+          "price": "$39",
+          "subPriceText": "/month",
+          "priceDescription": "Unlimited seats company-wide",
+          "timeSaved": "~50 hours/mo",
+          "isRecommended": true,
+          "listTitle": "Get your team onboard with",
+          "listItems": [
+            "{100 credits} per month",
+            "{~50 hours saved} per month",
+            "{Unlimited projects}",
+            "All integrations",
+            "5-minute video recordings",
+            "YouTube video hosting",
+            "Automatic work item assignment",
+            "Discord support"
+          ],
           "actions": {
-            "label": "GET TEAM",
+            "label": "Get Team Plan",
             "variant": "solidRed",
             "size": "medium",
             "url": "/",
@@ -49,12 +59,23 @@
           }
         },
         {
-          "planTier": "Business",
-          "planDescription": "101 to 150 users",
-          "price": "$2.50",
-          "subPriceText": "/user per month",
+          "planTier": "Growth",
+          "planDescription": "For organizations with multiple teams",
+          "price": "$189",
+          "subPriceText": "/month",
+          "priceDescription": "Unlimited seats company-wide",
+          "timeSaved": "~250 hours/mo",
+          "listTitle": "Everything in Team plan, plus",
+          "listItems": [
+            "{500 credits} per month",
+            "{~250 hours saved} per month",
+            "15-minute video recordings",
+            "Advanced analytics dashboard",
+            "Priority support (Discord + email)",
+            "Dedicated account manager"
+          ],
           "actions": {
-            "label": "GET BUSINESS",
+            "label": "Choose Growth Plan",
             "variant": "outlinedWhite",
             "size": "medium",
             "url": "/",
@@ -63,11 +84,22 @@
         },
         {
           "planTier": "Enterprise",
-          "planDescription": "150+ Users",
+          "planDescription": "For large organizations with custom needs",
           "price": "Custom",
-          "subPriceText": "/user per month",
+          "subPriceText": "",
+          "priceDescription": "Contact us for custom pricing",
+          "timeSaved": "Custom",
+          "listTitle": "Everything in Growth plan, plus",
+          "listItems": [
+            "{Custom credits} allocation",
+            "30-minute video recordings",
+            "Custom training & onboarding",
+            "Dedicated support",
+            "Custom integrations",
+            "Single Sign-On (SSO)"
+          ],
           "actions": {
-            "label": "BOOK A DEMO",
+            "label": "Contact Sales",
             "variant": "outlinedWhite",
             "size": "medium",
             "url": "/",
@@ -75,24 +107,265 @@
           }
         }
       ],
+      "addOns": {
+        "title": "{Credit Pack}",
+        "description": "Need a top up? Add some credits",
+        "price": "$25",
+        "subPriceText": "per 50 credits",
+        "actionButton": {
+          "label": "View Full Pricing Details",
+          "variant": "outlinedWhite",
+          "size": "large",
+          "url": "/pricing"
+        }
+      },
       "_template": "pricing"
     },
     {
-      "backgroundColour": "#000000",
-      "textColour": "#FFFFFF",
-      "headline": "Talk to a YakShaver Expert",
-      "text": "Evaluating YakShaver for your project? Book a 30-minute call with a YakShaver architect!",
-      "buttons": [
+      "headline": "{Feature Comparison}",
+      "sectionDescription": "Compare all features across our different plans to find the perfect fit for your needs",
+      "table": [
         {
-          "label": "SCHEDULE CALL",
-          "variant": "solidRed",
-          "size": "medium",
-          "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
-          "_template": "actions"
+          "title": "Overview",
+          "footerText": "* Each Teams Instance can only have 1 free user assigned to it.",
+          "rows": [
+            {
+              "column1": "Feature",
+              "column1SubText": "",
+              "column2": "Starter",
+              "column3": "Team",
+              "column4": "Growth",
+              "column5": "Enterprise"
+            },
+            {
+              "column1": "Price",
+              "column2": "Free",
+              "column2SubText": "(with your own OpenAI API key)",
+              "column3": "USD$39/ month",
+              "column4": "USD$189/month",
+              "column5": "Custom"
+            },
+            {
+              "column1": "Ideal for",
+              "column2": "Individuals",
+              "column3": "Teams",
+              "column4": "Orgs with multiple teams",
+              "column5": "Enterprise"
+            },
+            {
+              "column1": "Seats",
+              "column2": "1*",
+              "column2SubText": "",
+              "column3": "Unlimited",
+              "column3SubText": "(Company-wide)",
+              "column4": "Unlimited",
+              "column4SubText": "(Company-wide)",
+              "column5": "Unlimited",
+              "column5SubText": "(Company-wide)"
+            },
+            {
+              "column1": "Time Saved",
+              "column2": "~7.5 hours/mo",
+              "column3": "~50 hours/mo",
+              "column3SubText": "",
+              "column4": "~250 hours/mo",
+              "column4SubText": "",
+              "column5": "Custom",
+              "column5SubText": ""
+            }
+          ]
+        },
+        {
+          "title": "Core Capture & Processing",
+          "footerText": "",
+          "rows": [
+            {
+              "column1": "Feature",
+              "column1SubText": "",
+              "column2": "Starter",
+              "column3": "Team",
+              "column4": "Growth",
+              "column5": "Enterprise"
+            },
+            {
+              "column1": "Microsoft Teams Integration",
+              "column2": "✅",
+              "column2SubText": " ",
+              "column3": "✅",
+              "column3SubText": " ",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "Max Video Recording Duration",
+              "column2": "2 mins",
+              "column3": "5 mins",
+              "column4": "15 mins",
+              "column5": "30 mins"
+            },
+            {
+              "column1": "Video/ recording hosting",
+              "column2": "SharePoint",
+              "column3": "SharePoint or YouTube",
+              "column4": "SharePoint or YouTube",
+              "column5": "Custom"
+            }
+          ]
+        },
+        {
+          "title": "Developer Integrations",
+          "footerText": "",
+          "rows": [
+            {
+              "column1": "Feature",
+              "column2": "Starter",
+              "column3": "Team",
+              "column4": "Growth",
+              "column5": "Enterprise"
+            },
+            {
+              "column1": "Azure DevOps Integration",
+              "column2": "✅",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "GitHub Integration",
+              "column2": "✅",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "More Integrations (Jira, Zendesk, Linear)",
+              "column2": "Coming soon",
+              "column3": "Coming soon",
+              "column4": "Coming soon",
+              "column5": "Coming soon"
+            },
+            {
+              "column1": "Email Creation",
+              "column2": "✅",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "Work Item Assignment",
+              "column2": "Manual",
+              "column3": "Automatic",
+              "column4": "Automatic",
+              "column5": "Automatic"
+            },
+            {
+              "column1": "Project/ Repo Assignment",
+              "column2": "Auto",
+              "column3": "Auto",
+              "column4": "Auto ",
+              "column5": "Auto"
+            },
+            {
+              "column1": "Work Item Prioritization",
+              "column1SubText": "(Beta)",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "Duplicate Item Detection",
+              "column1SubText": "(Beta)",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "Custom Integrations (Jira, Zendesk)",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            }
+          ]
+        },
+        {
+          "title": "Customization & Management",
+          "rows": [
+            {
+              "column1": "Feature",
+              "column2": "Starter",
+              "column3": "Team",
+              "column4": "Growth",
+              "column5": "Enterprise"
+            },
+            {
+              "column1": "Custom Work Templates",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "User Management",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "Analytics",
+              "column2": "❌",
+              "column3": "Basic",
+              "column4": "Advanced dashboard",
+              "column5": "Custom"
+            },
+            {
+              "column1": "Database Provided",
+              "column2": "Shared",
+              "column3": "Private",
+              "column4": "Private",
+              "column5": "Private"
+            }
+          ]
+        },
+        {
+          "title": "Support & Security",
+          "footerText": "",
+          "rows": [
+            {
+              "column1": "Feature",
+              "column2": "Starter",
+              "column3": "Team",
+              "column4": "Growth",
+              "column5": "Enterprise"
+            },
+            {
+              "column1": "Support access",
+              "column2": "❌",
+              "column3": "Discord",
+              "column4": "Priority Discord + email",
+              "column5": "Dedicated Support"
+            },
+            {
+              "column1": "Single Sign On (SSO)",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "Dedicated account manager",
+              "column2": "❌",
+              "column3": "❌",
+              "column4": "✅",
+              "column5": "✅"
+            }
+          ]
         }
       ],
-      "image": "/YakShaver/UlyPoint.png",
-      "_template": "Banner"
+      "_template": "comparisonTable"
     }
   ]
 }

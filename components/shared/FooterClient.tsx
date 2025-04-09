@@ -1,20 +1,22 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FooterQuery } from "../../tina/__generated__/types";
 import {
-  FaYoutube,
-  FaLinkedin,
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaTiktok,
-  FaGithub,
   FaDiscord,
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaTiktok,
+  FaTwitter,
+  FaYoutube,
 } from "react-icons/fa";
+import { FooterQuery } from "../../tina/__generated__/types";
 
 interface FooterClientProps {
   results: FooterQuery | null;
+  hasPrivacyPolicy: boolean;
 }
 
 const iconMap: { [key: string]: JSX.Element } = {
@@ -28,7 +30,10 @@ const iconMap: { [key: string]: JSX.Element } = {
   FaDiscord: <FaDiscord />,
 };
 
-export default function FooterClient({ results }: FooterClientProps) {
+export default function FooterClient({
+  results,
+  hasPrivacyPolicy,
+}: FooterClientProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -43,7 +48,7 @@ export default function FooterClient({ results }: FooterClientProps) {
   const footerTitle = results?.footer?.footerTitle;
   const footerColor = results.footer.footerColor!;
 
-  const dynamicYear = new Date().getFullYear()
+  const dynamicYear = new Date().getFullYear();
 
   return (
     <footer
@@ -75,7 +80,15 @@ export default function FooterClient({ results }: FooterClientProps) {
 
         {/* Footer Title */}
         <div className="text-center lg:text-left md:text-sm text-xs lg:order-1">
-          {dynamicYear.toString()} {' '} {footerTitle || "Default Footer Title"}
+          {dynamicYear.toString()} {footerTitle || "Default Footer Title"}{" "}
+          {hasPrivacyPolicy && (
+            <>
+              {"| "}
+              <Link href="/privacy" className="underline">
+                Privacy Policy
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </footer>

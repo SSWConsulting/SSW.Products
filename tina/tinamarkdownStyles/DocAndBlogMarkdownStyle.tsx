@@ -26,11 +26,11 @@ export const DocAndBlogMarkdownStyle: Components<{
   ),
 
   h3: (props) => (
-    <h3 className="text-xl font-semibold mb-4 mt-3">{props?.children}</h3>
+    <h3 className="text-xl font-semibold mb-4 mt-8">{props?.children}</h3>
   ),
 
   ol: (props) => (
-    <ol className="list-decimal font-lightlist-inside pl-6 mb-4">
+    <ol className="list-decimal font-light list-inside pl-6 mb-4">
       {props?.children}
     </ol>
   ),

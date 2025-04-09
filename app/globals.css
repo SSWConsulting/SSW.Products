@@ -23,6 +23,9 @@ html {
 }
 
 @layer base {
+    strong, b {
+        font-weight: bold;
+    }
   :root {
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;
@@ -86,8 +89,6 @@ html {
     @apply bg-background text-foreground;
     }
 }
-
-
 
 @layer base {
   * {

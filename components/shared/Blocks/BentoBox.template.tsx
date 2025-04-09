@@ -36,8 +36,21 @@ export const bentoBoxTemplate: Template = {
         {
           name: "icons",
           label: "Icons",
-          type: "image",
+          type: "object",
           list: true,
+          ui: {
+            itemProps: (item: { iconImage: string; iconToolTipText: string }) => ({
+              label: item?.iconToolTipText || 'Default Icon Text',
+            }),
+          },
+          fields: [
+            { name: "iconImage", label: "Icon Image", type: "image" },
+            {
+              name: "iconToolTipText",
+              label: "Icon Tooltip Text",
+              type: "string",
+            },
+          ],
         },
       ],
     },

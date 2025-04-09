@@ -22,6 +22,8 @@ import {
 import * as AntIcons from "../../node_modules/react-icons/ai";
 import { seoInformation } from "../shared/SEOInformation";
 import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImage/CardAndImage.template";
+import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
+import { CalculatorTemplate } from "../../components/shared/Blocks/Calculator.template";
 
 
 export const PagesSchema: Collection = {
@@ -29,12 +31,12 @@ export const PagesSchema: Collection = {
   name: "pages",
   path: "content/pages/",
   format: "json",
-  //This ui is needed because of the dynamic routing with [filename] -> tina is looking for a static path (i.e pages/TimePro, pages/YakShaver)
-  // ui: {
-  //   router: ({ document }) => {
-  //     return `/${document?._sys.filename}`;
-  //   },
-  // },
+  // This ui is needed because of the dynamic routing with [filename] -> tina is looking for a static path (i.e pages/TimePro, pages/YakShaver)
+  ui: {
+    router: ({ document }) => {
+      return `/${document?._sys.filename}`;
+    },
+  },
   fields: [
     seoInformation as TinaField,
     {
@@ -61,6 +63,9 @@ export const PagesSchema: Collection = {
         bentoBoxTemplate,
         timelineTemplate,
         CardAndImageTemplate,
+        ComparisonTable,
+        CalculatorTemplate,
+
         breadcrumbBlock(
           "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/breadcrumbs.jpg?raw=true"
         ),

@@ -82,11 +82,26 @@
       "topLeftBox": {
         "title": "Work with your favourite software development and collaborative tools ",
         "icons": [
-          "/svg/Microsoft Office Teams 2018.svg",
-          "/SSW Product Sites.svg",
-          "/svg/SSW Product Sites Clip Path Group.svg",
-          "/svg/github-mark-white.svg",
-          "/svg/devops.svg"
+          {
+            "iconImage": "/svg/Microsoft Office Teams 2018.svg",
+            "iconToolTipText": "Microsoft Teams"
+          },
+          {
+            "iconImage": "/SSW Product Sites.svg",
+            "iconToolTipText": "Snagit"
+          },
+          {
+            "iconImage": "/svg/SSW Product Sites Clip Path Group.svg",
+            "iconToolTipText": "Microsoft Dynamics 365"
+          },
+          {
+            "iconImage": "/svg/devops.svg",
+            "iconToolTipText": "Azure DevOps"
+          },
+          {
+            "iconImage": "/svg/github-mark-white.svg",
+            "iconToolTipText": "GitHub"
+          }
         ]
       },
       "topRightBox": {
@@ -129,6 +144,99 @@
         "outputText": "Work Item"
       },
       "_template": "BentoBox"
+    },
+    {
+      "title": "{Simple, Transparent Pricing}",
+      "desc": "Choose the plan that's right for your team and start saving time on issue reporting today",
+      "tiers": [
+        {
+          "tier": "Starter ",
+          "description": [
+            "15 Credits per month",
+            "For individuals"
+          ],
+          "price": 0,
+          "estimatedHoursSaved": 7.5,
+          "itemsAbleToCreate": 15,
+          "priceDescription": "forever",
+          "actions": {
+            "label": "Get Started",
+            "variant": "outlinedWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "Team",
+          "description": [
+            "100 Credits per month",
+            "For growing teams"
+          ],
+          "price": 39,
+          "estimatedHoursSaved": 50,
+          "itemsAbleToCreate": 100,
+          "priceDescription": "per month",
+          "actions": {
+            "label": "Get Started",
+            "variant": "solidRed",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "Growth",
+          "description": [
+            "500 Credits per month",
+            "For larger organizations"
+          ],
+          "price": 189,
+          "estimatedHoursSaved": 250,
+          "itemsAbleToCreate": 500,
+          "priceDescription": "per month",
+          "actions": {
+            "label": "Get Started",
+            "variant": "outlinedWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "Enterprise",
+          "description": [
+            "Custom credit allocation",
+            "For custom solutions"
+          ],
+          "price": 99999,
+          "estimatedHoursSaved": 0,
+          "itemsAbleToCreate": 0,
+          "actions": {
+            "label": "Get Started",
+            "variant": "solidWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        }
+      ],
+      "addOns": {
+        "title": "Credit Pack",
+        "description": "Need a top up? Add some credits",
+        "price": "25",
+        "subPriceText": "per 50 credits",
+        "actionButton": {
+          "label": "View Full Pricing Details",
+          "variant": "outlinedWhite",
+          "size": "medium",
+          "url": "/pricing"
+        }
+      },
+      "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\*\\* Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
+      "bottomAction": {
+        "label": "View Full Pricing Details",
+        "variant": "solidRed",
+        "size": "large",
+        "url": "/pricing"
+      },
+      "_template": "calculator"
     },
     {
       "altText": "Making the Perfect PBI | YakShaver",
