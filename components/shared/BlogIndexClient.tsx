@@ -190,7 +190,9 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   <div className="bg-ssw-charcoal absolute drop-shadow-sm z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
                     {"Uncategorized"}
                   </div>
-                  <div className="w-full h-full md:[mask-image:linear-gradient(to_right,black,black,transparent)] [mask-image:linear-gradient(black,black,transparent)]">
+                  {/* TODO: Tech debt
+                  Tailwind v3 does not not have a built in image mask class https://github.com/SSWConsulting/SSW.YakShaver/issues/1817 */}
+                  <div className="w-full h-full md:[mask-image:linear-gradient(to_,black,black,transparent)] [mask-image:linear-gradient(black,black,transparent)]">
                     <GridBackground />
                   </div>
 
