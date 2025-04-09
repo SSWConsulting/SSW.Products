@@ -518,7 +518,7 @@ const HeroSearch = (props: HeroSearchProps) => {
 
 const CallToAction = (props: CallToActionProps) => {
   return (
-    <section className="container mx-auto py-16">
+    <section className="container mx-auto py-24">
       <div className="rounded-2xl bg-[#131313] relative">
         <div className="max-w-3xl mx-auto text-center ">
           <section className="p-6 z-10 relative">
