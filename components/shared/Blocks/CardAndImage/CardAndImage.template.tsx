@@ -10,6 +10,14 @@ export const CardAndImageTemplate: Template = {
         type: 'string',
     },
     {
+      name: 'ParentContainerDescription',
+      label: 'Parent Container Description',
+      type: 'string',
+      ui: {
+        component: 'textarea',
+      },
+    },
+    {
       name: "CardAndImageItem",
       label: "Card and Image Child Item",
       list: true,

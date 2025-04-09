@@ -52,7 +52,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
   if (!blocks) return null;
 
   return blocks.map((block: Block, index: number) => {
-    console.log(block.__typename);
+    
     switch (block.__typename) {
       
       case "PagesPageBlocksFeatures":

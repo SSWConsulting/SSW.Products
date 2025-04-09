@@ -42,7 +42,8 @@
       "_template": "hero"
     },
     {
-      "ParentContainerTitle": "How to Shave a Yak",
+      "ParentContainerTitle": "{How YakShaver Works}",
+      "ParentContainerDescription": "The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. ",
       "CardAndImageItem": [
         {
           "AboveHeaderText": "{See it}",
@@ -51,12 +52,14 @@
           "Badge1Text": "Teams",
           "Badge2Text": "Snipping Tool",
           "Badge3Text": "Snaggit",
+          "media": "/Browser1.png",
           "textOnLeft": true
         },
         {
           "AboveHeaderText": "{Shave It}",
           "Header": "2 - YakShaver Takes Over",
           "Description": "YakShaver watches your video, turns what you say into text, and figures out what's happening.\n",
+          "media": "/Browser2.png",
           "textOnLeft": true
         },
         {
@@ -66,6 +69,7 @@
           "Badge1Text": "GitHub",
           "Badge2Text": "DevOps",
           "Badge3Text": "Email",
+          "media": "/Browser3.png",
           "textOnLeft": true
         }
       ],

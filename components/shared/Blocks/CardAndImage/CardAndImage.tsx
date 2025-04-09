@@ -1,7 +1,8 @@
-import { Components, TinaMarkdown } from 'tinacms/dist/rich-text';
-import { curlyBracketFormatter } from '../Hero';
-import { FaChevronDown } from 'react-icons/fa';
-import { useState, useRef, useEffect } from 'react';
+import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
+import { curlyBracketFormatter } from "../Hero";
+import { FaChevronDown } from "react-icons/fa";
+import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 
 const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
   ul: (props: unknown) => {
@@ -11,15 +12,20 @@ const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
 };
 
 export default function CardAndImageParent(data: any) {
-  const [idOfOpen, setIdOfOpen] = useState<string | null>(null);
+  const [idOfOpen, setIdOfOpen] = useState<string | null>("0");
 
   return (
     <div className="max-w-7xl mx-auto px-12 pb-12">
-      <h2 className="text-5xl text-white flex justify-center font-bold py-12">
-        {data.data.ParentContainerTitle}
+      <h2 className="text-5xl text-white flex justify-center font-bold pt-12 pb-3">
+        {curlyBracketFormatter(data.data.ParentContainerTitle)}
       </h2>
+      <div className="flex justify-center max-w-xl mx-auto pb-9">
+        <span className="text-white/75 text-center">
+          {curlyBracketFormatter(data.data.ParentContainerDescription)}
+        </span>
+      </div>
       <div className="flex flex-col md:flex-row gap-6">
-        <div className="flex flex-col gap-6 w-full md:w-1/2">
+        <div className="flex justify-center flex-col gap-6 w-full md:w-1/2">
           {data.data.CardAndImageItem.map((item: any, index: number) => (
             <CardItem
               key={item.id || index}
@@ -30,8 +36,20 @@ export default function CardAndImageParent(data: any) {
             />
           ))}
         </div>
-        <div className="bg-slate-500 w-full md:w-1/2 flex items-center justify-center">
-          Image PlaceHolder
+        <div className=" w-full md:w-1/2 flex items-center justify-center">
+          <Image
+            src={
+              data.data.CardAndImageItem[idOfOpen ?? 0].media ||
+              data.data.CardAndImageItem[0].media
+            }
+            alt={
+              data.data.CardAndImageItem[idOfOpen ?? 0].header ||
+              data.data.CardAndImageItem[0].header
+            }
+            width={500}
+            height={500}
+            className="object-cover"
+          />
         </div>
       </div>
     </div>
@@ -61,9 +79,14 @@ function CardItem({
 
   return (
     <div className="w-full text-white">
-      <div className={`group bg-gradient-to-r cursor-pointer to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] rounded-xl shadow-2xl border ${isOpen ? 'border-red-500' : 'border-white/20'} animate-in fade-in duration-300 transition-all p-6 w-full`} onClick={() => {
-              setIdOfOpen(isOpen ? null : uniqueId);
-            }}>
+      <div
+        className={`group bg-gradient-to-r cursor-pointer to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] rounded-xl shadow-2xl border ${
+          isOpen ? "border-red-500" : "border-white/20"
+        } animate-in fade-in duration-300 transition-all p-6 w-full`}
+        onClick={() => {
+          setIdOfOpen(isOpen ? null : uniqueId);
+        }}
+      >
         <h4 className="text-gray-300">
           {curlyBracketFormatter(data.AboveHeaderText)}
         </h4>
@@ -73,15 +96,15 @@ function CardItem({
           </h3>
           <FaChevronDown
             className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
-              isOpen ? 'rotate-180' : ''
+              isOpen ? "rotate-180" : ""
             }`}
             onClick={() => {
               setIdOfOpen(isOpen ? null : uniqueId);
             }}
           />
         </div>
-        <div 
-          className="overflow-hidden transition-all duration-500 ease-in-out" 
+        <div
+          className="overflow-hidden transition-all duration-500 ease-in-out"
           style={{ maxHeight: `${contentHeight}px` }}
         >
           <div ref={contentRef}>
