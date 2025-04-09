@@ -404,13 +404,8 @@ const RecentArticles = ({
                         {post?.title}
                       </h3>
                     </Link>
-                    <section className="text-gray-300 text-sm mb-4">
-                      <TinaMarkdown
-                        content={extractBlurbAsTinaMarkdownContent(
-                          post?.body,
-                          3
-                        )}
-                      />
+                    <section className="text-gray-300 text-sm mb-4 line-clamp-2">
+                      <TinaMarkdown content={post?.body} />
                     </section>
                     <Link
                       href={`/blog/${post?._sys.filename}`}
