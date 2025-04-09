@@ -152,109 +152,107 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
     <>
       {featuredBlog && !searchTerm && (
         <section className="py-12 container mx-auto">
-          <section className="">
-            {featuredBlog.title && (
-              <h2
-                data-tina-field={tinaField(props, "title")}
-                className="w-fit text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4"
-              >
-                {props.title}
-              </h2>
-            )}
-            <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
-              <div className="flex flex-col md:flex-row">
-                <div className="relative w-full flex-grow md:basis-4/12 aspect-video">
-                  <div className="bg-ssw-charcoal absolute drop-shadow-sm z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
-                    {"Uncategorized"}
-                  </div>
-                  {/* TODO: Tech debt
-                  Tailwind v3 does not not have a built in image mask class https://github.com/SSWConsulting/SSW.YakShaver/issues/1817 */}
-                  <div className="w-full h-full md:[mask-image:linear-gradient(to_right,black,black,transparent)] [mask-image:linear-gradient(black,black,transparent)]">
-                    <GridBackground />
-                  </div>
-
-                  {featuredBlog.bannerImage && (
-                    <div className="inset-0 flex items-center justify-center absolute">
-                      <div className="h-5/6 md:h-auto md:w-5/6 rounded-md overflow-hidden [mask-image:linear-gradient(black,black,transparent)] aspect-video relative">
-                        <Image
-                          aria-hidden={true}
-                          src={featuredBlog.bannerImage}
-                          alt={""}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                    </div>
-                  )}
+          {featuredBlog.title && (
+            <h2
+              data-tina-field={tinaField(props, "title")}
+              className="w-fit text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4"
+            >
+              {props.title}
+            </h2>
+          )}
+          <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
+            <div className="flex flex-col md:flex-row">
+              <div className="relative w-full flex-grow md:basis-4/12 aspect-video">
+                <div className="bg-ssw-charcoal absolute drop-shadow-sm z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
+                  {"Uncategorized"}
                 </div>
-                <div className="p-8 md:basis-8/12">
-                  <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-4 w-4" />
-                      <span>
-                        {featuredBlog?.date && formatDate(featuredBlog.date)}
-                      </span>
-                    </div>
-                    <span>•</span>
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      <span>{featuredBlog?.readLength}</span>
+                {/* TODO: Tech debt
+                  Tailwind v3 does not not have a built in image mask class https://github.com/SSWConsulting/SSW.YakShaver/issues/1817 */}
+                <div className="w-full h-full md:[mask-image:linear-gradient(to_right,black,black,transparent)] [mask-image:linear-gradient(black,black,transparent)]">
+                  <GridBackground />
+                </div>
+
+                {featuredBlog.bannerImage && (
+                  <div className="inset-0 flex items-center justify-center absolute">
+                    <div className="h-5/6 md:h-auto md:w-5/6 rounded-md overflow-hidden [mask-image:linear-gradient(black,black,transparent)] aspect-video relative">
+                      <Image
+                        aria-hidden={true}
+                        src={featuredBlog.bannerImage}
+                        alt={""}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
                   </div>
-                  <Link href={`/blog/${featuredBlog._sys.filename}`}>
-                    <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
-                      {featuredBlog?.title}
-                    </h3>
-                  </Link>
-                  <section className="text-gray-300 mb-6 line-clamp-2 sm:line-clamp-none">
-                    <TinaMarkdown
-                      content={extractBlurbAsTinaMarkdownContent(
-                        featuredBlog?.body,
-                        2
-                      )}
-                    />
-                  </section>
-                  <div className="flex justify-between items-center">
-                    <div className="flex  items-center gap-3">
-                      <div className="size-8 relative rounded-full overflow-hidden">
-                        <Image
-                          src={
-                            featuredBlog.authorImage ||
-                            "/default-images/Placeholder-profile.png"
-                          }
-                          alt="placeholder blog author"
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-medium text-sm">
-                          {featuredBlog?.sswPeopleLink ? (
-                            <Link
-                              className="hover:underline"
-                              href={featuredBlog.sswPeopleLink}
-                            >
-                              {featuredBlog?.author}
-                            </Link>
-                          ) : (
-                            <>{featuredBlog?.author}</>
-                          )}
-                        </p>
+                )}
+              </div>
+              <div className="p-8 md:basis-8/12">
+                <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-4 w-4" />
+                    <span>
+                      {featuredBlog?.date && formatDate(featuredBlog.date)}
+                    </span>
+                  </div>
+                  <span>•</span>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    <span>{featuredBlog?.readLength}</span>
+                  </div>
+                </div>
+                <Link href={`/blog/${featuredBlog._sys.filename}`}>
+                  <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
+                    {featuredBlog?.title}
+                  </h3>
+                </Link>
+                <section className="text-gray-300 mb-6 line-clamp-2 sm:line-clamp-none">
+                  <TinaMarkdown
+                    content={extractBlurbAsTinaMarkdownContent(
+                      featuredBlog?.body,
+                      2
+                    )}
+                  />
+                </section>
+                <div className="flex justify-between items-center">
+                  <div className="flex  items-center gap-3">
+                    <div className="size-8 relative rounded-full overflow-hidden">
+                      <Image
+                        src={
+                          featuredBlog.authorImage ||
+                          "/default-images/Placeholder-profile.png"
+                        }
+                        alt="placeholder blog author"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="font-medium text-sm">
+                        {featuredBlog?.sswPeopleLink ? (
+                          <Link
+                            className="hover:underline"
+                            href={featuredBlog.sswPeopleLink}
+                          >
+                            {featuredBlog?.author}
+                          </Link>
+                        ) : (
+                          <>{featuredBlog?.author}</>
+                        )}
+                      </p>
 
-                        {/*
+                      {/*
                 TODO: Add author roles? (Could use cronjob from SSW People)
                 
                 <p className="text-gray-500 text-xs">{featuredPost.author.role}</p> */}
-                      </div>
                     </div>
-                    <Link href="/blog/ai-transforming-issue-reporting">
-                      <Button variant={"default"}>Read Article</Button>
-                    </Link>
                   </div>
+                  <Link href="/blog/ai-transforming-issue-reporting">
+                    <Button variant={"default"}>Read Article</Button>
+                  </Link>
                 </div>
               </div>
             </div>
-          </section>
+          </div>
         </section>
       )}
     </>
