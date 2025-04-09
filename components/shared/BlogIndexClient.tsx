@@ -188,6 +188,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                 )}
               </div>
               <div className="p-8 md:basis-8/12">
+                <Author {...featuredBlog} />
                 <Link href={`/blog/${featuredBlog._sys.filename}`}>
                   <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
                     {featuredBlog?.title}
@@ -206,7 +207,6 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   />
                 </section>
                 <div className="flex justify-between items-center">
-                  <Author {...featuredBlog} />
                   <Link href="/blog/ai-transforming-issue-reporting">
                     <Button variant={"default"}>Read Article</Button>
                   </Link>
@@ -260,15 +260,13 @@ const ArticleMetadata = ({
   className?: string;
 }) => {
   return (
-    <div
-      className={cn("flex items-center gap-3 mb-4 text-gray-400", className)}
-    >
-      <div className="flex items-center gap-1">
-        <Calendar className="h-4 w-4" />
+    <div className={cn("flex items-center gap-1 text-gray-400", className)}>
+      <div className="flex items-center">
+        <Calendar className="h-4 w-4 gap-0.5" />
         <span>{date && formatDate(date)}</span>
       </div>
       <span>•</span>
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-0.5">
         <Clock className="h-4 w-4" />
         <span>{readLength}</span>
       </div>
@@ -308,7 +306,7 @@ const RecentArticles = ({
         </h2>
       )}
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
         {data?.pages.map((page) =>
           page?.edges?.map((edge, index) => {
             const post = edge?.node;
@@ -337,20 +335,30 @@ const RecentArticles = ({
                       <GridBackground />
                     </div>
                   </div>
-                  <div className="flex-grow flex-shrink-0 flex flex-col p-6">
-                    <div className="text-white z-20 text-xs w-fit mb-3 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
+                  <div className="flex-grow flex-shrink-0 gap-3 flex flex-col p-6">
+                    <div className="text-white z-20 text-xs w-fit px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
                       {edge?.node?.category || "Uncategorized"}
                     </div>
-                    <Author
-                      author={edge?.node?.author}
-                      authorImage={edge?.node?.authorImage}
-                      sswPeopleLink={edge?.node?.sswPeopleLink}
-                    />
-                    <ArticleMetadata
-                      className="text-sm"
-                      date={edge?.node?.date}
-                      readLength={edge?.node?.readLength}
-                    />
+                    <Link
+                      className="w-fit"
+                      href={`/blog/${post?._sys.filename}`}
+                    >
+                      <h3 className="text-xl font-bold text-gray-100 hover:text-ssw-red transition-colors">
+                        {post?.title}
+                      </h3>
+                    </Link>
+                    <div className="flex flex-col sm:flex-row gap-3 sm:items-center ">
+                      <Author
+                        author={edge?.node?.author}
+                        authorImage={edge?.node?.authorImage}
+                        sswPeopleLink={edge?.node?.sswPeopleLink}
+                      />
+                      <ArticleMetadata
+                        className="text-sm h-fit"
+                        date={edge?.node?.date}
+                        readLength={edge?.node?.readLength}
+                      />
+                    </div>
 
                     <section className="text-gray-300 text-sm mb-4 line-clamp-2">
                       <TinaMarkdown content={post?.body} />
