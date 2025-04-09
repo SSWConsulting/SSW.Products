@@ -206,7 +206,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                       {featuredBlog?.title}
                     </h3>
                   </Link>
-                  <section className="text-gray-300 mb-6">
+                  <section className="text-gray-300 mb-6 line-clamp-2 sm:line-clamp-none">
                     <TinaMarkdown
                       content={extractBlurbAsTinaMarkdownContent(
                         featuredBlog?.body,
