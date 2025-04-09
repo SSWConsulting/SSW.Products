@@ -105,8 +105,9 @@ const heroSearchTemplate: Template = {
   name: "heroSearch",
   ui: {
     defaultItem: {
-      label: "Title",
+      description: "description",
       title: "title",
+      showCategories: false,
     },
   },
   fields: [
@@ -119,6 +120,11 @@ const heroSearchTemplate: Template = {
       name: "description",
       label: "The description at the top of the hero component",
       type: "string",
+    },
+    {
+      name: "showCategories",
+      label: "A feature flag for enabling category filters",
+      type: "boolean",
     },
   ],
 };

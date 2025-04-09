@@ -490,22 +490,23 @@ const HeroSearch = (props: HeroSearchProps) => {
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 h-5 w-5" />
           </div>
         </div>
-
-        <div className="flex flex-wrap gap-3 justify-center mb-16">
-          {categories.map((category, index) => {
-            return (
-              <Button
-                onClick={() => {
-                  if (setSelectedCategory) setSelectedCategory(category);
-                }}
-                variant={category === selectedCategory ? "default" : "ghost"}
-                key={`button ${index}`}
-              >
-                {category || ALL_CATEGORY}
-              </Button>
-            );
-          })}
-        </div>
+        {props.showCategories && (
+          <div className="flex flex-wrap gap-3 justify-center mb-16">
+            {categories.map((category, index) => {
+              return (
+                <Button
+                  onClick={() => {
+                    if (setSelectedCategory) setSelectedCategory(category);
+                  }}
+                  variant={category === selectedCategory ? "default" : "ghost"}
+                  key={`button ${index}`}
+                >
+                  {category || ALL_CATEGORY}
+                </Button>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );
