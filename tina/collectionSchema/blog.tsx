@@ -151,6 +151,7 @@ const newsletterTemplate: Template = {
     {
       name: "button",
       type: "object",
+      label: "Button",
       fields: [
         {
           name: "buttonText",
