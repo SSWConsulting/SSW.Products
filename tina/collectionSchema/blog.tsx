@@ -158,12 +158,6 @@ const newsletterTemplate: Template = {
         },
       ],
     },
-    {
-      name: "image",
-      description: "Use an image with a 1/1 aspect ratio",
-      label: "Hero Image",
-      type: "image",
-    },
   ],
 };
 
