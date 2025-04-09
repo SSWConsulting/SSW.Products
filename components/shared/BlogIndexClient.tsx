@@ -335,7 +335,7 @@ const RecentArticles = ({
 
   return (
     <section className="container mx-auto py-12">
-      {props.title && (
+      {props.title && !searchTerm && (
         <h2
           data-tina-field={tinaField(props, "title")}
           className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4 w-fit"
