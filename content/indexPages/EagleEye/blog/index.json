@@ -2,7 +2,8 @@
   "blocks": [
     {
       "title": "",
-      "_template": "articleList"
+      "featuredBlog": "content/blogs/EagleEye/what-is-eagleeye.mdx",
+      "_template": "featuredBlog"
     }
   ]
 }

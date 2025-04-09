@@ -86,7 +86,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
     <>
       {featuredBlog && !searchTerm && (
         <section className="py-12 container mx-auto">
-          {featuredBlog.title && (
+          {props.title && (
             <h2
               data-tina-field={tinaField(props, "title")}
               className="w-fit text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4"
