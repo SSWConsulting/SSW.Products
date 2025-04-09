@@ -455,7 +455,7 @@ const HeroSearch = (props: HeroSearchProps) => {
   }, [searchTerm, updateSearchTerm]);
 
   return (
-    <section className=" relative py-16  bg-gradient-to-b bg-[#131313]">
+    <section className=" relative bg-gradient-to-b py-16 bg-[#131313]">
       <div className="mx-auto container relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
           {props.title && (
@@ -476,8 +476,7 @@ const HeroSearch = (props: HeroSearchProps) => {
             </p>
           )}
         </div>
-
-        <div className="relative max-w-xl mx-auto mb-16">
+        <div className="relative max-w-xl mx-auto">
           <div className="relative">
             <input
               type="text"
@@ -491,7 +490,7 @@ const HeroSearch = (props: HeroSearchProps) => {
           </div>
         </div>
         {props.showCategories && (
-          <div className="flex flex-wrap gap-3 justify-center mb-16">
+          <div className="flex flex-wrap gap-3 justify-center mt-8">
             {categories.map((category, index) => {
               return (
                 <Button
