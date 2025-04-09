@@ -18,6 +18,7 @@ import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__generated__/types";
 
+import { cn } from "@/lib/utils";
 import client from "../../tina/__generated__/client";
 import {
   BlogsIndexBlocks as Block,
@@ -187,24 +188,15 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                 )}
               </div>
               <div className="p-8 md:basis-8/12">
-                <div className="flex items-center gap-3 mb-4 text-sm text-gray-400">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-4 w-4" />
-                    <span>
-                      {featuredBlog?.date && formatDate(featuredBlog.date)}
-                    </span>
-                  </div>
-                  <span>•</span>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    <span>{featuredBlog?.readLength}</span>
-                  </div>
-                </div>
                 <Link href={`/blog/${featuredBlog._sys.filename}`}>
                   <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
                     {featuredBlog?.title}
                   </h3>
                 </Link>
+                <ArticleMetadata
+                  className="text-sm md:text-base"
+                  {...featuredBlog}
+                />
                 <section className="text-gray-300 mb-6 line-clamp-2 sm:line-clamp-none">
                   <TinaMarkdown
                     content={extractBlurbAsTinaMarkdownContent(
@@ -214,38 +206,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   />
                 </section>
                 <div className="flex justify-between items-center">
-                  <div className="flex  items-center gap-3">
-                    <div className="size-8 relative rounded-full overflow-hidden">
-                      <Image
-                        src={
-                          featuredBlog.authorImage ||
-                          "/default-images/Placeholder-profile.png"
-                        }
-                        alt="placeholder blog author"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">
-                        {featuredBlog?.sswPeopleLink ? (
-                          <Link
-                            className="hover:underline"
-                            href={featuredBlog.sswPeopleLink}
-                          >
-                            {featuredBlog?.author}
-                          </Link>
-                        ) : (
-                          <>{featuredBlog?.author}</>
-                        )}
-                      </p>
-
-                      {/*
-                TODO: Add author roles? (Could use cronjob from SSW People)
-                
-                <p className="text-gray-500 text-xs">{featuredPost.author.role}</p> */}
-                    </div>
-                  </div>
+                  <Author {...featuredBlog} />
                   <Link href="/blog/ai-transforming-issue-reporting">
                     <Button variant={"default"}>Read Article</Button>
                   </Link>
@@ -289,6 +250,32 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
   );
 };
 
+const ArticleMetadata = ({
+  date,
+  readLength,
+  className,
+}: {
+  date?: string | null;
+  readLength?: string | null;
+  className?: string;
+}) => {
+  return (
+    <div
+      className={cn("flex items-center gap-3 mb-4 text-gray-400", className)}
+    >
+      <div className="flex items-center gap-1">
+        <Calendar className="h-4 w-4" />
+        <span>{date && formatDate(date)}</span>
+      </div>
+      <span>•</span>
+      <div className="flex items-center gap-1">
+        <Clock className="h-4 w-4" />
+        <span>{readLength}</span>
+      </div>
+    </div>
+  );
+};
+
 const RecentArticles = ({
   product,
   ...props
@@ -325,6 +312,7 @@ const RecentArticles = ({
         {data?.pages.map((page) =>
           page?.edges?.map((edge, index) => {
             const post = edge?.node;
+
             return (
               <div
                 key={index}
@@ -353,57 +341,16 @@ const RecentArticles = ({
                     <div className="text-white z-20 text-xs w-fit mb-3 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
                       {edge?.node?.category || "Uncategorized"}
                     </div>
-                    <div className="flex flex-col gap-3 mb-3 text-xs text-gray-400">
-                      <Link
-                        className="w-fit"
-                        href={`/blog/${post?._sys.filename}`}
-                      >
-                        <h3 className="text-xl font-bold mb-3 text-gray-100 hover:text-ssw-red transition-colors">
-                          {post?.title}
-                        </h3>
-                      </Link>
-                      <section className="flex gap-3">
-                        <div className="flex gap-3 items-center">
-                          <div className="size-8 items-center relative rounded-full overflow-hidden">
-                            <Image
-                              src={
-                                edge?.node?.authorImage ||
-                                "/default-images/Placeholder-profile.png"
-                              }
-                              alt="placeholder blog author"
-                              fill
-                              objectFit="cover"
-                            />
-                          </div>
-                          <p className="font-medium h-fit text-sm">
-                            {edge?.node?.sswPeopleLink ? (
-                              <Link
-                                className="hover:underline"
-                                href={edge.node.sswPeopleLink}
-                              >
-                                {edge?.node?.author}
-                              </Link>
-                            ) : (
-                              <>{edge?.node?.author}</>
-                            )}
-                          </p>
-                        </div>
-                      </section>
-                      <section className="flex items-center gap-3">
-                        {post?.date && (
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3" />
-                            <span>{formatDate(post?.date)}</span>
-                          </div>
-                        )}
-                        <span>•</span>
-
-                        <div className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          <span>{post?.readLength}</span>
-                        </div>
-                      </section>
-                    </div>
+                    <Author
+                      author={edge?.node?.author}
+                      authorImage={edge?.node?.authorImage}
+                      sswPeopleLink={edge?.node?.sswPeopleLink}
+                    />
+                    <ArticleMetadata
+                      className="text-sm"
+                      date={edge?.node?.date}
+                      readLength={edge?.node?.readLength}
+                    />
 
                     <section className="text-gray-300 text-sm mb-4 line-clamp-2">
                       <TinaMarkdown content={post?.body} />
@@ -435,6 +382,38 @@ const RecentArticles = ({
         )}
       </div>
     </section>
+  );
+};
+
+const Author = ({
+  authorImage,
+  sswPeopleLink,
+  author,
+}: {
+  authorImage?: string | null;
+  sswPeopleLink?: string | null;
+  author?: string | null;
+}) => {
+  return (
+    <div className="flex gap-3 items-center">
+      <div className="size-8 items-center relative rounded-full overflow-hidden">
+        <Image
+          src={authorImage || "/default-images/Placeholder-profile.png"}
+          alt="placeholder blog author"
+          fill
+          objectFit="cover"
+        />
+      </div>
+      <p className="font-medium h-fit text-sm">
+        {sswPeopleLink ? (
+          <Link className="hover:underline" href={sswPeopleLink}>
+            {author}
+          </Link>
+        ) : (
+          <>{author}</>
+        )}
+      </p>
+    </div>
   );
 };
 
