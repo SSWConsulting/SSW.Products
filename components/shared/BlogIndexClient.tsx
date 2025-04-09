@@ -198,7 +198,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
 
                   {featuredBlog.bannerImage && (
                     <div className="inset-0 flex items-center justify-center absolute">
-                      <div className="h-5/6 md:h-auto md:w-5/6 rounded-md overflow-hidden aspect-video relative">
+                      <div className="h-5/6 md:h-auto md:w-5/6 rounded-md overflow-hidden [mask-image:linear-gradient(black,black,transparent)] aspect-video relative">
                         <Image
                           aria-hidden={true}
                           src={featuredBlog.bannerImage}
@@ -362,7 +362,7 @@ const RecentArticles = ({
                     </div>
                     <div className="inset-0 absolute align-middle items-center justify-center flex">
                       {edge?.node?.bannerImage && (
-                        <div className="rounded-md z-10 h-5/6 relative overflow-hidden aspect-video">
+                        <div className="rounded-md [mask-image:linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
                           <Image
                             alt=""
                             fill
