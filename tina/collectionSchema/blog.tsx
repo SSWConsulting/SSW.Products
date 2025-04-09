@@ -49,6 +49,12 @@ export const blogCollection: Collection = {
       label: "Author",
     },
     {
+      type: "image",
+      name: "authorImage",
+      label: "Author Image",
+      description: "Use the author's SSW People profile picture",
+    },
+    {
       label: "Category",
       name: "category",
       required: true,

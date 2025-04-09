@@ -239,7 +239,10 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                     <div className="flex  items-center gap-3">
                       <div className="size-8 relative rounded-full overflow-hidden">
                         <Image
-                          src={"/default-images/Placeholder-profile.png"}
+                          src={
+                            featuredBlog.authorImage ||
+                            "/default-images/Placeholder-profile.png"
+                          }
                           alt="placeholder blog author"
                           fill
                           className="object-cover"
@@ -247,7 +250,16 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                       </div>
                       <div>
                         <p className="font-medium text-sm">
-                          {featuredBlog?.author}
+                          {featuredBlog?.sswPeopleLink ? (
+                            <Link
+                              className="hover:underline"
+                              href={featuredBlog.sswPeopleLink}
+                            >
+                              {featuredBlog?.author}
+                            </Link>
+                          ) : (
+                            <>{featuredBlog?.author}</>
+                          )}
                         </p>
 
                         {/*
@@ -369,14 +381,26 @@ const RecentArticles = ({
                         <div className="flex gap-3 items-center">
                           <div className="size-8 items-center relative rounded-full overflow-hidden">
                             <Image
-                              src={"/default-images/Placeholder-profile.png"}
+                              src={
+                                edge?.node?.authorImage ||
+                                "/default-images/Placeholder-profile.png"
+                              }
                               alt="placeholder blog author"
                               fill
                               objectFit="cover"
                             />
                           </div>
                           <p className="font-medium h-fit text-sm">
-                            {edge?.node?.author}
+                            {edge?.node?.sswPeopleLink ? (
+                              <Link
+                                className="hover:underline"
+                                href={edge.node.sswPeopleLink}
+                              >
+                                {edge?.node?.author}
+                              </Link>
+                            ) : (
+                              <>{edge?.node?.author}</>
+                            )}
                           </p>
                         </div>
                       </section>
