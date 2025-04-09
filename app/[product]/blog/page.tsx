@@ -6,7 +6,6 @@ import {
 import { notFound } from "next/navigation";
 import { BlogSearchProvider } from "../../../components/providers/BlogSearchProvider";
 import QueryProvider from "../../../components/providers/QueryProvider";
-import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
 import FooterServer from "../../../components/shared/FooterServer";
 import NavBarServer from "../../../components/shared/NavBarServer";
@@ -88,7 +87,6 @@ export default async function BlogIndex({ params }: BlogIndex) {
       <QueryProvider>
         {/* Padding accomodates for the navbar */}
         <div className="flex flex-col min-h-screen pt-[124px]">
-          <InteractiveBackground fogColor="red" />
           <HydrationBoundary state={dehydratedState}>
             <BlogSearchProvider categories={categories}>
               <BlogIndexClient {...tinaData} product={product} />
