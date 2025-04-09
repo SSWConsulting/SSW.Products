@@ -6,9 +6,7 @@ import {
 import { notFound } from "next/navigation";
 import { BlogSearchProvider } from "../../../components/providers/BlogSearchProvider";
 import QueryProvider from "../../../components/providers/QueryProvider";
-import BlogIndexClient, {
-  PAGE_LIMIT,
-} from "../../../components/shared/BlogIndexClient";
+import BlogIndexClient from "../../../components/shared/BlogIndexClient";
 import FooterServer from "../../../components/shared/FooterServer";
 import NavBarServer from "../../../components/shared/NavBarServer";
 import client from "../../../tina/__generated__/client";
@@ -73,10 +71,9 @@ export default async function BlogIndex({ params }: BlogIndex) {
   const categories = await getCategories(product);
   const tinaData = await getBlogPageData(product);
   const queryClient = new QueryClient();
-
   await queryClient.prefetchInfiniteQuery({
     queryKey: [`blogs`], // Ensure queryKey matches BlogIndexClient
-    queryFn: () => getBlogsForProduct({ product, limit: PAGE_LIMIT }),
+    queryFn: () => getBlogsForProduct({ product, limit: 3 }),
     initialPageParam: undefined,
   });
 

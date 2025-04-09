@@ -10,12 +10,16 @@ type GetBlogsForProductProps = {
   category?: string;
 };
 
-const getArticleTitles = cache(async () => {
+// Workaround: graphql doesn't allow you to query by file name
+const getTitlesInTenant = cache(async (product: string) => {
   const res = await client.queries.blogsConnection();
   const titles =
     res.data.blogsConnection.edges?.reduce<string[]>((acc: string[], curr) => {
+      const inCurrentTenant = curr?.node?._sys.path.includes(
+        `/blogs/${product}`
+      );
       const title = curr?.node?.title;
-      if (title && !acc.includes(title)) {
+      if (title && !acc.includes(title) && inCurrentTenant) {
         return [...acc, title];
       }
       return acc;
@@ -31,16 +35,12 @@ export async function getBlogsForProduct({
   keyword,
 }: GetBlogsForProductProps) {
   try {
-    const titles = await getArticleTitles();
-    const titleFilter = keyword
-      ? {
-          title: {
-            in: titles.filter((title) =>
-              title.toLowerCase().includes(keyword.toLowerCase())
-            ),
-          },
-        }
-      : {};
+    let titles = await getTitlesInTenant(product);
+    if (keyword) {
+      titles = titles.filter((title) =>
+        title.toLowerCase().includes(keyword.toLowerCase())
+      );
+    }
 
     const categoryFilter = category
       ? {
@@ -51,7 +51,7 @@ export async function getBlogsForProduct({
       : {};
     const res = await client.queries.blogsConnection({
       filter: {
-        ...titleFilter,
+        title: { in: titles },
         ...categoryFilter,
       },
       after: endCursor,

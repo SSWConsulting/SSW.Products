@@ -13,10 +13,8 @@ const QueryProvider = ({ children }: { children: ReactNode }) => {
   const queryClient = useMemo(() => makeQueryClient(), []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {children}
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 };
 
-export default QueryProvider
+export default QueryProvider;
