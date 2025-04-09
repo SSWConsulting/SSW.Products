@@ -190,7 +190,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   <div className="bg-ssw-charcoal absolute drop-shadow-sm z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
                     {"Uncategorized"}
                   </div>
-                  <div className="w-full h-full [mask-image:linear-gradient(black,transparent);]">
+                  <div className="w-full h-full md:[mask-image:linear-gradient(to_right,black,black,transparent)] [mask-image:linear-gradient(black,black,transparent)]">
                     <GridBackground />
                   </div>
 
@@ -371,7 +371,7 @@ const RecentArticles = ({
                         </div>
                       )}
                     </div>
-                    <div className="w-full h-full [mask-image:linear-gradient(black,transparent);]">
+                    <div className="w-full h-full [mask-image:linear-gradient(black,black,transparent)]">
                       <GridBackground />
                     </div>
                   </div>
