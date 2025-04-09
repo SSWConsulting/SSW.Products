@@ -30,6 +30,8 @@ import { Button } from "../ui/button";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 
+export const PAGE_LIMIT = 3;
+
 const formatDate = (dateString: string) => {
   const date = dayjs(dateString);
   return date.format("MMM D, YYYY");
@@ -298,7 +300,7 @@ const RecentArticles = ({
     queryKey: [`blogs${searchTerm}${selectedCategory}`],
     queryFn: ({ pageParam }) => {
       return getBlogsForProduct({
-        limit: 3,
+        limit: PAGE_LIMIT,
         product,
         endCursor: pageParam,
         keyword: searchTerm,

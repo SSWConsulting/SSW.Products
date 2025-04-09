@@ -1,3 +1,4 @@
+import { cache } from "react";
 import client from "../tina/__generated__/client";
 
 type GetBlogsForProductProps = {
@@ -9,6 +10,19 @@ type GetBlogsForProductProps = {
   category?: string;
 };
 
+const getArticleTitles = cache(async () => {
+  const res = await client.queries.blogsConnection();
+  const titles =
+    res.data.blogsConnection.edges?.reduce<string[]>((acc: string[], curr) => {
+      const title = curr?.node?.title;
+      if (title && !acc.includes(title)) {
+        return [...acc, title];
+      }
+      return acc;
+    }, []) || [];
+  return titles;
+});
+
 export async function getBlogsForProduct({
   category,
   endCursor,
@@ -17,17 +31,26 @@ export async function getBlogsForProduct({
   keyword,
 }: GetBlogsForProductProps) {
   try {
-    const filters = category
+    const titles = await getArticleTitles();
+
+    const titleFilter = keyword
       ? {
-          filter: {
-            category: {
-              eq: category,
-            },
+          title: { in: titles.filter((title) => title.includes(keyword)) },
+        }
+      : {};
+
+    const categoryFilter = category
+      ? {
+          category: {
+            eq: category,
           },
         }
       : {};
     const res = await client.queries.blogsConnection({
-      ...filters,
+      filter: {
+        ...titleFilter,
+        ...categoryFilter,
+      },
       after: endCursor,
       first: limit,
       sort: "date",
@@ -44,11 +67,7 @@ export async function getBlogsForProduct({
 
     res.data.blogsConnection.edges = res.data.blogsConnection.edges?.filter(
       (edge) => {
-        return (
-          edge?.node?._sys?.path?.includes(`/blogs/${product}/`) &&
-          (!keyword ||
-            edge?.node?.title.toLowerCase().includes(keyword.toLowerCase()))
-        );
+        return edge?.node?._sys?.path?.includes(`/blogs/${product}/`);
       }
     );
 
