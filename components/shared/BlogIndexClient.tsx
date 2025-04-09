@@ -188,16 +188,16 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                 )}
               </div>
               <div className="p-8 md:basis-8/12">
-                <Author {...featuredBlog} />
                 <Link href={`/blog/${featuredBlog._sys.filename}`}>
                   <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
                     {featuredBlog?.title}
                   </h3>
                 </Link>
-                <ArticleMetadata
-                  className="text-sm md:text-base"
-                  {...featuredBlog}
-                />
+                <div className="flex sm:flex-row gap-3 flex-col text-sm md:text-base">
+                  <Author {...featuredBlog} />
+                  <ArticleMetadata className="" {...featuredBlog} />
+                </div>
+
                 <section className="text-gray-300 mb-6 line-clamp-2 sm:line-clamp-none">
                   <TinaMarkdown
                     content={extractBlurbAsTinaMarkdownContent(
@@ -207,9 +207,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   />
                 </section>
                 <div className="flex justify-between items-center">
-                  <Link href="/blog/ai-transforming-issue-reporting">
-                    <Button variant={"default"}>Read Article</Button>
-                  </Link>
+                  <ReadMore fileName={featuredBlog._sys.filename || ""} />
                 </div>
               </div>
             </div>
@@ -347,14 +345,14 @@ const RecentArticles = ({
                         {post?.title}
                       </h3>
                     </Link>
-                    <div className="flex flex-col sm:flex-row gap-3 sm:items-center ">
+                    <div className="flex text-sm flex-col sm:flex-row gap-3 sm:items-center ">
                       <Author
                         author={edge?.node?.author}
                         authorImage={edge?.node?.authorImage}
                         sswPeopleLink={edge?.node?.sswPeopleLink}
                       />
                       <ArticleMetadata
-                        className="text-sm h-fit"
+                        className="h-fit"
                         date={edge?.node?.date}
                         readLength={edge?.node?.readLength}
                       />
@@ -363,12 +361,7 @@ const RecentArticles = ({
                     <section className="text-gray-300 text-sm mb-4 line-clamp-2">
                       <TinaMarkdown content={post?.body} />
                     </section>
-                    <Link
-                      href={`/blog/${post?._sys.filename}`}
-                      className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
-                    >
-                      Read More <ArrowRight className="h-4 w-4" />
-                    </Link>
+                    <ReadMore fileName={post?._sys.filename || ""} />
                   </div>
                 </div>
               </div>
@@ -393,6 +386,17 @@ const RecentArticles = ({
   );
 };
 
+const ReadMore = ({ fileName }: { fileName: string }) => {
+  return (
+    <Link
+      href={`/blog/${fileName}`}
+      className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
+    >
+      Read More <ArrowRight className="h-4 w-4" />
+    </Link>
+  );
+};
+
 const Author = ({
   authorImage,
   sswPeopleLink,
@@ -412,7 +416,7 @@ const Author = ({
           objectFit="cover"
         />
       </div>
-      <p className="font-medium h-fit text-sm">
+      <p className="font-medium h-fit">
         {sswPeopleLink ? (
           <Link className="hover:underline" href={sswPeopleLink}>
             {author}
