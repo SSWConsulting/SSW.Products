@@ -188,10 +188,12 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
 
               <div className="p-8 md:basis-8/12 flex gap-3 flex-col">
                 {featuredBlog.category && (
-                  <CategoryLabel>{featuredBlog.category}</CategoryLabel>
+                  <CategoryLabel className="text-sm">
+                    {featuredBlog.category}
+                  </CategoryLabel>
                 )}
                 <Link href={`/blog/${featuredBlog._sys.filename}`}>
-                  <h3 className="text-2xl font-bold hover:text-ssw-red transition-colors">
+                  <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
                     {featuredBlog?.title}
                   </h3>
                 </Link>
@@ -200,7 +202,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   <ArticleMetadata className="" {...featuredBlog} />
                 </div>
 
-                <section className="text-gray-300 mb-6 line-clamp-2 sm:line-clamp-none">
+                <section className="text-gray-300 text-sm sm:text-base mb-6 line-clamp-2 sm:line-clamp-none">
                   <TinaMarkdown
                     content={extractBlurbAsTinaMarkdownContent(
                       featuredBlog?.body,
@@ -337,7 +339,9 @@ const RecentArticles = ({
                   </div>
                   <div className="flex-grow flex-shrink-0 gap-3 flex flex-col p-6">
                     {edge?.node?.category && (
-                      <CategoryLabel>{edge?.node?.category}</CategoryLabel>
+                      <CategoryLabel className="text-sm">
+                        {edge?.node?.category}
+                      </CategoryLabel>
                     )}
                     <Link
                       className="w-fit"
@@ -388,9 +392,20 @@ const RecentArticles = ({
   );
 };
 
-const CategoryLabel = ({ children }: { children: React.ReactNode }) => {
+const CategoryLabel = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
-    <div className="bg-ssw-charcoal drop-shadow-sm z-10 w-fit text-white text-xs px-3 py-1 rounded-full">
+    <div
+      className={cn(
+        "bg-ssw-charcoal drop-shadow-sm z-10 w-fit text-white px-3 py-1 rounded-full",
+        className
+      )}
+    >
       {children}
     </div>
   );
