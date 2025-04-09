@@ -6,6 +6,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
+import React from "react";
 import {
   BlogsIndexBlocksArticleList as ArticleListProps,
   BlogsIndexBlocksCallToAction as CallToActionProps,
@@ -164,9 +165,6 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
           <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
             <div className="flex flex-col md:flex-row">
               <div className="relative w-full flex-grow md:basis-4/12 aspect-video">
-                <div className="bg-ssw-charcoal absolute drop-shadow-sm z-10 w-fit m-3 text-white text-xs px-3 py-1 rounded-full">
-                  {"Uncategorized"}
-                </div>
                 {/* TODO: Tech debt
                   Tailwind v3 does not not have a built in image mask class https://github.com/SSWConsulting/SSW.YakShaver/issues/1817 */}
                 <div className="w-full h-full md:[mask-image:linear-gradient(to_right,black,black,transparent)] [mask-image:linear-gradient(black,black,transparent)]">
@@ -187,9 +185,13 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   </div>
                 )}
               </div>
-              <div className="p-8 md:basis-8/12">
+
+              <div className="p-8 md:basis-8/12 flex gap-3 flex-col">
+                {featuredBlog.category && (
+                  <CategoryLabel>{featuredBlog.category}</CategoryLabel>
+                )}
                 <Link href={`/blog/${featuredBlog._sys.filename}`}>
-                  <h3 className="text-2xl font-bold mb-4 hover:text-ssw-red transition-colors">
+                  <h3 className="text-2xl font-bold hover:text-ssw-red transition-colors">
                     {featuredBlog?.title}
                   </h3>
                 </Link>
@@ -334,9 +336,9 @@ const RecentArticles = ({
                     </div>
                   </div>
                   <div className="flex-grow flex-shrink-0 gap-3 flex flex-col p-6">
-                    <div className="text-white z-20 text-xs w-fit px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
-                      {edge?.node?.category || "Uncategorized"}
-                    </div>
+                    {edge?.node?.category && (
+                      <CategoryLabel>{edge?.node?.category}</CategoryLabel>
+                    )}
                     <Link
                       className="w-fit"
                       href={`/blog/${post?._sys.filename}`}
@@ -383,6 +385,14 @@ const RecentArticles = ({
         )}
       </div>
     </section>
+  );
+};
+
+const CategoryLabel = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="bg-ssw-charcoal drop-shadow-sm z-10 w-fit text-white text-xs px-3 py-1 rounded-full">
+      {children}
+    </div>
   );
 };
 
