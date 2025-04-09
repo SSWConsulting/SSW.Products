@@ -134,7 +134,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
                   <ArticleMetadata className="" {...featuredBlog} />
                 </div>
 
-                <section className="text-gray-300 text-sm sm:text-base mb-6 line-clamp-2 sm:line-clamp-none">
+                <section className="text-gray-300 text-sm md:text-base mb-6 line-clamp-2 md:line-clamp-none">
                   <TinaMarkdown
                     content={extractBlurbAsTinaMarkdownContent(
                       featuredBlog?.body,
