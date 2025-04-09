@@ -223,6 +223,15 @@ export const blogIndexCollection: Collection = {
   format: "json",
   label: "Blog Index",
   name: "blogsIndex",
+  ui: {
+    allowedActions: {
+      create: false,
+      delete: false,
+    },
+    router: () => {
+      return `/blog`;
+    },
+  },
   fields: [
     {
       name: "blocks",
