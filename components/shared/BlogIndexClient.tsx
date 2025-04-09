@@ -334,9 +334,6 @@ const RecentArticles = ({
               >
                 <div className="h-full flex flex-col flex-grow flex-shrink-0">
                   <div className="relative aspect-video ">
-                    <div className="text-white z-20 absolute text-xs w-fit drop-shadow-sm m-3 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
-                      {edge?.node?.category || "Uncategorized"}
-                    </div>
                     <div className="inset-0 absolute align-middle items-center justify-center flex">
                       {edge?.node?.bannerImage && (
                         <div className="rounded-md [mask-image:linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
@@ -355,6 +352,9 @@ const RecentArticles = ({
                     </div>
                   </div>
                   <div className="flex-grow flex-shrink-0 flex flex-col p-6">
+                    <div className="text-white z-20 text-xs w-fit mb-3 px-3 py-1 h-fit bg-ssw-charcoal rounded-full">
+                      {edge?.node?.category || "Uncategorized"}
+                    </div>
                     <div className="flex flex-col gap-3 mb-3 text-xs text-gray-400">
                       <section className="flex gap-3">
                         <div className="flex gap-3 items-center">
