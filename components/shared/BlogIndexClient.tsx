@@ -35,31 +35,6 @@ const formatDate = (dateString: string) => {
   return date.format("MMM D, YYYY");
 };
 
-// function GridBackground() {
-//   return (
-//     <>
-//       <div
-//         className="absolute inset-0 skew-y-12 w-full h-full [mask-image:radial-gradient(400px_circle_at_center,white,transparent)] "
-//         style={{
-//           backgroundImage: `
-//             linear-gradient(to right, #f0f0f0 1px, transparent 1px),
-//             linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)
-//           `,
-//           backgroundSize: "40px 40px",
-//           backgroundPosition: "center center",
-//         }}
-//       />
-//       <div
-//         className="absolute inset-0 w-full h-full"
-//         style={{
-//           background:
-//             "linear-gradient(135deg, rgba(255,0,0,0.7) 0%, rgba(220,20,60,0.5) 50%, rgba(178,34,34,0.3) 100%)",
-//         }}
-//       />
-//     </>
-//   );
-// }
-
 interface BlogIndexClientProps {
   product: string;
 }
