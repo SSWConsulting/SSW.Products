@@ -219,14 +219,18 @@ const RecentArticles = ({
       return getBlogsForProduct({
         limit: PAGE_LIMIT,
         product,
-        endCursor: pageParam,
+        startCursor: pageParam,
         keyword: searchTerm,
         category:
           selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
       });
     },
     initialPageParam: "",
-    getNextPageParam: (lastPage) => lastPage.pageInfo.endCursor,
+    getNextPageParam: (lastPage) => {
+      const lastEntry =
+        lastPage.edges && lastPage.edges[lastPage.edges.length - 1];
+      return lastEntry?.cursor || undefined;
+    },
   });
 
   return (
@@ -309,7 +313,7 @@ const RecentArticles = ({
       </div>
 
       <div className="text-center mt-12">
-        {data?.pages[data.pages.length - 1].pageInfo.hasNextPage && (
+        {data?.pages[data.pages.length - 1].pageInfo.hasPreviousPage && (
           <Button
             onClick={() => {
               fetchNextPage();

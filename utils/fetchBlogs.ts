@@ -2,7 +2,7 @@ import { cache } from "react";
 import client from "../tina/__generated__/client";
 
 type GetBlogsForProductProps = {
-  endCursor?: string;
+  startCursor?: string;
   offset?: number;
   limit?: number;
   keyword?: string;
@@ -27,15 +27,17 @@ const getTitlesInTenant = cache(async (product: string) => {
   return titles;
 });
 
+// Get blogs using reverse pagination https://tina.io/docs/graphql/queries/advanced/pagination#reverse-pagination
 export async function getBlogsForProduct({
   category,
-  endCursor,
+  startCursor,
   limit,
   product,
   keyword,
 }: GetBlogsForProductProps) {
   try {
     let titles = await getTitlesInTenant(product);
+
     if (keyword) {
       titles = titles.filter((title) =>
         title.toLowerCase().includes(keyword.toLowerCase())
@@ -49,13 +51,16 @@ export async function getBlogsForProduct({
           },
         }
       : {};
+
+    const beforeFilter = startCursor ? { before: startCursor } : {};
     const res = await client.queries.blogsConnection({
       filter: {
         title: { in: titles },
         ...categoryFilter,
       },
-      after: endCursor,
-      first: limit,
+      ...beforeFilter,
+      before: startCursor,
+      last: limit,
       sort: "date",
     });
 
