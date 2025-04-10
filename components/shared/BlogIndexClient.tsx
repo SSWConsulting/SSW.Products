@@ -59,7 +59,7 @@ export default function BlogIndexClient({
 
   return (
     <>
-      <div className="grow">
+      <div className="grow flex flex-col pb-12 gap-14 sm:gap-24 ">
         {blogsIndex.blocks && (
           <Blocks product={product} blocks={blogsIndex.blocks} />
         )}
@@ -85,7 +85,7 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
   return (
     <>
       {featuredBlog && !searchTerm && (
-        <section className="py-12 container mx-auto">
+        <section className="container mx-auto">
           {props.title && (
             <h2
               data-tina-field={tinaField(props, "title")}
@@ -234,7 +234,7 @@ const RecentArticles = ({
   });
 
   return (
-    <section className="container mx-auto py-12">
+    <section className="container mx-auto">
       {props.title && !searchTerm && (
         <h2
           data-tina-field={tinaField(props, "title")}
@@ -408,7 +408,7 @@ const HeroSearch = (props: HeroSearchProps) => {
   }, [searchTerm, updateSearchTerm]);
 
   return (
-    <section className=" relative bg-gradient-to-b py-16 my-12 bg-[#131313]">
+    <section className=" relative bg-gradient-to-b py-16 bg-[#131313]">
       <div className="mx-auto container relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
           {props.title && (
@@ -466,7 +466,7 @@ const HeroSearch = (props: HeroSearchProps) => {
 
 const CallToAction = (props: CallToActionProps) => {
   return (
-    <section className="container mx-auto py-12">
+    <section className="container mx-auto">
       <div className="rounded-2xl bg-[#131313] relative">
         <div className="max-w-3xl mx-auto text-center ">
           <section className="p-10 sm:p-12 z-10 relative">
