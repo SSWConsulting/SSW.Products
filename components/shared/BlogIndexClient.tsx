@@ -244,7 +244,7 @@ const RecentArticles = ({
         </h2>
       )}
 
-      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-8">
+      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 sm:gap-8">
         {data?.pages.map((page) =>
           page?.edges?.map((edge, index) => {
             const post = edge?.node;
@@ -312,7 +312,7 @@ const RecentArticles = ({
         )}
       </div>
 
-      <div className="text-center mt-12">
+      <div className="text-center mt-6">
         {data?.pages[data.pages.length - 1].pageInfo.hasPreviousPage && (
           <Button
             onClick={() => {
@@ -408,7 +408,7 @@ const HeroSearch = (props: HeroSearchProps) => {
   }, [searchTerm, updateSearchTerm]);
 
   return (
-    <section className=" relative bg-gradient-to-b py-16 bg-[#131313]">
+    <section className=" relative bg-gradient-to-b py-16 my-12 bg-[#131313]">
       <div className="mx-auto container relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-12">
           {props.title && (
@@ -466,10 +466,10 @@ const HeroSearch = (props: HeroSearchProps) => {
 
 const CallToAction = (props: CallToActionProps) => {
   return (
-    <section className="container mx-auto py-24">
+    <section className="container mx-auto py-12">
       <div className="rounded-2xl bg-[#131313] relative">
         <div className="max-w-3xl mx-auto text-center ">
-          <section className="p-6 z-10 relative">
+          <section className="p-10 sm:p-12 z-10 relative">
             {props.title && (
               <h2
                 data-tina-field={tinaField(props, "title")}
