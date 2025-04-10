@@ -199,13 +199,13 @@ const ArticleMetadata = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex items-center gap-1 text-gray-400", className)}>
-      <div className="flex items-center">
-        <Calendar className="h-4 w-4 gap-0.5" />
+    <div className={cn("flex items-center gap-2 text-gray-400", className)}>
+      <div className="flex items-center gap-1">
+        <Calendar className="h-4 w-4" />
         <span>{date && formatDate(date)}</span>
       </div>
       <span>•</span>
-      <div className="flex items-center gap-0.5">
+      <div className="flex items-center gap-1">
         <Clock className="h-4 w-4" />
         <span>{readLength}</span>
       </div>
