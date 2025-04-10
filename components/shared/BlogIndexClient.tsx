@@ -80,7 +80,10 @@ const GridBackground = () => {
   );
 };
 
-const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
+const FeaturedArticle = ({
+  featuredBlog,
+  ...props
+}: RemoveTinaMetadata<FeaturedBlog>) => {
   const { searchTerm } = useBlogSearch();
   return (
     <>
@@ -154,8 +157,12 @@ const FeaturedArticle = ({ featuredBlog, ...props }: FeaturedBlog) => {
   );
 };
 
+type RemoveTinaMetadata<T> = Omit<T, "__typename" | "_values"> & {
+  __typename: string;
+};
+
 type BlocksProps = {
-  blocks: Maybe<Block>[];
+  blocks: Maybe<RemoveTinaMetadata<Block>>[];
   product: string;
 };
 
@@ -165,15 +172,11 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
       {blocks.map((block) => {
         switch (block?.__typename) {
           case "BlogsIndexBlocksHeroSearch":
-            if (block?.__typename === "BlogsIndexBlocksHeroSearch") {
-              return <HeroSearch {...block} />;
-            }
-            return null;
+            return <HeroSearch {...block} />;
           case "BlogsIndexBlocksCallToAction":
             return <CallToAction {...block} />;
           case "BlogsIndexBlocksArticleList":
             return <RecentArticles {...block} product={product} />;
-
           case "BlogsIndexBlocksFeaturedBlog":
             return <FeaturedArticle {...block} />;
           default:
@@ -211,7 +214,7 @@ const ArticleMetadata = ({
 const RecentArticles = ({
   product,
   ...props
-}: ArticleListProps & { product: string }) => {
+}: RemoveTinaMetadata<ArticleListProps> & { product: string }) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
   const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: [`blogs${searchTerm}${selectedCategory}`],
@@ -390,7 +393,7 @@ const Author = ({
   );
 };
 
-const HeroSearch = (props: HeroSearchProps) => {
+const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
   const debounceTime = 1000;
   const {
     updateSearchTerm,
@@ -464,7 +467,7 @@ const HeroSearch = (props: HeroSearchProps) => {
   );
 };
 
-const CallToAction = (props: CallToActionProps) => {
+const CallToAction = (props: RemoveTinaMetadata<CallToActionProps>) => {
   return (
     <section className="container mx-auto">
       <div className="rounded-2xl bg-[#131313] relative">
