@@ -8,9 +8,9 @@ import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import {
-  BlogsIndexBlocksArticleList as ArticleListProps,
-  BlogsIndexBlocksCallToAction as CallToActionProps,
-  BlogsIndexBlocksHeroSearch as HeroSearchProps,
+  BlogsIndexBlocksArticleList,
+  BlogsIndexBlocksCallToAction,
+  BlogsIndexBlocksHeroSearch,
 } from "../../tina/__generated__/types";
 
 import Link from "next/link";
@@ -20,17 +20,23 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__generated__/types";
 
 import { cn } from "@/lib/utils";
+import { RemoveTinaMetadata } from "@/types/tina";
 import client from "../../tina/__generated__/client";
-import {
-  BlogsIndexBlocks as Block,
-  Maybe,
-} from "../../tina/__generated__/types";
+import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import { Button } from "../ui/button";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
+
+type Block = Maybe<RemoveTinaMetadata<BlogsIndexBlocks>>;
+
+type ArticleListProps = RemoveTinaMetadata<BlogsIndexBlocksArticleList>;
+
+type CallToActionProps = RemoveTinaMetadata<BlogsIndexBlocksCallToAction>;
+
+type HeroSearchProps = RemoveTinaMetadata<BlogsIndexBlocksHeroSearch>;
 
 export const PAGE_LIMIT = 3;
 
@@ -155,10 +161,6 @@ const FeaturedArticle = ({
       )}
     </>
   );
-};
-
-type RemoveTinaMetadata<T> = Omit<T, "__typename" | "_values"> & {
-  __typename: string;
 };
 
 type BlocksProps = {
