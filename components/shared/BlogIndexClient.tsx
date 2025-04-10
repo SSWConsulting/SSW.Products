@@ -65,7 +65,7 @@ export default function BlogIndexClient({
 
   return (
     <>
-      <div className="grow flex flex-col pb-12 gap-14 sm:gap-24 ">
+      <div className="grow flex flex-col pb-12 gap-14 lg:gap-24 ">
         {blogsIndex.blocks && (
           <Blocks product={product} blocks={blogsIndex.blocks} />
         )}
@@ -249,7 +249,7 @@ const RecentArticles = ({
         </h2>
       )}
 
-      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 sm:gap-8">
+      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
         {data?.pages.map((page) =>
           page?.edges?.map((edge, index) => {
             const post = edge?.node;
