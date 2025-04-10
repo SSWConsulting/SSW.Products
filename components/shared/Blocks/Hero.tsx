@@ -6,7 +6,6 @@ import { FaExpandAlt, FaMinus } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 
 const TranscriptBox = ({ data }: { data: any }) => {
-  console.log(data);
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
@@ -22,21 +21,16 @@ const TranscriptBox = ({ data }: { data: any }) => {
 
             <span className="lg:text-sm text-xs text-gray-400">
               {data?.leftHandSide?.issueReportSubTitle}
-
-            
             </span>
           </div>
         </div>
 
-
         <span className="text-gray-400 font-mono lg:pt-4 pt-2 lg:text-sm text-xs">
           {data?.leftHandSide?.issueReportByline}
-
         </span>
         {/* Transcript Box */}
         <div className="pt-2 font-mono lg:text-sm text-xs">
           <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] flex flex-col p-2 rounded-md border border-white/20">
-            
             <TinaMarkdown content={data?.leftHandSide?.issueReportTranscript} />
           </div>
         </div>
@@ -79,9 +73,8 @@ const TranscriptBox = ({ data }: { data: any }) => {
             </span>
             <div className="flex flex-col  bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] border border-white/20 py-3 px-2 rounded-lg gap-2 relative lg:text-sm text-xs">
               {/* Chat tab indicator */}
-              
-              <TinaMarkdown content={data?.rightHandSide?.issueReportBody} />
 
+              <TinaMarkdown content={data?.rightHandSide?.issueReportBody} />
             </div>
             <div className="flex justify-end items-end py-4">
               <div className="bg-red-700 text-xs py-1 px-2 rounded-md">
@@ -97,12 +90,27 @@ const TranscriptBox = ({ data }: { data: any }) => {
 
 // This is a work-around for not using markdown. Its a custom 'MDX component' but cant use markdown so we are using a plain string
 // "{ }" indicates text to be highlighted
-const curlyBracketFormatter = (byLine: string) => {
+export const curlyBracketFormatter = (byLine: string) => {
   return byLine?.split(/({.*?})/).map((part, index) =>
     part.startsWith("{") && part.endsWith("}") ? (
       <span
         key={index}
         className="bg-gradient-to-br from-red-400 to-red-700 bg-clip-text text-transparent font-bold"
+      >
+        {part.slice(1, -1)}
+      </span>
+    ) : (
+      part
+    )
+  );
+};
+
+export const SSWRedCurlyBracketFormatter = (byLine: string) => {
+  return byLine?.split(/({.*?})/).map((part, index) =>
+    part.startsWith("{") && part.endsWith("}") ? (
+      <span
+        key={index}
+        className="text-[#CC4141]"
       >
         {part.slice(1, -1)}
       </span>
@@ -136,9 +144,7 @@ export default function Hero({ data }: { data: any }) {
           <div className="pt-20 flex items-center justify-center gap-2">
             <h1>{data?.titleBeforeRotate}</h1>
             <span className="text-[#CC4141] pl-1">
-
               <WordRotate words={data?.rotatingWords} className="" />
-
             </span>
           </div>
           <div>
@@ -153,21 +159,21 @@ export default function Hero({ data }: { data: any }) {
         <div className="flex items-center justify-center pt-12 gap-6">
           {data?.ctaLeft?.title && data?.ctaLeft?.link && (
             <div>
-
-
-              <ShinyButton href={data.ctaLeft?.link} className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
+              <ShinyButton
+                href={data.ctaLeft?.link}
+                className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
+              >
                 {data.ctaLeft?.title}
-
               </ShinyButton>
             </div>
           )}
           {data?.ctaRight?.title && data?.ctaRight?.link && (
             <div>
-
-
-              <ShinyButton href={data.ctaRight?.link} className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0">
+              <ShinyButton
+                href={data.ctaRight?.link}
+                className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
+              >
                 {data.ctaRight?.title}
-
               </ShinyButton>
             </div>
           )}
@@ -183,4 +189,3 @@ export default function Hero({ data }: { data: any }) {
     </div>
   );
 }
-

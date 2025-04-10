@@ -205,7 +205,7 @@ function SSWBadge({ title, link }: { title: string; link?: string }) {
   );
 }
 
-function TitleFadeIn({ title }: { title: string }) {
+export function TitleFadeIn({ title }: { title: string }) {
   const words = title.split(" ");
   const lastWord = words.pop();
   const firstPart = words.join(" ");

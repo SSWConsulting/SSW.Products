@@ -42,6 +42,40 @@
       "_template": "hero"
     },
     {
+      "ParentContainerTitle": "{How YakShaver Works}",
+      "ParentContainerDescription": "The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. ",
+      "CardAndImageItem": [
+        {
+          "AboveHeaderText": "{See it}",
+          "Header": "1 - Record a Video",
+          "Description": "Found a bug or have an idea? Record your screen and voice with any app you like\n",
+          "Badge1Text": "Teams",
+          "Badge2Text": "Snipping Tool",
+          "Badge3Text": "Snaggit",
+          "media": "/Browser1.png",
+          "textOnLeft": true
+        },
+        {
+          "AboveHeaderText": "{Shave It}",
+          "Header": "2 - YakShaver Takes Over",
+          "Description": "YakShaver watches your video, turns what you say into text, and figures out what's happening.\n",
+          "media": "/Browser2.png",
+          "textOnLeft": true
+        },
+        {
+          "AboveHeaderText": "{Solve It}",
+          "Header": "3 - Create Tasks for You and Your Team",
+          "Description": "YakShaver takes the insights and:\n\n* **Automatically creates a task, bug report, or feature request** in your team's favourite system (Azure DevOps, GitHub, etc.). If you're not using these systems, YakShaver can send it via email\n* **Populates all fields**, including a descriptive title, description, context and your original video for additional context\n",
+          "Badge1Text": "GitHub",
+          "Badge2Text": "DevOps",
+          "Badge3Text": "Email",
+          "media": "/Browser3.png",
+          "textOnLeft": true
+        }
+      ],
+      "_template": "CardAndImage"
+    },
+    {
       "badge": "Powered by SSW",
       "badgeLink": "https://ssw.com.au",
       "title": "Meet your new assistant, YakShaver",
@@ -110,6 +144,99 @@
         "outputText": "Work Item"
       },
       "_template": "BentoBox"
+    },
+    {
+      "title": "{Simple, Transparent Pricing}",
+      "desc": "Choose the plan that's right for your team and start saving time on issue reporting today",
+      "tiers": [
+        {
+          "tier": "Starter ",
+          "description": [
+            "15 Credits per month",
+            "For individuals"
+          ],
+          "price": 0,
+          "estimatedHoursSaved": 7.5,
+          "itemsAbleToCreate": 15,
+          "priceDescription": "forever",
+          "actions": {
+            "label": "Get Started",
+            "variant": "outlinedWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "Team",
+          "description": [
+            "100 Credits per month",
+            "For growing teams"
+          ],
+          "price": 39,
+          "estimatedHoursSaved": 50,
+          "itemsAbleToCreate": 100,
+          "priceDescription": "per month",
+          "actions": {
+            "label": "Get Started",
+            "variant": "solidRed",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "Growth",
+          "description": [
+            "500 Credits per month",
+            "For larger organizations"
+          ],
+          "price": 189,
+          "estimatedHoursSaved": 250,
+          "itemsAbleToCreate": 500,
+          "priceDescription": "per month",
+          "actions": {
+            "label": "Get Started",
+            "variant": "outlinedWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "Enterprise",
+          "description": [
+            "Custom credit allocation",
+            "For custom solutions"
+          ],
+          "price": 99999,
+          "estimatedHoursSaved": 0,
+          "itemsAbleToCreate": 0,
+          "actions": {
+            "label": "Get Started",
+            "variant": "solidWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        }
+      ],
+      "addOns": {
+        "title": "Credit Pack",
+        "description": "Need a top up? Add some credits",
+        "price": "25",
+        "subPriceText": "per 50 credits",
+        "actionButton": {
+          "label": "View Full Pricing Details",
+          "variant": "outlinedWhite",
+          "size": "medium",
+          "url": "/pricing"
+        }
+      },
+      "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\*\\* Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
+      "bottomAction": {
+        "label": "View Full Pricing Details",
+        "variant": "solidRed",
+        "size": "large",
+        "url": "/pricing"
+      },
+      "_template": "calculator"
     },
     {
       "altText": "Making the Perfect PBI | YakShaver",

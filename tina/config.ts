@@ -4,6 +4,7 @@ import { docsCollection } from "./collectionSchema/docs";
 import { footerCollection } from "./collectionSchema/footer";
 import { navigationBarCollection } from "./collectionSchema/navbar";
 import { PagesSchema } from "./collectionSchema/pages";
+import { privacyPolicyCollection } from "./collectionSchema/privacy";
 
 const branch =
   process.env.GITHUB_BRANCH ||
@@ -31,6 +32,7 @@ export default defineConfig({
   schema: {
     collections: [
       PagesSchema,
+      privacyPolicyCollection,
       navigationBarCollection,
       footerCollection,
       blogCollection,

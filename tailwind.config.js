@@ -3,8 +3,8 @@ module.exports = {
   darkMode: ["class"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx}",
     "./app/*",
+    "./src/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -17,6 +17,9 @@ module.exports = {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         helvetica: ["Helvetica", "Arial", "sans-serif"],
+      },
+      screens: {
+        "3xl": "1920px",
       },
       colors: {
         ssw: {
@@ -68,6 +71,15 @@ module.exports = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      animation: {
+        shine: "shine var(--duration, 14s) linear infinite",
+      },
+      keyframes: {
+        shine: {
+          "0%": { backgroundPosition: "-200% 0%" },
+          "100%": { backgroundPosition: "200% 0%" },
+        },
       },
     },
   },

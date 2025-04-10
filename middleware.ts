@@ -5,6 +5,7 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const isLocal = hostname?.includes('localhost') || hostname?.includes('127.0.0.1');
+  const isStaging = hostname?.includes('vercel.app');
   const productList = process.env.NEXT_PUBLIC_PRODUCT_LIST ? JSON.parse(process.env.NEXT_PUBLIC_PRODUCT_LIST) : [];
 
   // Allow .well-known paths without rewriting
@@ -17,7 +18,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (isLocal) {
+  if (isLocal || isStaging) {
     return handleLocalRequest(pathname, productList, request);
   } else {
     return handleProductionRequest(hostname, productList, pathname, request);
