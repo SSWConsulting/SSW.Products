@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { useState } from "react";
+import { FaMinus, FaPlus } from "react-icons/fa";
 import { tinaField } from "tinacms/dist/react";
 
 type FAQItem = {
@@ -21,7 +21,7 @@ const FAQ = ({ data }: { data: FAQData }) => {
   };
 
   return (
-    <div className="text-white p-8 lg:px-40 3xl:px-80 mx-auto max-w-7xl">
+    <div className="text-white p-8 lg:px-40 mx-auto max-w-7xl">
       <h1
         className="text-2xl font-semibold mb-6 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
