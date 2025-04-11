@@ -57,6 +57,9 @@ export const blogCollection: Collection = {
     {
       label: "Category",
       name: "category",
+      //TODO: Make this field modifable in TinaCMS https://github.com/SSWConsulting/SSW.Website/issues/3850
+      description:
+        "If you need to add a new category, please contact a developer",
       required: true,
       type: "string",
       options: [DEFAULT_CATEGORY, "What's New", "Getting Started"],
