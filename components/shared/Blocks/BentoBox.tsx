@@ -218,7 +218,7 @@ export function TitleFadeIn({ title }: { title: string }) {
 
   return (
     <>
-      <div className="text-white text-center lg:text-5xl text-3xl font-semibold py-6">
+      <div className="text-white text text-center lg:text-5xl text-3xl font-semibold py-6">
         <span className="inline-block max-w-full break-words">
           {firstPart}
           {firstPart ? " " : ""}
@@ -226,7 +226,7 @@ export function TitleFadeIn({ title }: { title: string }) {
             {lastWord?.split("").map((char, index) => (
               <span
                 key={index}
-                className="inline-block"
+                className="inline-block text-transparent"
                 style={{
                   animation: `colorChange 2000ms ease-in-out forwards ${
                     index * 100
@@ -253,9 +253,9 @@ export function TitleFadeIn({ title }: { title: string }) {
 export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
-    <div className="lg:py-20 md:pb-10 ">
+    <div className="lg:py-20 md:pb-10 container mx-auto">
       <TitleFadeIn title={data?.title} />
-      <div className="text-white mx-auto container">
+      <div className="text-white mx-auto">
         {/* Container */}
         <div className=" grid gap-4">
           {/* Row 1 (Single row, 2 columns) */}
