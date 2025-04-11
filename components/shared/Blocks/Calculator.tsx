@@ -152,7 +152,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
           />
         </div>
       </div>
-      <div className="flex justify-center py-6">
+      <div className="flex justify-center pt-6">
         <Actions actions={[data?.bottomAction]} />
       </div>
     </div>

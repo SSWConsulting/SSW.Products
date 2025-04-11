@@ -15,8 +15,8 @@ export default function CardAndImageParent(data: any) {
   const [idOfOpen, setIdOfOpen] = useState<string | null>("0");
 
   return (
-    <div className="container mx-auto pb-12">
-      <h2 className="text-5xl text-white flex justify-center font-bold pt-12 pb-3">
+    <div className="container mx-auto">
+      <h2 className="text-5xl text-white flex justify-center font-bold pb-3">
         {curlyBracketFormatter(data.data.ParentContainerTitle)}
       </h2>
       <div className="flex justify-center max-w-xl mx-auto pb-9">

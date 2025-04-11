@@ -119,7 +119,7 @@ export const SSWRedCurlyBracketFormatter = (byLine: string) => {
 
 export default function Hero({ data }: { data: any }) {
   return (
-    <div className="flex items-center justify-center mx-auto pb-20 relative overflow-hidden pt-20 md:pt-20">
+    <div className="flex items-center justify-center mx-auto relative overflow-hidden">
       {/* Background Yak SVG */}
       <div className="absolute inset-0 z-0 flex justify-end items-center opacity-50 overflow-visible">
         {data?.backgroundImageEnabled && (
@@ -138,7 +138,7 @@ export default function Hero({ data }: { data: any }) {
       {/* Content (z-10 to appear above the background) */}
       <div className="z-10 flex flex-col items-center justify-center w-full">
         <div className="flex flex-col font-bold items-center justify-center text-2xl md:text-5xl  text-white">
-          <div className="pt-20 flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <h1>{data?.titleBeforeRotate}</h1>
             <span className="text-[#CC4141] pl-1">
               <WordRotate words={data?.rotatingWords} className="" />
@@ -148,7 +148,7 @@ export default function Hero({ data }: { data: any }) {
             <h1>{data?.titleAfterRotate}</h1>
           </div>
         </div>
-        <h2 className="text-white text-center text-base md:text-lg pt-6 lg:pt-12 max-w-3xl px-10 lg:px-0">
+        <h2 className="text-white text-center text-base md:text-lg max-w-3xl px-10 lg:px-0">
           {curlyBracketFormatter(data?.byLine)}
         </h2>
 

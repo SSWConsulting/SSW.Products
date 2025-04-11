@@ -24,7 +24,7 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
 
   return (
     <div
-      className="container mx-auto pt-8"
+      className="container mx-auto"
       style={{
         background: gradientBackground,
       }}

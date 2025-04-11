@@ -13,9 +13,9 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
   const { externalVideoLink, title } = data;
 
   return (
-    <div className="flex justify-center pb-12 mx-auto container">
+    <div className="flex justify-center mx-auto container">
       <div className="items-center w-full h-auto ">
-        <h2 className="text-2xl text-white font-semibold py-4 text-center">
+        <h2 className="text-2xl text-white font-semibold pb-4 text-center">
           {" "}
           {title}
         </h2>
