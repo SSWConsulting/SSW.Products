@@ -9,13 +9,18 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      screens: {
-        "3xl": { max: "1920px" },
+    container: {
+      padding: {
+        DEFAULT: "1.5rem",
       },
+    },
+    extend: {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         helvetica: ["Helvetica", "Arial", "sans-serif"],
+      },
+      screens: {
+        "3xl": { max: "1920px" },
       },
       colors: {
         ssw: {

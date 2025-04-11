@@ -1,0 +1,28 @@
+{
+  "blocks": [
+    {
+      "title": "YakShaver.ai Blog",
+      "description": "Insights, tips, and stories about issue reporting and AI-powered productivity",
+      "showCategories": false,
+      "_template": "heroSearch"
+    },
+    {
+      "title": "Featured Article",
+      "featuredBlog": "content/blogs/YakShaver/how-much-time-does-yakshaver-save.mdx",
+      "_template": "featuredBlog"
+    },
+    {
+      "title": "Recent Articles",
+      "_template": "articleList"
+    },
+    {
+      "title": "Talk to a YakShaver Expert",
+      "description": "Evaluating YakShaver for your project? Book a 30-minute call with a YakShaver architect",
+      "button": {
+        "buttonText": "Schedule a Call",
+        "buttonLink": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink"
+      },
+      "_template": "callToAction"
+    }
+  ]
+}

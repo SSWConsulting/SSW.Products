@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useRef } from "react";
+import { cn } from "@/lib/utils";
+import { useRef } from "react";
 import "./InteractiveBackground.scss";
 
 const InteractiveBackground = () => {
   const backgroundBubblesRef = useRef<HTMLDivElement[]>([]);
-
   return (
-    <div className="gradient-bg">
+    <div className={cn("gradient-bg")}>
       <div className="gradients-container">
         <div
           className="g1"

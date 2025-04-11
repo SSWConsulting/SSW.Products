@@ -52,7 +52,7 @@ export default function FooterClient({
 
   return (
     <footer
-      className={`text-white py-6 transition-opacity duration-300 ${
+      className={`text-white p-6 transition-opacity duration-300 ${
         !footerColor ? "bg-ssw-charcoal" : ""
       } ${isVisible ? "opacity-100" : "opacity-0"}`}
       style={{ backgroundColor: footerColor }}

@@ -1,5 +1,5 @@
 import { defineConfig } from "tinacms";
-import { blogCollection } from "./collectionSchema/blog";
+import { blogCollection, blogIndexCollection } from "./collectionSchema/blog";
 import { docsCollection } from "./collectionSchema/docs";
 import { footerCollection } from "./collectionSchema/footer";
 import { navigationBarCollection } from "./collectionSchema/navbar";
@@ -14,11 +14,11 @@ const branch =
 
 export default defineConfig({
   branch,
-  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID, 
-  token: process.env.TINA_TOKEN, 
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID,
+  token: process.env.TINA_TOKEN,
 
   build: {
-    outputFolder: 'admin', 
+    outputFolder: "admin",
     publicFolder: "public",
   },
   media: {
@@ -31,11 +31,12 @@ export default defineConfig({
   // Define the schema
   schema: {
     collections: [
+      PagesSchema,
       privacyPolicyCollection,
-      PagesSchema, 
       navigationBarCollection,
       footerCollection,
       blogCollection,
+      blogIndexCollection,
       docsCollection,
     ],
   },
