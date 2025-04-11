@@ -1,13 +1,13 @@
-import { WordRotate } from "@/components/magicui/word-rotate";
 import { ShinyButton } from "@/components/magicui/shiny-button";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
 import { FaExpandAlt, FaMinus } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 
 const TranscriptBox = ({ data }: { data: any }) => {
   return (
-    <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
+    <div className="flex flex-col md:flex-row  w-full">
       {/* LHS */}
       <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-tl-xl md:rounded-bl-xl rounded-tr-xl md:rounded-tr-none py-6 px-6 border border-white/20 ">
         <div className="flex gap-4">
@@ -108,10 +108,7 @@ export const curlyBracketFormatter = (byLine: string) => {
 export const SSWRedCurlyBracketFormatter = (byLine: string) => {
   return byLine?.split(/({.*?})/).map((part, index) =>
     part.startsWith("{") && part.endsWith("}") ? (
-      <span
-        key={index}
-        className="text-[#CC4141]"
-      >
+      <span key={index} className="text-[#CC4141]">
         {part.slice(1, -1)}
       </span>
     ) : (
@@ -181,7 +178,7 @@ export default function Hero({ data }: { data: any }) {
         <span className="flex justify-center text-white text-center lg:text-sm text-xs pt-4">
           {data?.buttonSubtext}
         </span>
-        <div className="flex items-center justify-center pt-12 text-white max-w-6xl w-full">
+        <div className="flex items-center justify-center pt-12 text-white container">
           {/* Transcript Container */}
           {data?.reportUIEnabled && <TranscriptBox data={data?.reportUI} />}
         </div>

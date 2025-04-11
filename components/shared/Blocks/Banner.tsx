@@ -24,17 +24,17 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
 
   return (
     <div
-      className="w-full pt-8"
+      className="container mx-auto pt-8"
       style={{
         background: gradientBackground,
       }}
     >
       <div
-        className="container mx-auto px-8 flex flex-col md:flex-col lg:flex-row items-center text-left"
+        className="mx-auto flex flex-col md:flex-col lg:flex-row items-center text-left"
         style={{ color: data.textColour }}
       >
         {/* Left Column: Text and Buttons */}
-        <div className="lg:w-2/5 w-full flex flex-col gap-2 pl-0 lg:pl-20">
+        <div className="lg:w-2/5 w-full flex flex-col gap-2">
           <h2
             className="text-4xl font-semibold mb-4"
             data-tina-field={tinaField(data, "headline")}

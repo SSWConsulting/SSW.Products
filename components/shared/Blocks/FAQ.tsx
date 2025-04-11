@@ -21,7 +21,7 @@ const FAQ = ({ data }: { data: FAQData }) => {
   };
 
   return (
-    <div className="text-white p-8 lg:px-40 mx-auto max-w-7xl">
+    <div className="text-white mx-auto container">
       <h1
         className="text-2xl font-semibold mb-6 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
@@ -32,7 +32,7 @@ const FAQ = ({ data }: { data: FAQData }) => {
         {data.text}
       </p>
       <hr className="border-white" />
-      <div className="mb-40" data-tina-field={tinaField(data, "questions")}>
+      <div className="" data-tina-field={tinaField(data, "questions")}>
         {data.questions.map((item: FAQItem, index: number) => (
           <div key={index} data-tina-field={tinaField(item)}>
             <button

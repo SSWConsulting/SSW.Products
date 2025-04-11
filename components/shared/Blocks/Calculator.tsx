@@ -114,7 +114,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
 
   console.log(data);
   return (
-    <div className="max-w-7xl mx-auto py-20 px-10">
+    <div className="container mx-auto">
       <h2 className="text-4xl text-center font-semibold text-white mb-4">
         {" "}
         {curlyBracketFormatter(data?.title)}

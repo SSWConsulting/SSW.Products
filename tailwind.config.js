@@ -15,6 +15,9 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        "3xl": { max: "120rem" },
+      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         helvetica: ["Helvetica", "Arial", "sans-serif"],

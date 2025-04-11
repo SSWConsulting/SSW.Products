@@ -1,8 +1,8 @@
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
 import { curlyBracketFormatter } from "../Hero";
-import { FaChevronDown } from "react-icons/fa";
-import { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 
 const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
   ul: (props: unknown) => {
@@ -15,7 +15,7 @@ export default function CardAndImageParent(data: any) {
   const [idOfOpen, setIdOfOpen] = useState<string | null>("0");
 
   return (
-    <div className="max-w-7xl mx-auto px-12 pb-12">
+    <div className="container mx-auto pb-12">
       <h2 className="text-5xl text-white flex justify-center font-bold pt-12 pb-3">
         {curlyBracketFormatter(data.data.ParentContainerTitle)}
       </h2>

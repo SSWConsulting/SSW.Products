@@ -1,12 +1,13 @@
+import { cn } from "@/lib/utils";
+
 type YouTubeEmbedProps = {
   src: string;
-
   className?: string;
 };
 
-export const YouTubeEmbed = ({ src }: YouTubeEmbedProps) => {
+export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
   return (
-    <div className={"relative w-full"} style={{ paddingTop: "56.25%" }}>
+    <div className={cn("relative w-full", className)}>
       <iframe
         className="absolute top-0 left-0 w-full h-full rounded-lg shadow-lg"
         src={src}
