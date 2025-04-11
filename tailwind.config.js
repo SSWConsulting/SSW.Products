@@ -4,7 +4,6 @@ module.exports = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./tina/**/*.{js,ts,jsx,tsx}",
-    "./app/*",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
@@ -15,6 +14,9 @@ module.exports = {
       },
     },
     extend: {
+      spacing: {
+        navBarHeight: "7.75rem",
+      },
       screens: {
         "3xl": { max: "120rem" },
       },
