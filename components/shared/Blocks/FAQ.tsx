@@ -21,7 +21,7 @@ const FAQ = ({ data }: { data: FAQData }) => {
   };
 
   return (
-    <div className="text-white mx-auto container">
+    <div className="text-white mx-auto xl:px-60 container">
       <h1
         className="text-2xl font-semibold mb-6 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
