@@ -6,7 +6,7 @@
   "title": "YakShaver",
   "pageBlocks": [
     {
-      "backgroundImageEnabled": true,
+      "backgroundImageEnabled": false,
       "titleBeforeRotate": "Make the perfect",
       "titleAfterRotate": "in seconds",
       "rotatingWords": [
