@@ -6,7 +6,6 @@ interface FooterServerProps {
 }
 
 const getHasPrivacyPolicy = async (product: string) => {
-  console.log("product", product);
   try {
     const res = await client.queries.privacy({
       relativePath: `${product}/index.mdx`,
