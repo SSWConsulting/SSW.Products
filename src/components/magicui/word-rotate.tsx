@@ -36,7 +36,7 @@ export function WordRotate({
     return () => clearInterval(interval);
   }, [words, duration]);
 
-  if (words=== null) return null;
+  if (words === null) return null;
 
   return (
     <div className="overflow-hidden py-2">
@@ -46,11 +46,11 @@ export function WordRotate({
           className={cn(className)}
           {...motionProps}
           style={{
-            backgroundImage: 'linear-gradient(to bottom right, #FF6467, #C10007)',
-            WebkitBackgroundClip: 'text',
-            color: 'transparent'
+            backgroundImage:
+              "linear-gradient(to bottom right, #FF6467, #C10007)",
+            WebkitBackgroundClip: "text",
+            color: "transparent",
           }}
-          
         >
           {words[index]}
         </motion.h1>
