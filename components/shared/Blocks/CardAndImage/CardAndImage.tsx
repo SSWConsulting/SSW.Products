@@ -13,6 +13,14 @@ const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
 
 export default function CardAndImageParent(data: any) {
   const [idOfOpen, setIdOfOpen] = useState<string | null>("0");
+  const [lastOpenedId, setLastOpenedId] = useState<string>("0");
+
+  const handleIdChange = (newId: string | null) => {
+    setIdOfOpen(newId);
+    if (newId !== null) {
+      setLastOpenedId(newId);
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-12 pb-12">
@@ -32,18 +40,18 @@ export default function CardAndImageParent(data: any) {
               data={item}
               uniqueId={item.id || index.toString()}
               idOfOpen={idOfOpen}
-              setIdOfOpen={setIdOfOpen}
+              setIdOfOpen={handleIdChange}
             />
           ))}
         </div>
-        <div className=" w-full md:w-1/2 flex items-center justify-center">
+        <div className="w-full md:w-1/2 flex items-center justify-center">
           <Image
             src={
-              data.data.CardAndImageItem[idOfOpen ?? 0].media ||
+              data.data.CardAndImageItem[lastOpenedId].media ||
               data.data.CardAndImageItem[0].media
             }
             alt={
-              data.data.CardAndImageItem[idOfOpen ?? 0].header ||
+              data.data.CardAndImageItem[lastOpenedId].header ||
               data.data.CardAndImageItem[0].header
             }
             width={500}

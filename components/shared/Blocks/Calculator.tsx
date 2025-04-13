@@ -113,7 +113,6 @@ export default function CalculatorComponent({ data }: { data: any }) {
     setItemsAbleToCreate(data.tiers[selectedTier].itemsAbleToCreate);
   }, [selectedTier, data.tiers]);
 
-  console.log(data);
   return (
     <div className="max-w-7xl mx-auto py-20 px-10">
       <h2 className="text-4xl text-center font-semibold text-white mb-4">
@@ -175,8 +174,6 @@ const EstimatedSavingsContent = ({
   const annualValueReclaimed = monthlyValueReclaimed * 12;
 
   const isCustomTier = estimatedHoursSaved === 99999 || priceOfTier === 99999;
-
-  console.log("itemsAbleToCreate", itemsAbleToCreate);
 
   return (
     <div className="w-full flex flex-col space-y-3">
