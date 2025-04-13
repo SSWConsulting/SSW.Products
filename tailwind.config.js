@@ -11,6 +11,7 @@ module.exports = {
     container: {
       padding: {
         DEFAULT: "1.5rem",
+        "2xl": "10rem",
       },
     },
     extend: {
@@ -18,7 +19,7 @@ module.exports = {
         navBarHeight: "7.75rem",
       },
       screens: {
-        "3xl": { max: "120rem" },
+        "3xl": { min: "1920px" },
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
