@@ -1,6 +1,6 @@
 import Image from "next/image";
-
 import { FaMinus, FaXmark } from "react-icons/fa6";
+import Container from "../../Container";
 import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
 import { TypingAnimation } from "@/components/magicui/typing-animation";
@@ -247,7 +247,7 @@ export function TitleFadeIn({ title }: { title: string }) {
 export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
-    <div className="container mx-auto">
+    <Container>
       <TitleFadeIn title={data?.title} />
       <div className="text-white mx-auto">
         {/* Container */}
@@ -323,6 +323,6 @@ export default function BentoBox({ data }: { data: any }) {
       <div className="pt-10">
         <SSWBadge title={data?.badge} link={data?.badgeLink} />
       </div>
-    </div>
+    </Container>
   );
 }
