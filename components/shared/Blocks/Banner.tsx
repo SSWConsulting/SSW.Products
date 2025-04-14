@@ -24,13 +24,13 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
 
   return (
     <div
-      className="container mx-auto"
+      className="mx-auto w-full"
       style={{
         background: gradientBackground,
       }}
     >
       <div
-        className="mx-auto flex flex-col md:flex-col lg:flex-row items-center text-left"
+        className="mx-auto flex container flex-col md:flex-col lg:flex-row items-center text-left"
         style={{ color: data.textColour }}
       >
         {/* Left Column: Text and Buttons */}
