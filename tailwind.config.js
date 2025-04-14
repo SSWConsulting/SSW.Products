@@ -18,15 +18,12 @@ module.exports = {
       spacing: {
         navBarHeight: "7.75rem",
       },
-      screens: {
-        "3xl": { min: "1920px" },
-      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         helvetica: ["Helvetica", "Arial", "sans-serif"],
       },
       screens: {
-        "3xl": { max: "1920px" },
+        "3xl": "1920px",
       },
       colors: {
         ssw: {
