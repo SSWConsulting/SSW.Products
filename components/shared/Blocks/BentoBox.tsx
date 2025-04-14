@@ -240,13 +240,6 @@ export function TitleFadeIn({ title }: { title: string }) {
           </span>
         </span>
       </div>
-      <style jsx>{`
-        @keyframes colorChange {
-          to {
-            color: #cc4141;
-          }
-        }
-      `}</style>
     </>
   );
 }
