@@ -1,20 +1,14 @@
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { WordRotate } from "@/components/magicui/word-rotate";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { FaExpandAlt, FaMinus } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import Container from "../../Container";
 
-const TranscriptBox = ({
-  data,
-  className,
-}: {
-  data: any;
-  className?: string;
-}) => {
+const TranscriptBox = ({ data }: { data: any }) => {
   return (
-    <div className={cn("flex flex-col md:flex-row  w-full", className)}>
+    <div className="flex flex-col md:flex-row  w-full">
       {/* LHS */}
       <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-tl-xl md:rounded-bl-xl rounded-tr-xl md:rounded-tr-none py-6 px-6 border border-white/20 ">
         <div className="flex gap-4">
@@ -188,7 +182,9 @@ export default function Hero({ data }: { data: any }) {
         <div className="flex items-center justify-center pt-12 text-white">
           {/* Transcript Container */}
           {data?.reportUIEnabled && (
-            <TranscriptBox className="container" data={data?.reportUI} />
+            <Container>
+              <TranscriptBox data={data?.reportUI} />
+            </Container>
           )}
         </div>
       </div>
