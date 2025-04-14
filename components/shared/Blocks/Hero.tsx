@@ -7,12 +7,7 @@ import { CircleLogo } from "./AnimatedBeam";
 import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
 
 const TranscriptBox = ({ data }: { data: any }) => {
-  const testString =
-    "I just encountered a problem in {TinaCloud}. When i was attempting to upload files larger than 5MB, the {application} {crashes} entirely.";
-  const testString2 =
-    "I am on the latest version of {Chrome}. This impacts user function significantly, I would classify it as {Priority 1}.";
-  const testString3 =
-    "I recalled {Matt and Adam} had a similar issue before. I'll need to inform the {operations team} this bug could affect their experience negatively";
+  console.log(data.leftHandSide);
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
@@ -35,24 +30,32 @@ const TranscriptBox = ({ data }: { data: any }) => {
               />
             </div>
             <div className="flex items-center gap-2">
-              <span className="lg:text-sm text-xs text-white">Uly</span>
-              <span className="text-gray-400 text-xs">Monday 9:13am</span>
+              <span className="lg:text-sm text-xs text-white">
+                {data.leftHandSide?.issueReportName}
+              </span>
+              <span className="text-gray-400 text-xs">
+                {data.leftHandSide?.issueReportTime}
+              </span>
             </div>
           </div>
           <div className="flex flex-col gap-4 ">
-            <span> {highlightCurlyBracketFormatter(testString)}</span>
-            <span> {highlightCurlyBracketFormatter(testString2)}</span>
-            <span> {highlightCurlyBracketFormatter(testString3)}</span>
+            {data.leftHandSide?.issueReportText?.map(
+              (text: string, index: number) => (
+                <span key={index}>{highlightCurlyBracketFormatter(text)}</span>
+              )
+            )}
           </div>
         </div>
 
         <div className="flex  justify-center items-center gap-6 w-full pt-4 ">
           <div className="w-3/4">
-            <h2 className="text-white text-2xl pb-2 "> ISSUE REPORT </h2>
+            <h2 className="text-white text-2xl pb-2 ">
+              {" "}
+              {data.leftHandSide?.issueReportSummaryTitle}{" "}
+            </h2>
             <span className="font-light text-sm">
               {" "}
-              YakShaver Records and transcibes video in real-time - processing
-              information for immediate analysis
+              {data.leftHandSide?.issueReportSummarySubtitle}
             </span>
           </div>
           <div className="w-1/4">
@@ -80,12 +83,13 @@ const TranscriptBox = ({ data }: { data: any }) => {
         <HeroYakShaverCard />
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">
-            <h2 className="text-white text-2xl pb-2 "> ISSUE SUMMARY </h2>
+            <h2 className="text-white text-2xl pb-2 ">
+              {" "}
+              {data.rightHandSide?.issueReportSummaryTitle}{" "}
+            </h2>
             <span className="font-light text-sm">
               {" "}
-              Work items will be generated in real-time, assign and inform
-              relevant parties, ensuring immediate tracking and management of
-              tasks.
+              {data.rightHandSide?.issueReportSummarySubtitle}
             </span>
           </div>
         </div>
