@@ -4,10 +4,10 @@ import { FaMinus, FaXmark } from "react-icons/fa6";
 import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
 import { FaExpandAlt } from "react-icons/fa";
-import { TypingAnimation } from "@/components/magicui/typing-animation";
 import Link from "next/link";
 import YaksShavedCounterBox from "../../utilityComponents/YaksShavedCounter";
 import TimeSavedCounterBox from "../../utilityComponents/TimeSavedCounter";
+import { ExampleYakShaverCard } from "../../ui/MockYakShaverCards";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
@@ -35,43 +35,7 @@ function IconBox({ image, tooltipText }: { image: string, tooltipText: string })
   );
 }
 
-function ExampleYakShaverCard() {
-  return (
-    <div className="bg-[#1E1E20] border-2  text-xs border-[#4D4D4E] shadow-2xl rounded-xl p-4  text-white ">
-      <h2 className=" font-semibold pb-2 px lg:whitespace-nowrap whitespace-nowrap md:whitespace-normal">
-        {" "}
-        ✅ Done - ✨ A Work Item has been created by YakShaver.ai 🐂
-      </h2>
-      <h3 className="pb-1">Project</h3>
 
-      <TypingAnimation className="h-[24px] items-center text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
-        tina.io
-      </TypingAnimation>
-
-      <h3 className="pb-1">Work Item #2818</h3>
-      <TypingAnimation
-        delay={1000}
-        className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F] whitespace-nowrap overflow-hidden text-ellipsis"
-      >
-        🐛 Fix event display issue on tina.io homepage
-      </TypingAnimation>
-      <h3 className="pb-1">Assigned to</h3>
-      <TypingAnimation
-        delay={5300}
-        className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]"
-      >
-        Betty Bondoc
-      </TypingAnimation>
-      <h3 className="pb-1">Mentioned Users</h3>
-      <TypingAnimation
-        delay={5600}
-        className="items-center h-[24px] text-xs font-normal  mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]"
-      >
-        Adam Cogan, Matt Wicks
-      </TypingAnimation>
-    </div>
-  );
-}
 
 function SmAndMdView({ data }: { data: any }) {
   return (

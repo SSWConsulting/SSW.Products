@@ -46,7 +46,7 @@ const OutputPill = forwardRef<HTMLDivElement, { title: string }>(
 
 OutputPill.displayName = "OutputPill";
 
-const CircleLogo = forwardRef<HTMLDivElement, { media: string }>(
+export const CircleLogo = forwardRef<HTMLDivElement, { media: string }>(
   ({ media }, ref) => {
     return (
       <div className="border border-gray-300 rounded-full z-30" ref={ref}>

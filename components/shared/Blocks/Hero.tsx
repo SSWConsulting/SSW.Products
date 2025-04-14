@@ -4,83 +4,78 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import Image from "next/image";
 import { FaExpandAlt, FaMinus } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
+import { AiOutlineExpandAlt } from "react-icons/ai";
+import { CircleLogo } from "./AnimatedBeam";
+import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
 
 const TranscriptBox = ({ data }: { data: any }) => {
+  const testString =
+    "I just encountered a problem in {TinaCloud}. When i was attempting to upload files larger than 5MB, the {application} {crashes} entirely.";
+  const testString2 =
+    "I am on the latest version of {Chrome}. This impacts user function significantly, I would classify it as {Priority 1}.";
+  const testString3 =
+    "I recalled {Matt and Adam} had a similar issue before. I'll need to inform the {operations team} this bug could affect their experience negatively";
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
-      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-tl-xl md:rounded-bl-xl rounded-tr-xl md:rounded-tr-none py-6 px-6 border border-white/20 ">
-        <div className="flex gap-4">
-          <div className="bg-red-700 rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
-            Y
+      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-xl py-6 px-6 border border-white/20 ">
+        <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-lg p-3">
+          <div className="flex gap-4 pb-2">
+            <div className="rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
+              <Image
+                src="/YakShaver/People/uly-avatar.png"
+                alt="Uly Avatar"
+                width={40}
+                height={40}
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="lg:text-sm text-xs text-white">Uly</span>
+              <span className="text-gray-400 text-xs">Monday 9:13am</span>
+            </div>
           </div>
-          <div className="flex flex-col justify-center">
-            <span className="font-semibold lg:text-lg text-sm">
-              {data?.leftHandSide?.issueReportTitle}
-            </span>
-
-            <span className="lg:text-sm text-xs text-gray-400">
-              {data?.leftHandSide?.issueReportSubTitle}
-            </span>
-          </div>
-        </div>
-
-        <span className="text-gray-400 font-mono lg:pt-4 pt-2 lg:text-sm text-xs">
-          {data?.leftHandSide?.issueReportByline}
-        </span>
-        {/* Transcript Box */}
-        <div className="pt-2 font-mono lg:text-sm text-xs">
-          <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] flex flex-col p-2 rounded-md border border-white/20">
-            <TinaMarkdown content={data?.leftHandSide?.issueReportTranscript} />
+          <div className="flex flex-col gap-4 ">
+            <span> {highlightCurlyBracketFormatter(testString)}</span>
+            <span> {highlightCurlyBracketFormatter(testString2)}</span>
+            <span> {highlightCurlyBracketFormatter(testString3)}</span>
           </div>
         </div>
-        {/* Empty Circle Buttons (for now) */}
-        <div className="pt-4 flex gap-4">
-          <div className="bg-[#292929] rounded-full w-10 h-10 animate-pulse">
-            {""}
+
+        <div className="flex  justify-center items-center gap-6 w-full pt-4 ">
+          <div className="w-3/4">
+            <h2 className="text-white text-2xl pb-2 "> ISSUE REPORT </h2>
+            <span className="font-light text-sm">
+              {" "}
+              YakShaver Records and transcibes video in real-time - processing
+              information for immediate analysis
+            </span>
           </div>
-          {/* <div className="bg-gray-600 rounded-full w-10 h-10 animate-pulse">
-            {""}
-          </div> */}
+          <div className="w-1/4">
+            <Image
+              src="/YakShaver/People/uly-office.png"
+              alt="Uly Office"
+              width={100}
+              height={100}
+              className="rounded-full"
+            />
+          </div>
         </div>
       </div>
+      <div className="flex justify-center items-center p-5">
+        <CircleLogo ref={null} media={data?.middleLogo} />
+      </div>
       {/* RHS */}
-      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 items-center flex justify-center md:rounded-tr-xl rounded-bl-xl md:rounded-bl-none  rounded-br-xl border border-white/20">
-        <div className="py-6 px-6 flex flex-col items-center justify-center w-full">
-          {/* Top Line */}
-          <div className="flex gap-1 items-center rounded-t-lg border border-white/20 px-6 py-2 w-full">
-            <div className="bg-red-500 w-3 h-3 rounded-full relative flex items-center justify-center group -ml-2">
-              <FaXmark className="hidden group-hover:block absolute text-[8px] text-black" />
-            </div>
-            <div className="bg-yellow-500 w-3 h-3 rounded-full relative flex items-center justify-center group">
-              <FaMinus className="hidden group-hover:block absolute text-[8px] text-black" />
-            </div>
-            <div className="bg-green-500 w-3 h-3 rounded-full relative flex items-center justify-center group">
-              <FaExpandAlt className="hidden group-hover:block absolute text-[8px] text-black" />
-            </div>
-            <span className="ml-2 lg:text-sm text-xs">
-              {data?.rightHandSide?.issueReportSummaryTitle}
+      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-lg border border-white/20 p-6">
+        <HeroYakShaverCard />
+        <div className="flex  items-center gap-6 w-full pt-4 ">
+          <div className="w-full">
+            <h2 className="text-white text-2xl pb-2 "> ISSUE SUMMARY </h2>
+            <span className="font-light text-sm">
+              {" "}
+              Work items will be generated in real-time, assign and inform
+              relevant parties, ensuring immediate tracking and management of
+              tasks.
             </span>
-            <span className="ml-auto text-gray-400 lg:text-sm text-xs">
-              v2.4.1
-            </span>
-          </div>
-          {/* Content Box */}
-
-          <div className="rounded-b-lg border-b w-full border-r border-l border-white/20 bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] px-4 py-2 flex flex-col gap-2">
-            <span className="pt-4 lg:text-sm text-xs">
-              {data?.rightHandSide?.issueReportSummarySubtitle}
-            </span>
-            <div className="flex flex-col  bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] border border-white/20 py-3 px-2 rounded-lg gap-2 relative lg:text-sm text-xs">
-              {/* Chat tab indicator */}
-
-              <TinaMarkdown content={data?.rightHandSide?.issueReportBody} />
-            </div>
-            <div className="flex justify-end items-end py-4">
-              <div className="bg-red-700 text-xs py-1 px-2 rounded-md">
-                View Details
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -108,10 +103,19 @@ export const curlyBracketFormatter = (byLine: string) => {
 export const SSWRedCurlyBracketFormatter = (byLine: string) => {
   return byLine?.split(/({.*?})/).map((part, index) =>
     part.startsWith("{") && part.endsWith("}") ? (
-      <span
-        key={index}
-        className="text-[#CC4141]"
-      >
+      <span key={index} className="text-[#CC4141]">
+        {part.slice(1, -1)}
+      </span>
+    ) : (
+      part
+    )
+  );
+};
+
+export const highlightCurlyBracketFormatter = (byLine: string) => {
+  return byLine?.split(/({.*?})/).map((part, index) =>
+    part.startsWith("{") && part.endsWith("}") ? (
+      <span key={index} className="text-black bg-white rounded-sm p-[0.1rem]">
         {part.slice(1, -1)}
       </span>
     ) : (
