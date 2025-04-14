@@ -7,7 +7,6 @@ import { CircleLogo } from "./AnimatedBeam";
 import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
 
 const TranscriptBox = ({ data }: { data: any }) => {
-  console.log(data.leftHandSide);
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
