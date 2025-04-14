@@ -47,7 +47,10 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             key={index}
             className="flex items-center lg:px-3 xl:px-0 py-1 px-2"
           >
-            <Link href={item.href} className="hover:underline underline-offset-4 decoration-[#CC4141] text-md">
+            <Link
+              href={item.href}
+              className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
+            >
               {item.label.toUpperCase()}
             </Link>
           </li>
@@ -57,32 +60,54 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         return (
           <>
             {/* For lg screens and above - show dropdown */}
-            <li key={index} className="hidden lg:flex items-center group relative px-2 lg:px-3">
-              <span className="cursor-pointer flex items-center gap-2">{item.label.toUpperCase()} <FaChevronRight className="text-red-500 text-sm group-hover:rotate-90 transition-all duration-300"/></span>
+            <li
+              key={index}
+              className="hidden lg:flex items-center group relative px-2 lg:px-3"
+            >
+              <span className="cursor-pointer flex items-center gap-2">
+                {item.label.toUpperCase()}{" "}
+                <FaChevronRight className="text-red-500 text-sm group-hover:rotate-90 transition-all duration-300" />
+              </span>
               <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible pt-2 transition-all duration-300">
                 <ul className="bg-black text-[#D1D5DB] border border-white/20 mt-0 space-y-2 p-3 rounded shadow-lg min-w-[150px] z-10">
                   {item.items?.map((subItem: any, subIndex: number) => (
-                    <li key={subIndex} className="hover:text-white transition-colors flex items-center gap-1">
-                      <Link href={subItem.href} className="block w-full hover:underline underline-offset-4 decoration-[#CC4141] flex items-center gap-1">
+                    <li
+                      key={subIndex}
+                      className="hover:text-white transition-colors flex items-center gap-1"
+                    >
+                      <Link
+                        href={subItem.href}
+                        className="block w-full hover:underline underline-offset-4 decoration-[#CC4141] flex items-center gap-1"
+                      >
                         {subItem.label}
-                        {subItem.href && (subItem.href.startsWith('http://') || subItem.href.startsWith('https://')) && (
-                          <FaExternalLinkAlt className="text-xs text-red-500" />
-                        )}
+                        {subItem.href &&
+                          (subItem.href.startsWith("http://") ||
+                            subItem.href.startsWith("https://")) && (
+                            <FaExternalLinkAlt className="text-xs text-red-500" />
+                          )}
                       </Link>
                     </li>
                   ))}
                 </ul>
               </div>
             </li>
-            
+
             {/* For md screens and below - show all subitems directly */}
             {item.items?.map((subItem: any, subIndex: number) => (
-              <li key={`${index}-${subIndex}`} className="lg:hidden flex items-center px-2 py-1">
-                <Link href={subItem.href} className="hover:underline underline-offset-4 decoration-[#CC4141] text-md flex items-center gap-1">
+              <li
+                key={`${index}-${subIndex}`}
+                className="lg:hidden flex items-center px-2 py-1"
+              >
+                <Link
+                  href={subItem.href}
+                  className="hover:underline underline-offset-4 decoration-[#CC4141] text-md flex items-center gap-1"
+                >
                   {subItem.label}
-                  {subItem.href && (subItem.href.startsWith('http://') || subItem.href.startsWith('https://')) && (
-                    <FaExternalLinkAlt className="text-xs text-red-500 opacity-50" />
-                  )}
+                  {subItem.href &&
+                    (subItem.href.startsWith("http://") ||
+                      subItem.href.startsWith("https://")) && (
+                      <FaExternalLinkAlt className="text-xs text-red-500 opacity-50" />
+                    )}
                 </Link>
               </li>
             ))}
@@ -119,11 +144,11 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   return (
     <div>
       <nav
-        className={`${
+        className={`absolute text-white transition-all duration-300 ease-in-out ${
           scrolled
-            ? "bg-[#131313] bg-opacity-90 backdrop-blur-md border-b border-white/50"
-            : "bg-transparent "
-        } text-gray-300 fixed top-0 inset-x-0 w-full z-50 transition-colors duration-300 flex justify-between place-items-end h-[100px] pb-6 `}
+            ? `xl:fixed shadow-sm bg-[#131313] bg-opacity-80 backdrop-blur animate-slide-in top-0 p-4`
+            : `translate-y-2 px-4 pt-4 pb-6`
+        } z-40 w-full xl:px-10 hidden xl:flex items-center justify-between`}
       >
         <div className="flex items-end md:justify-between lg:justify-normal  w-full px-4 md:px-20">
           {logo && (
