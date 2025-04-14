@@ -16,8 +16,9 @@ const TranscriptBox = ({ data }: { data: any }) => {
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
-      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-xl py-6 px-6 border border-white/20 ">
-        <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-lg p-3">
+      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-[20px] py-6 px-6  ">
+      
+        <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3">
           <div className="flex gap-4 pb-2">
             <div className="rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
               <Image
@@ -63,7 +64,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
         <CircleLogo ref={null} media={data?.middleLogo} />
       </div>
       {/* RHS */}
-      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-lg border border-white/20 p-6">
+      <div className="bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-[20px] p-6">
         <HeroYakShaverCard />
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">
@@ -113,7 +114,7 @@ export const SSWRedCurlyBracketFormatter = (byLine: string) => {
 export const highlightCurlyBracketFormatter = (byLine: string) => {
   return byLine?.split(/({.*?})/).map((part, index) =>
     part.startsWith("{") && part.endsWith("}") ? (
-      <span key={index} className="text-black bg-white rounded-sm p-[0.1rem]">
+      <span key={index} className="text-black bg-white rounded-[2px] px-[0.1rem]">
         {part.slice(1, -1)}
       </span>
     ) : (
