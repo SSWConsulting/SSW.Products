@@ -293,8 +293,8 @@ const CalculatorTierCard = ({
 }) => {
   return (
     <button
-      className={`bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] border ${
-        isSelected ? "border-red-500" : "border-white/10"
+      className={`bg-gradient-to-r to-[#141414] via-[#131313] bg-clip-padding from-[#0e0e0e] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] border ${
+        isSelected ? "border-red-500" : "border-transparent"
       } text-white rounded-xl p-6 w-full flex flex-col gap-2 items-start text-start`}
       onClick={() => setSelectedTier(index)}
     >
