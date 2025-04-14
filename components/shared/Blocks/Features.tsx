@@ -84,7 +84,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
       ) {
         return (
           <div className="w-full h-full flex items-center justify-center">
-            <YouTubeEmbed src={mediaItem.src} />
+            <YouTubeEmbed className="aspect-video" src={mediaItem.src} />
           </div>
         );
       }
