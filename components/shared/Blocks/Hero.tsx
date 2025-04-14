@@ -1,11 +1,12 @@
-import { WordRotate } from "@/components/magicui/word-rotate";
-import { ShinyButton } from "@/components/magicui/shiny-button";
 import { ShineBorder } from "@/components/magicui/shine-border";
+import { ShinyButton } from "@/components/magicui/shiny-button";
+import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import { CircleLogo } from "./AnimatedBeam";
+import Container from "../../Container";
 import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
+import { CircleLogo } from "./AnimatedBeam";
 
 // Typing Animation Component - made by Cursor
 const TypewriterText = ({
@@ -127,7 +128,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
   const staggerDelay = 2100; // 5s for typing + 1s buffer
 
   return (
-    <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
+    <Container className="flex flex-col md:flex-row pt-12 text-white w-full">
       {/* LHS */}
       <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-[20px] py-6 px-6">
         <ShineBorder
@@ -217,7 +218,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
@@ -327,10 +328,8 @@ export default function Hero({ data }: { data: any }) {
         <span className="flex justify-center text-white text-center lg:text-sm text-xs pt-4">
           {data?.buttonSubtext}
         </span>
-        <div className="flex items-center justify-center pt-12 text-white max-w-6xl w-full">
-          {/* Transcript Container */}
-          {data?.reportUIEnabled && <TranscriptBox data={data?.reportUI} />}
-        </div>
+        {/* Transcript Container */}
+        {data?.reportUIEnabled && <TranscriptBox data={data?.reportUI} />}
       </div>
     </div>
   );
