@@ -91,8 +91,8 @@ function CardItem({
 
   return (
     <div
-      className={`group w-full text-white bg-gradient-to-r cursor-pointer to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] rounded-xl shadow-2xl border ${
-        isOpen ? "border-red-500 flex-grow" : "border-white/20"
+      className={`group w-full text-white bg-clip-padding bg-gradient-to-r outline-2 outline-offset-2 outline-solid  outline-ins cursor-pointer to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] rounded-xl shadow-2xl border-1 ${
+        isOpen ? "border-red-500 flex-grow" : "border-transparent"
       } animate-in fade-in duration-300 transition-all p-6 w-full`}
       onClick={() => {
         setIdOfOpen(isOpen ? null : uniqueId);
