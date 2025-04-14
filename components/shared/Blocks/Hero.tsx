@@ -2,11 +2,130 @@ import { WordRotate } from "@/components/magicui/word-rotate";
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { ShineBorder } from "@/components/magicui/shine-border";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 import { CircleLogo } from "./AnimatedBeam";
 import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
 
+// Typing Animation Component - made by Cursor
+const TypewriterText = ({
+  text,
+  startDelay = 0,
+}: {
+  text: string;
+  startDelay?: number;
+}) => {
+  const [displayText, setDisplayText] = useState("");
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const [isHighlightingComplete, setIsHighlightingComplete] = useState(false);
+  const [parts, setParts] = useState<{ text: string; highlight: boolean }[]>(
+    []
+  );
+  const [shouldStartTyping, setShouldStartTyping] = useState(false);
+
+  useEffect(() => {
+    // Delay the start of this animation
+    const delayTimeout = setTimeout(() => {
+      setShouldStartTyping(true);
+    }, startDelay);
+
+    return () => clearTimeout(delayTimeout);
+  }, [startDelay]);
+
+  useEffect(() => {
+    if (!text || !shouldStartTyping) return;
+
+    // Reset state when text changes
+    setDisplayText("");
+    setIsTypingComplete(false);
+    setIsHighlightingComplete(false);
+
+    // Parse the text to identify parts to be highlighted
+    const parsedParts = text.split(/({.*?})/).map((part) => ({
+      text:
+        part.startsWith("{") && part.endsWith("}") ? part.slice(1, -1) : part,
+      highlight: part.startsWith("{") && part.endsWith("}"),
+    }));
+    setParts(parsedParts);
+
+    // Start typing animation
+    let fullText = "";
+    const flatText = parsedParts.map((part) => part.text).join("");
+
+    const typingSpeed = 2000 / flatText.length; // Distribute typing over 5 seconds
+
+    let i = 0;
+    const typingInterval = setInterval(() => {
+      if (i < flatText.length) {
+        fullText += flatText[i];
+        setDisplayText(fullText);
+        i++;
+      } else {
+        clearInterval(typingInterval);
+        setIsTypingComplete(true);
+
+        // After typing completes, wait a moment then start the highlighting animation
+        setTimeout(() => {
+          setIsHighlightingComplete(true);
+        }, 500);
+      }
+    }, typingSpeed);
+
+    return () => clearInterval(typingInterval);
+  }, [text, shouldStartTyping]);
+
+  if (!text) return null;
+
+  if (!shouldStartTyping) return <span className="opacity-0">{text}</span>;
+
+  // Before typing is complete, show the plain text being typed
+  if (!isTypingComplete) {
+    return <span>{displayText}</span>;
+  }
+
+  // After typing is complete, show the highlighted version
+  return (
+    <span>
+      {parts.map((part, index) =>
+        part.highlight ? (
+          <span
+            key={index}
+            className={`
+              relative overflow-hidden
+              ${
+                isHighlightingComplete
+                  ? "text-black bg-white rounded-[2px]"
+                  : "text-white bg-none"
+              }
+              transition-colors duration-500 ease-in-out
+            `}
+          >
+            {/* Background highlight with animation */}
+            <span
+              className={`
+                absolute inset-0
+                bg-white
+                rounded-[2px]
+                origin-left
+                ${isHighlightingComplete ? "scale-x-100" : "scale-x-0"}
+                transition-transform duration-500 ease-in-out
+                -z-10
+              `}
+            />
+            <span className="px-[0.1rem]">{part.text}</span>
+          </span>
+        ) : (
+          part.text
+        )
+      )}
+    </span>
+  );
+};
+
 const TranscriptBox = ({ data }: { data: any }) => {
+  // Calculate total animation duration for staggering
+  const staggerDelay = 2100; // 5s for typing + 1s buffer
+
   return (
     <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
       {/* LHS */}
@@ -18,7 +137,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
           className="rounded-[20px] absolute inset-0 overflow-visible z-10"
         />
 
-        <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3">
+        <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3 h-[20.625rem]">
           <div className="flex gap-4 pb-2">
             <div className="rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
               <Image
@@ -40,7 +159,12 @@ const TranscriptBox = ({ data }: { data: any }) => {
           <div className="flex flex-col gap-4 ">
             {data.leftHandSide?.issueReportText?.map(
               (text: string, index: number) => (
-                <span key={index}>{highlightCurlyBracketFormatter(text)}</span>
+                <span key={index}>
+                  <TypewriterText
+                    text={text}
+                    startDelay={index * staggerDelay}
+                  />
+                </span>
               )
             )}
           </div>
@@ -126,6 +250,7 @@ export const SSWRedCurlyBracketFormatter = (byLine: string) => {
   );
 };
 
+// The old formatter is kept but no longer used in TranscriptBox
 export const highlightCurlyBracketFormatter = (byLine: string) => {
   return byLine?.split(/({.*?})/).map((part, index) =>
     part.startsWith("{") && part.endsWith("}") ? (

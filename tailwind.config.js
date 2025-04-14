@@ -78,6 +78,10 @@ module.exports = {
           "0%": { backgroundPosition: "-200% 0%" },
           "100%": { backgroundPosition: "200% 0%" },
         },
+        fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
       },
     },
   },
