@@ -23,7 +23,7 @@ export default function HomePageClient({
   });
 
   return (
-    <div className="flex pt-navBarHeight flex-col gap-14 lg:gap-24 mt-20 lg:mt-32 mx-auto w-full min-h-[95vh]">
+    <div className="flex pt-navBarHeight flex-col gap-14 lg:gap-24 mt-20 lg:mt-37 mx-auto w-full min-h-[95vh]">
       <BlocksRenderer
         data={{ pageBlocks: tinaData.data.pages.pageBlocks ?? null }}
       />
