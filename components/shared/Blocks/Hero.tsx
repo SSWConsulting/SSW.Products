@@ -268,7 +268,7 @@ export const highlightCurlyBracketFormatter = (byLine: string) => {
 
 export default function Hero({ data }: { data: any }) {
   return (
-    <div className="flex items-center justify-center mx-auto pb-20 relative overflow-hidden pt-20 md:pt-20">
+    <div className="flex items-center justify-center mx-auto pb-20 relative overflow-hidden pt-20 md:pt-20 lg:pt-0">
       {/* Background Yak SVG */}
       <div className="absolute inset-0 z-0 flex justify-end items-center opacity-50 overflow-visible">
         {data?.backgroundImageEnabled && (
