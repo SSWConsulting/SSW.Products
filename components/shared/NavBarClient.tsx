@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { NavigationBarQuery } from "../../tina/__generated__/types";
 import Image from "next/image";
-import { BookingButton } from "./Blocks/BookingButton";
 import Link from "next/link";
-import { HiOutlineBars3 } from "react-icons/hi2";
+import { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
-import { FaChevronRight } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa6";
+import { HiOutlineBars3 } from "react-icons/hi2";
+import { NavigationBarQuery } from "../../tina/__generated__/types";
+import { BookingButton } from "./Blocks/BookingButton";
 
 interface NavBarClientProps {
   results: NavigationBarQuery | null;
@@ -146,7 +146,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       <nav
         className={`absolute text-white transition-all duration-300 ease-in-out ${
           scrolled
-            ? `xl:fixed shadow-sm bg-[#131313] bg-opacity-80 backdrop-blur animate-slide-in top-0 p-4`
+            ? `fixed shadow-sm bg-[#131313] bg-opacity-80 backdrop-blur animate-slide-in top-0 p-4`
             : `translate-y-2 px-4 pt-4 pb-6`
         } z-40 w-full xl:px-10 hidden xl:flex items-center justify-between`}
       >
