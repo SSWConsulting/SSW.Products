@@ -219,7 +219,7 @@ export function TitleFadeIn({ title }: { title: string }) {
 
   return (
     <>
-      <div className="text-white text text-center lg:text-5xl text-3xl font-semibold pb-6">
+      <div className="text-white text text-center lg:text-5xl text-3xl font-semibold pb-12">
         <span className="inline-block max-w-full break-words">
           {firstPart}
           {firstPart ? " " : ""}
@@ -247,9 +247,11 @@ export function TitleFadeIn({ title }: { title: string }) {
 export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
-    <Container>
-      <TitleFadeIn title={data?.title} />
-      <div className="text-white mx-auto">
+    <div className="flex flex-col">
+      <Container size="small">
+        <TitleFadeIn title={data?.title} />
+      </Container>
+      <Container className="text-white mx-auto">
         {/* Container */}
         <div className=" grid gap-4">
           {/* Row 1 (Single row, 2 columns) */}
@@ -319,10 +321,10 @@ export default function BentoBox({ data }: { data: any }) {
             <SmAndMdView data={data.bottomRightBox} />
           </div>
         </div>
-      </div>
-      <div className="pt-10">
-        <SSWBadge title={data?.badge} link={data?.badgeLink} />
-      </div>
-    </Container>
+        <div className="pt-10">
+          <SSWBadge title={data?.badge} link={data?.badgeLink} />
+        </div>
+      </Container>
+    </div>
   );
 }
