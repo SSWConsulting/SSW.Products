@@ -2,8 +2,8 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
+import Container from "../../../Container";
 import { curlyBracketFormatter } from "../Hero";
-
 const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
   ul: (props: unknown) => {
     const { children } = props as { children?: React.ReactNode };
@@ -23,7 +23,7 @@ export default function CardAndImageParent(data: any) {
   };
 
   return (
-    <div className="container mx-auto">
+    <Container>
       <h2 className="text-5xl text-white flex justify-center font-bold pb-3">
         {curlyBracketFormatter(data.data.ParentContainerTitle)}
       </h2>
@@ -60,7 +60,7 @@ export default function CardAndImageParent(data: any) {
           />
         </div>
       </div>
-    </div>
+    </Container>
   );
 }
 
