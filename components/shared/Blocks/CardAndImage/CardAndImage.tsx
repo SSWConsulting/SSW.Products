@@ -36,7 +36,7 @@ export default function CardAndImageParent(data: any) {
           </div>
         </Container>
         <Container className="flex flex-col md:flex-row gap-6">
-          <div className="flex justify-center flex-col gap-4 w-full">
+          <div className="flex gap-4 justify-center flex-col w-full">
             {data.data.CardAndImageItem.map((item: any, index: number) => (
               <CardItem
                 key={item.id || index}
@@ -90,47 +90,45 @@ function CardItem({
   }, [isOpen, data]);
 
   return (
-    <div className="w-full text-white">
+    <div
+      className={` flex-grow flex-shrink-0 group w-full text-white bg-gradient-to-r cursor-pointer to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] rounded-xl shadow-2xl border ${
+        isOpen ? "border-red-500" : "border-white/20"
+      } animate-in fade-in duration-300 transition-all p-6 w-full`}
+      onClick={() => {
+        setIdOfOpen(isOpen ? null : uniqueId);
+      }}
+    >
+      <h4 className="text-gray-300">
+        {curlyBracketFormatter(data.AboveHeaderText)}
+      </h4>
+      <div className="flex items-center justify-between">
+        <h3 className="text-2xl font-bold">
+          {curlyBracketFormatter(data.Header)}
+        </h3>
+        <FaChevronDown
+          className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+          onClick={() => {
+            setIdOfOpen(isOpen ? null : uniqueId);
+          }}
+        />
+      </div>
       <div
-        className={`group bg-gradient-to-r cursor-pointer to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] rounded-xl shadow-2xl border ${
-          isOpen ? "border-red-500" : "border-white/20"
-        } animate-in fade-in duration-300 transition-all p-6 w-full`}
-        onClick={() => {
-          setIdOfOpen(isOpen ? null : uniqueId);
-        }}
+        className="overflow-hidden transition-all duration-500 ease-in-out"
+        style={{ maxHeight: `${contentHeight}px` }}
       >
-        <h4 className="text-gray-300">
-          {curlyBracketFormatter(data.AboveHeaderText)}
-        </h4>
-        <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-bold">
-            {curlyBracketFormatter(data.Header)}
-          </h3>
-          <FaChevronDown
-            className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-            onClick={() => {
-              setIdOfOpen(isOpen ? null : uniqueId);
-            }}
-          />
-        </div>
-        <div
-          className="overflow-hidden transition-all duration-500 ease-in-out"
-          style={{ maxHeight: `${contentHeight}px` }}
-        >
-          <div ref={contentRef}>
-            <div className="text-gray-300 pt-3">
-              <TinaMarkdown
-                content={data.Description}
-                components={cardAndImageMarkdownRenderer}
-              />
-            </div>
-            <div className="flex flex-wrap gap-2 py-3">
-              {data.Badge1Text && <Badge title={data.Badge1Text} />}
-              {data.Badge2Text && <Badge title={data.Badge2Text} />}
-              {data.Badge3Text && <Badge title={data.Badge3Text} />}
-            </div>
+        <div ref={contentRef}>
+          <div className="text-gray-300 pt-3">
+            <TinaMarkdown
+              content={data.Description}
+              components={cardAndImageMarkdownRenderer}
+            />
+          </div>
+          <div className="flex flex-wrap gap-2 py-3">
+            {data.Badge1Text && <Badge title={data.Badge1Text} />}
+            {data.Badge2Text && <Badge title={data.Badge2Text} />}
+            {data.Badge3Text && <Badge title={data.Badge3Text} />}
           </div>
         </div>
       </div>
