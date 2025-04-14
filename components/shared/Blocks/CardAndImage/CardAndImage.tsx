@@ -23,44 +23,48 @@ export default function CardAndImageParent(data: any) {
   };
 
   return (
-    <Container>
-      <h2 className="text-5xl text-white flex justify-center font-bold pb-3">
-        {curlyBracketFormatter(data.data.ParentContainerTitle)}
-      </h2>
-      <div className="flex justify-center max-w-xl mx-auto pb-9">
-        <span className="text-white/75 text-center">
-          {curlyBracketFormatter(data.data.ParentContainerDescription)}
-        </span>
-      </div>
-      <div className="flex flex-col md:flex-row gap-6">
-        <div className="flex justify-center flex-col gap-6 w-full md:w-1/2">
-          {data.data.CardAndImageItem.map((item: any, index: number) => (
-            <CardItem
-              key={item.id || index}
-              data={item}
-              uniqueId={item.id || index.toString()}
-              idOfOpen={idOfOpen}
-              setIdOfOpen={handleIdChange}
+    <>
+      <div className="flex flex-col">
+        <Container size="small">
+          <h2 className="text-5xl text-white flex justify-center font-bold pb-3">
+            {curlyBracketFormatter(data.data.ParentContainerTitle)}
+          </h2>
+          <div className="flex justify-center mx-auto pb-9">
+            <span className="text-white/75 text-center">
+              {curlyBracketFormatter(data.data.ParentContainerDescription)}
+            </span>
+          </div>
+        </Container>
+        <Container className="flex flex-col md:flex-row gap-6">
+          <div className="flex justify-center flex-col gap-6 w-full md:w-1/2">
+            {data.data.CardAndImageItem.map((item: any, index: number) => (
+              <CardItem
+                key={item.id || index}
+                data={item}
+                uniqueId={item.id || index.toString()}
+                idOfOpen={idOfOpen}
+                setIdOfOpen={handleIdChange}
+              />
+            ))}
+          </div>
+          <div className="w-full md:w-1/2 flex items-center justify-center">
+            <Image
+              src={
+                data.data.CardAndImageItem[lastOpenedId].media ||
+                data.data.CardAndImageItem[0].media
+              }
+              alt={
+                data.data.CardAndImageItem[lastOpenedId].header ||
+                data.data.CardAndImageItem[0].header
+              }
+              width={500}
+              height={500}
+              className="object-cover"
             />
-          ))}
-        </div>
-        <div className="w-full md:w-1/2 flex items-center justify-center">
-          <Image
-            src={
-              data.data.CardAndImageItem[lastOpenedId].media ||
-              data.data.CardAndImageItem[0].media
-            }
-            alt={
-              data.data.CardAndImageItem[lastOpenedId].header ||
-              data.data.CardAndImageItem[0].header
-            }
-            width={500}
-            height={500}
-            className="object-cover"
-          />
-        </div>
+          </div>
+        </Container>
       </div>
-    </Container>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { tinaField } from "tinacms/dist/react";
+import Container from "../../Container";
 
 type FAQItem = {
   question: string;
@@ -21,7 +22,7 @@ const FAQ = ({ data }: { data: FAQData }) => {
   };
 
   return (
-    <div className="text-white mx-auto xl:px-60 container">
+    <Container className="text-white mx-auto" size="small">
       <h1
         className="text-2xl font-semibold mb-6 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
@@ -70,7 +71,7 @@ const FAQ = ({ data }: { data: FAQData }) => {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

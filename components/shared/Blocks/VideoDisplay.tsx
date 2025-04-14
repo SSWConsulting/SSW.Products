@@ -13,7 +13,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
   const { externalVideoLink, title } = data;
 
   return (
-    <div className="flex justify-center mx-auto container xl:px-60">
+    <div className="flex justify-center mx-auto container">
       <div className="items-center w-full h-auto ">
         <h2 className="text-2xl text-white font-semibold pb-4 text-center">
           {" "}

@@ -4,21 +4,21 @@ import React from "react";
 type ContainerProps = {
   children: React.ReactNode;
   size?: "small" | "medium";
+  className?: string;
 };
 
 const sizeClasses = {
-  small: "max-w-[43.75rem]",
-  medium: "max-w-[75rem]",
+  small: "max-w-[43.75rem] small:px-0",
+  medium: "max-w-[75rem] md:px-12 sm:px-8 medium:px-0",
 };
 
-const Container = ({ children, size = "medium" }: ContainerProps) => {
+const Container = ({
+  children,
+  size = "medium",
+  className,
+}: ContainerProps) => {
   return (
-    <section
-      className={cn(
-        "px-4 sm:px-8 mx-auto md:px-12 max-w-[75rem]",
-        sizeClasses[size]
-      )}
-    >
+    <section className={cn(className, "px-4 mx-auto", sizeClasses[size])}>
       {children}
     </section>
   );

@@ -137,48 +137,51 @@ export default function Hero({ data }: { data: any }) {
       </div>
 
       {/* Content (z-10 to appear above the background) */}
-      <div className="z-10 flex flex-col items-center justify-center w-full">
-        <div className="flex flex-col font-bold items-center justify-center text-2xl md:text-5xl  text-white">
-          <div className="flex items-center justify-center gap-2">
-            <h1>{data?.titleBeforeRotate}</h1>
-            <span className="text-[#CC4141] pl-1">
-              <WordRotate words={data?.rotatingWords} className="" />
-            </span>
-          </div>
-          <div>
-            <h1>{data?.titleAfterRotate}</h1>
-          </div>
-        </div>
-        <h2 className="text-white text-center text-base md:text-lg max-w-3xl px-10 lg:px-0">
-          {curlyBracketFormatter(data?.byLine)}
-        </h2>
 
-        {/* Buttons */}
-        <div className="flex items-center justify-center pt-12 gap-6">
-          {data?.ctaLeft?.title && data?.ctaLeft?.link && (
-            <div>
-              <ShinyButton
-                href={data.ctaLeft?.link}
-                className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
-              >
-                {data.ctaLeft?.title}
-              </ShinyButton>
+      <div className="z-10 flex flex-col items-center justify-center w-full">
+        <Container size="small">
+          <div className="flex flex-col font-bold items-center justify-center text-2xl md:text-5xl  text-white">
+            <div className="flex items-center justify-center gap-2">
+              <h1>{data?.titleBeforeRotate}</h1>
+              <span className="text-[#CC4141] pl-1">
+                <WordRotate words={data?.rotatingWords} className="" />
+              </span>
             </div>
-          )}
-          {data?.ctaRight?.title && data?.ctaRight?.link && (
             <div>
-              <ShinyButton
-                href={data.ctaRight?.link}
-                className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
-              >
-                {data.ctaRight?.title}
-              </ShinyButton>
+              <h1>{data?.titleAfterRotate}</h1>
             </div>
-          )}
-        </div>
-        <span className="flex justify-center text-white text-center lg:text-sm text-xs pt-4">
-          {data?.buttonSubtext}
-        </span>
+          </div>
+          <h2 className="text-white text-center text-base md:text-lg lg:px-0 pt-6 lg:pt-12 max-w-3xl">
+            {curlyBracketFormatter(data?.byLine)}
+          </h2>
+
+          {/* Buttons */}
+          <div className="flex items-center justify-center pt-12 gap-6">
+            {data?.ctaLeft?.title && data?.ctaLeft?.link && (
+              <div>
+                <ShinyButton
+                  href={data.ctaLeft?.link}
+                  className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
+                >
+                  {data.ctaLeft?.title}
+                </ShinyButton>
+              </div>
+            )}
+            {data?.ctaRight?.title && data?.ctaRight?.link && (
+              <div>
+                <ShinyButton
+                  href={data.ctaRight?.link}
+                  className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
+                >
+                  {data.ctaRight?.title}
+                </ShinyButton>
+              </div>
+            )}
+          </div>
+          <span className="flex justify-center text-white text-center lg:text-sm text-xs pt-4">
+            {data?.buttonSubtext}
+          </span>
+        </Container>
         <div className="flex items-center justify-center pt-12 text-white">
           {/* Transcript Container */}
           {data?.reportUIEnabled && (

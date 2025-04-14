@@ -15,6 +15,10 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        small: "43.75rem",
+        medium: "75rem",
+      },
       spacing: {
         37: "9.25rem",
         navBarHeight: "7.75rem",
