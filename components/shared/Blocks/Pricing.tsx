@@ -52,7 +52,7 @@ const Pricing = ({ data }: PricingProps) => {
   const { title, description, plans, addOns } = data;
 
   return (
-    <div className="pricing-component container mx-auto p-4 mb-14 lg:mb-4 mt-20 lg:mt-32 md:mt-0 lg:pb-20">
+    <div className="pricing-component container mx-auto p-4 mb-14 lg:mb-4 mt-20 lg:mt-10 md:mt-0 lg:pb-20">
       {title && (
         <h1
           className="text-4xl text-center font-semibold text-white mb-4"

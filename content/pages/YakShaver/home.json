@@ -47,7 +47,7 @@
     },
     {
       "ParentContainerTitle": "{How YakShaver Works}",
-      "ParentContainerDescription": "The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. ",
+      "ParentContainerDescription": "",
       "CardAndImageItem": [
         {
           "AboveHeaderText": "{See it}",
