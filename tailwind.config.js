@@ -22,9 +22,6 @@ module.exports = {
         inter: ["Inter", "sans-serif"],
         helvetica: ["Helvetica", "Arial", "sans-serif"],
       },
-      screens: {
-        "3xl": "1920px",
-      },
       colors: {
         ssw: {
           red: "#CC4141",
