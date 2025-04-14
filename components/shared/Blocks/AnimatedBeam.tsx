@@ -6,7 +6,7 @@ import { AnimatedBeam } from "@/components/magicui/animated-beam";
 import Image from "next/image";
 import { FaFile, FaImage, FaVideo } from "react-icons/fa";
 import { IoChatbox } from "react-icons/io5";
-
+import { ShineBorder } from "@/components/magicui/shine-border";
 const icons = {
   FaVideo,
   IoChatbox,
@@ -18,7 +18,6 @@ const OutputPill = forwardRef<HTMLDivElement, { title: string }>(
   ({ title }, ref) => {
     return (
       <div className="relative inline-flex gap-2 items-center p-1 rounded-3xl top-0 transition-all duration-300 group">
-        
         <div
           ref={ref}
           className="relative inline-flex gap-2 py-3 lg:py-2 justify-center items-center md:px-4 px-2 rounded-3xl bg-gradient-to-br from-[#CB4542] to-[#7A2C2A] border border-gray-400 text-xs z-30 text-black"
@@ -28,15 +27,8 @@ const OutputPill = forwardRef<HTMLDivElement, { title: string }>(
             alt="icon"
             width={20}
             height={20}
-            
           />
-          <Image
-            src={"/svg/devops.svg"}
-            alt="icon"
-            width={20}
-            height={20}
-            
-          />
+          <Image src={"/svg/devops.svg"} alt="icon" width={20} height={20} />
           <div className="hidden xl:block text-white">{title}</div>
         </div>
       </div>
@@ -46,49 +38,73 @@ const OutputPill = forwardRef<HTMLDivElement, { title: string }>(
 
 OutputPill.displayName = "OutputPill";
 
-const CircleLogo = forwardRef<HTMLDivElement, { media: string }>(
-  ({ media }, ref) => {
-    return (
-      <div className="border border-gray-300 rounded-full z-30" ref={ref}>
-        <div className="md:w-20 m-1 md:h-20 h-16 w-16 rounded-full bg-gray-800 flex items-center justify-center bg-gradient-to-tr from-white via-gray-200 to-gray-500">
-          <Image
-            src={media || "/svg/yak-icon-fill.svg"}
-            alt="yak"
-            width={50}
-            height={50}
-            className="flex justify-center items-center pt-1 md:pt-0"
-          />
-        </div>
+export const CircleLogo = forwardRef<
+  HTMLDivElement,
+  { media: string; shineBorder?: boolean }
+>(({ media, shineBorder = false }, ref) => {
+  return (
+    <div className="relative rounded-full z-30" ref={ref}>
+      {shineBorder ? (
+        <ShineBorder
+          borderWidth={2}
+          duration={20}
+          shineColor={["#CC4141", "#CC4141", "#CC4141"]}
+          className="rounded-full absolute inset-0 overflow-visible z-10"
+        />
+      ) : (
+        <div className="border border-gray-300 rounded-full absolute inset-0" />
+      )}
+      <div className="md:w-20 m-1 md:h-20 h-16 w-16 rounded-full bg-gray-800 flex items-center justify-center bg-gradient-to-tr from-white via-gray-200 to-gray-500">
+        <Image
+          src={media || "/svg/yak-icon-fill.svg"}
+          alt="yak"
+          width={50}
+          height={50}
+          className="flex justify-center items-center pt-1 md:pt-0"
+        />
       </div>
-    );
-  }
-);
+    </div>
+  );
+});
 
 CircleLogo.displayName = "CircleLogo";
 
-const InputBadge = forwardRef<HTMLDivElement, { icon: keyof typeof icons; title: string }>(
-  ({ icon, title }, ref) => {
-    const Icon = icons[icon as keyof typeof icons];
+const InputBadge = forwardRef<
+  HTMLDivElement,
+  { icon: keyof typeof icons; title: string }
+>(({ icon, title }, ref) => {
+  const Icon = icons[icon as keyof typeof icons];
 
-    return (
-      <div ref={ref} className="inline-flex border border-gray-600 rounded-full z-30">
-        <div className="relative inline-flex flex-row items-center gap-1 md:gap-2 lg:gap-4 lg:text-sm text-xs rounded-full bg-[#131313] p-1 pr-2 lg:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.25)] w-full">
-          <div className="bg-[#F8F8F8] bg-opacity-10 rounded-full p-1 lg:p-2">
-            {Icon && <Icon />}
-          </div>
-          {title}
+  return (
+    <div
+      ref={ref}
+      className="inline-flex border border-gray-600 rounded-full z-30"
+    >
+      <div className="relative inline-flex flex-row items-center gap-1 md:gap-2 lg:gap-4 lg:text-sm text-xs rounded-full bg-[#131313] p-1 pr-2 lg:pr-8 border border-gray-600 shadow-[inset_0_0_12px_rgba(156,163,175,0.25)] w-full">
+        <div className="bg-[#F8F8F8] bg-opacity-10 rounded-full p-1 lg:p-2">
+          {Icon && <Icon />}
         </div>
+        {title}
       </div>
-    );
-  }
-);
+    </div>
+  );
+});
 
 InputBadge.displayName = "InputBadge";
 
-export function AnimatedBeamMultipleOutput({ className, data }: { className?: string; data: any; }) {
+export function AnimatedBeamMultipleOutput({
+  className,
+  data,
+}: {
+  className?: string;
+  data: any;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const divRefs = useMemo(() => Array.from({ length: 6 }, () => createRef<HTMLDivElement>()), []);
+  const divRefs = useMemo(
+    () => Array.from({ length: 6 }, () => createRef<HTMLDivElement>()),
+    []
+  );
 
   return (
     <div
@@ -100,10 +116,26 @@ export function AnimatedBeamMultipleOutput({ className, data }: { className?: st
     >
       <div className="flex size-full max-w-lg flex-row items-stretch justify-between gap-4 md:gap-10">
         <div className="flex flex-col justify-center gap-3">
-          <InputBadge ref={divRefs[0]} title={data?.inputItem[0]?.name} icon={data?.inputItem[0]?.icon} />
-          <InputBadge ref={divRefs[1]} title={data?.inputItem[1]?.name} icon={data?.inputItem[1]?.icon} />
-          <InputBadge ref={divRefs[2]} title={data?.inputItem[2]?.name} icon={data?.inputItem[2]?.icon} />
-          <InputBadge ref={divRefs[3]} title={data?.inputItem[3]?.name} icon={data?.inputItem[3]?.icon} />
+          <InputBadge
+            ref={divRefs[0]}
+            title={data?.inputItem[0]?.name}
+            icon={data?.inputItem[0]?.icon}
+          />
+          <InputBadge
+            ref={divRefs[1]}
+            title={data?.inputItem[1]?.name}
+            icon={data?.inputItem[1]?.icon}
+          />
+          <InputBadge
+            ref={divRefs[2]}
+            title={data?.inputItem[2]?.name}
+            icon={data?.inputItem[2]?.icon}
+          />
+          <InputBadge
+            ref={divRefs[3]}
+            title={data?.inputItem[3]?.name}
+            icon={data?.inputItem[3]?.icon}
+          />
         </div>
         <div className="flex flex-col justify-center">
           <CircleLogo ref={divRefs[4]} media={data?.middleLogo} />

@@ -5,9 +5,9 @@ export const HeroTemplate: Template = {
   name: "hero",
   fields: [
     {
-      name: 'backgroundImageEnabled',
-      label: 'Background Image Enabled',
-      type: 'boolean',
+      name: "backgroundImageEnabled",
+      label: "Background Image Enabled",
+      type: "boolean",
     },
     {
       name: "titleBeforeRotate",
@@ -25,7 +25,7 @@ export const HeroTemplate: Template = {
       type: "string",
       list: true,
     },
-  
+
     {
       name: "byLine",
       label: "By Line",
@@ -36,22 +36,22 @@ export const HeroTemplate: Template = {
     },
     // Placeholder for the buttons
     {
-      name: 'ctaLeft',
-      label: '<LEFT> CTA button',
-      type: 'object',
+      name: "ctaLeft",
+      label: "<LEFT> CTA button",
+      type: "object",
       fields: [
-        { name: 'title', label: 'Title', type: 'string' },
-        { name: 'link', label: 'Link', type: 'string' },
-      ]
+        { name: "title", label: "Title", type: "string" },
+        { name: "link", label: "Link", type: "string" },
+      ],
     },
     {
-      name: 'ctaRight',
-      label: '<RIGHT> CTA button',
-      type: 'object',
+      name: "ctaRight",
+      label: "<RIGHT> CTA button",
+      type: "object",
       fields: [
-        { name: 'title', label: 'Title', type: 'string' },
-        { name: 'link', label: 'Link', type: 'string' },
-      ]
+        { name: "title", label: "Title", type: "string" },
+        { name: "link", label: "Link", type: "string" },
+      ],
     },
     {
       name: "buttonSubtext",
@@ -59,10 +59,9 @@ export const HeroTemplate: Template = {
       type: "string",
     },
     {
-      name: 'reportUIEnabled',
-      label: 'Report UI Enabled',
-      type: 'boolean',
-      
+      name: "reportUIEnabled",
+      label: "Report UI Enabled",
+      type: "boolean",
     },
     {
       name: "reportUI",
@@ -75,24 +74,30 @@ export const HeroTemplate: Template = {
           type: "object",
           fields: [
             {
-              name: "issueReportTitle",
-              label: "<LHS> Issue Report Title",
+              name: "issueReportName",
+              label: "<LHS> Issue Report Name",
               type: "string",
             },
             {
-              name: "issueReportSubTitle",
-              label: "<LHS> Issue Report Subtitle",
+              name: "issueReportTime",
+              label: "<LHS> Issue Report Time",
               type: "string",
             },
             {
-              name: "issueReportByline",
-              label: "<LHS> Issue Report Byline",
-              type: "string",
-            },
-            {
-              name: "issueReportTranscript",
+              name: "issueReportText",
               label: "<LHS> Issue Report Transcript",
-              type: "rich-text",
+              type: "string",
+              list: true,
+            },
+            {
+              name: "issueReportSummaryTitle",
+              label: "<LHS> Issue Report Summary Title",
+              type: "string",
+            },
+            {
+              name: "issueReportSummarySubtitle",
+              label: "<LHS> Issue Report Summary Subtitle",
+              type: "string",
             },
           ],
         },
@@ -110,11 +115,6 @@ export const HeroTemplate: Template = {
               name: "issueReportSummarySubtitle",
               label: "<RHS> Issue Report Summary Subtitle",
               type: "string",
-            },
-            {
-              name: "issueReportBody",
-              label: "<RHS> Issue Report Body",
-              type: "rich-text",
             },
           ],
         },
