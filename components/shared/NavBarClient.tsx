@@ -148,7 +148,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           scrolled
             ? `fixed shadow-sm bg-[#131313] bg-opacity-80 backdrop-blur animate-slide-in top-0 p-4`
             : `translate-y-2 px-4 pt-4 pb-6`
-        } z-40 w-full xl:px-10 hidden xl:flex items-center justify-between`}
+        } z-40 w-full xl:px-10 xl:flex items-center justify-between`}
       >
         <div className="flex items-end md:justify-between lg:justify-normal  w-full px-4 md:px-20">
           {logo && (
