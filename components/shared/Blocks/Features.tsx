@@ -121,7 +121,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
 
   return (
     <div
-      className={`flex flex-col-reverse lg:flex-row w-full items-center lg:gap-12 gap-8 px-8 ${
+      className={`flex flex-col-reverse lg:flex-row w-full first:pt-20  items-center lg:gap-12 gap-8 px-8 ${
         feature.isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
       }  pb-10 lg:pb-0 3xl:px-20`}
     >
