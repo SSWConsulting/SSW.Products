@@ -16,6 +16,7 @@ module.exports = {
     },
     extend: {
       spacing: {
+        37: "9.25rem",
         navBarHeight: "7.75rem",
       },
       fontFamily: {
