@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
+import Container from "../../Container";
 import Actions from "./ActionsButton";
 import { curlyBracketFormatter } from "./Hero";
 
@@ -113,7 +114,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
   }, [selectedTier, data.tiers]);
 
   return (
-    <div className="container mx-auto">
+    <Container>
       <h2 className="text-4xl text-center font-semibold text-white mb-4">
         {" "}
         {curlyBracketFormatter(data?.title)}
@@ -154,7 +155,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
       <div className="flex justify-center pt-6">
         <Actions actions={[data?.bottomAction]} />
       </div>
-    </div>
+    </Container>
   );
 }
 
