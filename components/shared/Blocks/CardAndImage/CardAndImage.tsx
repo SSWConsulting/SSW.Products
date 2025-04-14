@@ -36,7 +36,7 @@ export default function CardAndImageParent(data: any) {
           </div>
         </Container>
         <Container className="flex flex-col md:flex-row gap-6">
-          <div className="flex justify-center flex-col gap-6 w-full md:w-1/2">
+          <div className="flex justify-center flex-col gap-6 w-full">
             {data.data.CardAndImageItem.map((item: any, index: number) => (
               <CardItem
                 key={item.id || index}
