@@ -1,10 +1,8 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
 import { ShinyButton } from "@/components/magicui/shiny-button";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
+
 import Image from "next/image";
-import { FaExpandAlt, FaMinus } from "react-icons/fa";
-import { FaXmark } from "react-icons/fa6";
-import { AiOutlineExpandAlt } from "react-icons/ai";
+
 import { CircleLogo } from "./AnimatedBeam";
 import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
 
