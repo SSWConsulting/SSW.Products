@@ -47,7 +47,7 @@ export default function CardAndImageParent(data: any) {
               />
             ))}
           </div>
-          <div className="w-full md:w-1/2 flex items-center justify-center">
+          <div className="w-full flex items-center justify-center">
             <Image
               src={
                 data.data.CardAndImageItem[lastOpenedId].media ||
@@ -59,7 +59,7 @@ export default function CardAndImageParent(data: any) {
               }
               width={500}
               height={500}
-              className="object-cover"
+              className="object-cover w-full"
             />
           </div>
         </Container>
@@ -91,8 +91,8 @@ function CardItem({
 
   return (
     <div
-      className={` flex-grow flex-shrink-0 group w-full text-white bg-gradient-to-r cursor-pointer to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] rounded-xl shadow-2xl border ${
-        isOpen ? "border-red-500" : "border-white/20"
+      className={`group w-full text-white bg-gradient-to-r cursor-pointer to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] rounded-xl shadow-2xl border ${
+        isOpen ? "border-red-500 flex-grow" : "border-white/20"
       } animate-in fade-in duration-300 transition-all p-6 w-full`}
       onClick={() => {
         setIdOfOpen(isOpen ? null : uniqueId);
