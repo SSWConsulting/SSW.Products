@@ -47,28 +47,28 @@ export function HeroYakShaverCard() {
       </h2>
       <h3 className="pb-1 text-white/75">Project</h3>
       <div className="h-[2.3125rem] items-center text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30">
-        <span className=" opacity-0 animate-[fadeIn_1000ms_ease_6500ms_forwards]">
+        <span className=" opacity-0 animate-[fadeIn_1000ms_ease_7000ms_forwards]">
           TinaCloud
         </span>
       </div>
 
       <h3 className="pb-1 text-white/75">Work Item</h3>
       <div className="gap-2 items-center md:h-[2.3125rem] text-xs font-normal mb-2 flex bg-white/5  rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 lg:whitespace-nowrap overflow-hidden text-ellipsis">
-        <span className="text-xs font-normal opacity-0 animate-[fadeIn_1000ms_ease_6500ms_forwards]">
+        <span className="text-xs font-normal opacity-0 animate-[fadeIn_1000ms_ease_7000ms_forwards]">
           🐛 App crashes when uploading file sizes 5MB+ on Chrome
         </span>
       </div>
 
       <h3 className="pb-1 text-white/75">Assigned to</h3>
       <div className="items-center  h-[2.3125rem] text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30">
-        <span className="opacity-0 animate-[fadeIn_1000ms_ease_6500ms_forwards]">
+        <span className="opacity-0 animate-[fadeIn_1000ms_ease_7000ms_forwards]">
           Betty Bondoc
         </span>
       </div>
 
       <h3 className="pb-1 text-white/75">Mentioned Users</h3>
       <div className="items-center h-[2.3125rem] text-xs font-normal  mb-2 flex bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30">
-        <span className="opacity-0 animate-[fadeIn_1000ms_ease_6500ms_forwards]">
+        <span className="opacity-0 animate-[fadeIn_1000ms_ease_7000ms_forwards]">
           Adam Cogan, Matt Wicks
         </span>
       </div>
