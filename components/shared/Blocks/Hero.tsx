@@ -4,6 +4,7 @@ import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+import { cn } from "@/lib/utils";
 import Container from "../../Container";
 import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
 import { CircleLogo } from "./AnimatedBeam";
@@ -12,9 +13,11 @@ import { CircleLogo } from "./AnimatedBeam";
 const TypewriterText = ({
   text,
   startDelay = 0,
+  className,
 }: {
   text: string;
   startDelay?: number;
+  className?: string;
 }) => {
   const [displayText, setDisplayText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -86,7 +89,7 @@ const TypewriterText = ({
 
   // After typing is complete, show the highlighted version
   return (
-    <span>
+    <span className={cn(className)}>
       {parts.map((part, index) =>
         part.highlight ? (
           <span
@@ -128,9 +131,9 @@ const TranscriptBox = ({ data }: { data: any }) => {
   const staggerDelay = 2100; // 5s for typing + 1s buffer
 
   return (
-    <Container className="flex flex-col md:flex-row pt-12 text-white w-full">
+    <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
       {/* LHS */}
-      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-[20px] py-6 px-6">
+      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] py-6 px-6">
         <ShineBorder
           borderWidth={2}
           duration={20}
@@ -162,6 +165,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
               (text: string, index: number) => (
                 <span key={index}>
                   <TypewriterText
+                    className="text-xs xl:text-base"
                     text={text}
                     startDelay={index * staggerDelay}
                   />
@@ -197,7 +201,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
         <CircleLogo ref={null} media={data?.middleLogo} shineBorder={true} />
       </div>
       {/* RHS */}
-      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-[20px] p-6">
+      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] p-6">
         <ShineBorder
           borderWidth={2}
           duration={20}
