@@ -41,7 +41,7 @@ const FAQ = ({ data }: { data: FAQData }) => {
               onClick={() => toggleQuestion(index)}
             >
               <h3
-                className="text-base font-medium"
+                className="text-lg font-bold"
                 data-tina-field={tinaField(item, "question")}
               >
                 {item.question}
