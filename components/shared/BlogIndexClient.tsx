@@ -1,7 +1,6 @@
 "use client";
 
 import { GridPattern } from "@/components/magicui/grid-background";
-import { ShinyButton } from "@/components/magicui/shiny-button";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
@@ -9,9 +8,9 @@ import Image from "next/image";
 import React from "react";
 import {
   BlogsIndexBlocksArticleList,
-  BlogsIndexBlocksCallToAction,
   BlogsIndexBlocksHeroSearch,
 } from "../../tina/__generated__/types";
+import CallToAction from "./Blocks/CallToAction";
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -33,8 +32,6 @@ type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 type Block = Maybe<RemoveTinaMetadata<BlogsIndexBlocks>>;
 
 type ArticleListProps = RemoveTinaMetadata<BlogsIndexBlocksArticleList>;
-
-type CallToActionProps = RemoveTinaMetadata<BlogsIndexBlocksCallToAction>;
 
 type HeroSearchProps = RemoveTinaMetadata<BlogsIndexBlocksHeroSearch>;
 
@@ -176,7 +173,7 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
           case "BlogsIndexBlocksHeroSearch":
             return <HeroSearch {...block} />;
           case "BlogsIndexBlocksCallToAction":
-            return <CallToAction {...block} />;
+            return <CallToAction className="container" {...block} />;
           case "BlogsIndexBlocksArticleList":
             return <RecentArticles {...block} product={product} />;
           case "BlogsIndexBlocksFeaturedBlog":
@@ -464,45 +461,6 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
             })}
           </div>
         )}
-      </div>
-    </section>
-  );
-};
-
-const CallToAction = (props: RemoveTinaMetadata<CallToActionProps>) => {
-  return (
-    <section className="container mx-auto">
-      <div className="rounded-2xl bg-[#131313] relative">
-        <div className="max-w-3xl mx-auto text-center ">
-          <section className="p-10 sm:p-12 z-10 relative">
-            {props.title && (
-              <h2
-                data-tina-field={tinaField(props, "title")}
-                className="sm:text-3xl text-xl font-bold mb-4"
-              >
-                {props.title}
-              </h2>
-            )}
-            {props.description && (
-              <p
-                data-tina-field={tinaField(props, "description")}
-                className="text-gray-300 text-sm sm:text-base mb-8"
-              >
-                {props.description}
-              </p>
-            )}
-
-            {props.button && (
-              <ShinyButton
-                data-tina-field={tinaField(props, "button")}
-                className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
-                href={props.button.buttonLink || ""}
-              >
-                {props?.button?.buttonText}
-              </ShinyButton>
-            )}
-          </section>
-        </div>
       </div>
     </section>
   );
