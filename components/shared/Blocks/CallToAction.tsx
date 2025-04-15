@@ -1,13 +1,16 @@
 import { ShinyButton } from "@/components/magicui/shiny-button";
+import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import { tinaField } from "tinacms/dist/react";
 import { PagesPageBlocksCallToAction } from "../../../tina/__generated__/types";
 
-type CallToActionProps = RemoveTinaMetadata<PagesPageBlocksCallToAction>;
+type CallToActionProps = RemoveTinaMetadata<PagesPageBlocksCallToAction> & {
+  className?: string;
+};
 
-const CallToAction = (props: RemoveTinaMetadata<CallToActionProps>) => {
+const CallToAction = ({ className, ...props }: CallToActionProps) => {
   return (
-    <section className="container mx-auto text-white">
+    <section className={cn("mx-auto text-white", className)}>
       <div className="rounded-2xl bg-[#131313] relative">
         <div className="max-w-3xl mx-auto text-center ">
           <section className="p-10 sm:p-12 z-10 relative">

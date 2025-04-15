@@ -1,6 +1,7 @@
 import React from "react";
 import { Collection, Template, TinaField } from "tinacms";
 import { DEFAULT_CATEGORY } from "../../components/providers/BlogSearchProvider";
+import { callToActionTemplate } from "../../components/shared/Blocks/CallToAction.template";
 import { seoInformation } from "../shared/SEOInformation";
 export const blogCollection: Collection = {
   label: "Blog Posts",
@@ -245,7 +246,7 @@ export const blogIndexCollection: Collection = {
         heroSearchTemplate,
         articleListTemplate,
         featuredBlogTemplate,
-        newsletterTemplate,
+        callToActionTemplate,
       ],
     },
   ],
