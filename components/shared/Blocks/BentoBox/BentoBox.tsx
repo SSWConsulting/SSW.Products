@@ -210,6 +210,8 @@ export default function BentoBox({ data }: { data: any }) {
   return (
     <div className="flex flex-col">
       <Container size="small">
+        {/* TODO: Trigger animation to play only when the title enters the viewport
+         https://github.com/SSWConsulting/SSW.YakShaver/issues/1878 */}
         <TitleFadeIn title={data?.title} />
       </Container>
       <Container className="text-white mx-auto">
