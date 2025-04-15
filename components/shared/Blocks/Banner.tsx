@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { tinaField } from "tinacms/dist/react";
+import Container from "../../Container";
 import Actions from "./ActionsButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
 
@@ -24,17 +25,15 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
 
   return (
     <div
-      className="w-full pt-8"
+      className="mx-auto w-full"
       style={{
         background: gradientBackground,
+        color: data.textColour,
       }}
     >
-      <div
-        className="container mx-auto px-8 flex flex-col md:flex-col lg:flex-row items-center text-left"
-        style={{ color: data.textColour }}
-      >
+      <Container className="mx-auto flex flex-col md:flex-col lg:flex-row items-center text-left">
         {/* Left Column: Text and Buttons */}
-        <div className="lg:w-2/5 w-full flex flex-col gap-2 pl-0 lg:pl-20">
+        <div className="lg:w-2/5 w-full flex flex-col gap-2">
           <h2
             className="text-4xl font-semibold mb-4"
             data-tina-field={tinaField(data, "headline")}
@@ -71,7 +70,7 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
             />
           </div>
         )}
-      </div>
+      </Container>
     </div>
   );
 };

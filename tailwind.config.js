@@ -3,22 +3,30 @@ module.exports = {
   darkMode: ["class"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
-    "./app/*",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./tina/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     container: {
       padding: {
         DEFAULT: "1.5rem",
+        "2xl": "10rem",
       },
     },
     extend: {
+      screens: {
+        small: "43.75rem",
+        medium: "75rem",
+      },
+      spacing: {
+        37: "9.25rem",
+        navBarHeight: "95px",
+      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         helvetica: ["Helvetica", "Arial", "sans-serif"],
       },
-
       colors: {
         ssw: {
           red: "#CC4141",
