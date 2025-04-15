@@ -4,7 +4,6 @@ import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Actions from "./ActionsButton";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 
-
 interface CalculatorTier {
   tier: string;
   description: string[];
@@ -108,6 +107,8 @@ export default function CalculatorComponent({ data }: { data: any }) {
     data.tiers[selectedTier].itemsAbleToCreate
   );
 
+  const RECCOMENDED_TIER_INDEX = 1;
+
   useEffect(() => {
     setHoursSaved(data.tiers[selectedTier].estimatedHoursSaved);
     setItemsAbleToCreate(data.tiers[selectedTier].itemsAbleToCreate);
@@ -128,6 +129,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
             index={index}
             setSelectedTier={setSelectedTier}
             isSelected={selectedTier === index}
+            isRecommended={index === RECCOMENDED_TIER_INDEX}
           />
         ))}
       </div>
@@ -180,7 +182,11 @@ const EstimatedSavingsContent = ({
       <h3 className="text-2xl text-white font-bold">Your ROI with YakShaver</h3>
       <div className="flex flex-col">
         <p className="text-white/50">Monthly Detailed Work Items</p>
-        <p className={`text-white font-bold ${isCustomTier ? 'text-xl' : 'text-2xl'}`}>
+        <p
+          className={`text-white font-bold ${
+            isCustomTier ? "text-xl" : "text-2xl"
+          }`}
+        >
           <div className="flex gap-2 align-baseline items-baseline">
             {isCustomTier
               ? "Enough to fill a warehouse"
@@ -195,8 +201,14 @@ const EstimatedSavingsContent = ({
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
         </div>
-        <p className={`text-emerald-400 font-bold ${isCustomTier ? 'text-xl' : 'text-2xl'}`}>
-          {isCustomTier ? "Let's just say... your devs will notice" : `${estimatedHoursSaved} hours`}
+        <p
+          className={`text-emerald-400 font-bold ${
+            isCustomTier ? "text-xl" : "text-2xl"
+          }`}
+        >
+          {isCustomTier
+            ? "Let's just say... your devs will notice"
+            : `${estimatedHoursSaved} hours`}
         </p>
       </div>
       <div className="flex flex-col">
@@ -206,7 +218,11 @@ const EstimatedSavingsContent = ({
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
         </div>
-        <p className={`text-emerald-400 font-bold ${isCustomTier ? 'text-xl' : 'text-2xl'}`}>
+        <p
+          className={`text-emerald-400 font-bold ${
+            isCustomTier ? "text-xl" : "text-2xl"
+          }`}
+        >
           {isCustomTier
             ? "Ask your CFO (after they stop smiling)"
             : `$${monthlyValueReclaimed.toLocaleString()}`}
@@ -219,7 +235,11 @@ const EstimatedSavingsContent = ({
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
         </div>
-        <p className={`text-emerald-400 font-bold ${isCustomTier ? 'text-xl' : 'text-2xl'}`}>
+        <p
+          className={`text-emerald-400 font-bold ${
+            isCustomTier ? "text-xl" : "text-2xl"
+          }`}
+        >
           {isCustomTier
             ? "You'll want a meeting for this one"
             : `$${annualValueReclaimed.toLocaleString()}`}
@@ -267,22 +287,31 @@ const CalculatorTierCard = ({
   index,
   setSelectedTier,
   isSelected,
+  isRecommended,
 }: {
   calculatorTier: CalculatorTier;
   index: number;
   setSelectedTier: (index: number) => void;
   isSelected: boolean;
+  isRecommended?: boolean;
 }) => {
   return (
     <button
-      className={`bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] border ${
+      className={`bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] border cursor-pointer ${
         isSelected ? "border-red-500" : "border-white/10"
       } text-white rounded-xl p-6 w-full flex flex-col gap-2 items-start text-start`}
       onClick={() => setSelectedTier(index)}
     >
       <div className="flex-col w-full">
         {" "}
-        <h3 className="text-base">{calculatorTier.tier}</h3>
+        <div className="flex items-center gap-2">
+          <h3 className="text-base">{calculatorTier.tier}</h3>
+          {isRecommended && (
+            <div className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+              Recommended
+            </div>
+          )}
+        </div>
         <div className="flex">
           {calculatorTier?.price > 0 && calculatorTier.price < 9999 && (
             <div className="flex items-baseline gap-2">
@@ -302,10 +331,13 @@ const CalculatorTierCard = ({
       <div className="flex flex-col pt-2 gap-1 ">
         {calculatorTier.description?.map((description, i) => (
           <div key={i} className="flex gap-2">
-            <p className={`text-base text-white/50 leading-5 ${i === 0 ? "font-bold" : ""}`}>
+            <p
+              className={`text-base text-white/50 leading-5 ${
+                i === 0 ? "font-bold" : ""
+              }`}
+            >
               {description}
             </p>
-            
           </div>
         ))}
       </div>
