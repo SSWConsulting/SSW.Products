@@ -25,6 +25,12 @@ import {
 } from "../../node_modules/ssw-tinacms-landingkit/dist";
 import { seoInformation } from "../shared/SEOInformation";
 
+export const bottomPaddingOptions = {
+  none: undefined,
+  small: "pb-12",
+  "extra large": "pb-40",
+};
+
 export const PagesSchema: Collection = {
   label: "Product Pages",
   name: "pages",
@@ -43,6 +49,7 @@ export const PagesSchema: Collection = {
       name: "title",
       label: "Title",
     },
+
     {
       type: "object",
       name: "pageBlocks",
@@ -92,6 +99,21 @@ export const PagesSchema: Collection = {
           previewSrc:
             "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/accordion.png?raw=true",
         }),
+      ],
+    },
+    {
+      type: "object",
+      name: "pageFormatting",
+      label: "Page Formatting",
+      fields: [
+        {
+          description:
+            "Add padding to the bottom of the page before the footer",
+          name: "bottomPadding",
+          label: "Bottom Padding",
+          type: "string",
+          options: Object.keys(bottomPaddingOptions),
+        },
       ],
     },
   ],

@@ -301,5 +301,8 @@
       },
       "_template": "callToAction"
     }
-  ]
+  ],
+  "pageFormatting": {
+    "bottomPadding": "small"
+  }
 }
