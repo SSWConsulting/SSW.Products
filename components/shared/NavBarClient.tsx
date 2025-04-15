@@ -1,14 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { NavigationBarQuery } from "../../tina/__generated__/types";
 import Image from "next/image";
-import { BookingButton } from "./Blocks/BookingButton";
 import Link from "next/link";
-import { HiOutlineBars3 } from "react-icons/hi2";
+import { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
-import { FaChevronRight } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa6";
+import { HiOutlineBars3 } from "react-icons/hi2";
+import { NavigationBarQuery } from "../../tina/__generated__/types";
+import { BookingButton } from "./Blocks/BookingButton";
 
 interface NavBarClientProps {
   results: NavigationBarQuery | null;
@@ -144,13 +144,13 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   return (
     <div>
       <nav
-        className={`absolute text-white transition-all duration-300 ease-in-out ${
+        className={`text-white transition-all duration-300 ease-in-out ${
           scrolled
-            ? `xl:fixed shadow-sm bg-[#131313] bg-opacity-80 backdrop-blur animate-slide-in top-0 p-4`
-            : `translate-y-2 px-4 pt-4 pb-6`
-        } z-40 w-full xl:px-10 hidden xl:flex items-center justify-between`}
+            ? `fixed shadow-sm bg-[#131313] bg-opacity-80 backdrop-blur animate-slide-in top-0 p-4`
+            : `translate-y-2 px-4 pt-4 pb-6 absolute`
+        } z-40 w-full xl:px-10 xl:flex items-center justify-between`}
       >
-        <div className="flex items-end md:justify-between lg:justify-normal  w-full px-4 md:px-20">
+        <div className="flex md:justify-between lg:justify-normal  w-full px-4 md:px-20">
           {logo && (
             <Link href="/" className=" lg:px-3 xl:px-0 md:px-3 px-2">
               <Image src={logo} alt="Logo" width={200} height={200} />
