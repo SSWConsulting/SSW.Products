@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
-import { curlyBracketFormatter } from "./Hero";
-import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
-import Actions from "./ActionsButton";
+import { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
+import Container from "../../Container";
+import Actions from "./ActionsButton";
+import { curlyBracketFormatter } from "./Hero";
 
 interface CalculatorTier {
   tier: string;
@@ -115,7 +116,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
   }, [selectedTier, data.tiers]);
 
   return (
-    <div className="max-w-7xl mx-auto py-20 px-10">
+    <Container>
       <h2 className="text-4xl text-center font-semibold text-white mb-4">
         {" "}
         {curlyBracketFormatter(data?.title)}
@@ -154,10 +155,10 @@ export default function CalculatorComponent({ data }: { data: any }) {
           />
         </div>
       </div>
-      <div className="flex justify-center py-6">
+      <div className="flex justify-center pt-6">
         <Actions actions={[data?.bottomAction]} />
       </div>
-    </div>
+    </Container>
   );
 }
 
@@ -187,11 +188,11 @@ const EstimatedSavingsContent = ({
             isCustomTier ? "text-xl" : "text-2xl"
           }`}
         >
-          <div className="flex gap-2 align-baseline items-baseline">
+          <span className="flex gap-2 align-baseline items-baseline">
             {isCustomTier
               ? "Enough to fill a warehouse"
               : `Up to ${itemsAbleToCreate}`}
-          </div>
+          </span>
         </p>
       </div>
       <div className="flex flex-col">
@@ -297,8 +298,8 @@ const CalculatorTierCard = ({
 }) => {
   return (
     <button
-      className={`bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] border cursor-pointer ${
-        isSelected ? "border-red-500" : "border-white/10"
+      className={`bg-gradient-to-r to-[#141414] via-[#131313] bg-clip-padding from-[#0e0e0e] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] border cursor-pointer ${
+        isSelected ? "border-red-500" : "border-transparent"
       } text-white rounded-xl p-6 w-full flex flex-col gap-2 items-start text-start`}
       onClick={() => setSelectedTier(index)}
     >

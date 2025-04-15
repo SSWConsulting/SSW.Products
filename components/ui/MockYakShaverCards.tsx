@@ -30,7 +30,7 @@ export function ExampleYakShaverCard() {
 export function HeroYakShaverCard() {
   return (
     <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929]  p-3 border-2  text-xs border-[#4D4D4E]/30 shadow-2xl rounded-2xl text-white w-full h-[320px]">
-      <h2 className=" pb-2 text-sm md:text-base lg:text-lg lg:whitespace-nowrap whitespace-nowrap md:whitespace-normal">
+      <h2 className=" pb-2 text-sm md:text-base lg:text-lg">
         {" "}
         ✅ Done - ✨ A bug report has been created
       </h2>
