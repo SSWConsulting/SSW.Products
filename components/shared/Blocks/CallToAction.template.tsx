@@ -31,7 +31,7 @@ export const callToActionTemplate: Template = {
         },
         {
           name: "buttonLink",
-          label: "Button Text",
+          label: "Button Link",
           type: "string",
         },
       ],
