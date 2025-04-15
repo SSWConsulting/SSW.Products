@@ -176,7 +176,6 @@ function SSWBadge({ title, link }: { title: string; link?: string }) {
 
 export function TitleFadeIn({ title }: { title: string }) {
   const titleWrapper = useRef(null);
-
   const isInView = useInView(titleWrapper, { once: true });
   const words = title.split(" ");
   const lastWord = words.pop();
