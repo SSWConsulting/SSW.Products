@@ -15,7 +15,7 @@ export function YakAnimate() {
               attributeName="y"
               from="35"
               to="0"
-              dur="8.5s"
+              dur="7.5s"
               fill="freeze"
             />
           </rect>
