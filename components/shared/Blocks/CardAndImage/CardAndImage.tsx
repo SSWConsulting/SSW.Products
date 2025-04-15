@@ -137,7 +137,7 @@ function CardItem({
 function Badge({ title }: { title: string }) {
   return (
     <div className="relative bg-[#333333] flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap">
-      {title}
+     ✅ {title}
     </div>
   );
 }
