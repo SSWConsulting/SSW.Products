@@ -7,10 +7,10 @@ import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getDocsForProduct } from "../../utils/fetchDocs";
 
-type Blogs = Awaited<ReturnType<typeof getDocsForProduct>>["data"];
+type Docs = Awaited<ReturnType<typeof getDocsForProduct>>["data"];
 
-type BlogIndexClientProps = {
-  data: Blogs;
+type DocsIndexClientProps = {
+  data: Docs;
   product: string;
 };
 
@@ -57,7 +57,7 @@ const DocsCard = ({
 export default function DocsIndexClient({
   data,
   product,
-}: BlogIndexClientProps) {
+}: DocsIndexClientProps) {
   const [docs, setDocs] = useState(data);
   const [loading, setLoading] = useState(false);
   const [offset, setOffset] = useState(5);
@@ -129,7 +129,7 @@ export default function DocsIndexClient({
   );
 }
 
-const DocsTable = ({ docs }: { docs: Blogs }) => {
+const DocsTable = ({ docs }: { docs: Docs }) => {
   return (
     <div className="w-80 text-white">
       <ul>
