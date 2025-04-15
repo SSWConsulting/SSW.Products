@@ -1,12 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
+import { useCallback, useEffect, useState } from "react";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getDocsForProduct } from "../../utils/fetchDocs";
+
+type Blogs = Awaited<ReturnType<typeof getDocsForProduct>>["data"];
+
+type BlogIndexClientProps = {
+  data: Blogs;
+  product: string;
+};
 
 const DocsCard = ({
   title,
@@ -27,10 +34,11 @@ const DocsCard = ({
         <h2 className="text-2xl mb-2">{title}</h2>
         <div className="font-light text-base">
           <div>
-            <span className="text-sm text-gray-300 uppercase">{`${new Date(date).getDate()} ${new Date(date).toLocaleString(
-              "default",
-              { month: "long" }
-            )} ${new Date(date).getFullYear()}`}</span>
+            <span className="text-sm text-gray-300 uppercase">{`${new Date(
+              date
+            ).getDate()} ${new Date(date).toLocaleString("default", {
+              month: "long",
+            })} ${new Date(date).getFullYear()}`}</span>
           </div>
           <div className="mt-4">
             <TinaMarkdown content={blurb} />
@@ -45,11 +53,11 @@ const DocsCard = ({
   );
 };
 
-interface BlogIndexClientProps {
-  query: any;
-  data: any;
-  product: string;
-}
+// interface BlogIndexClientProps {
+//   query: any;
+//   data: any;
+//   product: string;
+// }
 
 export default function DocsIndexClient({
   data,
@@ -104,18 +112,27 @@ export default function DocsIndexClient({
       <h1 className="text-white font-semibold mb-6 text-3xl md:mx-20 lg:mx-40">
         Docs for {product}
       </h1>
-      <div className="mx-4 md:mx-20 lg:mx-40">
-        {docs?.map((blog: any, index: number) => (
-          <DocsCard
-            key={index}
-            title={blog.title}
-            date={blog.date}
-            body={blog.body}
-            blogPostLink={blog._sys.filename}
-          />
-        ))}
+      <div className="flex">
+        <div className="mx-4 md:mx-20 lg:mx-40">
+          {docs?.map((blog: any, index: number) => (
+            <DocsCard
+              key={index}
+              title={blog.title}
+              date={blog.date}
+              body={blog.body}
+              blogPostLink={blog._sys.filename}
+            />
+          ))}
+        </div>
+        {hasMore && <div id="load-more-trigger" className="h-20"></div>}
+
+        <div className="w-80 text-white">
+          <ul>
+            <li>placeholder1</li>
+            <li>placeholder2</li>
+          </ul>
+        </div>
       </div>
-      {hasMore && <div id="load-more-trigger" className="h-20"></div>}
     </div>
   );
 }
