@@ -1,5 +1,3 @@
-import { TypingAnimation } from "@/components/magicui/typing-animation";
-
 export function ExampleYakShaverCard() {
   return (
     <div className="bg-[#1E1E20] border-2  text-xs border-[#4D4D4E] shadow-2xl rounded-xl p-4  text-white ">
