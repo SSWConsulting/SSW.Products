@@ -1,14 +1,13 @@
 import Image from "next/image";
 import { FaMinus, FaXmark } from "react-icons/fa6";
-import Container from "../../Container";
+import Container from "../../../Container";
 import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
 import Link from "next/link";
 import { FaExpandAlt } from "react-icons/fa";
-import { ExampleYakShaverCard } from "../../ui/MockYakShaverCards";
-import TimeSavedCounterBox from "../../utilityComponents/TimeSavedCounter";
-
-import YaksShavedCounterBox from "../../utilityComponents/YaksShavedCounter";
+import { ExampleYakShaverCard } from "../../../ui/MockYakShaverCards";
+import TimeSavedCounterBox from "../../../utilityComponents/TimeSavedCounter";
+import YaksShavedCounterBox from "../../../utilityComponents/YaksShavedCounter";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
@@ -253,7 +252,7 @@ export default function BentoBox({ data }: { data: any }) {
                 </div>
               </div>
             </div>
-            {/* Right box with glowing effect */}
+            {/* Right box */}
             <div className="relative col-span-1 rounded-xl h-80 md:h-80 lg:h-72 overflow-hidden">
               <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
               <div

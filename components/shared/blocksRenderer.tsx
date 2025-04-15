@@ -5,7 +5,7 @@ import Pricing from "./Blocks/Pricing";
 import Banner from "./Blocks/Banner";
 import VideoDisplay from "./Blocks/VideoDisplay";
 
-import BentoBox from "./Blocks/BentoBox";
+import BentoBox from "./Blocks/BentoBox/BentoBox";
 
 import {
   Accordion,
@@ -20,7 +20,6 @@ import { Timeline } from "./Blocks/Timeline/Timeline";
 import CardAndImageParent from "./Blocks/CardAndImage/CardAndImage";
 import ComparisonTable from "./Blocks/ComparisonTable";
 import CalculatorComponent from "./Blocks/Calculator";
-
 
 interface Block {
   __typename: string;
@@ -55,7 +54,6 @@ const Blocks = ({ blocks }: BlocksProps) => {
 
   return blocks.map((block: Block, index: number) => {
     switch (block.__typename) {
-      
       case "PagesPageBlocksFeatures":
         if (block.featureItem) {
           return (
@@ -113,9 +111,9 @@ const Blocks = ({ blocks }: BlocksProps) => {
           ></Accordion>
         );
       case "PagesPageBlocksTimeline":
-        return <Timeline data={block}/>;
+        return <Timeline data={block} />;
       case "PagesPageBlocksCardAndImage":
-        return <CardAndImageParent key={index} data={block}/>;
+        return <CardAndImageParent key={index} data={block} />;
       case "PagesPageBlocksComparisonTable":
         return <ComparisonTable data={block} />;
       case "PagesPageBlocksCalculator":

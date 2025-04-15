@@ -108,6 +108,8 @@ export default function CalculatorComponent({ data }: { data: any }) {
     data.tiers[selectedTier].itemsAbleToCreate
   );
 
+  const RECCOMENDED_TIER_INDEX = 1;
+
   useEffect(() => {
     setHoursSaved(data.tiers[selectedTier].estimatedHoursSaved);
     setItemsAbleToCreate(data.tiers[selectedTier].itemsAbleToCreate);
@@ -128,6 +130,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
             index={index}
             setSelectedTier={setSelectedTier}
             isSelected={selectedTier === index}
+            isRecommended={index === RECCOMENDED_TIER_INDEX}
           />
         ))}
       </div>
@@ -285,22 +288,31 @@ const CalculatorTierCard = ({
   index,
   setSelectedTier,
   isSelected,
+  isRecommended,
 }: {
   calculatorTier: CalculatorTier;
   index: number;
   setSelectedTier: (index: number) => void;
   isSelected: boolean;
+  isRecommended?: boolean;
 }) => {
   return (
     <button
-      className={`bg-gradient-to-r to-[#141414] via-[#131313] bg-clip-padding from-[#0e0e0e] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] border ${
+      className={`bg-gradient-to-r to-[#141414] via-[#131313] bg-clip-padding from-[#0e0e0e] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] border cursor-pointer ${
         isSelected ? "border-red-500" : "border-transparent"
       } text-white rounded-xl p-6 w-full flex flex-col gap-2 items-start text-start`}
       onClick={() => setSelectedTier(index)}
     >
       <div className="flex-col w-full">
         {" "}
-        <h3 className="text-base">{calculatorTier.tier}</h3>
+        <div className="flex items-center gap-2">
+          <h3 className="text-base">{calculatorTier.tier}</h3>
+          {isRecommended && (
+            <div className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+              Recommended
+            </div>
+          )}
+        </div>
         <div className="flex">
           {calculatorTier?.price > 0 && calculatorTier.price < 9999 && (
             <div className="flex items-baseline gap-2">

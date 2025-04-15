@@ -1,5 +1,5 @@
 import { Template, wrapFieldsWithMeta } from "tinacms";
-import IconSelector from "../../../tina/customSchemaComponents/IconSelector";
+import IconSelector from "../../../../tina/customSchemaComponents/IconSelector";
 
 export const bentoBoxTemplate: Template = {
   name: "BentoBox",

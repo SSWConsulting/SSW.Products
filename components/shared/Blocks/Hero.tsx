@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import Container from "../../Container";
 import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
-import { CircleLogo } from "./AnimatedBeam";
+import { CircleLogo } from "./BentoBox/AnimatedBeam";
 
 // Typing Animation Component - made by Cursor
 const TypewriterText = ({
@@ -273,7 +273,7 @@ export const highlightCurlyBracketFormatter = (byLine: string) => {
 
 export default function Hero({ data }: { data: any }) {
   return (
-    <div className="flex items-center w-full justify-center mx-auto relative overflow-hidden pt-20 md:pt-20 lg:pt-0">
+    <div className="flex items-center w-full justify-center mx-auto relative overflow-hidden">
       {/* Background Yak SVG */}
       <div className="absolute inset-0 z-0 flex justify-end items-center opacity-50 overflow-visible">
         {data?.backgroundImageEnabled && (
@@ -306,7 +306,7 @@ export default function Hero({ data }: { data: any }) {
               <h1>{data?.titleAfterRotate}</h1>
             </div>
           </div>
-          <h2 className="text-white text-center text-base md:text-lg pt-6 lg:pt-12 max-w-3xl lg:px-0">
+          <h2 className="text-white text-center text-base md:text-lg pt-6 lg:pt-12">
             {curlyBracketFormatter(data?.byLine)}
           </h2>
 

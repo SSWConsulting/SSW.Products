@@ -1,5 +1,3 @@
-import { TypingAnimation } from "@/components/magicui/typing-animation";
-
 export function ExampleYakShaverCard() {
   return (
     <div className="bg-[#1E1E20] border-2  text-xs border-[#4D4D4E] shadow-2xl rounded-xl p-4  text-white ">
@@ -9,31 +7,22 @@ export function ExampleYakShaverCard() {
       </h2>
       <h3 className="pb-1">Project</h3>
 
-      <TypingAnimation className="h-[24px] items-center text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
+      <span className="h-[24px] items-center text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
         tina.io
-      </TypingAnimation>
+      </span>
 
       <h3 className="pb-1">Work Item #2818</h3>
-      <TypingAnimation
-        delay={1000}
-        className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F] whitespace-nowrap overflow-hidden text-ellipsis"
-      >
+      <span className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F] whitespace-nowrap overflow-hidden text-ellipsis">
         🐛 Fix event display issue on tina.io homepage
-      </TypingAnimation>
+      </span>
       <h3 className="pb-1">Assigned to</h3>
-      <TypingAnimation
-        delay={5300}
-        className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]"
-      >
+      <span className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
         Betty Bondoc
-      </TypingAnimation>
+      </span>
       <h3 className="pb-1">Mentioned Users</h3>
-      <TypingAnimation
-        delay={5600}
-        className="items-center h-[24px] text-xs font-normal  mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]"
-      >
+      <span className="items-center h-[24px] text-xs font-normal  mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
         Adam Cogan, Matt Wicks
-      </TypingAnimation>
+      </span>
     </div>
   );
 }
