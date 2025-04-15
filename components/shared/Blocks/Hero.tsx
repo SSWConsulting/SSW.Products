@@ -134,8 +134,6 @@ const TranscriptBox = ({ data }: { data: any }) => {
     <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
       {/* LHS */}
       <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] py-6 px-6 border-white/20 border">
-        
-
         <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3 h-[20.625rem]">
           <div className="flex gap-4 pb-2">
             <div className="rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
@@ -198,6 +196,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
       {/* RHS */}
       <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] p-6 border-white/20 border">
         <HeroYakShaverCard />
+
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">
             <h2 className="text-white text-2xl pb-2 ">
