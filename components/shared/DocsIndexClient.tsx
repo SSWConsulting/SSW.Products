@@ -102,6 +102,10 @@ export default function DocsIndexClient({
     };
   }, [loadMoreDocs]);
 
+  // docs.find((blog)=> {
+  //   blog?._sys.filename ===
+  // })
+
   return (
     <div className="p-4 lg:pt-32 mt-20 md:mt-0 md:pt-32 mx-auto w-full">
       <h1 className="text-white font-semibold mb-6 text-3xl md:mx-20 lg:mx-40">
@@ -119,37 +123,42 @@ export default function DocsIndexClient({
             />
           ))}
         </div>
-        {hasMore && <div id="load-more-trigger" className="h-20"></div>}
-
-        <div className="w-80 text-white">
-          <ul>
-            {docs.map((blog, index) => (
-              <li key={`blog-${index}`}>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const filename = blog?._sys.filename;
-                    if (!filename) return;
-                    const heading = document.getElementById(filename);
-                    if (heading) {
-                      window.scrollTo({
-                        top:
-                          heading.getBoundingClientRect().top -
-                          100 +
-                          window.scrollY,
-                        behavior: "smooth",
-                      });
-                    }
-                  }}
-                  href={`#${blog?._sys.filename}`}
-                >
-                  {blog?.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <DocsTable docs={docs} />
       </div>
     </div>
   );
 }
+
+const DocsTable = ({ docs }: { docs: Blogs }) => {
+  return (
+    <div className="w-80 text-white">
+      <ul>
+        {docs.map((blog, index) => (
+          <li key={`blog-${index}`}>
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                const filename = blog?._sys.filename;
+                if (!filename) return;
+                const heading = document.getElementById(filename);
+                if (heading) {
+                  window.scrollTo({
+                    top:
+                      heading.getBoundingClientRect().top -
+                      100 +
+                      window.scrollY,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+              href={`#${blog?._sys.filename}`}
+            >
+              {blog?.title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+// {hasMore && <div id="load-more-trigger" className="h-20"></div>}
