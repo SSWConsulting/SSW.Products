@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Link from "next/link";
@@ -31,7 +30,9 @@ const DocsCard = ({
   return (
     <Link href={`/docs/${docPostLink}`}>
       <div className="p-6 rounded-2xl shadow-2xl bg-stone-700/30 mb-6 text-white border-opacity-15 border-2 hover:border-opacity-85 border-slate-300">
-        <h2 className="text-2xl mb-2">{title}</h2>
+        <h2 id={`${docPostLink}`} className="text-2xl mb-2">
+          {title}
+        </h2>
         <div className="font-light text-base">
           <div>
             <span className="text-sm text-gray-300 uppercase">{`${new Date(
@@ -52,12 +53,6 @@ const DocsCard = ({
     </Link>
   );
 };
-
-// interface BlogIndexClientProps {
-//   query: any;
-//   data: any;
-//   product: string;
-// }
 
 export default function DocsIndexClient({
   data,
@@ -128,8 +123,30 @@ export default function DocsIndexClient({
 
         <div className="w-80 text-white">
           <ul>
-            <li>placeholder1</li>
-            <li>placeholder2</li>
+            {docs.map((blog, index) => (
+              <li key={`blog-${index}`}>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const filename = blog?._sys.filename;
+                    if (!filename) return;
+                    const heading = document.getElementById(filename);
+                    if (heading) {
+                      window.scrollTo({
+                        top:
+                          heading.getBoundingClientRect().top -
+                          100 +
+                          window.scrollY,
+                        behavior: "smooth",
+                      });
+                    }
+                  }}
+                  href={`#${blog?._sys.filename}`}
+                >
+                  {blog?.title}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
