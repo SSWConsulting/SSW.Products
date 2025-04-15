@@ -5,9 +5,11 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
-import Container from "../../Container";
-import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
-import { CircleLogo } from "./BentoBox/AnimatedBeam";
+import Container from "../../../Container";
+import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
+import { CircleLogo } from "../BentoBox/AnimatedBeam";
+import YakSVG from "../../../public/svg/yak-icon-fill-animate.svg";
+import { YakAnimate, YakBorderAnimate } from "./yak-animate";
 
 // Typing Animation Component - made by Cursor
 const TypewriterText = ({
@@ -128,7 +130,14 @@ const TypewriterText = ({
 
 const TranscriptBox = ({ data }: { data: any }) => {
   // Calculate total animation duration for staggering
-  const staggerDelay = 2100; // 5s for typing + 1s buffer
+  const staggerDelay = 2100;
+
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 7000);
+  }, []);
 
   return (
     <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
@@ -137,19 +146,32 @@ const TranscriptBox = ({ data }: { data: any }) => {
         <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3 h-[20.625rem]">
           <div className="flex gap-4 pb-2">
             <div className="rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
-              <Image
-                src="/YakShaver/People/uly-avatar.png"
-                alt="Uly Avatar"
-                width={40}
-                height={40}
-              />
+              <div className="relative w-full h-full flex items-center justify-center">
+                {/* Animated sound waves */}
+                <div
+                  className={`absolute w-[40px] h-[40px] rounded-full bg-white animate-ping transition-opacity duration-1000 ${
+                    isVisible ? "opacity-0" : "opacity-30"
+                  }`}
+                  style={{ animationDuration: "1.1s" }}
+                ></div>
+                <div
+                  className={`absolute w-[40px] h-[40px] rounded-full bg-white animate-ping transition-opacity duration-1000 ${
+                    isVisible ? "opacity-0" : "opacity-20"
+                  }`}
+                  style={{ animationDuration: "1.1s", animationDelay: "0.2s" }}
+                ></div>
+                <Image
+                  src="/YakShaver/People/uly-avatar.png"
+                  alt="Uly Avatar"
+                  width={40}
+                  height={40}
+                  className="rounded-full relative z-10"
+                />
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <span className="lg:text-sm text-xs text-white">
                 {data.leftHandSide?.issueReportName}
-              </span>
-              <span className="text-gray-400 text-xs">
-                {data.leftHandSide?.issueReportTime}
               </span>
             </div>
           </div>
@@ -169,7 +191,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
         </div>
 
         <div className="flex  justify-center items-center gap-6 w-full pt-4 ">
-          <div className="w-3/4">
+          <div className="w-full">
             <h2 className="text-white text-2xl pb-2 ">
               {" "}
               {data.leftHandSide?.issueReportSummaryTitle}{" "}
@@ -179,23 +201,19 @@ const TranscriptBox = ({ data }: { data: any }) => {
               {data.leftHandSide?.issueReportSummarySubtitle}
             </span>
           </div>
-          <div className="w-1/4">
-            <Image
-              src="/YakShaver/People/uly-office.png"
-              alt="Uly Office"
-              width={100}
-              height={100}
-              className="rounded-full"
-            />
-          </div>
         </div>
       </div>
       <div className="flex justify-center items-center p-5">
-        <CircleLogo ref={null} media={data?.middleLogo} shineBorder={true} />
+        <div className="relative md:w-20 m-1 md:h-20 h-16 w-16 rounded-full bg-gray-800 flex items-center justify-center bg-gradient-to-tr from-white via-gray-200 to-gray-500">
+          <YakAnimate />
+
+          {/* Replace the inline border animation with the new component */}
+          <YakBorderAnimate />
+        </div>
       </div>
       {/* RHS */}
       <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] p-6 border-white/20 border">
-        <HeroYakShaverCard />
+        <HeroYakShaverCard isVisible={isVisible} />
 
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">

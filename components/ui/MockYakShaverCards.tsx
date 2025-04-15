@@ -32,14 +32,7 @@ export function ExampleYakShaverCard() {
   );
 }
 
-export function HeroYakShaverCard() {
-  const [isVisible, setIsVisible] = useState(false);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsVisible(true);
-    }, 7000);
-  }, []);
-
+export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
   return (
     <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929]  p-3 border-2  text-xs border-[#4D4D4E]/30 shadow-2xl rounded-2xl text-white w-full h-[20.625rem]">
       <h2 className="pb-2 text-sm md:text-base lg:text-lg relative h-[2.5em]">

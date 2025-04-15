@@ -15,7 +15,7 @@ import {
   LogoCarousel,
 } from "ssw-tinacms-landingkit";
 import * as AntIcons from "react-icons/ai";
-import Hero from "./Blocks/Hero";
+import Hero from "./Blocks/Hero/Hero";
 import { Timeline } from "./Blocks/Timeline/Timeline";
 import CardAndImageParent from "./Blocks/CardAndImage/CardAndImage";
 import ComparisonTable from "./Blocks/ComparisonTable";
