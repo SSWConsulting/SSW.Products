@@ -1,4 +1,3 @@
-
 export async function setPageMetadata(seo: any, product?: string) {
     return {
       title: seo?.title,
