@@ -122,6 +122,7 @@ export default function DocsIndexClient({
               blogPostLink={blog._sys.filename}
             />
           ))}
+          {hasMore && <div id="load-more-trigger" className="h-20"></div>}
         </div>
         <DocsTable docs={docs} />
       </div>
@@ -161,4 +162,3 @@ const DocsTable = ({ docs }: { docs: Docs }) => {
     </div>
   );
 };
-// {hasMore && <div id="load-more-trigger" className="h-20"></div>}
