@@ -28,9 +28,9 @@ export default function TimeSavedCounterBox() {
       </div>
       <div className=" pt-2 flex flex-row gap-2">
         <div className="text-3xl md:text-4xl font-semibold">
-          <NumberTicker value={timeSaved * 6} className="text-white" />
+          <NumberTicker value={(timeSaved * 30) / 60} className="text-white" />
         </div>
-        <div className="text-gray-400 text-sm place-self-end pb-1">Minutes</div>
+        <div className="text-gray-400 text-sm place-self-end pb-1">Hours</div>
       </div>
     </div>
   );

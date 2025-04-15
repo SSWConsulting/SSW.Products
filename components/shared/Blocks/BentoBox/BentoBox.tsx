@@ -5,13 +5,19 @@ import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
 import { FaExpandAlt } from "react-icons/fa";
 import Link from "next/link";
-import YaksShavedCounterBox from "../../utilityComponents/YaksShavedCounter";
-import TimeSavedCounterBox from "../../utilityComponents/TimeSavedCounter";
-import { ExampleYakShaverCard } from "../../ui/MockYakShaverCards";
+import YaksShavedCounterBox from "../../../utilityComponents/YaksShavedCounter";
+import TimeSavedCounterBox from "../../../utilityComponents/TimeSavedCounter";
+import { ExampleYakShaverCard } from "../../../ui/MockYakShaverCards";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
-function IconBox({ image, tooltipText }: { image: string, tooltipText: string }) {
+function IconBox({
+  image,
+  tooltipText,
+}: {
+  image: string;
+  tooltipText: string;
+}) {
   return (
     <div className="relative rounded-2xl md:w-[60px] md:h-[60px] w-[50px] h-[50px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
       <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-10 group-hover:opacity-25 transition duration-1000 group-hover:duration-200"></div>
@@ -26,7 +32,7 @@ function IconBox({ image, tooltipText }: { image: string, tooltipText: string })
             />
           </div>
         </div>
-        
+
         <div className="absolute opacity-0 group-hover:opacity-100 bottom-full mb-2 px-2 py-1 bg-gray-800 text-white text-xs rounded transition-opacity duration-300 whitespace-nowrap">
           {tooltipText}
         </div>
@@ -34,8 +40,6 @@ function IconBox({ image, tooltipText }: { image: string, tooltipText: string })
     </div>
   );
 }
-
-
 
 function SmAndMdView({ data }: { data: any }) {
   return (
@@ -212,7 +216,6 @@ export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
     <div className="lg:py-20 md:pb-10 ">
-      
       <TitleFadeIn title={data?.title} />
       <div className="text-white p-6 mx-auto max-w-7xl">
         {/* Container */}
@@ -221,7 +224,6 @@ export default function BentoBox({ data }: { data: any }) {
           <div className="grid md:grid-cols-3 grid-cols-1 gap-4  relative">
             {/* Top Left box */}
             <div className="relative md:col-span-2 col-span-1 rounded-xl md:h-80 lg:h-72">
-              
               <div
                 className={`${YakShaverGray} relative rounded-xl w-full h-full p-4`}
               >
@@ -243,13 +245,18 @@ export default function BentoBox({ data }: { data: any }) {
                   </h2>
                 </div>
                 <div className="md:mt-12 mt-4 flex items-center flex-row justify-center gap-4 md:gap-6">
-                  {topLeftBox.icons && topLeftBox.icons.map((icon: any, index: number) => (
-                    <IconBox key={index} image={icon.iconImage} tooltipText={icon.iconToolTipText} />
-                  ))}
+                  {topLeftBox.icons &&
+                    topLeftBox.icons.map((icon: any, index: number) => (
+                      <IconBox
+                        key={index}
+                        image={icon.iconImage}
+                        tooltipText={icon.iconToolTipText}
+                      />
+                    ))}
                 </div>
               </div>
             </div>
-            {/* Right box with glowing effect */}
+            {/* Right box */}
             <div className="relative col-span-1 rounded-xl h-80 md:h-80 lg:h-72 overflow-hidden">
               <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
               <div
@@ -269,7 +276,6 @@ export default function BentoBox({ data }: { data: any }) {
               </div>
             </div>
           </div>
-          
         </div>
 
         {/* Row 2 (2 Rows) */}
@@ -283,9 +289,8 @@ export default function BentoBox({ data }: { data: any }) {
         </div>
       </div>
       <div className="pt-10">
-      <SSWBadge title={data?.badge} link={data?.badgeLink} />
+        <SSWBadge title={data?.badge} link={data?.badgeLink} />
       </div>
-      
     </div>
   );
 }

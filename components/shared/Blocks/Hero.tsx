@@ -4,7 +4,7 @@ import { ShineBorder } from "@/components/magicui/shine-border";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import { CircleLogo } from "./AnimatedBeam";
+import { CircleLogo } from "./BentoBox/AnimatedBeam";
 import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
 
 // Typing Animation Component - made by Cursor
