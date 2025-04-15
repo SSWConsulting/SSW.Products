@@ -174,7 +174,6 @@ function SSWBadge({ title, link }: { title: string; link?: string }) {
 }
 
 export function TitleFadeIn({ title }: { title: string }) {
-  console.log("title fade in mounted with props", title);
   const words = title.split(" ");
   const lastWord = words.pop();
   const firstPart = words.join(" ");
