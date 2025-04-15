@@ -68,8 +68,8 @@
         },
         {
           "AboveHeaderText": "{Solve It}",
-          "Header": "3 - Create Tasks for You and Your Team",
-          "Description": "YakShaver takes the insights and:\n\n* **Automatically creates a task, bug report, or feature request** in your team's favourite system (Azure DevOps, GitHub, etc.). If you're not using these systems, YakShaver can send it via email\n* **Populates all fields**, including a descriptive title, description, context and your original video for additional context\n",
+          "Header": "3 - Tasks are Created",
+          "Description": "**YakShaver creates a task, bug report, or feature reques**t in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
           "Badge1Text": "GitHub",
           "Badge2Text": "DevOps",
           "Badge3Text": "Email",
