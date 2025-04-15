@@ -56,14 +56,14 @@
           "Badge1Text": "Teams",
           "Badge2Text": "Snipping Tool",
           "Badge3Text": "Snaggit",
-          "media": "/Browser1.png",
+          "media": "/public/Browser1.png",
           "textOnLeft": true
         },
         {
           "AboveHeaderText": "{Shave It}",
           "Header": "2 - YakShaver Takes Over",
           "Description": "YakShaver watches your video, turns what you say into text, and figures out what's happening.\n",
-          "media": "/Browser2.png",
+          "media": "/public/Browser2.png",
           "textOnLeft": true
         },
         {
@@ -73,7 +73,7 @@
           "Badge1Text": "GitHub",
           "Badge2Text": "DevOps",
           "Badge3Text": "Email",
-          "media": "/Browser3.png",
+          "media": "/public/Browser3.png",
           "textOnLeft": true
         }
       ],

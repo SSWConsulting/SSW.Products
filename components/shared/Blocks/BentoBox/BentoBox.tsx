@@ -1,13 +1,13 @@
 import Image from "next/image";
-
 import { FaMinus, FaXmark } from "react-icons/fa6";
+import Container from "../../../Container";
 import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
-import { FaExpandAlt } from "react-icons/fa";
 import Link from "next/link";
-import YaksShavedCounterBox from "../../../utilityComponents/YaksShavedCounter";
-import TimeSavedCounterBox from "../../../utilityComponents/TimeSavedCounter";
+import { FaExpandAlt } from "react-icons/fa";
 import { ExampleYakShaverCard } from "../../../ui/MockYakShaverCards";
+import TimeSavedCounterBox from "../../../utilityComponents/TimeSavedCounter";
+import YaksShavedCounterBox from "../../../utilityComponents/YaksShavedCounter";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
@@ -180,7 +180,7 @@ export function TitleFadeIn({ title }: { title: string }) {
 
   return (
     <>
-      <div className="text-white text-center lg:text-5xl text-3xl font-semibold py-6">
+      <div className="text-white text text-center lg:text-5xl text-3xl font-semibold pb-12">
         <span className="inline-block max-w-full break-words">
           {firstPart}
           {firstPart ? " " : ""}
@@ -188,7 +188,7 @@ export function TitleFadeIn({ title }: { title: string }) {
             {lastWord?.split("").map((char, index) => (
               <span
                 key={index}
-                className="inline-block"
+                className="inline-block text-transparent"
                 style={{
                   animation: `colorChange 2000ms ease-in-out forwards ${
                     index * 100
@@ -201,13 +201,6 @@ export function TitleFadeIn({ title }: { title: string }) {
           </span>
         </span>
       </div>
-      <style jsx>{`
-        @keyframes colorChange {
-          to {
-            color: #cc4141;
-          }
-        }
-      `}</style>
     </>
   );
 }
@@ -215,9 +208,13 @@ export function TitleFadeIn({ title }: { title: string }) {
 export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
   return (
-    <div className="lg:py-20 md:pb-10 ">
-      <TitleFadeIn title={data?.title} />
-      <div className="text-white p-6 mx-auto max-w-7xl">
+    <div className="flex flex-col">
+      <Container size="small">
+        {/* TODO: Trigger animation to play only when the title enters the viewport
+         https://github.com/SSWConsulting/SSW.YakShaver/issues/1878 */}
+        <TitleFadeIn title={data?.title} />
+      </Container>
+      <Container className="text-white mx-auto">
         {/* Container */}
         <div className=" grid gap-4">
           {/* Row 1 (Single row, 2 columns) */}
@@ -287,10 +284,10 @@ export default function BentoBox({ data }: { data: any }) {
             <SmAndMdView data={data.bottomRightBox} />
           </div>
         </div>
-      </div>
-      <div className="pt-10">
-        <SSWBadge title={data?.badge} link={data?.badgeLink} />
-      </div>
+        <div className="pt-10">
+          <SSWBadge title={data?.badge} link={data?.badgeLink} />
+        </div>
+      </Container>
     </div>
   );
 }

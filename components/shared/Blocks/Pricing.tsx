@@ -1,8 +1,7 @@
-import React from "react";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 
-import Actions from "./ActionsButton";
 import { tinaField } from "tinacms/dist/react";
+import Actions from "./ActionsButton";
 import { curlyBracketFormatter, SSWRedCurlyBracketFormatter } from "./Hero";
 
 import { ShineBorder } from "@/components/magicui/shine-border";
@@ -52,7 +51,7 @@ const Pricing = ({ data }: PricingProps) => {
   const { title, description, plans, addOns } = data;
 
   return (
-    <div className="pricing-component container mx-auto p-4 mb-14 lg:mb-4 mt-20 lg:mt-10 md:mt-0 lg:pb-20">
+    <div className="pricing-component first:pt-20 container mx-auto px-4 mb-14 lg:mb-4 md:mt-0 lg:pb-20">
       {title && (
         <h1
           className="text-4xl text-center font-semibold text-white mb-4"
@@ -191,9 +190,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
       </div>
 
       <div className="flex-col pb-3 flex-grow">
-        <h3 className="text-base text-white pb-1">
-          {plan.listTitle}
-        </h3>
+        <h3 className="text-base text-white pb-1">{plan.listTitle}</h3>
         {plan.listItems?.map((item: string, index: number) => (
           <div key={index} className="flex items-start gap-2 py-1">
             <BsCheck
@@ -210,7 +207,6 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
           {curlyBracketFormatter(plan.priceDescription)}
         </div>
       )}
-      
     </div>
   );
 };

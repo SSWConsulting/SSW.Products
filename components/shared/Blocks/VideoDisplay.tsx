@@ -13,13 +13,16 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
   const { externalVideoLink, title } = data;
 
   return (
-    <div className="flex justify-center mx-auto">
-      <div className="items-center w-1/2 h-auto">
-        <h2 className="text-2xl  text-white font-semibold py-4 text-center">
+    <div className="flex justify-center mx-auto container">
+      <div className="items-center w-full h-auto ">
+        <h2 className="text-2xl text-white font-semibold pb-4 text-center">
           {" "}
           {title}
         </h2>
-        <YouTubeEmbed src={externalVideoLink || ""} />
+        <YouTubeEmbed
+          className="w-full aspect-video mx-auto"
+          src={externalVideoLink || ""}
+        />
       </div>
     </div>
   );
