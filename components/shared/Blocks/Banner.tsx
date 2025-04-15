@@ -32,10 +32,6 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
       }}
     >
       <Container className="mx-auto flex flex-col md:flex-col lg:flex-row items-center text-left">
-        {/* <div
-          className="mx-auto flex flex-col md:flex-col lg:flex-row items-center text-left"
-          style={{ color: data.textColour }}
-        > */}
         {/* Left Column: Text and Buttons */}
         <div className="lg:w-2/5 w-full flex flex-col gap-2">
           <h2
@@ -74,7 +70,6 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
             />
           </div>
         )}
-        {/* </div> */}
       </Container>
     </div>
   );
