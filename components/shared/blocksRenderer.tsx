@@ -1,12 +1,11 @@
-import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
+import Banner from "./Blocks/Banner";
 import FAQ from "./Blocks/FAQ";
 import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
+import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
 import Pricing from "./Blocks/Pricing";
-import Banner from "./Blocks/Banner";
 import VideoDisplay from "./Blocks/VideoDisplay";
 
-import BentoBox from "./Blocks/BentoBox/BentoBox";
-
+import * as AntIcons from "react-icons/ai";
 import {
   Accordion,
   Button,
@@ -14,12 +13,13 @@ import {
   ImageTextBlock,
   LogoCarousel,
 } from "ssw-tinacms-landingkit";
-import * as AntIcons from "react-icons/ai";
-import Hero from "./Blocks/Hero";
-import { Timeline } from "./Blocks/Timeline/Timeline";
+import BentoBox from "./Blocks/BentoBox/BentoBox";
+import CalculatorComponent from "./Blocks/Calculator";
+import CallToAction from "./Blocks/CallToAction";
 import CardAndImageParent from "./Blocks/CardAndImage/CardAndImage";
 import ComparisonTable from "./Blocks/ComparisonTable";
-import CalculatorComponent from "./Blocks/Calculator";
+import Hero from "./Blocks/Hero";
+import { Timeline } from "./Blocks/Timeline/Timeline";
 
 interface Block {
   __typename: string;
@@ -118,7 +118,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <ComparisonTable data={block} />;
       case "PagesPageBlocksCalculator":
         return <CalculatorComponent data={block} />;
-
+      case "PagesPageBlocksCallToAction":
+        return <CallToAction {...block} />;
       default:
         return null;
     }
