@@ -33,14 +33,14 @@
           "issueReportText": [
             "I just encountered a problem in {TinaCloud}. When i was attempting to upload files larger than 5MB, the {application} {crashes} entirely.",
             "I am on the latest version of {Chrome}. This impacts user function significantly, I would classify it as {Priority 1}.",
-            "I recalled {Matt and Adam} had a similar issue before. I'll need to inform the {operations team} this bug could affect their experience negatively"
+            "I recalled {Matt and Adam} had a similar issue before. I'll need to inform the {operations team} this bug could affect their experience negatively."
           ],
           "issueReportSummaryTitle": "ISSUE REPORT",
-          "issueReportSummarySubtitle": "YakShaver Records and transcribes video in real-time, processing information for immediate analysis."
+          "issueReportSummarySubtitle": "YakShaver records and transcribes video in real-time, processing information for immediate analysis."
         },
         "rightHandSide": {
           "issueReportSummaryTitle": "ISSUE SUMMARY",
-          "issueReportSummarySubtitle": "Work items will be generated in real-time, assign and inform relevant parties, ensuring immediate tracking and management of tasks."
+          "issueReportSummarySubtitle": "Work items are generated in real-time, assign and inform relevant parties, ensuring immediate tracking and management of tasks."
         }
       },
       "_template": "hero"
