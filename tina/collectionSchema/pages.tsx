@@ -1,30 +1,35 @@
 import { Collection, TinaField } from "tinacms";
-import { FeaturesTemplate } from "../../components/shared/Blocks/Features.template";
+import { BannerTemplate } from "../../components/shared/Blocks/Banner.template";
 import { FAQTemplate } from "../../components/shared/Blocks/FAQ.template";
 import { CarouselFeatureTemplate } from "../../components/shared/Blocks/FeatureCarousel.template";
+import { FeaturesTemplate } from "../../components/shared/Blocks/Features.template";
 import { pricingTemplate } from "../../components/shared/Blocks/Pricing.template";
-import { BannerTemplate } from "../../components/shared/Blocks/Banner.template";
 import { videoDisplayTemplate } from "../../components/shared/Blocks/VideoDisplay.template";
 
 import { bentoBoxTemplate } from "../../components/shared/Blocks/BentoBox/BentoBox.template";
 import { HeroTemplate } from "../../components/shared/Blocks/Hero.template";
 import { timelineTemplate } from "../../components/shared/Blocks/Timeline/Timeline.template";
 
+import { CalculatorTemplate } from "../../components/shared/Blocks/Calculator.template";
+import { callToActionTemplate } from "../../components/shared/Blocks/CallToAction.template";
+import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImage/CardAndImage.template";
+import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
+import * as AntIcons from "../../node_modules/react-icons/ai";
 import {
+  accordionBlock,
   breadcrumbBlock,
   buttonBlock,
   cardCarouselBlock,
   imageTextBlock,
   logoCarouselBlock,
-  accordionBlock,
-  // replace this with a relative path node modules directory (See known issues)
 } from "../../node_modules/ssw-tinacms-landingkit/dist";
-import * as AntIcons from "../../node_modules/react-icons/ai";
 import { seoInformation } from "../shared/SEOInformation";
-import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImage/CardAndImage.template";
-import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
-import { CalculatorTemplate } from "../../components/shared/Blocks/Calculator.template";
 
+export const bottomPaddingOptions = {
+  none: undefined,
+  small: "pb-12",
+  "extra large": "pb-40",
+};
 
 export const PagesSchema: Collection = {
   label: "Product Pages",
@@ -44,6 +49,7 @@ export const PagesSchema: Collection = {
       name: "title",
       label: "Title",
     },
+
     {
       type: "object",
       name: "pageBlocks",
@@ -62,6 +68,7 @@ export const PagesSchema: Collection = {
         videoDisplayTemplate,
         bentoBoxTemplate,
         timelineTemplate,
+        callToActionTemplate,
         CardAndImageTemplate,
         ComparisonTable,
         CalculatorTemplate,
@@ -92,6 +99,21 @@ export const PagesSchema: Collection = {
           previewSrc:
             "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/accordion.png?raw=true",
         }),
+      ],
+    },
+    {
+      type: "object",
+      name: "pageFormatting",
+      label: "Page Formatting",
+      fields: [
+        {
+          description:
+            "Add padding to the bottom of the page before the footer",
+          name: "bottomPadding",
+          label: "Bottom Padding",
+          type: "string",
+          options: Object.keys(bottomPaddingOptions),
+        },
       ],
     },
   ],
