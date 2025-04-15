@@ -1,4 +1,4 @@
-import { ShineBorder } from "@/components/magicui/shine-border";
+
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
@@ -7,8 +7,7 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import Container from "../../../Container";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
-import { CircleLogo } from "../BentoBox/AnimatedBeam";
-import YakSVG from "../../../public/svg/yak-icon-fill-animate.svg";
+
 import { YakAnimate, YakBorderAnimate } from "./yak-animate";
 
 // Typing Animation Component - made by Cursor
