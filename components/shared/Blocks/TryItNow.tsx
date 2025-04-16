@@ -9,9 +9,13 @@ import {
   useEffect,
   useState,
 } from "react";
+
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { PagesPageBlocksTryItNow } from "../../../tina/__generated__/types";
+import {
+  type PagesPageBlocksTryItNowTryItNowCards as Card,
+  PagesPageBlocksTryItNow,
+} from "../../../tina/__generated__/types";
 import Container from "../../Container";
 import { getTallestAspectRatio, TryItNowServer } from "./TryItNowServer";
 
@@ -83,94 +87,14 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
 
             {tryItNowCards &&
               tryItNowCards.map((card, index) => {
+                if (!card) return <></>;
                 return (
-                  <div
+                  <Card
+                    card={card}
+                    hasCardImage={hasCardImage}
+                    aspectRatio={aspectRatio}
                     key={`card-${index}`}
-                    className={cn(
-                      "bg-gray-neutral flex gap-4 flex-col rounded-2xl pt-8 px-8",
-                      !hasCardImage && "pb-8"
-                    )}
-                  >
-                    {card?.title && (
-                      <h3
-                        data-tina-field={tinaField(card, "title")}
-                        className="text-2xl font-semibold"
-                      >
-                        {card.title}
-                      </h3>
-                    )}
-
-                    {card?.description && (
-                      <section
-                        data-tina-field={tinaField(card, "description")}
-                        className="text-gray-light text-sm"
-                      >
-                        <TinaMarkdown
-                          components={components}
-                          content={card.description}
-                        />
-                      </section>
-                    )}
-                    {card?.button && (
-                      <div
-                        className="w-full"
-                        style={
-                          aspectRatio
-                            ? {
-                                aspectRatio,
-                              }
-                            : {}
-                        }
-                      >
-                        <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
-                          <span data-tina-field={tinaField(card.button)}>
-                            <TinaMarkdown
-                              content={card.button.label}
-                              components={{
-                                img: (props?: { url: string }) => (
-                                  <span className="size-5 mx-1 relative align-text-top inline-block">
-                                    <Image
-                                      className=""
-                                      src={props?.url || ""}
-                                      aria-hidden="true"
-                                      alt=""
-                                      fill={true}
-                                    />
-                                  </span>
-                                ),
-                              }}
-                            />
-                          </span>
-                        </div>
-                      </div>
-                    )}
-                    {card?.image &&
-                      card.image.imgSrc &&
-                      card.image.imgWidth &&
-                      card.image.imgHeight && (
-                        <div
-                          style={
-                            aspectRatio
-                              ? {
-                                  aspectRatio,
-                                }
-                              : {}
-                          }
-                          className="relative w-full"
-                        >
-                          <Image
-                            data-tina-field={tinaField(card, "image")}
-                            className="bottom-0 absolute"
-                            src={card.image.imgSrc}
-                            aria-hidden="true"
-                            objectFit="contain"
-                            width={card.image.imgWidth}
-                            height={card.image.imgHeight}
-                            alt={""}
-                          />
-                        </div>
-                      )}
-                  </div>
+                  />
                 );
               })}
           </div>
@@ -254,6 +178,102 @@ const PrettyBg = () => {
           "linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(123.04deg, #FF9D3F -23.58%, #F46772 36.14%, #AF33E4 78.77%, #080808 124.29%)",
       }}
     ></div>
+  );
+};
+
+type CardProps = {
+  card: Card;
+  hasCardImage: boolean;
+  key: string;
+  aspectRatio?: string;
+};
+
+const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
+  return (
+    <div
+      key={key}
+      className={cn(
+        "bg-gray-neutral flex gap-4 flex-col rounded-2xl pt-8 px-8",
+        !hasCardImage && "pb-8"
+      )}
+    >
+      {card?.title && (
+        <h3
+          data-tina-field={tinaField(card, "title")}
+          className="text-2xl font-semibold"
+        >
+          {card.title}
+        </h3>
+      )}
+
+      {card?.description && (
+        <section
+          data-tina-field={tinaField(card, "description")}
+          className="text-gray-light text-sm"
+        >
+          <TinaMarkdown components={components} content={card.description} />
+        </section>
+      )}
+      {card?.button && (
+        <div
+          className="w-full"
+          style={
+            aspectRatio
+              ? {
+                  aspectRatio,
+                }
+              : {}
+          }
+        >
+          <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
+            <span data-tina-field={tinaField(card.button)}>
+              <TinaMarkdown
+                content={card.button.label}
+                components={{
+                  img: (props?: { url: string }) => (
+                    <span className="size-5 mx-1 relative align-text-top inline-block">
+                      <Image
+                        className=""
+                        src={props?.url || ""}
+                        aria-hidden="true"
+                        alt=""
+                        fill={true}
+                      />
+                    </span>
+                  ),
+                }}
+              />
+            </span>
+          </div>
+        </div>
+      )}
+      {card?.image &&
+        card.image.imgSrc &&
+        card.image.imgWidth &&
+        card.image.imgHeight && (
+          <div
+            style={
+              aspectRatio
+                ? {
+                    aspectRatio,
+                  }
+                : {}
+            }
+            className="relative w-full"
+          >
+            <Image
+              data-tina-field={tinaField(card, "image")}
+              className="bottom-0 absolute"
+              src={card.image.imgSrc}
+              aria-hidden="true"
+              objectFit="contain"
+              width={card.image.imgWidth}
+              height={card.image.imgHeight}
+              alt={""}
+            />
+          </div>
+        )}
+    </div>
   );
 };
 
