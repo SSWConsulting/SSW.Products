@@ -1,5 +1,7 @@
 "use client";
 
+import { TypingAnimation } from "../shared/Blocks/Hero/TypingAnimation";
+
 export function ExampleYakShaverCard() {
   return (
     <div className="bg-[#1E1E20] border-2  text-xs border-[#4D4D4E] shadow-2xl rounded-xl p-4  text-white ">
@@ -38,7 +40,11 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
             isVisible ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
           }`}
         >
-          ⚙️ YakShaver is processing your request...
+          ⚙️ YakShaver is processing your request
+          <br />
+          <div className="flex justify-start mt-1">
+            <TypingAnimation />
+          </div>
         </span>
         <span
           className={`absolute left-0 right-0 transition-all duration-500 ${
