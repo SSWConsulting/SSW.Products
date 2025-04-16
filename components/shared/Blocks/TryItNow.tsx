@@ -6,13 +6,14 @@ import Container from "../../Container";
 
 type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
 
-const TryItNow = ({ tryItNowTitle }: TryItNowProps) => {
+const TryItNow = (props: TryItNowProps) => {
+  const { tryItNowTitle } = props;
   return (
     <Container className="z-0 relative">
       <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full max-w-4xl py-12 bg-gray-dark rounded-3xl px-8">
         {tryItNowTitle && (
           <h2
-            data-tina-field={tinaField(tryItNowTitle)}
+            data-tina-field={tinaField(props, "tryItNowTitle")}
             className="text-[1.75rem] font-semibold text-center mb-7"
           >
             {tryItNowTitle}
