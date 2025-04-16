@@ -32,6 +32,9 @@ module.exports = {
           red: "#CC4141",
           charcoal: "#333333",
         },
+        text: {
+          secondary: "#727272",
+        },
         netural: {
           gray: {
             DEFAULT: "#1F1F1F",

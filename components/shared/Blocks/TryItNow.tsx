@@ -14,7 +14,7 @@ const TryItNow = () => {
           {/* Step 1 */}
           <div className="bg-netural-gray-700 rounded-lg p-8">
             <h3 className="text-xl font-semibold mb-3">1. Pin extension</h3>
-            <p className="text-gray-400 text-sm mb-4">
+            <p className="text-text-secondary text-sm mb-4">
               Click the ⋮ at the top right of your browser, then the 📌 next to
               YakShaver.
             </p>
@@ -32,7 +32,7 @@ const TryItNow = () => {
           {/* Step 2 */}
           <div className="bg-netural-gray-700 rounded-lg p-8">
             <h3 className="text-xl font-semibold mb-3">2. Enable devices</h3>
-            <p className="text-gray-400 text-sm mb-4">
+            <p className="text-text-secondary text-sm mb-4">
               Click the button below to set up your recording devices.
             </p>
             <div className="flex justify-center mt-12">
@@ -45,7 +45,7 @@ const TryItNow = () => {
           {/* Step 3 */}
           <div className="bg-netural-gray-700 rounded-lg p-8">
             <h3 className="text-xl font-semibold mb-3">3. Pin extension</h3>
-            <p className="text-gray-400 text-sm mb-4">
+            <p className="text-text-secondary text-sm mb-4">
               Click the ⋮ at the top right of your browser, then the next to
               Screencastify.
             </p>
