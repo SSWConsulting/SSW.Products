@@ -14,9 +14,9 @@
           "title": "1. Pin extension",
           "description": "Click the ![](/TryItNow/puzzle.svg) at the top right of your browser,then ![](/TryItNow/pin.svg) next to Screencastify.\n",
           "image": {
-            "imgSrc": "/pin-yakshaver.png",
-            "imgWidth": 500,
-            "imgHeight": 352
+            "imgSrc": "/TryItNow/pin-yakshaver.png",
+            "imgWidth": 480,
+            "imgHeight": 336
           }
         },
         {
