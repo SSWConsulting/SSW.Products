@@ -28,14 +28,14 @@
       "reportUIEnabled": true,
       "reportUI": {
         "leftHandSide": {
-          "issueReportName": "Uly",
+          "issueReportName": "Ulysses Maclaren",
           "issueReportTime": "Monday 9:13am",
           "issueReportText": [
             "I just encountered a problem in {TinaCloud}. When i was attempting to upload files larger than 5MB, the {application} {crashes} entirely.",
             "I am on the latest version of {Chrome}. This impacts user function significantly, I would classify it as {Priority 1}.",
-            "I recalled {Matt and Adam} had a similar issue before. I'll need to inform the {operations team} this bug could affect their experience negatively."
+            "I recalled {Matt and Adam} had a similar issue before. Could you please get {Betty} to check this out for me?"
           ],
-          "issueReportSummaryTitle": "ISSUE REPORT",
+          "issueReportSummaryTitle": "REPORT ISSUE",
           "issueReportSummarySubtitle": "YakShaver records and transcribes video in real-time, processing information for immediate analysis."
         },
         "rightHandSide": {

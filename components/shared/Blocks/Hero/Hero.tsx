@@ -1,4 +1,3 @@
-
 import { ShinyButton } from "@/components/magicui/shiny-button";
 import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
@@ -9,6 +8,7 @@ import Container from "../../../Container";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
 import { YakAnimate, YakBorderAnimate } from "./yak-animate";
+import { AudioWaveAnimation } from "./AudioWaveAnimation";
 
 // Typing Animation Component - made by Cursor
 const TypewriterText = ({
@@ -146,19 +146,6 @@ const TranscriptBox = ({ data }: { data: any }) => {
           <div className="flex gap-4 pb-2">
             <div className="rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
               <div className="relative w-full h-full flex items-center justify-center">
-                {/* Animated sound waves */}
-                <div
-                  className={`absolute w-[40px] h-[40px] rounded-full bg-white animate-ping transition-opacity duration-1000 ${
-                    isVisible ? "opacity-0" : "opacity-30"
-                  }`}
-                  style={{ animationDuration: "1.1s" }}
-                ></div>
-                <div
-                  className={`absolute w-[40px] h-[40px] rounded-full bg-white animate-ping transition-opacity duration-1000 ${
-                    isVisible ? "opacity-0" : "opacity-20"
-                  }`}
-                  style={{ animationDuration: "1.1s", animationDelay: "0.2s" }}
-                ></div>
                 <Image
                   src="/YakShaver/People/uly-avatar.png"
                   alt="Uly Avatar"
@@ -172,6 +159,11 @@ const TranscriptBox = ({ data }: { data: any }) => {
               <span className="lg:text-sm text-xs text-white">
                 {data.leftHandSide?.issueReportName}
               </span>
+            </div>
+            <div className="flex-grow flex justify-end items-center">
+              <div className="relative w-10 h-10 bg-[#1a1a1a] rounded-full overflow-hidden border border-[#CC4141]/50 flex items-center justify-center">
+                <AudioWaveAnimation />
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-4 ">
