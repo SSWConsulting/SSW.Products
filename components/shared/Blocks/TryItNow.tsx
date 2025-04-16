@@ -2,12 +2,14 @@ import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import Link from "next/link";
+import { createContext, ReactNode, useContext } from "react";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { PagesPageBlocksTryItNow } from "../../../tina/__generated__/types";
 import Container from "../../Container";
+import { TryItNowServer } from "./TryItNowServer";
 
-type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
+export type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
 
 const components = {
   img: (props?: { url: string }) => (
@@ -23,9 +25,20 @@ const components = {
   ),
 };
 
-const TryItNow = (props: TryItNowProps) => {
+export const TryItNow = (props: TryItNowProps) => {
+  return (
+    <TryItNowProvider {...props}>
+      <TryItNowServer />
+    </TryItNowProvider>
+  );
+};
+
+const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
   const { tryItNowTitle, tryItNowCards } = props;
 
+  // set the aspect ratio of the bottom half of the cards to the aspect ratio of the tallest card
+  // (to avoid inconsistent heights on mobile)
+  const aspectRatio = props.aspectRatio;
   return (
     <Container className="first:pt-20">
       {props.topImage?.imgSrc &&
@@ -109,9 +122,13 @@ const TryItNow = (props: TryItNowProps) => {
                       card.image.imgWidth &&
                       card.image.imgHeight && (
                         <div
-                          style={{
-                            aspectRatio: `${card.image.imgWidth}/${card.image.imgHeight}`,
-                          }}
+                          style={
+                            aspectRatio
+                              ? {
+                                  aspectRatio,
+                                }
+                              : {}
+                          }
                           className="relative w-full"
                         >
                           <Image
@@ -197,7 +214,7 @@ const TryItNow = (props: TryItNowProps) => {
   );
 };
 
-export default TryItNow;
+export default TryItNowClient;
 
 const PrettyBg = () => {
   return (
@@ -210,5 +227,20 @@ const PrettyBg = () => {
           "linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(123.04deg, #FF9D3F -23.58%, #F46772 36.14%, #AF33E4 78.77%, #080808 124.29%)",
       }}
     ></div>
+  );
+};
+
+export const TryItNowContext = createContext<TryItNowProps | null>(null);
+
+export const useTryItNow = () => useContext(TryItNowContext);
+
+export const TryItNowProvider = ({
+  children,
+  ...props
+}: TryItNowProps & { children: ReactNode }) => {
+  return (
+    <TryItNowContext.Provider value={props}>
+      {children}
+    </TryItNowContext.Provider>
   );
 };

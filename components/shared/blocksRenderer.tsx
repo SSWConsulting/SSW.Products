@@ -22,7 +22,7 @@ import CardAndImageParent from "./Blocks/CardAndImage/CardAndImage";
 import ComparisonTable from "./Blocks/ComparisonTable";
 import Hero from "./Blocks/Hero/Hero";
 import { Timeline } from "./Blocks/Timeline/Timeline";
-import TryItNow from "./Blocks/TryItNow";
+import { TryItNow } from "./Blocks/TryItNow";
 
 interface Block {
   __typename: string;
