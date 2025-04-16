@@ -23,7 +23,6 @@ export default function HomePageClient({
     variables,
     data,
   });
-  console.log(tinaData?.data?.pages?.pageFormatting);
   return (
     <div
       className={cn(

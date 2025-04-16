@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
 import Container from "../../../Container";
-import { curlyBracketFormatter } from "../Hero";
+import { curlyBracketFormatter } from "../Hero/Hero";
 const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
   ul: (props: unknown) => {
     const { children } = props as { children?: React.ReactNode };
@@ -139,7 +139,7 @@ function CardItem({
 function Badge({ title }: { title: string }) {
   return (
     <div className="relative bg-[#333333] flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap">
-     ✅ {title}
+      ✅ {title}
     </div>
   );
 }
