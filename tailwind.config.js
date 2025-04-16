@@ -36,6 +36,7 @@ module.exports = {
         gray: {
           dark: "#1F1F1F",
           neutral: "#333333",
+          lighter: "#363636",
           light: "#727272",
         },
         background: "hsl(var(--background))",
