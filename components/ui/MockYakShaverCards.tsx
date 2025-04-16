@@ -74,7 +74,7 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
             isVisible ? "animate-[fadeIn_1000ms_ease_forwards]" : ""
           }`}
         >
-          🐛 App crashes when uploading file sizes 5MB+ on Chrome
+          🐛 App crashes when uploading file sizes &gt; 5MB on Chrome
         </span>
       </div>
 
