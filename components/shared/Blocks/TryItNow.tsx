@@ -6,7 +6,7 @@ const TryItNow = () => {
   return (
     <Container className="z-0 relative">
       <div className=" text-white z-20 relative w-full max-w-4xl py-12 bg-netural-gray rounded-xl px-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
+        <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10">
           Start recording in 3 easy steps!
         </h2>
         {/* main box */}
