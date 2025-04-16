@@ -40,7 +40,7 @@
         },
         "rightHandSide": {
           "issueReportSummaryTitle": "ISSUE SUMMARY",
-          "issueReportSummarySubtitle": "Work items are generated in real-time, assign and inform relevant parties, ensuring immediate tracking and management of tasks."
+          "issueReportSummarySubtitle": "Work items are generated in real-time, allocated to the right project backlog, assigned, and relevant parties are informed."
         }
       },
       "_template": "hero"
