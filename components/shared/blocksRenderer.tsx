@@ -13,16 +13,14 @@ import {
   ImageTextBlock,
   LogoCarousel,
 } from "ssw-tinacms-landingkit";
-import * as AntIcons from "react-icons/ai";
-import Hero from "./Blocks/Hero/Hero";
-import { Timeline } from "./Blocks/Timeline/Timeline";
+
 import Container from "../Container";
 import BentoBox from "./Blocks/BentoBox/BentoBox";
 import CalculatorComponent from "./Blocks/Calculator";
 import CallToAction from "./Blocks/CallToAction";
 import CardAndImageParent from "./Blocks/CardAndImage/CardAndImage";
 import ComparisonTable from "./Blocks/ComparisonTable";
-import Hero from "./Blocks/Hero";
+import Hero from "./Blocks/Hero/Hero";
 import { Timeline } from "./Blocks/Timeline/Timeline";
 
 interface Block {
