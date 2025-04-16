@@ -68,7 +68,7 @@ const TryItNow = () => {
         </div>
         {/* background box */}
       </div>
-      <div className="absolute bg-white inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>
+      <div className="absolute bg-gray-dark/20 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>
     </Container>
   );
 };
