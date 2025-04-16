@@ -31,7 +31,7 @@ const TryItNow = (props: TryItNowProps) => {
               return (
                 <div
                   key={`card-${index}`}
-                  className="bg-gray-neutral rounded-2xl p-8"
+                  className="bg-gray-neutral rounded-2xl pt-8 px-8"
                 >
                   {card?.title && (
                     <h3
@@ -47,7 +47,22 @@ const TryItNow = (props: TryItNowProps) => {
                       data-tina-field={tinaField(card, "description")}
                       className="text-gray-light text-sm mb-4"
                     >
-                      <TinaMarkdown content={card.description} />
+                      <TinaMarkdown
+                        components={{
+                          img: (props?: { url: string }) => (
+                            <span className="size-4 relative align-text-top inline-block">
+                              <Image
+                                className=""
+                                src={props?.url || ""}
+                                aria-hidden="true"
+                                alt=""
+                                fill={true}
+                              />
+                            </span>
+                          ),
+                        }}
+                        content={card.description}
+                      />
                     </section>
                   )}
 
@@ -55,13 +70,17 @@ const TryItNow = (props: TryItNowProps) => {
                     card.image.imgSrc &&
                     card.image.imgWidth &&
                     card.image.imgHeight && (
-                      <Image
-                        src={card.image.imgSrc}
-                        aria-hidden="true"
-                        width={card.image.imgWidth}
-                        height={card.image.imgHeight}
-                        alt={""}
-                      />
+                      <div className="relative w-full aspect-1">
+                        <Image
+                          className="bottom-0 absolute"
+                          src={card.image.imgSrc}
+                          aria-hidden="true"
+                          objectFit="contain"
+                          width={card.image.imgWidth}
+                          height={card.image.imgHeight}
+                          alt={""}
+                        />
+                      </div>
                     )}
                 </div>
               );

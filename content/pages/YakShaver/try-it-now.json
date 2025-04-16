@@ -12,7 +12,12 @@
       "tryItNowCards": [
         {
           "title": "1. Pin extension",
-          "description": "Click the at the top right of your browser,then the  next to Screencastify.\n"
+          "description": "Click the ![](/TryItNow/puzzle.svg) at the top right of your browser,then ![](/TryItNow/pin.svg) next to Screencastify.\n",
+          "image": {
+            "imgSrc": "/pin-yakshaver.png",
+            "imgWidth": 500,
+            "imgHeight": 352
+          }
         },
         {
           "title": "2. Enable devices",
@@ -22,7 +27,9 @@
           "title": "3. Pin extension",
           "description": "Click the  at the top right of your browser, then the  next to Screencastify.\n",
           "image": {
-            "imgSrc": "/TryItNow/yaskshaver-this-tab.png"
+            "imgSrc": "/TryItNow/yaskshaver-this-tab.png",
+            "imgWidth": 452,
+            "imgHeight": 352
           }
         }
       ],
