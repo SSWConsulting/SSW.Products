@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import Link from "next/link";
@@ -139,6 +140,7 @@ const TryItNow = (props: TryItNowProps) => {
             const BottomComponent = ({
               children,
               className,
+              ...props
             }: {
               children: React.ReactNode;
               className?: string;
@@ -146,18 +148,28 @@ const TryItNow = (props: TryItNowProps) => {
               return (
                 <>
                   {link?.url ? (
-                    <Link className={className} href={link.url}>
+                    <Link
+                      target="_blank"
+                      {...props}
+                      className={cn(className, "hover:underline")}
+                      href={link.url}
+                    >
                       {children}
                     </Link>
                   ) : (
-                    <span className={className}>{children}</span>
+                    <span {...props} className={className}>
+                      {children}
+                    </span>
                   )}
                 </>
               );
             };
 
             return (
-              <BottomComponent className="py-[14px] px-[21px]">
+              <BottomComponent
+                data-tina-field={tinaField(link)}
+                className="my-[14px] mx-[21px]"
+              >
                 <TinaMarkdown
                   content={link.label}
                   components={{
@@ -179,8 +191,23 @@ const TryItNow = (props: TryItNowProps) => {
           })}
         </div>
       )}
+      <PrettyBg />
     </Container>
   );
 };
 
 export default TryItNow;
+
+const PrettyBg = () => {
+  return (
+    <div
+      className="absolute  inset-0 -z-10 bg-cover bg-no-repeat bg-center"
+      style={{
+        maskImage: "radial-gradient(#ffffffba, #00000000)",
+        filter: "blur(200px)",
+        backgroundImage:
+          "linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(123.04deg, #FF9D3F -23.58%, #F46772 36.14%, #AF33E4 78.77%, #080808 124.29%)",
+      }}
+    ></div>
+  );
+};
