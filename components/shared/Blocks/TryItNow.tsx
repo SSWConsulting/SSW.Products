@@ -1,5 +1,6 @@
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
+import Link from "next/link";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { PagesPageBlocksTryItNow } from "../../../tina/__generated__/types";
@@ -127,47 +128,57 @@ const TryItNow = (props: TryItNowProps) => {
                   </div>
                 );
               })}
-
-            {/* Step 2 */}
-            {/* <div className="bg-gray-neutral rounded-2xl p-8">
-            <h3 className="text-2xl font-semibold mb-3">2. Enable devices</h3>
-            <p className="text-gray-light text-sm mb-4">
-              Click the button below to set up your recording devices.
-            </p>
-            <div className="flex justify-center mt-12">
-              <ActionButton
-                className="w-fit text-sm"
-                action={{
-                  label: "🎙️Enable Mic & Webcam",
-                  size: ButtonSize.Large,
-                  variant: ButtonVariant.SolidRed,
-                  url: "http://localhost:3000/admin/index.html#/~/try-it-now",
-                }}
-              />
-            </div>
-          </div> */}
-
-            {/* Step 3 */}
-            {/* <div className="bg-gray-neutral rounded-2xl p-8">
-            <h3 className="text-2xl font-semibold mb-3">3. Pin extension</h3>
-            <p className="text-gray-light text-sm mb-4">
-              Click the ⋮ at the top right of your browser, then the next to
-              Screencastify.
-            </p>
-            <div className="rounded-2xl p-2">
-              <Image
-                src="/placeholder.svg?height=200&width=300"
-                alt="Extension interface screenshot"
-                width={300}
-                height={200}
-                className="w-full rounded"
-              />
-            </div>
-          </div> */}
           </div>
         </div>
         <div className="absolute bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>
       </div>
+      {props.bottomLinks && (
+        <div className="flex w-fit text-sm font-bold mx-auto  text-white md:grid-cols-3 mt-20">
+          {props.bottomLinks.map((link, index) => {
+            if (!link) return <></>;
+            const BottomComponent = ({
+              children,
+              className,
+            }: {
+              children: React.ReactNode;
+              className?: string;
+            }) => {
+              return (
+                <>
+                  {link?.url ? (
+                    <Link className={className} href={link.url}>
+                      {children}
+                    </Link>
+                  ) : (
+                    <span className={className}>{children}</span>
+                  )}
+                </>
+              );
+            };
+
+            return (
+              <BottomComponent className="py-[14px] px-[21px]">
+                <TinaMarkdown
+                  content={link.label}
+                  components={{
+                    img: (props?: { url: string }) => (
+                      <span className="size-5 mx-1.5 relative align-middle inline-block">
+                        <Image
+                          className=""
+                          src={props?.url || ""}
+                          aria-hidden="true"
+                          alt=""
+                          fill={true}
+                        />
+                      </span>
+                    ),
+                  }}
+                />
+              </BottomComponent>
+            );
+          })}
+        </div>
+      )}
     </Container>
   );
 };

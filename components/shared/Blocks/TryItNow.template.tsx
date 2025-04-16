@@ -41,6 +41,7 @@ const TryItNowTemplate: Template = {
       label: "Title",
       type: "string",
     },
+
     {
       name: "tryItNowCards",
       label: "Cards",
@@ -93,6 +94,20 @@ const TryItNowTemplate: Template = {
               type: "rich-text",
             },
           ],
+        },
+      ],
+    },
+    {
+      name: "bottomLinks",
+      type: "object",
+      label: "Bottom Links",
+      list: true,
+      fields: [
+        { name: "label", label: "Label", type: "rich-text" },
+        {
+          name: "url",
+          label: "URL",
+          type: "string",
         },
       ],
     },

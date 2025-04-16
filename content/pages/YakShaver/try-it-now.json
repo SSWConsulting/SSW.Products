@@ -41,6 +41,15 @@
           }
         }
       ],
+      "bottomLinks": [
+        {
+          "label": "![](/TryItNow/question.svg)Learn More\n"
+        },
+        {
+          "label": "![](/TryItNow/camera.svg)Watch Video\n",
+          "url": ""
+        }
+      ],
       "_template": "tryItNow"
     }
   ],
