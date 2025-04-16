@@ -9,6 +9,7 @@ type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
 
 const TryItNow = (props: TryItNowProps) => {
   const { tryItNowTitle, tryItNowCards } = props;
+
   return (
     <Container className="z-0 relative">
       <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full max-w-4xl py-12 bg-gray-dark rounded-3xl px-8">
@@ -26,6 +27,7 @@ const TryItNow = (props: TryItNowProps) => {
 
           {tryItNowCards &&
             tryItNowCards.map((card, index) => {
+              console.log("image", card?.image);
               return (
                 <div
                   key={`card-${index}`}
@@ -48,15 +50,19 @@ const TryItNow = (props: TryItNowProps) => {
                       <TinaMarkdown content={card.description} />
                     </section>
                   )}
-                  <div className=" rounded-lg p-2">
-                    <Image
-                      src="/placeholder.svg?height=200&width=300"
-                      alt="Pin extension screenshot"
-                      width={300}
-                      height={200}
-                      className="w-full rounded"
-                    />
-                  </div>
+
+                  {card?.image &&
+                    card.image.imgSrc &&
+                    card.image.imgWidth &&
+                    card.image.imgHeight && (
+                      <Image
+                        src={card.image.imgSrc}
+                        aria-hidden="true"
+                        width={card.image.imgWidth}
+                        height={card.image.imgHeight}
+                        alt={""}
+                      />
+                    )}
                 </div>
               );
             })}

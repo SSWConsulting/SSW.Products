@@ -20,7 +20,10 @@
         },
         {
           "title": "3. Pin extension",
-          "description": "Click the  at the top right of your browser, then the  next to Screencastify.\n"
+          "description": "Click the  at the top right of your browser, then the  next to Screencastify.\n",
+          "image": {
+            "imgSrc": "/TryItNow/yaskshaver-this-tab.png"
+          }
         }
       ],
       "_template": "tryItNow"

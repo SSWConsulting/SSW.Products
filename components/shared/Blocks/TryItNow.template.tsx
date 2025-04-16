@@ -1,4 +1,5 @@
 import { Template } from "tinacms";
+import CustomImageField from "../../../tina/customSchemaComponents/optimizedImageField";
 
 const TryItNowTemplate: Template = {
   label: "Try It Now",
@@ -24,7 +25,31 @@ const TryItNowTemplate: Template = {
         {
           name: "image",
           label: "Image",
-          type: "image",
+          type: "object",
+          fields: [
+            {
+              type: "image",
+              label: "Hero image",
+              name: "imgSrc",
+              ui: {
+                component: CustomImageField,
+              },
+            },
+            {
+              type: "number",
+              name: "imgWidth",
+              ui: {
+                component: "hidden",
+              },
+            },
+            {
+              type: "number",
+              name: "imgHeight",
+              ui: {
+                component: "hidden",
+              },
+            },
+          ],
         },
         {
           name: "button",
