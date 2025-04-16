@@ -6,12 +6,20 @@ import { curlyBracketFormatter, SSWRedCurlyBracketFormatter } from "./Hero";
 
 import { ShineBorder } from "@/components/magicui/shine-border";
 import { BsCheck } from "react-icons/bs";
+import { BookingButton } from "./BookingButton";
 
 interface PlanAction {
   label: string;
   url: string;
   variant?: string;
   size?: string;
+  __typename: string;
+}
+
+interface JotFormAction {
+  title: string;
+  JotFormId: string;
+  __typename: string;
 }
 
 interface AddOn {
@@ -19,7 +27,7 @@ interface AddOn {
   description: string;
   price: string;
   subPriceText: string;
-  actionButton: PlanAction;
+  actionButton: PlanAction | JotFormAction;
 }
 
 interface Plan {
@@ -27,7 +35,7 @@ interface Plan {
   planDescription: string;
   price: string;
   subPriceText: string;
-  actions: PlanAction;
+  buttons: (PlanAction | JotFormAction)[];
   priceDescription: string;
   isRecommended: boolean;
   timeSaved: string;
@@ -147,6 +155,7 @@ interface PlanCardProps {
 }
 
 const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
+  console.log(plan);
   return (
     <div
       className={`plan-card text-white border ${
@@ -180,13 +189,28 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
         )}
       </div>
       <div className="flex-col mt-auto py-6 ">
-        {plan.actions && (
-          <Actions
-            //@ts-expect-error investigate after
-            actions={[plan.actions]}
-            className="w-[100%]"
-          />
-        )}
+        {plan.buttons[0] &&
+          (() => {
+            switch (plan.buttons[0]?.__typename) {
+              case "PagesPageBlocksPricingPlansButtonsActions":
+                return (
+                  <Actions
+                    //@ts-expect-error investigate after
+                    actions={[plan.buttons[0]]}
+                    className="w-[100%]"
+                  />
+                );
+              case "PagesPageBlocksPricingPlansButtonsBookingButton":
+                return (
+                  <BookingButton
+                    title={plan.buttons[0]?.title}
+                    jotFormId={plan.buttons[0]?.JotFormId}
+                  />
+                );
+              default:
+                return null;
+            }
+          })()}
       </div>
 
       <div className="flex-col pb-3 flex-grow">
