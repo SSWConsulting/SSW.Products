@@ -167,6 +167,7 @@ const TryItNow = (props: TryItNowProps) => {
 
             return (
               <BottomComponent
+                key={`bottom-link-${index}`}
                 data-tina-field={tinaField(link)}
                 className="my-[14px] mx-[21px]"
               >
