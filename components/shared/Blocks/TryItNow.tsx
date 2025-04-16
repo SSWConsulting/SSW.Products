@@ -26,6 +26,18 @@ const TryItNow = (props: TryItNowProps) => {
 
   return (
     <Container>
+      {props.topImage?.imgSrc &&
+        props.topImage.imgWidth &&
+        props.topImage.imgHeight && (
+          <Image
+            className="w-72 mx-auto mb-16"
+            data-tina-field={tinaField(props, "topImage")}
+            src={props.topImage.imgSrc}
+            width={props.topImage.imgWidth}
+            height={props.topImage.imgHeight}
+            alt={""}
+          />
+        )}
       <div className="w-full z-0 h-fit relative">
         <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full py-12 bg-gray-dark mx-auto rounded-3xl px-8">
           {tryItNowTitle && (

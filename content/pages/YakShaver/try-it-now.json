@@ -8,6 +8,11 @@
   "title": "fad",
   "pageBlocks": [
     {
+      "topImage": {
+        "imgSrc": "/YakShaver/YakShaver Darkmode.png",
+        "imgWidth": 514,
+        "imgHeight": 104
+      },
       "tryItNowTitle": "Start recording in 3 easy steps!",
       "tryItNowCards": [
         {
