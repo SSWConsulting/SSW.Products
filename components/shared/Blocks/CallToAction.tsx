@@ -1,4 +1,3 @@
-import { ShinyButton } from "@/components/magicui/shiny-button";
 import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import { tinaField } from "tinacms/dist/react";
