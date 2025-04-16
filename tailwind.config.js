@@ -32,6 +32,12 @@ module.exports = {
           red: "#CC4141",
           charcoal: "#333333",
         },
+        netural: {
+          gray: {
+            DEFAULT: "#1F1F1F",
+            700: "#333333",
+          },
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
