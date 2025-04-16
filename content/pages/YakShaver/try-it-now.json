@@ -9,6 +9,20 @@
   "pageBlocks": [
     {
       "tryItNowTitle": "Start recording in 3 easy steps!",
+      "tryItNowCards": [
+        {
+          "title": "1. Pin extension",
+          "description": "Click the at the top right of your browser,then the  next to Screencastify.\n"
+        },
+        {
+          "title": "2. Enable devices",
+          "description": "Click the button below to set up your recording devices.\n"
+        },
+        {
+          "title": "3. Pin extension",
+          "description": "Click the  at the top right of your browser, then the  next to Screencastify.\n"
+        }
+      ],
       "_template": "tryItNow"
     }
   ]

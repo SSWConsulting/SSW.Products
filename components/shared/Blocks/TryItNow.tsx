@@ -1,13 +1,14 @@
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import { tinaField } from "tinacms/dist/react";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { PagesPageBlocksTryItNow } from "../../../tina/__generated__/types";
 import Container from "../../Container";
 
 type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
 
 const TryItNow = (props: TryItNowProps) => {
-  const { tryItNowTitle } = props;
+  const { tryItNowTitle, tryItNowCards } = props;
   return (
     <Container className="z-0 relative">
       <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full max-w-4xl py-12 bg-gray-dark rounded-3xl px-8">
@@ -22,22 +23,43 @@ const TryItNow = (props: TryItNowProps) => {
         {/* main box */}
         <div className="grid relative z-10 grid-cols-1 md:grid-cols-3 gap-4">
           {/* Step 1 */}
-          <div className="bg-gray-neutral rounded-2xl p-8">
-            <h3 className="text-2xl font-semibold mb-3">1. Pin extension</h3>
-            <p className="text-gray-light text-sm mb-4">
-              Click the ⋮ at the top right of your browser, then the 📌 next to
-              YakShaver.
-            </p>
-            <div className=" rounded-lg p-2">
-              <Image
-                src="/placeholder.svg?height=200&width=300"
-                alt="Pin extension screenshot"
-                width={300}
-                height={200}
-                className="w-full rounded"
-              />
-            </div>
-          </div>
+
+          {tryItNowCards &&
+            tryItNowCards.map((card, index) => {
+              return (
+                <div
+                  key={`card-${index}`}
+                  className="bg-gray-neutral rounded-2xl p-8"
+                >
+                  {card?.title && (
+                    <h3
+                      data-tina-field={tinaField(card, "title")}
+                      className="text-2xl font-semibold mb-3"
+                    >
+                      {card.title}
+                    </h3>
+                  )}
+
+                  {card?.description && (
+                    <section
+                      data-tina-field={tinaField(card, "description")}
+                      className="text-gray-light text-sm mb-4"
+                    >
+                      <TinaMarkdown content={card.description} />
+                    </section>
+                  )}
+                  <div className=" rounded-lg p-2">
+                    <Image
+                      src="/placeholder.svg?height=200&width=300"
+                      alt="Pin extension screenshot"
+                      width={300}
+                      height={200}
+                      className="w-full rounded"
+                    />
+                  </div>
+                </div>
+              );
+            })}
 
           {/* Step 2 */}
           {/* <div className="bg-gray-neutral rounded-2xl p-8">
