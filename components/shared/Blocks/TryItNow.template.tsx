@@ -4,7 +4,7 @@ import CustomImageField from "../../../tina/customSchemaComponents/optimizedImag
 const optimizedImageField: TinaField[] = [
   {
     type: "image",
-    label: "Hero image",
+    label: "Image",
     name: "imgSrc",
     ui: {
       component: CustomImageField,
