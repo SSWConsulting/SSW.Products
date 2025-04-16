@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import Modal from 'react-responsive-modal';
 import 'react-responsive-modal/styles.css';
+import { ButtonVariant } from './buttonEnum';
 
 
 interface BookingButtonProps {
   title: string;
   jotFormId: string
+  variant?: ButtonVariant
 }
 
-export const BookingButton = ({ title, jotFormId }: BookingButtonProps) => {
+export const BookingButton = ({ title, jotFormId, variant = ButtonVariant.OutlinedWhite }: BookingButtonProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => setIsOpen(true);
@@ -17,7 +19,7 @@ export const BookingButton = ({ title, jotFormId }: BookingButtonProps) => {
     <div>
       <button
         onClick={openModal}
-        className="px-5 py-2 bg-ssw-red font-semibold text-center items-center text-white rounded-lg hover:opacity-80 whitespace-nowrap"
+        className={`px-5 py-2 ${variant} font-semibold text-center items-center text-white rounded-lg hover:opacity-80 whitespace-nowrap`}
       >
         {title}
       </button>

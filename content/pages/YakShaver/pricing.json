@@ -113,7 +113,7 @@
         "price": "$25",
         "subPriceText": "per 50 credits",
         "actionButton": {
-          "label": "View Full Pricing Details",
+          "label": "Re-fill Here",
           "variant": "outlinedWhite",
           "size": "large",
           "url": "/pricing"

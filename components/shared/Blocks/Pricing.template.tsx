@@ -98,7 +98,7 @@ export const pricingTemplate: Template = {
         {
           name: "buttons",
           label: "Buttons",
-          list: true, //this wont w/ list: false :(
+          list: true, //this wont work w/ list: false :(
           type: "object",
           templates: [actionsButtonTemplate, jotFormBookingButtonSchema],
         },

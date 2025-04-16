@@ -7,6 +7,7 @@ import { curlyBracketFormatter, SSWRedCurlyBracketFormatter } from "./Hero";
 import { ShineBorder } from "@/components/magicui/shine-border";
 import { BsCheck } from "react-icons/bs";
 import { BookingButton } from "./BookingButton";
+import { ButtonVariant } from "./buttonEnum";
 
 interface PlanAction {
   label: string;
@@ -17,7 +18,7 @@ interface PlanAction {
 }
 
 interface JotFormAction {
-  title: string;
+  Title: string;
   JotFormId: string;
   __typename: string;
 }
@@ -155,7 +156,15 @@ interface PlanCardProps {
 }
 
 const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
-  console.log(plan);
+  // Type guard function to check if the button is a JotFormAction
+  const isJotFormAction = (
+    button: PlanAction | JotFormAction
+  ): button is JotFormAction => {
+    return (
+      button.__typename === "PagesPageBlocksPricingPlansButtonsBookingButton"
+    );
+  };
+
   return (
     <div
       className={`plan-card text-white border ${
@@ -201,12 +210,20 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
                   />
                 );
               case "PagesPageBlocksPricingPlansButtonsBookingButton":
-                return (
-                  <BookingButton
-                    title={plan.buttons[0]?.title}
-                    jotFormId={plan.buttons[0]?.JotFormId}
-                  />
-                );
+                if (isJotFormAction(plan.buttons[0])) {
+                  return (
+                    <BookingButton
+                      title={plan.buttons[0].Title}
+                      jotFormId={plan.buttons[0].JotFormId}
+                      variant={
+                        isRecommended
+                          ? ButtonVariant.SolidRed
+                          : ButtonVariant.OutlinedWhite
+                      }
+                    />
+                  );
+                }
+                return null;
               default:
                 return null;
             }
