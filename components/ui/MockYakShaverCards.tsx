@@ -48,7 +48,11 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
           ✨ A bug report has been created
         </span>
       </h2>
-      <h3 className="pb-1 text-white/75">Project</h3>
+      <h3
+        className={`pb-1 ${isVisible ? "text-white/75" : "text-transparent"}`}
+      >
+        Project
+      </h3>
       <div
         className={`h-[2.3125rem] items-center text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
           isVisible ? "" : "animate-pulse"
@@ -63,7 +67,11 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
         </span>
       </div>
 
-      <h3 className="pb-1 text-white/75">Work Item</h3>
+      <h3
+        className={`pb-1 ${isVisible ? "text-white/75" : "text-transparent"}`}
+      >
+        Work Item
+      </h3>
       <div
         className={`gap-2 items-center md:h-[2.3125rem] text-xs font-normal mb-2 flex bg-white/5  rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 lg:whitespace-nowrap overflow-hidden text-ellipsis ${
           isVisible ? "" : "animate-pulse"
@@ -78,7 +86,11 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
         </span>
       </div>
 
-      <h3 className="pb-1 text-white/75">Assigned to</h3>
+      <h3
+        className={`pb-1  ${isVisible ? "text-white/75" : "text-transparent"}`}
+      >
+        Assigned to
+      </h3>
       <div
         className={`items-center  h-[2.3125rem] text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
           isVisible ? "" : "animate-pulse"
@@ -93,7 +105,11 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
         </span>
       </div>
 
-      <h3 className="pb-1 text-white/75">Mentioned Users</h3>
+      <h3
+        className={`pb-1 ${isVisible ? "text-white/75" : "text-transparent"}`}
+      >
+        Mentioned Users
+      </h3>
       <div
         className={`items-center  h-[2.3125rem] text-xs font-normal  mb-2 flex bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
           isVisible ? "" : "animate-pulse"
