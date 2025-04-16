@@ -43,5 +43,8 @@
       ],
       "_template": "tryItNow"
     }
-  ]
+  ],
+  "pageFormatting": {
+    "bottomPadding": "small"
+  }
 }
