@@ -11,84 +11,90 @@ const TryItNow = (props: TryItNowProps) => {
   const { tryItNowTitle, tryItNowCards } = props;
 
   return (
-    <Container className="z-0 relative w-full">
-      <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full py-12 bg-gray-dark mx-auto rounded-3xl px-8">
-        {tryItNowTitle && (
-          <h2
-            data-tina-field={tinaField(props, "tryItNowTitle")}
-            className="text-[1.75rem] font-semibold text-center mb-7"
-          >
-            {tryItNowTitle}
-          </h2>
-        )}
-        {/* main box */}
-        <div className="grid relative z-10 grid-cols-1 md:grid-cols-3 gap-4">
-          {/* Step 1 */}
+    <Container>
+      <div className="w-full z-0 h-fit relative">
+        <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full py-12 bg-gray-dark mx-auto rounded-3xl px-8">
+          {tryItNowTitle && (
+            <h2
+              data-tina-field={tinaField(props, "tryItNowTitle")}
+              className="text-[1.75rem] font-semibold text-center mb-7"
+            >
+              {tryItNowTitle}
+            </h2>
+          )}
+          {/* main box */}
+          <div className="grid relative z-10 grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Step 1 */}
 
-          {tryItNowCards &&
-            tryItNowCards.map((card, index) => {
-              console.log("image", card?.image);
-              return (
-                <div
-                  key={`card-${index}`}
-                  className="bg-gray-neutral rounded-2xl pt-8 px-8"
-                >
-                  {card?.title && (
-                    <h3
-                      data-tina-field={tinaField(card, "title")}
-                      className="text-2xl font-semibold mb-3"
-                    >
-                      {card.title}
-                    </h3>
-                  )}
-
-                  {card?.description && (
-                    <section
-                      data-tina-field={tinaField(card, "description")}
-                      className="text-gray-light text-sm mb-4"
-                    >
-                      <TinaMarkdown
-                        components={{
-                          img: (props?: { url: string }) => (
-                            <span className="size-4 relative align-text-top inline-block">
-                              <Image
-                                className=""
-                                src={props?.url || ""}
-                                aria-hidden="true"
-                                alt=""
-                                fill={true}
-                              />
-                            </span>
-                          ),
-                        }}
-                        content={card.description}
-                      />
-                    </section>
-                  )}
-
-                  {card?.image &&
-                    card.image.imgSrc &&
-                    card.image.imgWidth &&
-                    card.image.imgHeight && (
-                      <div className="relative w-full aspect-1">
-                        <Image
-                          data-tina-field={tinaField(card, "image")}
-                          className="bottom-0 absolute"
-                          src={card.image.imgSrc}
-                          aria-hidden="true"
-                          objectFit="contain"
-                          width={card.image.imgWidth}
-                          height={card.image.imgHeight}
-                          alt={""}
-                        />
-                      </div>
+            {tryItNowCards &&
+              tryItNowCards.map((card, index) => {
+                console.log("image", card?.image);
+                return (
+                  <div
+                    key={`card-${index}`}
+                    className="bg-gray-neutral flex gap-4 flex-col rounded-2xl pt-8 px-8"
+                  >
+                    {card?.title && (
+                      <h3
+                        data-tina-field={tinaField(card, "title")}
+                        className="text-2xl font-semibold"
+                      >
+                        {card.title}
+                      </h3>
                     )}
-                </div>
-              );
-            })}
 
-          {/* Step 2 */}
-          {/* <div className="bg-gray-neutral rounded-2xl p-8">
+                    {card?.description && (
+                      <section
+                        data-tina-field={tinaField(card, "description")}
+                        className="text-gray-light text-sm"
+                      >
+                        <TinaMarkdown
+                          components={{
+                            img: (props?: { url: string }) => (
+                              <span className="size-4 relative align-text-top inline-block">
+                                <Image
+                                  className=""
+                                  src={props?.url || ""}
+                                  aria-hidden="true"
+                                  alt=""
+                                  fill={true}
+                                />
+                              </span>
+                            ),
+                          }}
+                          content={card.description}
+                        />
+                      </section>
+                    )}
+
+                    {card?.image &&
+                      card.image.imgSrc &&
+                      card.image.imgWidth &&
+                      card.image.imgHeight && (
+                        <div
+                          style={{
+                            aspectRatio: `${card.image.imgWidth}/${card.image.imgHeight}`,
+                          }}
+                          className="relative w-full"
+                        >
+                          <Image
+                            data-tina-field={tinaField(card, "image")}
+                            className="bottom-0 absolute"
+                            src={card.image.imgSrc}
+                            aria-hidden="true"
+                            objectFit="contain"
+                            width={card.image.imgWidth}
+                            height={card.image.imgHeight}
+                            alt={""}
+                          />
+                        </div>
+                      )}
+                  </div>
+                );
+              })}
+
+            {/* Step 2 */}
+            {/* <div className="bg-gray-neutral rounded-2xl p-8">
             <h3 className="text-2xl font-semibold mb-3">2. Enable devices</h3>
             <p className="text-gray-light text-sm mb-4">
               Click the button below to set up your recording devices.
@@ -106,8 +112,8 @@ const TryItNow = (props: TryItNowProps) => {
             </div>
           </div> */}
 
-          {/* Step 3 */}
-          {/* <div className="bg-gray-neutral rounded-2xl p-8">
+            {/* Step 3 */}
+            {/* <div className="bg-gray-neutral rounded-2xl p-8">
             <h3 className="text-2xl font-semibold mb-3">3. Pin extension</h3>
             <p className="text-gray-light text-sm mb-4">
               Click the ⋮ at the top right of your browser, then the next to
@@ -123,9 +129,10 @@ const TryItNow = (props: TryItNowProps) => {
               />
             </div>
           </div> */}
+          </div>
         </div>
+        <div className="absolute bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>
       </div>
-      <div className="absolute bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>
     </Container>
   );
 };
