@@ -9,12 +9,21 @@ import {
 
 import { ShineBorder } from "@/components/magicui/shine-border";
 import { BsCheck } from "react-icons/bs";
+import { BookingButton } from "./BookingButton";
+import { ButtonVariant } from "./buttonEnum";
 
 interface PlanAction {
   label: string;
   url: string;
   variant?: string;
   size?: string;
+  __typename: string;
+}
+
+interface JotFormAction {
+  Title: string;
+  JotFormId: string;
+  __typename: string;
 }
 
 interface AddOn {
@@ -22,7 +31,7 @@ interface AddOn {
   description: string;
   price: string;
   subPriceText: string;
-  actionButton: PlanAction;
+  actionButton: PlanAction | JotFormAction;
 }
 
 interface Plan {
@@ -30,7 +39,7 @@ interface Plan {
   planDescription: string;
   price: string;
   subPriceText: string;
-  actions: PlanAction;
+  buttons: (PlanAction | JotFormAction)[];
   priceDescription: string;
   isRecommended: boolean;
   timeSaved: string;
@@ -150,6 +159,15 @@ interface PlanCardProps {
 }
 
 const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
+  // Type guard function to check if the button is a JotFormAction
+  const isJotFormAction = (
+    button: PlanAction | JotFormAction
+  ): button is JotFormAction => {
+    return (
+      button.__typename === "PagesPageBlocksPricingPlansButtonsBookingButton"
+    );
+  };
+
   return (
     <div
       className={`plan-card text-white border ${
@@ -183,13 +201,36 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
         )}
       </div>
       <div className="flex-col mt-auto py-6 ">
-        {plan.actions && (
-          <Actions
-            //@ts-expect-error investigate after
-            actions={[plan.actions]}
-            className="w-[100%]"
-          />
-        )}
+        {plan.buttons[0] &&
+          (() => {
+            switch (plan.buttons[0]?.__typename) {
+              case "PagesPageBlocksPricingPlansButtonsActions":
+                return (
+                  <Actions
+                    //@ts-expect-error investigate after
+                    actions={[plan.buttons[0]]}
+                    className="w-[100%]"
+                  />
+                );
+              case "PagesPageBlocksPricingPlansButtonsBookingButton":
+                if (isJotFormAction(plan.buttons[0])) {
+                  return (
+                    <BookingButton
+                      title={plan.buttons[0].Title}
+                      jotFormId={plan.buttons[0].JotFormId}
+                      variant={
+                        isRecommended
+                          ? ButtonVariant.SolidRed
+                          : ButtonVariant.OutlinedWhite
+                      }
+                    />
+                  );
+                }
+                return null;
+              default:
+                return null;
+            }
+          })()}
       </div>
 
       <div className="flex-col pb-3 flex-grow">
