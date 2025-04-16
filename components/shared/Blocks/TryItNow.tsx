@@ -2,12 +2,18 @@ import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import Link from "next/link";
-import { createContext, ReactNode, useContext } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { PagesPageBlocksTryItNow } from "../../../tina/__generated__/types";
 import Container from "../../Container";
-import { TryItNowServer } from "./TryItNowServer";
+import { getTallestAspectRatio, TryItNowServer } from "./TryItNowServer";
 
 export type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
 
@@ -36,9 +42,17 @@ export const TryItNow = (props: TryItNowProps) => {
 const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
   const { tryItNowTitle, tryItNowCards } = props;
 
+  const [aspectRatio, setAspectRatio] = useState(props.aspectRatio);
+
+  useEffect(() => {
+    const newTallestAspectRatio = getTallestAspectRatio(props.tryItNowCards);
+    console.log("newTallestAspectRatio", newTallestAspectRatio);
+    setAspectRatio(newTallestAspectRatio);
+  }, [props.tryItNowCards]);
+
+  const hasCardImage = Boolean(aspectRatio);
   // set the aspect ratio of the bottom half of the cards to the aspect ratio of the tallest card
   // (to avoid inconsistent heights on mobile)
-  const aspectRatio = props.aspectRatio;
   return (
     <Container className="first:pt-20">
       {props.topImage?.imgSrc &&
@@ -69,11 +83,13 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
 
             {tryItNowCards &&
               tryItNowCards.map((card, index) => {
-                console.log("image", card?.image);
                 return (
                   <div
                     key={`card-${index}`}
-                    className="bg-gray-neutral flex gap-4 flex-col rounded-2xl pt-8 px-8"
+                    className={cn(
+                      "bg-gray-neutral flex gap-4 flex-col rounded-2xl pt-8 px-8",
+                      !hasCardImage && "pb-8"
+                    )}
                   >
                     {card?.title && (
                       <h3
