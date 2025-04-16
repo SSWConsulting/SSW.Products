@@ -12,7 +12,7 @@
       "tryItNowCards": [
         {
           "title": "1. Pin extension",
-          "description": "Click the ![](/TryItNow/puzzle.svg) at the top right of your browser,then ![](/TryItNow/pin.svg) next to Screencastify.\n",
+          "description": "Click the ![](/TryItNow/puzzle.svg) at the top right of your browser, then ![](/TryItNow/pin.svg) next to Screencastify.\n",
           "image": {
             "imgSrc": "/TryItNow/pin-yakshaver.png",
             "imgWidth": 480,
@@ -21,7 +21,10 @@
         },
         {
           "title": "2. Enable devices",
-          "description": "Click the button below to set up your recording devices.\n"
+          "description": "Click the button below to set up your recording devices.\n",
+          "button": {
+            "label": "![](/TryItNow/microphone.svg)Enable Mic & Webcam\n"
+          }
         },
         {
           "title": "3. Pin extension",

@@ -7,6 +7,20 @@ import Container from "../../Container";
 
 type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
 
+const components = {
+  img: (props?: { url: string }) => (
+    <span className="size-4 relative align-text-top inline-block">
+      <Image
+        className=""
+        src={props?.url || ""}
+        aria-hidden="true"
+        alt=""
+        fill={true}
+      />
+    </span>
+  ),
+};
+
 const TryItNow = (props: TryItNowProps) => {
   const { tryItNowTitle, tryItNowCards } = props;
 
@@ -49,24 +63,33 @@ const TryItNow = (props: TryItNowProps) => {
                         className="text-gray-light text-sm"
                       >
                         <TinaMarkdown
-                          components={{
-                            img: (props?: { url: string }) => (
-                              <span className="size-4 relative align-text-top inline-block">
-                                <Image
-                                  className=""
-                                  src={props?.url || ""}
-                                  aria-hidden="true"
-                                  alt=""
-                                  fill={true}
-                                />
-                              </span>
-                            ),
-                          }}
+                          components={components}
                           content={card.description}
                         />
                       </section>
                     )}
-
+                    {card?.button && (
+                      <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
+                        <span data-tina-field={tinaField(card.button)}>
+                          <TinaMarkdown
+                            content={card.button.label}
+                            components={{
+                              img: (props?: { url: string }) => (
+                                <span className="size-5 mx-1 relative align-text-top inline-block">
+                                  <Image
+                                    className=""
+                                    src={props?.url || ""}
+                                    aria-hidden="true"
+                                    alt=""
+                                    fill={true}
+                                  />
+                                </span>
+                              ),
+                            }}
+                          />
+                        </span>
+                      </div>
+                    )}
                     {card?.image &&
                       card.image.imgSrc &&
                       card.image.imgWidth &&

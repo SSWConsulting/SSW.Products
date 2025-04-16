@@ -59,7 +59,7 @@ const TryItNowTemplate: Template = {
             {
               name: "label",
               label: "Label",
-              type: "string",
+              type: "rich-text",
             },
           ],
         },
