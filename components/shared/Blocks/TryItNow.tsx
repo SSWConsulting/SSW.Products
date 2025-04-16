@@ -11,8 +11,8 @@ const TryItNow = (props: TryItNowProps) => {
   const { tryItNowTitle, tryItNowCards } = props;
 
   return (
-    <Container className="z-0 relative">
-      <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full max-w-4xl py-12 bg-gray-dark rounded-3xl px-8">
+    <Container className="z-0 relative w-full">
+      <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full py-12 bg-gray-dark mx-auto rounded-3xl px-8">
         {tryItNowTitle && (
           <h2
             data-tina-field={tinaField(props, "tryItNowTitle")}
@@ -72,6 +72,7 @@ const TryItNow = (props: TryItNowProps) => {
                     card.image.imgHeight && (
                       <div className="relative w-full aspect-1">
                         <Image
+                          data-tina-field={tinaField(card, "image")}
                           className="bottom-0 absolute"
                           src={card.image.imgSrc}
                           aria-hidden="true"
