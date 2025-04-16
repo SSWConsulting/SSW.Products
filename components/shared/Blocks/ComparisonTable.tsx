@@ -1,10 +1,9 @@
 import React from "react";
 import { tinaField } from "tinacms/dist/react";
-import { curlyBracketFormatter } from "./Hero";
+import { curlyBracketFormatter } from "./Hero/Hero";
 
 import { RxCross1 } from "react-icons/rx";
 import { FaCheck } from "react-icons/fa6";
-
 
 const Table = ({ table }: { table: any }) => {
   const regularBoxStyling = "text-white/60 p-4 text-center";

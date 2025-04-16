@@ -1,3 +1,7 @@
+"use client";
+
+import { TypingAnimation } from "../shared/Blocks/Hero/TypingAnimation";
+
 export function ExampleYakShaverCard() {
   return (
     <div className="bg-[#1E1E20] border-2  text-xs border-[#4D4D4E] shadow-2xl rounded-xl p-4  text-white ">
@@ -27,37 +31,101 @@ export function ExampleYakShaverCard() {
   );
 }
 
-export function HeroYakShaverCard() {
+export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
   return (
-    <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929]  p-3 border-2  text-xs border-[#4D4D4E]/30 shadow-2xl rounded-2xl text-white w-full h-[320px]">
-      <h2 className=" pb-2 text-sm md:text-base lg:text-lg">
-        {" "}
-        ✅ Done - ✨ A bug report has been created
+    <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929]  p-3 border-2  text-xs border-[#4D4D4E]/30 shadow-2xl rounded-2xl text-white w-full h-[20.625rem]">
+      <h2 className="pb-2 text-sm md:text-base lg:text-lg relative h-[2.5em]">
+        <span
+          className={`absolute left-0 right-0 transition-all duration-500 ${
+            isVisible ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
+          }`}
+        >
+          ⚙️ YakShaver is processing your request
+          <br />
+          <div className="flex justify-start mt-1">
+            <TypingAnimation />
+          </div>
+        </span>
+        <span
+          className={`absolute left-0 right-0 transition-all duration-500 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
+          }`}
+        >
+          ✨ A bug report has been created
+        </span>
       </h2>
-      <h3 className="pb-1 text-white/75">Project</h3>
-      <div className="h-[2.3125rem] items-center text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30">
-        <span className=" opacity-0 animate-[fadeIn_1000ms_ease_7000ms_forwards]">
+      <h3
+        className={`pb-1 ${isVisible ? "text-white/75" : "text-transparent"}`}
+      >
+        Project
+      </h3>
+      <div
+        className={`h-[2.3125rem] items-center text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
+          isVisible ? "" : "animate-pulse"
+        }`}
+      >
+        <span
+          className={`opacity-0 ${
+            isVisible ? "animate-[fadeIn_1000ms_ease_forwards]" : ""
+          }`}
+        >
           TinaCloud
         </span>
       </div>
 
-      <h3 className="pb-1 text-white/75">Work Item</h3>
-      <div className="gap-2 items-center md:h-[2.3125rem] text-xs font-normal mb-2 flex bg-white/5  rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 lg:whitespace-nowrap overflow-hidden text-ellipsis">
-        <span className="text-xs font-normal opacity-0 animate-[fadeIn_1000ms_ease_7000ms_forwards]">
-          🐛 App crashes when uploading file sizes 5MB+ on Chrome
+      <h3
+        className={`pb-1 ${isVisible ? "text-white/75" : "text-transparent"}`}
+      >
+        Work Item
+      </h3>
+      <div
+        className={`gap-2 items-center md:h-[2.3125rem] text-xs font-normal mb-2 flex bg-white/5  rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 lg:whitespace-nowrap overflow-hidden text-ellipsis ${
+          isVisible ? "" : "animate-pulse"
+        }`}
+      >
+        <span
+          className={`text-xs font-normal opacity-0 ${
+            isVisible ? "animate-[fadeIn_1000ms_ease_forwards]" : ""
+          }`}
+        >
+          🐛 App crashes when uploading file sizes &gt; 5MB on Chrome
         </span>
       </div>
 
-      <h3 className="pb-1 text-white/75">Assigned to</h3>
-      <div className="items-center  h-[2.3125rem] text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30">
-        <span className="opacity-0 animate-[fadeIn_1000ms_ease_7000ms_forwards]">
+      <h3
+        className={`pb-1  ${isVisible ? "text-white/75" : "text-transparent"}`}
+      >
+        Assigned to
+      </h3>
+      <div
+        className={`items-center  h-[2.3125rem] text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
+          isVisible ? "" : "animate-pulse"
+        }`}
+      >
+        <span
+          className={`opacity-0 ${
+            isVisible ? "animate-[fadeIn_1000ms_ease_forwards]" : ""
+          }`}
+        >
           Betty Bondoc
         </span>
       </div>
 
-      <h3 className="pb-1 text-white/75">Mentioned Users</h3>
-      <div className="items-center h-[2.3125rem] text-xs font-normal  mb-2 flex bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30">
-        <span className="opacity-0 animate-[fadeIn_1000ms_ease_7000ms_forwards]">
+      <h3
+        className={`pb-1 ${isVisible ? "text-white/75" : "text-transparent"}`}
+      >
+        Mentioned Users
+      </h3>
+      <div
+        className={`items-center  h-[2.3125rem] text-xs font-normal  mb-2 flex bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
+          isVisible ? "" : "animate-pulse"
+        }`}
+      >
+        <span
+          className={`opacity-0 ${
+            isVisible ? "animate-[fadeIn_1000ms_ease_forwards]" : ""
+          }`}
+        >
           Adam Cogan, Matt Wicks
         </span>
       </div>
