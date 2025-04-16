@@ -96,25 +96,36 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
                       </section>
                     )}
                     {card?.button && (
-                      <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
-                        <span data-tina-field={tinaField(card.button)}>
-                          <TinaMarkdown
-                            content={card.button.label}
-                            components={{
-                              img: (props?: { url: string }) => (
-                                <span className="size-5 mx-1 relative align-text-top inline-block">
-                                  <Image
-                                    className=""
-                                    src={props?.url || ""}
-                                    aria-hidden="true"
-                                    alt=""
-                                    fill={true}
-                                  />
-                                </span>
-                              ),
-                            }}
-                          />
-                        </span>
+                      <div
+                        className="w-full"
+                        style={
+                          aspectRatio
+                            ? {
+                                aspectRatio,
+                              }
+                            : {}
+                        }
+                      >
+                        <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
+                          <span data-tina-field={tinaField(card.button)}>
+                            <TinaMarkdown
+                              content={card.button.label}
+                              components={{
+                                img: (props?: { url: string }) => (
+                                  <span className="size-5 mx-1 relative align-text-top inline-block">
+                                    <Image
+                                      className=""
+                                      src={props?.url || ""}
+                                      aria-hidden="true"
+                                      alt=""
+                                      fill={true}
+                                    />
+                                  </span>
+                                ),
+                              }}
+                            />
+                          </span>
+                        </div>
                       </div>
                     )}
                     {card?.image &&
