@@ -32,14 +32,11 @@ module.exports = {
           red: "#CC4141",
           charcoal: "#333333",
         },
-        text: {
-          secondary: "#727272",
-        },
-        netural: {
-          gray: {
-            DEFAULT: "#1F1F1F",
-            700: "#333333",
-          },
+        text: {},
+        gray: {
+          dark: "#1F1F1F",
+          neutral: "#333333",
+          light: "#727272",
         },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
