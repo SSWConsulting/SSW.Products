@@ -22,13 +22,13 @@ const FAQ = ({ data }: { data: FAQData }) => {
   };
 
   return (
-    <Container className="text-white mx-auto" size="small">
-      <h1
-        className="text-2xl font-semibold mb-6 flex justify-center"
+    <Container className="text-white mx-auto" size="medium">
+      <h2
+        className="text-3xl font-semibold pb-12 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
       >
         {data.headline}
-      </h1>
+      </h2>
       <p className="mb-8 text-base" data-tina-field={tinaField(data, "text")}>
         {data.text}
       </p>
@@ -48,26 +48,28 @@ const FAQ = ({ data }: { data: FAQData }) => {
               </h3>
 
               {activeIndex === index ? (
-                <FaMinus className="ml-auto" />
+                <FaMinus className="ml-auto text-[#e34f4f]" />
               ) : (
-                <FaPlus className="ml-auto" />
+                <FaPlus className="ml-auto text-[#e34f4f]" />
               )}
             </button>
             <div
-              className={`overflow-hidden`}
+              className={`overflow-hidden transition-all duration-700 ease-in-out`}
               style={{
                 maxHeight: activeIndex === index ? "500px" : "0",
-                transition:
-                  activeIndex === index
-                    ? "max-height 500ms ease-in-out"
-                    : "max-height 0ms ease-in-out",
+                opacity: activeIndex === index ? 1 : 0,
+                transform: `translateY(${
+                  activeIndex === index ? "0" : "-10px"
+                })`,
               }}
             >
               <div className="px-4 pb-4">
                 <p data-tina-field={tinaField(item, "answer")}>{item.answer}</p>
               </div>
             </div>
-            <hr className="border-white" />
+            {index !== data.questions.length - 1 && (
+              <hr className="border-white" />
+            )}
           </div>
         ))}
       </div>

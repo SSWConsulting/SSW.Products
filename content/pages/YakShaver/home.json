@@ -15,7 +15,7 @@
         "ticket",
         "email"
       ],
-      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. {Save hours} of frustration with YakShaver",
+      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. Save hours of frustration with YakShaver",
       "ctaLeft": {
         "title": "TRY IT NOW",
         "link": "https://chromewebstore.google.com/detail/yakshaver/glcoihkbmomiblcbpnlkafcipcfnikjc"
@@ -46,7 +46,7 @@
       "_template": "hero"
     },
     {
-      "ParentContainerTitle": "{How YakShaver Works}",
+      "ParentContainerTitle": "How YakShaver Works",
       "ParentContainerDescription": "",
       "CardAndImageItem": [
         {
@@ -150,7 +150,7 @@
       "_template": "BentoBox"
     },
     {
-      "title": "{Simple, Transparent Pricing}",
+      "title": "Simple, Transparent Pricing",
       "desc": "Choose the plan that's right for your team and start saving time on issue reporting today",
       "tiers": [
         {

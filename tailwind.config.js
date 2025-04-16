@@ -32,6 +32,9 @@ module.exports = {
           red: "#CC4141",
           charcoal: "#333333",
         },
+        primaryFrom: "#FF9D3F",
+        primaryVia: "#F46772",
+        primaryTo: "#AF33E4",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

@@ -183,7 +183,7 @@ export function TitleFadeIn({ title }: { title: string }) {
 
   return (
     <>
-      <div className="text-white text text-center lg:text-5xl text-3xl font-semibold pb-12">
+      <div className="text-white text text-center text-3xl font-semibold pb-12">
         <span className="inline-block max-w-full break-words">
           {firstPart}
           {firstPart ? " " : ""}

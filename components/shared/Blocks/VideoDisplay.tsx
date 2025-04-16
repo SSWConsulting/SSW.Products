@@ -15,7 +15,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
   return (
     <div className="flex justify-center mx-auto container">
       <div className="items-center w-full h-auto ">
-        <h2 className="text-2xl text-white font-semibold pb-4 text-center">
+        <h2 className="text-3xl text-white font-semibold pb-12 text-center">
           {" "}
           {title}
         </h2>

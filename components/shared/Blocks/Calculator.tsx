@@ -48,7 +48,7 @@ const CustomSlider = ({
     <div className="w-full">
       <div className="relative w-full h-2 bg-white/10 rounded-full">
         <div
-          className="absolute h-full bg-red-500 rounded-full"
+          className="absolute h-full bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] rounded-full"
           style={{ width: `${percentage}%` }}
         ></div>
         <input
@@ -117,7 +117,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
 
   return (
     <Container>
-      <h2 className="text-4xl text-center font-semibold text-white mb-4">
+      <h2 className="text-3xl text-center font-semibold text-white mb-4">
         {" "}
         {curlyBracketFormatter(data?.title)}
       </h2>
@@ -203,7 +203,7 @@ const EstimatedSavingsContent = ({
           </Tooltip>
         </div>
         <p
-          className={`text-emerald-400 font-bold ${
+          className={`bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold ${
             isCustomTier ? "text-xl" : "text-2xl"
           }`}
         >
@@ -220,7 +220,7 @@ const EstimatedSavingsContent = ({
           </Tooltip>
         </div>
         <p
-          className={`text-emerald-400 font-bold ${
+          className={`bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold ${
             isCustomTier ? "text-xl" : "text-2xl"
           }`}
         >
@@ -237,7 +237,7 @@ const EstimatedSavingsContent = ({
           </Tooltip>
         </div>
         <p
-          className={`text-emerald-400 font-bold ${
+          className={`bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold ${
             isCustomTier ? "text-xl" : "text-2xl"
           }`}
         >
@@ -268,7 +268,7 @@ const SliderBoxContent = ({
       <p className="text-white/50 pb-3">
         Adjust the slider to match the average hourly rate of your employees.
       </p>
-      <div className="bg-gradient-to-br from-red-400 to-red-700 bg-clip-text text-transparent font-bold text-2xl">
+      <div className="bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold text-2xl">
         ${hourlyRate} / hour
       </div>
       <CustomSlider
@@ -297,51 +297,56 @@ const CalculatorTierCard = ({
   isRecommended?: boolean;
 }) => {
   return (
-    <button
-      className={`bg-gradient-to-r to-[#141414] via-[#131313] bg-clip-padding from-[#0e0e0e] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] border cursor-pointer ${
-        isSelected ? "border-red-500" : "border-transparent"
-      } text-white rounded-xl p-6 w-full flex flex-col gap-2 items-start text-start`}
-      onClick={() => setSelectedTier(index)}
+    <div
+      className={`w-full rounded-xl p-[2px] ${
+        isSelected
+          ? 'bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E]'
+          : 'bg-transparent'
+      } transition-all duration-300`}
     >
-      <div className="flex-col w-full">
-        {" "}
-        <div className="flex items-center gap-2">
-          <h3 className="text-base">{calculatorTier.tier}</h3>
-          {isRecommended && (
-            <div className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-              Recommended
-            </div>
-          )}
-        </div>
-        <div className="flex">
-          {calculatorTier?.price > 0 && calculatorTier.price < 9999 && (
-            <div className="flex items-baseline gap-2">
-              <p className="text-2xl font-bold">$ {calculatorTier.price}</p>
-              <span className="text-white/50 text-sm">per month</span>
-            </div>
-          )}
-          {calculatorTier?.price === 99999 && (
-            <p className="text-2xl font-bold">Custom</p>
-          )}
-          {calculatorTier?.price === 0 && (
-            <p className="text-2xl font-bold">Free</p>
-          )}
-        </div>
-      </div>
-
-      <div className="flex flex-col pt-2 gap-1 ">
-        {calculatorTier.description?.map((description, i) => (
-          <div key={i} className="flex gap-2">
-            <p
-              className={`text-base text-white/50 leading-5 ${
-                i === 0 ? "font-bold" : ""
-              }`}
-            >
-              {description}
-            </p>
+      <button
+        className="w-full bg-gradient-to-r from-[#0e0e0e] via-[#131313] to-[#141414] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] text-white rounded-xl p-6 flex flex-col gap-2 items-start text-start"
+        onClick={() => setSelectedTier(index)}
+      >
+        <div className="flex-col w-full">
+          <div className="flex items-center gap-2">
+            <h3 className="text-base">{calculatorTier.tier}</h3>
+            {isRecommended && (
+              <div className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+                Recommended
+              </div>
+            )}
           </div>
-        ))}
-      </div>
-    </button>
+          <div className="flex">
+            {calculatorTier?.price > 0 && calculatorTier.price < 9999 && (
+              <div className="flex items-baseline gap-2">
+                <p className="text-2xl font-bold">$ {calculatorTier.price}</p>
+                <span className="text-white/50 text-sm">per month</span>
+              </div>
+            )}
+            {calculatorTier?.price === 99999 && (
+              <p className="text-2xl font-bold">Custom</p>
+            )}
+            {calculatorTier?.price === 0 && (
+              <p className="text-2xl font-bold">Free</p>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-col pt-2 gap-1">
+          {calculatorTier.description?.map((description, i) => (
+            <div key={i} className="flex gap-2">
+              <p
+                className={`text-base text-white/50 leading-5 ${
+                  i === 0 ? 'font-bold' : ''
+                }`}
+              >
+                {description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </button>
+    </div>
   );
 };
