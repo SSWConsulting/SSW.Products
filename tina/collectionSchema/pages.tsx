@@ -14,6 +14,7 @@ import { CalculatorTemplate } from "../../components/shared/Blocks/Calculator.te
 import { callToActionTemplate } from "../../components/shared/Blocks/CallToAction.template";
 import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImage/CardAndImage.template";
 import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
+import TryItNowTemplate from "../../components/shared/Blocks/TryItNow.template";
 import * as AntIcons from "../../node_modules/react-icons/ai";
 import {
   accordionBlock,
@@ -72,7 +73,7 @@ export const PagesSchema: Collection = {
         CardAndImageTemplate,
         ComparisonTable,
         CalculatorTemplate,
-
+        TryItNowTemplate,
         breadcrumbBlock(
           "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/breadcrumbs.jpg?raw=true"
         ),
