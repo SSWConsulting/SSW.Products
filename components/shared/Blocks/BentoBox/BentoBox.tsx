@@ -1,13 +1,14 @@
+import { useInView } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRef } from "react";
+import { FaExpandAlt } from "react-icons/fa";
 import { FaMinus, FaXmark } from "react-icons/fa6";
 import Container from "../../../Container";
-import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
-
-import Link from "next/link";
-import { FaExpandAlt } from "react-icons/fa";
 import { ExampleYakShaverCard } from "../../../ui/MockYakShaverCards";
 import TimeSavedCounterBox from "../../../utilityComponents/TimeSavedCounter";
 import YaksShavedCounterBox from "../../../utilityComponents/YaksShavedCounter";
+import { AnimatedBeamMultipleOutput } from "./AnimatedBeam";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
@@ -174,6 +175,8 @@ function SSWBadge({ title, link }: { title: string; link?: string }) {
 }
 
 export function TitleFadeIn({ title }: { title: string }) {
+  const titleWrapper = useRef(null);
+  const isInView = useInView(titleWrapper, { once: true });
   const words = title.split(" ");
   const lastWord = words.pop();
   const firstPart = words.join(" ");
@@ -187,13 +190,18 @@ export function TitleFadeIn({ title }: { title: string }) {
           <span className="whitespace-nowrap">
             {lastWord?.split("").map((char, index) => (
               <span
+                ref={titleWrapper}
                 key={index}
                 className="inline-block text-transparent"
-                style={{
-                  animation: `colorChange 2000ms ease-in-out forwards ${
-                    index * 100
-                  }ms`,
-                }}
+                style={
+                  isInView
+                    ? {
+                        animation: `colorChange 2000ms ease-in-out forwards ${
+                          index * 100
+                        }ms`,
+                      }
+                    : {}
+                }
               >
                 {char}
               </span>

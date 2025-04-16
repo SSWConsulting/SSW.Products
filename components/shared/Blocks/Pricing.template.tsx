@@ -96,39 +96,34 @@ export const pricingTemplate: Template = {
         },
 
         {
-          name: "actions",
-          label: "Actions",
+          name: "buttons",
+          label: "Buttons",
+          list: true, //this wont work w/ list: false :(
           type: "object",
-          list: false,
-          ui: {
-            itemProps: (item: { label?: string }) => ({
-              label: item?.label || "Action Item",
-            }),
-          },
-          fields: [
-            ...actionsButtonTemplate.fields,
-            ...jotFormBookingButtonSchema.fields,
-          ],
+          templates: [actionsButtonTemplate, jotFormBookingButtonSchema],
         },
       ],
     },
     {
-      name: 'addOns',
-      label: 'Add Ons Section',
-      type: 'object',
+      name: "addOns",
+      label: "Add Ons Section",
+      type: "object",
       fields: [
-        {name: 'title', label: 'Title', type: 'string'},
-        {name: 'description', label: 'Description', type: 'string'},
-        {name: 'price', label: 'Price', type: 'string'},
-        {name: 'subPriceText', label: 'Sub-text next to price', type: 'string'},
+        { name: "title", label: "Title", type: "string" },
+        { name: "description", label: "Description", type: "string" },
+        { name: "price", label: "Price", type: "string" },
+        {
+          name: "subPriceText",
+          label: "Sub-text next to price",
+          type: "string",
+        },
         {
           name: "actionButton",
           label: "Action Button",
           type: "object",
           fields: [...actionsButtonTemplate.fields],
         },
-      ]
+      ],
     },
-    
   ],
 };

@@ -7,7 +7,7 @@ import { pricingTemplate } from "../../components/shared/Blocks/Pricing.template
 import { videoDisplayTemplate } from "../../components/shared/Blocks/VideoDisplay.template";
 
 import { bentoBoxTemplate } from "../../components/shared/Blocks/BentoBox/BentoBox.template";
-import { HeroTemplate } from "../../components/shared/Blocks/Hero.template";
+import { HeroTemplate } from "../../components/shared/Blocks/Hero/Hero.template";
 import { timelineTemplate } from "../../components/shared/Blocks/Timeline/Timeline.template";
 
 import { CalculatorTemplate } from "../../components/shared/Blocks/Calculator.template";

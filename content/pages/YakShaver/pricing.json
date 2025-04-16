@@ -23,13 +23,13 @@
             "Manual work item assignment",
             "SharePoint video hosting"
           ],
-          "actions": {
-            "label": "Get Started Free",
-            "variant": "outlinedWhite",
-            "size": "medium",
-            "url": "/",
-            "Title": "/"
-          }
+          "buttons": [
+            {
+              "Title": "Get Started Free",
+              "JotFormId": "233468468973070",
+              "_template": "BookingButton"
+            }
+          ]
         },
         {
           "planTier": "Team",
@@ -50,13 +50,13 @@
             "Automatic work item assignment",
             "Discord support"
           ],
-          "actions": {
-            "label": "Get Team Plan",
-            "variant": "solidRed",
-            "size": "medium",
-            "url": "/",
-            "Title": "/"
-          }
+          "buttons": [
+            {
+              "Title": "Get Team Plan",
+              "JotFormId": "233468468973070",
+              "_template": "BookingButton"
+            }
+          ]
         },
         {
           "planTier": "Growth",
@@ -74,13 +74,13 @@
             "Priority support (Discord + email)",
             "Dedicated account manager"
           ],
-          "actions": {
-            "label": "Choose Growth Plan",
-            "variant": "outlinedWhite",
-            "size": "medium",
-            "url": "/",
-            "Title": "/"
-          }
+          "buttons": [
+            {
+              "Title": "Choose Growth Plan",
+              "JotFormId": "233468468973070",
+              "_template": "BookingButton"
+            }
+          ]
         },
         {
           "planTier": "Enterprise",
@@ -98,13 +98,13 @@
             "Custom integrations",
             "Single Sign-On (SSO)"
           ],
-          "actions": {
-            "label": "Contact Sales",
-            "variant": "outlinedWhite",
-            "size": "medium",
-            "url": "/",
-            "Title": "/"
-          }
+          "buttons": [
+            {
+              "Title": "Contact Sales",
+              "JotFormId": "233468468973070",
+              "_template": "BookingButton"
+            }
+          ]
         }
       ],
       "addOns": {
@@ -113,7 +113,7 @@
         "price": "$25",
         "subPriceText": "per 50 credits",
         "actionButton": {
-          "label": "View Full Pricing Details",
+          "label": "Re-fill Here",
           "variant": "outlinedWhite",
           "size": "large",
           "url": "/pricing"
