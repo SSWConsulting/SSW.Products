@@ -4,13 +4,13 @@ import { Button } from "../../ui/button";
 
 const TryItNow = () => {
   return (
-    <Container>
-      <div className=" text-white w-full max-w-4xl bg-[#1e1e1e]/80 rounded-xl p-6 md:p-10">
+    <Container className="z-0 relative">
+      <div className=" text-white z-20 relative w-full max-w-4xl bg-[#1e1e1e]/80 rounded-xl p-6 md:p-10">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
           Start recording in 3 easy steps!
         </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* main box */}
+        <div className="grid relative z-10 grid-cols-1 md:grid-cols-3 gap-6">
           {/* Step 1 */}
           <div className="bg-[#2a2a2a] rounded-lg p-6">
             <h3 className="text-xl font-semibold mb-3">1. Pin extension</h3>
@@ -60,7 +60,9 @@ const TryItNow = () => {
             </div>
           </div>
         </div>
+        {/* background box */}
       </div>
+      <div className="absolute bg-white inset-y-4 rounded-lg inset-x-5 z-10 -bottom-5"></div>
     </Container>
   );
 };
