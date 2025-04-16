@@ -1,14 +1,23 @@
+import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
+import { tinaField } from "tinacms/dist/react";
+import { PagesPageBlocksTryItNow } from "../../../tina/__generated__/types";
 import Container from "../../Container";
-import { ActionButton } from "./ActionsButton";
-import { ButtonSize, ButtonVariant } from "./buttonEnum";
-const TryItNow = () => {
+
+type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
+
+const TryItNow = ({ tryItNowTitle }: TryItNowProps) => {
   return (
     <Container className="z-0 relative">
       <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full max-w-4xl py-12 bg-gray-dark rounded-3xl px-8">
-        <h2 className="text-[1.75rem] font-semibold text-center mb-7">
-          Start recording in 3 easy steps!
-        </h2>
+        {tryItNowTitle && (
+          <h2
+            data-tina-field={tinaField(tryItNowTitle)}
+            className="text-[1.75rem] font-semibold text-center mb-7"
+          >
+            {tryItNowTitle}
+          </h2>
+        )}
         {/* main box */}
         <div className="grid relative z-10 grid-cols-1 md:grid-cols-3 gap-4">
           {/* Step 1 */}
@@ -30,7 +39,7 @@ const TryItNow = () => {
           </div>
 
           {/* Step 2 */}
-          <div className="bg-gray-neutral rounded-2xl p-8">
+          {/* <div className="bg-gray-neutral rounded-2xl p-8">
             <h3 className="text-2xl font-semibold mb-3">2. Enable devices</h3>
             <p className="text-gray-light text-sm mb-4">
               Click the button below to set up your recording devices.
@@ -46,10 +55,10 @@ const TryItNow = () => {
                 }}
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Step 3 */}
-          <div className="bg-gray-neutral rounded-2xl p-8">
+          {/* <div className="bg-gray-neutral rounded-2xl p-8">
             <h3 className="text-2xl font-semibold mb-3">3. Pin extension</h3>
             <p className="text-gray-light text-sm mb-4">
               Click the ⋮ at the top right of your browser, then the next to
@@ -64,7 +73,7 @@ const TryItNow = () => {
                 className="w-full rounded"
               />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="absolute bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>

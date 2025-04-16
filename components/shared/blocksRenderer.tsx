@@ -128,7 +128,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
         );
 
       case "PagesPageBlocksTryItNow":
-        return <TryItNow />;
+        return <TryItNow {...block} />;
       default:
         return null;
     }

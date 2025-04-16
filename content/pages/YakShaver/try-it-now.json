@@ -5,9 +5,10 @@
     "openGraphTitle": "Try It now",
     "openGraphDescription": "Step by step instructions for installing the YakShaver browser extension and using it"
   },
-  "title": "Try It Now",
+  "title": "fad",
   "pageBlocks": [
     {
+      "tryItNowTitle": "Start recording in 3 easy steps!",
       "_template": "tryItNow"
     }
   ]
