@@ -25,7 +25,7 @@ const TryItNow = (props: TryItNowProps) => {
   const { tryItNowTitle, tryItNowCards } = props;
 
   return (
-    <Container>
+    <Container className="first:pt-20">
       {props.topImage?.imgSrc &&
         props.topImage.imgWidth &&
         props.topImage.imgHeight && (

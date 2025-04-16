@@ -27,6 +27,10 @@ export default function HomePageClient({
     <div
       className={cn(
         "flex pt-navBarHeight flex-col gap-14 lg:gap-24 mx-auto w-full min-h-[95vh]",
+        topPaddingOptions[
+          tinaData?.data?.pages?.pageFormatting
+            ?.topPadding as keyof typeof topPaddingOptions
+        ],
         bottomPaddingOptions[
           tinaData?.data?.pages?.pageFormatting
             ?.bottomPadding as keyof typeof bottomPaddingOptions
