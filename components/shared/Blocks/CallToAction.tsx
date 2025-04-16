@@ -1,8 +1,8 @@
-import { ShinyButton } from "@/components/magicui/shiny-button";
 import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import { tinaField } from "tinacms/dist/react";
 import { PagesPageBlocksCallToAction } from "../../../tina/__generated__/types";
+import Link from "next/link";
 
 type CallToActionProps = RemoveTinaMetadata<PagesPageBlocksCallToAction> & {
   className?: string;
@@ -32,13 +32,14 @@ const CallToAction = ({ className, ...props }: CallToActionProps) => {
             )}
 
             {props.button && (
-              <ShinyButton
+              <Link
                 data-tina-field={tinaField(props, "button")}
-                className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
+                className="bg-[#CC4141] text-white py-4 px-6 rounded-lg hover:bg-[#CC4141]/80 transition-all ease-in-out duration-300"
                 href={props.button.buttonLink || ""}
+                target="_blank"
               >
                 {props?.button?.buttonText}
-              </ShinyButton>
+              </Link>
             )}
           </section>
         </div>

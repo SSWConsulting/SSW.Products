@@ -45,15 +45,25 @@ export function YakBorderAnimate() {
       <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
         <defs>
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#CC4141" />
+            <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#FF778E" />
           </filter>
+          <linearGradient
+            id="yakGradient"
+            x1="0"
+            y1="0"
+            x2="100"
+            y2="0"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop offset="0%" stopColor="#e34f4f" />
+            <stop offset="100%" stopColor="#FF778E" />
+          </linearGradient>
         </defs>
-        {/* Half-circle for left side (counterclockwise from bottom to top) */}
+
         <path
           d="M 50,98 A 48,48 0 0 1 2,50 A 48,48 0 0 1 50,2"
           fill="none"
-          stroke="#CC4141"
-          filter="url(#glow)"
+          stroke="url(#yakGradient)"
           strokeWidth="4"
           strokeDasharray="226"
           strokeDashoffset="226"
@@ -62,12 +72,10 @@ export function YakBorderAnimate() {
           }}
         />
 
-        {/* Half-circle for right side (clockwise from bottom to top) */}
         <path
           d="M 50,98 A 48,48 0 0 0 98,50 A 48,48 0 0 0 50,2"
           fill="none"
-          stroke="#CC4141"
-           filter="url(#glow)"
+          stroke="url(#yakGradient)"
           strokeWidth="4"
           strokeDasharray="226"
           strokeDashoffset="226"
