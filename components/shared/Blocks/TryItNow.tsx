@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Container from "../../Container";
-import { Button } from "../../ui/button";
-
+import { ActionButton } from "./ActionsButton";
+import { ButtonSize, ButtonVariant } from "./buttonEnum";
 const TryItNow = () => {
   return (
     <Container className="z-0 relative">
@@ -36,9 +36,15 @@ const TryItNow = () => {
               Click the button below to set up your recording devices.
             </p>
             <div className="flex justify-center mt-12">
-              <Button className="bg-red-500 hover:bg-red-600 text-white rounded-md py-2 px-4 flex items-center gap-2">
-                <span>🎙️</span> Enable Mic & Webcam
-              </Button>
+              <ActionButton
+                className="w-fit text-sm"
+                action={{
+                  label: "🎙️Enable Mic & Webcam",
+                  size: ButtonSize.Large,
+                  variant: ButtonVariant.SolidRed,
+                  url: "http://localhost:3000/admin/index.html#/~/try-it-now",
+                }}
+              />
             </div>
           </div>
 
