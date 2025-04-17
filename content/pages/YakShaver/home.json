@@ -15,7 +15,7 @@
         "ticket",
         "email"
       ],
-      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. \n\nSave hours of frustration with YakShaver\n",
+      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly.\n\nSave hours of frustration with YakShaver\n",
       "ctaLeft": {
         "title": "TRY IT NOW",
         "link": "https://chromewebstore.google.com/detail/yakshaver/glcoihkbmomiblcbpnlkafcipcfnikjc"
@@ -56,6 +56,11 @@
           "Badge1Text": "Teams",
           "Badge2Text": "Snipping Tool",
           "Badge3Text": "Snagit",
+          "delimeters": {
+            "enabled": false,
+            "delimeter": "and",
+            "suffix": "and hundreds more"
+          },
           "media": "/public/Browser1.png",
           "textOnLeft": true
         },
@@ -73,6 +78,10 @@
           "Badge1Text": "GitHub",
           "Badge2Text": "DevOps",
           "Badge3Text": "Email",
+          "delimeters": {
+            "enabled": false,
+            "delimeter": "or"
+          },
           "media": "/public/Browser3.png",
           "textOnLeft": true
         }

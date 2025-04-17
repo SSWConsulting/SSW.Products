@@ -88,7 +88,8 @@ function CardItem({
       setContentHeight(isOpen ? contentRef.current.scrollHeight : 0);
     }
   }, [isOpen, data]);
-
+  const delimeter =
+    (data?.delimeters?.enabled && data?.delimeters?.delimeter) || "";
   return (
     <div
       className={`group relative w-full rounded-xl p-[2px] ${
@@ -131,8 +132,19 @@ function CardItem({
             </div>
             <div className="flex flex-wrap gap-2 py-3">
               {data.Badge1Text && <Badge title={data.Badge1Text} />}
-              {data.Badge2Text && <Badge title={data.Badge2Text} />}
-              {data.Badge3Text && <Badge title={data.Badge3Text} />}
+              {data.Badge2Text && (
+                <>
+                  {delimeter}
+                  <Badge title={data.Badge2Text} />
+                </>
+              )}
+              {data.Badge3Text && (
+                <>
+                  {delimeter}
+                  <Badge title={data.Badge3Text} />{" "}
+                  {data?.delimeters?.enabled && data?.delimeters?.suffix}
+                </>
+              )}
             </div>
           </div>
         </div>
