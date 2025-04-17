@@ -170,10 +170,9 @@ export default TryItNowClient;
 const PrettyBg = () => {
   return (
     <div
-      className="absolute top-1/2  left-1/2 size-[1800px] -z-10 bg-cover -translate-y-1/2 -translate-x-1/2 bg-no-repeat bg-center"
+      className="absolute top-1/2 opacity-75 left-1/2 size h-[350px] w-[1100px] rounded-full -z-10 bg-cover -translate-y-1/2 -translate-x-1/2 bg-no-repeat bg-center"
       style={{
-        maskImage: "radial-gradient(#ffffffba, #00000000)",
-        filter: "blur(200px)",
+        filter: "blur(150px)",
         backgroundImage:
           "linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(123.04deg, #FF9D3F -23.58%, #F46772 36.14%, #AF33E4 78.77%, #080808 124.29%)",
       }}
