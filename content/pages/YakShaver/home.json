@@ -15,7 +15,7 @@
         "ticket",
         "email"
       ],
-      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly. Save hours of frustration with YakShaver",
+      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly.\n\nSave hours of frustration with YakShaver.\n",
       "ctaLeft": {
         "title": "TRY IT NOW",
         "link": "https://chromewebstore.google.com/detail/yakshaver/glcoihkbmomiblcbpnlkafcipcfnikjc"
@@ -52,10 +52,15 @@
         {
           "AboveHeaderText": "{See it}",
           "Header": "1 - Record a Video",
-          "Description": "Found a bug or have an idea? Record your screen and voice with any app you like\n",
+          "Description": "Found a bug or have an idea? Record your screen and voice with any app you like.\n",
           "Badge1Text": "Teams",
           "Badge2Text": "Snipping Tool",
           "Badge3Text": "Snagit",
+          "delimiters": {
+            "enabled": false,
+            "delimeter": "and",
+            "suffix": "and hundreds more"
+          },
           "media": "/public/Browser1.png",
           "textOnLeft": true
         },
@@ -69,10 +74,14 @@
         {
           "AboveHeaderText": "{Solve It}",
           "Header": "3 - Tasks are Created",
-          "Description": "**YakShaver creates a task, bug report, or feature reques**t in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
+          "Description": "**YakShaver creates a task, bug report, or feature request** in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
           "Badge1Text": "GitHub",
           "Badge2Text": "DevOps",
           "Badge3Text": "Email",
+          "delimiters": {
+            "enabled": false,
+            "delimeter": "or"
+          },
           "media": "/public/Browser3.png",
           "textOnLeft": true
         }
@@ -269,8 +278,8 @@
           "answer": "You can report any type of issue! YakShaver is designed to handle a variety of tasks, bugs or features, and automatically package them into work items with relevant information and send it off to the relevant people."
         },
         {
-          "question": "What file formats do you support",
-          "answer": "Currently, we support .mp4 and .mov video file extensions."
+          "question": "What file formats do you support?",
+          "answer": "Currently, YakShaver supports .mp4 and .mov video file extensions."
         }
       ],
       "_template": "faq"
