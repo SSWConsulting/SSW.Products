@@ -279,7 +279,7 @@
         },
         {
           "question": "What file formats do you support",
-          "answer": "Currently, we support .mp4 and .mov video file extensions."
+          "answer": "Currently, YakShaver supports .mp4 and .mov video file extensions."
         }
       ],
       "_template": "faq"
