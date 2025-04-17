@@ -95,9 +95,7 @@ function CardItem({
         isOpen
           ? "bg-gradient-to-r from-[#e34f4f] to-[#FF778E]"
           : "bg-transparent"
-      } transition-all duration-300 cursor-pointer ${
-        isOpen ? "flex-grow" : ""
-      }`}
+      } transition-all duration-300 cursor-pointer`}
       onClick={() => setIdOfOpen(isOpen ? null : uniqueId)}
     >
       <div className="w-full h-full rounded-xl bg-gradient-to-r from-[#0e0e0e] via-[#131313] to-[#141414] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] p-6 shadow-2xl text-white transition-all duration-300">
