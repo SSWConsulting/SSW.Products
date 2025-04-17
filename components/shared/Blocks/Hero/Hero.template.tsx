@@ -28,6 +28,7 @@ export const HeroTemplate: Template = {
     {
       name: "byLine",
       label: "By Line",
+      description: "use bolding to make the text red",
       type: "rich-text",
     },
     // Placeholder for the buttons
