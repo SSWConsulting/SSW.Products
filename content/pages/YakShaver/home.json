@@ -236,7 +236,7 @@
       "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\*\\* Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
       "bottomAction": {
         "label": "View Full Pricing Details",
-        "variant": "solidRed",
+        "variant": "solidWhite",
         "size": "large",
         "url": "/pricing"
       },
