@@ -14,6 +14,7 @@ import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {
   type PagesPageBlocksTryItNowTryItNowCards as Card,
+  type PagesPageBlocksTryItNowTryItNowCardsButton as CardButtonProps,
   PagesPageBlocksTryItNow,
 } from "../../../tina/__generated__/types";
 import Container from "../../Container";
@@ -225,26 +226,7 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
               : {}
           }
         >
-          <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
-            <span data-tina-field={tinaField(card.button)}>
-              <TinaMarkdown
-                content={card.button.label}
-                components={{
-                  img: (props?: { url: string }) => (
-                    <span className="size-5 mx-1 relative align-text-top inline-block">
-                      <Image
-                        className=""
-                        src={props?.url || ""}
-                        aria-hidden="true"
-                        alt=""
-                        fill={true}
-                      />
-                    </span>
-                  ),
-                }}
-              />
-            </span>
-          </div>
+          <CardButton {...card.button} />
         </div>
       )}
       {card?.image &&
@@ -273,6 +255,31 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
             />
           </div>
         )}
+    </div>
+  );
+};
+
+const CardButton = (button: CardButtonProps) => {
+  return (
+    <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
+      <span data-tina-field={tinaField(button)}>
+        <TinaMarkdown
+          content={button.label}
+          components={{
+            img: (props?: { url: string }) => (
+              <span className="size-5 mx-1 relative align-text-top inline-block">
+                <Image
+                  className=""
+                  src={props?.url || ""}
+                  aria-hidden="true"
+                  alt=""
+                  fill={true}
+                />
+              </span>
+            ),
+          }}
+        />
+      </span>
     </div>
   );
 };
