@@ -48,7 +48,7 @@ const CustomSlider = ({
     <div className="w-full">
       <div className="relative w-full h-2 bg-white/10 rounded-full">
         <div
-          className="absolute h-full bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] rounded-full"
+          className="absolute h-full bg-gradient-to-r from-[#e34f4f] to-[#D699FB] via-[#FF778E] rounded-full"
           style={{ width: `${percentage}%` }}
         ></div>
         <input
