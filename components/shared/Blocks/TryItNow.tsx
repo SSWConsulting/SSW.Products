@@ -215,9 +215,14 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
           <TinaMarkdown components={components} content={card.description} />
         </section>
       )}
-      {card?.button && (
+
+      {card?.button?.label && card?.image?.imgSrc && (
+        <CardButton {...card.button} />
+      )}
+
+      {(card?.button?.label || card.image?.imgSrc) && (
         <div
-          className="w-full"
+          className="w-full relative"
           style={
             aspectRatio
               ? {
@@ -226,35 +231,24 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
               : {}
           }
         >
-          <CardButton {...card.button} />
+          {card?.button && !card.image && <CardButton {...card.button} />}
+          {card?.image &&
+            card.image.imgSrc &&
+            card.image.imgWidth &&
+            card.image.imgHeight && (
+              <Image
+                data-tina-field={tinaField(card, "image")}
+                className="bottom-0 absolute"
+                src={card.image.imgSrc}
+                aria-hidden="true"
+                objectFit="contain"
+                width={card.image.imgWidth}
+                height={card.image.imgHeight}
+                alt={""}
+              />
+            )}
         </div>
       )}
-      {card?.image &&
-        card.image.imgSrc &&
-        card.image.imgWidth &&
-        card.image.imgHeight && (
-          <div
-            style={
-              aspectRatio
-                ? {
-                    aspectRatio,
-                  }
-                : {}
-            }
-            className="relative w-full"
-          >
-            <Image
-              data-tina-field={tinaField(card, "image")}
-              className="bottom-0 absolute"
-              src={card.image.imgSrc}
-              aria-hidden="true"
-              objectFit="contain"
-              width={card.image.imgWidth}
-              height={card.image.imgHeight}
-              alt={""}
-            />
-          </div>
-        )}
     </div>
   );
 };
