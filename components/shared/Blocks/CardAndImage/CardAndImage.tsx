@@ -89,7 +89,7 @@ function CardItem({
     }
   }, [isOpen, data]);
   const delimeter =
-    (data?.delimeters?.enabled && data?.delimeters?.delimeter) || "";
+    (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
   return (
     <div
       className={`group relative w-full rounded-xl p-[2px] ${
@@ -142,7 +142,7 @@ function CardItem({
                 <>
                   {delimeter}
                   <Badge title={data.Badge3Text} />{" "}
-                  {data?.delimeters?.enabled && data?.delimeters?.suffix}
+                  {data?.delimiters?.enabled && data?.delimiters?.suffix}
                 </>
               )}
             </div>

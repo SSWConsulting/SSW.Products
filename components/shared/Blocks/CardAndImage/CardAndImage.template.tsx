@@ -56,8 +56,8 @@ export const CardAndImageTemplate: Template = {
           type: "string",
         },
         {
-          name: "delimeters",
-          label: "Delimeters",
+          name: "delimiters",
+          label: "delimiters",
           type: "object",
           description: "Adds delimiting text between badges",
           fields: [
@@ -65,7 +65,7 @@ export const CardAndImageTemplate: Template = {
               type: "boolean",
               name: "enabled",
               label: "Enabled",
-              description: "Feature flag for enabling badge delimeters",
+              description: "Feature flag for enabling badge delimiters",
             },
             {
               name: "delimeter",
