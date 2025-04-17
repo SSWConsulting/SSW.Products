@@ -51,7 +51,6 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
 
   useEffect(() => {
     const newTallestAspectRatio = getTallestAspectRatio(props.tryItNowCards);
-    console.log("newTallestAspectRatio", newTallestAspectRatio);
     setAspectRatio(newTallestAspectRatio);
   }, [props.tryItNowCards]);
 

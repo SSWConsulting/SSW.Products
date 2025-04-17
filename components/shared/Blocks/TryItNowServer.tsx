@@ -3,7 +3,6 @@ import TryItNowClient, { TryItNowProps, useTryItNow } from "./TryItNow";
 export const getTallestAspectRatio = (
   tryItNowCards: TryItNowProps["tryItNowCards"]
 ): string | undefined => {
-  console.log("cards");
   if (!tryItNowCards) {
     return;
   }
