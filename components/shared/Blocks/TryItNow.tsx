@@ -58,7 +58,7 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
   // set the aspect ratio of the bottom half of the cards to the aspect ratio of the tallest card
   // (to avoid inconsistent heights on mobile)
   return (
-    <Container className="first:pt-20">
+    <Container className="first:pt-20 relative">
       {props.topImage?.imgSrc &&
         props.topImage.imgWidth &&
         props.topImage.imgHeight && (
@@ -170,7 +170,7 @@ export default TryItNowClient;
 const PrettyBg = () => {
   return (
     <div
-      className="absolute  inset-0 -z-10 bg-cover bg-no-repeat bg-center"
+      className="absolute top-1/2  left-1/2 size-[1800px] -z-10 bg-cover -translate-y-1/2 -translate-x-1/2 bg-no-repeat bg-center"
       style={{
         maskImage: "radial-gradient(#ffffffba, #00000000)",
         filter: "blur(200px)",
