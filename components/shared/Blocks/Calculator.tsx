@@ -298,10 +298,10 @@ const CalculatorTierCard = ({
 }) => {
   return (
     <div
-      className={`w-full rounded-xl p-[2px] ${
+      className={`w-full rounded-xl p-[1px] ${
         isSelected
-          ? 'bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E]'
-          : 'bg-transparent'
+          ? "bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E]"
+          : "bg-transparent"
       } transition-all duration-300`}
     >
       <button
@@ -338,7 +338,7 @@ const CalculatorTierCard = ({
             <div key={i} className="flex gap-2">
               <p
                 className={`text-base text-white/50 leading-5 ${
-                  i === 0 ? 'font-bold' : ''
+                  i === 0 ? "font-bold" : ""
                 }`}
               >
                 {description}
