@@ -25,14 +25,10 @@ export const HeroTemplate: Template = {
       type: "string",
       list: true,
     },
-
     {
       name: "byLine",
       label: "By Line",
-      type: "string",
-      ui: {
-        component: "textarea",
-      },
+      type: "rich-text",
     },
     // Placeholder for the buttons
     {
