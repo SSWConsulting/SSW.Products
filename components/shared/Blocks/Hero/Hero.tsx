@@ -316,7 +316,7 @@ export default function Hero({ data }: { data: any }) {
                   className="bg-white hover:bg-white/80 text-[#222222] px-5 py-2 font-bold rounded-lg transition-all ease-in-out duration-300 border border-white"
                   href={data.ctaLeft?.link}
                 >
-                  <div className=" text-[#222222]">{data.ctaLeft?.title}</div>
+                  {data.ctaLeft?.title}
                 </Link>
               )}
               {data?.ctaRight?.title && data?.ctaRight?.link && (
