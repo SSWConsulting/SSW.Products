@@ -1,4 +1,5 @@
 import { Template } from "tinacms";
+import { genericButtonTemplateFields } from "./genericButtonTemplateFields";
 
 export const callToActionTemplate: Template = {
   label: "Call To Action",
@@ -20,15 +21,21 @@ export const callToActionTemplate: Template = {
       type: "string",
     },
     {
-      name: "button",
+      name: "ctaButton",
       type: "object",
+      ui: {
+        defaultItem: () => {
+          return {
+            label: "Button",
+            buttonLink: "/",
+            variant: "solidRed",
+            size: "medium",
+          };
+        },
+      },
       label: "Button",
       fields: [
-        {
-          name: "buttonText",
-          label: "Button Text",
-          type: "string",
-        },
+        ...genericButtonTemplateFields.fields,
         {
           name: "buttonLink",
           label: "Button Link",

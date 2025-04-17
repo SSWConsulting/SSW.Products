@@ -313,15 +313,15 @@ export default function Hero({ data }: { data: any }) {
             <div className="flex items-center justify-center pt-12 gap-6">
               {data?.ctaLeft?.title && data?.ctaLeft?.link && (
                 <Link
-                  className="bg-white hover:bg-white/80 text-[#222222] pt-1.5 pb-1 px-3.5 font-bold rounded-lg transition-all ease-in-out duration-300 border border-white"
+                  className="bg-white hover:bg-white/80 text-[#222222] px-5 py-2 font-bold rounded-lg transition-all ease-in-out duration-300 border border-white"
                   href={data.ctaLeft?.link}
                 >
-                  <div className=" text-[#222222]">{data.ctaLeft?.title}</div>
+                  {data.ctaLeft?.title}
                 </Link>
               )}
               {data?.ctaRight?.title && data?.ctaRight?.link && (
                 <Link
-                  className="pt-1.5 pb-1 px-3 font-bold rounded-lg text-white border border-white/50 bg-none flex items-center text-center justify-center gap-2 hover:bg-white/10 transition-all ease-in-out duration-300"
+                  className="px-5 py-2 font-bold rounded-lg text-white border border-white bg-none flex items-center text-center justify-center gap-2 hover:bg-white/10 transition-all ease-in-out duration-300"
                   href={data.ctaRight?.link}
                 >
                   {data.ctaRight?.title} <FaChevronRight className="pb-0.5" />

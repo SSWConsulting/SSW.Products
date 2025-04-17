@@ -245,7 +245,7 @@
       "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\*\\* Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
       "bottomAction": {
         "label": "View Full Pricing Details",
-        "variant": "solidRed",
+        "variant": "solidWhite",
         "size": "large",
         "url": "/pricing"
       },
@@ -287,9 +287,11 @@
     {
       "title": "Talk to a YakShaver Expert",
       "ctaDescription": "Evaluating YakShaver for your project? Book a 30-minute call with a YakShaver architect",
-      "button": {
-        "buttonText": "SCHEDULE CALL",
-        "buttonLink": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink"
+      "ctaButton": {
+        "label": "SCHEDULE A CALL",
+        "variant": "solidWhite",
+        "size": "large",
+        "buttonLink": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6%40ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous="
       },
       "_template": "callToAction"
     }

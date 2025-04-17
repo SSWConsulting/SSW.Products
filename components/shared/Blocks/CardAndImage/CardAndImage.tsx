@@ -92,7 +92,7 @@ function CardItem({
     (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
   return (
     <div
-      className={`group relative w-full rounded-xl p-[2px] ${
+      className={`group relative w-full rounded-xl p-[1px] ${
         isOpen
           ? "bg-gradient-to-r from-[#e34f4f] to-[#FF778E]"
           : "bg-transparent"
