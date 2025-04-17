@@ -1,16 +1,16 @@
-import { FaChevronRight } from "react-icons/fa6";
 import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { FaChevronRight } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils";
 import Container from "../../../Container";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
-import { YakAnimate, YakBorderAnimate } from "./yak-animate";
+import Link from "next/link";
 import { AudioWaveAnimation } from "./AudioWaveAnimation";
 import { GradientBackground } from "./GradientBackground";
-import Link from "next/link";
+import { YakAnimate, YakBorderAnimate } from "./yak-animate";
 
 // Typing Animation Component - made by Cursor
 const TypewriterText = ({
@@ -310,7 +310,7 @@ export default function Hero({ data }: { data: any }) {
               )}
               {data?.ctaRight?.title && data?.ctaRight?.link && (
                 <Link
-                  className="pt-1.5 pb-1 px-3 font-bold rounded-lg text-white border border-white/50 bg-none flex items-center text-center justify-center gap-2 hover:bg-white/10 transition-all ease-in-out duration-300"
+                  className="pt-1.5 pb-1 px-3.5  font-bold rounded-lg text-white border border-white/50 bg-none flex items-center text-center justify-center gap-2 hover:bg-white/10 transition-all ease-in-out duration-300"
                   href={data.ctaRight?.link}
                 >
                   {data.ctaRight?.title} <FaChevronRight className="pb-0.5" />
