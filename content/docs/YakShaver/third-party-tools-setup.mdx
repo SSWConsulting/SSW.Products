@@ -1,0 +1,88 @@
+﻿---
+title: Third-Party Recording Tools Setup
+date: '2025-01-15T15:00:00.000Z'
+displayOrder: 3
+---
+
+# Using YakShaver with Third-Party Recording Tools
+
+While the [browser extension](recording-work-item-browserextension) is the recommended way to get started with YakShaver, we also support a variety of third-party recording tools. These tools offer additional flexibility and features like keyboard shortcuts for power users who want to optimize their workflow.
+
+## How It Works
+
+When configured correctly, YakShaver monitors specific folders in your OneDrive for new recordings. When it finds a new recording, it automatically processes it into a work item.
+
+![](/YakShaver/folder-monitoring.png)
+**Figure: YakShaver monitoring your OneDrive folders**
+
+## Supported Video Formats
+
+- .mp4
+- .mov
+
+## Setup with Snagit (Recommended)
+
+[Snagit](https://www.techsmith.com/screen-capture.html) is a popular screen recording tool that works seamlessly with YakShaver.
+
+### Initial Setup
+
+1. Open Snagit Editor
+2. Go to **Edit | Editor Preferences**
+3. Open the **Library** tab
+4. Change the library location to your OneDrive Recordings folder:  
+   `OneDrive/Recordings/Snagit/`
+5. Click **OK** (you'll be prompted to restart Snagit)
+
+![](/snagit-tutorial.jpg)
+**Figure: Setting Snagit library location to your OneDrive folder**
+
+### Configuring Keyboard Shortcuts
+
+To become a power user, set up keyboard shortcuts for quick recording:
+
+1. In Snagit, ensure that "All-in-one" is selected
+2. Set your "Capture" hotkey (we recommend using "Print Screen")
+
+![](/YakShaver/All-in-One.png)
+**Figure: "All-in-One" selected with hotkey set**
+
+### Important YakShaver Configuration
+
+1. Open YakShaver in Microsoft Teams
+2. Type **OFF** in the YakShaver Teams bot  
+   (This prevents processing of old videos during setup)
+3. After configuring Snagit, type **ON** in YakShaver to reactivate processing
+
+### Recording with Snagit
+
+1. Press your configured hotkey (e.g., "Print Screen")
+2. Select the video recording option
+3. Record your screen while explaining the task
+4. Stop the recording when finished
+5. YakShaver will automatically process the recording
+
+## Windows Snipping Tool
+
+The built-in Windows Snipping Tool can also be configured to work with YakShaver.
+
+1. Open Windows Settings > System > Storage
+2. Under "Save locations", set Videos to your OneDrive folder:  
+   `OneDrive/Recordings/SnippingTool/`
+3. Open Snipping Tool settings and ensure recordings save to this location
+
+## Other Recording Tools
+
+You can use almost any recording tool with YakShaver if it can save to a specific folder. Just configure your tool to save recordings to:
+
+`OneDrive/Recordings/[ToolName]/`
+
+## Troubleshooting
+
+- **Videos not being processed?**  
+  Check that you've typed **ON** in the YakShaver Teams bot
+  
+- **Wrong file format?**  
+  Ensure your recording tool is saving in .mp4 or .mov format
+  
+- **Files saved to wrong location?**  
+  Double-check the save location in your recording tool's settings 
