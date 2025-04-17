@@ -65,7 +65,7 @@
           "textOnLeft": true
         },
         {
-          "AboveHeaderText": "{Shave It}",
+          "AboveHeaderText": "{Shave it}",
           "Header": "2 - YakShaver Takes Over",
           "Description": "YakShaver watches your video, turns what you say into text, and figures out what's happening.\n",
           "media": "/public/Browser2.png",
