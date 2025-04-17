@@ -130,7 +130,7 @@ function CardItem({
                 components={cardAndImageMarkdownRenderer}
               />
             </div>
-            <div className="flex flex-wrap gap-2 py-3">
+            <div className="flex items-center flex-wrap text-xs gap-2 py-3">
               {data.Badge1Text && <Badge title={data.Badge1Text} />}
               {data.Badge2Text && (
                 <>
