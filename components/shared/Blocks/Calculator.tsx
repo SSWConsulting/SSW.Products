@@ -40,7 +40,7 @@ const CustomSlider = ({
   };
 
   const percentage =
-    ((value - initialValue) / (finalValue - initialValue)) * 100 + 0.05;
+    ((value - initialValue) / (finalValue - initialValue)) * 100 + 0.5;
 
   const halfWayValue = (initialValue + finalValue) / 2;
 
