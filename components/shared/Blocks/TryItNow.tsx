@@ -254,7 +254,7 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
     <div
       key={key}
       className={cn(
-        "bg-gray-neutral flex gap-4 flex-col rounded-2xl -8 px-8",
+        "bg-gray-neutral flex gap-4 flex-col rounded-2xl pt-8 px-8",
         !hasCardImage && "pb-8"
       )}
     >
