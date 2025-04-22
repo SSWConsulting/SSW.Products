@@ -93,6 +93,11 @@ const TryItNowTemplate: Template = {
               label: "Label",
               type: "rich-text",
             },
+            {
+              name: "link",
+              label: "Link",
+              type: "string",
+            },
           ],
         },
       ],

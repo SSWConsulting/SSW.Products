@@ -13,31 +13,37 @@
         "imgWidth": 514,
         "imgHeight": 104
       },
-      "tryItNowTitle": "Start recording in 3 easy steps!",
+      "tryItNowTitle": "Start recording with the YakShaver browser extension in 3 steps!",
       "tryItNowCards": [
         {
-          "title": "1. Pin extension",
-          "description": "Click the ![](/TryItNow/puzzle.svg) at the top right of your browser, then ![](/TryItNow/pin.svg) next to Screencastify.\n",
+          "title": "1. Download",
+          "description": "Download  the YakShaver browser extension from the Google Chrome store.\n",
           "image": {
-            "imgSrc": "/TryItNow/pin-yakshaver.png",
             "imgWidth": 480,
             "imgHeight": 336
-          }
-        },
-        {
-          "title": "2. Enable devices",
-          "description": "Click the button below to set up your recording devices.\n",
+          },
           "button": {
-            "label": "![](/TryItNow/microphone.svg)Enable Mic & Webcam\n"
+            "label": "Download\n",
+            "link": "https://chromewebstore.google.com/detail/yakshaver/glcoihkbmomiblcbpnlkafcipcfnikjc"
           }
         },
         {
-          "title": "3. Pin extension",
+          "title": "2. Pin",
+          "description": "Click the ![](/TryItNow/puzzle.svg) at the topo right of your browser, then the ![](/TryItNow/pin.svg) next to YakShaver.\n",
+          "button": {
+            "label": ""
+          }
+        },
+        {
+          "title": "3. Give Permissions",
           "description": "Click the  at the top right of your browser, then the  next to Screencastify.\n",
           "image": {
             "imgSrc": "/TryItNow/yaskhaver-this-tab.png",
             "imgWidth": 480,
             "imgHeight": 336
+          },
+          "button": {
+            "label": ""
           }
         }
       ],

@@ -250,6 +250,21 @@ type CardProps = {
 };
 
 const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
+  const noButtonLabel =
+    card.button?.label?.children &&
+    card.button?.label?.children?.length &&
+    card.button?.label?.children[0]?.children[0]?.text === "";
+  console.log("condition 1: ", card.button?.label?.children);
+  console.log("condition 2: ", card.button?.label?.children?.length);
+  console.log(
+    "condition 3: ",
+    card.button?.label?.children[0]?.children[0]?.text === ""
+  );
+  // console.log(
+  //   "thibng",
+  //   card.button?.label?.children[0]?.children[0]?.text === ""
+  // );
+  // console.log("thibng", card.button?.label?.children[0]?.children[0]?.text);
   return (
     <div
       key={key}
@@ -276,11 +291,9 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
         </section>
       )}
 
-      {card?.button?.label && card?.image?.imgSrc && (
-        <CardButton {...card.button} />
-      )}
+      {!noButtonLabel && card?.image?.imgSrc && <CardButton {...card.button} />}
 
-      {(card?.button?.label || card.image?.imgSrc) && (
+      {(!noButtonLabel || card.image?.imgSrc) && (
         <div
           className="w-full relative"
           style={
@@ -291,7 +304,7 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
               : {}
           }
         >
-          {card?.button && !card.image?.imgSrc && (
+          {!noButtonLabel && !card.image?.imgSrc && (
             <CardButton {...card.button} />
           )}
           {card?.image &&
@@ -316,27 +329,44 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
 };
 
 const CardButton = (button: CardButtonProps) => {
+  const WrapperComponent = ({
+    children,
+    button,
+  }: {
+    children: ReactNode;
+    button: CardButtonProps;
+  }) => {
+    return button.link ? (
+      <Link target="_blank" href={button.link || "no link"}>
+        {children}
+      </Link>
+    ) : (
+      <>{children}</>
+    );
+  };
   return (
-    <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
-      <span data-tina-field={tinaField(button)}>
-        <TinaMarkdown
-          content={button.label}
-          components={{
-            img: (props?: { url: string }) => (
-              <span className="size-5 mx-1 relative align-text-top inline-block">
-                <Image
-                  className=""
-                  src={props?.url || ""}
-                  aria-hidden="true"
-                  alt=""
-                  fill={true}
-                />
-              </span>
-            ),
-          }}
-        />
-      </span>
-    </div>
+    <WrapperComponent button={button}>
+      <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
+        <span data-tina-field={tinaField(button)}>
+          <TinaMarkdown
+            content={button.label}
+            components={{
+              img: (props?: { url: string }) => (
+                <span className="size-5 mx-1 relative align-text-top inline-block">
+                  <Image
+                    className=""
+                    src={props?.url || ""}
+                    aria-hidden="true"
+                    alt=""
+                    fill={true}
+                  />
+                </span>
+              ),
+            }}
+          />
+        </span>
+      </div>
+    </WrapperComponent>
   );
 };
 
