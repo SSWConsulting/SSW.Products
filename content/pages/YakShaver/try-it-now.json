@@ -23,6 +23,7 @@
             "imgHeight": 336
           },
           "button": {
+            "enableButton": true,
             "label": "Download\n",
             "link": "https://chromewebstore.google.com/detail/yakshaver/glcoihkbmomiblcbpnlkafcipcfnikjc"
           }
