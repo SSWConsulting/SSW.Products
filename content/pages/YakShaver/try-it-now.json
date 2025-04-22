@@ -54,6 +54,7 @@
     }
   ],
   "pageFormatting": {
+    "backgroundColor": "black",
     "bottomPadding": "small"
   }
 }
