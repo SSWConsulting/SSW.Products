@@ -32,7 +32,6 @@ module.exports = {
           red: "#CC4141",
           charcoal: "#333333",
         },
-        text: {},
         gray: {
           dark: "#1F1F1F",
           neutral: "#333333",
