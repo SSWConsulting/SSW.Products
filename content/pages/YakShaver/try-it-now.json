@@ -42,7 +42,7 @@
         },
         {
           "title": "3. Give Permissions",
-          "description": "Click the ![](/TryItNow/puzzle.svg) at the top right of your browser, Then click the ![](/TryItNow/ellipsis-vertical.svg) and make sure your camera and microphone are enabled.\n",
+          "description": "When prompted, allow YakShaver to use your system audio. Make sure you share your microphone from the current tab as well.\n",
           "image": {
             "imgWidth": 480,
             "imgHeight": 336
