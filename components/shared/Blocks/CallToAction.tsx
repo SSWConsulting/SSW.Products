@@ -41,14 +41,6 @@ const CallToAction = ({ className, ...props }: CallToActionProps) => {
                   url: props.ctaButton.buttonLink || "",
                 }}
               />
-              // <Link
-              //   data-tina-field={tinaField(props, "button")}
-              //   className="bg-[#CC4141] text-white py-4 px-6 rounded-lg hover:bg-[#CC4141]/80 transition-all ease-in-out duration-300"
-              //   href={props.button.buttonLink || ""}
-              //   target="_blank"
-              // >
-              //   {props?.button?.buttonText}
-              // </Link>
             )}
           </section>
         </div>
