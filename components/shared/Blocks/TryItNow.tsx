@@ -169,14 +169,75 @@ export default TryItNowClient;
 
 const PrettyBg = () => {
   return (
-    <div
-      className="absolute top-1/2 opacity-75 left-1/2 size h-[350px] w-[1100px] rounded-full -z-10 bg-cover -translate-y-1/2 -translate-x-1/2 bg-no-repeat bg-center"
-      style={{
-        filter: "blur(150px)",
-        backgroundImage:
-          "linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(123.04deg, #FF9D3F -23.58%, #F46772 36.14%, #AF33E4 78.77%, #080808 124.29%)",
-      }}
-    ></div>
+    <div className="absolute top-1/2 left-1/2 -translate-y-[35%] -translate-x-1/2 -z-10  opacity-75 overflow-hidden">
+      <svg
+        className="w-[1440px] h-[1250px]"
+        width="1575"
+        height="1233"
+        viewBox="0 0 1575 1233"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <g opacity="0.64">
+          <g filter="url(#filter0_f_1933_2463)">
+            <path
+              d="M1215 607.107C1215 785.709 1069.17 920.773 787.312 920.773C543.286 927.865 367.991 767.117 360 630.683C360 452.081 467.374 281.092 787.312 274C1207.87 274 1215 483.918 1215 607.107Z"
+              fill="url(#paint0_linear_1933_2463)"
+            />
+            <path
+              d="M1215 607.107C1215 785.709 1069.17 920.773 787.312 920.773C543.286 927.865 367.991 767.117 360 630.683C360 452.081 467.374 281.092 787.312 274C1207.87 274 1215 483.918 1215 607.107Z"
+              fill="black"
+              fill-opacity="0.1"
+            />
+          </g>
+        </g>
+        <defs>
+          <filter
+            id="filter0_f_1933_2463"
+            x="0"
+            y="-86"
+            width="1575"
+            height="1367"
+            filterUnits="userSpaceOnUse"
+            color-interpolation-filters="sRGB"
+          >
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feBlend
+              mode="normal"
+              in="SourceGraphic"
+              in2="BackgroundImageFix"
+              result="shape"
+            />
+            <feGaussianBlur
+              stdDeviation="180"
+              result="effect1_foregroundBlur_1933_2463"
+            />
+          </filter>
+          <linearGradient
+            id="paint0_linear_1933_2463"
+            x1="25.8334"
+            y1="275.681"
+            x2="1225.91"
+            y2="1307.11"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#FF9D3F" />
+            <stop offset="0.403862" stop-color="#F46772" />
+            <stop offset="0.692179" stop-color="#AF33E4" />
+            <stop offset="1" stop-color="#080808" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {/* <div
+        className="absolute inset-0 backdrop-blur-2xl"
+        style={{
+          mask: "radial-gradient(circle at center, transparent 60%, black 80%)",
+          WebkitMask:
+            "radial-gradient(circle at center, transparent 60%, black 80%)",
+        }}
+      ></div> */}
+    </div>
   );
 };
 
@@ -192,7 +253,7 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
     <div
       key={key}
       className={cn(
-        "bg-gray-neutral flex gap-4 flex-col rounded-2xl pt-8 px-8",
+        "bg-gray-neutral flex gap-4 flex-col rounded-2xl -8 px-8",
         !hasCardImage && "pb-8"
       )}
     >
