@@ -61,7 +61,9 @@ const TryItNowTemplate: Template = {
           fields: [
             {
               type: "image",
-              label: "Hero image",
+              label: "Card Image",
+              description:
+                "Card images will use the aspect ratio of tallest image among the cards",
               name: "imgSrc",
               ui: {
                 component: CustomImageField,
