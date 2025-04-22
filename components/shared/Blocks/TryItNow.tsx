@@ -291,7 +291,9 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
               : {}
           }
         >
-          {card?.button && !card.image && <CardButton {...card.button} />}
+          {card?.button && !card.image?.imgSrc && (
+            <CardButton {...card.button} />
+          )}
           {card?.image &&
             card.image.imgSrc &&
             card.image.imgWidth &&
