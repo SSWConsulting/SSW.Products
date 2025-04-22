@@ -29,26 +29,8 @@ const components = {
   ),
 };
 
-// export const TryItNow = (props: TryItNowProps) => {
-//   return (
-//     <TryItNowProvider {...props}>
-//       <TryItNowServer />
-//     </TryItNowProvider>
-//   );
-// };
-
 export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
   const { tryItNowTitle, tryItNowCards } = props;
-
-  // const [aspectRatio, setAspectRatio] = useState(props.aspectRatio);
-
-  // useEffect(() => {
-  //   const newTallestAspectRatio = getTallestAspectRatio(props.tryItNowCards);
-  //   setAspectRatio(newTallestAspectRatio);
-  // }, [props.tryItNowCards]);
-
-  // set the aspect ratio of the bottom half of the cards to the aspect ratio of the tallest card
-  // (to avoid inconsistent heights on mobile)
   return (
     <Container className="first:pt-20 relative">
       {props.topImage?.imgSrc &&
@@ -212,15 +194,6 @@ const PrettyBg = () => {
           </linearGradient>
         </defs>
       </svg>
-
-      {/* <div
-        className="absolute inset-0 backdrop-blur-2xl"
-        style={{
-          mask: "radial-gradient(circle at center, transparent 60%, black 80%)",
-          WebkitMask:
-            "radial-gradient(circle at center, transparent 60%, black 80%)",
-        }}
-      ></div> */}
     </div>
   );
 };
