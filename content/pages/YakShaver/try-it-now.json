@@ -41,9 +41,8 @@
         },
         {
           "title": "3. Give Permissions",
-          "description": "Click the  at the top right of your browser, then the  next to Screencastify.\n",
+          "description": "Click the ![](/TryItNow/puzzle.svg) at the top right of your browser, Then click the ![](/TryItNow/ellipsis-vertical.svg) and make sure your camera and microphone are enabled.\n",
           "image": {
-            "imgSrc": "/TryItNow/yaskhaver-this-tab.png",
             "imgWidth": 480,
             "imgHeight": 336
           },
