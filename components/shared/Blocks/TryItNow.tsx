@@ -280,7 +280,7 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
 
       {card.image?.imgSrc && (
         <div
-          className="w-full relative"
+          className="w-full mt-auto relative"
           style={
             aspectRatio
               ? {
