@@ -2,13 +2,7 @@ import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, ReactNode, useContext } from "react";
 
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -18,7 +12,6 @@ import {
   PagesPageBlocksTryItNow,
 } from "../../../tina/__generated__/types";
 import Container from "../../Container";
-import { getTallestAspectRatio, TryItNowServer } from "./TryItNowServer";
 
 export type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
 
@@ -36,23 +29,23 @@ const components = {
   ),
 };
 
-export const TryItNow = (props: TryItNowProps) => {
-  return (
-    <TryItNowProvider {...props}>
-      <TryItNowServer />
-    </TryItNowProvider>
-  );
-};
+// export const TryItNow = (props: TryItNowProps) => {
+//   return (
+//     <TryItNowProvider {...props}>
+//       <TryItNowServer />
+//     </TryItNowProvider>
+//   );
+// };
 
-const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
+export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
   const { tryItNowTitle, tryItNowCards } = props;
 
-  const [aspectRatio, setAspectRatio] = useState(props.aspectRatio);
+  // const [aspectRatio, setAspectRatio] = useState(props.aspectRatio);
 
-  useEffect(() => {
-    const newTallestAspectRatio = getTallestAspectRatio(props.tryItNowCards);
-    setAspectRatio(newTallestAspectRatio);
-  }, [props.tryItNowCards]);
+  // useEffect(() => {
+  //   const newTallestAspectRatio = getTallestAspectRatio(props.tryItNowCards);
+  //   setAspectRatio(newTallestAspectRatio);
+  // }, [props.tryItNowCards]);
 
   // set the aspect ratio of the bottom half of the cards to the aspect ratio of the tallest card
   // (to avoid inconsistent heights on mobile)
@@ -87,13 +80,7 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
             {tryItNowCards &&
               tryItNowCards.map((card, index) => {
                 if (!card) return <></>;
-                return (
-                  <Card
-                    card={card}
-                    aspectRatio={aspectRatio}
-                    key={`card-${index}`}
-                  />
-                );
+                return <Card card={card} key={`card-${index}`} />;
               })}
           </div>
         </div>
@@ -162,8 +149,6 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
     </Container>
   );
 };
-
-export default TryItNowClient;
 
 const PrettyBg = () => {
   return (
@@ -246,7 +231,7 @@ type CardProps = {
   aspectRatio?: string;
 };
 
-const Card = ({ card, key, aspectRatio }: CardProps) => {
+const Card = ({ card, key }: CardProps) => {
   return (
     <div
       key={key}
@@ -275,16 +260,12 @@ const Card = ({ card, key, aspectRatio }: CardProps) => {
 
       {card.button?.enableButton && <CardButton {...card.button} />}
 
-      {card.image?.imgSrc && (
+      {card.image?.imgSrc && card.image?.imgWidth && card.image?.imgHeight && (
         <div
           className="w-full mt-auto relative"
-          style={
-            aspectRatio
-              ? {
-                  aspectRatio,
-                }
-              : {}
-          }
+          style={{
+            aspectRatio: `${card.image.imgWidth}/${card.image.imgHeight}`,
+          }}
         >
           {card?.image &&
             card.image.imgSrc &&
