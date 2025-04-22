@@ -54,7 +54,8 @@
       ],
       "bottomLinks": [
         {
-          "label": "![](/TryItNow/question.svg)Learn More\n"
+          "label": "![](/TryItNow/question.svg)Learn More\n",
+          "url": "/docs/how-to-use-yakshaver"
         },
         {
           "label": "![](/TryItNow/camera.svg)Watch Video\n",
