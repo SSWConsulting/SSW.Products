@@ -1,16 +1,17 @@
-import { FaChevronRight } from "react-icons/fa6";
 import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { FaChevronRight } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils";
 import Container from "../../../Container";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
-import { YakAnimate, YakBorderAnimate } from "./yak-animate";
+import Link from "next/link";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { AudioWaveAnimation } from "./AudioWaveAnimation";
 import { GradientBackground } from "./GradientBackground";
-import Link from "next/link";
+import { YakAnimate, YakBorderAnimate } from "./yak-animate";
 
 // Typing Animation Component - made by Cursor
 const TypewriterText = ({
@@ -294,8 +295,18 @@ export default function Hero({ data }: { data: any }) {
                 <h1>{data?.titleAfterRotate}</h1>
               </div>
             </div>
-            <h2 className="text-white text-center text-base md:text-lg pt-6 lg:pt-12">
-              {curlyBracketFormatter(data?.byLine)}
+            <h2 className="text-white flex flex-col gap-2 text-center text-base md:text-lg pt-6 lg:pt-12">
+              <TinaMarkdown
+                content={data?.byLine}
+                components={{
+                  bold: (props: { children: ReactNode } | undefined) => (
+                    <span className="text-[#CC4141] font-bold">
+                      {props?.children}
+                    </span>
+                  ),
+                }}
+              />
+              {/* {curlyBracketFormatter(data?.byLine)} */}
             </h2>
 
             {/* Buttons */}

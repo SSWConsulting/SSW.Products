@@ -88,55 +88,68 @@ function CardItem({
       setContentHeight(isOpen ? contentRef.current.scrollHeight : 0);
     }
   }, [isOpen, data]);
-
+  const delimeter =
+    (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
   return (
     <div
-  className={`group relative w-full rounded-xl p-[2px] ${
-    isOpen ? 'bg-gradient-to-r from-[#e34f4f] to-[#FF778E]' : 'bg-transparent'
-  } transition-all duration-300 cursor-pointer ${isOpen ? 'flex-grow' : ''}`}
-  onClick={() => setIdOfOpen(isOpen ? null : uniqueId)}
->
-  <div className="w-full h-full rounded-xl bg-gradient-to-r from-[#0e0e0e] via-[#131313] to-[#141414] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] p-6 shadow-2xl text-white transition-all duration-300">
-    <h4 className="text-gray-300">
-      {curlyBracketFormatter(data.AboveHeaderText)}
-    </h4>
-
-    <div className="flex items-center justify-between">
-      <h3 className="text-2xl font-bold">
-        {curlyBracketFormatter(data.Header)}
-      </h3>
-      <FaChevronDown
-        className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
-          isOpen ? 'rotate-180' : ''
-        }`}
-        onClick={(e) => {
-          e.stopPropagation()
-          setIdOfOpen(isOpen ? null : uniqueId)
-        }}
-      />
-    </div>
-
-    <div
-      className="overflow-hidden transition-all duration-500 ease-in-out"
-      style={{ maxHeight: `${contentHeight}px` }}
+      className={`group relative w-full rounded-xl p-[2px] ${
+        isOpen
+          ? "bg-gradient-to-r from-[#e34f4f] to-[#FF778E]"
+          : "bg-transparent"
+      } transition-all duration-300 cursor-pointer`}
+      onClick={() => setIdOfOpen(isOpen ? null : uniqueId)}
     >
-      <div ref={contentRef}>
-        <div className="text-gray-300 pt-3">
-          <TinaMarkdown
-            content={data.Description}
-            components={cardAndImageMarkdownRenderer}
+      <div className="w-full h-full rounded-xl bg-gradient-to-r from-[#0e0e0e] via-[#131313] to-[#141414] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] p-6 shadow-2xl text-white transition-all duration-300">
+        <h4 className="text-gray-300">
+          {curlyBracketFormatter(data.AboveHeaderText)}
+        </h4>
+
+        <div className="flex items-center justify-between">
+          <h3 className="text-2xl font-bold">
+            {curlyBracketFormatter(data.Header)}
+          </h3>
+          <FaChevronDown
+            className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIdOfOpen(isOpen ? null : uniqueId);
+            }}
           />
         </div>
-        <div className="flex flex-wrap gap-2 py-3">
-          {data.Badge1Text && <Badge title={data.Badge1Text} />}
-          {data.Badge2Text && <Badge title={data.Badge2Text} />}
-          {data.Badge3Text && <Badge title={data.Badge3Text} />}
+
+        <div
+          className="overflow-hidden transition-all duration-500 ease-in-out"
+          style={{ maxHeight: `${contentHeight}px` }}
+        >
+          <div ref={contentRef}>
+            <div className="text-gray-300 text-lg pt-3">
+              <TinaMarkdown
+                content={data.Description}
+                components={cardAndImageMarkdownRenderer}
+              />
+            </div>
+            <div className="flex items-center flex-wrap text-xs gap-2 py-3">
+              {data.Badge1Text && <Badge title={data.Badge1Text} />}
+              {data.Badge2Text && (
+                <>
+                  {delimeter}
+                  <Badge title={data.Badge2Text} />
+                </>
+              )}
+              {data.Badge3Text && (
+                <>
+                  {delimeter}
+                  <Badge title={data.Badge3Text} />{" "}
+                  {data?.delimiters?.enabled && data?.delimiters?.suffix}
+                </>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
   );
 }
 

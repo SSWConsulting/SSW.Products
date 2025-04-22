@@ -15,7 +15,7 @@ interface BlogPostClientProps {
 
 const BreadCrumbs = ({ title }: { title: string }) => {
   return (
-    <div className="font-light mb-8 text-base inline-flex items-top">
+    <div className="font-light mb-12 text-base inline-flex items-top">
       <Link className="underline cursor-pointer" href="/blog">
         BLOG
       </Link>
@@ -53,11 +53,11 @@ export default function BlogPostClient({
       : "Unknown Date";
 
   return (
-    <div className="p-4 lg:pt-32 md:pt-20 mt-20 font-semibold max-w-3xl mx-auto text-white">
+    <div className="p-4 lg:pt-32 md:pt-20 mt-4 mb-20 max-w-4xl mx-auto text-white">
       <BreadCrumbs title={title} />
-      <h2 className="text-3xl mb-2 tracking-wide">{title}</h2>
+      <h2 className="text-3xl mb-2 font-semibold tracking-wide">{title}</h2>
 
-      <div className="text-sm font-light text-gray-300 uppercase mb-4">
+      <div className="text-sm font-light text-gray-300 uppercase mb-6">
         <span>
           by{" "}
           {sswPeopleLink ? (
