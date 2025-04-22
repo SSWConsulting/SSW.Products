@@ -34,18 +34,6 @@ export const bottomPaddingOptions = {
   "extra large": "pb-40",
 };
 
-// export const colorOptions = [
-//   "blue",
-//   "teal",
-//   "green",
-//   "yellow",
-//   "orange",
-//   "red",
-//   "pink",
-//   "purple",
-//   "white",
-// ];
-
 export const inputClasses: Record<string, string> = {
   gray: "bg-[#222222]",
   black: "bg-black",
