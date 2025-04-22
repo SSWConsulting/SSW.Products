@@ -1,3 +1,4 @@
+import Container from "../../Container";
 import { YouTubeEmbed } from "../YouTubeEmbed";
 
 interface VideoDisplayProps {
@@ -13,7 +14,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
   const { externalVideoLink, title } = data;
 
   return (
-    <div className="flex justify-center mx-auto container">
+    <Container className="flex justify-center mx-auto container">
       <div className="items-center w-full h-auto ">
         <h2 className="text-3xl text-white font-semibold pb-12 text-center">
           {" "}
@@ -24,6 +25,6 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
           src={externalVideoLink || ""}
         />
       </div>
-    </div>
+    </Container>
   );
 }
