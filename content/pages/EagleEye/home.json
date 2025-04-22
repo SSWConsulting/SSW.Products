@@ -22,9 +22,8 @@
           ],
           "media": [
             {
-              "image": "/EagleEye/Thumbnail.jpg",
-              "src": "https://www.youtube.com/watch?v=-7c6uagBBBM",
-              "_template": "thumbnailToExternalLink"
+              "src": "https://www.youtube.com/embed/-7c6uagBBBM?si=V5ZP_lCtpgC3cOqi",
+              "_template": "externalVideo"
             }
           ],
           "isReversed": false

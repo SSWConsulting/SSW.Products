@@ -65,14 +65,14 @@
           "textOnLeft": true
         },
         {
-          "AboveHeaderText": "{Shave It}",
+          "AboveHeaderText": "{Shave it}",
           "Header": "2 - YakShaver Takes Over",
           "Description": "YakShaver watches your video, turns what you say into text, and figures out what's happening.\n",
           "media": "/public/Browser2.png",
           "textOnLeft": true
         },
         {
-          "AboveHeaderText": "{Solve It}",
+          "AboveHeaderText": "{Solve it}",
           "Header": "3 - Tasks are Created",
           "Description": "**YakShaver creates a task, bug report, or feature request** in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
           "Badge1Text": "GitHub",
