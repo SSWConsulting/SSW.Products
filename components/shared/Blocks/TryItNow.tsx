@@ -54,7 +54,6 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
     setAspectRatio(newTallestAspectRatio);
   }, [props.tryItNowCards]);
 
-  const hasCardImage = Boolean(aspectRatio);
   // set the aspect ratio of the bottom half of the cards to the aspect ratio of the tallest card
   // (to avoid inconsistent heights on mobile)
   return (
@@ -91,7 +90,6 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
                 return (
                   <Card
                     card={card}
-                    hasCardImage={hasCardImage}
                     aspectRatio={aspectRatio}
                     key={`card-${index}`}
                   />
@@ -244,12 +242,11 @@ const PrettyBg = () => {
 
 type CardProps = {
   card: Card;
-  hasCardImage: boolean;
   key: string;
   aspectRatio?: string;
 };
 
-const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
+const Card = ({ card, key, aspectRatio }: CardProps) => {
   return (
     <div
       key={key}
