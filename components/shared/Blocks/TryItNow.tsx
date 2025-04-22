@@ -250,21 +250,6 @@ type CardProps = {
 };
 
 const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
-  const noButtonLabel =
-    card.button?.label?.children &&
-    card.button?.label?.children?.length &&
-    card.button?.label?.children[0]?.children[0]?.text === "";
-  console.log("condition 1: ", card.button?.label?.children);
-  console.log("condition 2: ", card.button?.label?.children?.length);
-  console.log(
-    "condition 3: ",
-    card.button?.label?.children[0]?.children[0]?.text === ""
-  );
-  // console.log(
-  //   "thibng",
-  //   card.button?.label?.children[0]?.children[0]?.text === ""
-  // );
-  // console.log("thibng", card.button?.label?.children[0]?.children[0]?.text);
   return (
     <div
       key={key}
@@ -291,9 +276,11 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
         </section>
       )}
 
-      {!noButtonLabel && card?.image?.imgSrc && <CardButton {...card.button} />}
+      {card.button?.enableButton && card?.image?.imgSrc && (
+        <CardButton {...card.button} />
+      )}
 
-      {(!noButtonLabel || card.image?.imgSrc) && (
+      {(card.button?.enableButton || card.image?.imgSrc) && (
         <div
           className="w-full relative"
           style={
@@ -304,7 +291,7 @@ const Card = ({ card, hasCardImage, key, aspectRatio }: CardProps) => {
               : {}
           }
         >
-          {!noButtonLabel && !card.image?.imgSrc && (
+          {card.button?.enableButton && !card.image?.imgSrc && (
             <CardButton {...card.button} />
           )}
           {card?.image &&

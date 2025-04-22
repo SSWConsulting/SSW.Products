@@ -30,6 +30,11 @@
         {
           "title": "2. Pin",
           "description": "Click the ![](/TryItNow/puzzle.svg) at the topo right of your browser, then the ![](/TryItNow/pin.svg) next to YakShaver.\n",
+          "image": {
+            "imgSrc": "/TryItNow/pin-yakshaver.png",
+            "imgWidth": 480,
+            "imgHeight": 336
+          },
           "button": {
             "label": ""
           }

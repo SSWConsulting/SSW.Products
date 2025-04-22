@@ -89,6 +89,11 @@ const TryItNowTemplate: Template = {
           type: "object",
           fields: [
             {
+              name: "enableButton",
+              label: "Enable Button",
+              type: "boolean",
+            },
+            {
               name: "label",
               label: "Label",
               type: "rich-text",
