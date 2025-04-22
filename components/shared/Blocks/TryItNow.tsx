@@ -102,7 +102,7 @@ const TryItNowClient = (props: TryItNowProps & { aspectRatio?: string }) => {
         <div className="absolute bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>
       </div>
       {props.bottomLinks && (
-        <div className="flex w-fit text-sm font-bold mx-auto  text-white md:grid-cols-3 mt-20">
+        <div className="flex w-fit text-sm font-bold mx-auto  text-white md:grid-cols-3 mt-32">
           {props.bottomLinks.map((link, index) => {
             if (!link) return <></>;
             const BottomComponent = ({
@@ -169,9 +169,10 @@ export default TryItNowClient;
 
 const PrettyBg = () => {
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-y-[35%] -translate-x-1/2 -z-10  opacity-75 overflow-hidden">
+    <div className="absolute -top-52 sm:-top-32 -bottom-80 -inset-x-96 -z-10  opacity-75 overflow-hidden">
       <svg
-        className="w-[1440px] h-[1250px]"
+        preserveAspectRatio="none"
+        className="w-full h-full relative"
         width="1575"
         height="1233"
         viewBox="0 0 1575 1233"
