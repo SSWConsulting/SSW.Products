@@ -27,9 +27,9 @@ const CustomizeableBackground = ({
     <div
       className={cn(
         inputClasses[
-          data?.data?.pages?.pageFormatting?.backgroundColor || "black"
+          data?.data?.pages?.pageFormatting?.backgroundColor || "gray"
         ],
-        "relative -z-10"
+        "relative z-0"
       )}
     >
       {children}
