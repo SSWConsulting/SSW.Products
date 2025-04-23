@@ -93,14 +93,14 @@ function PaginationLinks({
   product: string;
 }) {
   return (
-    <div className="flex justify-between mt-12 py-4  rounded-lg">
+    <div className="flex lg:justify-between mt-12 py-4  rounded-lg gap-4 overflow-hidden">
       {prev ? (
         <Link
           href={`/${product}/docs/${prev.slug}`}
           className="flex gap-2 items-center text-white/60 hover:text-white transition-all duration-300"
         >
           <FaArrowLeft />
-          <span className="truncate">{prev.title}</span>
+          <span >{prev.title}</span>
         </Link>
       ) : (
         <div></div>
@@ -109,9 +109,9 @@ function PaginationLinks({
       {next ? (
         <Link
           href={`/${product}/docs/${next.slug}`}
-          className="flex gap-2 items-center text-white/60 hover:text-white transition-all duration-300"
+          className="flex gap-2 text-end items-center text-white/60 hover:text-white transition-all duration-300 "
         >
-          <span className="truncate">{next.title}</span>
+          <span >{next.title}</span>
           <FaArrowRight />
         </Link>
       ) : (
@@ -125,6 +125,7 @@ export default async function DocPost({ params }: DocPostProps) {
   const { slug, product } = params;
   const documentData = await getDocPost(product, slug);
   const tableOfContentsData = await getDocsTableOfContents(product);
+  
 
   if (!documentData) {
     return notFound();
@@ -134,9 +135,9 @@ export default async function DocPost({ params }: DocPostProps) {
 
   return (
     <>
-      <div className="grid grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
+      <div className="grid grid-cols-1 md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
         {/* LEFT COLUMN 1/3 */}
-        <div className="w-full text-white lg:pt-20 md:pt-20 mt-20 sticky top-10 self-start max-h-screen overflow-y-auto">
+        <div className="hidden md:block w-full text-white lg:pt-20 md:pt-20 mt-20 sticky top-10 self-start max-h-screen overflow-y-auto">
           <TableOfContentsClient
             tableOfContentsData={tableOfContentsData as any}
           />
@@ -144,10 +145,12 @@ export default async function DocPost({ params }: DocPostProps) {
 
         {/* RIGHT COLUMN 2/3 */}
         <div className="flex-grow p-4 lg:pt-20 md:pt-20 mt-20">
+          
           <DocPostClient
             query={documentData.query}
             variables={documentData.variables}
             pageData={{ docs: documentData.docs }}
+            tableOfContentsData={tableOfContentsData as any}
           />
           <PaginationLinks
             prev={paginationData.prev}

@@ -1,16 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { MdMenu, MdOutlineKeyboardArrowRight, MdClose } from "react-icons/md";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { DocAndBlogMarkdownStyle } from "../../../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import { useTina } from "tinacms/dist/react";
-import { Docs } from "../../../../tina/__generated__/types";
+import {
+  Docs,
+  DocsTableOfContents,
+} from "../../../../tina/__generated__/types";
+import { useState, useEffect, useRef } from "react";
+import TableOfContentsClient from "./TableOfContentsClient";
 
 interface DocPostClientProps {
   query: string;
   variables: object;
   pageData: { docs: Docs };
+  tableOfContentsData: DocsTableOfContents;
 }
 
 const BreadCrumbs = ({ title }: { title: string }) => {
@@ -31,6 +37,7 @@ export default function DocPostClient({
   query,
   variables,
   pageData,
+  tableOfContentsData,
 }: DocPostClientProps) {
   const { data } = useTina<{ docs: Docs }>({
     query,
@@ -44,6 +51,34 @@ export default function DocPostClient({
 
   const { title, date, body } = data.docs;
 
+  const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
+  const tocRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  // Handle click outside to close the dropdown
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        tocRef.current &&
+        buttonRef.current &&
+        !tocRef.current.contains(event.target as Node) &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setIsTableOfContentsOpen(false);
+      }
+    }
+
+    // Add event listener when dropdown is open
+    if (isTableOfContentsOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup the event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isTableOfContentsOpen]);
+
   // Ensure the date is valid before formatting
   const parsedDate = date ? new Date(date) : null;
   const formattedDate =
@@ -54,7 +89,38 @@ export default function DocPostClient({
       : "Unknown Date";
 
   return (
-    <div className="font-semibold mx-auto text-white">
+    <div className="mx-auto text-white">
+      <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
+        <button
+          ref={buttonRef}
+          className="flex justify-center items-center gap-2 w-full text-white/60 hover:text-white transition-all duration-300 bg-white/10 p-2 rounded-lg"
+          onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
+        >
+          <MdMenu className="text-[#CC4141]" />
+          <span className="font-light">Table of Contents</span>
+        </button>
+        <div
+          ref={tocRef}
+          className={`${
+            isTableOfContentsOpen ? "block" : "hidden"
+          } absolute top-full left-0 right-0 z-30 bg-black/95 rounded-lg border border-white/10 shadow-xl max-h-1/2 overflow-y-auto`}
+        >
+          <div className="flex justify-between items-center p-3 border-b border-white/10">
+            <h2 className="text-lg font-medium text-white">
+              Table of Contents
+            </h2>
+            <button
+              onClick={() => setIsTableOfContentsOpen(false)}
+              className="text-white/60 hover:text-white p-1"
+            >
+              <MdClose className="h-5 w-5" />
+            </button>
+          </div>
+          <div className="p-3">
+            <TableOfContentsClient tableOfContentsData={tableOfContentsData} />
+          </div>
+        </div>
+      </div>
       <BreadCrumbs title={title} />
       <h2 className="text-3xl mb-2 tracking-wide">{title}</h2>
       <div className="text-base font-light lg:prose-xl">
