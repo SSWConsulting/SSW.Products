@@ -44,7 +44,7 @@ function NavigationGroup({
           <ul className="pt-1">
             {navigationGroup.items.map((item: any, index: number) => {
               return (
-                <div className="group">
+                <div className="group" key={index}>
                   <li
                     key={index}
                     className={`text-sm border-l border-white/10 ${
