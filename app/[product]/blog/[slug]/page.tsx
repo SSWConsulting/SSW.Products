@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import InteractiveBackground from "../../../../components/shared/Background/InteractiveBackground";
 import BlogPostClient from "../../../../components/shared/BlogPostClient";
 import FooterServer from "../../../../components/shared/FooterServer";
-import NavBarServer from "../../../../components/shared/NavBarServer";
 import client from "../../../../tina/__generated__/client";
 import { Blogs } from "../../../../tina/__generated__/types";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";

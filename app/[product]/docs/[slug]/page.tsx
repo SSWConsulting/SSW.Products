@@ -3,19 +3,15 @@ import Link from "next/link";
 
 import DocPostClient from "./DocPostClient";
 import FooterServer from "../../../../components/shared/FooterServer";
-import NavBarServer from "../../../../components/shared/NavBarServer";
 import client from "../../../../tina/__generated__/client";
 import {
-  Docs,
-  DocsTableOfContents,
+  Docs
 } from "../../../../tina/__generated__/types";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
 import TableOfContentsClient from "./TableOfContentsClient";
 import {
   FaArrowLeft,
   FaArrowRight,
-  FaChevronLeft,
-  FaChevronRight,
 } from "react-icons/fa";
 
 interface DocPostProps {

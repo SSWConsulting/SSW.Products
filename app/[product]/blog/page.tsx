@@ -8,7 +8,6 @@ import { BlogSearchProvider } from "../../../components/providers/BlogSearchProv
 import QueryProvider from "../../../components/providers/QueryProvider";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
 import FooterServer from "../../../components/shared/FooterServer";
-import NavBarServer from "../../../components/shared/NavBarServer";
 import client from "../../../tina/__generated__/client";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
 interface BlogIndex {
