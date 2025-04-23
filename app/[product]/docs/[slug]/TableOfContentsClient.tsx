@@ -19,7 +19,6 @@ function NavigationGroup({
 }) {
   const [isExpanded, setIsExpanded] = useState(true);
 
-  console.log(activeItem);
   return (
     <div className="mb-4">
       <button
@@ -42,21 +41,30 @@ function NavigationGroup({
         }`}
       >
         {navigationGroup.items && (
-          <ul className="ml-6 mt-2 ">
+          <ul className="pt-1">
             {navigationGroup.items.map((item: any, index: number) => {
               return (
-                <li key={index} className="text-sm">
-                  <Link
-                    href={`/docs/${item.slug?._sys?.filename || "#"}`}
-                    className={`block hover:bg-white/10 p-1.5 rounded-md transition-all duration-300 ${
+                <div className="group">
+                  <li
+                    key={index}
+                    className={`text-sm border-l border-white/10 ${
                       activeItem === item.slug?._sys?.filename
-                        ? "text-[#CC4141] font-semibold"
-                        : "text-white/60"
+                        ? "border-[#CC4141]"
+                        : "border-white/10 group-hover:border-white/80"
                     }`}
                   >
-                    <span className="inline-block">{item.title}</span>
-                  </Link>
-                </li>
+                    <Link
+                      href={`/docs/${item.slug?._sys?.filename}`}
+                      className={`block  p-1.5 ml-6   ${
+                        activeItem === item.slug?._sys?.filename
+                          ? "text-[#CC4141] font-semibold"
+                          : "text-white/60 group-hover:text-white group-hover:border-white"
+                      }`}
+                    >
+                      <span className="inline-block">{item.title}</span>
+                    </Link>
+                  </li>
+                </div>
               );
             })}
           </ul>
