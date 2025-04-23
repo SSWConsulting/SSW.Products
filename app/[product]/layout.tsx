@@ -42,7 +42,6 @@ export default function RootLayout({
       </head>
       <body
         className={`min-h-screen ${inter.className} bg-[#222222]`}
-        // }}
       >
         <NavBarServer product={params.product} />
         {children}

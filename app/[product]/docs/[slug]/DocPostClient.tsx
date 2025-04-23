@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { DocAndBlogMarkdownStyle } from "../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
+import { DocAndBlogMarkdownStyle } from "../../../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import { useTina } from "tinacms/dist/react";
-import { Docs } from "../../tina/__generated__/types";
+import { Docs } from "../../../../tina/__generated__/types";
 
 interface DocPostClientProps {
   query: string;

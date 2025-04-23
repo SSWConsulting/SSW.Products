@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import InteractiveBackground from "../../../../components/shared/Background/InteractiveBackground";
-import DocPostClient from "../../../../components/shared/DocPostClient";
+import DocPostClient from "./DocPostClient";
 import FooterServer from "../../../../components/shared/FooterServer";
 import NavBarServer from "../../../../components/shared/NavBarServer";
 import client from "../../../../tina/__generated__/client";
@@ -33,16 +33,22 @@ export async function generateStaticParams() {
 export default async function DocPost({ params }: DocPostProps) {
   const { slug, product } = params;
   const documentData = await getDocPost(product, slug);
+  const tableOfContentsData = await getDocsTableOfContents(product);
+
+  console.log(tableOfContentsData);
 
   if (!documentData) {
     return notFound();
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <InteractiveBackground />
-      {/* <NavBarServer product={product} /> */}
+    <div className="grid grid-cols-[1fr_4fr] max-w-7xl mx-auto min-h-screen">
+      {/* LEFT COLUMN 1/4 */}
+      <div>
 
+      </div>
+
+      {/* RIGHT COLUMN 3/4 */}
       <div className="flex-grow">
         <DocPostClient
           query={documentData.query}
@@ -88,4 +94,11 @@ async function getDocPost(product: string, slug: string) {
     console.error("Error fetching doc post:", error);
     return null;
   }
+}
+
+async function getDocsTableOfContents(product: string) {
+  const res = await client.queries.docsTableOfContents({
+    relativePath: `${product}/toc.mdx`,
+  });
+  return res.data.docsTableOfContents;
 }
