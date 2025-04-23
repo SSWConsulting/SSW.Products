@@ -5,6 +5,7 @@ import { footerCollection } from "./collectionSchema/footer";
 import { navigationBarCollection } from "./collectionSchema/navbar";
 import { PagesSchema } from "./collectionSchema/pages";
 import { privacyPolicyCollection } from "./collectionSchema/privacy";
+import { docsTableOfContentsCollection } from "./collectionSchema/docsTableOfContents";
 
 const branch =
   process.env.GITHUB_BRANCH ||
@@ -38,6 +39,7 @@ export default defineConfig({
       blogCollection,
       blogIndexCollection,
       docsCollection,
+      docsTableOfContentsCollection,
     ],
   },
 });
