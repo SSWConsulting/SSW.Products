@@ -1,19 +1,27 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
-import { ShinyButton } from "@/components/magicui/shiny-button";
-import { ShineBorder } from "@/components/magicui/shine-border";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
+import { FaChevronRight } from "react-icons/fa6";
 
-import { CircleLogo } from "./BentoBox/AnimatedBeam";
-import { HeroYakShaverCard } from "../../ui/MockYakShaverCards";
+import { cn } from "@/lib/utils";
+import Container from "../../../Container";
+import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
+
+import Link from "next/link";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { AudioWaveAnimation } from "./AudioWaveAnimation";
+import { GradientBackground } from "./GradientBackground";
+import { YakAnimate, YakBorderAnimate } from "./yak-animate";
 
 // Typing Animation Component - made by Cursor
 const TypewriterText = ({
   text,
   startDelay = 0,
+  className,
 }: {
   text: string;
   startDelay?: number;
+  className?: string;
 }) => {
   const [displayText, setDisplayText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -85,7 +93,7 @@ const TypewriterText = ({
 
   // After typing is complete, show the highlighted version
   return (
-    <span>
+    <span className={cn(className)}>
       {parts.map((part, index) =>
         part.highlight ? (
           <span
@@ -124,36 +132,41 @@ const TypewriterText = ({
 
 const TranscriptBox = ({ data }: { data: any }) => {
   // Calculate total animation duration for staggering
-  const staggerDelay = 2100; // 5s for typing + 1s buffer
+  const staggerDelay = 2100;
+
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 7000);
+  }, []);
 
   return (
-    <div className="flex flex-col md:flex-row  w-full px-10 lg:px-6">
+    <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
       {/* LHS */}
-      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-[20px] py-6 px-6">
-        <ShineBorder
-          borderWidth={2}
-          duration={20}
-          shineColor={["#CC4141"]}
-          className="rounded-[20px] absolute inset-0 overflow-visible z-10"
-        />
-
+      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] py-6 px-6 ">
         <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3 h-[20.625rem]">
           <div className="flex gap-4 pb-2">
             <div className="rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
-              <Image
-                src="/YakShaver/People/uly-avatar.png"
-                alt="Uly Avatar"
-                width={40}
-                height={40}
-              />
+              <div className="relative w-full h-full flex items-center justify-center">
+                <Image
+                  src="/YakShaver/People/uly-avatar.png"
+                  alt="Uly Avatar"
+                  width={40}
+                  height={40}
+                  className="rounded-full relative z-10"
+                />
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <span className="lg:text-sm text-xs text-white">
                 {data.leftHandSide?.issueReportName}
               </span>
-              <span className="text-gray-400 text-xs">
-                {data.leftHandSide?.issueReportTime}
-              </span>
+            </div>
+            <div className="flex-grow flex justify-end items-center">
+              <div className="relative w-10 h-10 bg-[#1a1a1a] rounded-full overflow-hidden border border-[#CC4141]/50 flex items-center justify-center">
+                <AudioWaveAnimation />
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-4 ">
@@ -161,6 +174,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
               (text: string, index: number) => (
                 <span key={index}>
                   <TypewriterText
+                    className="text-xs xl:text-base"
                     text={text}
                     startDelay={index * staggerDelay}
                   />
@@ -171,7 +185,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
         </div>
 
         <div className="flex  justify-center items-center gap-6 w-full pt-4 ">
-          <div className="w-3/4">
+          <div className="w-full">
             <h2 className="text-white text-2xl pb-2 ">
               {" "}
               {data.leftHandSide?.issueReportSummaryTitle}{" "}
@@ -181,29 +195,22 @@ const TranscriptBox = ({ data }: { data: any }) => {
               {data.leftHandSide?.issueReportSummarySubtitle}
             </span>
           </div>
-          <div className="w-1/4">
-            <Image
-              src="/YakShaver/People/uly-office.png"
-              alt="Uly Office"
-              width={100}
-              height={100}
-              className="rounded-full"
-            />
-          </div>
         </div>
       </div>
       <div className="flex justify-center items-center p-5">
-        <CircleLogo ref={null} media={data?.middleLogo} shineBorder={true} />
+        <div className="relative md:w-20 md:h-20 h-20 w-20 overflow-visible bg-[#2b1f3b] rounded-full">
+          <YakBorderAnimate />
+          <div className="absolute inset-[3px] z-10 rounded-full shadow-lg flex items-center justify-center bg-gradient-to-br from-white via-[#e6e6e6] to-[#c4c4c4]">
+            <div className="scale-90 flex items-center justify-center">
+              <YakAnimate />
+            </div>
+          </div>
+        </div>
       </div>
       {/* RHS */}
-      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full md:w-1/2 flex flex-col rounded-[20px] p-6">
-        <ShineBorder
-          borderWidth={2}
-          duration={20}
-          shineColor={["#CC4141"]}
-          className="rounded-[20px] absolute inset-0 overflow-visible z-10"
-        />
-        <HeroYakShaverCard />
+      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] p-6 ">
+        <HeroYakShaverCard isVisible={isVisible} />
+
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">
             <h2 className="text-white text-2xl pb-2 ">
@@ -217,7 +224,7 @@ const TranscriptBox = ({ data }: { data: any }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
@@ -268,66 +275,64 @@ export const highlightCurlyBracketFormatter = (byLine: string) => {
 
 export default function Hero({ data }: { data: any }) {
   return (
-    <div className="flex items-center justify-center mx-auto pb-20 relative overflow-hidden pt-20 md:pt-20 lg:pt-0">
-      {/* Background Yak SVG */}
-      <div className="absolute inset-0 z-0 flex justify-end items-center opacity-50 overflow-visible">
-        {data?.backgroundImageEnabled && (
-          <div className="w-[800px] h-[800px] translate-x-1/4">
-            <Image
-              src="/svg/yak-icon-fill-glow.svg"
-              alt="Yak Icon Background"
-              width={1000}
-              height={1000}
-              className="w-full h-full"
-            />
-          </div>
-        )}
-      </div>
+    <div className="relative max-w-7xl mx-auto">
+      <GradientBackground />
+      <div className="flex items-center w-full justify-center mx-auto relative overflow-hidden">
+        {/* Content (z-10 to appear above the background) */}
+        <div className="z-10 flex flex-col items-center justify-center w-full">
+          <Container
+            className="z-10 flex flex-col items-center justify-center w-full"
+            size="small"
+          >
+            <div className="flex flex-col font-bold items-center justify-center text-2xl md:text-5xl  text-white">
+              <div className="pt-20 flex items-center justify-center gap-2">
+                <h1>{data?.titleBeforeRotate}</h1>
+                <span className="text-[#CC4141] pl-1">
+                  <WordRotate words={data?.rotatingWords} />
+                </span>
+              </div>
+              <div>
+                <h1>{data?.titleAfterRotate}</h1>
+              </div>
+            </div>
+            <h2 className="text-white flex flex-col gap-2 text-center text-base md:text-lg pt-6 lg:pt-12">
+              <TinaMarkdown
+                content={data?.byLine}
+                components={{
+                  bold: (props: { children: ReactNode } | undefined) => (
+                    <span className="text-[#CC4141] font-bold">
+                      {props?.children}
+                    </span>
+                  ),
+                }}
+              />
+              {/* {curlyBracketFormatter(data?.byLine)} */}
+            </h2>
 
-      {/* Content (z-10 to appear above the background) */}
-      <div className="z-10 flex flex-col items-center justify-center w-full">
-        <div className="flex flex-col font-bold items-center justify-center text-2xl md:text-5xl  text-white">
-          <div className="pt-20 flex items-center justify-center gap-2">
-            <h1>{data?.titleBeforeRotate}</h1>
-            <span className="text-[#CC4141] pl-1">
-              <WordRotate words={data?.rotatingWords} className="" />
+            {/* Buttons */}
+            <div className="flex items-center justify-center pt-12 gap-6">
+              {data?.ctaLeft?.title && data?.ctaLeft?.link && (
+                <Link
+                  className="bg-white hover:bg-white/80 text-[#222222] px-5 py-2 font-bold rounded-lg transition-all ease-in-out duration-300 border border-white"
+                  href={data.ctaLeft?.link}
+                >
+                  {data.ctaLeft?.title}
+                </Link>
+              )}
+              {data?.ctaRight?.title && data?.ctaRight?.link && (
+                <Link
+                  className="px-5 py-2 font-bold rounded-lg text-white border border-white bg-none flex items-center text-center justify-center gap-2 hover:bg-white/10 transition-all ease-in-out duration-300"
+                  href={data.ctaRight?.link}
+                >
+                  {data.ctaRight?.title} <FaChevronRight className="pb-0.5" />
+                </Link>
+              )}
+            </div>
+            <span className="flex justify-center text-white text-center lg:text-sm text-xs pt-4">
+              {data?.buttonSubtext}
             </span>
-          </div>
-          <div>
-            <h1>{data?.titleAfterRotate}</h1>
-          </div>
-        </div>
-        <h2 className="text-white text-center text-base md:text-lg pt-6 lg:pt-12 max-w-3xl px-10 lg:px-0">
-          {curlyBracketFormatter(data?.byLine)}
-        </h2>
+          </Container>
 
-        {/* Buttons */}
-        <div className="flex items-center justify-center pt-12 gap-6">
-          {data?.ctaLeft?.title && data?.ctaLeft?.link && (
-            <div>
-              <ShinyButton
-                href={data.ctaLeft?.link}
-                className="bg-gradient-to-br from-red-500 to-red-800 text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
-              >
-                {data.ctaLeft?.title}
-              </ShinyButton>
-            </div>
-          )}
-          {data?.ctaRight?.title && data?.ctaRight?.link && (
-            <div>
-              <ShinyButton
-                href={data.ctaRight?.link}
-                className="bg-[#131313] text-white py-4 px-6 border border-white/20 hover:-top-1 transition-all ease-in-out duration-300 relative top-0"
-              >
-                {data.ctaRight?.title}
-              </ShinyButton>
-            </div>
-          )}
-        </div>
-        <span className="flex justify-center text-white text-center lg:text-sm text-xs pt-4">
-          {data?.buttonSubtext}
-        </span>
-        <div className="flex items-center justify-center pt-12 text-white max-w-6xl w-full">
           {/* Transcript Container */}
           {data?.reportUIEnabled && <TranscriptBox data={data?.reportUI} />}
         </div>

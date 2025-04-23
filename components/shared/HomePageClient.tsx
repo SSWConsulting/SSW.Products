@@ -2,7 +2,9 @@
 
 "use client";
 
+import { cn } from "@/lib/utils";
 import { useTina } from "tinacms/dist/react";
+import { bottomPaddingOptions } from "../../tina/collectionSchema/pages";
 import { blocksRenderer as BlocksRenderer } from "./blocksRenderer";
 
 interface HomePageClientProps {
@@ -21,9 +23,16 @@ export default function HomePageClient({
     variables,
     data,
   });
-
   return (
-    <div className="lg:pt-32 md:pt-10 mx-auto w-full min-h-[95vh]">
+    <div
+      className={cn(
+        "flex pt-navBarHeight flex-col gap-14 lg:gap-24 mx-auto w-full min-h-[95vh]",
+        bottomPaddingOptions[
+          tinaData?.data?.pages?.pageFormatting
+            ?.bottomPadding as keyof typeof bottomPaddingOptions
+        ]
+      )}
+    >
       <BlocksRenderer
         data={{ pageBlocks: tinaData.data.pages.pageBlocks ?? null }}
       />

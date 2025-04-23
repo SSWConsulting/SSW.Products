@@ -10,6 +10,7 @@ interface WordRotateProps {
   duration?: number;
   motionProps?: MotionProps;
   className?: string;
+  gradientClasses?: string;
 }
 
 export function WordRotate({
@@ -22,6 +23,7 @@ export function WordRotate({
     transition: { duration: 0.25, ease: "easeOut" },
   },
   className,
+  gradientClasses = "bg-gradient-to-br from-[#e34f4f] from-30% via-[#D699FB] via-80% to-[#FF778E]  bg-clip-text text-transparent",
 }: WordRotateProps) {
   const [index, setIndex] = useState(0);
 
@@ -36,21 +38,15 @@ export function WordRotate({
     return () => clearInterval(interval);
   }, [words, duration]);
 
-  if (words=== null) return null;
+  if (words === null) return null;
 
   return (
     <div className="overflow-hidden py-2">
       <AnimatePresence mode="wait">
         <motion.h1
           key={words[index]}
-          className={cn(className)}
+          className={cn(className, gradientClasses)}
           {...motionProps}
-          style={{
-            backgroundImage: 'linear-gradient(to bottom right, #FF6467, #C10007)',
-            WebkitBackgroundClip: 'text',
-            color: 'transparent'
-          }}
-          
         >
           {words[index]}
         </motion.h1>

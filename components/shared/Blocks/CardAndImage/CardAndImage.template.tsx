@@ -5,18 +5,19 @@ export const CardAndImageTemplate: Template = {
   label: "Card and Image Parent Container",
   fields: [
     {
-        name: 'ParentContainerTitle',
-        label: 'Parent Container Title',
-        type: 'string',
+      name: "ParentContainerTitle",
+      label: "Parent Container Title",
+      type: "string",
     },
     {
-      name: 'ParentContainerDescription',
-      label: 'Parent Container Description',
-      type: 'string',
+      name: "ParentContainerDescription",
+      label: "Parent Container Description",
+      type: "string",
       ui: {
-        component: 'textarea',
+        component: "textarea",
       },
     },
+
     {
       name: "CardAndImageItem",
       label: "Card and Image Child Item",
@@ -40,30 +41,54 @@ export const CardAndImageTemplate: Template = {
           // ui: { component: "textarea" },
         },
         {
-            name: 'Badge1Text',
-            label: 'Badge 1 Text',
-            type: 'string',
+          name: "Badge1Text",
+          label: "Badge 1 Text",
+          type: "string",
         },
         {
-            name: 'Badge2Text',
-            label: 'Badge 2 Text',
-            type: 'string',
+          name: "Badge2Text",
+          label: "Badge 2 Text",
+          type: "string",
         },
         {
-          name: 'Badge3Text',
-          label: 'Badge 3 Text',
-          type: 'string',
+          name: "Badge3Text",
+          label: "Badge 3 Text",
+          type: "string",
+        },
+        {
+          name: "delimiters",
+          label: "delimiters",
+          type: "object",
+          description: "Adds delimiting text between badges",
+          fields: [
+            {
+              type: "boolean",
+              name: "enabled",
+              label: "Enabled",
+              description: "Feature flag for enabling badge delimiters",
+            },
+            {
+              name: "delimeter",
+              label: "Delimeter",
+              type: "string",
+            },
+            {
+              name: "suffix",
+              label: "Suffix",
+              type: "string",
+            },
+          ],
         },
         // TODO add button support down the road
         {
-            name: 'media',
-            label: 'media',
-            type: 'image',
+          name: "media",
+          label: "media",
+          type: "image",
         },
         {
-            name: 'textOnLeft',
-            label: 'is the text on the left?',
-            type: 'boolean'
+          name: "textOnLeft",
+          label: "is the text on the left?",
+          type: "boolean",
         },
       ],
     },

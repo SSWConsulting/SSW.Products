@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { useState } from "react";
+import { FaMinus, FaPlus } from "react-icons/fa";
 import { tinaField } from "tinacms/dist/react";
+import Container from "../../Container";
 
 type FAQItem = {
   question: string;
@@ -21,18 +22,18 @@ const FAQ = ({ data }: { data: FAQData }) => {
   };
 
   return (
-    <div className="text-white p-8 lg:px-40 3xl:px-80 mx-auto max-w-7xl">
-      <h1
-        className="text-2xl font-semibold mb-6 flex justify-center"
+    <Container className="text-white mx-auto" size="medium">
+      <h2
+        className="text-3xl font-semibold pb-12 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
       >
         {data.headline}
-      </h1>
+      </h2>
       <p className="mb-8 text-base" data-tina-field={tinaField(data, "text")}>
         {data.text}
       </p>
       <hr className="border-white" />
-      <div className="mb-40" data-tina-field={tinaField(data, "questions")}>
+      <div className="" data-tina-field={tinaField(data, "questions")}>
         {data.questions.map((item: FAQItem, index: number) => (
           <div key={index} data-tina-field={tinaField(item)}>
             <button
@@ -40,37 +41,39 @@ const FAQ = ({ data }: { data: FAQData }) => {
               onClick={() => toggleQuestion(index)}
             >
               <h3
-                className="text-base font-medium"
+                className="text-lg font-bold"
                 data-tina-field={tinaField(item, "question")}
               >
                 {item.question}
               </h3>
 
               {activeIndex === index ? (
-                <FaMinus className="ml-auto" />
+                <FaMinus className="ml-auto text-[#e34f4f]" />
               ) : (
-                <FaPlus className="ml-auto" />
+                <FaPlus className="ml-auto text-[#e34f4f]" />
               )}
             </button>
             <div
-              className={`overflow-hidden`}
+              className={`overflow-hidden transition-all duration-700 ease-in-out`}
               style={{
                 maxHeight: activeIndex === index ? "500px" : "0",
-                transition:
-                  activeIndex === index
-                    ? "max-height 500ms ease-in-out"
-                    : "max-height 0ms ease-in-out",
+                opacity: activeIndex === index ? 1 : 0,
+                transform: `translateY(${
+                  activeIndex === index ? "0" : "-10px"
+                })`,
               }}
             >
               <div className="px-4 pb-4">
                 <p data-tina-field={tinaField(item, "answer")}>{item.answer}</p>
               </div>
             </div>
-            <hr className="border-white" />
+            {index !== data.questions.length - 1 && (
+              <hr className="border-white" />
+            )}
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 
