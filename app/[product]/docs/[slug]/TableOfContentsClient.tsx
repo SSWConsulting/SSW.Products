@@ -82,7 +82,7 @@ export default function TableOfContentsClient({
   const pathname = usePathname();
   useEffect(() => {
     if (pathname === "/docs") {
-      setActiveItem("how-to-use-yakshaver");
+      setActiveItem("introduction");
     } else {
       setActiveItem(pathname.split("/").pop() || "");
     }

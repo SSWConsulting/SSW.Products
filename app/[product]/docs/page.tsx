@@ -30,7 +30,7 @@ export async function generateStaticParams() {
 
 export default async function DocsIndex({ params }: DocsIndex) {
   const { product } = params;
-  const defaultSlug = "how-to-use-yakshaver";
+  const defaultSlug = "introduction";
 
   try {
     return <DocPost params={{ product, slug: defaultSlug }} />;
