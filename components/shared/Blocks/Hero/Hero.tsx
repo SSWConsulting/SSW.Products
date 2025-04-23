@@ -167,6 +167,9 @@ const TranscriptBox = ({ data }: { data: any }) => {
   const [shouldStartTyping, setShouldStartTyping] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
+    setShouldStartTyping(true);
+  }, [data?.leftHandSide?.issueReportText]);
+  useEffect(() => {
     setTimeout(() => {
       setIsVisible(true);
     }, 7000);
