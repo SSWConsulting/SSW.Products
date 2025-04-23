@@ -57,18 +57,16 @@ export default function DocPostClient({
     <div className="font-semibold mx-auto text-white">
       <BreadCrumbs title={title} />
       <h2 className="text-3xl mb-2 tracking-wide">{title}</h2>
-
-      <div className="text-sm font-light text-gray-300 uppercase mb-4">
-        <div>
-          <span>{formattedDate}</span>
-        </div>
-      </div>
-
       <div className="text-base font-light lg:prose-xl">
         <TinaMarkdown
           content={body ?? { type: "root", children: [] }}
           components={DocAndBlogMarkdownStyle}
         />
+      </div>
+      <div className="text-sm font-light text-gray-300 uppercase mb-4">
+        <div>
+          <span>Last Updated: {formattedDate}</span>
+        </div>
       </div>
     </div>
   );
