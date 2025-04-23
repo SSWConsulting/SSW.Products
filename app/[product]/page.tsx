@@ -29,7 +29,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const productData = await getPage(product);
   return (
     <div>
-      <NavBarServer product={product} />
       <HomePageClient
         query={productData.query}
         data={productData.data}

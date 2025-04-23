@@ -56,7 +56,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <InteractiveBackground />
-      <NavBarServer product={product} />
+
 
       <div className="flex-grow">
         <BlogPostClient

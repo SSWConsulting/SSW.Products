@@ -4,6 +4,7 @@ import Script from "next/script";
 import "ssw-tinacms-landingkit/dist/style.css";
 import "../globals.css";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
+import NavBarServer from "../../components/shared/NavBarServer";
 
 const inter = Inter({
   weight: ["400", "700"],
@@ -47,6 +48,7 @@ export default function RootLayout({
         //   backgroundSize: "cover",
         // }}
       >
+        <NavBarServer product={params.product} />
         {children}
       </body>
     </html>

@@ -41,7 +41,7 @@ export default async function DocPost({ params }: DocPostProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <InteractiveBackground />
-      <NavBarServer product={product} />
+      {/* <NavBarServer product={product} /> */}
 
       <div className="flex-grow">
         <DocPostClient

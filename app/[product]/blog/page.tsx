@@ -81,7 +81,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
 
   return (
     <div className="text-gray-100 flex flex-col">
-      <NavBarServer product={params.product} />
+      
 
       <QueryProvider>
         {/* Padding accomodates for the navbar */}

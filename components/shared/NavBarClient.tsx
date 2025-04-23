@@ -150,7 +150,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             : `translate-y-2 px-4 pt-4 pb-6 absolute`
         } z-40 w-full xl:px-10 xl:flex items-center justify-between`}
       >
-        <div className="flex md:justify-between lg:justify-normal  w-full px-4 md:px-20">
+        <div className="flex md:justify-between lg:justify-normal  max-w-7xl mx-auto">
           {logo && (
             <Link href="/" className=" lg:px-3 xl:px-0 md:px-3 px-2">
               <Image src={logo} alt="Logo" width={200} height={200} />

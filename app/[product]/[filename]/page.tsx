@@ -32,7 +32,6 @@ export default async function FilePage({ params }: FilePageProps) {
 
   return (
     <div>
-      <NavBarServer product={product} />
       <HomePageClient
         query={fileData.query}
         data={fileData.data}
