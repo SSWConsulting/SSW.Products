@@ -45,12 +45,6 @@ export default function DocPostClient({
     data: pageData,
   });
 
-  if (!data?.docs) {
-    return <p className="text-center text-white">No content available.</p>;
-  }
-
-  const { title, date, body } = data.docs;
-
   const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
   const tocRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -78,6 +72,12 @@ export default function DocPostClient({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isTableOfContentsOpen]);
+
+  if (!data?.docs) {
+    return <p className="text-center text-white">No content available.</p>;
+  }
+
+  const { title, date, body } = data.docs;
 
   // Ensure the date is valid before formatting
   const parsedDate = date ? new Date(date) : null;
