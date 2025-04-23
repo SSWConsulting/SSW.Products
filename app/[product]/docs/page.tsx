@@ -1,16 +1,12 @@
 import { notFound } from "next/navigation";
-import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
-import DocsIndexClient from "../../../components/shared/DocsIndexClient";
-import FooterServer from "../../../components/shared/FooterServer";
-import NavBarServer from "../../../components/shared/NavBarServer";
 import client from "../../../tina/__generated__/client";
-import { getDocsForProduct } from "../../../utils/fetchDocs";
+import DocPost from "./[slug]/page";
 
-interface BlogIndex {
+interface DocsIndex {
   params: { product: string };
 }
 
-export async function generateMetadata({ params }: BlogIndex) {
+export async function generateMetadata({ params }: DocsIndex) {
   const { product } = params;
   return {
     title: `${product} Docs`,
@@ -32,32 +28,14 @@ export async function generateStaticParams() {
   );
 }
 
-export default async function DocsIndex({ params }: BlogIndex) {
+export default async function DocsIndex({ params }: DocsIndex) {
   const { product } = params;
+  const defaultSlug = "how-to-use-yakshaver";
 
   try {
-    const docs = await getDocsForProduct(product);
-
-    if (!docs) {
-      return notFound();
-    }
-
-    return (
-      <div className="flex flex-col min-h-screen">
-        <InteractiveBackground />
-        <NavBarServer product={product} />
-
-        <div className="flex-grow">
-          {docs.data !== undefined && (
-            <DocsIndexClient data={docs.data} product={product} />
-          )}
-        </div>
-
-        <FooterServer product={product} />
-      </div>
-    );
+    return <DocPost params={{ product, slug: defaultSlug }} />;
   } catch (error) {
-    console.error("Error fetching TinaCMS blog data:", error);
+    console.error("Error rendering doc post:", error);
     return notFound();
   }
 }
