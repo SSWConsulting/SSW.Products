@@ -134,16 +134,16 @@ export default async function DocPost({ params }: DocPostProps) {
 
   return (
     <>
-      <div className="grid grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen ">
+      <div className="grid grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
         {/* LEFT COLUMN 1/3 */}
-        <div className="w-full text-white lg:pt-20 md:pt-20 mt-20 ">
+        <div className="w-full text-white lg:pt-20 md:pt-20 mt-20 sticky top-10 self-start max-h-screen overflow-y-auto">
           <TableOfContentsClient
             tableOfContentsData={tableOfContentsData as any}
           />
         </div>
 
         {/* RIGHT COLUMN 2/3 */}
-        <div className="flex-grow p-4 lg:pt-20 md:pt-20 mt-20 ">
+        <div className="flex-grow p-4 lg:pt-20 md:pt-20 mt-20">
           <DocPostClient
             query={documentData.query}
             variables={documentData.variables}
