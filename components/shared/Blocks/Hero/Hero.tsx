@@ -1,6 +1,6 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useCallback, useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 
 import { cn } from "@/lib/utils";
@@ -16,10 +16,16 @@ import { YakAnimate, YakBorderAnimate } from "./yak-animate";
 // Typing Animation Component - made by Cursor
 const TypewriterText = ({
   text,
+  repeatDelay = 60,
   startDelay = 0,
   className,
+  shouldStartTyping,
+  setShouldStartTyping,
 }: {
+  setShouldStartTyping?: (value: boolean) => void;
+  shouldStartTyping: boolean;
   text: string;
+  repeatDelay?: number;
   startDelay?: number;
   className?: string;
 }) => {
@@ -29,20 +35,20 @@ const TypewriterText = ({
   const [parts, setParts] = useState<{ text: string; highlight: boolean }[]>(
     []
   );
-  const [shouldStartTyping, setShouldStartTyping] = useState(false);
+  // const [shouldStartTyping, setShouldStartTyping] = useState(false);
 
-  useEffect(() => {
-    // Delay the start of this animation
-    const delayTimeout = setTimeout(() => {
-      setShouldStartTyping(true);
-    }, startDelay);
+  // useEffect(() => {
+  //   // Delay the start of this animation
+  //   const delayTimeout = setTimeout(() => {
+  //     setShouldStartTyping(true);
+  //   }, startDelay);
 
-    return () => clearTimeout(delayTimeout);
-  }, [startDelay]);
+  //   return () => clearTimeout(delayTimeout);
+  // }, [startDelay]);
 
-  useEffect(() => {
-    if (!text || !shouldStartTyping) return;
-
+  const playTypingAnimation = useCallback(() => {
+    if (!shouldStartTyping) return;
+    console.log("playTypingAnimation called", text);
     // Reset state when text changes
     setDisplayText("");
     setIsTypingComplete(false);
@@ -78,13 +84,49 @@ const TypewriterText = ({
         }, 500);
       }
     }, typingSpeed);
-
-    return () => clearInterval(typingInterval);
   }, [text, shouldStartTyping]);
+
+  useEffect(() => {
+    let typingTimeout: NodeJS.Timeout;
+
+    if (shouldStartTyping) {
+      typingTimeout = setTimeout(() => {
+        playTypingAnimation();
+      }, startDelay);
+    }
+
+    // Cleanup function to clear the timeout when component unmounts or refreshes
+    return () => {
+      if (typingTimeout) {
+        clearTimeout(typingTimeout);
+      }
+    };
+  }, [shouldStartTyping, playTypingAnimation, startDelay]);
+
+  useEffect(() => {
+    let completionTimeout: NodeJS.Timeout;
+
+    if (isTypingComplete && setShouldStartTyping) {
+      setShouldStartTyping(false);
+
+      completionTimeout = setTimeout(() => {
+        if (setShouldStartTyping) {
+          setShouldStartTyping(true);
+        }
+      }, 1000 * 5);
+    }
+
+    // Cleanup function to clear the timeout when component unmounts or refreshes
+    return () => {
+      if (completionTimeout) {
+        clearTimeout(completionTimeout);
+      }
+    };
+  }, [isTypingComplete, setShouldStartTyping, text, repeatDelay]);
 
   if (!text) return null;
 
-  if (!shouldStartTyping) return <span className="opacity-0">{text}</span>;
+  // if (!shouldStartTyping) return <span className="opacity-0">{text}</span>;
 
   // Before typing is complete, show the plain text being typed
   if (!isTypingComplete) {
@@ -133,7 +175,7 @@ const TypewriterText = ({
 const TranscriptBox = ({ data }: { data: any }) => {
   // Calculate total animation duration for staggering
   const staggerDelay = 2100;
-
+  const [shouldStartTyping, setShouldStartTyping] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     setTimeout(() => {
@@ -171,15 +213,23 @@ const TranscriptBox = ({ data }: { data: any }) => {
           </div>
           <div className="flex flex-col gap-4 ">
             {data.leftHandSide?.issueReportText?.map(
-              (text: string, index: number) => (
-                <span key={index}>
-                  <TypewriterText
-                    className="text-xs xl:text-base"
-                    text={text}
-                    startDelay={index * staggerDelay}
-                  />
-                </span>
-              )
+              (text: string, index: number) => {
+                return (
+                  <span key={index}>
+                    <TypewriterText
+                      setShouldStartTyping={
+                        index === data.leftHandSide?.issueReportText?.length - 1
+                          ? setShouldStartTyping
+                          : undefined
+                      }
+                      shouldStartTyping={shouldStartTyping}
+                      className="text-xs xl:text-base"
+                      text={text}
+                      startDelay={index * staggerDelay}
+                    />
+                  </span>
+                );
+              }
             )}
           </div>
         </div>
