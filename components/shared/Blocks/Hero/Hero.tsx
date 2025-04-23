@@ -35,25 +35,15 @@ const TypewriterText = ({
   const [parts, setParts] = useState<{ text: string; highlight: boolean }[]>(
     []
   );
-  // const [shouldStartTyping, setShouldStartTyping] = useState(false);
 
-  // useEffect(() => {
-  //   // Delay the start of this animation
-  //   const delayTimeout = setTimeout(() => {
-  //     setShouldStartTyping(true);
-  //   }, startDelay);
-
-  //   return () => clearTimeout(delayTimeout);
-  // }, [startDelay]);
-
-  const playTypingAnimation = useCallback(() => {
-    if (!shouldStartTyping) return;
-    console.log("playTypingAnimation called", text);
-    // Reset state when text changes
+  const clearText = useCallback(() => {
     setDisplayText("");
     setIsTypingComplete(false);
     setIsHighlightingComplete(false);
+  }, []);
 
+  const playTypingAnimation = useCallback(() => {
+    if (!shouldStartTyping) return;
     // Parse the text to identify parts to be highlighted
     const parsedParts = text.split(/({.*?})/).map((part) => ({
       text:
@@ -90,18 +80,17 @@ const TypewriterText = ({
     let typingTimeout: NodeJS.Timeout;
 
     if (shouldStartTyping) {
+      clearText();
       typingTimeout = setTimeout(() => {
         playTypingAnimation();
       }, startDelay);
     }
-
-    // Cleanup function to clear the timeout when component unmounts or refreshes
     return () => {
       if (typingTimeout) {
         clearTimeout(typingTimeout);
       }
     };
-  }, [shouldStartTyping, playTypingAnimation, startDelay]);
+  }, [shouldStartTyping, playTypingAnimation, text, startDelay, clearText]);
 
   useEffect(() => {
     let completionTimeout: NodeJS.Timeout;
@@ -113,7 +102,7 @@ const TypewriterText = ({
         if (setShouldStartTyping) {
           setShouldStartTyping(true);
         }
-      }, 1000 * 5);
+      }, 1000 * repeatDelay);
     }
 
     // Cleanup function to clear the timeout when component unmounts or refreshes
