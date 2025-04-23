@@ -54,7 +54,7 @@ export default function DocPostClient({
       : "Unknown Date";
 
   return (
-    <div className="p-4 lg:pt-32 md:pt-32 mt-20 font-semibold max-w-3xl mx-auto text-white">
+    <div className="font-semibold mx-auto text-white">
       <BreadCrumbs title={title} />
       <h2 className="text-3xl mb-2 tracking-wide">{title}</h2>
 
