@@ -1,13 +1,22 @@
 import { notFound } from "next/navigation";
-
+import Link from "next/link";
 
 import DocPostClient from "./DocPostClient";
 import FooterServer from "../../../../components/shared/FooterServer";
 import NavBarServer from "../../../../components/shared/NavBarServer";
 import client from "../../../../tina/__generated__/client";
-import { Docs } from "../../../../tina/__generated__/types";
+import {
+  Docs,
+  DocsTableOfContents,
+} from "../../../../tina/__generated__/types";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
 import TableOfContentsClient from "./TableOfContentsClient";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 
 interface DocPostProps {
   params: {
@@ -33,6 +42,85 @@ export async function generateStaticParams() {
   );
 }
 
+interface PaginationLink {
+  title: string;
+  slug: string;
+}
+
+function getPaginationData(
+  tableOfContentsData: any,
+  currentSlug: string
+): { prev: PaginationLink | null; next: PaginationLink | null } {
+  const result: { prev: PaginationLink | null; next: PaginationLink | null } = {
+    prev: null,
+    next: null,
+  };
+
+  const allDocs: PaginationLink[] = [];
+  tableOfContentsData.parentNavigationGroup?.forEach((group: any) => {
+    if (!group?.items) return;
+
+    group.items.forEach((item: any) => {
+      if (item.slug && item.slug._sys && item.slug._sys.filename) {
+        allDocs.push({
+          title: item.title || "",
+          slug: item.slug._sys.filename,
+        });
+      }
+    });
+  });
+  const currentIndex = allDocs.findIndex((doc) => doc.slug === currentSlug);
+  if (currentIndex !== -1) {
+    if (currentIndex > 0) {
+      result.prev = allDocs[currentIndex - 1];
+    }
+
+    if (currentIndex < allDocs.length - 1) {
+      result.next = allDocs[currentIndex + 1];
+    }
+  }
+
+  return result;
+}
+
+function PaginationLinks({
+  prev,
+  next,
+  product,
+}: {
+  prev: PaginationLink | null;
+  next: PaginationLink | null;
+  product: string;
+}) {
+  return (
+    <div className="flex justify-between mt-12 py-4  rounded-lg">
+      {prev ? (
+        <Link
+          href={`/${product}/docs/${prev.slug}`}
+          className="flex gap-2 items-center text-white/60 hover:text-white transition-all duration-300"
+        >
+          <FaArrowLeft />
+          <span className="truncate">{prev.title}</span>
+        </Link>
+      ) : (
+        <div></div>
+      )}
+
+      {next ? (
+        <Link
+          href={`/${product}/docs/${next.slug}`}
+          className="flex gap-2 items-center text-white/60 hover:text-white transition-all duration-300"
+        >
+          <span className="truncate">{next.title}</span>
+          <FaArrowRight />
+        </Link>
+      ) : (
+        <div></div>
+      )}
+    </div>
+  );
+}
+
 export default async function DocPost({ params }: DocPostProps) {
   const { slug, product } = params;
   const documentData = await getDocPost(product, slug);
@@ -42,12 +130,16 @@ export default async function DocPost({ params }: DocPostProps) {
     return notFound();
   }
 
+  const paginationData = getPaginationData(tableOfContentsData as any, slug);
+
   return (
     <>
       <div className="grid grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen ">
         {/* LEFT COLUMN 1/3 */}
         <div className="w-full text-white lg:pt-20 md:pt-20 mt-20 ">
-          <TableOfContentsClient tableOfContentsData={tableOfContentsData} />
+          <TableOfContentsClient
+            tableOfContentsData={tableOfContentsData as any}
+          />
         </div>
 
         {/* RIGHT COLUMN 2/3 */}
@@ -56,6 +148,11 @@ export default async function DocPost({ params }: DocPostProps) {
             query={documentData.query}
             variables={documentData.variables}
             pageData={{ docs: documentData.docs }}
+          />
+          <PaginationLinks
+            prev={paginationData.prev}
+            next={paginationData.next}
+            product={product}
           />
         </div>
       </div>
