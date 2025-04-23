@@ -270,7 +270,7 @@ const CardButton = (button: CardButtonProps) => {
     button: CardButtonProps;
   }) => {
     return button.link ? (
-      <Link target="_blank" href={button.link || "no link"}>
+      <Link target="_blank" href={button.link}>
         {children}
       </Link>
     ) : (
