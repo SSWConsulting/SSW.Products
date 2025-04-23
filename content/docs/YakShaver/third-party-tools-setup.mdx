@@ -1,28 +1,20 @@
 ﻿---
-title: Third-Party Recording Tools Setup
+title: Third-Party Recording Tools Setup (e.g. Snagit, Windows Snipping Tool, and Mac Screenshot App)
 date: '2025-01-15T15:00:00.000Z'
 displayOrder: 3
 ---
 
 # Using YakShaver with Third-Party Recording Tools
 
-While the [browser extension](recording-work-item-browserextension) is the recommended way to get started with YakShaver, we also support a variety of third-party recording tools. These tools offer additional flexibility and features like keyboard shortcuts for power users who want to optimize their workflow.
+While [Microsoft Teams](recording-work-item-teams) and the [browser extension](recording-work-item-browser-extension) are the recommended ways to get started with YakShaver, we also support a variety of third-party recording tools. These tools offer additional flexibility and features like keyboard shortcuts for power users who want to optimize their workflow.
 
 ## How It Works
 
 When configured correctly, YakShaver monitors specific folders in your OneDrive for new recordings. When it finds a new recording, it automatically processes it into a work item.
 
-![](/YakShaver/folder-monitoring.png)
-**Figure: YakShaver monitoring your OneDrive folders**
+## Setup with Snagit
 
-## Supported Video Formats
-
-- .mp4
-- .mov
-
-## Setup with Snagit (Recommended)
-
-[Snagit](https://www.techsmith.com/screen-capture.html) is a popular screen recording tool that works seamlessly with YakShaver.
+[Snagit](https://www.techsmith.com/screen-capture.html) is a popular screen recording tool that works seamlessly with YakShaver. For detailed usage instructions after setup, see our [Recording with Snagit Guide](recording-work-item-snagit).
 
 ### Initial Setup
 
@@ -53,22 +45,38 @@ To become a power user, set up keyboard shortcuts for quick recording:
    (This prevents processing of old videos during setup)
 3. After configuring Snagit, type **ON** in YakShaver to reactivate processing
 
-### Recording with Snagit
-
+### Quick Start Recording
 1. Press your configured hotkey (e.g., "Print Screen")
 2. Select the video recording option
 3. Record your screen while explaining the task
 4. Stop the recording when finished
 5. YakShaver will automatically process the recording
 
+📖 For detailed recording instructions and best practices, see our [Recording with Snagit Guide](recording-work-item-snagit)
+
 ## Windows Snipping Tool
 
-The built-in Windows Snipping Tool can also be configured to work with YakShaver.
+The built-in Windows Snipping Tool can also be configured to work with YakShaver. For detailed usage instructions after setup, see our [Windows Snipping Tool Guide](recording-work-item-snipping-tool).
 
+### Initial Setup
 1. Open Windows Settings > System > Storage
 2. Under "Save locations", set Videos to your OneDrive folder:  
    `OneDrive/Recordings/SnippingTool/`
 3. Open Snipping Tool settings and ensure recordings save to this location
+
+📖 For detailed recording instructions and best practices, see our [Windows Snipping Tool Guide](recording-work-item-snipping-tool)
+
+## Mac Screenshot App
+
+The built-in Mac Screenshot App provides an easy way for MacOS users to create work items. For detailed usage instructions after setup, see our [Mac Screenshot App Guide](recording-work-item-screenshot-app).
+
+### Initial Setup
+1. Create the recordings folder:  
+   `OneDrive/Recordings/ScreenshotApp/`
+2. Configure Screenshot App to save to this location
+3. Enable microphone access
+
+📖 For detailed recording instructions and best practices, see our [Mac Screenshot App Guide](recording-work-item-screenshot-app)
 
 ## Other Recording Tools
 
@@ -78,11 +86,15 @@ You can use almost any recording tool with YakShaver if it can save to a specifi
 
 ## Troubleshooting
 
-- **Videos not being processed?**  
-  Check that you've typed **ON** in the YakShaver Teams bot
-  
+### Common Issues  
 - **Wrong file format?**  
   Ensure your recording tool is saving in .mp4 or .mov format
   
 - **Files saved to wrong location?**  
   Double-check the save location in your recording tool's settings 
+
+## Additional Resources
+- [Tips for creating effective work items](yakshaver-tips)
+- [Video hosting options](video-hosting)
+- [Frequently asked questions](frequently-asked-questions)
+- [Connect your GitHub account](connect-your-github-account)

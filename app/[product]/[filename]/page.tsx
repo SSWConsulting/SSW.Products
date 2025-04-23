@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 
+import CustomizeableBackground from "../../../components/shared/Background/CustomizeableBackground";
 import FooterServer from "../../../components/shared/FooterServer";
 import HomePageClient from "../../../components/shared/HomePageClient";
 import client from "../../../tina/__generated__/client";
@@ -18,10 +19,12 @@ export async function generateMetadata({ params }: FilePageProps) {
 
 export async function generateStaticParams() {
   const sitePosts = await client.queries.pagesConnection({});
-  return sitePosts.data.pagesConnection?.edges?.map((post) => ({
-    filename: post?.node?._sys.filename,
-    product: post?.node?._sys.breadcrumbs[0]
-  })) || []
+  return (
+    sitePosts.data.pagesConnection?.edges?.map((post) => ({
+      filename: post?.node?._sys.filename,
+      product: post?.node?._sys.breadcrumbs[0],
+    })) || []
+  );
 }
 
 export default async function FilePage({ params }: FilePageProps) {
@@ -31,6 +34,8 @@ export default async function FilePage({ params }: FilePageProps) {
 
   return (
     <div>
+    <CustomizeableBackground tinaData={fileData}>
+      <NavBarServer product={product} />
       <HomePageClient
         query={fileData.query}
         data={fileData.data}
@@ -47,7 +52,7 @@ export default async function FilePage({ params }: FilePageProps) {
           }}
         />
       )}
-    </div>
+    </CustomizeableBackground>
   );
 }
 
@@ -68,6 +73,7 @@ async function getPage(product: string, filename: string) {
     return {
       query: res.query,
       data: res.data,
+      variables: res.variables,
     };
   } catch (error) {
     console.error("Error fetching TinaCMS data:", error);
