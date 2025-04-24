@@ -71,6 +71,8 @@ const TypewriterText = ({
     }, typingSpeed);
   }, [text, shouldStartTyping]);
 
+  //TODO: Consolidate the two useEffects into one https://github.com/SSWConsulting/SSW.YakShaver/issues/1932
+
   useEffect(() => {
     let typingTimeout: NodeJS.Timeout;
 
