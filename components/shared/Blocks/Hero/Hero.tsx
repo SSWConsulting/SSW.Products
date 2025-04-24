@@ -1,7 +1,6 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
 import { cn } from "@/lib/utils";
 
-import useTypewriter from "@/components/hooks/typewriter";
 import {
   TranscriptBoxProps,
   TypewriterTextProps,
@@ -10,6 +9,7 @@ import Image from "next/image";
 import { ReactNode, useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import Container from "../../../Container";
+import useTypewriter from "../../../hooks/typewriter";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
 import Link from "next/link";
