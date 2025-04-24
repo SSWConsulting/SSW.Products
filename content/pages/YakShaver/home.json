@@ -79,8 +79,9 @@
           "Badge2Text": "DevOps",
           "Badge3Text": "Email",
           "delimiters": {
-            "enabled": false,
-            "delimeter": "or"
+            "enabled": true,
+            "delimeter": "",
+            "suffix": "and more!"
           },
           "media": "/public/Browser3.png",
           "textOnLeft": true
