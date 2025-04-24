@@ -1,9 +1,13 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
+import { cn } from "@/lib/utils";
+import {
+  TextPart,
+  TranscriptBoxProps,
+  TypewriterTextProps,
+} from "@/types/components/transcript";
 import Image from "next/image";
 import { ReactNode, useCallback, useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
-
-import { cn } from "@/lib/utils";
 import Container from "../../../Container";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
@@ -21,20 +25,11 @@ const TypewriterText = ({
   className,
   shouldStartTyping,
   setShouldStartTyping,
-}: {
-  setShouldStartTyping?: (value: boolean) => void;
-  shouldStartTyping: boolean;
-  text: string;
-  repeatDelay?: number;
-  startDelay?: number;
-  className?: string;
-}) => {
+}: TypewriterTextProps) => {
   const [displayText, setDisplayText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const [isHighlightingComplete, setIsHighlightingComplete] = useState(false);
-  const [parts, setParts] = useState<{ text: string; highlight: boolean }[]>(
-    []
-  );
+  const [parts, setParts] = useState<TextPart[]>([]);
 
   const clearText = useCallback(() => {
     setDisplayText("");
@@ -159,7 +154,7 @@ const TypewriterText = ({
   );
 };
 
-const TranscriptBox = ({ data }: { data: any }) => {
+const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   // Calculate total animation duration for staggering
   const staggerDelay = 2100;
   const [shouldStartTyping, setShouldStartTyping] = useState(true);
@@ -202,25 +197,27 @@ const TranscriptBox = ({ data }: { data: any }) => {
             </div>
           </div>
           <div className="flex flex-col gap-4 ">
-            {data.leftHandSide?.issueReportText?.map(
-              (text: string, index: number) => {
-                return (
-                  <span key={index}>
-                    <TypewriterText
-                      setShouldStartTyping={
-                        index === data.leftHandSide?.issueReportText?.length - 1
-                          ? setShouldStartTyping
-                          : undefined
-                      }
-                      shouldStartTyping={shouldStartTyping}
-                      className="text-xs xl:text-base"
-                      text={text}
-                      startDelay={index * staggerDelay}
-                    />
-                  </span>
-                );
-              }
-            )}
+            {data.leftHandSide?.issueReportText?.map((text, index: number) => {
+              return (
+                <>
+                  {data?.leftHandSide?.issueReportText && (
+                    <span key={index}>
+                      <TypewriterText
+                        setShouldStartTyping={
+                          index === data.leftHandSide.issueReportText.length - 1
+                            ? setShouldStartTyping
+                            : undefined
+                        }
+                        shouldStartTyping={shouldStartTyping}
+                        className="text-xs xl:text-base"
+                        text={text || ""}
+                        startDelay={index * staggerDelay}
+                      />
+                    </span>
+                  )}
+                </>
+              );
+            })}
           </div>
         </div>
 
