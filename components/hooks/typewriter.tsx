@@ -53,7 +53,7 @@ const useTypewriter = ({ text, onTypingComplete }: TypewriterTextProps) => {
     isHighlightingComplete,
     parts,
     playTypingAnimation,
-    reset,
+    resetTypingAnimation: reset,
     setDisplayText,
     setIsTypingComplete,
     setIsHighlightingComplete,

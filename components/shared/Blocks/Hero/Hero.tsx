@@ -39,6 +39,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
         onClick={() => {
           console.log("play as onclick fired");
           console.log(ref.current);
+          ref.current?.reset();
           ref.current?.play();
         }}
       >

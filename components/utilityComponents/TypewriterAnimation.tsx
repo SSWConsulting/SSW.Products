@@ -10,6 +10,7 @@ type TypewriterAnimationProps = {
 
 export type ParagraphAnimations = {
   play: () => void;
+  reset: () => void;
 };
 
 const TypewriterParagraphAnimation = React.forwardRef<
@@ -28,7 +29,16 @@ const TypewriterParagraphAnimation = React.forwardRef<
     play() {
       console.log("play as invoked");
       paragraphRefs.current.forEach((el) => {
-        if (el) el.play();
+        if (el) {
+          el.play();
+        }
+      });
+    },
+    reset() {
+      paragraphRefs.current.forEach((el) => {
+        if (el) {
+          el.reset();
+        }
       });
     },
   }));
@@ -81,6 +91,7 @@ const TypewriterAnimation = React.forwardRef<
     isTypingComplete,
     isHighlightingComplete,
     parts,
+    resetTypingAnimation,
     playTypingAnimation,
   } = useTypewriter({
     onTypingComplete,
@@ -92,6 +103,9 @@ const TypewriterAnimation = React.forwardRef<
   useImperativeHandle(ref, () => ({
     play() {
       playTypingAnimation();
+    },
+    reset() {
+      resetTypingAnimation();
     },
   }));
 
