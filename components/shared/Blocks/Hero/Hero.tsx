@@ -2,23 +2,28 @@ import { WordRotate } from "@/components/magicui/word-rotate";
 
 import { TranscriptBoxProps } from "@/types/components/transcript";
 import Image from "next/image";
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import Container from "../../../Container";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import TypewriterAnimation from "../../../utilityComponents/TypewriterAnimation";
+import {
+  ParagraphAnimations,
+  TypewriterParagraphAnimation,
+} from "../../../utilityComponents/TypewriterAnimation";
 import { AudioWaveAnimation } from "./AudioWaveAnimation";
 import { GradientBackground } from "./GradientBackground";
 import { YakAnimate, YakBorderAnimate } from "./yak-animate";
 
 const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   // Calculate total animation duration for staggering
-  const staggerDelay = 2100;
+
+  const ref = useRef<ParagraphAnimations>(null);
   const [shouldStartTyping, setShouldStartTyping] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     setShouldStartTyping(true);
   }, [data?.leftHandSide?.issueReportText]);
@@ -30,6 +35,15 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
 
   return (
     <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
+      <button
+        onClick={() => {
+          console.log("play as onclick fired");
+          console.log(ref.current);
+          ref.current?.play();
+        }}
+      >
+        Reset animation
+      </button>
       {/* LHS */}
       <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] py-6 px-6 ">
         <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3 h-[20.625rem]">
@@ -52,32 +66,22 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
             </div>
             <div className="flex-grow flex justify-end items-center">
               <div className="relative w-10 h-10 bg-[#1a1a1a] rounded-full overflow-hidden border border-[#CC4141]/50 flex items-center justify-center">
-                <AudioWaveAnimation />
+                <AudioWaveAnimation isPlaying={shouldStartTyping} />
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-4 ">
-            {data.leftHandSide?.issueReportText?.map((text, index: number) => {
-              return (
-                <>
-                  {data?.leftHandSide?.issueReportText && text && (
-                    <span key={index}>
-                      <TypewriterAnimation
-                        text={text}
-                        startDelay={index * staggerDelay}
-                        className="text-xs xl:text-base"
-                        shouldStartTyping={shouldStartTyping}
-                        setShouldStartTyping={
-                          index === data.leftHandSide.issueReportText.length - 1
-                            ? setShouldStartTyping
-                            : undefined
-                        }
-                      />
-                    </span>
-                  )}
-                </>
-              );
-            })}
+            {data?.leftHandSide?.issueReportText && (
+              <TypewriterParagraphAnimation
+                ref={ref}
+                // onTypingComplete={() => {
+                //   setAnimationPlaying(false);
+                // }}
+                paragraphs={data.leftHandSide.issueReportText.filter(
+                  (paragraph) => paragraph !== null
+                )}
+              />
+            )}
           </div>
         </div>
 

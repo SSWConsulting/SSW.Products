@@ -1,17 +1,11 @@
 import { TextPart, TypewriterTextProps } from "@/types/components/transcript";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
-const useTypewriter = ({
-  shouldStartTyping,
-  text,
-  setShouldStartTyping,
-  startDelay,
-  repeatDelay = 60,
-}: TypewriterTextProps) => {
+const useTypewriter = ({ text, onTypingComplete }: TypewriterTextProps) => {
   const [displayText, setDisplayText] = useState("");
   const [parts, setParts] = useState<TextPart[]>([]);
   const playTypingAnimation = useCallback(() => {
-    if (!shouldStartTyping) return;
+    // if (!shouldStartTyping) return;
     // Parse the text to identify parts to be highlighted
     const parsedParts = text.split(/({.*?})/).map((part) => ({
       text:
@@ -33,6 +27,9 @@ const useTypewriter = ({
         i++;
       } else {
         clearInterval(typingInterval);
+        if (onTypingComplete) {
+          onTypingComplete();
+        } // Call the onTypingComplete callback if provided
         setIsTypingComplete(true);
 
         // After typing completes, wait a moment then start the highlighting animation
@@ -41,38 +38,13 @@ const useTypewriter = ({
         }, 500);
       }
     }, typingSpeed);
-  }, [text, shouldStartTyping]);
+  }, [text]);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const reset = useCallback(() => {
     setDisplayText("");
     setIsTypingComplete(false);
     setIsHighlightingComplete(false);
   }, []);
-
-  if (isTypingComplete && setShouldStartTyping) {
-    setShouldStartTyping(false);
-    setTimeout(() => {
-      if (setShouldStartTyping) {
-        setShouldStartTyping(true);
-      }
-    }, 1000 * repeatDelay);
-  }
-
-  useEffect(() => {
-    let typingTimeout: NodeJS.Timeout;
-
-    if (shouldStartTyping) {
-      reset();
-      typingTimeout = setTimeout(() => {
-        playTypingAnimation();
-      }, startDelay);
-    }
-    return () => {
-      if (typingTimeout) {
-        clearTimeout(typingTimeout);
-      }
-    };
-  }, [shouldStartTyping, reset, playTypingAnimation, startDelay]);
 
   const [isHighlightingComplete, setIsHighlightingComplete] = useState(false);
   return {

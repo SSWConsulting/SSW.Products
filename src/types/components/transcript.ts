@@ -4,8 +4,7 @@ import {
 } from "../../../tina/__generated__/types";
 
 export type TypewriterTextProps = {
-  setShouldStartTyping?: (value: boolean) => void;
-  shouldStartTyping: boolean;
+  onTypingComplete?: () => void;
   text: string;
   repeatDelay?: number;
   startDelay?: number;

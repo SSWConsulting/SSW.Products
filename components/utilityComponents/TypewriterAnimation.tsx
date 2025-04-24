@@ -1,24 +1,99 @@
 import { cn } from "@/lib/utils";
 import { TypewriterTextProps } from "@/types/components/transcript";
+import React, { useImperativeHandle, useRef } from "react";
 import useTypewriter from "../hooks/typewriter";
 
+type TypewriterAnimationProps = {
+  paragraphs: string[];
+  onTypingComplete?: () => void;
+};
+
+export type ParagraphAnimations = {
+  play: () => void;
+};
+
+const TypewriterParagraphAnimation = React.forwardRef<
+  ParagraphAnimations,
+  Omit<TypewriterAnimationProps, "ref">
+>(({ paragraphs, onTypingComplete }, ref) => {
+  const paragraphRefs = useRef<(ParagraphAnimations | null)[]>([]);
+  const staggerDelay = 2100;
+
+  // Ensure refs array stays consistent with paragraphs length
+  React.useEffect(() => {
+    paragraphRefs.current = Array(paragraphs.length).fill(null);
+  }, [paragraphs.length]);
+
+  useImperativeHandle(ref, () => ({
+    play() {
+      console.log("play as invoked");
+      paragraphRefs.current.forEach((el) => {
+        if (el) el.play();
+      });
+    },
+  }));
+
+  return (
+    <>
+      {paragraphs.map((text, index) => {
+        return (
+          <span key={index}>
+            <TypewriterAnimation
+              ref={(el) => {
+                if (el) paragraphRefs.current[index] = el;
+              }}
+              text={text}
+              startDelay={index * staggerDelay}
+              className="text-xs xl:text-base"
+              onTypingComplete={
+                index === paragraphs.length - 1
+                  ? () => {
+                      if (!onTypingComplete) return;
+                      onTypingComplete();
+                    }
+                  : undefined
+              }
+            />
+          </span>
+        );
+      })}
+    </>
+  );
+});
+
+TypewriterParagraphAnimation.displayName = "TypewriterParagraphAnimation";
+
 // Typing Animation Component - made by Cursor
-const TypewriterAnimation = ({
-  text,
-  repeatDelay = 60,
-  startDelay = 0,
-  className,
-  shouldStartTyping,
-  setShouldStartTyping,
-}: TypewriterTextProps) => {
-  const { displayText, isTypingComplete, isHighlightingComplete, parts } =
-    useTypewriter({
-      repeatDelay,
-      startDelay,
-      setShouldStartTyping,
-      shouldStartTyping,
-      text,
-    });
+const TypewriterAnimation = React.forwardRef<
+  ParagraphAnimations,
+  Omit<TypewriterTextProps, "ref">
+>((props, ref) => {
+  const {
+    text,
+    repeatDelay = 60,
+    startDelay = 0,
+    onTypingComplete,
+    className,
+  } = props;
+
+  const {
+    displayText,
+    isTypingComplete,
+    isHighlightingComplete,
+    parts,
+    playTypingAnimation,
+  } = useTypewriter({
+    onTypingComplete,
+    repeatDelay,
+    startDelay,
+    text,
+  });
+
+  useImperativeHandle(ref, () => ({
+    play() {
+      playTypingAnimation();
+    },
+  }));
 
   if (!text) return null;
 
@@ -64,6 +139,8 @@ const TypewriterAnimation = ({
       )}
     </span>
   );
-};
+});
 
-export default TypewriterAnimation;
+TypewriterAnimation.displayName = "TypewriterAnimation";
+
+export { TypewriterAnimation, TypewriterParagraphAnimation };
