@@ -21,17 +21,11 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   // Calculate total animation duration for staggering
 
   const ref = useRef<ParagraphAnimations>(null);
-  const [shouldStartTyping, setShouldStartTyping] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
 
   useEffect(() => {
-    setShouldStartTyping(true);
-  }, [data?.leftHandSide?.issueReportText]);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsVisible(true);
-    }, 7000);
-  }, []);
+    ref.current?.play();
+  }, [ref.current?.play]);
 
   return (
     <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
@@ -41,6 +35,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
           console.log(ref.current);
           ref.current?.reset();
           ref.current?.play();
+          setIsTyping(true);
         }}
       >
         Reset animation
@@ -67,13 +62,19 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
             </div>
             <div className="flex-grow flex justify-end items-center">
               <div className="relative w-10 h-10 bg-[#1a1a1a] rounded-full overflow-hidden border border-[#CC4141]/50 flex items-center justify-center">
-                <AudioWaveAnimation isPlaying={shouldStartTyping} />
+                <AudioWaveAnimation isPlaying={isTyping} />
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-4 ">
             {data?.leftHandSide?.issueReportText && (
               <TypewriterParagraphAnimation
+                onTypingComplete={() => {
+                  setIsTyping(false);
+                }}
+                // onTypingComplete={() => {
+                //   setIsTyping(false);
+                // }}
                 ref={ref}
                 // onTypingComplete={() => {
                 //   setAnimationPlaying(false);
@@ -111,7 +112,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
       </div>
       {/* RHS */}
       <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] p-6 ">
-        <HeroYakShaverCard isVisible={isVisible} />
+        <HeroYakShaverCard isVisible={!isTyping} />
 
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">
