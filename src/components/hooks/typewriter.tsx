@@ -6,6 +6,7 @@ const useTypewriter = ({
   text,
   setShouldStartTyping,
   startDelay,
+  repeatDelay = 60,
 }: TypewriterTextProps) => {
   const [displayText, setDisplayText] = useState("");
   const [parts, setParts] = useState<TextPart[]>([]);
@@ -54,7 +55,7 @@ const useTypewriter = ({
       if (setShouldStartTyping) {
         setShouldStartTyping(true);
       }
-    }, 1000 * 5);
+    }, 1000 * repeatDelay);
   }
 
   useEffect(() => {

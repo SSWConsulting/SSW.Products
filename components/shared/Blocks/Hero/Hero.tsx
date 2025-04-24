@@ -29,6 +29,7 @@ const TypewriterText = ({
 }: TypewriterTextProps) => {
   const { displayText, isTypingComplete, isHighlightingComplete, parts } =
     useTypewriter({
+      repeatDelay,
       startDelay,
       setShouldStartTyping,
       shouldStartTyping,
