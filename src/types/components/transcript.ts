@@ -21,3 +21,8 @@ export type TextPart = {
   text: string;
   highlight: boolean;
 };
+
+export type UseTypewriterProps = {
+  text: string;
+  shouldStartTyping: boolean;
+};

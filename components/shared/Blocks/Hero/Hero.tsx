@@ -1,12 +1,13 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
 import { cn } from "@/lib/utils";
+
+import useTypewriter from "@/components/hooks/typewriter";
 import {
-  TextPart,
   TranscriptBoxProps,
   TypewriterTextProps,
 } from "@/types/components/transcript";
 import Image from "next/image";
-import { ReactNode, useCallback, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import Container from "../../../Container";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
@@ -26,79 +27,15 @@ const TypewriterText = ({
   shouldStartTyping,
   setShouldStartTyping,
 }: TypewriterTextProps) => {
-  const [displayText, setDisplayText] = useState("");
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [isHighlightingComplete, setIsHighlightingComplete] = useState(false);
-  const [parts, setParts] = useState<TextPart[]>([]);
-
-  // const isTypingComplete = displayText.length === text.length;
-
-  const clearText = useCallback(() => {
-    setDisplayText("");
-    setIsTypingComplete(false);
-    setIsHighlightingComplete(false);
-  }, []);
-
-  const playTypingAnimation = useCallback(() => {
-    if (!shouldStartTyping) return;
-    // Parse the text to identify parts to be highlighted
-    const parsedParts = text.split(/({.*?})/).map((part) => ({
-      text:
-        part.startsWith("{") && part.endsWith("}") ? part.slice(1, -1) : part,
-      highlight: part.startsWith("{") && part.endsWith("}"),
-    }));
-    setParts(parsedParts);
-
-    // Start typing animation
-    let fullText = "";
-    const flatText = parsedParts.map((part) => part.text).join("");
-
-    const typingSpeed = 2000 / flatText.length; // Distribute typing over 5 seconds
-
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      if (i < flatText.length) {
-        fullText += flatText[i];
-        setDisplayText(fullText);
-        i++;
-      } else {
-        clearInterval(typingInterval);
-        setIsTypingComplete(true);
-
-        // After typing completes, wait a moment then start the highlighting animation
-        setTimeout(() => {
-          setIsHighlightingComplete(true);
-        }, 500);
-      }
-    }, typingSpeed);
-  }, [text, shouldStartTyping]);
+  const { displayText, isTypingComplete, isHighlightingComplete, parts } =
+    useTypewriter({
+      startDelay,
+      setShouldStartTyping,
+      shouldStartTyping,
+      text,
+    });
 
   //TODO: Consolidate the two useEffects into one https://github.com/SSWConsulting/SSW.YakShaver/issues/1932
-
-  useEffect(() => {
-    let typingTimeout: NodeJS.Timeout;
-
-    if (shouldStartTyping) {
-      clearText();
-      typingTimeout = setTimeout(() => {
-        playTypingAnimation();
-      }, startDelay);
-    }
-    return () => {
-      if (typingTimeout) {
-        clearTimeout(typingTimeout);
-      }
-    };
-  }, [shouldStartTyping, playTypingAnimation, text, startDelay, clearText]);
-
-  if (isTypingComplete && setShouldStartTyping) {
-    setShouldStartTyping(false);
-    setTimeout(() => {
-      if (setShouldStartTyping) {
-        setShouldStartTyping(true);
-      }
-    }, 1000 * repeatDelay);
-  }
 
   if (!text) return null;
 
