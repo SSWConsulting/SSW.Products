@@ -31,6 +31,8 @@ const TypewriterText = ({
   const [isHighlightingComplete, setIsHighlightingComplete] = useState(false);
   const [parts, setParts] = useState<TextPart[]>([]);
 
+  // const isTypingComplete = displayText.length === text.length;
+
   const clearText = useCallback(() => {
     setDisplayText("");
     setIsTypingComplete(false);
@@ -89,26 +91,14 @@ const TypewriterText = ({
     };
   }, [shouldStartTyping, playTypingAnimation, text, startDelay, clearText]);
 
-  useEffect(() => {
-    let completionTimeout: NodeJS.Timeout;
-
-    if (isTypingComplete && setShouldStartTyping) {
-      setShouldStartTyping(false);
-
-      completionTimeout = setTimeout(() => {
-        if (setShouldStartTyping) {
-          setShouldStartTyping(true);
-        }
-      }, 1000 * repeatDelay);
-    }
-
-    // Cleanup function to clear the timeout when component unmounts or refreshes
-    return () => {
-      if (completionTimeout) {
-        clearTimeout(completionTimeout);
+  if (isTypingComplete && setShouldStartTyping) {
+    setShouldStartTyping(false);
+    setTimeout(() => {
+      if (setShouldStartTyping) {
+        setShouldStartTyping(true);
       }
-    };
-  }, [isTypingComplete, setShouldStartTyping, text, repeatDelay]);
+    }, 1000 * repeatDelay);
+  }
 
   if (!text) return null;
 
