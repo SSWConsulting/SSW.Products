@@ -115,8 +115,6 @@ const TypewriterText = ({
 
   if (!text) return null;
 
-  // if (!shouldStartTyping) return <span className="opacity-0">{text}</span>;
-
   // Before typing is complete, show the plain text being typed
   if (!isTypingComplete) {
     return <span>{displayText}</span>;
