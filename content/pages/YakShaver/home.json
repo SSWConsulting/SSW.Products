@@ -57,9 +57,9 @@
           "Badge2Text": "Snipping Tool",
           "Badge3Text": "Snagit",
           "delimiters": {
-            "enabled": false,
-            "delimeter": "and",
-            "suffix": "and hundreds more"
+            "enabled": true,
+            "delimeter": "",
+            "suffix": "and hundreds more!"
           },
           "media": "/public/Browser1.png",
           "textOnLeft": true
