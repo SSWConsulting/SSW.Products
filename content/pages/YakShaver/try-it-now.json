@@ -1,0 +1,72 @@
+{
+  "seo": {
+    "title": "Try It now",
+    "description": "Step by step instructions for installing the YakShaver browser extension and using it",
+    "openGraphTitle": "Try It now",
+    "openGraphDescription": "Step by step instructions for installing the YakShaver browser extension and using it"
+  },
+  "title": "Try It Now",
+  "pageBlocks": [
+    {
+      "topImage": {
+        "imgSrc": "/YakShaver/YakShaver Darkmode.png",
+        "imgWidth": 514,
+        "imgHeight": 104
+      },
+      "tryItNowTitle": "Start recording with the YakShaver browser extension in 3 steps!",
+      "tryItNowCards": [
+        {
+          "title": "1. Download",
+          "description": "Download  the YakShaver browser extension from the Google Chrome store by clicking the button below.\n",
+          "image": {
+            "imgWidth": 480,
+            "imgHeight": 336
+          },
+          "button": {
+            "enableButton": true,
+            "label": "Download\n",
+            "link": "https://chromewebstore.google.com/detail/yakshaver/glcoihkbmomiblcbpnlkafcipcfnikjc"
+          }
+        },
+        {
+          "title": "2. Pin",
+          "description": "Click the ![](/TryItNow/puzzle.svg) at the top right of your browser, then the ![](/TryItNow/pin.svg) next to YakShaver to pin it to your browser window.\n",
+          "image": {
+            "imgSrc": "/TryItNow/pin-yakshaver.png",
+            "imgWidth": 480,
+            "imgHeight": 336
+          },
+          "button": {
+            "label": ""
+          }
+        },
+        {
+          "title": "3. Give Permissions",
+          "description": "When prompted, allow YakShaver to use your system audio. Make sure you share your microphone from the current tab as well.\n",
+          "image": {
+            "imgWidth": 480,
+            "imgHeight": 336
+          },
+          "button": {
+            "label": ""
+          }
+        }
+      ],
+      "bottomLinks": [
+        {
+          "label": "![](/TryItNow/question.svg)Learn More\n",
+          "url": "/docs/recording-work-item-browser-extension"
+        },
+        {
+          "label": "![](/TryItNow/camera.svg)Watch Video\n",
+          "url": "https://www.youtube.com/watch?v=CBes1SEvV54"
+        }
+      ],
+      "_template": "tryItNow"
+    }
+  ],
+  "pageFormatting": {
+    "backgroundColor": "black",
+    "bottomPadding": "small"
+  }
+}

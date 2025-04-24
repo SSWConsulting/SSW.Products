@@ -6,7 +6,7 @@ import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import "../globals.css";
 
 const inter = Inter({
-  weight: ["400", "700"],
+  weight: ["400", "600", "700"],
   subsets: ["latin"],
 });
 
