@@ -1,9 +1,18 @@
 import { TextPart, TypewriterTextProps } from "@/types/components/transcript";
 import { useCallback, useState } from "react";
 
-const useTypewriter = ({ text, onTypingComplete }: TypewriterTextProps) => {
+const useTypewriter = ({
+  text,
+  onTypingComplete,
+  startDelay,
+}: TypewriterTextProps) => {
   const [displayText, setDisplayText] = useState("");
   const [parts, setParts] = useState<TextPart[]>([]);
+  const playDeferredTypingAnimation = () => {
+    setTimeout(() => {
+      playTypingAnimation();
+    }, startDelay); // Delay before starting the typing animation
+  };
   const playTypingAnimation = useCallback(() => {
     // if (!shouldStartTyping) return;
     // Parse the text to identify parts to be highlighted
@@ -39,7 +48,9 @@ const useTypewriter = ({ text, onTypingComplete }: TypewriterTextProps) => {
       }
     }, typingSpeed);
   }, [text]);
+
   const [isTypingComplete, setIsTypingComplete] = useState(false);
+
   const reset = useCallback(() => {
     setDisplayText("");
     setIsTypingComplete(false);
@@ -52,7 +63,7 @@ const useTypewriter = ({ text, onTypingComplete }: TypewriterTextProps) => {
     isTypingComplete,
     isHighlightingComplete,
     parts,
-    playTypingAnimation,
+    playTypingAnimation: playDeferredTypingAnimation,
     resetTypingAnimation: reset,
     setDisplayText,
     setIsTypingComplete,
