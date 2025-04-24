@@ -1,88 +1,18 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
-import { cn } from "@/lib/utils";
 
-import {
-  TranscriptBoxProps,
-  TypewriterTextProps,
-} from "@/types/components/transcript";
+import { TranscriptBoxProps } from "@/types/components/transcript";
 import Image from "next/image";
 import { ReactNode, useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import Container from "../../../Container";
-import useTypewriter from "../../../hooks/typewriter";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import TypewriterAnimation from "../../../utilityComponents/TypewriterAnimation";
 import { AudioWaveAnimation } from "./AudioWaveAnimation";
 import { GradientBackground } from "./GradientBackground";
 import { YakAnimate, YakBorderAnimate } from "./yak-animate";
-
-// Typing Animation Component - made by Cursor
-const TypewriterText = ({
-  text,
-  repeatDelay = 60,
-  startDelay = 0,
-  className,
-  shouldStartTyping,
-  setShouldStartTyping,
-}: TypewriterTextProps) => {
-  const { displayText, isTypingComplete, isHighlightingComplete, parts } =
-    useTypewriter({
-      repeatDelay,
-      startDelay,
-      setShouldStartTyping,
-      shouldStartTyping,
-      text,
-    });
-
-  //TODO: Consolidate the two useEffects into one https://github.com/SSWConsulting/SSW.YakShaver/issues/1932
-
-  if (!text) return null;
-
-  // Before typing is complete, show the plain text being typed
-  if (!isTypingComplete) {
-    return <span>{displayText}</span>;
-  }
-
-  // After typing is complete, show the highlighted version
-  return (
-    <span className={cn(className)}>
-      {parts.map((part, index) =>
-        part.highlight ? (
-          <span
-            key={index}
-            className={`
-              relative overflow-hidden
-              ${
-                isHighlightingComplete
-                  ? "text-black bg-white rounded-[2px]"
-                  : "text-white bg-none"
-              }
-              transition-colors duration-500 ease-in-out
-            `}
-          >
-            {/* Background highlight with animation */}
-            <span
-              className={`
-                absolute inset-0
-                bg-white
-                rounded-[2px]
-                origin-left
-                ${isHighlightingComplete ? "scale-x-100" : "scale-x-0"}
-                transition-transform duration-500 ease-in-out
-                -z-10
-              `}
-            />
-            <span className="px-[0.1rem]">{part.text}</span>
-          </span>
-        ) : (
-          part.text
-        )
-      )}
-    </span>
-  );
-};
 
 const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   // Calculate total animation duration for staggering
@@ -130,18 +60,18 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
             {data.leftHandSide?.issueReportText?.map((text, index: number) => {
               return (
                 <>
-                  {data?.leftHandSide?.issueReportText && (
+                  {data?.leftHandSide?.issueReportText && text && (
                     <span key={index}>
-                      <TypewriterText
+                      <TypewriterAnimation
+                        text={text}
+                        startDelay={index * staggerDelay}
+                        className="text-xs xl:text-base"
+                        shouldStartTyping={shouldStartTyping}
                         setShouldStartTyping={
                           index === data.leftHandSide.issueReportText.length - 1
                             ? setShouldStartTyping
                             : undefined
                         }
-                        shouldStartTyping={shouldStartTyping}
-                        className="text-xs xl:text-base"
-                        text={text || ""}
-                        startDelay={index * staggerDelay}
                       />
                     </span>
                   )}
