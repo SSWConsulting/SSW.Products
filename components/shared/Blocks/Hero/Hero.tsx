@@ -15,7 +15,7 @@ import {
 } from "../../../utilityComponents/TypewriterAnimation";
 import { AudioWaveAnimation } from "./AudioWaveAnimation";
 import { GradientBackground } from "./GradientBackground";
-import { YakAnimate, YakBorderAnimate } from "./yak-animate";
+import { YakAnimate, YakAnimateRef, YakBorderAnimate } from "./yak-animate";
 
 const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   // Calculate total animation duration for staggering
@@ -23,6 +23,8 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   const ref = useRef<ParagraphAnimations>(null);
   const [isTyping, setIsTyping] = useState(true);
 
+  const yakAnimateRef = useRef<YakAnimateRef>(null);
+  yakAnimateRef.current;
   useEffect(() => {
     ref.current?.play();
   }, [ref.current?.play]);
@@ -33,6 +35,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
         onClick={() => {
           console.log("play as onclick fired");
           console.log(ref.current);
+          yakAnimateRef.current?.reset();
           ref.current?.reset();
           ref.current?.play();
           setIsTyping(true);
@@ -105,7 +108,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
           <YakBorderAnimate />
           <div className="absolute inset-[3px] z-10 rounded-full shadow-lg flex items-center justify-center bg-gradient-to-br from-white via-[#e6e6e6] to-[#c4c4c4]">
             <div className="scale-90 flex items-center justify-center">
-              <YakAnimate />
+              <YakAnimate ref={yakAnimateRef} />
             </div>
           </div>
         </div>

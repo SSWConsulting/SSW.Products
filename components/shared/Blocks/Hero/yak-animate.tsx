@@ -1,6 +1,19 @@
-export function YakAnimate() {
+import React, { useImperativeHandle, useRef } from "react";
+
+export type YakAnimateRef = {
+  reset: () => void;
+};
+export const YakAnimate = React.forwardRef<YakAnimateRef, any>((props, ref) => {
+  useImperativeHandle(ref, () => {
+    return {
+      reset: () => svgRef.current?.setCurrentTime(0),
+    };
+  });
+  const svgRef = useRef<SVGSVGElement>(null);
+
   return (
     <svg
+      ref={svgRef}
       width="46"
       height="35"
       viewBox="0 0 46 35"
@@ -12,6 +25,7 @@ export function YakAnimate() {
         <mask id="fill-mask">
           <rect x="0" y="0" width="46" height="35" fill="white">
             <animate
+              id="fill-animate"
               attributeName="y"
               from="35"
               to="0"
@@ -37,7 +51,7 @@ export function YakAnimate() {
       />
     </svg>
   );
-}
+});
 
 export function YakBorderAnimate() {
   return (
