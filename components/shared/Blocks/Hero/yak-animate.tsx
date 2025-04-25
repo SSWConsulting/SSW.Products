@@ -54,10 +54,6 @@ export const YakAnimate = React.forwardRef<YakAnimateRef, any>((props, ref) => {
 });
 
 export const YakBorderAnimate = React.forwardRef((props, ref) => {
-  const svgRef = useRef<SVGSVGElement>(null);
-
-  svgRef.current?.setCurrentTime(0);
-
   const leftPathRef = useRef<SVGPathElement>(null);
   const rightPathRef = useRef<SVGPathElement>(null);
 
@@ -90,11 +86,7 @@ export const YakBorderAnimate = React.forwardRef((props, ref) => {
 
   return (
     <div className="absolute inset-0 rounded-full pointer-events-none">
-      <svg
-        ref={svgRef}
-        className="absolute inset-0 w-full h-full"
-        viewBox="0 0 100 100"
-      >
+      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
         <defs>
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#FF778E" />
