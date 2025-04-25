@@ -1,4 +1,4 @@
-import React, { useImperativeHandle, useRef } from "react";
+import React, { useEffect, useImperativeHandle, useRef } from "react";
 
 export type YakAnimateRef = {
   reset: () => void;
@@ -60,25 +60,31 @@ export const YakBorderAnimate = React.forwardRef((props, ref) => {
 
   const leftPathRef = useRef<SVGPathElement>(null);
   const rightPathRef = useRef<SVGPathElement>(null);
-  leftPathRef.current?.animate(
-    [{ strokeDashoffset: 226 }, { strokeDashoffset: 0 }],
-    {
-      duration: 9000,
-      fill: "forwards",
-    }
-  );
-  rightPathRef.current?.animate(
-    [{ strokeDashoffset: 226 }, { strokeDashoffset: 0 }],
-    {
-      duration: 9000,
-      fill: "forwards",
-    }
-  );
+  // const playAnimation = () => {
+
+  useEffect(() => {
+    playAnimation();
+  }, []);
+  const playAnimation = () => {
+    leftPathRef.current?.animate(
+      [{ strokeDashoffset: 226 }, { strokeDashoffset: 0 }],
+      {
+        duration: 9000,
+        fill: "forwards",
+      }
+    );
+    rightPathRef.current?.animate(
+      [{ strokeDashoffset: 226 }, { strokeDashoffset: 0 }],
+      {
+        duration: 9000,
+        fill: "forwards",
+      }
+    );
+  };
   useImperativeHandle(ref, () => {
     return {
       reset: () => {
-        console.log("yak border animate reset called");
-        svgRef.current?.setCurrentTime(0);
+        playAnimation();
       },
     };
   });
@@ -135,7 +141,7 @@ export const YakBorderAnimate = React.forwardRef((props, ref) => {
           // }}
         />
       </svg>
-      <style jsx global>{`
+      {/* <style jsx global>{`
         @keyframes fillBorderLeft {
           0% {
             stroke-dashoffset: 226;
@@ -153,7 +159,7 @@ export const YakBorderAnimate = React.forwardRef((props, ref) => {
             stroke-dashoffset: 0;
           }
         }
-      `}</style>
+      `}</style> */}
     </div>
   );
 });

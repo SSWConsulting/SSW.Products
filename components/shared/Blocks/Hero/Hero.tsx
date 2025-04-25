@@ -24,6 +24,8 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   const [isTyping, setIsTyping] = useState(true);
 
   const yakAnimateRef = useRef<YakAnimateRef>(null);
+  const yakBorderAnimateRef = useRef<YakAnimateRef>(null);
+
   yakAnimateRef.current;
   useEffect(() => {
     ref.current?.play();
@@ -36,6 +38,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
           console.log("play as onclick fired");
           console.log(ref.current);
           yakAnimateRef.current?.reset();
+          yakBorderAnimateRef.current?.reset();
           ref.current?.reset();
           ref.current?.play();
           setIsTyping(true);
@@ -105,7 +108,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
       </div>
       <div className="flex justify-center items-center p-5">
         <div className="relative md:w-20 md:h-20 h-20 w-20 overflow-visible bg-[#2b1f3b] rounded-full">
-          <YakBorderAnimate />
+          <YakBorderAnimate ref={yakBorderAnimateRef} />
           <div className="absolute inset-[3px] z-10 rounded-full shadow-lg flex items-center justify-center bg-gradient-to-br from-white via-[#e6e6e6] to-[#c4c4c4]">
             <div className="scale-90 flex items-center justify-center">
               <YakAnimate ref={yakAnimateRef} />
