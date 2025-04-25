@@ -35,8 +35,6 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
     <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
       <button
         onClick={() => {
-          console.log("play as onclick fired");
-          console.log(ref.current);
           yakAnimateRef.current?.reset();
           yakBorderAnimateRef.current?.reset();
           ref.current?.reset();
