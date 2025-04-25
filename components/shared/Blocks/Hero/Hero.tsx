@@ -33,17 +33,6 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
 
   return (
     <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
-      <button
-        onClick={() => {
-          yakAnimateRef.current?.reset();
-          yakBorderAnimateRef.current?.reset();
-          ref.current?.reset();
-          ref.current?.play();
-          setIsTyping(true);
-        }}
-      >
-        Reset animation
-      </button>
       {/* LHS */}
       <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] py-6 px-6 ">
         <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3 h-[20.625rem]">
