@@ -60,7 +60,6 @@ export const YakBorderAnimate = React.forwardRef((props, ref) => {
 
   const leftPathRef = useRef<SVGPathElement>(null);
   const rightPathRef = useRef<SVGPathElement>(null);
-  // const playAnimation = () => {
 
   useEffect(() => {
     playAnimation();
