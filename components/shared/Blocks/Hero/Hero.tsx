@@ -22,11 +22,19 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
 
   const ref = useRef<ParagraphAnimations>(null);
   const [isTyping, setIsTyping] = useState(true);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null); // Store the timeout ID
+
+  const repeatAnimation = () => {
+    yakAnimateRef.current?.reset();
+    yakBorderAnimateRef.current?.reset();
+    ref.current?.reset();
+    ref.current?.play();
+    setIsTyping(true);
+  };
 
   const yakAnimateRef = useRef<YakAnimateRef>(null);
   const yakBorderAnimateRef = useRef<YakAnimateRef>(null);
 
-  yakAnimateRef.current;
   useEffect(() => {
     ref.current?.play();
   }, [ref.current?.play]);
@@ -64,6 +72,12 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
               <TypewriterParagraphAnimation
                 onTypingComplete={() => {
                   setIsTyping(false);
+                  if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current);
+                  }
+                  timeoutRef.current = setTimeout(() => {
+                    repeatAnimation();
+                  }, 10 * 1000);
                 }}
                 ref={ref}
                 paragraphs={data.leftHandSide.issueReportText.filter(
