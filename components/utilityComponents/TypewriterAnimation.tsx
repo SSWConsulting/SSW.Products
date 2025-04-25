@@ -113,7 +113,7 @@ const TypewriterAnimation = React.forwardRef<
 
   // Before typing is complete, show the plain text being typed
   if (!isTypingComplete) {
-    return <span>{displayText}</span>;
+    return <span className={className}>{displayText}</span>;
   }
 
   // After typing is complete, show the highlighted version
@@ -145,7 +145,7 @@ const TypewriterAnimation = React.forwardRef<
                 -z-10
               `}
             />
-            <span className="px-[0.1rem]">{part.text}</span>
+            <span className={"px-[0.1rem]"}>{part.text}</span>
           </span>
         ) : (
           part.text
