@@ -78,13 +78,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
                 onTypingComplete={() => {
                   setIsTyping(false);
                 }}
-                // onTypingComplete={() => {
-                //   setIsTyping(false);
-                // }}
                 ref={ref}
-                // onTypingComplete={() => {
-                //   setAnimationPlaying(false);
-                // }}
                 paragraphs={data.leftHandSide.issueReportText.filter(
                   (paragraph) => paragraph !== null
                 )}
