@@ -121,9 +121,6 @@ export const YakBorderAnimate = React.forwardRef((props, ref) => {
           strokeDasharray="226"
           strokeDashoffset="226"
           ref={leftPathRef}
-          // style={{
-          //   animation: "fillBorderLeft 9s linear forwards",
-          // }}
         />
 
         <path
@@ -135,30 +132,8 @@ export const YakBorderAnimate = React.forwardRef((props, ref) => {
           strokeDasharray="226"
           strokeDashoffset="226"
           ref={rightPathRef}
-          // style={{
-          //   animation: "fillBorderRight 9s linear forwards",
-          // }}
         />
       </svg>
-      {/* <style jsx global>{`
-        @keyframes fillBorderLeft {
-          0% {
-            stroke-dashoffset: 226;
-          }
-          100% {
-            stroke-dashoffset: 0;
-          }
-        }
-
-        @keyframes fillBorderRight {
-          0% {
-            stroke-dashoffset: 226;
-          }
-          100% {
-            stroke-dashoffset: 0;
-          }
-        }
-      `}</style> */}
     </div>
   );
 });
