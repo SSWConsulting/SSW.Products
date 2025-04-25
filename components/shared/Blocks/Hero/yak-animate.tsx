@@ -53,10 +53,43 @@ export const YakAnimate = React.forwardRef<YakAnimateRef, any>((props, ref) => {
   );
 });
 
-export function YakBorderAnimate() {
+export const YakBorderAnimate = React.forwardRef((props, ref) => {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  svgRef.current?.setCurrentTime(0);
+
+  const leftPathRef = useRef<SVGPathElement>(null);
+  const rightPathRef = useRef<SVGPathElement>(null);
+  leftPathRef.current?.animate(
+    [{ strokeDashoffset: 226 }, { strokeDashoffset: 0 }],
+    {
+      duration: 9000,
+      fill: "forwards",
+    }
+  );
+  rightPathRef.current?.animate(
+    [{ strokeDashoffset: 226 }, { strokeDashoffset: 0 }],
+    {
+      duration: 9000,
+      fill: "forwards",
+    }
+  );
+  useImperativeHandle(ref, () => {
+    return {
+      reset: () => {
+        console.log("yak border animate reset called");
+        svgRef.current?.setCurrentTime(0);
+      },
+    };
+  });
+
   return (
     <div className="absolute inset-0 rounded-full pointer-events-none">
-      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+      <svg
+        ref={svgRef}
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 100 100"
+      >
         <defs>
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feDropShadow dx="0" dy="0" stdDeviation="3" floodColor="#FF778E" />
@@ -75,27 +108,31 @@ export function YakBorderAnimate() {
         </defs>
 
         <path
+          className="transition-all"
           d="M 50,98 A 48,48 0 0 1 2,50 A 48,48 0 0 1 50,2"
           fill="none"
           stroke="url(#yakGradient)"
           strokeWidth="4"
           strokeDasharray="226"
           strokeDashoffset="226"
-          style={{
-            animation: "fillBorderLeft 9s linear forwards",
-          }}
+          ref={leftPathRef}
+          // style={{
+          //   animation: "fillBorderLeft 9s linear forwards",
+          // }}
         />
 
         <path
+          className="transition-all"
           d="M 50,98 A 48,48 0 0 0 98,50 A 48,48 0 0 0 50,2"
           fill="none"
           stroke="url(#yakGradient)"
           strokeWidth="4"
           strokeDasharray="226"
           strokeDashoffset="226"
-          style={{
-            animation: "fillBorderRight 9s linear forwards",
-          }}
+          ref={rightPathRef}
+          // style={{
+          //   animation: "fillBorderRight 9s linear forwards",
+          // }}
         />
       </svg>
       <style jsx global>{`
@@ -119,4 +156,4 @@ export function YakBorderAnimate() {
       `}</style>
     </div>
   );
-}
+});
