@@ -53,6 +53,8 @@ export const YakAnimate = React.forwardRef<YakAnimateRef, any>((props, ref) => {
   );
 });
 
+YakAnimate.displayName = "YakAnimate";
+
 export const YakBorderAnimate = React.forwardRef((props, ref) => {
   const leftPathRef = useRef<SVGPathElement>(null);
   const rightPathRef = useRef<SVGPathElement>(null);
@@ -129,3 +131,5 @@ export const YakBorderAnimate = React.forwardRef((props, ref) => {
     </div>
   );
 });
+
+YakBorderAnimate.displayName = "YakBorderAnimate";
