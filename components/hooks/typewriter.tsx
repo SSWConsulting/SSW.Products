@@ -7,7 +7,9 @@ const useTypewriter = ({
   startDelay,
 }: TypewriterTextProps) => {
   const [displayText, setDisplayText] = useState("");
+
   const [parts, setParts] = useState<TextPart[]>([]);
+
   const playDeferredTypingAnimation = () => {
     setTimeout(() => {
       playTypingAnimation();
@@ -45,7 +47,7 @@ const useTypewriter = ({
         }, 500);
       }
     }, typingSpeed);
-  }, [text]);
+  }, [text, onTypingComplete]);
 
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
