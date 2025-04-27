@@ -75,7 +75,7 @@ TypewriterParagraphAnimation.displayName = "TypewriterParagraphAnimation";
 // Typing Animation Component - made by Cursor
 const TypewriterAnimation = React.forwardRef<
   AnimatedComponent,
-  Omit<TypewriterTextProps, "ref">
+  TypewriterTextProps
 >((props, ref) => {
   const {
     text,
