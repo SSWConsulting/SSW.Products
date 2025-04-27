@@ -77,7 +77,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
                   }
                   timeoutRef.current = setTimeout(() => {
                     repeatAnimation();
-                  }, 10 * 1000);
+                  }, 30 * 1000);
                 }}
                 ref={ref}
                 paragraphs={data.leftHandSide.issueReportText.filter(
