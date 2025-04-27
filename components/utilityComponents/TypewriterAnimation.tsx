@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils";
+import { AnimatedComponent } from "@/types/components/animated";
 import { TypewriterTextProps } from "@/types/components/transcript";
 import React, { useImperativeHandle, useRef } from "react";
 import useTypewriter from "../hooks/typewriter";
-
 type TypewriterAnimationProps = {
   paragraphs: string[];
   onTypingComplete?: () => void;
@@ -17,7 +17,7 @@ const TypewriterParagraphAnimation = React.forwardRef<
   ParagraphAnimations,
   Omit<TypewriterAnimationProps, "ref">
 >(({ paragraphs, onTypingComplete }, ref) => {
-  const paragraphRefs = useRef<(ParagraphAnimations | null)[]>([]);
+  const paragraphRefs = useRef<(AnimatedComponent | null)[]>([]);
   const staggerDelay = 2100;
 
   // Ensure refs array stays consistent with paragraphs length
@@ -27,7 +27,6 @@ const TypewriterParagraphAnimation = React.forwardRef<
 
   useImperativeHandle(ref, () => ({
     play() {
-      console.log("play as invoked");
       paragraphRefs.current.forEach((el) => {
         if (el) {
           el.play();
@@ -75,7 +74,7 @@ TypewriterParagraphAnimation.displayName = "TypewriterParagraphAnimation";
 
 // Typing Animation Component - made by Cursor
 const TypewriterAnimation = React.forwardRef<
-  ParagraphAnimations,
+  AnimatedComponent,
   Omit<TypewriterTextProps, "ref">
 >((props, ref) => {
   const {
