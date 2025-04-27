@@ -14,8 +14,6 @@ const useTypewriter = ({
     }, startDelay); // Delay before starting the typing animation
   };
   const playTypingAnimation = useCallback(() => {
-    // if (!shouldStartTyping) return;
-    // Parse the text to identify parts to be highlighted
     const parsedParts = text.split(/({.*?})/).map((part) => ({
       text:
         part.startsWith("{") && part.endsWith("}") ? part.slice(1, -1) : part,
