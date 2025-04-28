@@ -41,19 +41,17 @@ export const CardAndImageTemplate: Template = {
           // ui: { component: "textarea" },
         },
         {
-          name: "Badge1Text",
-          label: "Badge 1 Text",
-          type: "string",
-        },
-        {
-          name: "Badge2Text",
-          label: "Badge 2 Text",
-          type: "string",
-        },
-        {
-          name: "Badge3Text",
-          label: "Badge 3 Text",
-          type: "string",
+          name: "Badges",
+          label: "Badges",
+          type: "object",
+          list: true,
+          fields: [
+            {
+              name: "Badge",
+              label: "Badge Text",
+              type: "string",
+            },
+          ],
         },
         {
           name: "delimiters",
