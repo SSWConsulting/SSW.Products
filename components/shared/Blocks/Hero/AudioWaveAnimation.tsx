@@ -1,6 +1,10 @@
-import React from "react";
+type AudioWaveAnimationProps = {
+  isPlaying: boolean;
+};
 
-export function AudioWaveAnimation() {
+export function AudioWaveAnimation({
+  isPlaying = true,
+}: AudioWaveAnimationProps) {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <svg
@@ -16,13 +20,13 @@ export function AudioWaveAnimation() {
             attributeName="height"
             values="10;20;10"
             dur="1s"
-            repeatCount="9"
+            repeatCount={isPlaying ? "indefinite" : "0"}
           />
           <animate
             attributeName="y"
             values="15;10;15"
             dur="1s"
-            repeatCount="7"
+            repeatCount={isPlaying ? "indefinite" : "0"}
           />
         </rect>
 
@@ -40,13 +44,13 @@ export function AudioWaveAnimation() {
             attributeName="height"
             values="5;15;5"
             dur="1.3s"
-            repeatCount="6"
+            repeatCount={isPlaying ? "indefinite" : "0"}
           />
           <animate
             attributeName="y"
             values="17.5;12.5;17.5"
             dur="1.3s"
-            repeatCount="6"
+            repeatCount={isPlaying ? "indefinite" : "0"}
           />
         </rect>
 
@@ -64,13 +68,13 @@ export function AudioWaveAnimation() {
             attributeName="height"
             values="8;18;8"
             dur="0.8s"
-            repeatCount="9"
+            repeatCount={isPlaying ? "indefinite" : "0"}
           />
           <animate
             attributeName="y"
             values="16;11;16"
             dur="0.8s"
-            repeatCount="9"
+            repeatCount={isPlaying ? "indefinite" : "0"}
           />
         </rect>
       </svg>

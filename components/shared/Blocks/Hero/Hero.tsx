@@ -1,145 +1,44 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
-import Image from "next/image";
-import { ReactNode, useEffect, useState } from "react";
-import { FaChevronRight } from "react-icons/fa6";
 
-import { cn } from "@/lib/utils";
+import { TranscriptBoxProps } from "@/types/components/transcript";
+import Image from "next/image";
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { FaChevronRight } from "react-icons/fa6";
 import Container from "../../../Container";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
+import { AnimatedComponent } from "@/types/components/animated";
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import {
+  ParagraphAnimations,
+  TypewriterParagraphAnimation,
+} from "../../../utilityComponents/TypewriterAnimation";
 import { AudioWaveAnimation } from "./AudioWaveAnimation";
 import { GradientBackground } from "./GradientBackground";
 import { YakAnimate, YakBorderAnimate } from "./yak-animate";
 
-// Typing Animation Component - made by Cursor
-const TypewriterText = ({
-  text,
-  startDelay = 0,
-  className,
-}: {
-  text: string;
-  startDelay?: number;
-  className?: string;
-}) => {
-  const [displayText, setDisplayText] = useState("");
-  const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const [isHighlightingComplete, setIsHighlightingComplete] = useState(false);
-  const [parts, setParts] = useState<{ text: string; highlight: boolean }[]>(
-    []
-  );
-  const [shouldStartTyping, setShouldStartTyping] = useState(false);
-
-  useEffect(() => {
-    // Delay the start of this animation
-    const delayTimeout = setTimeout(() => {
-      setShouldStartTyping(true);
-    }, startDelay);
-
-    return () => clearTimeout(delayTimeout);
-  }, [startDelay]);
-
-  useEffect(() => {
-    if (!text || !shouldStartTyping) return;
-
-    // Reset state when text changes
-    setDisplayText("");
-    setIsTypingComplete(false);
-    setIsHighlightingComplete(false);
-
-    // Parse the text to identify parts to be highlighted
-    const parsedParts = text.split(/({.*?})/).map((part) => ({
-      text:
-        part.startsWith("{") && part.endsWith("}") ? part.slice(1, -1) : part,
-      highlight: part.startsWith("{") && part.endsWith("}"),
-    }));
-    setParts(parsedParts);
-
-    // Start typing animation
-    let fullText = "";
-    const flatText = parsedParts.map((part) => part.text).join("");
-
-    const typingSpeed = 2000 / flatText.length; // Distribute typing over 5 seconds
-
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      if (i < flatText.length) {
-        fullText += flatText[i];
-        setDisplayText(fullText);
-        i++;
-      } else {
-        clearInterval(typingInterval);
-        setIsTypingComplete(true);
-
-        // After typing completes, wait a moment then start the highlighting animation
-        setTimeout(() => {
-          setIsHighlightingComplete(true);
-        }, 500);
-      }
-    }, typingSpeed);
-
-    return () => clearInterval(typingInterval);
-  }, [text, shouldStartTyping]);
-
-  if (!text) return null;
-
-  if (!shouldStartTyping) return <span className="opacity-0">{text}</span>;
-
-  // Before typing is complete, show the plain text being typed
-  if (!isTypingComplete) {
-    return <span>{displayText}</span>;
-  }
-
-  // After typing is complete, show the highlighted version
-  return (
-    <span className={cn(className)}>
-      {parts.map((part, index) =>
-        part.highlight ? (
-          <span
-            key={index}
-            className={`
-              relative overflow-hidden
-              ${
-                isHighlightingComplete
-                  ? "text-black bg-white rounded-[2px]"
-                  : "text-white bg-none"
-              }
-              transition-colors duration-500 ease-in-out
-            `}
-          >
-            {/* Background highlight with animation */}
-            <span
-              className={`
-                absolute inset-0
-                bg-white
-                rounded-[2px]
-                origin-left
-                ${isHighlightingComplete ? "scale-x-100" : "scale-x-0"}
-                transition-transform duration-500 ease-in-out
-                -z-10
-              `}
-            />
-            <span className="px-[0.1rem]">{part.text}</span>
-          </span>
-        ) : (
-          part.text
-        )
-      )}
-    </span>
-  );
-};
-
-const TranscriptBox = ({ data }: { data: any }) => {
+const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   // Calculate total animation duration for staggering
-  const staggerDelay = 2100;
 
-  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<ParagraphAnimations>(null);
+  const [isTyping, setIsTyping] = useState(true);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null); // Store the timeout ID
+
+  const repeatAnimation = () => {
+    yakAnimateRef.current?.reset();
+    yakBorderAnimateRef.current?.reset();
+    ref.current?.reset();
+    ref.current?.play();
+    setIsTyping(true);
+  };
+
+  const yakAnimateRef = useRef<AnimatedComponent>(null);
+  const yakBorderAnimateRef = useRef<AnimatedComponent>(null);
+
   useEffect(() => {
-    setTimeout(() => {
-      setIsVisible(true);
-    }, 7000);
-  }, []);
+    ref.current?.play();
+  }, [ref.current?.play]);
 
   return (
     <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
@@ -165,21 +64,27 @@ const TranscriptBox = ({ data }: { data: any }) => {
             </div>
             <div className="flex-grow flex justify-end items-center">
               <div className="relative w-10 h-10 bg-[#1a1a1a] rounded-full overflow-hidden border border-[#CC4141]/50 flex items-center justify-center">
-                <AudioWaveAnimation />
+                <AudioWaveAnimation isPlaying={isTyping} />
               </div>
             </div>
           </div>
           <div className="flex flex-col gap-4 ">
-            {data.leftHandSide?.issueReportText?.map(
-              (text: string, index: number) => (
-                <span key={index}>
-                  <TypewriterText
-                    className="text-xs xl:text-base"
-                    text={text}
-                    startDelay={index * staggerDelay}
-                  />
-                </span>
-              )
+            {data?.leftHandSide?.issueReportText && (
+              <TypewriterParagraphAnimation
+                onTypingComplete={() => {
+                  setIsTyping(false);
+                  if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current);
+                  }
+                  timeoutRef.current = setTimeout(() => {
+                    repeatAnimation();
+                  }, 30 * 1000);
+                }}
+                ref={ref}
+                paragraphs={data.leftHandSide.issueReportText.filter(
+                  (paragraph) => paragraph !== null
+                )}
+              />
             )}
           </div>
         </div>
@@ -199,17 +104,17 @@ const TranscriptBox = ({ data }: { data: any }) => {
       </div>
       <div className="flex justify-center items-center p-5">
         <div className="relative md:w-20 md:h-20 h-20 w-20 overflow-visible bg-[#2b1f3b] rounded-full">
-          <YakBorderAnimate />
+          <YakBorderAnimate ref={yakBorderAnimateRef} />
           <div className="absolute inset-[3px] z-10 rounded-full shadow-lg flex items-center justify-center bg-gradient-to-br from-white via-[#e6e6e6] to-[#c4c4c4]">
             <div className="scale-90 flex items-center justify-center">
-              <YakAnimate />
+              <YakAnimate ref={yakAnimateRef} />
             </div>
           </div>
         </div>
       </div>
       {/* RHS */}
       <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] p-6 ">
-        <HeroYakShaverCard isVisible={isVisible} />
+        <HeroYakShaverCard isVisible={!isTyping} />
 
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">

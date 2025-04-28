@@ -41,9 +41,10 @@
           }
         },
         {
-          "title": "3. Give Permissions",
-          "description": "When prompted, allow YakShaver to use your system audio. Make sure you share your microphone from the current tab as well.\n",
+          "title": "3. Start Recording",
+          "description": "Click on the YakShaver Logo ![](/TryItNow/yakshaver.svg) at the top of  your browser window, then click Start Recording.\n",
           "image": {
+            "imgSrc": "/TryItNow/yaskhaver-this-tab.png",
             "imgWidth": 480,
             "imgHeight": 336
           },
