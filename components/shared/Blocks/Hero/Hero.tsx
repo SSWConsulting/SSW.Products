@@ -7,6 +7,7 @@ import { FaChevronRight } from "react-icons/fa6";
 import Container from "../../../Container";
 import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
+import { AnimatedComponent } from "@/types/components/animated";
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {
@@ -15,7 +16,7 @@ import {
 } from "../../../utilityComponents/TypewriterAnimation";
 import { AudioWaveAnimation } from "./AudioWaveAnimation";
 import { GradientBackground } from "./GradientBackground";
-import { YakAnimate, YakAnimateRef, YakBorderAnimate } from "./yak-animate";
+import { YakAnimate, YakBorderAnimate } from "./yak-animate";
 
 const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   // Calculate total animation duration for staggering
@@ -32,8 +33,8 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
     setIsTyping(true);
   };
 
-  const yakAnimateRef = useRef<YakAnimateRef>(null);
-  const yakBorderAnimateRef = useRef<YakAnimateRef>(null);
+  const yakAnimateRef = useRef<AnimatedComponent>(null);
+  const yakBorderAnimateRef = useRef<AnimatedComponent>(null);
 
   useEffect(() => {
     ref.current?.play();
