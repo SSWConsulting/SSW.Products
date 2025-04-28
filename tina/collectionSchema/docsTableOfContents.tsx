@@ -43,6 +43,12 @@ export const docsTableOfContentsCollection: Collection = {
   name: "docsTableOfContents",
   path: "content/docsTableOfContents/",
   format: "mdx",
+  ui: {
+    allowedActions: {
+      create: false,
+      delete: false,
+    },
+  },
   fields: [
     {
       name: "parentNavigationGroup",
@@ -61,7 +67,7 @@ export const docsTableOfContentsCollection: Collection = {
           label: "Page or Submenu",
           type: "object",
           list: true,
-          templates: [submenuTemplate as Template, itemTemplate as Template],
+          templates: [itemTemplate],
         },
       ],
     },
