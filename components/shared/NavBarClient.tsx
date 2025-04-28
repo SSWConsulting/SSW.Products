@@ -63,7 +63,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             >
               <span className="cursor-pointer flex items-center gap-2">
                 {item.label.toUpperCase()}{" "}
-                <FaChevronRight className="text-red-500 text-sm group-hover:rotate-90 transition-all duration-300" />
+                <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
               </span>
               <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible pt-2 transition-all duration-300">
                 <ul className="bg-[#222222] text-[#D1D5DB] border border-white/20 mt-0 space-y-2 p-3 rounded shadow-lg min-w-[150px] z-10">
