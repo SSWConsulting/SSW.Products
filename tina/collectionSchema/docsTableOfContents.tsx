@@ -67,7 +67,7 @@ export const docsTableOfContentsCollection: Collection = {
           label: "Page or Submenu",
           type: "object",
           list: true,
-          templates: [submenuTemplate as Template, itemTemplate as Template],
+          templates: [itemTemplate],
         },
       ],
     },
