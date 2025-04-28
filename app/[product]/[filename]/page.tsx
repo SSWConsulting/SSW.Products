@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import CustomizeableBackground from "../../../components/shared/Background/CustomizeableBackground";
 import FooterServer from "../../../components/shared/FooterServer";
 import HomePageClient from "../../../components/shared/HomePageClient";
-import NavBarServer from "../../../components/shared/NavBarServer";
 import client from "../../../tina/__generated__/client";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
 
@@ -35,7 +34,6 @@ export default async function FilePage({ params }: FilePageProps) {
 
   return (
     <CustomizeableBackground tinaData={fileData}>
-      <NavBarServer product={product} />
       <HomePageClient
         query={fileData.query}
         data={fileData.data}

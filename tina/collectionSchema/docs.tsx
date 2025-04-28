@@ -32,12 +32,6 @@ export const docsCollection: Collection = {
       },
     },
     {
-      type: "number",
-      name: "displayOrder",
-      label: "Display Order",
-      description: "Lower numbers will be displayed first. Leave empty for default date-based sorting.",
-    },
-    {
       type: "rich-text",
       name: "body",
       label: "Body",

@@ -3,6 +3,7 @@ import Script from "next/script";
 
 import "ssw-tinacms-landingkit/dist/style.css";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
+import NavBarServer from "../../components/shared/NavBarServer";
 import "../globals.css";
 
 const inter = Inter({
@@ -41,8 +42,8 @@ export default function RootLayout({
       </head>
       <body
         className={`min-h-screen ${inter.className} bg-[#222222]`}
-        // }}
       >
+        <NavBarServer product={params.product} />
         {children}
       </body>
     </html>

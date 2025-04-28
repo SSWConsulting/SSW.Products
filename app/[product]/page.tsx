@@ -1,6 +1,5 @@
 import FooterServer from "../../components/shared/FooterServer";
 import HomePageClient from "../../components/shared/HomePageClient";
-import NavBarServer from "../../components/shared/NavBarServer";
 import client from "../../tina/__generated__/client";
 import { setPageMetadata } from "../../utils/setPageMetaData";
 
@@ -30,7 +29,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const productData = await getPage(product);
   return (
     <div>
-      <NavBarServer product={product} />
       <HomePageClient
         query={productData.query}
         data={productData.data}

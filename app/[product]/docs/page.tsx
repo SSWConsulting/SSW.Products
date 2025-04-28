@@ -1,16 +1,12 @@
 import { notFound } from "next/navigation";
-import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
-import NavBarServer from "../../../components/shared/NavBarServer";
-import FooterServer from "../../../components/shared/FooterServer";
-import DocsIndexClient from "../../../components/shared/DocsIndexClient";
-import { getDocsForProduct } from "../../../utils/fetchDocs";
 import client from "../../../tina/__generated__/client";
+import DocPost from "./[slug]/page";
 
-interface BlogIndex {
+interface DocsIndex {
   params: { product: string };
 }
 
-export async function generateMetadata({ params }: BlogIndex) {
+export async function generateMetadata({ params }: DocsIndex) {
   const { product } = params;
   return {
     title: `${product} Docs`,
@@ -20,48 +16,26 @@ export async function generateMetadata({ params }: BlogIndex) {
       description: `Find out more about ${product}, guides and documentation`,
       images: `./public/default-images/${product}-default.png`,
     },
-  }
+  };
 }
-
 
 export async function generateStaticParams() {
   const sitePosts = await client.queries.docsConnection({});
-  return sitePosts.data.docsConnection?.edges?.map((post) => ({
-    product: post?.node?._sys.breadcrumbs[0]
-  })) || []
+  return (
+    sitePosts.data.docsConnection?.edges?.map((post) => ({
+      product: post?.node?._sys.breadcrumbs[0],
+    })) || []
+  );
 }
 
-
-export default async function DocsIndex({ params }: BlogIndex) {
+export default async function DocsIndex({ params }: DocsIndex) {
   const { product } = params;
+  const defaultSlug = "introduction";
 
   try {
-    const docs = await getDocsForProduct(product);
-
-
-
-    if (!docs) {
-      return notFound();
-    }
-
-    return (
-      <div className="flex flex-col min-h-screen">
-        <InteractiveBackground />
-        <NavBarServer product={product} />
-
-        <div className="flex-grow">
-          <DocsIndexClient
-            query={docs.query}
-            data={docs.data}
-            product={product}
-          />
-        </div>
-
-        <FooterServer product={product} />
-      </div>
-    );
+    return <DocPost params={{ product, slug: defaultSlug }} />;
   } catch (error) {
-    console.error("Error fetching TinaCMS blog data:", error);
+    console.error("Error rendering doc post:", error);
     return notFound();
   }
 }
