@@ -43,6 +43,12 @@ export const docsTableOfContentsCollection: Collection = {
   name: "docsTableOfContents",
   path: "content/docsTableOfContents/",
   format: "mdx",
+  ui: {
+    allowedActions: {
+      create: false,
+      delete: false,
+    },
+  },
   fields: [
     {
       name: "parentNavigationGroup",
