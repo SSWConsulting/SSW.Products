@@ -43,7 +43,7 @@
   ],
   "rightNavItem": [
     {
-      "Title": "JOIN THE WAITLIST",
+      "Title": "JOIN WAITLIST",
       "JotFormId": "243009066097861",
       "_template": "BookingButton"
     }
