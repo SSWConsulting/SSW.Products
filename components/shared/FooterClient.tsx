@@ -13,6 +13,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { FooterQuery } from "../../tina/__generated__/types";
+import { FaXTwitter } from "react-icons/fa6";
 
 interface FooterClientProps {
   results: FooterQuery | null;
@@ -24,6 +25,7 @@ const iconMap: { [key: string]: JSX.Element } = {
   FaLinkedIn: <FaLinkedin />,
   FaFacebook: <FaFacebook />,
   FaTwitter: <FaTwitter />,
+  FaXTwitter: <FaXTwitter />,
   FaInstagram: <FaInstagram />,
   FaTiktok: <FaTiktok />,
   FaGithub: <FaGithub />,
