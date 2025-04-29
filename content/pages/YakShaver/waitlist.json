@@ -1,0 +1,17 @@
+{
+  "seo": {
+    "title": "Join the Waitlist",
+    "description": "Join the waiting list to supercharge your business processes with AI! Be the first to know when YakShaver is ready to make it's momentous debut.",
+    "openGraphTitle": "Join the Waitlist",
+    "openGraphDescription": "Join the waiting list to supercharge your business processes with AI! Be the first to know when YakShaver is ready to make it's momentous debut."
+  },
+  "title": "Join the Waitlist",
+  "pageBlocks": [
+    {
+      "title": "Join the waitlist",
+      "description": "",
+      "buttonText": "Join Waitlist",
+      "_template": "waitlist"
+    }
+  ]
+}

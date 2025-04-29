@@ -1,10 +1,3 @@
-import Banner from "./Blocks/Banner";
-import FAQ from "./Blocks/FAQ";
-import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
-import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
-import Pricing from "./Blocks/Pricing";
-import VideoDisplay from "./Blocks/VideoDisplay";
-
 import * as AntIcons from "react-icons/ai";
 import {
   Accordion,
@@ -13,6 +6,12 @@ import {
   ImageTextBlock,
   LogoCarousel,
 } from "ssw-tinacms-landingkit";
+import Banner from "./Blocks/Banner";
+import FAQ from "./Blocks/FAQ";
+import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
+import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
+import Pricing from "./Blocks/Pricing";
+import VideoDisplay from "./Blocks/VideoDisplay";
 
 import Container from "../Container";
 import BentoBox from "./Blocks/BentoBox/BentoBox";
@@ -23,6 +22,7 @@ import ComparisonTable from "./Blocks/ComparisonTable";
 import Hero from "./Blocks/Hero/Hero";
 import { Timeline } from "./Blocks/Timeline/Timeline";
 import { TryItNow } from "./Blocks/TryItNow";
+import WaitList from "./Blocks/WaitList";
 
 interface Block {
   __typename: string;
@@ -70,6 +70,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
           );
         }
         return null;
+
       //TODO: remove ts-expect error https://github.com/SSWConsulting/SSW.Products/issues/15
       case "PagesPageBlocksFaq":
         // @ts-expect-error investigate after
@@ -92,7 +93,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
 
       case "PagesPageBlocksBentoBox":
         return <BentoBox data={block} />;
-
+      case "PagesPageBlocksWaitlist":
+        return <WaitList />;
       case "PagesPageBlocksLogoCarousel":
         //@ts-expect-error typing issue with data
         return <LogoCarousel key={index} data={block} />;
