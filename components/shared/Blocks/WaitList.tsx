@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import { Mail } from "lucide-react";
 import Link from "next/link";
+import Container from "../../Container";
+import StackedContainer from "../../StackedContainer";
 import { Button } from "../../ui/button";
 type InputProps = {
   onChange?: (value: string) => void;
@@ -38,52 +40,56 @@ const Input = ({
 
 const WaitList = () => {
   return (
-    <div className="flex flex-col min-h-[100dvh]">
-      <section className="w-full pt-6 md:pt-12 lg:pt-16">
-        <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_550px]">
-          <div className="flex flex-col justify-center space-y-4">
-            <div className="space-y-2">
-              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl/none">
-                Join the Waitlist
-              </h1>
-              <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                Be the first to know when we launch our new product. Sign up for
-                the waitlist and get exclusive access.
-              </p>
-            </div>
-            <div className="grid gap-4">
-              <div className="flex items-center justify-between">
-                <div className="text-2xl font-bold">1,234</div>
-                <div className="text-muted-foreground">People Registered</div>
+    <Container className="relative z-10 flex flex-col items-center justify-center px-4 py-12 mx-auto text-white md:px-8 lg:px-12 xl:px-0">
+      <StackedContainer>
+        <div className="flex flex-col">
+          <section className="w-full pt-6 md:pt-12 lg:pt-16">
+            <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_550px]">
+              <div className="flex flex-col justify-center space-y-4">
+                <div className="space-y-2">
+                  <h1 className="text-3xl tracking-tighter sm:text-5xl md:text-6xl/none">
+                    Join the Waitlist
+                  </h1>
+                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
+                    Be the first to know when we launch our new product. Sign up
+                    for the waitlist and get exclusive access.
+                  </p>
+                </div>
+                <div className="grid gap-4">
+                  <div className="flex items-center justify-between">
+                    <div className="text-2xl font-bold">1,234</div>
+                    <div className="text-muted-foreground">
+                      People Registered
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full max-w-sm space-y-2">
+                  <form className="flex gap-2">
+                    <Input
+                      icon={
+                        <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 h-5 w-5" />
+                      }
+                      type="email"
+                      placeholder="Enter your email"
+                      className="max-w-lg flex-1"
+                    />
+                    <Button type="submit">Join Waitlist</Button>
+                  </form>
+                  <p className="text-xs text-muted-foreground">
+                    By signing up, you agree to our{" "}
+                    <Link
+                      href="#"
+                      className="underline underline-offset-2"
+                      prefetch={false}
+                    >
+                      Terms &amp; Conditions
+                    </Link>
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="w-full max-w-sm space-y-2">
-              <form className="flex gap-2">
-                <Input
-                  icon={
-                    <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 h-5 w-5" />
-                  }
-                  type="email"
-                  placeholder="Enter your email"
-                  className="max-w-lg flex-1"
-                />
-                <Button type="submit">Join Waitlist</Button>
-              </form>
-              <p className="text-xs text-muted-foreground">
-                By signing up, you agree to our{" "}
-                <Link
-                  href="#"
-                  className="underline underline-offset-2"
-                  prefetch={false}
-                >
-                  Terms &amp; Conditions
-                </Link>
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+          </section>
+          {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
       <div className="container px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
           <div>
@@ -131,7 +137,9 @@ const WaitList = () => {
         </div>
       </div>
     </section> */}
-    </div>
+        </div>
+      </StackedContainer>
+    </Container>
   );
 };
 

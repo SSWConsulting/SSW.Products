@@ -13,5 +13,8 @@
       "buttonText": "Join Waitlist",
       "_template": "waitlist"
     }
-  ]
+  ],
+  "pageFormatting": {
+    "backgroundColor": "black"
+  }
 }
