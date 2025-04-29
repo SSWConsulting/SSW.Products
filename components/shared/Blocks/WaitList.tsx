@@ -39,14 +39,6 @@ const Input = ({
 const WaitList = () => {
   return (
     <div className="flex flex-col min-h-[100dvh]">
-      <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
-        <div className="ml-auto">
-          <Button variant="ghost" size="icon" className="rounded-full">
-            {/* <UserIcon className="h-6 w-6" /> */}
-            {/* <span className="sr-only">User menu</span> */}
-          </Button>
-        </div>
-      </header>
       <section className="w-full pt-6 md:pt-12 lg:pt-16">
         <div className="container grid gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[1fr_550px]">
           <div className="flex flex-col justify-center space-y-4">
@@ -75,7 +67,6 @@ const WaitList = () => {
                   placeholder="Enter your email"
                   className="max-w-lg flex-1"
                 />
-                {/* <Input type="email" placeholder="Enter your email" className="max-w-lg flex-1" /> */}
                 <Button type="submit">Join Waitlist</Button>
               </form>
               <p className="text-xs text-muted-foreground">
@@ -90,15 +81,6 @@ const WaitList = () => {
               </p>
             </div>
           </div>
-
-          {/* IDGAF, img my guy */}
-          <img
-            src="/placeholder.svg"
-            width="550"
-            height="550"
-            alt="Hero"
-            className="mx-auto aspect-square overflow-hidden rounded-xl object-cover sm:w-full"
-          />
         </div>
       </section>
       {/* <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
