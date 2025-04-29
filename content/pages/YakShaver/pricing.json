@@ -100,7 +100,7 @@
           ],
           "buttons": [
             {
-              "Title": "Join the Waitlist",
+              "Title": "Join Waitlist",
               "JotFormId": "243009066097861",
               "_template": "BookingButton"
             }
