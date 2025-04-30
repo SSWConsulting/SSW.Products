@@ -7,7 +7,7 @@ date: '2025-04-29T14:00:00.000Z'
 
 A webhook is a way for an application to send real-time data to another system when a specific event occurs. It works by making an HTTP request—usually a POST—to a designated URL with relevant information. Unlike APIs, which require constant polling to check for updates, webhooks push information automatically as events happen.
 
-In the context of EagleEye, our AI-powered email scanner, webhooks are triggered when EagleEye detects specific tags or keywords in an incoming email. For example, if EagleEye scans an email and finds the tag #urgent, it can immediately trigger a webhook to alert another system—such as sending a notification, creating a task, or updating a CRM—without any manual input.
+In the context of EagleEye, our AI-powered email scanner, webhooks are triggered when EagleEye detects meaningful patterns in email content—such as task assignments, client updates, or urgent issues. For instance, when EagleEye scans an email and identifies a list of tasks assigned to you (e.g. following "Hi John,"), it can immediately trigger a webhook to take action—like creating tasks, moving the email to a priority folder, or notifying your team. This allows you to integrate EagleEye seamlessly into your workflow and automate routine responses across platforms like Power Automate, Dynamics 365, or your project management system.
 
 ## Why using webhooks
 
