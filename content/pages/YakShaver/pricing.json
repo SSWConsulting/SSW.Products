@@ -25,7 +25,7 @@
           ],
           "buttons": [
             {
-              "Title": "Get Started Free",
+              "Title": "Join Waitlist",
               "JotFormId": "243009066097861",
               "_template": "BookingButton"
             }
@@ -52,7 +52,7 @@
           ],
           "buttons": [
             {
-              "Title": "Get Team Plan",
+              "Title": "Join Waitlist",
               "JotFormId": "243009066097861",
               "_template": "BookingButton"
             }
@@ -76,7 +76,7 @@
           ],
           "buttons": [
             {
-              "Title": "Choose Growth Plan",
+              "Title": "Join Waitlist",
               "JotFormId": "243009066097861",
               "_template": "BookingButton"
             }
@@ -100,7 +100,7 @@
           ],
           "buttons": [
             {
-              "Title": "Contact Sales",
+              "Title": "Join Waitlist",
               "JotFormId": "243009066097861",
               "_template": "BookingButton"
             }

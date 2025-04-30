@@ -17,14 +17,14 @@
       ],
       "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly.\n\nSave hours of frustration with YakShaver.\n",
       "ctaLeft": {
-        "title": "TRY IT NOW",
+        "title": "TRY THE DEMO",
         "link": "/try-it-now"
       },
       "ctaRight": {
         "title": "WATCH VIDEO",
         "link": "https://www.youtube.com/shorts/0TPo98R1tnI"
       },
-      "buttonSubtext": "No credit card required + 14-day free trial",
+      "buttonSubtext": "No credit card required",
       "reportUIEnabled": true,
       "reportUI": {
         "leftHandSide": {
@@ -286,7 +286,7 @@
     },
     {
       "title": "Talk to a YakShaver Expert",
-      "ctaDescription": "Evaluating YakShaver for your project? Book a 30-minute call with a YakShaver architect",
+      "ctaDescription": "Evaluating YakShaver for your team? Book a 30-minute call with a YakShaver architect",
       "ctaButton": {
         "label": "SCHEDULE A CALL",
         "variant": "solidWhite",
