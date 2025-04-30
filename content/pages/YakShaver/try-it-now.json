@@ -32,6 +32,7 @@
           "title": "2. Pin",
           "description": "Click the ![](/TryItNow/extension.svg) at the top right of your browser, then the ![](/TryItNow/pin.svg) next to YakShaver to pin it to your browser window.\n",
           "image": {
+            "imgSrc": "/TryItNow/pin-yakshaver-2.png",
             "imgWidth": 480,
             "imgHeight": 336
           },
