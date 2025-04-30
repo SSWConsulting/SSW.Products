@@ -135,10 +135,8 @@ const FeaturedArticle = ({
                     {featuredBlog?.title}
                   </h3>
                 </Link>
-                {/* <div className="flex sm:flex-row gap-3 flex-col text-sm md:text-base"> */}
                 <Author {...featuredBlog} />
                 <ArticleMetadata className="" {...featuredBlog} />
-                {/* </div> */}
 
                 <section className="text-gray-300 text-sm md:text-base mb-6 line-clamp-2 md:line-clamp-none">
                   <TinaMarkdown
@@ -289,7 +287,6 @@ const RecentArticles = ({
                         {post?.title}
                       </h3>
                     </Link>
-                    {/* <div className="flex text-sm flex-col sm:flex-row gap-3 sm:items-center "> */}
                     <Author
                       author={edge?.node?.author}
                       authorImage={edge?.node?.authorImage}
@@ -300,7 +297,6 @@ const RecentArticles = ({
                       date={edge?.node?.date}
                       readLength={edge?.node?.readLength}
                     />
-                    {/* </div> */}
 
                     <section className="text-gray-300 text-sm mb-4 line-clamp-2">
                       <TinaMarkdown content={post?.body} />
