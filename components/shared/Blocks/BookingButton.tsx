@@ -30,7 +30,7 @@ export const BookingButton = ({
       <Modal open={isOpen} onClose={closeModal} center>
         <iframe
           title="jotform"
-          src={`https://form.jotform.com/${jotFormId}`}
+          src={`https://www.jotform.com/${jotFormId}`}
           width="100%"
           className="md:p-5 p-4 lg:w-[40rem] lg:h-[50rem] md:w-[30rem] h-[40rem] overflow-hidden"
         />
