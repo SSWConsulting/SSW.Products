@@ -35,7 +35,7 @@
           "description": "We’re developing a \"Try It Now\" experience for NDC Melbourne attendees. This will allow users to interact with key features before committing to a full setup."
         },
         {
-          "title": "Model Context Protocol (MCP) Server",
+          "title": "MCP Server (Model Context Protocol)",
           "description": "We are developing an MCP Server for YakShaver to allow interaction with other MCP-compatible AI agents and tools (Cursor, Windsurf, VSCode, etc.) With the server running, any MCP-aware client can instantly push and pull tickets or create new ones, all through one standard endpoint",
           "badgeLink": "https://modelcontextprotocol.io/introduction"
         },
