@@ -5,7 +5,9 @@ date: '2025-04-29T14:00:00.000Z'
 
 ## What are webhooks
 
-A webhook is a way for an application to provide other systems with real-time information. It sends an HTTP request (usually a POST) to a specified URL when a particular event occurs. Unlike traditional APIs that require regular polling for updates, webhooks push data automatically, making them faster and more efficient for event-driven systems. 
+A webhook is a way for an application to send real-time data to another system when a specific event occurs. It works by making an HTTP request—usually a POST—to a designated URL with relevant information. Unlike APIs, which require constant polling to check for updates, webhooks push information automatically as events happen.
+
+In the context of EagleEye, our AI-powered email scanner, webhooks are triggered when EagleEye detects specific tags or keywords in an incoming email. For example, if EagleEye scans an email and finds the tag #urgent, it can immediately trigger a webhook to alert another system—such as sending a notification, creating a task, or updating a CRM—without any manual input.
 
 ## Why using webhooks
 
