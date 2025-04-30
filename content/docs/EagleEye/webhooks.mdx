@@ -21,8 +21,8 @@ Webhooks can be useful in many situations:
 
  Here are some examples of how webhooks can be used with this AI tool:
 
-* When an email contains a list of tasks, a webhook can move this email into a separate folder named "TODOs". 
-* When an email contains the tag #urgent, a webhook sends a message to a Microsoft Teams channel to alert the operations team. 
-* If an email mentions #newlead, the webhook triggers a call to the CRM system’s API to create a new lead entry automatically. 
-* For any email tagged with #support, a webhook opens a new support ticket in Jira or Zendesk with the email contents. 
-* Emails tagged with #invoice trigger a webhook that uploads the email to an accounting tool or flags it for finance review. 
+* Organise your inbox: EagleEye recognises when someone is assigned tasks by detecting a greeting like "Hi John" followed by an ordered list. When EagleEye detects that some tasks have been assigned to you, it can trigger a webhook to move those emails into a high-priority folder. Other emails can be routed to a low-priority folder for quick review and deletion. 
+* Follow up on unfinished tasks: If EagleEye notices that emails with tasks are still in your inbox after a certain time frame, it can trigger a webhook to send a follow-up reminder or create a task in your tracking system. 
+* Flag issues to managers automatically: When words like "problem", "issue", or "we’re blocked" are found in an email, EagleEye can trigger a webhook to alert a manager or log the issue into your internal reporting system. 
+* Auto-reply with AI-generated responses: If EagleEye detects requests such as "can you send..." or "do you have...", it can trigger a webhook that kicks off a Power Automate flow, which uses AI to draft and send a relevant response—saving time and improving turnaround. 
+* Store client details in Dynamics 365: Emails that contain phrases like "new client details", "contact info below", or "updated client profile" can trigger a webhook to automatically update or create a record in Microsoft Dynamics 365.
