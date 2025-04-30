@@ -30,7 +30,7 @@
         },
         {
           "title": "2. Pin",
-          "description": "Click the ![](/TryItNow/puzzle.svg) at the top right of your browser, then the ![](/TryItNow/pin.svg) next to YakShaver to pin it to your browser window.\n",
+          "description": "Click the ![](/TryItNow/extension.svg) at the top right of your browser, then the ![](/TryItNow/pin.svg) next to YakShaver to pin it to your browser window.\n",
           "image": {
             "imgSrc": "/TryItNow/pin-yakshaver.png",
             "imgWidth": 480,
@@ -44,7 +44,7 @@
           "title": "3. Start Recording",
           "description": "Click on the YakShaver Logo ![](/TryItNow/yakshaver.svg) at the top of  your browser window, then click Start Recording.\n",
           "image": {
-            "imgSrc": "/TryItNow/yaskhaver-this-tab.png",
+            "imgSrc": "/TryItNow/yakshaver-this-tab.png",
             "imgWidth": 480,
             "imgHeight": 336
           },
