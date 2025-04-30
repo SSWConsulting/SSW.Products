@@ -82,7 +82,7 @@ export default function FooterClient({
 
         {/* Footer Title */}
         <div className="text-center lg:text-left md:text-sm text-xs lg:order-1">
-          {dynamicYear.toString()} {footerTitle || "Default Footer Title"}{" "}
+          &copy; {dynamicYear.toString()} {footerTitle || "Default Footer Title"}{" "}
           {hasPrivacyPolicy && (
             <>
               {"| "}
