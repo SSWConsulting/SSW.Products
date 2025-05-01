@@ -163,7 +163,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {rightNavItems?.map((item, index) => renderNavItem(item, index))}
             <li className="block lg:hidden">
               <button
-                className="text-3xl"
+                className="text-3xl fled align-middle"
                 onClick={(e) => {
                   const handleClickOutside = () => {
                     setIsOpen(false);
