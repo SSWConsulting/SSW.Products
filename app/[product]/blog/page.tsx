@@ -80,11 +80,9 @@ export default async function BlogIndex({ params }: BlogIndex) {
 
   return (
     <div className="text-gray-100 flex flex-col">
-      
-
       <QueryProvider>
         {/* Padding accomodates for the navbar */}
-        <div className="flex flex-col min-h-screen pt-navBarHeight">
+        <div className="flex flex-col min-h-screen pt-navBarHeight-mobile sm:pt-navBarHeight">
           <HydrationBoundary state={dehydratedState}>
             <BlogSearchProvider categories={categories}>
               <BlogIndexClient {...tinaData} product={product} />
