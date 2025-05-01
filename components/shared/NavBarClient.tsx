@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa6";
@@ -18,6 +18,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  const clickHandler = useRef<UIEvent | null>(null);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -26,12 +27,12 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         setScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isOpen]);
 
   const { navigationBar } = results || {};
   const leftNavItems = navigationBar?.leftNavItem;
@@ -162,7 +163,21 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           <ul className="sm:flex [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center space-x-5">
             {rightNavItems?.map((item, index) => renderNavItem(item, index))}
             <li className="block lg:hidden">
-              <button className="text-3xl" onClick={() => setIsOpen(!isOpen)}>
+              <button
+                className="text-3xl"
+                onClick={(e) => {
+                  const handleClickOutside = () => {
+                    setIsOpen(false);
+                    window.removeEventListener("click", handleClickOutside);
+                  };
+                  if (isOpen) {
+                    return;
+                  }
+                  setIsOpen(true);
+                  window.addEventListener("click", handleClickOutside);
+                  e.stopPropagation();
+                }}
+              >
                 {isOpen ? <CgClose /> : <HiOutlineBars3 />}
               </button>
             </li>
