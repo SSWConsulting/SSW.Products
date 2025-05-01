@@ -148,7 +148,6 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         } z-40 w-full`}
       >
         <div className="max-w-7xl w-full mx-auto flex justify-between">
-          {/* Left nav items on parent */}
           <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
             {logo && (
               <Link href="/" className="flex-shrink-0 mb-1.5">
@@ -177,7 +176,6 @@ export default function NavBarClient({ results }: NavBarClientProps) {
                 : "bg-opacity-90 bg-[#222222]"
             } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
           >
-            {/* mobile layout */}
             <div className="p-5 max-w-7xl mx-auto w-full">
               <ul className="flex flex-col">
                 {leftNavItems?.map((item, index) => renderNavItem(item, index))}
