@@ -1,0 +1,28 @@
+---
+title: Webhooks
+date: '2025-04-29T14:00:00.000Z'
+---
+
+## What are webhooks?
+
+A webhook is a way for an application to send real-time data to another system when a specific event occurs. It works by making an HTTP request — usually a `POST` — to a designated URL with relevant information. Unlike APIs, which require constant polling to check for updates, webhooks are event driven and push information automatically as events occur.
+
+In the context of EagleEye, webhooks are automatically triggered when predefined rules detect meaningful patterns in email content—such as task assignments, client updates, or urgent issues. Once a rule is configured in the Admin Portal, EagleEye scans incoming emails in user-defined intervals. When a match is found, the corresponding webhook is fired, enabling automated actions like creating tasks, prioritizing messages, or alerting your team. This seamless integration lets you automate routine workflows across platforms like Power Automate, Dynamics 365, or your preferred project management tools.
+
+## Why use webhooks?
+
+Webhooks can be useful in many situations:
+
+* Real-time automation: Trigger actions instantly when certain keywords or tags are detected in emails, such as notifying a Slack channel or updating a CRM. 
+* Integration with external systems: Seamlessly connect your AI tool to other platforms or workflows, like project management tools, without manual intervention. 
+* Custom workflows: Enable tailored responses such as forwarding tagged emails to specific departments, starting a workflow in Zapier, or updating a database. 
+
+## Examples
+
+ Here are some examples of how webhooks can be used with this AI tool:
+
+* Organise your inbox: EagleEye recognises when someone is assigned tasks by detecting a greeting like "Hi John" followed by an ordered list. When EagleEye detects that some tasks have been assigned to you, it can trigger a webhook to move those emails into a high-priority folder. Other emails can be routed to a low-priority folder for quick review and deletion. 
+* Follow up on unfinished tasks: If EagleEye notices that emails with tasks are still in your inbox after a certain time frame, it can trigger a webhook to send a follow-up reminder or create a task in your tracking system. 
+* Flag issues to managers automatically: When words like "problem", "issue", or "we’re blocked" are found in an email, EagleEye can trigger a webhook to alert a manager or log the issue into your internal reporting system. 
+* Auto-reply with AI-generated responses: If EagleEye detects requests such as "can you send..." or "do you have...", it can trigger a webhook that kicks off a Power Automate flow, which uses AI to draft and send a relevant response—saving time and improving turnaround. 
+* Store client details in Dynamics 365: Emails that contain phrases like "new client details", "contact info below", or "updated client profile" can trigger a webhook to automatically update or create a record in Microsoft Dynamics 365.
