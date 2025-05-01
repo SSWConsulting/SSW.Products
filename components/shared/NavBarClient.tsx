@@ -43,7 +43,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       case "NavigationBarLeftNavItemStringItem":
       case "NavigationBarRightNavItemStringItem":
         return (
-          <li key={index} className="flex items-center xl:px-0 py-1 px-2">
+          <li key={index} className="flex items-center py-">
             <Link
               href={item.href}
               className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
@@ -59,7 +59,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {/* For lg screens and above - show dropdown */}
             <li
               key={index}
-              className="hidden lg:flex items-center group relative px-2 lg:px-3"
+              className="hidden lg:flex items-center group relative"
             >
               <span className="cursor-pointer flex items-center gap-2">
                 {item.label.toUpperCase()}{" "}
