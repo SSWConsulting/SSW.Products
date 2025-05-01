@@ -21,7 +21,8 @@ module.exports = {
       },
       spacing: {
         37: "9.25rem",
-        navBarHeight: "95px",
+        navBarHeight: "6rem",
+        "navBarHeight-mobile": "9.5rem",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

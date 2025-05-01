@@ -26,12 +26,12 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         setScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isOpen]);
 
   const { navigationBar } = results || {};
   const leftNavItems = navigationBar?.leftNavItem;
@@ -43,7 +43,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       case "NavigationBarLeftNavItemStringItem":
       case "NavigationBarRightNavItemStringItem":
         return (
-          <li key={index} className="flex items-center xl:px-0 py-1 px-2">
+          <li key={index} className="flex items-center py-1">
             <Link
               href={item.href}
               className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
@@ -59,7 +59,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {/* For lg screens and above - show dropdown */}
             <li
               key={index}
-              className="hidden lg:flex items-center group relative px-2 lg:px-3"
+              className="hidden lg:flex items-center group relative"
             >
               <span className="cursor-pointer flex items-center gap-2">
                 {item.label.toUpperCase()}{" "}
@@ -93,7 +93,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {item.items?.map((subItem: any, subIndex: number) => (
               <li
                 key={`${index}-${subIndex}`}
-                className="lg:hidden flex items-center px-2 py-1"
+                className="lg:hidden flex items-center py-1"
               >
                 <Link
                   href={subItem.href}
@@ -141,54 +141,65 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   return (
     <div>
       <nav
-        className={`text-white transition-all duration-300 ease-in-out ${
+        className={`text-white transition-colors px-4  duration-300 ease-in-out ${
           scrolled
-            ? `fixed shadow-sm bg-[#131313] bg-opacity-80 backdrop-blur animate-slide-in top-0 p-4`
-            : `translate-y-2 px-4 pt-4 pb-6 absolute`
+            ? `fixed shadow-sm bg-[#131313] py-4 bg-opacity-80 backdrop-blur animate-slide-in top-0 `
+            : `absolute py-6  `
         } z-40 w-full`}
       >
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between w-full">
-          {logo && (
-            <Link href="/" className="flex-shrink-0 mb-1.5">
-              <Image src={logo} alt="Logo" width={200} height={200} />
-            </Link>
-          )}
+        <div className="max-w-7xl w-full mx-auto flex justify-between">
+          <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
+            {logo && (
+              <Link href="/" className="flex-shrink-0 mb-1.5">
+                <Image src={logo} alt="Logo" width={200} height={200} />
+              </Link>
+            )}
 
-          <button
-            className="md:block lg:hidden text-3xl"
-            onClick={() => setIsOpen(!isOpen)}
+            <ul className="hidden lg:flex items-center gap-5 flex-grow">
+              {leftNavItems?.map((item, index) => renderNavItem(item, index))}
+            </ul>
+          </div>
+          <ul className="sm:flex [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center space-x-5">
+            {rightNavItems?.map((item, index) => renderNavItem(item, index))}
+            <li className="block lg:hidden">
+              <button
+                className="text-3xl fled align-middle"
+                onClick={(e) => {
+                  const handleClickOutside = () => {
+                    setIsOpen(false);
+                    window.removeEventListener("click", handleClickOutside);
+                  };
+                  if (isOpen) {
+                    return;
+                  }
+                  setIsOpen(true);
+                  window.addEventListener("click", handleClickOutside);
+                  e.stopPropagation();
+                }}
+              >
+                {isOpen ? <CgClose /> : <HiOutlineBars3 />}
+              </button>
+            </li>
+          </ul>
+          <div
+            className={`${
+              isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+            } ${
+              scrolled
+                ? "bg-stone-700 bg-opacity-100"
+                : "bg-opacity-90 bg-[#222222]"
+            } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
           >
-            {isOpen ? <CgClose /> : <HiOutlineBars3 />}
-          </button>
-
-          <div className="hidden lg:flex items-center justify-between flex-grow">
-            <ul className="flex items-center space-x-5 pl-8">
-              {leftNavItems?.map((item, index) => renderNavItem(item, index))}
-            </ul>
-
-            <ul className="flex items-center space-x-5">
-              {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-            </ul>
+            <div className="p-5 max-w-7xl mx-auto w-full">
+              <ul className="flex flex-col pl-2">
+                {leftNavItems?.map((item, index) => renderNavItem(item, index))}
+              </ul>
+            </div>
           </div>
         </div>
-        <div
-          className={`${
-            isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-          } ${
-            scrolled
-              ? "bg-stone-700 bg-opacity-100"
-              : "bg-opacity-90 bg-[#222222]"
-          } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
-        >
-          <div className="p-5 max-w-7xl mx-auto w-full">
-            <ul className="flex flex-col">
-              {leftNavItems?.map((item, index) => renderNavItem(item, index))}
-            </ul>
-            <ul className="flex flex-col space-y-3 mt-4">
-              {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-            </ul>
-          </div>
-        </div>
+        <ul className="flex pt-4 [&>li>*]:w-full [&>li]:w-full justify-center sm:hidden">
+          {rightNavItems?.map((item, index) => renderNavItem(item, index))}
+        </ul>
       </nav>
     </div>
   );

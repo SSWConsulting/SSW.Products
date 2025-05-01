@@ -34,13 +34,14 @@ export async function generateMetadata({ params }: BlogPostProps) {
   }
 }
 
-
 export async function generateStaticParams() {
   const sitePosts = await client.queries.blogsConnection({});
-  return sitePosts.data.blogsConnection?.edges?.map((post) => ({
-    slug: post?.node?._sys.filename,
-    product: post?.node?._sys.breadcrumbs[0]
-  })) || []
+  return (
+    sitePosts.data.blogsConnection?.edges?.map((post) => ({
+      slug: post?.node?._sys.filename,
+      product: post?.node?._sys.breadcrumbs[0],
+    })) || []
+  );
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
@@ -53,9 +54,8 @@ export default async function BlogPost({ params }: BlogPostProps) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen pt-navBarHeight-mobile sm:pt-navBarHeight">
       <InteractiveBackground />
-
 
       <div className="flex-grow">
         <BlogPostClient
