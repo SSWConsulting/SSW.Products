@@ -59,7 +59,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {/* For lg screens and above - show dropdown */}
             <li
               key={index}
-              className="hidden lg:flex items-center group relative px-2 lg:px-3"
+              className="hidden lg:flex items-center group relative"
             >
               <span className="cursor-pointer flex items-center gap-2">
                 {item.label.toUpperCase()}{" "}
