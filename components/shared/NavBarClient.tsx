@@ -141,10 +141,10 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   return (
     <div>
       <nav
-        className={`text-white transition-colors px-4 pb-4  duration-300 ease-in-out ${
+        className={`text-white transition-colors px-4  duration-300 ease-in-out ${
           scrolled
-            ? `fixed shadow-sm bg-[#131313] pt-4 bg-opacity-80 backdrop-blur animate-slide-in top-0 `
-            : `absolute pt-6  `
+            ? `fixed shadow-sm bg-[#131313] py-4 bg-opacity-80 backdrop-blur animate-slide-in top-0 `
+            : `absolute py-6  `
         } z-40 w-full`}
       >
         <div className="max-w-7xl w-full mx-auto flex justify-between">
