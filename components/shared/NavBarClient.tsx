@@ -147,48 +147,47 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             : `translate-y-2 px-4 pt-4 pb-6 absolute`
         } z-40 w-full`}
       >
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between w-full">
-          {logo && (
-            <Link href="/" className="flex-shrink-0 mb-1.5">
-              <Image src={logo} alt="Logo" width={200} height={200} />
-            </Link>
-          )}
+        <div className="max-w-7xl w-full mx-auto flex justify-between">
+          {/* Left nav items on parent */}
+          <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
+            {logo && (
+              <Link href="/" className="flex-shrink-0 mb-1.5">
+                <Image src={logo} alt="Logo" width={200} height={200} />
+              </Link>
+            )}
 
-          <button
-            className="md:block lg:hidden text-3xl"
-            onClick={() => setIsOpen(!isOpen)}
+            <ul className="hidden lg:flex items-center space-x-5 flex-grow">
+              {leftNavItems?.map((item, index) => renderNavItem(item, index))}
+            </ul>
+          </div>
+          <ul className="sm:flex [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center space-x-5">
+            {rightNavItems?.map((item, index) => renderNavItem(item, index))}
+            <li className="block lg:hidden">
+              <button className="text-3xl" onClick={() => setIsOpen(!isOpen)}>
+                {isOpen ? <CgClose /> : <HiOutlineBars3 />}
+              </button>
+            </li>
+          </ul>
+          <div
+            className={`${
+              isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+            } ${
+              scrolled
+                ? "bg-stone-700 bg-opacity-100"
+                : "bg-opacity-90 bg-[#222222]"
+            } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
           >
-            {isOpen ? <CgClose /> : <HiOutlineBars3 />}
-          </button>
-
-          <div className="hidden lg:flex items-center justify-between flex-grow">
-            <ul className="flex items-center space-x-5 pl-8">
-              {leftNavItems?.map((item, index) => renderNavItem(item, index))}
-            </ul>
-
-            <ul className="flex items-center space-x-5">
-              {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-            </ul>
+            {/* mobile layout */}
+            <div className="p-5 max-w-7xl mx-auto w-full">
+              <ul className="flex flex-col">
+                {leftNavItems?.map((item, index) => renderNavItem(item, index))}
+              </ul>
+            </div>
           </div>
         </div>
-        <div
-          className={`${
-            isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-          } ${
-            scrolled
-              ? "bg-stone-700 bg-opacity-100"
-              : "bg-opacity-90 bg-[#222222]"
-          } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
-        >
-          <div className="p-5 max-w-7xl mx-auto w-full">
-            <ul className="flex flex-col">
-              {leftNavItems?.map((item, index) => renderNavItem(item, index))}
-            </ul>
-            <ul className="flex flex-col space-y-3 mt-4">
-              {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-            </ul>
-          </div>
-        </div>
+        <ul className="flex pt-4 [&>li>*]:w-full [&>li]:w-full justify-center sm:hidden">
+          {rightNavItems?.map((item, index) => renderNavItem(item, index))}
+        </ul>
       </nav>
     </div>
   );
