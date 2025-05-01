@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa6";
@@ -18,7 +18,6 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const clickHandler = useRef<UIEvent | null>(null);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
