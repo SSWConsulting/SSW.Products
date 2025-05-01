@@ -43,7 +43,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       case "NavigationBarLeftNavItemStringItem":
       case "NavigationBarRightNavItemStringItem":
         return (
-          <li key={index} className="flex items-center xl:px-0 py-1 px-2">
+          <li key={index} className="flex items-center py-1">
             <Link
               href={item.href}
               className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
@@ -93,7 +93,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {item.items?.map((subItem: any, subIndex: number) => (
               <li
                 key={`${index}-${subIndex}`}
-                className="lg:hidden flex items-center px-2 py-1"
+                className="lg:hidden flex items-center py-1"
               >
                 <Link
                   href={subItem.href}
@@ -155,7 +155,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
               </Link>
             )}
 
-            <ul className="hidden lg:flex items-center space-x-5 flex-grow">
+            <ul className="hidden lg:flex items-center gap-5 flex-grow">
               {leftNavItems?.map((item, index) => renderNavItem(item, index))}
             </ul>
           </div>
@@ -177,7 +177,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
           >
             <div className="p-5 max-w-7xl mx-auto w-full">
-              <ul className="flex flex-col">
+              <ul className="flex flex-col pl-2">
                 {leftNavItems?.map((item, index) => renderNavItem(item, index))}
               </ul>
             </div>
