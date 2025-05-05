@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -164,7 +165,7 @@ function CardItem({
                 components={cardAndImageMarkdownRenderer}
               />
             </div>
-            <div className="flex items-center flex-wrap text-xs gap-2 py-3">
+            <div className="grid-cols-3 grid sm:flex items-center flex-wrap text-xs gap-2 py-3">
               {data.Badges?.map((badge, index) => {
                 return (
                   <>
@@ -189,7 +190,10 @@ function Badge({ title, index }: { title: string; index: number }) {
   return (
     <div
       key={`badge ${index}`}
-      className="relative bg-[#333333] flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap"
+      className={cn(
+        index % 2 === 0 ? "col-span-1" : "col-span-2",
+        "relative bg-[#333333] w-fit flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap"
+      )}
     >
       {title}
     </div>
