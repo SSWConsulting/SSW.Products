@@ -95,7 +95,7 @@ function CardItem({
     <div
       className={cn(
         isOpen
-          ? "[background-image:theme(backgroundImage.black-gradient),theme('backgroundImage.pink-gradient')]"
+          ? "[background-image:theme(backgroundImage.black-gradient),theme('backgroundImage.pink-gradient')] hover:[background-image:theme(backgroundImage.gray-gradient),theme(backgroundImage.pink-gradient)]"
           : "bg-black-gradient hover:bg-gray-gradient",
         "box-border group cursor-pointer border-transparent border bg-origin-border [background-clip:padding-box,border-box] w-full h-full rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
       )}
