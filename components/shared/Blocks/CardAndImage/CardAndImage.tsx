@@ -16,20 +16,31 @@ const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
   },
 };
 
+const NO_OPENED_ITEMS = -1;
+
 export default function CardAndImageParent({
   ParentContainerDescription,
   ParentContainerTitle,
   CardAndImageItem,
 }: RemoveTinaMetadata<CardAndImageProps>) {
   const [idOfOpen, setIdOfOpen] = useState(0);
+
   const [lastOpenedId, setLastOpenedId] = useState(0);
 
   const handleIdChange = (newId: number) => {
     setIdOfOpen(newId);
-    if (newId !== null) {
+    if (newId !== NO_OPENED_ITEMS) {
       setLastOpenedId(newId);
     }
   };
+
+  const mediaIndex = idOfOpen === NO_OPENED_ITEMS ? lastOpenedId : idOfOpen;
+
+  const imgSrc = CardAndImageItem ? CardAndImageItem[mediaIndex]?.media : null;
+
+  const altText = CardAndImageItem
+    ? CardAndImageItem[mediaIndex]?.Header
+    : null;
 
   return (
     <>
@@ -50,31 +61,31 @@ export default function CardAndImageParent({
         </Container>
         <Container className="flex flex-col md:flex-row gap-6">
           <div className="flex gap-4 justify-center flex-col w-full">
-            {CardAndImageItem?.map((item: any, index: number) => (
-              <CardItem
-                key={item.id || index}
-                data={item}
-                uniqueId={item.id || index.toString()}
-                idOfOpen={idOfOpen}
-                setIdOfOpen={handleIdChange}
-              />
+            {CardAndImageItem?.map((item, index) => (
+              <>
+                {item && (
+                  <CardItem
+                    key={index}
+                    data={item}
+                    uniqueId={index}
+                    idOfOpen={idOfOpen}
+                    setIdOfOpen={handleIdChange}
+                  />
+                )}
+              </>
             ))}
           </div>
           {CardAndImageItem?.length && (
             <div className="w-full flex items-center justify-center">
-              <Image
-                src={
-                  CardAndImageItem[lastOpenedId]?.media ||
-                  CardAndImageItem[0]?.media
-                }
-                alt={
-                  CardAndImageItem[lastOpenedId]?.Header ||
-                  CardAndImageItem[0]?.Header
-                }
-                width={500}
-                height={500}
-                className="object-cover w-full"
-              />
+              {imgSrc && altText && (
+                <Image
+                  src={imgSrc}
+                  alt={altText}
+                  width={500}
+                  height={500}
+                  className="object-cover w-full"
+                />
+              )}
             </div>
           )}
         </Container>
@@ -90,14 +101,14 @@ function CardItem({
   setIdOfOpen,
 }: {
   data: Card;
-  uniqueId: string;
-  idOfOpen: string | null;
-  setIdOfOpen: (id: string | null) => void;
+  uniqueId: number;
+  idOfOpen: number;
+  setIdOfOpen: (id: number) => void;
 }) {
   const isOpen = idOfOpen === uniqueId;
+
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState<number>(0);
-
   useEffect(() => {
     if (contentRef.current) {
       setContentHeight(isOpen ? contentRef.current.scrollHeight : 0);
@@ -112,7 +123,13 @@ function CardItem({
           ? "bg-gradient-to-r from-[#e34f4f] to-[#FF778E]"
           : "bg-transparent"
       } transition-all duration-300 cursor-pointer`}
-      onClick={() => setIdOfOpen(isOpen ? null : uniqueId)}
+      onClick={() => {
+        if (!isOpen) {
+          setIdOfOpen(uniqueId);
+          return;
+        }
+        setIdOfOpen(NO_OPENED_ITEMS);
+      }}
     >
       <div className="w-full h-full rounded-xl bg-gradient-to-r from-[#0e0e0e] via-[#131313] to-[#141414] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] p-6 shadow-2xl text-white transition-all duration-300">
         {data.AboveHeaderText && (
@@ -132,10 +149,6 @@ function CardItem({
             className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
               isOpen ? "rotate-180" : ""
             }`}
-            onClick={(e) => {
-              e.stopPropagation();
-              setIdOfOpen(isOpen ? null : uniqueId);
-            }}
           />
         </div>
 
