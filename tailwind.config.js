@@ -15,6 +15,11 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        "pink-gradient": "linear-gradient(to right, #CC4141,#d699fb,#ff778e)",
+        "gray-gradient": "linear-gradient(to right, #141414,#1f1f1f,#2b2a2a)",
+        "black-gradient": "linear-gradient(to right, #0e0e0e,#131313,#141414)",
+      },
       screens: {
         small: "43.75rem",
         medium: "75rem",
