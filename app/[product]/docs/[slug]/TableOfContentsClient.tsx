@@ -1,10 +1,13 @@
 "use client";
 
-import { DocsTableOfContents } from "../../../../tina/__generated__/types";
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FaChevronDown } from "react-icons/fa";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
+import {
+  DocsTableOfContents,
+  type DocsTableOfContentsParentNavigationGroup as NavigationGroup,
+} from "../../../../tina/__generated__/types";
 
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
@@ -14,11 +17,10 @@ function NavigationGroup({
   navigationGroup,
   activeItem,
 }: {
-  navigationGroup: any;
+  navigationGroup: NavigationGroup;
   activeItem: string;
 }) {
   const [isExpanded, setIsExpanded] = useState(true);
-
   return (
     <div className="mb-4">
       <button
@@ -40,35 +42,33 @@ function NavigationGroup({
           isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        {navigationGroup.items && (
-          <ul className="pt-1">
-            {navigationGroup.items.map((item: any, index: number) => {
-              return (
-                <div className="group" key={index}>
-                  <li
-                    key={index}
-                    className={`text-sm border-l border-white/10 ${
-                      activeItem === item.slug?._sys?.filename
-                        ? "border-[#CC4141]"
-                        : "border-white/10 group-hover:border-white/80"
+        <ul className="pt-1">
+          {navigationGroup?.items?.map((item, index) => {
+            return (
+              <div className="group" key={index}>
+                <li
+                  key={index}
+                  className={`text-sm border-l border-white/10 ${
+                    activeItem === item?.slug?._sys?.filename
+                      ? "border-[#CC4141]"
+                      : "border-white/10 group-hover:border-white/80"
+                  }`}
+                >
+                  <Link
+                    href={`/docs/${item?.slug?._sys?.filename}`}
+                    className={`block  p-1.5 ml-6   ${
+                      activeItem === item?.slug?._sys?.filename
+                        ? "text-[#CC4141] font-semibold"
+                        : "text-white/60 group-hover:text-white group-hover:border-white"
                     }`}
                   >
-                    <Link
-                      href={`/docs/${item.slug?._sys?.filename}`}
-                      className={`block  p-1.5 ml-6   ${
-                        activeItem === item.slug?._sys?.filename
-                          ? "text-[#CC4141] font-semibold"
-                          : "text-white/60 group-hover:text-white group-hover:border-white"
-                      }`}
-                    >
-                      <span className="inline-block">{item.title}</span>
-                    </Link>
-                  </li>
-                </div>
-              );
-            })}
-          </ul>
-        )}
+                    <span className="inline-block">{item?.title}</span>
+                  </Link>
+                </li>
+              </div>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );
@@ -91,13 +91,16 @@ export default function TableOfContentsClient({
   return (
     <div className="px-4">
       {tableOfContentsData.parentNavigationGroup &&
-        tableOfContentsData.parentNavigationGroup.map((group, index) => (
-          <NavigationGroup
-            key={index}
-            navigationGroup={group}
-            activeItem={activeItem}
-          />
-        ))}
+        tableOfContentsData.parentNavigationGroup.map(
+          (group, index) =>
+            group && (
+              <NavigationGroup
+                key={index}
+                navigationGroup={group}
+                activeItem={activeItem}
+              />
+            )
+        )}
     </div>
   );
 }

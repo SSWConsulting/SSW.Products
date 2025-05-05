@@ -13,6 +13,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { FooterQuery } from "../../tina/__generated__/types";
+import { FaXTwitter } from "react-icons/fa6";
 
 interface FooterClientProps {
   results: FooterQuery | null;
@@ -24,6 +25,7 @@ const iconMap: { [key: string]: JSX.Element } = {
   FaLinkedIn: <FaLinkedin />,
   FaFacebook: <FaFacebook />,
   FaTwitter: <FaTwitter />,
+  FaXTwitter: <FaXTwitter />,
   FaInstagram: <FaInstagram />,
   FaTiktok: <FaTiktok />,
   FaGithub: <FaGithub />,
@@ -80,7 +82,7 @@ export default function FooterClient({
 
         {/* Footer Title */}
         <div className="text-center lg:text-left md:text-sm text-xs lg:order-1">
-          {dynamicYear.toString()} {footerTitle || "Default Footer Title"}{" "}
+          &copy; {dynamicYear.toString()} {footerTitle || "Default Footer Title"}{" "}
           {hasPrivacyPolicy && (
             <>
               {"| "}
