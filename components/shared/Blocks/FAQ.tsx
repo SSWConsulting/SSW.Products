@@ -35,7 +35,6 @@ const FAQ = ({ data }: { data: FAQData }) => {
           )}
         </>
       ))}
-      {/* </div> */}
     </Container>
   );
 };
