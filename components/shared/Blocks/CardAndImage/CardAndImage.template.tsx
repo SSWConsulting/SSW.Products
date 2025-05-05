@@ -44,6 +44,13 @@ export const CardAndImageTemplate: Template = {
           name: "Badges",
           label: "Badges",
           type: "object",
+          ui: {
+            itemProps: (item) => {
+              return {
+                label: item?.Badge || "Untitled",
+              };
+            },
+          },
           list: true,
           fields: [
             {
