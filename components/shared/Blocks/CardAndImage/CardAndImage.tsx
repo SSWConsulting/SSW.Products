@@ -1,8 +1,13 @@
 import { cn } from "@/lib/utils";
+import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
+import {
+  type PagesPageBlocksCardAndImageCardAndImageItem as Card,
+  PagesPageBlocksCardAndImage as CardAndImageProps,
+} from "../../../../tina/__generated__/types";
 import Container from "../../../Container";
 import { curlyBracketFormatter } from "../Hero/Hero";
 const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
@@ -12,57 +17,78 @@ const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
   },
 };
 
-export default function CardAndImageParent(data: any) {
-  const [idOfOpen, setIdOfOpen] = useState<string | null>("0");
-  const [lastOpenedId, setLastOpenedId] = useState<string>("0");
+const NO_OPENED_ITEMS = -1;
 
-  const handleIdChange = (newId: string | null) => {
+export default function CardAndImageParent({
+  ParentContainerDescription,
+  ParentContainerTitle,
+  CardAndImageItem,
+}: RemoveTinaMetadata<CardAndImageProps>) {
+  const [idOfOpen, setIdOfOpen] = useState(0);
+
+  const [lastOpenedId, setLastOpenedId] = useState(0);
+
+  const handleIdChange = (newId: number) => {
     setIdOfOpen(newId);
-    if (newId !== null) {
+    if (newId !== NO_OPENED_ITEMS) {
       setLastOpenedId(newId);
     }
   };
+
+  const mediaIndex = idOfOpen === NO_OPENED_ITEMS ? lastOpenedId : idOfOpen;
+
+  const imgSrc = CardAndImageItem ? CardAndImageItem[mediaIndex]?.media : null;
+
+  const altText = CardAndImageItem
+    ? CardAndImageItem[mediaIndex]?.Header
+    : null;
 
   return (
     <>
       <div className="flex flex-col">
         <Container size="small">
-          <h2 className="text-3xl text-white flex justify-center font-bold pb-3">
-            {curlyBracketFormatter(data.data.ParentContainerTitle)}
-          </h2>
+          {ParentContainerTitle && (
+            <h2 className="text-3xl text-white flex justify-center font-bold pb-3">
+              {curlyBracketFormatter(ParentContainerTitle)}
+            </h2>
+          )}
           <div className="flex justify-center mx-auto pb-9">
-            <span className="text-white/75 text-center">
-              {curlyBracketFormatter(data.data.ParentContainerDescription)}
-            </span>
+            {ParentContainerDescription && (
+              <span className="text-white/75 text-center">
+                {curlyBracketFormatter(ParentContainerDescription)}
+              </span>
+            )}
           </div>
         </Container>
         <Container className="flex flex-col md:flex-row gap-6">
           <div className="flex gap-4 justify-center flex-col w-full">
-            {data.data.CardAndImageItem.map((item: any, index: number) => (
-              <CardItem
-                key={item.id || index}
-                data={item}
-                uniqueId={item.id || index.toString()}
-                idOfOpen={idOfOpen}
-                setIdOfOpen={handleIdChange}
-              />
+            {CardAndImageItem?.map((item, index) => (
+              <>
+                {item && (
+                  <CardItem
+                    key={index}
+                    data={item}
+                    uniqueId={index}
+                    idOfOpen={idOfOpen}
+                    setIdOfOpen={handleIdChange}
+                  />
+                )}
+              </>
             ))}
           </div>
-          <div className="w-full flex items-center justify-center">
-            <Image
-              src={
-                data.data.CardAndImageItem[lastOpenedId].media ||
-                data.data.CardAndImageItem[0].media
-              }
-              alt={
-                data.data.CardAndImageItem[lastOpenedId].header ||
-                data.data.CardAndImageItem[0].header
-              }
-              width={500}
-              height={500}
-              className="object-cover w-full"
-            />
-          </div>
+          {CardAndImageItem?.length && (
+            <div className="w-full flex items-center justify-center">
+              {imgSrc && altText && (
+                <Image
+                  src={imgSrc}
+                  alt={altText}
+                  width={500}
+                  height={500}
+                  className="object-cover w-full"
+                />
+              )}
+            </div>
+          )}
         </Container>
       </div>
     </>
@@ -75,20 +101,21 @@ function CardItem({
   idOfOpen,
   setIdOfOpen,
 }: {
-  data: any;
-  uniqueId: string;
-  idOfOpen: string | null;
-  setIdOfOpen: (id: string | null) => void;
+  data: Card;
+  uniqueId: number;
+  idOfOpen: number;
+  setIdOfOpen: (id: number) => void;
 }) {
   const isOpen = idOfOpen === uniqueId;
+
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState<number>(0);
-
   useEffect(() => {
     if (contentRef.current) {
       setContentHeight(isOpen ? contentRef.current.scrollHeight : 0);
     }
   }, [isOpen, data]);
+  const badgeCount = data.Badges?.length || 0;
   const delimeter =
     (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
   return (
@@ -97,20 +124,30 @@ function CardItem({
         isOpen
           ? "[background-image:theme(backgroundImage.black-gradient),theme('backgroundImage.pink-gradient')] hover:[background-image:theme(backgroundImage.gray-gradient),theme(backgroundImage.pink-gradient)]"
           : "bg-black-gradient hover:bg-gray-gradient",
-        "box-border group cursor-pointer border-transparent border bg-origin-border [background-clip:padding-box,border-box] w-full h-full rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
+        "box-border group cursor-pointer border-transparent border bg-origin-border [background-clip:padding-box,border-box] w-full rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
       )}
-      onClick={() => setIdOfOpen(isOpen ? null : uniqueId)}
+      onClick={() => {
+        if (!isOpen) {
+          setIdOfOpen(uniqueId);
+          return;
+        }
+        setIdOfOpen(NO_OPENED_ITEMS);
+      }}
     >
-      <h4 className="text-gray-300">
-        {curlyBracketFormatter(data.AboveHeaderText)}
-      </h4>
+      {data.AboveHeaderText && (
+        <h4 className="text-gray-300">
+          {curlyBracketFormatter(data.AboveHeaderText)}
+        </h4>
+      )}
 
       <div className="flex items-center justify-between">
-        <h3 className="text-2xl font-bold">
-          {curlyBracketFormatter(data.Header)}
-        </h3>
+        {data.Header && (
+          <h3 className="text-2xl font-bold">
+            {curlyBracketFormatter(data.Header)}
+          </h3>
+        )}
         <FaChevronDown
-          className={`text-white relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
+          className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -127,21 +164,24 @@ function CardItem({
               components={cardAndImageMarkdownRenderer}
             />
           </div>
-          <div className="flex items-center flex-wrap text-xs gap-2 py-3">
-            {data.Badge1Text && <Badge title={data.Badge1Text} />}
-            {data.Badge2Text && (
-              <>
-                {delimeter}
-                <Badge title={data.Badge2Text} />
-              </>
+          <div
+            className={cn(
+              badgeCount > 3 ? "grid md:flex" : "flex",
+              "items-center grid-cols-3 text-xs gap-2 py-3"
             )}
-            {data.Badge3Text && (
-              <>
-                {delimeter}
-                <Badge title={data.Badge3Text} />{" "}
-                {data?.delimiters?.enabled && data?.delimiters?.suffix}
-              </>
-            )}
+          >
+            {data.Badges?.map((badge, index) => {
+              return (
+                <>
+                  {badge?.Badge && (
+                    <>
+                      {index !== 0 && delimeter}
+                      <Badge index={index} title={badge?.Badge} />
+                    </>
+                  )}
+                </>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -149,10 +189,16 @@ function CardItem({
   );
 }
 
-function Badge({ title }: { title: string }) {
+function Badge({ title, index }: { title: string; index: number }) {
   return (
-    <div className="relative bg-[#333333] flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap">
-      ✅ {title}
+    <div
+      key={`badge ${index}`}
+      className={cn(
+        index % 2 === 0 ? "col-span-1" : "col-span-2",
+        "relative bg-[#333333] border border-neutral-600 w-fit flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap"
+      )}
+    >
+      {title}
     </div>
   );
 }

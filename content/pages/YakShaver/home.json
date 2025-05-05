@@ -53,36 +53,57 @@
           "AboveHeaderText": "{See it}",
           "Header": "1 - Record a Video",
           "Description": "Found a bug or have an idea? Record your screen and voice with any app you like.\n",
-          "Badge1Text": "Teams",
-          "Badge2Text": "Snipping Tool",
-          "Badge3Text": "Snagit",
+          "Badges": [
+            {
+              "Badge": "✅Teams"
+            },
+            {
+              "Badge": "✅Snipping Tools"
+            },
+            {
+              "Badge": "✅Snaggit"
+            },
+            {
+              "Badge": "and more..."
+            }
+          ],
           "delimiters": {
             "enabled": false,
-            "delimeter": "and",
-            "suffix": "and hundreds more"
+            "delimeter": ""
           },
-          "media": "/public/Browser1.png",
+          "media": "/Browser1.png",
           "textOnLeft": true
         },
         {
           "AboveHeaderText": "{Shave it}",
           "Header": "2 - YakShaver Takes Over",
           "Description": "YakShaver watches your video, turns what you say into text, and figures out what's happening.\n",
-          "media": "/public/Browser2.png",
+          "media": "/Browser2.png",
           "textOnLeft": true
         },
         {
           "AboveHeaderText": "{Solve it}",
           "Header": "3 - Tasks are Created",
           "Description": "**YakShaver creates a task, bug report, or feature request** in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
-          "Badge1Text": "GitHub",
-          "Badge2Text": "DevOps",
-          "Badge3Text": "Email",
+          "Badges": [
+            {
+              "Badge": "✅GitHub"
+            },
+            {
+              "Badge": "✅DevOps"
+            },
+            {
+              "Badge": "✅Email"
+            },
+            {
+              "Badge": "and more..."
+            }
+          ],
           "delimiters": {
             "enabled": false,
             "delimeter": "or"
           },
-          "media": "/public/Browser3.png",
+          "media": "/Browser3.png",
           "textOnLeft": true
         }
       ],
