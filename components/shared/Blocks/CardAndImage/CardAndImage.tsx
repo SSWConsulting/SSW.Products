@@ -114,6 +114,7 @@ function CardItem({
       setContentHeight(isOpen ? contentRef.current.scrollHeight : 0);
     }
   }, [isOpen, data]);
+
   const delimeter =
     (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
   return (
@@ -169,7 +170,7 @@ function CardItem({
                   <>
                     {badge?.Badge && (
                       <>
-                        {index !== data.Badges?.length && delimeter}
+                        {index !== 0 && delimeter}
                         <Badge index={index} title={badge?.Badge} />
                       </>
                     )}
@@ -190,7 +191,7 @@ function Badge({ title, index }: { title: string; index: number }) {
       key={`badge ${index}`}
       className="relative bg-[#333333] flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap"
     >
-      ✅ {title}
+      {title}
     </div>
   );
 }
