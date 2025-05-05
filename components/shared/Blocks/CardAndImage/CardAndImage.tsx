@@ -115,7 +115,7 @@ function CardItem({
       setContentHeight(isOpen ? contentRef.current.scrollHeight : 0);
     }
   }, [isOpen, data]);
-
+  const badgeCount = data.Badges?.length || 0;
   const delimeter =
     (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
   return (
@@ -165,7 +165,12 @@ function CardItem({
                 components={cardAndImageMarkdownRenderer}
               />
             </div>
-            <div className="grid-cols-3 grid sm:flex items-center flex-wrap text-xs gap-2 py-3">
+            <div
+              className={cn(
+                badgeCount > 3 ? "grid md:flex" : "flex",
+                "items-center grid-cols-3 text-xs gap-2 py-3"
+              )}
+            >
               {data.Badges?.map((badge, index) => {
                 return (
                   <>
@@ -192,7 +197,7 @@ function Badge({ title, index }: { title: string; index: number }) {
       key={`badge ${index}`}
       className={cn(
         index % 2 === 0 ? "col-span-1" : "col-span-2",
-        "relative bg-[#333333] w-fit flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap"
+        "relative bg-[#333333] border border-neutral-600 w-fit flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap"
       )}
     >
       {title}
