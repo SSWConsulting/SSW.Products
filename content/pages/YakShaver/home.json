@@ -9,7 +9,12 @@
       "backgroundImageEnabled": false,
       "titleBeforeRotate": "Make the perfect",
       "titleAfterRotate": "in seconds",
-      "rotatingWords": ["PBI", "task", "ticket", "email"],
+      "rotatingWords": [
+        "PBI",
+        "task",
+        "ticket",
+        "email"
+      ],
       "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly.\n\nSave hours of frustration with YakShaver.\n",
       "ctaLeft": {
         "title": "TRY IT NOW",
@@ -63,9 +68,8 @@
             }
           ],
           "delimiters": {
-            "enabled": true,
-            "delimeter": "",
-            "suffix": "and hundreds more"
+            "enabled": false,
+            "delimeter": ""
           },
           "media": "/Browser1.png",
           "textOnLeft": true
@@ -181,7 +185,10 @@
       "tiers": [
         {
           "tier": "Starter ",
-          "description": ["15 Credits per month", "For individuals"],
+          "description": [
+            "15 Credits per month",
+            "For individuals"
+          ],
           "price": 0,
           "estimatedHoursSaved": 7.5,
           "itemsAbleToCreate": 15,
@@ -195,7 +202,10 @@
         },
         {
           "tier": "Team",
-          "description": ["100 Credits per month", "For growing teams"],
+          "description": [
+            "100 Credits per month",
+            "For growing teams"
+          ],
           "price": 39,
           "estimatedHoursSaved": 50,
           "itemsAbleToCreate": 100,
@@ -209,7 +219,10 @@
         },
         {
           "tier": "Growth",
-          "description": ["500 Credits per month", "For larger organizations"],
+          "description": [
+            "500 Credits per month",
+            "For larger organizations"
+          ],
           "price": 189,
           "estimatedHoursSaved": 250,
           "itemsAbleToCreate": 500,
@@ -223,7 +236,10 @@
         },
         {
           "tier": "Enterprise",
-          "description": ["Custom credit allocation", "For custom solutions"],
+          "description": [
+            "Custom credit allocation",
+            "For custom solutions"
+          ],
           "price": 99999,
           "estimatedHoursSaved": 0,
           "itemsAbleToCreate": 0,

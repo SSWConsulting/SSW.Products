@@ -77,11 +77,6 @@ export const CardAndImageTemplate: Template = {
               label: "Delimeter",
               type: "string",
             },
-            {
-              name: "suffix",
-              label: "Suffix",
-              type: "string",
-            },
           ],
         },
         // TODO add button support down the road
