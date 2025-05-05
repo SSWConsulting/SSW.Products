@@ -16,7 +16,7 @@ type FAQData = {
 
 const FAQ = ({ data }: { data: FAQData }) => {
   return (
-    <Container className="text-white mx-auto" size="medium">
+    <Container className="text-white w-full mx-auto" size="medium">
       <h2
         className="text-3xl font-semibold mb-12 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
@@ -51,7 +51,7 @@ const Question = ({
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div data-tina-field={props["data-tina-field"]}>
+    <div className="w-full" data-tina-field={props["data-tina-field"]}>
       <button
         className="w-full text-left py-4 px-4 focus:outline-none flex justify-between items-center"
         onClick={() => setIsOpen(!isOpen)}
