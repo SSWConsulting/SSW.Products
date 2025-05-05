@@ -27,7 +27,6 @@ const FAQ = ({ data }: { data: FAQData }) => {
         {data.text}
       </p>
       <hr className="border-white" />
-      {/* <div className="" data-tina-field={tinaField(data, "questions")}> */}
       {data.questions.map((item: FAQItem, index: number) => (
         <>
           <Question key={index} item={item} data-tina-field={tinaField(item)} />
