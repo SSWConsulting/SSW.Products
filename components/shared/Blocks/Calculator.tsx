@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
@@ -297,56 +298,53 @@ const CalculatorTierCard = ({
   isRecommended?: boolean;
 }) => {
   return (
-    <div
-      className={`w-full rounded-xl p-[1px] ${
+    <button
+      className={cn(
         isSelected
-          ? "bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E]"
-          : "bg-transparent"
-      } transition-all duration-300`}
+          ? "[background-image:theme(backgroundImage.black-gradient),theme('backgroundImage.pink-gradient')] hover:[background-image:theme(backgroundImage.gray-gradient),theme(backgroundImage.pink-gradient)]"
+          : "bg-black-gradient hover:bg-gray-gradient",
+        "w-full box-border border-transparent border bg-origin-border [background-clip:padding-box,border-box] text-white rounded-xl p-6 flex flex-col gap-2 items-start text-start"
+      )}
+      onClick={() => setSelectedTier(index)}
     >
-      <button
-        className="w-full bg-gradient-to-r from-[#0e0e0e] via-[#131313] to-[#141414] hover:from-[#0e0e0e] hover:via-[#1e1d1d] hover:to-[#1a1a1a] text-white rounded-xl p-6 flex flex-col gap-2 items-start text-start"
-        onClick={() => setSelectedTier(index)}
-      >
-        <div className="flex-col w-full">
-          <div className="flex items-center gap-2">
-            <h3 className="text-base">{calculatorTier.tier}</h3>
-            {isRecommended && (
-              <div className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
-                Recommended
-              </div>
-            )}
-          </div>
-          <div className="flex">
-            {calculatorTier?.price > 0 && calculatorTier.price < 9999 && (
-              <div className="flex items-baseline gap-2">
-                <p className="text-2xl font-bold">$ {calculatorTier.price}</p>
-                <span className="text-white/50 text-sm">per month</span>
-              </div>
-            )}
-            {calculatorTier?.price === 99999 && (
-              <p className="text-2xl font-bold">Custom</p>
-            )}
-            {calculatorTier?.price === 0 && (
-              <p className="text-2xl font-bold">Free</p>
-            )}
-          </div>
-        </div>
-
-        <div className="flex flex-col pt-2 gap-1">
-          {calculatorTier.description?.map((description, i) => (
-            <div key={i} className="flex gap-2">
-              <p
-                className={`text-base text-white/50 leading-5 ${
-                  i === 0 ? "font-bold" : ""
-                }`}
-              >
-                {description}
-              </p>
+      <div className="flex-col w-full">
+        <div className="flex items-center gap-2">
+          <h3 className="text-base">{calculatorTier.tier}</h3>
+          {isRecommended && (
+            <div className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+              Recommended
             </div>
-          ))}
+          )}
         </div>
-      </button>
-    </div>
+        <div className="flex">
+          {calculatorTier?.price > 0 && calculatorTier.price < 9999 && (
+            <div className="flex items-baseline gap-2">
+              <p className="text-2xl font-bold">$ {calculatorTier.price}</p>
+              <span className="text-white/50 text-sm">per month</span>
+            </div>
+          )}
+          {calculatorTier?.price === 99999 && (
+            <p className="text-2xl font-bold">Custom</p>
+          )}
+          {calculatorTier?.price === 0 && (
+            <p className="text-2xl font-bold">Free</p>
+          )}
+        </div>
+      </div>
+
+      <div className="flex flex-col pt-2 gap-1">
+        {calculatorTier.description?.map((description, i) => (
+          <div key={i} className="flex gap-2">
+            <p
+              className={`text-base text-white/50 leading-5 ${
+                i === 0 ? "font-bold" : ""
+              }`}
+            >
+              {description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </button>
   );
 };

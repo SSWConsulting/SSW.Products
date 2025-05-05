@@ -120,11 +120,12 @@ function CardItem({
     (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
   return (
     <div
-      className={`group relative w-full rounded-xl p-[1px] ${
+      className={cn(
         isOpen
-          ? "bg-gradient-to-r from-[#e34f4f] to-[#FF778E]"
-          : "bg-transparent"
-      } transition-all duration-300 cursor-pointer`}
+          ? "[background-image:theme(backgroundImage.black-gradient),theme('backgroundImage.pink-gradient')] hover:[background-image:theme(backgroundImage.gray-gradient),theme(backgroundImage.pink-gradient)]"
+          : "bg-black-gradient hover:bg-gray-gradient",
+        "box-border group cursor-pointer border-transparent border bg-origin-border [background-clip:padding-box,border-box] w-full rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
+      )}
       onClick={() => {
         if (!isOpen) {
           setIdOfOpen(uniqueId);
@@ -133,57 +134,54 @@ function CardItem({
         setIdOfOpen(NO_OPENED_ITEMS);
       }}
     >
-      <div className="w-full h-full rounded-xl bg-gradient-to-r from-[#0e0e0e] via-[#131313] to-[#141414] hover:from-[#141414] hover:via-[#1f1f1f] hover:to-[#2b2a2a] p-6 shadow-2xl text-white transition-all duration-300">
-        {data.AboveHeaderText && (
-          <h4 className="text-gray-300">
-            {curlyBracketFormatter(data.AboveHeaderText)}
-          </h4>
+      {data.AboveHeaderText && (
+        <h4 className="text-gray-300">
+          {curlyBracketFormatter(data.AboveHeaderText)}
+        </h4>
+      )}
+
+      <div className="flex items-center justify-between">
+        {data.Header && (
+          <h3 className="text-2xl font-bold">
+            {curlyBracketFormatter(data.Header)}
+          </h3>
         )}
+        <FaChevronDown
+          className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </div>
 
-        <div className="flex items-center justify-between">
-          {data.Header && (
-            <h3 className="text-2xl font-bold">
-              {curlyBracketFormatter(data.Header)}
-            </h3>
-          )}
-
-          <FaChevronDown
-            className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          />
-        </div>
-
-        <div
-          className="overflow-hidden transition-all duration-500 ease-in-out"
-          style={{ maxHeight: `${contentHeight}px` }}
-        >
-          <div ref={contentRef}>
-            <div className="text-gray-300 text-lg pt-3">
-              <TinaMarkdown
-                content={data.Description}
-                components={cardAndImageMarkdownRenderer}
-              />
-            </div>
-            <div
-              className={cn(
-                badgeCount > 3 ? "grid md:flex" : "flex",
-                "items-center grid-cols-3 text-xs gap-2 py-3"
-              )}
-            >
-              {data.Badges?.map((badge, index) => {
-                return (
-                  <>
-                    {badge?.Badge && (
-                      <>
-                        {index !== 0 && delimeter}
-                        <Badge index={index} title={badge?.Badge} />
-                      </>
-                    )}
-                  </>
-                );
-              })}
-            </div>
+      <div
+        className="overflow-hidden transition-all duration-500 ease-in-out"
+        style={{ maxHeight: `${contentHeight}px` }}
+      >
+        <div ref={contentRef}>
+          <div className="text-gray-300 text-lg pt-3">
+            <TinaMarkdown
+              content={data.Description}
+              components={cardAndImageMarkdownRenderer}
+            />
+          </div>
+          <div
+            className={cn(
+              badgeCount > 3 ? "grid md:flex" : "flex",
+              "items-center grid-cols-3 text-xs gap-2 py-3"
+            )}
+          >
+            {data.Badges?.map((badge, index) => {
+              return (
+                <>
+                  {badge?.Badge && (
+                    <>
+                      {index !== 0 && delimeter}
+                      <Badge index={index} title={badge?.Badge} />
+                    </>
+                  )}
+                </>
+              );
+            })}
           </div>
         </div>
       </div>
