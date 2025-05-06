@@ -15,16 +15,10 @@ type FAQData = {
 };
 
 const FAQ = ({ data }: { data: FAQData }) => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  const toggleQuestion = (index: number) => {
-    setActiveIndex(activeIndex === index ? null : index);
-  };
-
   return (
-    <Container className="text-white mx-auto" size="medium">
+    <Container className="text-white w-full mx-auto" size="medium">
       <h2
-        className="text-3xl font-semibold pb-12 flex justify-center"
+        className="text-3xl font-semibold mb-12 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
       >
         {data.headline}
@@ -33,47 +27,54 @@ const FAQ = ({ data }: { data: FAQData }) => {
         {data.text}
       </p>
       <hr className="border-white" />
-      <div className="" data-tina-field={tinaField(data, "questions")}>
-        {data.questions.map((item: FAQItem, index: number) => (
-          <div key={index} data-tina-field={tinaField(item)}>
-            <button
-              className="w-full text-left py-4 px-4 focus:outline-none flex justify-between items-center"
-              onClick={() => toggleQuestion(index)}
-            >
-              <h3
-                className="text-lg font-bold"
-                data-tina-field={tinaField(item, "question")}
-              >
-                {item.question}
-              </h3>
-
-              {activeIndex === index ? (
-                <FaMinus className="ml-auto text-[#e34f4f]" />
-              ) : (
-                <FaPlus className="ml-auto text-[#e34f4f]" />
-              )}
-            </button>
-            <div
-              className={`overflow-hidden transition-all duration-700 ease-in-out`}
-              style={{
-                maxHeight: activeIndex === index ? "500px" : "0",
-                opacity: activeIndex === index ? 1 : 0,
-                transform: `translateY(${
-                  activeIndex === index ? "0" : "-10px"
-                })`,
-              }}
-            >
-              <div className="px-4 pb-4">
-                <p data-tina-field={tinaField(item, "answer")}>{item.answer}</p>
-              </div>
-            </div>
-            {index !== data.questions.length - 1 && (
-              <hr className="border-white" />
-            )}
-          </div>
-        ))}
-      </div>
+      {data.questions.map((item: FAQItem, index: number) => (
+        <>
+          <Question key={index} item={item} data-tina-field={tinaField(item)} />
+          {index !== data.questions.length - 1 && (
+            <hr className="border-white" />
+          )}
+        </>
+      ))}
     </Container>
+  );
+};
+
+const Question = ({
+  item,
+  ...props
+}: {
+  item: FAQItem;
+  "data-tina-field": string;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div className="w-full" data-tina-field={props["data-tina-field"]}>
+      <button
+        className="w-full text-left py-4 px-4 focus:outline-none flex justify-between items-center"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <h3 className="text-lg font-bold">{item.question}</h3>
+
+        {isOpen ? (
+          <FaMinus className="ml-auto text-[#e34f4f]" />
+        ) : (
+          <FaPlus className="ml-auto text-[#e34f4f]" />
+        )}
+      </button>
+      <div
+        className={`overflow-hidden transition-all duration-700 ease-in-out`}
+        style={{
+          maxHeight: isOpen ? "500px" : "0",
+          opacity: isOpen ? 1 : 0,
+          transform: `translateY(${isOpen ? "0" : "-10px"})`,
+        }}
+      >
+        <div className="px-4 pb-4">
+          <p>{item.answer}</p>
+        </div>
+      </div>
+    </div>
   );
 };
 

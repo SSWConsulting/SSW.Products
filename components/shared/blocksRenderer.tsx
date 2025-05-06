@@ -116,7 +116,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksTimeline":
         return <Timeline data={block} />;
       case "PagesPageBlocksCardAndImage":
-        return <CardAndImageParent key={index} data={block} />;
+        return <CardAndImageParent key={index} {...block} />;
       case "PagesPageBlocksComparisonTable":
         return <ComparisonTable data={block} />;
       case "PagesPageBlocksCalculator":
