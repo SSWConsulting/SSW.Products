@@ -78,7 +78,7 @@ function SmAndMdView({ data }: { data: any }) {
 
         <div className="pt-10 md:pt-6 lg:pt-20 flex flex-col justify-center p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
           <h2 className="text-white text-xl font-semibold">{data.title}</h2>
-          <span className="text-[#797979] text-xs">{data.description}</span>
+          <span className="text-[#797979] text-s">{data.description}</span>
         </div>
       </div>
     </div>
