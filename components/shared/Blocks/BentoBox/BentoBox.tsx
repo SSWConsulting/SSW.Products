@@ -245,7 +245,7 @@ export default function BentoBox({ data }: { data: any }) {
                   </div>
                 </div>
                 <div className="w-full mt-6 mx-3">
-                  <h2 className="text-white md:text-2xl lg:text-4xl font-semibold">
+                  <h2 className="text-white md:text-2xl lg:text-4xl font-semibold text-center">
                     {topLeftBox.title}
                   </h2>
                 </div>
