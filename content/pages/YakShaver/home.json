@@ -140,7 +140,7 @@
       },
       "topRightBox": {
         "title": "Real-Time PBIs",
-        "description": "Stay updated instantly with alerts when PBIs have been created, assigned, or require follow-up"
+        "description": "Stay updated instantly when PBIs have been created, assigned, or require follow-up"
       },
       "counterBox1": {
         "title": "Yaks Shaved",
