@@ -94,8 +94,16 @@ export default function TableOfContentsClient({
 
   return (
     <>
-      <OpenSearch />
-      <Input placeholder="Search" className="mb-4" icon={Search} />
+      <Dialog>
+        <OpenSearch />
+        <DialogTrigger asChild>
+          <Input
+            placeholder="Search"
+            className="mb-4 shadow-lg mx-4"
+            icon={Search}
+          />
+        </DialogTrigger>
+      </Dialog>
 
       <div className="px-4">
         {tableOfContentsData.parentNavigationGroup &&
@@ -116,37 +124,37 @@ export default function TableOfContentsClient({
 
 const OpenSearch = () => {
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button>Edit Profile</button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[996px] ">
-        <div className="w-full h-full relative ">
-          <div className="w-full h-full z-[70] relative rounded-3xl bg-gray-dark border-2 border-gray-lighter/40">
-            <div>placeholder</div>
-            <div>placeholder</div>
-            <div>placeholder</div>
-            <div>placeholder</div>
-            <div>placeholder</div>
-            <div>placeholder</div>
+    <DialogContent className="sm:max-w-[996px] ">
+      <div className="w-full h-full relative ">
+        <div className="w-full h-full z-[70] pb-8 relative shadow-lg text-lg rounded-3xl text-white bg-gray-dark border-2 border-gray-lighter/40">
+          <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
+            <Search />
+            <input
+              className="bg-transparent outline-none placeholder-white "
+              placeholder="Search..."
+              type="text"
+            />
           </div>
-          <div className="absolute z-[60] bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
+          <p className="text-gray-light pt-2 px-4">No search results...</p>
         </div>
 
-        {/* <div className="w-full z-0 h-fit relative">
+        <div className="absolute z-[60] shadow-lg bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
+      </div>
+
+      {/* <div className="w-full z-0 h-fit relative">
           <div className=" text-white z-20 border-2  relative w-full py-12 bg-gray-dark mx-auto rounded-3xl px-8">
             <div className="absolute bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>
             nested overlay?
           </div>
         </div> */}
-        {/* <DialogHeader>
+      {/* <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>
             Make changes to your profile here. Click save when you're done.
           </DialogDescription>
         </DialogHeader> */}
 
-        {/* <div className="grid gap-4 py-4">
+      {/* <div className="grid gap-4 py-4">
           <div className="grid grid-cols-4 items-center gap-4">
             <label htmlFor="name" className="text-right">
               Name
@@ -168,7 +176,6 @@ const OpenSearch = () => {
             />
           </div>
         </div> */}
-      </DialogContent>
-    </Dialog>
+    </DialogContent>
   );
 };
