@@ -147,7 +147,7 @@
         "counterMetric": "YakShaved"
       },
       "counterBox2": {
-        "title": "Saving Users",
+        "title": "Users' Time Saved",
         "counterMetric": "MinutesSaved"
       },
       "bottomLeftBox": {
