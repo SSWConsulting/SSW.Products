@@ -3,6 +3,7 @@ import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import { CircleCheckBig } from "lucide-react";
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
 import {
   type PagesPageBlocksCardAndImageCardAndImageItem as Card,
@@ -176,7 +177,11 @@ function CardItem({
                   {badge?.Badge && (
                     <>
                       {index !== 0 && delimeter}
-                      <Badge index={index} title={badge?.Badge} />
+                      <Badge
+                        index={index}
+                        title={badge?.Badge}
+                        icon={badge?.showTickIcon ?? false}
+                      />
                     </>
                   )}
                 </>
@@ -189,7 +194,15 @@ function CardItem({
   );
 }
 
-function Badge({ title, index }: { title: string; index: number }) {
+function Badge({
+  title,
+  index,
+  icon,
+}: {
+  title: string;
+  index: number;
+  icon: boolean;
+}) {
   return (
     <div
       key={`badge ${index}`}
@@ -198,6 +211,13 @@ function Badge({ title, index }: { title: string; index: number }) {
         "relative bg-[#333333] border border-neutral-600 w-fit flex items-center justify-center text-xs pb-1 pt-[6px] px-2 rounded-md  whitespace-nowrap"
       )}
     >
+      {icon && (
+        <CircleCheckBig
+          size={16}
+          strokeWidth={1.5}
+          className="mr-1 text-green-500"
+        />
+      )}
       {title}
     </div>
   );

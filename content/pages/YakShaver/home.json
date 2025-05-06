@@ -55,13 +55,16 @@
           "Description": "Found a bug or have an idea? Record your screen and voice with any app you like.\n",
           "Badges": [
             {
-              "Badge": "✅Teams"
+              "showTickIcon": true,
+              "Badge": "Teams"
             },
             {
-              "Badge": "✅Snipping Tools"
+              "showTickIcon": true,
+              "Badge": "Snipping Tools"
             },
             {
-              "Badge": "✅Snaggit"
+              "showTickIcon": true,
+              "Badge": "Snaggit"
             },
             {
               "Badge": "and more..."
@@ -87,13 +90,16 @@
           "Description": "**YakShaver creates a task, bug report, or feature request** in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
           "Badges": [
             {
-              "Badge": "✅GitHub"
+              "showTickIcon": true,
+              "Badge": "GitHub"
             },
             {
-              "Badge": "✅DevOps"
+              "showTickIcon": true,
+              "Badge": "DevOps"
             },
             {
-              "Badge": "✅Email"
+              "showTickIcon": true,
+              "Badge": "Email"
             },
             {
               "Badge": "and more..."
