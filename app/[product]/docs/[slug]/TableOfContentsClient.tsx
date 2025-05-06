@@ -1,4 +1,5 @@
 "use client";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -93,7 +94,9 @@ export default function TableOfContentsClient({
 
   return (
     <>
+      <OpenSearch />
       <Input placeholder="Search" className="mb-4" icon={Search} />
+
       <div className="px-4">
         {tableOfContentsData.parentNavigationGroup &&
           tableOfContentsData.parentNavigationGroup.map(
@@ -110,3 +113,62 @@ export default function TableOfContentsClient({
     </>
   );
 }
+
+const OpenSearch = () => {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <button>Edit Profile</button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[996px] ">
+        <div className="w-full h-full relative ">
+          <div className="w-full h-full z-[70] relative rounded-3xl bg-gray-dark border-2 border-gray-lighter/40">
+            <div>placeholder</div>
+            <div>placeholder</div>
+            <div>placeholder</div>
+            <div>placeholder</div>
+            <div>placeholder</div>
+            <div>placeholder</div>
+          </div>
+          <div className="absolute z-[60] bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
+        </div>
+
+        {/* <div className="w-full z-0 h-fit relative">
+          <div className=" text-white z-20 border-2  relative w-full py-12 bg-gray-dark mx-auto rounded-3xl px-8">
+            <div className="absolute bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>
+            nested overlay?
+          </div>
+        </div> */}
+        {/* <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>
+            Make changes to your profile here. Click save when you're done.
+          </DialogDescription>
+        </DialogHeader> */}
+
+        {/* <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="name" className="text-right">
+              Name
+            </label>
+            <input
+              id="name"
+              defaultValue="Pedro Duarte"
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="username" className="text-right">
+              Username
+            </label>
+            <input
+              id="username"
+              defaultValue="@peduarte"
+              className="col-span-3"
+            />
+          </div>
+        </div> */}
+      </DialogContent>
+    </Dialog>
+  );
+};
