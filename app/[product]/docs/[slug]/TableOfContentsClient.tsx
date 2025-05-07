@@ -38,9 +38,9 @@ const DocHit = ({
 }) => {
   console.log("hit", hit);
   return (
-    <div className="border-b-[1px] px-4 border-gray-lighter/40  ">
+    <div className="border-b-[1px] py-1 px-4 border-gray-lighter/40  ">
       <Highlight
-        className="text-ssw-red"
+        className="text-ssw-red text-base "
         highlightedTagName={({ children }) => (
           <span className="bg-yellow-400 text-black">{children}</span>
         )}
@@ -48,7 +48,7 @@ const DocHit = ({
         hit={hit}
       />
       <Snippet
-        className="truncate overflow-hidden block text-[#797979]"
+        className="truncate text-sm overflow-hidden block text-[#797979]"
         // highlightedTagName={({ children }) => (
         //   <span className="bg-yellow-400 text-black">{children}</span>
         // )}
@@ -198,7 +198,7 @@ const OpenSearch = () => {
             /> */}
             </div>
             <Hits
-              className="max-h-96 [&>*]:pb-5 mb-5 [&>*]:pt-5 overflow-y-auto bg-clip-padding border-0 [mask:linear-gradient(red_0_0)_subtract,_linear-gradient(0deg,_red,_transparent_3%_97%,_red)_content-box;] [&::-webkit-scrollbar]:w-2 px-4  [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:bg-transparent  [&::-webkit-scrollbar-thumb]:border [&::-webkit-scrollbar-thumb]:bg-gray-neutral"
+              className="max-h-96 [&>*]:pb-5 mb-5 [&>*]:pt-5 overflow-y-auto bg-clip-padding border-0 [mask:linear-gradient(red_0_0)_subtract,_linear-gradient(0deg,_red,_transparent_3%_97%,_red)_content-box;] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:bg-transparent  [&::-webkit-scrollbar-thumb]:border [&::-webkit-scrollbar-thumb]:bg-gray-neutral"
               hitComponent={DocHit}
             />
           </InstantSearch>
