@@ -1,15 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { MdMenu, MdOutlineKeyboardArrowRight, MdClose } from "react-icons/md";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { DocAndBlogMarkdownStyle } from "../../../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
+import { useEffect, useRef, useState } from "react";
+import { MdClose, MdMenu, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {
   Docs,
   DocsTableOfContents,
 } from "../../../../tina/__generated__/types";
-import { useState, useEffect, useRef } from "react";
+import { DocAndBlogMarkdownStyle } from "../../../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import TableOfContentsClient from "./TableOfContentsClient";
 
 interface DocPostClientProps {

@@ -1,19 +1,69 @@
 "use client";
+
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { liteClient as algoliasearch } from "algoliasearch/lite";
+import type { Hit } from "instantsearch.js";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import {
+  Highlight,
+  Hits,
+  InstantSearch,
+  Snippet,
+  useSearchBox,
+} from "react-instantsearch";
 import Input from "../../../../components/Input";
 import {
   DocsTableOfContents,
   type DocsTableOfContentsParentNavigationGroup as NavigationGroup,
 } from "../../../../tina/__generated__/types";
 
+const searchClient = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "",
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || ""
+);
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
 }
+const DocHit = ({
+  hit,
+}: {
+  hit: Hit<{
+    title: string;
+    body: string;
+  }>;
+}) => {
+  console.log("hit", hit);
+  return (
+    <>
+      <Highlight
+        className="text-ssw-red"
+        highlightedTagName={({ children }) => (
+          <span className="bg-yellow-400 text-black">{children}</span>
+        )}
+        attribute="title"
+        hit={hit}
+      />
+      <Snippet
+        className="truncate overflow-hidden block text-[#797979]"
+        // highlightedTagName={({ children }) => (
+        //   <span className="bg-yellow-400 text-black">{children}</span>
+        // )}
+        hit={hit}
+        attribute="body"
+      />
+      {/* <Snippet
+        attribute="title"
+        hit={hit}
+        tagName="p"
+        className="text-lg font-medium text-white"
+      /> */}
+    </>
+  );
+};
 
 function NavigationGroup({
   navigationGroup,
@@ -124,18 +174,36 @@ export default function TableOfContentsClient({
 
 const OpenSearch = () => {
   return (
-    <DialogContent className="sm:max-w-[996px] ">
-      <div className="w-full h-full relative ">
-        <div className="w-full h-full z-[70] pb-8 relative shadow-lg text-lg rounded-3xl text-white bg-gray-dark border-2 border-gray-lighter/40">
-          <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
-            <Search />
-            <input
+    <DialogContent className="w-[996px] ">
+      <div className="w-[996px] relative ">
+        <div className="h-full w-[996px] z-[70] pb-8 relative shadow-lg text-lg rounded-3xl text-white bg-gray-dark border-2 border-gray-lighter/40">
+          <InstantSearch
+            stalledSearchDelay={500}
+            searchClient={searchClient}
+            indexName="docs_index"
+          >
+            <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
+              <Search />
+              {/* <CustomSearch /> */}
+
+              <SearchBox />
+              {/* <SearchBox
+                className="bg-transparent outline-none placeholder-white "
+                translations={{ placeholder: "Search..." }}/> */}
+              {/* <SearchBox />
+              {/* <input
               className="bg-transparent outline-none placeholder-white "
               placeholder="Search..."
               type="text"
+            /> */}
+            </div>
+            <Hits
+              className="max-h-32 overflow-y-auto [&::-webkit-scrollbar]:w-2 px-4 [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:bg-transparent  [&::-webkit-scrollbar-thumb]:border [&::-webkit-scrollbar-thumb]:bg-gray-neutral"
+              hitComponent={DocHit}
             />
-          </div>
-          <p className="text-gray-light pt-2 px-4">No search results...</p>
+          </InstantSearch>
+
+          {/* <p className="text-gray-light pt-2 px-4">No search results...</p> */}
         </div>
 
         <div className="absolute z-[60] shadow-lg bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
@@ -177,5 +245,19 @@ const OpenSearch = () => {
           </div>
         </div> */}
     </DialogContent>
+  );
+};
+
+const SearchBox = () => {
+  const { refine } = useSearchBox();
+  return (
+    <input
+      type="text"
+      className="bg-transparent outline-none placeholder-white "
+      placeholder="Search..."
+      onChange={(e) => {
+        refine(e.target.value);
+      }}
+    />
   );
 };

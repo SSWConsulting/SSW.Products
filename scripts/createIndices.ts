@@ -8,7 +8,7 @@ import remarkStringify from "remark-stringify";
 import stripMarkdown from "strip-markdown";
 import { unified } from "unified";
 
-const getBlogNames = async () => {
+const getDocFileNames = async () => {
   const fileNames = await fg("../content/docs/YakShaver/*.mdx");
   return fileNames;
 };
@@ -36,139 +36,36 @@ const getMarkdownData = async (fileName: string) => {
     title: title,
     body: plainText,
   };
-  // const fileNames = await getBlogNames();
 };
 
-const readAllFiles = async () => {
-  const allFiles = await getBlogNames();
-
+const fetchDocData = async () => {
+  const allFiles = await getDocFileNames();
   const promises = allFiles.map(async (fileName) => {
     const data = await getMarkdownData(fileName);
     return data;
   });
-  await Promise.all(promises).then((results) => {
-    for (const result of results) {
-      console.log(result);
-    }
-  });
+
+  const results = await Promise.all(promises);
+
+  return results;
 };
 
-async function main() {
-  const appID = process.env.ALGOLIA_APP_ID; // Your Algolia App ID
-  // API key with `addObject` and `editSettings` ACL
-  const apiKey = process.env.ALGOLIA_API_KEY;
+async function createIndices() {
+  const appID = "OPRSAYYMS0"; //process.env.ALGOLIA_APP_ID;
 
-  console.log("Algolia App ID:", appID);
-  console.log("Algolia API Key:", apiKey);
-  return;
-  const indexName = "test-index";
+  const apiKey = "4c909bdc3606d2cb16369f154c51a5ed"; //process.env.ALGOLIA_API_KEY;
 
   const client = algoliasearch(appID, apiKey);
 
-  const record = { objectID: "object-1", name: "test record" };
+  const docs = await fetchDocData();
 
-  // Add record to an index
-  const { taskID } = await client.saveObject({
-    indexName,
-    body: record,
-  });
-
-  // Wait until indexing is done
-  await client.waitForTask({
-    indexName,
-    taskID,
-  });
-
-  // Search for "test"
-  const { results } = await client.search({
-    requests: [
-      {
-        indexName,
-        query: "test",
-      },
-    ],
-  });
-
-  console.log(JSON.stringify(results));
-
-  // import {algoliasearch} from "algoliasearch";
-  // import { promises as fs } from "fs";
-  // import matter from "gray-matter";
-  // import path from "path";
-
-  // // Algolia credentials
-  // const ALGOLIA_APP_ID = "YourAlgoliaAppID"; // Replace with your Algolia App ID
-  // const ALGOLIA_API_KEY = "YourAlgoliaAdminAPIKey"; // Replace with your Algolia Admin API Key
-  // const ALGOLIA_INDEX_NAME = "YourIndexName"; // Replace with your Algolia Index Name
-
-  // // Initialize Algolia client
-  // const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_API_KEY);
-
-  // // Directory containing your Markdown files
-  // const MARKDOWN_DIR = path.resolve("./content/docs/YakShaver");
-
-  // // Define the structure of the front matter and content
-  // interface MarkdownData {
-  //   objectID: string;
-  //   [key: string]: any; // Allow additional front matter fields
-  //   content: string;
-  // }
-
-  // // Function to read and parse Markdown files
-  // async function getMarkdownFiles(dir: string): Promise<MarkdownData[]> {
-  //   const files = await fs.readdir(dir);
-  //   const markdownData: MarkdownData[] = [];
-
-  //   for (const file of files) {
-  //     const filePath = path.join(dir, file);
-
-  //     // Only process .md or .mdx files
-  //     if (file.endsWith(".md") || file.endsWith(".mdx")) {
-  //       const fileContent = await fs.readFile(filePath, "utf-8");
-  //       const { data, content } = matter(fileContent);
-
-  //       // Add parsed data to the array
-  //       markdownData.push({
-  //         objectID: file, // Use the filename as a unique identifier
-  //         ...data, // Front matter (e.g., title, date, etc.)
-  //         content, // Markdown content
-  //       });
-  //     }
-  //   }
-
-  //   return markdownData;
-  // }
-
-  // // Upload data to Algolia
-  // async function uploadToAlgolia(data: MarkdownData[]): Promise<void> {
-  //   try {
-  //     const response = await index.saveObjects(data);
-  //     console.log("Algolia index updated:", response);
-  //   } catch (error) {
-  //     console.error("Error uploading to Algolia:", error);
-  //   }
-  // }
-
-  // // Main function
-  // async function main(): Promise<void> {
-  //   console.log("Reading Markdown files...");
-  //   const markdownData = await getMarkdownFiles(MARKDOWN_DIR);
-
-  //   console.log("Uploading data to Algolia...");
-  //   await uploadToAlgolia(markdownData);
-
-  //   console.log("Done!");
-  // }
-
-  // main().catch((error) => {
-  //   console.error("Error in script execution:", error);
-  // });
+  await client.saveObjects({ indexName: "docs_index", objects: docs });
 }
 
-// await readAllFiles();
-
-main();
-
-// main().then(() => {
-//   console.log("Done!");
-// });
+createIndices()
+  .then(() => {
+    console.log("Indices created successfully");
+  })
+  .catch((error) => {
+    console.error("Error creating indices:", error);
+  });
