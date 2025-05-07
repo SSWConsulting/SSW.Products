@@ -38,7 +38,7 @@ const DocHit = ({
 }) => {
   console.log("hit", hit);
   return (
-    <>
+    <div className="border-b-[1px] px-4 border-gray-lighter/40  ">
       <Highlight
         className="text-ssw-red"
         highlightedTagName={({ children }) => (
@@ -61,7 +61,7 @@ const DocHit = ({
         tagName="p"
         className="text-lg font-medium text-white"
       /> */}
-    </>
+    </div>
   );
 };
 
@@ -176,7 +176,7 @@ const OpenSearch = () => {
   return (
     <DialogContent className="w-[996px] ">
       <div className="w-[996px] relative ">
-        <div className="h-full w-[996px] z-[70] pb-8 relative shadow-lg text-lg rounded-3xl text-white bg-gray-dark border-2 border-gray-lighter/40">
+        <div className="h-full w-[996px] z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
           <InstantSearch
             stalledSearchDelay={500}
             searchClient={searchClient}
@@ -198,7 +198,7 @@ const OpenSearch = () => {
             /> */}
             </div>
             <Hits
-              className="max-h-32 overflow-y-auto [&::-webkit-scrollbar]:w-2 px-4 [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:bg-transparent  [&::-webkit-scrollbar-thumb]:border [&::-webkit-scrollbar-thumb]:bg-gray-neutral"
+              className="max-h-96 [&>*]:pb-5 mb-5 [&>*]:pt-5 overflow-y-auto bg-clip-padding border-0 [mask:linear-gradient(red_0_0)_subtract,_linear-gradient(0deg,_red,_transparent_3%_97%,_red)_content-box;] [&::-webkit-scrollbar]:w-2 px-4  [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:bg-transparent  [&::-webkit-scrollbar-thumb]:border [&::-webkit-scrollbar-thumb]:bg-gray-neutral"
               hitComponent={DocHit}
             />
           </InstantSearch>
