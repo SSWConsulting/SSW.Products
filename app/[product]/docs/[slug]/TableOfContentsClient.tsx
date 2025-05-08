@@ -186,11 +186,7 @@ const OpenSearch = () => {
         <div className="h-full box-border pb-8 z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
           <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
             <Search />
-
             <SearchBox />
-            {/* <SearchBox
-                className="bg-transparent outline-none placeholder-white "
-                translations={{ placeholder: "Search..." }}/> */}
           </div>
 
           {query === "" ? (
