@@ -1,9 +1,10 @@
 "use client";
 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { cn } from "@/lib/utils";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
 import type { Hit } from "instantsearch.js";
-import { Search } from "lucide-react";
+import { PackageOpen, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,6 +14,7 @@ import {
   Hits,
   InstantSearch,
   Snippet,
+  useInstantSearch,
   useSearchBox,
 } from "react-instantsearch";
 import Input from "../../../../components/Input";
@@ -186,17 +188,20 @@ export default function TableOfContentsClient({
 
 const OpenSearch = () => {
   const { query } = useSearchBox();
+  const { status, results } = useInstantSearch();
   return (
     <DialogContent className="box-border ">
       <div className="max-w-3xl box-border relative w-offset-4">
         <div className="h-full box-border pb-8 z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
           <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
             <Search />
-            <SearchBox />
+            <SearchBox className="w-full" />
           </div>
-
-          {query === "" ? (
-            <p className="text-gray-light pt-2 px-4">No search results...</p>
+          {results.nbHits === 0 && !results.__isArtificial ? (
+            <p className="text-gray-light max-w-full truncate text-nowrap wrap gap-2 flex pt-2 px-4">
+              <PackageOpen />
+              No results...
+            </p>
           ) : (
             <Hits
               className="max-h-96 [&>*]:pb-5 snap-mandatory snap-y  box-content [scrollbar-color:_theme(colors.gray.neutral)_transparent] [scrollbar-width:thin] [mask-image:linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
@@ -211,12 +216,18 @@ const OpenSearch = () => {
   );
 };
 
-const SearchBox = () => {
+type SearchBoxProps = {
+  className?: string;
+};
+const SearchBox = ({ className }: SearchBoxProps) => {
   const { refine } = useSearchBox();
   return (
     <input
       type="text"
-      className="bg-transparent outline-none placeholder-white "
+      className={cn(
+        className,
+        "bg-transparent outline-none placeholder-white "
+      )}
       placeholder="Search..."
       onChange={(e) => {
         refine(e.target.value);
