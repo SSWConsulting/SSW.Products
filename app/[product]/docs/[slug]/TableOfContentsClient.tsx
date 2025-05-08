@@ -187,8 +187,7 @@ export default function TableOfContentsClient({
 }
 
 const OpenSearch = () => {
-  const { query } = useSearchBox();
-  const { status, results } = useInstantSearch();
+  const { results } = useInstantSearch();
   return (
     <DialogContent className="box-border ">
       <div className="max-w-3xl box-border relative w-offset-4">
