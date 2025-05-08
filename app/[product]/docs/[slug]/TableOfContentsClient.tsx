@@ -38,7 +38,7 @@ const DocHit = ({
 }) => {
   console.log("hit", hit);
   return (
-    <div className="border-b-[1px] py-1 px-4 border-gray-lighter/40  ">
+    <div className="border-b-[1px] snap-start py-1 px-4 border-gray-lighter/40  ">
       <Highlight
         className="text-ssw-red text-base "
         highlightedTagName={({ children }) => (
@@ -198,7 +198,7 @@ const OpenSearch = () => {
             /> */}
             </div>
             <Hits
-              className="max-h-96 [&>*]:pb-5 mb-5 [&>*]:pt-5 box-content [scrollbar-color:_theme(colors.gray.neutral)_transparent] [scrollbar-width:thin] [mask-image:linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
+              className="max-h-96 [&>*]:pb-5 mb-5 snap-mandatory snap-y  box-content [scrollbar-color:_theme(colors.gray.neutral)_transparent] [scrollbar-width:thin] [mask-image:linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
               hitComponent={DocHit}
             />
           </InstantSearch>
@@ -206,7 +206,7 @@ const OpenSearch = () => {
           {/* <p className="text-gray-light pt-2 px-4">No search results...</p> */}
         </div>
 
-        <div className="absolute z-[60] shadow-lg bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
+        <div className="absolute z-[60] shadow-lg bg-gray-dark/75  inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
       </div>
 
       {/* <div className="w-full z-0 h-fit relative">
