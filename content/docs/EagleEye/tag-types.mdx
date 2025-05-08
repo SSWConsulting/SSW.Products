@@ -61,7 +61,7 @@ AI tags use artificial intelligence to analyze email content and determine if th
    * Required for AI tags
    * The prompt should instruct the AI how to determine if the tag should be applied
    * The AI will return true/false based on the prompt
-   * Example prompt:
+4. **Example Prompt**
 
 ```
    Analyze if this email indicates a task is completed.
@@ -95,7 +95,7 @@ AI with Mentions tags are the most sophisticated type, combining AI analysis wit
    }
 ```
 
-* Example prompt:
+1. **Example prompt:**
 
 ```
    Identify who checked this email.
@@ -110,29 +110,39 @@ AI with Mentions tags are the most sophisticated type, combining AI analysis wit
 
 ## Best Practices
 
-1. **Rule Design**
-   * Keep rules simple and specific
-   * Use multiple rules with appropriate logic (AND/OR) for complex conditions
-   * Test rules thoroughly with various email scenarios
-2. **AI Prompts**
-   * Be clear and specific in prompt instructions
-   * Include examples in the prompt when possible
-   * Test prompts with various email formats and content
-3. **Mentions Extraction**
-   * Always specify the expected response format
-   * Consider using the "Extract names from everyone" option when names might appear anywhere in the email
-   * Test with various name formats and positions in the email
+### 1. Rule Design
+
+* Keep rules simple and specific
+* Use multiple rules with appropriate logic (AND/OR) for complex conditions
+* Test rules thoroughly with various email scenarios
+
+### 2. AI Prompts
+
+* Be clear and specific in prompt instructions
+* Include examples in the prompt when possible
+* Test prompts with various email formats and content
+
+### 3. Mentions Extraction
+
+* Always specify the expected response format
+* Consider using the "Extract names from everyone" option when names might appear anywhere in the email
+* Test with various name formats and positions in the email
 
 ## Common Use Cases
 
-1. **Non-AI Tags**
-   * Project-specific tags (e.g., "SSW\.Design", "SSW\.Marketing")
-   * Simple categorization based on email properties
-2. **AI Tags**
-   * Task completion detection
-   * Sentiment analysis
-   * Topic categorization
-3. **AI with Mentions Tags**
-   * Email checking verification
-   * Meeting participant identification
-   * Action item assignment tracking
+### 1. Non-AI Tags
+
+* Project-specific tags (e.g., "SSW\.Design", "SSW\.Marketing")
+* Simple categorization based on email properties
+
+### 2. AI Tags
+
+* Task completion detection
+* Sentiment analysis
+* Topic categorization
+
+### 3. AI with Mentions Tags
+
+* Email checking verification
+* Meeting participant identification
+* Action item assignment tracking
