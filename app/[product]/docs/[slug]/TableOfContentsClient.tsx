@@ -174,8 +174,8 @@ export default function TableOfContentsClient({
 
 const OpenSearch = () => {
   return (
-    <DialogContent className="w-[996px] ">
-      <div className="w-[996px] relative ">
+    <DialogContent className="w-[996px] box-content ">
+      <div className="w-[996px] relative">
         <div className="h-full w-[996px] z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
           <InstantSearch
             stalledSearchDelay={500}
@@ -198,7 +198,7 @@ const OpenSearch = () => {
             /> */}
             </div>
             <Hits
-              className="max-h-96 [&>*]:pb-5 mb-5 [&>*]:pt-5 overflow-y-auto bg-clip-padding border-0 [mask:linear-gradient(red_0_0)_subtract,_linear-gradient(0deg,_red,_transparent_3%_97%,_red)_content-box;] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-sm [&::-webkit-scrollbar-track]:bg-transparent  [&::-webkit-scrollbar-thumb]:border [&::-webkit-scrollbar-thumb]:bg-gray-neutral"
+              className="max-h-96 [&>*]:pb-5 mb-5 [&>*]:pt-5 box-content [scrollbar-color:_theme(colors.gray.neutral)_transparent] [scrollbar-width:thin] [mask-image:linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
               hitComponent={DocHit}
             />
           </InstantSearch>
