@@ -1,0 +1,142 @@
+---
+seo:
+  title: Tag types
+  description: >-
+    Categorize and analyze emails with EagleEye's smart tagging system—supporting rules-based tags, AI tags, and AI with Mentions for extracting names.
+title: Learn about Tag types
+date: "2025-05-08T13:00:00.000Z"
+---
+
+## Introduction
+
+The EagleEye system supports three types of tags for categorizing and analyzing emails:
+
+1. **Non-AI Tags** - Simple rules-based tags
+2. **AI Tags** - AI-powered tags with basic validation
+3. **AI with Mentions Tags** - AI-powered tags that can extract and identify specific people mentioned in emails
+
+## Tag Types
+
+### 1. Non-AI Tags
+
+Non-AI tags use a simple rules-based system to categorize emails. These tags are the most straightforward to implement and are suitable for cases where the categorization logic can be expressed through clear rules.
+
+#### How to Create a Non-AI Tag
+
+1. **Basic Information**
+   - Name: The display name of the tag
+   - Description: Optional description of the tag's purpose
+   - Link: Optional URL to related documentation or rules
+
+2. **Rules Configuration**
+   - Rules are based on email properties (subject, body, sender, etc.)
+   - Each rule consists of:
+     - Rule Type (e.g., Subject, Body, Sender)
+     - Condition Type (e.g., Contains, Equals, StartsWith)
+     - Data (the value to match against)
+
+3. **Example Rule**
+   ```json
+   {
+     "RuleType": "Subject",
+     "ConditionType": "Contains",
+     "Data": "SSW.Design"
+   }
+   ```
+
+### 2. AI Tags
+
+AI tags use artificial intelligence to analyze email content and determine if the tag should be applied. These tags are more flexible and can understand context and nuances in the email content.
+
+#### How to Create an AI Tag
+
+1. **Basic Information**
+   - Same as Non-AI tags
+   - Tag Type: Select "🤖 AI"
+
+2. **Rules Configuration**
+   - Similar to Non-AI tags, but rules are used as initial filters
+   - The AI will only process emails that pass these rules
+
+3. **Checking Prompt**
+   - Required for AI tags
+   - The prompt should instruct the AI how to determine if the tag should be applied
+   - The AI will return true/false based on the prompt
+   - Example prompt:
+     ```
+     Analyze if this email indicates a task is completed.
+     Look for phrases like "done", "completed", "finished", etc.
+     ```
+
+### 3. AI with Mentions Tags
+
+AI with Mentions tags are the most sophisticated type, combining AI analysis with the ability to identify and extract specific people mentioned in the email content.
+
+#### How to Create an AI with Mentions Tag
+
+1. **Basic Information**
+   - Same as other tag types
+   - Tag Type: Select "🤖 AI @Mentions"
+
+2. **Rules Configuration**
+   - Similar to other tag types
+   - Used as initial filters for the AI processing
+
+3. **Checking Prompt**
+   - Required for initial validation
+   - Determines if the tag should be applied
+
+4. **Extracting Prompt**
+   - Required for AI with Mentions tags
+   - Instructs the AI how to identify and extract people mentioned in the email
+   - Must specify the expected response format:
+     ```json
+     {
+       "Result": ["Full Name1", "Full Name2", ...],
+       "ConfidencePercentage": XX
+     }
+     ```
+   - Example prompt:
+     ```
+     Identify who checked this email.
+     Look for phrases like "(Checked by XXX)" or similar patterns.
+     Return the full names of people who checked the email.
+     ```
+
+5. **Extract Names Options**
+   - "Extract names from everyone" option:
+     - When enabled: AI will look for names throughout the entire email
+     - When disabled: AI will only look for names in the recipients list
+
+## Best Practices
+
+1. **Rule Design**
+   - Keep rules simple and specific
+   - Use multiple rules with appropriate logic (AND/OR) for complex conditions
+   - Test rules thoroughly with various email scenarios
+
+2. **AI Prompts**
+   - Be clear and specific in prompt instructions
+   - Include examples in the prompt when possible
+   - Test prompts with various email formats and content
+
+3. **Mentions Extraction**
+   - Always specify the expected response format
+   - Consider using the "Extract names from everyone" option when names might appear anywhere in the email
+   - Test with various name formats and positions in the email
+
+## Common Use Cases
+
+1. **Non-AI Tags**
+   - Project-specific tags (e.g., "SSW.Design", "SSW.Marketing")
+   - Simple categorization based on email properties
+
+2. **AI Tags**
+   - Task completion detection
+   - Sentiment analysis
+   - Topic categorization
+
+3. **AI with Mentions Tags**
+   - Email checking verification
+   - Meeting participant identification
+   - Action item assignment tracking
