@@ -25,6 +25,7 @@ module.exports = {
         medium: "75rem",
       },
       spacing: {
+        "offset-4": "calc(100vw - 2rem)",
         37: "9.25rem",
         navBarHeight: "6rem",
         "navBarHeight-mobile": "9.5rem",

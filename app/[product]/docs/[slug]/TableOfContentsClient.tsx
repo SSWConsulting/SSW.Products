@@ -174,9 +174,9 @@ export default function TableOfContentsClient({
 
 const OpenSearch = () => {
   return (
-    <DialogContent className="w-[996px] box-content ">
-      <div className="w-[996px] relative">
-        <div className="h-full w-[996px] z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
+    <DialogContent className="box-border ">
+      <div className="sm:w-[996px] box-border relative w-offset-4">
+        <div className="h-full box-border z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
           <InstantSearch
             stalledSearchDelay={500}
             searchClient={searchClient}
