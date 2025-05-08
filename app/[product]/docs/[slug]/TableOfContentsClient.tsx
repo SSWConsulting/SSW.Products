@@ -34,19 +34,25 @@ const DocHit = ({
   hit: Hit<{
     title: string;
     body: string;
+    file: string;
   }>;
 }) => {
   console.log("hit", hit);
   return (
     <div className="border-b-[1px] snap-start py-1 px-4 border-gray-lighter/40  ">
-      <Highlight
-        className="text-ssw-red text-base "
-        highlightedTagName={({ children }) => (
-          <span className="bg-yellow-400 text-black">{children}</span>
-        )}
-        attribute="title"
-        hit={hit}
-      />
+      <Link
+        className="hover:underline underline-offset-2 text-ssw-red"
+        href={`/docs/${hit?.file}`}
+      >
+        <Highlight
+          className="text-lg"
+          highlightedTagName={({ children }) => (
+            <span className="bg-yellow-400 text-black">{children}</span>
+          )}
+          attribute="title"
+          hit={hit}
+        />
+      </Link>
       <Snippet
         className="truncate text-sm overflow-hidden block text-[#797979]"
         // highlightedTagName={({ children }) => (
