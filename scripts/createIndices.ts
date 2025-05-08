@@ -1,4 +1,3 @@
-// File: helloAlgolia.mjs
 import { algoliasearch } from "algoliasearch";
 import "dotenv/config";
 import fg from "fast-glob";
@@ -9,7 +8,7 @@ import stripMarkdown from "strip-markdown";
 import { unified } from "unified";
 
 const getDocFileNames = async () => {
-  const fileNames = await fg("../content/docs/YakShaver/*.mdx");
+  const fileNames = await fg("./content/docs/YakShaver/*.mdx");
   return fileNames;
 };
 
@@ -27,6 +26,7 @@ const getMarkdownData = async (fileName: string) => {
     delimiters: ["---", "---"],
     language: "yaml",
   });
+  const slug = fileName.split("/").slice(-1)[0].replace(".mdx", "");
   const body = mdContents.content;
 
   const title = mdContents.data.title;
@@ -35,6 +35,7 @@ const getMarkdownData = async (fileName: string) => {
   return {
     title: title,
     body: plainText,
+    file: slug,
   };
 };
 
@@ -46,20 +47,23 @@ const fetchDocData = async () => {
   });
 
   const results = await Promise.all(promises);
-
   return results;
 };
 
 async function createIndices() {
-  const appID = "OPRSAYYMS0"; //process.env.ALGOLIA_APP_ID;
+  const appID = process.env.ALGOLIA_APP_ID;
 
-  const apiKey = "4c909bdc3606d2cb16369f154c51a5ed"; //process.env.ALGOLIA_API_KEY;
-
+  const apiKey = process.env.ALGOLIA_API_KEY;
+  if (!appID || !apiKey) {
+    throw new Error(
+      "Algolia credentials are not set in the environment variables."
+    );
+  }
   const client = algoliasearch(appID, apiKey);
 
   const docs = await fetchDocData();
 
-  await client.saveObjects({ indexName: "docs_index", objects: docs });
+  await client.replaceAllObjects({ indexName: "docs_index", objects: docs });
 }
 
 createIndices()
