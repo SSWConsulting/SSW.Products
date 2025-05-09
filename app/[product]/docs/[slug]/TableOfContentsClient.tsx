@@ -2,7 +2,6 @@
 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { algoliasearch } from "algoliasearch";
 import type { Hit } from "instantsearch.js";
 import { PackageOpen, Search } from "lucide-react";
 import Link from "next/link";
@@ -12,7 +11,6 @@ import { FaChevronDown } from "react-icons/fa";
 import {
   Highlight,
   Hits,
-  InstantSearch,
   Snippet,
   useInstantSearch,
   useSearchBox,
@@ -35,7 +33,6 @@ const DocHit = ({
     file: string;
   }>;
 }) => {
-  // console.log("hit", hit);
   return (
     <div className="border-b-[1px] snap-start py-1 px-4 border-gray-lighter/40  ">
       <Link
@@ -53,9 +50,9 @@ const DocHit = ({
       </Link>
       <Snippet
         className="truncate text-sm overflow-hidden block text-[#797979]"
-        // highlightedTagName={({ children }) => (
-        //   <span className="bg-yellow-400 text-black">{children}</span>
-        // )}
+        highlightedTagName={({ children }) => (
+          <span className="bg-yellow-400 text-black">{children}</span>
+        )}
         hit={hit}
         attribute="body"
       />
@@ -132,7 +129,7 @@ function NavigationGroup({
   );
 }
 
-export default function TableOfContentsClient({
+export function TableOfContentsClient({
   tableOfContentsData,
 }: TableOfContentsClientProps) {
   const [activeItem, setActiveItem] = useState<string>("");
@@ -149,7 +146,6 @@ export default function TableOfContentsClient({
   return (
     <>
       <Nested className="hidden sm:block" />
-
       <div className="px-4">
         {tableOfContentsData.parentNavigationGroup &&
           tableOfContentsData.parentNavigationGroup.map(
@@ -168,18 +164,9 @@ export default function TableOfContentsClient({
 }
 
 export const Nested = ({ className }: { className?: string }) => {
-  const searchClient = algoliasearch(
-    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "",
-    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || ""
-  );
   return (
-    <InstantSearch
-      stalledSearchDelay={500}
-      searchClient={searchClient}
-      indexName="docs_index"
-    >
-      <OpenSearch className={className} />
-    </InstantSearch>
+    <OpenSearch className={className} />
+    // </InstantSearch>
   );
 };
 const OpenSearch = ({ className }: { className?: string }) => {

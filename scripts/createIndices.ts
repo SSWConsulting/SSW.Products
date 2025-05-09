@@ -21,7 +21,7 @@ const markdownToPlainText = async (body: string) => {
   return res.toString();
 };
 
-const getMarkdownData = async (fileName: string) => {
+const getDocumentationData = async (fileName: string) => {
   const mdContents = matter.read(fileName, {
     delimiters: ["---", "---"],
     language: "yaml",
@@ -42,7 +42,7 @@ const getMarkdownData = async (fileName: string) => {
 const fetchDocData = async (globPattern: string) => {
   const allFiles = await getDocFileNames(globPattern);
   const promises = allFiles.map(async (fileName) => {
-    const data = await getMarkdownData(fileName);
+    const data = await getDocumentationData(fileName);
     return data;
   });
 
@@ -54,6 +54,7 @@ async function createIndices() {
   const appID = process.env.ALGOLIA_APP_ID;
 
   const apiKey = process.env.ALGOLIA_API_KEY;
+
   if (!appID || !apiKey) {
     throw new Error(
       "Algolia credentials are not set in the environment variables."

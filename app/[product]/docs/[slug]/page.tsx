@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import AlgoliaSearchProvider from "../../../../components/providers/AlgoliaSearchProvider";
 import FooterServer from "../../../../components/shared/FooterServer";
 import client from "../../../../tina/__generated__/client";
-import { Docs } from "../../../../tina/__generated__/types";
+import {
+  Docs,
+  DocsTableOfContents,
+} from "../../../../tina/__generated__/types";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
 import DocPostClient from "./DocPostClient";
-import TableOfContentsClient from "./TableOfContentsClient";
+import { TableOfContentsClient } from "./TableOfContentsClient";
 
 interface DocPostProps {
   params: {
@@ -39,7 +42,7 @@ interface PaginationLink {
 }
 
 function getPaginationData(
-  tableOfContentsData: any,
+  tableOfContentsData: DocsTableOfContents,
   currentSlug: string
 ): { prev: PaginationLink | null; next: PaginationLink | null } {
   const result: { prev: PaginationLink | null; next: PaginationLink | null } = {
@@ -125,40 +128,50 @@ export default async function DocPost({ params }: DocPostProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 pt-navBarHeight-mobile sm:pt-navBarHeight md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
-        {/* LEFT COLUMN 1/3 */}
-        <div className="hidden md:block w-full sm:pt-20 text-white sticky top-10 self-start max-h-screen overflow-y-auto">
-          <TableOfContentsClient
-            tableOfContentsData={tableOfContentsData as any}
-          />
-        </div>
+      <AlgoliaSearchProvider
+        index={tableOfContentsData.alogliaSearchIndex ?? ""}
+      >
+        <div className="grid grid-cols-1 pt-navBarHeight-mobile sm:pt-navBarHeight md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
+          {/* <InstantSearch
+          stalledSearchDelay={500}
+          searchClient={searchClient}
+          indexName={"yakshaver_docs"}
+        > */}
+          {/* LEFT COLUMN 1/3 */}
+          <div className="hidden md:block w-full sm:pt-20 text-white sticky top-10 self-start max-h-screen overflow-y-auto">
+            <TableOfContentsClient
+              tableOfContentsData={tableOfContentsData as any}
+            />
+          </div>
 
-        {/* RIGHT COLUMN 2/3 */}
-        <div className="flex-grow px-4 sm:pt-20 ">
-          <DocPostClient
-            query={documentData.query}
-            variables={documentData.variables}
-            pageData={{ docs: documentData.docs }}
-            tableOfContentsData={tableOfContentsData as any}
-          />
-          <PaginationLinks
-            prev={paginationData.prev}
-            next={paginationData.next}
-            product={product}
-          />
+          {/* RIGHT COLUMN 2/3 */}
+          <div className="flex-grow px-4 sm:pt-20 ">
+            <DocPostClient
+              query={documentData.query}
+              variables={documentData.variables}
+              pageData={{ docs: documentData.docs }}
+              tableOfContentsData={tableOfContentsData as any}
+            />
+            <PaginationLinks
+              prev={paginationData.prev}
+              next={paginationData.next}
+              product={product}
+            />
+          </div>
+          {/* </InstantSearch> */}
         </div>
-      </div>
-      <FooterServer product={product} />
-      {documentData?.docs?.seo?.googleStructuredData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              documentData?.docs?.seo?.googleStructuredData ?? {}
-            ),
-          }}
-        />
-      )}
+        <FooterServer product={product} />
+        {documentData?.docs?.seo?.googleStructuredData && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(
+                documentData?.docs?.seo?.googleStructuredData ?? {}
+              ),
+            }}
+          />
+        )}
+      </AlgoliaSearchProvider>
     </>
   );
 }

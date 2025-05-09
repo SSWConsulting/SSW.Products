@@ -5,12 +5,13 @@ import { useEffect, useRef, useState } from "react";
 import { MdClose, MdMenu, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+
 import {
   Docs,
   DocsTableOfContents,
 } from "../../../../tina/__generated__/types";
 import { DocAndBlogMarkdownStyle } from "../../../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
-import TableOfContentsClient, { Nested } from "./TableOfContentsClient";
+import { Nested, TableOfContentsClient } from "./TableOfContentsClient";
 
 interface DocPostClientProps {
   query: string;
@@ -91,7 +92,7 @@ export default function DocPostClient({
   return (
     <div className="mx-auto text-white">
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
-        <Nested className="w-full" />
+        <Nested />
         <button
           ref={buttonRef}
           className="flex justify-center items-center gap-2 w-full text-white/60 hover:text-white transition-all duration-300 bg-white/10 p-2 rounded-lg"
@@ -118,6 +119,7 @@ export default function DocPostClient({
             </button>
           </div>
           <div className="p-3">
+            {/* <TestComponent /> */}
             <TableOfContentsClient tableOfContentsData={tableOfContentsData} />
           </div>
         </div>
