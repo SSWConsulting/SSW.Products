@@ -2,7 +2,7 @@
 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { liteClient as algoliasearch } from "algoliasearch/lite";
+import { algoliasearch } from "algoliasearch";
 import type { Hit } from "instantsearch.js";
 import { PackageOpen, Search } from "lucide-react";
 import Link from "next/link";
@@ -23,10 +23,6 @@ import {
   type DocsTableOfContentsParentNavigationGroup as NavigationGroup,
 } from "../../../../tina/__generated__/types";
 
-const searchClient = algoliasearch(
-  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "",
-  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || ""
-);
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
 }
@@ -39,7 +35,7 @@ const DocHit = ({
     file: string;
   }>;
 }) => {
-  console.log("hit", hit);
+  // console.log("hit", hit);
   return (
     <div className="border-b-[1px] snap-start py-1 px-4 border-gray-lighter/40  ">
       <Link
@@ -152,22 +148,7 @@ export default function TableOfContentsClient({
 
   return (
     <>
-      <Dialog>
-        <InstantSearch
-          stalledSearchDelay={500}
-          searchClient={searchClient}
-          indexName="docs_index"
-        >
-          <OpenSearch />
-          <DialogTrigger asChild>
-            <Input
-              placeholder="Search"
-              className="mb-4 shadow-lg mx-4"
-              icon={Search}
-            />
-          </DialogTrigger>
-        </InstantSearch>
-      </Dialog>
+      <Nested className="hidden sm:block" />
 
       <div className="px-4">
         {tableOfContentsData.parentNavigationGroup &&
@@ -186,32 +167,57 @@ export default function TableOfContentsClient({
   );
 }
 
-const OpenSearch = () => {
-  const { results } = useInstantSearch();
+export const Nested = ({ className }: { className?: string }) => {
+  const searchClient = algoliasearch(
+    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "",
+    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || ""
+  );
   return (
-    <DialogContent className="box-border ">
-      <div className="max-w-3xl box-border relative w-offset-4">
-        <div className="h-full box-border pb-8 z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
-          <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
-            <Search />
-            <SearchBox className="w-full" />
-          </div>
-          {results.nbHits === 0 && !results.__isArtificial ? (
-            <p className="text-gray-light max-w-full truncate text-nowrap wrap gap-2 flex pt-2 px-4">
-              <PackageOpen />
-              No results...
-            </p>
-          ) : (
-            <Hits
-              className="max-h-96 [&>*]:pb-5 snap-mandatory snap-y  box-content [scrollbar-color:_theme(colors.gray.neutral)_transparent] [scrollbar-width:thin] [mask-image:linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
-              hitComponent={DocHit}
-            />
-          )}
-        </div>
+    <InstantSearch
+      stalledSearchDelay={500}
+      searchClient={searchClient}
+      indexName="docs_index"
+    >
+      <OpenSearch className={className} />
+    </InstantSearch>
+  );
+};
+const OpenSearch = ({ className }: { className?: string }) => {
+  const { results } = useInstantSearch();
 
-        <div className="absolute z-[60] shadow-lg bg-gray-dark/75  inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
-      </div>
-    </DialogContent>
+  return (
+    <Dialog>
+      <DialogContent className="box-border ">
+        <div className="max-w-3xl box-border relative w-offset-4">
+          <div className="h-full box-border pb-8 z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
+            <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
+              <Search />
+              <SearchBox className="w-full" />
+            </div>
+            {results.nbHits === 0 && !results.__isArtificial ? (
+              <p className="text-gray-light max-w-full truncate text-nowrap wrap gap-2 flex pt-2 px-4">
+                <PackageOpen />
+                No results...
+              </p>
+            ) : (
+              <Hits
+                className="max-h-96 [&>*]:pb-5 snap-mandatory snap-y  box-content [scrollbar-color:_theme(colors.gray.neutral)_transparent] [scrollbar-width:thin] [mask-image:linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
+                hitComponent={DocHit}
+              />
+            )}
+          </div>
+
+          <div className="absolute z-[60] shadow-lg bg-gray-dark/75  inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
+        </div>
+      </DialogContent>
+      <DialogTrigger asChild>
+        <Input
+          placeholder="Search..."
+          className={cn("mb-4 shadow-lg mx-4", className)}
+          icon={Search}
+        />
+      </DialogTrigger>
+    </Dialog>
   );
 };
 
