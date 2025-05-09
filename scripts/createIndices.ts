@@ -7,8 +7,8 @@ import remarkStringify from "remark-stringify";
 import stripMarkdown from "strip-markdown";
 import { unified } from "unified";
 
-const getDocFileNames = async () => {
-  const fileNames = await fg("./content/docs/YakShaver/*.mdx");
+const getDocFileNames = async (globPattern: string) => {
+  const fileNames = await fg(globPattern);
   return fileNames;
 };
 
@@ -39,8 +39,8 @@ const getMarkdownData = async (fileName: string) => {
   };
 };
 
-const fetchDocData = async () => {
-  const allFiles = await getDocFileNames();
+const fetchDocData = async (globPattern: string) => {
+  const allFiles = await getDocFileNames(globPattern);
   const promises = allFiles.map(async (fileName) => {
     const data = await getMarkdownData(fileName);
     return data;
@@ -60,10 +60,22 @@ async function createIndices() {
     );
   }
   const client = algoliasearch(appID, apiKey);
+  const docData = await await Promise.all([
+    fetchDocData("./content/docs/YakShaver/*.mdx"),
+    fetchDocData("./content/docs/EagleEye/*.mdx"),
+  ]);
 
-  const docs = await fetchDocData();
+  const yakShaverDocs = docData[0];
+  const eagleEyeDocs = docData[1];
 
-  await client.replaceAllObjects({ indexName: "docs_index", objects: docs });
+  await client.replaceAllObjects({
+    indexName: "yakshaver_docs",
+    objects: yakShaverDocs,
+  });
+  await client.replaceAllObjects({
+    indexName: "eagleeye_docs",
+    objects: eagleEyeDocs,
+  });
 }
 
 createIndices()
