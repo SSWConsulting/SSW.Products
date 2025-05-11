@@ -3033,7 +3033,7 @@ algoliasearch-helper@3.25.0:
   dependencies:
     "@algolia/events" "^4.0.1"
 
-algoliasearch@^5.24.0:
+algoliasearch@5.24.0:
   version "5.24.0"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-5.24.0.tgz#14149402b1702888f3336dc063ee5fc1749c62af"
   integrity sha512-CkaUygzZ91Xbw11s0CsHMawrK3tl+Ue57725HGRgRzKgt2Z4wvXVXRCtQfvzh8K7Tp4Zp7f1pyHAtMROtTJHxg==
@@ -8656,12 +8656,12 @@ react-instantsearch-core@7.15.6:
     instantsearch.js "4.78.2"
     use-sync-external-store "^1.0.0"
 
-react-instantsearch-nextjs@^0.4.8:
+react-instantsearch-nextjs@0.4.8:
   version "0.4.8"
   resolved "https://registry.yarnpkg.com/react-instantsearch-nextjs/-/react-instantsearch-nextjs-0.4.8.tgz#71db92b22d2c80b70c8361130ccfddadc78e89cf"
   integrity sha512-IYBxw/m5A7FUe0wZCvkQgK0vjR9zHBAsOe/YZoDc2kCMIVExcowq/knHYFE1Kuab4v1kyG0Kqj69RNaPLYubmg==
 
-react-instantsearch@^7.15.6:
+react-instantsearch@7.15.6:
   version "7.15.6"
   resolved "https://registry.yarnpkg.com/react-instantsearch/-/react-instantsearch-7.15.6.tgz#73889fa2973a5a2ed60b34c593e27df59d41a27c"
   integrity sha512-rXQywdK9hJgYrpRHw/bhm/HUX1ZIySM9AiN32T1UJMkOvsRS64ofQ1+4qJzusu9Yd+LOG4ewD/HtNVaFrFGwnw==

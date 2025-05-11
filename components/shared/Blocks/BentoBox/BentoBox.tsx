@@ -135,7 +135,7 @@ function BeamBox({ data }: { data: any }) {
       </div>
       <div className="absolute bottom-0 w-full pb-4  px-6">
         <h2 className="text-white text-xl font-semibold">{data?.title}</h2>
-        <span className="text-[#797979] text-xs">{data?.description}</span>
+        <span className="text-[#797979] text-sm">{data?.description}</span>
       </div>
     </div>
   );
@@ -245,7 +245,7 @@ export default function BentoBox({ data }: { data: any }) {
                   </div>
                 </div>
                 <div className="w-full mt-6 mx-3">
-                  <h2 className="text-white md:text-2xl lg:text-4xl font-semibold">
+                  <h2 className="text-white md:text-2xl lg:text-4xl font-semibold text-center">
                     {topLeftBox.title}
                   </h2>
                 </div>
@@ -271,7 +271,7 @@ export default function BentoBox({ data }: { data: any }) {
                   <h2 className="text-white text-2xl font-semibold">
                     {topRightBox.title}
                   </h2>
-                  <p className="text-[#797979] text-xs">
+                  <p className="text-[#797979] text-sm">
                     {topRightBox.description}
                   </p>
                 </div>

@@ -54,6 +54,11 @@ export const CardAndImageTemplate: Template = {
           list: true,
           fields: [
             {
+              name: "showTickIcon",
+              label: "Show Tick Icon",
+              type: "boolean",
+            },
+            {
               name: "Badge",
               label: "Badge Text",
               type: "string",

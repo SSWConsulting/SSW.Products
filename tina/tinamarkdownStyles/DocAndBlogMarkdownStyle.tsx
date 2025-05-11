@@ -29,6 +29,10 @@ export const DocAndBlogMarkdownStyle: Components<{
     <h3 className="text-xl font-semibold mb-4 mt-8">{props?.children}</h3>
   ),
 
+  h4: (props) => (
+    <h4 className="text-lg font-semibold mb-3 mt-6">{props?.children}</h4>
+  ),
+
   ol: (props) => (
     <ol className="list-decimal font-light list-inside pl-4 mb-4">
       {props?.children}
