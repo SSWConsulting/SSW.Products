@@ -11,7 +11,7 @@ import {
   DocsTableOfContents,
 } from "../../../../tina/__generated__/types";
 import { DocAndBlogMarkdownStyle } from "../../../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
-import { Nested, TableOfContentsClient } from "./TableOfContentsClient";
+import { OpenSearch, TableOfContentsClient } from "./TableOfContentsClient";
 
 interface DocPostClientProps {
   query: string;
@@ -92,7 +92,10 @@ export default function DocPostClient({
   return (
     <div className="mx-auto text-white">
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
-        <Nested />
+        <OpenSearch
+          className="w-full"
+          index={tableOfContentsData.alogliaSearchIndex ?? ""}
+        />
         <button
           ref={buttonRef}
           className="flex justify-center items-center gap-2 w-full text-white/60 hover:text-white transition-all duration-300 bg-white/10 p-2 rounded-lg"

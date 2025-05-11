@@ -8,6 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+
 import {
   Highlight,
   Hits,
@@ -15,7 +16,9 @@ import {
   useInstantSearch,
   useSearchBox,
 } from "react-instantsearch";
+
 import Input from "../../../../components/Input";
+import AlgoliaSearchProvider from "../../../../components/providers/AlgoliaSearchProvider";
 import {
   DocsTableOfContents,
   type DocsTableOfContentsParentNavigationGroup as NavigationGroup,
@@ -145,7 +148,10 @@ export function TableOfContentsClient({
 
   return (
     <>
-      <Nested className="hidden sm:block" />
+      <OpenSearch
+        index={tableOfContentsData.alogliaSearchIndex ?? ""}
+        className="hidden sm:block"
+      />
       <div className="px-4">
         {tableOfContentsData.parentNavigationGroup &&
           tableOfContentsData.parentNavigationGroup.map(
@@ -163,36 +169,26 @@ export function TableOfContentsClient({
   );
 }
 
-export const Nested = ({ className }: { className?: string }) => {
-  return (
-    <OpenSearch className={className} />
-    // </InstantSearch>
-  );
-};
-const OpenSearch = ({ className }: { className?: string }) => {
-  const { results } = useInstantSearch();
-
+export const OpenSearch = ({
+  className,
+  index,
+}: {
+  className?: string;
+  index: string;
+}) => {
   return (
     <Dialog>
       <DialogContent className="box-border ">
         <div className="max-w-3xl box-border relative w-offset-4">
-          <div className="h-full box-border pb-8 z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
-            <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
-              <Search />
-              <SearchBox className="w-full" />
+          <AlgoliaSearchProvider index={index}>
+            <div className="h-full box-border pb-8 z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
+              <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
+                <Search />
+                <SearchBox className="w-full" />
+              </div>
+              <Results />
             </div>
-            {results.nbHits === 0 && !results.__isArtificial ? (
-              <p className="text-gray-light max-w-full truncate text-nowrap wrap gap-2 flex pt-2 px-4">
-                <PackageOpen />
-                No results...
-              </p>
-            ) : (
-              <Hits
-                className="max-h-96 [&>*]:pb-5 snap-mandatory snap-y  box-content [scrollbar-color:_theme(colors.gray.neutral)_transparent] [scrollbar-width:thin] [mask-image:linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
-                hitComponent={DocHit}
-              />
-            )}
-          </div>
+          </AlgoliaSearchProvider>
 
           <div className="absolute z-[60] shadow-lg bg-gray-dark/75  inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
         </div>
@@ -205,6 +201,25 @@ const OpenSearch = ({ className }: { className?: string }) => {
         />
       </DialogTrigger>
     </Dialog>
+  );
+};
+
+const Results = () => {
+  const { results } = useInstantSearch();
+  return (
+    <>
+      {results.nbHits === 0 && !results.__isArtificial ? (
+        <p className="text-gray-light max-w-full truncate text-nowrap wrap gap-2 flex pt-2 px-4">
+          <PackageOpen />
+          No results...
+        </p>
+      ) : (
+        <Hits
+          className="max-h-96 [&>*]:pb-5 snap-mandatory snap-y  box-content [scrollbar-color:_theme(colors.gray.neutral)_transparent] [scrollbar-width:thin] [mask-image:linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
+          hitComponent={DocHit}
+        />
+      )}
+    </>
   );
 };
 

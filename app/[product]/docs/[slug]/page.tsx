@@ -1,7 +1,7 @@
 import Link from "next/link";
+
 import { notFound } from "next/navigation";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import AlgoliaSearchProvider from "../../../../components/providers/AlgoliaSearchProvider";
 import FooterServer from "../../../../components/shared/FooterServer";
 import client from "../../../../tina/__generated__/client";
 import {
@@ -115,6 +115,8 @@ function PaginationLinks({
   );
 }
 
+// const serverState = await getServerState(<DocPost />);
+
 export default async function DocPost({ params }: DocPostProps) {
   const { slug, product } = params;
   const documentData = await getDocPost(product, slug);
@@ -125,53 +127,46 @@ export default async function DocPost({ params }: DocPostProps) {
   }
 
   const paginationData = getPaginationData(tableOfContentsData as any, slug);
-
   return (
     <>
-      <AlgoliaSearchProvider
+      {/* <AlgoliaSearchProvider
         index={tableOfContentsData.alogliaSearchIndex ?? ""}
-      >
-        <div className="grid grid-cols-1 pt-navBarHeight-mobile sm:pt-navBarHeight md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
-          {/* <InstantSearch
-          stalledSearchDelay={500}
-          searchClient={searchClient}
-          indexName={"yakshaver_docs"}
-        > */}
-          {/* LEFT COLUMN 1/3 */}
-          <div className="hidden md:block w-full sm:pt-20 text-white sticky top-10 self-start max-h-screen overflow-y-auto">
-            <TableOfContentsClient
-              tableOfContentsData={tableOfContentsData as any}
-            />
-          </div>
-
-          {/* RIGHT COLUMN 2/3 */}
-          <div className="flex-grow px-4 sm:pt-20 ">
-            <DocPostClient
-              query={documentData.query}
-              variables={documentData.variables}
-              pageData={{ docs: documentData.docs }}
-              tableOfContentsData={tableOfContentsData as any}
-            />
-            <PaginationLinks
-              prev={paginationData.prev}
-              next={paginationData.next}
-              product={product}
-            />
-          </div>
-          {/* </InstantSearch> */}
-        </div>
-        <FooterServer product={product} />
-        {documentData?.docs?.seo?.googleStructuredData && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(
-                documentData?.docs?.seo?.googleStructuredData ?? {}
-              ),
-            }}
+      > */}
+      <div className="grid grid-cols-1 pt-navBarHeight-mobile sm:pt-navBarHeight md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
+        {/* LEFT COLUMN 1/3 */}
+        <div className="hidden md:block w-full sm:pt-20 text-white sticky top-10 self-start max-h-screen overflow-y-auto">
+          <TableOfContentsClient
+            tableOfContentsData={tableOfContentsData as any}
           />
-        )}
-      </AlgoliaSearchProvider>
+        </div>
+
+        {/* RIGHT COLUMN 2/3 */}
+        <div className="flex-grow px-4 sm:pt-20 ">
+          <DocPostClient
+            query={documentData.query}
+            variables={documentData.variables}
+            pageData={{ docs: documentData.docs }}
+            tableOfContentsData={tableOfContentsData as any}
+          />
+          <PaginationLinks
+            prev={paginationData.prev}
+            next={paginationData.next}
+            product={product}
+          />
+        </div>
+      </div>
+      <FooterServer product={product} />
+      {documentData?.docs?.seo?.googleStructuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              documentData?.docs?.seo?.googleStructuredData ?? {}
+            ),
+          }}
+        />
+      )}
+      {/* </AlgoliaSearchProvider> */}
     </>
   );
 }

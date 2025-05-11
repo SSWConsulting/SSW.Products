@@ -23,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href={`/favicons/${params.product}.ico`} />
+
         {params?.product === "YakShaver" && (
           <Script
             data-domain="yakshaver.ai"

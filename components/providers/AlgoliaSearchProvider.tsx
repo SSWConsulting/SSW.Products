@@ -1,8 +1,12 @@
 "use client";
-
 import { liteClient as algoliasearch } from "algoliasearch/lite";
-import { InstantSearch } from "react-instantsearch";
+import { useEffect } from "react";
+import { InstantSearchNext } from "react-instantsearch-nextjs";
 
+const searchClient = algoliasearch(
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "",
+  process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || ""
+);
 const AlgoliaSearchProvider = ({
   children,
   index,
@@ -10,14 +14,15 @@ const AlgoliaSearchProvider = ({
   children: React.ReactNode;
   index: string;
 }) => {
-  const searchClient = algoliasearch(
-    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || "",
-    process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || ""
-  );
+  useEffect(() => {
+    console.log("index", index);
+  }, [index]);
   return (
-    <InstantSearch indexName={index} searchClient={searchClient}>
-      {children}
-    </InstantSearch>
+    <>
+      <InstantSearchNext indexName={index} searchClient={searchClient}>
+        {children}
+      </InstantSearchNext>
+    </>
   );
 };
 
