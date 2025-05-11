@@ -1,5 +1,5 @@
-import { Components } from "tinacms/dist/rich-text";
 import Image from "next/image";
+import { Components } from "tinacms/dist/rich-text";
 export const DocAndBlogMarkdownStyle: Components<{
   Youtube: { embedSrc: string };
 }> = {
@@ -54,19 +54,19 @@ export const DocAndBlogMarkdownStyle: Components<{
   //   strong: (props: { children: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => <strong className="font-bold">{props.children}</strong>,
 
   img: (props) => (
-    <div className="mt-4 mb-2">
+    <>
       <Image
         src={props?.url || ""}
         alt={props?.caption || "Image"}
         width={800}
         height={600}
-        className="max-w-full h-auto rounded shadow-lg p-1 bg-gray-300"
+        className="max-w-full h-auto rounded mt-4 mb-2 shadow-lg p-1 bg-gray-300"
       />
       {props?.caption && (
-        <p className="text-sm text-gray-600 text-center mt-2">
+        <p className="text-sm text-gray-600 mb-2 text-center">
           {props?.caption}
         </p>
       )}
-    </div>
+    </>
   ),
 };
