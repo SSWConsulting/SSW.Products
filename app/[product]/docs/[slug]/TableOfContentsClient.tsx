@@ -1,24 +1,11 @@
 "use client";
 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { cn } from "@/lib/utils";
-import type { Hit } from "instantsearch.js";
-import { PackageOpen, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import SearchBox from "../../../../components/search/SearchBox";
 
-import {
-  Highlight,
-  Hits,
-  Snippet,
-  useInstantSearch,
-  useSearchBox,
-} from "react-instantsearch";
-
-import Input from "../../../../components/Input";
-import AlgoliaSearchProvider from "../../../../components/providers/AlgoliaSearchProvider";
 import {
   DocsTableOfContents,
   type DocsTableOfContentsParentNavigationGroup as NavigationGroup,
@@ -27,47 +14,6 @@ import {
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
 }
-const DocHit = ({
-  hit,
-}: {
-  hit: Hit<{
-    title: string;
-    body: string;
-    file: string;
-  }>;
-}) => {
-  return (
-    <div className="border-b-[1px] snap-start py-1 px-4 border-gray-lighter/40  ">
-      <Link
-        className="hover:underline underline-offset-2 text-ssw-red"
-        href={`/docs/${hit?.file}`}
-      >
-        <Highlight
-          className="text-lg"
-          highlightedTagName={({ children }) => (
-            <span className="bg-yellow-400 text-black">{children}</span>
-          )}
-          attribute="title"
-          hit={hit}
-        />
-      </Link>
-      <Snippet
-        className="truncate text-sm overflow-hidden block text-[#797979]"
-        highlightedTagName={({ children }) => (
-          <span className="bg-yellow-400 text-black">{children}</span>
-        )}
-        hit={hit}
-        attribute="body"
-      />
-      {/* <Snippet
-        attribute="title"
-        hit={hit}
-        tagName="p"
-        className="text-lg font-medium text-white"
-      /> */}
-    </div>
-  );
-};
 
 function NavigationGroup({
   navigationGroup,
@@ -148,7 +94,7 @@ export function TableOfContentsClient({
 
   return (
     <>
-      <OpenSearch
+      <SearchBox
         index={tableOfContentsData.alogliaSearchIndex ?? ""}
         className="hidden sm:block"
       />
@@ -168,77 +114,3 @@ export function TableOfContentsClient({
     </>
   );
 }
-
-export const OpenSearch = ({
-  className,
-  index,
-}: {
-  className?: string;
-  index: string;
-}) => {
-  return (
-    <Dialog>
-      <DialogContent className="box-border ">
-        <div className="max-w-3xl box-border relative w-offset-4">
-          <AlgoliaSearchProvider index={index}>
-            <div className="h-full box-border pb-8 z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
-              <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
-                <Search />
-                <SearchBox className="w-full" />
-              </div>
-              <Results />
-            </div>
-          </AlgoliaSearchProvider>
-
-          <div className="absolute z-[60] shadow-lg bg-gray-dark/75  inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
-        </div>
-      </DialogContent>
-      <DialogTrigger asChild>
-        <Input
-          placeholder="Search..."
-          className={cn("mb-4 shadow-lg mx-4", className)}
-          icon={Search}
-        />
-      </DialogTrigger>
-    </Dialog>
-  );
-};
-
-const Results = () => {
-  const { results } = useInstantSearch();
-  return (
-    <>
-      {results.nbHits === 0 && !results.__isArtificial ? (
-        <p className="text-gray-light max-w-full truncate text-nowrap wrap gap-2 flex pt-2 px-4">
-          <PackageOpen />
-          No results...
-        </p>
-      ) : (
-        <Hits
-          className="max-h-96 [&>*]:pb-5 snap-mandatory snap-y  box-content [scrollbar-color:_theme(colors.gray.neutral)_transparent] [scrollbar-width:thin] [mask-image:linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
-          hitComponent={DocHit}
-        />
-      )}
-    </>
-  );
-};
-
-type SearchBoxProps = {
-  className?: string;
-};
-const SearchBox = ({ className }: SearchBoxProps) => {
-  const { refine } = useSearchBox();
-  return (
-    <input
-      type="text"
-      className={cn(
-        className,
-        "bg-transparent outline-none placeholder-white "
-      )}
-      placeholder="Search..."
-      onChange={(e) => {
-        refine(e.target.value);
-      }}
-    />
-  );
-};

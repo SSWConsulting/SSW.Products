@@ -5,13 +5,13 @@ import { useEffect, useRef, useState } from "react";
 import { MdClose, MdMenu, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-
+import SearchBox from "../../../../components/search/SearchBox";
 import {
   Docs,
   DocsTableOfContents,
 } from "../../../../tina/__generated__/types";
 import { DocAndBlogMarkdownStyle } from "../../../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
-import { OpenSearch, TableOfContentsClient } from "./TableOfContentsClient";
+import { TableOfContentsClient } from "./TableOfContentsClient";
 
 interface DocPostClientProps {
   query: string;
@@ -92,7 +92,7 @@ export default function DocPostClient({
   return (
     <div className="mx-auto text-white">
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
-        <OpenSearch
+        <SearchBox
           className="w-full"
           index={tableOfContentsData.alogliaSearchIndex ?? ""}
         />
