@@ -32,4 +32,6 @@ const Input = React.forwardRef<HTMLDivElement, InputProps>(
   }
 );
 
+Input.displayName = "Input";
+
 export default Input;
