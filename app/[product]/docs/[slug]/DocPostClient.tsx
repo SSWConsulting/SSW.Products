@@ -122,7 +122,6 @@ export default function DocPostClient({
             </button>
           </div>
           <div className="p-3">
-            {/* <TestComponent /> */}
             <TableOfContentsClient tableOfContentsData={tableOfContentsData} />
           </div>
         </div>

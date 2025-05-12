@@ -129,9 +129,6 @@ export default async function DocPost({ params }: DocPostProps) {
   const paginationData = getPaginationData(tableOfContentsData as any, slug);
   return (
     <>
-      {/* <AlgoliaSearchProvider
-        index={tableOfContentsData.alogliaSearchIndex ?? ""}
-      > */}
       <div className="grid grid-cols-1 pt-navBarHeight-mobile sm:pt-navBarHeight md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
         {/* LEFT COLUMN 1/3 */}
         <div className="hidden md:block w-full sm:pt-20 text-white sticky top-10 self-start max-h-screen overflow-y-auto">
@@ -166,7 +163,6 @@ export default async function DocPost({ params }: DocPostProps) {
           }}
         />
       )}
-      {/* </AlgoliaSearchProvider> */}
     </>
   );
 }
