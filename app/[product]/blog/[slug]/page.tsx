@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 
-import InteractiveBackground from "../../../../components/shared/Background/InteractiveBackground";
-import BlogPostClient from "../../../../components/shared/BlogPostClient";
-import FooterServer from "../../../../components/shared/FooterServer";
-import client from "../../../../tina/__generated__/client";
-import { Blogs } from "../../../../tina/__generated__/types";
-import { setPageMetadata } from "../../../../utils/setPageMetaData";
+import InteractiveBackground from "@comps/shared/Background/InteractiveBackground";
+import BlogPostClient from "@comps/shared/BlogPostClient";
+import FooterServer from "@comps/shared/FooterServer";
+import client from "@tina/__generated__/client";
+import { Blogs } from "@tina/__generated__/types";
+import { setPageMetadata } from "@utils/setPageMetaData";
 
 interface BlogPostProps {
   params: {

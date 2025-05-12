@@ -1,16 +1,13 @@
 "use client";
 
+import SearchBox from "@comps/search/SearchBox";
+import { Docs, DocsTableOfContents } from "@tina/__generated__/types";
+import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { MdClose, MdMenu, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import SearchBox from "../../../../components/search/SearchBox";
-import {
-  Docs,
-  DocsTableOfContents,
-} from "../../../../tina/__generated__/types";
-import { DocAndBlogMarkdownStyle } from "../../../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import { TableOfContentsClient } from "./TableOfContentsClient";
 
 interface DocPostClientProps {

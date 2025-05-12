@@ -1,8 +1,8 @@
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
+import Input from "@comps/Input";
 import { Search } from "lucide-react";
 import { useSearchBox } from "react-instantsearch";
-import Input from "../../components/Input";
 
 import AlgoliaSearchProvider from "../../components/providers/AlgoliaSearchProvider";
 import SearchResults from "./SearchResults";

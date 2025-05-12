@@ -1,15 +1,15 @@
 "use client";
 
+import SearchBox from "@comps/search/SearchBox";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import SearchBox from "../../../../components/search/SearchBox";
 
 import {
   DocsTableOfContents,
   type DocsTableOfContentsParentNavigationGroup as NavigationGroup,
-} from "../../../../tina/__generated__/types";
+} from "@tina/__generated__/types";
 
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
