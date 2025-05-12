@@ -8,17 +8,10 @@ type InputProps = {
 
 const Input = React.forwardRef<HTMLDivElement, InputProps>(
   ({ placeholder, icon: Icon, className, ...props }, forwardRef) => {
-    const setSearchTerm = (val: string) => {
-      console.log(val);
-    };
-
     return (
       <div {...props} ref={forwardRef} className={cn("relative", className)}>
         <input
           type="text"
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
           placeholder={placeholder}
           className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-2 px-4 pl-12 placeholder:text-gray-300 focus:outline-none"
         />
