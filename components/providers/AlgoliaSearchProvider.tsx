@@ -1,6 +1,5 @@
 "use client";
 import { liteClient as algoliasearch } from "algoliasearch/lite";
-import { useEffect } from "react";
 import { InstantSearchNext } from "react-instantsearch-nextjs";
 
 const searchClient = algoliasearch(
@@ -14,9 +13,6 @@ const AlgoliaSearchProvider = ({
   children: React.ReactNode;
   index: string;
 }) => {
-  useEffect(() => {
-    console.log("index", index);
-  }, [index]);
   return (
     <>
       <InstantSearchNext indexName={index} searchClient={searchClient}>
