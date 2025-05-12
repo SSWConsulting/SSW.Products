@@ -55,8 +55,6 @@ export const DocAndBlogMarkdownStyle: Components<{
     </a>
   ),
 
-  //   strong: (props: { children: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => <strong className="font-bold">{props.children}</strong>,
-
   img: (props) => (
     <>
       <Image
