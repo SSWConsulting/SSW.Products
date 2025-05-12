@@ -2,8 +2,8 @@ import { cn } from "@/lib/utils";
 import React, { ElementType } from "react";
 type InputProps = {
   placeholder: string;
-  icon?: ElementType; // Optional icon prop
-  className?: string; // Optional className props
+  icon?: ElementType;
+  className?: string;
 };
 
 const Input = React.forwardRef<HTMLDivElement, InputProps>(
