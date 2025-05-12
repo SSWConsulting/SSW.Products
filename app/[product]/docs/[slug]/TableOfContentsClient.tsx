@@ -95,7 +95,7 @@ export function TableOfContentsClient({
   return (
     <>
       <SearchBox
-        index={tableOfContentsData.alogliaSearchIndex ?? ""}
+        index={tableOfContentsData.algoliaSearchIndex ?? ""}
         className="hidden sm:block"
       />
       <div className="px-4">

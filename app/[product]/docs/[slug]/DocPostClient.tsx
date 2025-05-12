@@ -94,7 +94,7 @@ export default function DocPostClient({
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
         <SearchBox
           className="w-full"
-          index={tableOfContentsData.alogliaSearchIndex ?? ""}
+          index={tableOfContentsData.algoliaSearchIndex ?? ""}
         />
         <button
           ref={buttonRef}

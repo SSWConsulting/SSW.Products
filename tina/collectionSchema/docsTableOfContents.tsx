@@ -51,7 +51,7 @@ export const docsTableOfContentsCollection: Collection = {
   },
   fields: [
     {
-      name: "alogliaSearchIndex",
+      name: "algoliaSearchIndex",
       label: "Algolia Search Index",
       type: "string",
       description: "Used to configure the Algolia search index for the docs",
