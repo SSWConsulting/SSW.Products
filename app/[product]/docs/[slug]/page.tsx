@@ -115,8 +115,6 @@ function PaginationLinks({
   );
 }
 
-// const serverState = await getServerState(<DocPost />);
-
 export default async function DocPost({ params }: DocPostProps) {
   const { slug, product } = params;
   const documentData = await getDocPost(product, slug);
