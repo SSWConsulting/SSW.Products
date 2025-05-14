@@ -192,7 +192,7 @@
         {
           "tier": "Starter ",
           "description": [
-            "15 Credits per month",
+            "15 credits per month",
             "For individuals"
           ],
           "price": 0,
@@ -209,7 +209,7 @@
         {
           "tier": "Team",
           "description": [
-            "100 Credits per month",
+            "100 credits per month",
             "For growing teams"
           ],
           "price": 39,
@@ -226,7 +226,7 @@
         {
           "tier": "Growth",
           "description": [
-            "500 Credits per month",
+            "500 credits per month",
             "For larger organizations"
           ],
           "price": 189,

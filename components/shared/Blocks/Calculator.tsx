@@ -181,7 +181,7 @@ const EstimatedSavingsContent = ({
 
   return (
     <div className="w-full flex flex-col space-y-3">
-      <h3 className="text-2xl text-white font-bold">Your ROI with YakShaver</h3>
+      <h3 className="text-2xl text-white font-bold">YakShaver Usage ROI</h3>
       <div className="flex flex-col">
         <p className="text-white/50">Monthly Detailed Work Items</p>
         <p
@@ -192,7 +192,7 @@ const EstimatedSavingsContent = ({
           <span className="flex gap-2 align-baseline items-baseline">
             {isCustomTier
               ? "Enough to fill a warehouse"
-              : `Up to ${itemsAbleToCreate}`}
+              : `${itemsAbleToCreate}`}
           </span>
         </p>
       </div>
@@ -204,7 +204,7 @@ const EstimatedSavingsContent = ({
           </Tooltip>
         </div>
         <p
-          className={`bg-gradient-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold ${
+          className={`text-white font-bold ${
             isCustomTier ? "text-xl" : "text-2xl"
           }`}
         >
