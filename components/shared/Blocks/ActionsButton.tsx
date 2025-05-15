@@ -24,7 +24,7 @@ export const ActionButton = ({
   return action.url ? (
     <Link
       href={action.url}
-      className={`whitespace-nowrap inline-flex items-center justify-center rounded-lg ${className} ${action.variant} ${action.size} hover:opacity-80 transition-opacity duration-200 font-semibold`}
+      className={`whitespace-nowrap inline-flex items-center justify-center rounded-lg ${className} ${action.variant} ${action.size} hover:opacity-80 transition-opacity duration-200 font-semibold uppercase`}
       target="_blank"
     >
       {action.label}
