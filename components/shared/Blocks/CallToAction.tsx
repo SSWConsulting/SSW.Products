@@ -18,7 +18,7 @@ const CallToAction = ({ className, ...props }: CallToActionProps) => {
             {props.title && (
               <h2
                 data-tina-field={tinaField(props, "title")}
-                className="sm:text-3xl text-xl font-bold mb-4"
+                className="sm:text-3xl text-xl font-bold mb-4 uppercase"
               >
                 {props.title}
               </h2>
