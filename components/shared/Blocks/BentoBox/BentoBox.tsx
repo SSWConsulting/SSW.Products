@@ -159,7 +159,7 @@ function SSWBadge({ title, link }: { title: string; link?: string }) {
   return (
     <div className="flex justify-center">
       <Link href={link || ""} target="_blank">
-        <div className="inline-flex py-2 px-4 rounded-xl bg-[#131313] justify-center items-center text-white border border-gray-400 transition-all hover:bg-white/20 duration-300">
+        <div className="inline-flex py-2 px-4 rounded-xl bg-[#131313] justify-center items-center text-white border border-gray-400 transition-all hover:bg-white/20 duration-300 uppercase">
           {title}
           <Image
             src={"/svg/ssw-4-square.svg"}
@@ -292,7 +292,7 @@ export default function BentoBox({ data }: { data: any }) {
             <SmAndMdView data={data.bottomRightBox} />
           </div>
         </div>
-        <div className="pt-10 uppercase">
+        <div className="pt-10">
           <SSWBadge title={data?.badge} link={data?.badgeLink} />
         </div>
       </Container>
