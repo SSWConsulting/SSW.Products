@@ -27,7 +27,7 @@ export const BookingButton = ({
         onClick={openModal}
         className={cn(
           className,
-          `px-5 py-2 ${variant} font-semibold text-center items-center text-white rounded-lg transition-colors hover:bg-white/10 whitespace-nowrap`
+          `px-5 py-2 ${variant} font-semibold text-center items-center text-white rounded-lg transition-colors hover:bg-white/20 whitespace-nowrap uppercase`
         )}
       >
         {title}
