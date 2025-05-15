@@ -26,6 +26,7 @@ module.exports = {
       },
       spacing: {
         "offset-4": "calc(100vw - 2rem)",
+        "offset-20": "calc(100vw - 28rem)",
         37: "9.25rem",
         navBarHeight: "6rem",
         "navBarHeight-mobile": "9.5rem",
@@ -40,6 +41,7 @@ module.exports = {
           charcoal: "#333333",
         },
         gray: {
+          darkest: "#131313",
           dark: "#1F1F1F",
           neutral: "#333333",
           lighter: "#363636",

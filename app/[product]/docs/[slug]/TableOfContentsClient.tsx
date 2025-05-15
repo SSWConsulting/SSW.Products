@@ -94,23 +94,24 @@ export function TableOfContentsClient({
 
   return (
     <>
+      {/* <div className="md:bg-gray-darkest sticky md:mr-4 md:px-6 px-4 md:py-8 rounded-lg"> */}
       <SearchBox
         index={tableOfContentsData.algoliaSearchIndex ?? ""}
-        className="hidden sm:block"
+        className=" w-full block"
       />
-      <div className="px-4">
-        {tableOfContentsData.parentNavigationGroup &&
-          tableOfContentsData.parentNavigationGroup.map(
-            (group, index) =>
-              group && (
-                <NavigationGroup
-                  key={index}
-                  navigationGroup={group}
-                  activeItem={activeItem}
-                />
-              )
-          )}
-      </div>
+      {/* <div className=""> */}
+      {tableOfContentsData.parentNavigationGroup &&
+        tableOfContentsData.parentNavigationGroup.map(
+          (group, index) =>
+            group && (
+              <NavigationGroup
+                key={index}
+                navigationGroup={group}
+                activeItem={activeItem}
+              />
+            )
+        )}
+      {/* </div> */}
     </>
   );
 }

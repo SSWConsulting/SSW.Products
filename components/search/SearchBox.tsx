@@ -33,7 +33,7 @@ export const SearchBox = ({
       <DialogTrigger asChild>
         <Input
           placeholder="Search..."
-          className={cn("mb-4 shadow-lg mx-4", className)}
+          className={cn("mb-4 shadow-lg", className)}
           icon={Search}
         />
       </DialogTrigger>
