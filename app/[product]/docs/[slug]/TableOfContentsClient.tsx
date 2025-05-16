@@ -94,12 +94,10 @@ export function TableOfContentsClient({
 
   return (
     <>
-      {/* <div className="md:bg-gray-darkest sticky md:mr-4 md:px-6 px-4 md:py-8 rounded-lg"> */}
       <SearchBox
         index={tableOfContentsData.algoliaSearchIndex ?? ""}
         className=" w-full block"
       />
-      {/* <div className=""> */}
       {tableOfContentsData.parentNavigationGroup &&
         tableOfContentsData.parentNavigationGroup.map(
           (group, index) =>
