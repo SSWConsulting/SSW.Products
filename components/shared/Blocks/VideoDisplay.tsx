@@ -7,11 +7,12 @@ interface VideoDisplayProps {
     altText?: string | null;
     title?: string | null;
     externalVideoLink?: string | null;
+    figureCaption?: string | null;
   };
 }
 
 export default function VideoDisplay({ data }: VideoDisplayProps) {
-  const { externalVideoLink, title } = data;
+  const { externalVideoLink, title, figureCaption } = data;
 
   return (
     <Container className="flex justify-center mx-auto container">
@@ -24,6 +25,11 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
           className="w-full aspect-video mx-auto"
           src={externalVideoLink || ""}
         />
+        {figureCaption && (
+          <p className="text-sm text-gray-400 mt-2 text-left">
+            {figureCaption}
+          </p>
+        )}
       </div>
     </Container>
   );
