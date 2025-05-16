@@ -16,7 +16,7 @@ export const SearchBox = ({
   return (
     <Dialog>
       <DialogContent className="box-border ">
-        <div className="max-w-3xl box-border relative w-offset-4">
+        <div className="max-w-3xl box-border relative w-offset-8">
           <AlgoliaSearchProvider index={index}>
             <div className="h-full box-border pb-8 z-[70] relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
               <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b-[1px]">
@@ -33,7 +33,7 @@ export const SearchBox = ({
       <DialogTrigger asChild>
         <Input
           placeholder="Search..."
-          className={cn("mb-4 shadow-lg mx-4", className)}
+          className={cn("mb-4 shadow-lg", className)}
           icon={Search}
         />
       </DialogTrigger>

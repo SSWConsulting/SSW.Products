@@ -118,7 +118,7 @@ export default function DocPostClient({
               <MdClose className="h-5 w-5" />
             </button>
           </div>
-          <div className="p-3">
+          <div className="py-3 px-7">
             <TableOfContentsClient tableOfContentsData={tableOfContentsData} />
           </div>
         </div>

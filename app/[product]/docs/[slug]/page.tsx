@@ -129,7 +129,7 @@ export default async function DocPost({ params }: DocPostProps) {
     <>
       <div className="grid grid-cols-1 pt-navBarHeight-mobile sm:pt-navBarHeight md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
         {/* LEFT COLUMN 1/3 */}
-        <div className="hidden md:block w-full sm:pt-20 text-white sticky top-10 self-start max-h-screen overflow-y-auto">
+        <div className="max-h-[calc(100vh-theme(spacing.navBarHeight)_-_7rem)] hidden md:block py-8 bg-gray-darkest max-w-offset-container-8  max-w-offset-container-16 mb-8 rounded-lg left-4 top-[calc(theme(spacing.navBarHeight)_+_5rem)] text-white self-start px-6  overflow-y-auto [scrollbar-width:thin] [scrollbar-color:theme(colors.gray.neutral)_transparent]  sticky">
           <TableOfContentsClient
             tableOfContentsData={tableOfContentsData as any}
           />

@@ -15,6 +15,16 @@ module.exports = {
       },
     },
     extend: {
+      width: {
+        "offset-8": "calc(100vw - 2rem)",
+      },
+      maxWidth: {
+        "offset-container-8": "calc(100% - 2rem)",
+        "offset-16": "calc(100vw - 4rem)",
+      },
+      maxHeight: {
+        "offset-64": "calc(100vh - 20rem)",
+      },
       backgroundImage: {
         "pink-gradient": "linear-gradient(to right, #CC4141,#d699fb,#ff778e)",
         "gray-gradient": "linear-gradient(to right, #141414,#1f1f1f,#2b2a2a)",
@@ -25,7 +35,6 @@ module.exports = {
         medium: "75rem",
       },
       spacing: {
-        "offset-4": "calc(100vw - 2rem)",
         37: "9.25rem",
         navBarHeight: "6rem",
         "navBarHeight-mobile": "9.5rem",
@@ -40,6 +49,7 @@ module.exports = {
           charcoal: "#333333",
         },
         gray: {
+          darkest: "#131313",
           dark: "#1F1F1F",
           neutral: "#333333",
           lighter: "#363636",
