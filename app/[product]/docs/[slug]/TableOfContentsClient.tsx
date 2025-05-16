@@ -111,7 +111,6 @@ export function TableOfContentsClient({
               />
             )
         )}
-      {/* </div> */}
     </>
   );
 }

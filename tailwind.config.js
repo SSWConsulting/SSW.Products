@@ -16,10 +16,14 @@ module.exports = {
     },
     extend: {
       width: {
-        "offset-4": "calc(100vw - 2rem)",
+        "offset-8": "calc(100vw - 2rem)",
+      },
+      maxWidth: {
+        "offset-container-8": "calc(100% - 2rem)",
+        "offset-16": "calc(100vw - 4rem)",
       },
       maxHeight: {
-        "offset-64": "calc(100vh - 16rem)",
+        "offset-64": "calc(100vh - 20rem)",
       },
       backgroundImage: {
         "pink-gradient": "linear-gradient(to right, #CC4141,#d699fb,#ff778e)",
