@@ -7,5 +7,6 @@ export const videoDisplayTemplate: Template = {
     { name: "altText", label: "Alt Text", type: "string" },
     { name: 'title', label: 'Title', type: 'string' },  
     { name: "externalVideoLink", type: "string", label: "External Video Link" },
+    { name: 'figureCaption', label: 'Figure Caption', type: 'string' },
   ],
 };
