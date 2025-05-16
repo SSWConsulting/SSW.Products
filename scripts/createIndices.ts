@@ -61,7 +61,7 @@ async function createIndices() {
     );
   }
   const client = algoliasearch(appID, apiKey);
-  const docData = await await Promise.all([
+  const docData = await Promise.all([
     fetchDocData("./content/docs/YakShaver/*.mdx"),
     fetchDocData("./content/docs/EagleEye/*.mdx"),
   ]);
