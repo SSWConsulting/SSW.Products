@@ -1,10 +1,8 @@
 import { notFound } from "next/navigation";
 
-import InteractiveBackground from "@comps/shared/Background/InteractiveBackground";
 import BlogPostClient from "@comps/shared/BlogPostClient";
 import FooterServer from "@comps/shared/FooterServer";
 import client from "@tina/__generated__/client";
-import { Blogs } from "@tina/__generated__/types";
 import { setPageMetadata } from "@utils/setPageMetaData";
 
 interface BlogPostProps {
@@ -55,13 +53,14 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
   return (
     <div className="flex flex-col min-h-screen pt-navBarHeight-mobile sm:pt-navBarHeight">
-      <InteractiveBackground />
+      {/* <InteractiveBackground /> */}
 
       <div className="flex-grow">
         <BlogPostClient
-          query={documentData.query}
-          variables={documentData.variables}
-          pageData={{ blogs: documentData.blogs }}
+          {...documentData}
+          // query={documentData.query}
+          // variables={documentData.variables}
+          // pageData={{ blogs: documentData.blogs }}
         />
       </div>
 
@@ -70,7 +69,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
-            documentData?.blogs.seo?.googleStructuredData ?? {}
+            documentData.data.blogs.seo?.googleStructuredData ?? {}
           ),
         }}
       />
@@ -88,11 +87,7 @@ async function getBlogPost(product: string, slug: string) {
       return null;
     }
 
-    return {
-      query: res.query,
-      variables: res.variables,
-      blogs: res.data.blogs as Blogs,
-    };
+    return res;
   } catch (error) {
     console.error("Error fetching blog post:", error);
     return null;
