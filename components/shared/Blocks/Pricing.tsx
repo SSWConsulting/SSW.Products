@@ -123,7 +123,7 @@ const Pricing = ({ data }: PricingProps) => {
 
 const AddOns = ({ addOns }: { addOns: AddOn }) => {
   return (
-    <div className="flex max-w-3xl mx-auto p-10 my-10 flex-col w-full bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
+    <div className="flex max-w-3xl mx-auto p-10 my-10 flex-col w-full bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
       <div className="flex gap-10">
         <div className="flex flex-col w-1/2">
           <h3 className="text-3xl font-bold text-white mb-2">
@@ -172,7 +172,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
     <div
       className={`plan-card text-white border ${
         isRecommended ? "border-transparent " : "border-opacity-10 border-white"
-      } px-6 py-10 shadow-xl bg-opacity-20  rounded-3xl hover:bg-opacity-30 transition-opacity duration-200 bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative h-full flex flex-col flex-grow`}
+      } px-6 py-10 shadow-xl bg-opacity-20  rounded-3xl hover:bg-opacity-30 transition-opacity duration-200 bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative h-full flex flex-col grow`}
       data-tina-field={tinaField(data, "plans", index)}
     >
       <div className="flex gap-2 items-center ">
@@ -183,7 +183,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
         )}
 
         {isRecommended && (
-          <div className="text-white text-center text-xs bg-gradient-to-br from-red-400 to-red-700 rounded-full h-auto px-4 py-1 -mt-1">
+          <div className="text-white text-center text-xs bg-linear-to-br from-red-400 to-red-700 rounded-full h-auto px-4 py-1 -mt-1">
             Most Popular
           </div>
         )}
@@ -209,7 +209,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
                   <Actions
                     //@ts-expect-error investigate after
                     actions={[plan.buttons[0]]}
-                    className="w-[100%]"
+                    className="w-full"
                   />
                 );
               case "PagesPageBlocksPricingPlansButtonsBookingButton":
@@ -233,7 +233,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
           })()}
       </div>
 
-      <div className="flex-col pb-3 flex-grow">
+      <div className="flex-col pb-3 grow">
         <h3 className="text-base text-white pb-1">{plan.listTitle}</h3>
         {plan.listItems?.map((item: string, index: number) => (
           <div key={index} className="flex items-start gap-2 py-1">

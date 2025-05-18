@@ -54,10 +54,10 @@ export default async function BlogPost({ params }: BlogPostProps) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen pt-navBarHeight-mobile sm:pt-navBarHeight">
+    <div className="flex flex-col min-h-screen pt-nav-bar-height-mobile sm:pt-nav-bar-height">
       <InteractiveBackground />
 
-      <div className="flex-grow">
+      <div className="grow">
         <BlogPostClient
           query={documentData.query}
           variables={documentData.variables}

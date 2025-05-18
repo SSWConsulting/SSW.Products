@@ -20,7 +20,7 @@ const OutputPill = forwardRef<HTMLDivElement, { title: string }>(
       <div className="relative inline-flex gap-2 items-center p-1 rounded-3xl top-0 transition-all duration-300 group">
         <div
           ref={ref}
-          className="relative inline-flex gap-2 py-3 lg:py-2 justify-center items-center md:px-4 px-2 rounded-3xl bg-gradient-to-br from-[#CB4542] to-[#7A2C2A] border border-gray-400 text-xs z-30 text-black"
+          className="relative inline-flex gap-2 py-3 lg:py-2 justify-center items-center md:px-4 px-2 rounded-3xl bg-linear-to-br from-[#CB4542] to-[#7A2C2A] border border-gray-400 text-xs z-30 text-black"
         >
           <Image
             src={"/svg/github-mark-white.svg"}
@@ -54,7 +54,7 @@ export const CircleLogo = forwardRef<
       ) : (
         <div className="border border-gray-300 rounded-full absolute inset-0" />
       )}
-      <div className="md:w-20 m-1 md:h-20 h-16 w-16 rounded-full bg-gray-800 flex items-center justify-center bg-gradient-to-tr from-white via-gray-200 to-gray-500">
+      <div className="md:w-20 m-1 md:h-20 h-16 w-16 rounded-full bg-gray-800 flex items-center justify-center bg-linear-to-tr from-white via-gray-200 to-gray-500">
         <Image
           src={media || "/svg/yak-icon-fill.svg"}
           alt="yak"

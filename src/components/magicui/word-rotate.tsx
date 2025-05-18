@@ -23,7 +23,7 @@ export function WordRotate({
     transition: { duration: 0.25, ease: "easeOut" },
   },
   className,
-  gradientClasses = "bg-gradient-to-br from-[#e34f4f] from-30% via-[#D699FB] via-80% to-[#FF778E]  bg-clip-text text-transparent",
+  gradientClasses = "bg-linear-to-br from-[#e34f4f] from-30% via-[#D699FB] via-80% to-[#FF778E]  bg-clip-text text-transparent",
 }: WordRotateProps) {
   const [index, setIndex] = useState(0);
 

@@ -42,7 +42,7 @@ export default async function PrivacyPolicy({ params }: PrivacyPolicyProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <InteractiveBackground />
-      <div className="flex-grow">
+      <div className="grow">
         <PrivacyPolicyClient {...res} />
       </div>
       <FooterServer product={product} />

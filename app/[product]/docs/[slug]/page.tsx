@@ -87,7 +87,7 @@ function PaginationLinks({
   product: string;
 }) {
   return (
-    <div className="flex pt-navBarHeight-mobile sm:pt-navBarHeight lg:justify-between mt-12 py-4  rounded-lg gap-4 overflow-hidden">
+    <div className="flex pt-nav-bar-height-mobile sm:pt-nav-bar-height lg:justify-between mt-12 py-4  rounded-lg gap-4 overflow-hidden">
       {prev ? (
         <Link
           href={`/${product}/docs/${prev.slug}`}
@@ -127,16 +127,16 @@ export default async function DocPost({ params }: DocPostProps) {
   const paginationData = getPaginationData(tableOfContentsData as any, slug);
   return (
     <>
-      <div className="grid grid-cols-1 pt-navBarHeight-mobile sm:pt-navBarHeight md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-[90rem] mx-auto min-h-screen">
+      <div className="grid grid-cols-1 pt-nav-bar-height-mobile sm:pt-nav-bar-height md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-360 mx-auto min-h-screen">
         {/* LEFT COLUMN 1/3 */}
-        <div className="max-h-[calc(100vh-theme(spacing.navBarHeight)_-_7rem)] hidden md:block py-8 bg-gray-darkest max-w-offset-container-8  max-w-offset-container-16 mb-8 rounded-lg left-4 top-[calc(theme(spacing.navBarHeight)_+_5rem)] text-white self-start px-6  overflow-y-auto [scrollbar-width:thin] [scrollbar-color:theme(colors.gray.neutral)_transparent]  sticky">
+        <div className="max-h-[calc(100vh-(var(--spacing-nav-bar-height))-7rem)] hidden md:block py-8 bg-gray-darkest max-w-offset-container-8  max-w-offset-container-16 mb-8 rounded-lg left-4 top-[calc(var(--spacing-nav-bar-height)+5rem)] text-white self-start px-6  overflow-y-auto [scrollbar-width:thin] [scrollbar-color:var(--color-gray-neutral)_transparent]  sticky">
           <TableOfContentsClient
             tableOfContentsData={tableOfContentsData as any}
           />
         </div>
 
         {/* RIGHT COLUMN 2/3 */}
-        <div className="flex-grow px-4 sm:pt-20 ">
+        <div className="grow px-4 sm:pt-20 ">
           <DocPostClient
             query={documentData.query}
             variables={documentData.variables}

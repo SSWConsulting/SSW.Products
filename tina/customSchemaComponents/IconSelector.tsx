@@ -27,7 +27,7 @@ const IconSelector = ({ input }: { input: any }) => {
   };
 
   const TinaButtonClasses =
-    'text-sm mb-2 shadow focus:shadow-outline focus:border-blue-500 w-full border border-gray-100 hover:border-gray-200 text-gray-500 hover:text-blue-400 focus:text-blue-500 rounded-md';
+    'text-sm mb-2 shadow-sm focus:shadow-outline focus:border-blue-500 w-full border border-gray-100 hover:border-gray-200 text-gray-500 hover:text-blue-400 focus:text-blue-500 rounded-md';
 
   return (
     <div>

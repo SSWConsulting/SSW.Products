@@ -4,15 +4,15 @@ const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
   return (
     <div className="px-6 flex items-stretch w-full gap-8">
       <div className="flex-0 flex flex-col items-center">
-        <div className="flex-shrink-0 w-[2px] h-12 bg-gradient-to-t from-red-700 to-red-400"></div>
-        <div className="flex-shrink-0 relative w-4 h-4 rounded-full border-2 border-red-700">
-          <div className="h-[2px] w-6 absolute top-1/2 left-full -translate-y-1/2 bg-gradient-to-r from-red-700 to-red-400"></div>
+        <div className="shrink-0 w-[2px] h-12 bg-linear-to-t from-red-700 to-red-400"></div>
+        <div className="shrink-0 relative w-4 h-4 rounded-full border-2 border-red-700">
+          <div className="h-[2px] w-6 absolute top-1/2 left-full -translate-y-1/2 bg-linear-to-r from-red-700 to-red-400"></div>
         </div>
         {!last && (
-          <div className="w-[2px] h-full bg-gradient-to-b from-red-700 to-red-400"></div>
+          <div className="w-[2px] h-full bg-linear-to-b from-red-700 to-red-400"></div>
         )}
         {last && (
-          <div className="w-[2px] h-2/3 bg-gradient-to-b from-red-600 via-red-500/30 to-red-400/0"></div>
+          <div className="w-[2px] h-2/3 bg-linear-to-b from-red-600 via-red-500/30 to-red-400/0"></div>
         )}
       </div>
       <div className="flex-1 pt-10 pb-4 flex flex-col items-start gap-4">
@@ -26,11 +26,11 @@ const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
         )}
             {data.badgeTitle && (
               data.badgeLink ? (
-                <Link href={data.badgeLink} className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
+                <Link href={data.badgeLink} className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-linear-to-br from-white to-red-50 shadow-2xl">
                   {data.badgeTitle}
                 </Link>
               ) : (
-                <span className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-gradient-to-br from-white to-red-50 shadow-2xl">
+                <span className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-red-800 px-4 py-2 text-xs font-medium border border-red-100 bg-linear-to-br from-white to-red-50 shadow-2xl">
                   {data.badgeTitle}
                 </span>
               )

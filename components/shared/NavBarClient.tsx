@@ -143,19 +143,19 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       <nav
         className={`text-white transition-colors px-4  duration-300 ease-in-out ${
           scrolled
-            ? `fixed shadow-sm bg-[#131313] py-4 bg-opacity-80 backdrop-blur animate-slide-in top-0 `
+            ? `fixed shadow-xs bg-[#131313] py-4 bg-opacity-80 backdrop-blur-sm animate-slide-in top-0 `
             : `absolute py-6  `
         } z-40 w-full`}
       >
         <div className="max-w-7xl w-full mx-auto flex justify-between">
           <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
             {logo && (
-              <Link href="/" className="flex-shrink-0 mb-1.5">
+              <Link href="/" className="shrink-0 mb-1.5">
                 <Image src={logo} alt="Logo" width={200} height={200} />
               </Link>
             )}
 
-            <ul className="hidden lg:flex items-center gap-5 flex-grow">
+            <ul className="hidden lg:flex items-center gap-5 grow">
               {leftNavItems?.map((item, index) => renderNavItem(item, index))}
             </ul>
           </div>

@@ -51,7 +51,7 @@ const Question = ({
   return (
     <div className="w-full" data-tina-field={props["data-tina-field"]}>
       <button
-        className="w-full text-left py-4 px-4 focus:outline-none flex justify-between items-center"
+        className="w-full text-left py-4 px-4 focus:outline-hidden flex justify-between items-center"
         onClick={() => setIsOpen(!isOpen)}
       >
         <h3 className="text-lg font-bold">{item.question}</h3>

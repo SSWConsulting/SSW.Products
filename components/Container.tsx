@@ -8,8 +8,8 @@ type ContainerProps = {
 };
 
 const sizeClasses = {
-  small: "max-w-[43.75rem] small:px-0",
-  medium: "max-w-[75rem] md:px-12 sm:px-8 medium:px-0",
+  small: "max-w-175 small:px-0",
+  medium: "max-w-300 md:px-12 sm:px-8 medium:px-0",
 };
 
 const Container = ({

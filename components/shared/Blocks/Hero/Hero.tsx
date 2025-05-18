@@ -43,8 +43,8 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
   return (
     <Container className="flex flex-col lg:flex-row pt-12 text-white w-full">
       {/* LHS */}
-      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] py-6 px-6 ">
-        <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3 h-[20.625rem]">
+      <div className="relative bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] py-6 px-6 ">
+        <div className="bg-linear-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929] rounded-2xl p-3 h-82.5">
           <div className="flex gap-4 pb-2">
             <div className="rounded-full w-10 h-10 text-lg text-center flex items-center justify-center font-bold">
               <div className="relative w-full h-full flex items-center justify-center">
@@ -62,7 +62,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
                 {data.leftHandSide?.issueReportName}
               </span>
             </div>
-            <div className="flex-grow flex justify-end items-center">
+            <div className="grow flex justify-end items-center">
               <div className="relative w-10 h-10 bg-[#1a1a1a] rounded-full overflow-hidden border border-[#CC4141]/50 flex items-center justify-center">
                 <AudioWaveAnimation isPlaying={isTyping} />
               </div>
@@ -105,7 +105,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
       <div className="flex justify-center items-center p-5">
         <div className="relative md:w-20 md:h-20 h-20 w-20 overflow-visible bg-[#2b1f3b] rounded-full">
           <YakBorderAnimate ref={yakBorderAnimateRef} />
-          <div className="absolute inset-[3px] z-10 rounded-full shadow-lg flex items-center justify-center bg-gradient-to-br from-white via-[#e6e6e6] to-[#c4c4c4]">
+          <div className="absolute inset-[3px] z-10 rounded-full shadow-lg flex items-center justify-center bg-linear-to-br from-white via-[#e6e6e6] to-[#c4c4c4]">
             <div className="scale-90 flex items-center justify-center">
               <YakAnimate ref={yakAnimateRef} />
             </div>
@@ -113,7 +113,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
         </div>
       </div>
       {/* RHS */}
-      <div className="relative bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] p-6 ">
+      <div className="relative bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] w-full lg:w-1/2 flex flex-col rounded-[20px] p-6 ">
         <HeroYakShaverCard isVisible={!isTyping} />
 
         <div className="flex  items-center gap-6 w-full pt-4 ">
@@ -140,7 +140,7 @@ export const curlyBracketFormatter = (byLine: string) => {
     part.startsWith("{") && part.endsWith("}") ? (
       <span
         key={index}
-        className="bg-gradient-to-br from-red-400 to-red-700 bg-clip-text text-transparent font-bold"
+        className="bg-linear-to-br from-red-400 to-red-700 bg-clip-text text-transparent font-bold"
       >
         {part.slice(1, -1)}
       </span>

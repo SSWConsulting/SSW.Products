@@ -21,9 +21,9 @@ function IconBox({
 }) {
   return (
     <div className="relative rounded-2xl md:w-[60px] md:h-[60px] w-[50px] h-[50px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group">
-      <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-2xl blur opacity-10 group-hover:opacity-25 transition duration-1000 group-hover:duration-200"></div>
+      <div className="absolute -inset-1 bg-linear-to-r from-gray-900 to-gray-400 rounded-2xl blur-sm opacity-10 group-hover:opacity-25 transition duration-1000 group-hover:duration-200"></div>
       <div className="relative rounded-2xl border border-gray-600 flex items-center justify-center w-full h-full">
-        <div className="rounded-full border border-gray-600 bg-gradient-to-tr from-black to-gray-800 flex items-center justify-center md:h-12 md:w-12 h-10 w-10">
+        <div className="rounded-full border border-gray-600 bg-linear-to-tr from-black to-gray-800 flex items-center justify-center md:h-12 md:w-12 h-10 w-10">
           <div className="w-5 h-5 md:w-7 md:h-7 relative">
             <Image
               src={image || "/svg/github-mark-white.svg"}
@@ -62,7 +62,7 @@ function SmAndMdView({ data }: { data: any }) {
       <div
         className={`${YakShaverGray} rounded-xl col-span-1 md:col-span-2 relative overflow-hidden h-96 md:h-64 flex flex-col sm:flex-row`}
       >
-        <div className="absolute left-0 top-0 h-full w-full sm:w-[36%] bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] z-10"></div>
+        <div className="absolute left-0 top-0 h-full w-full sm:w-[36%] bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] z-10"></div>
 
         <Image
           src={"/YakShaver/Arrow-bg.png"}
@@ -263,7 +263,7 @@ export default function BentoBox({ data }: { data: any }) {
             </div>
             {/* Right box */}
             <div className="relative col-span-1 rounded-xl h-80 md:h-80 lg:h-72 overflow-hidden">
-              <div className="absolute -inset-1 bg-gradient-to-r from-gray-900 to-gray-400 rounded-xl blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+              <div className="absolute -inset-1 bg-linear-to-r from-gray-900 to-gray-400 rounded-xl blur-sm opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
               <div
                 className={`${YakShaverGray} relative rounded-xl w-full h-full`}
               >

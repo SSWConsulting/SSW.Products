@@ -33,7 +33,7 @@ export function ExampleYakShaverCard() {
 
 export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
   return (
-    <div className="bg-gradient-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929]  p-3 border-2  text-xs border-[#4D4D4E]/30 shadow-2xl rounded-2xl text-white w-full h-[20.625rem]">
+    <div className="bg-linear-to-r to-[#1f1f1f] via-[#1e1e1e] from-[#292929]  p-3 border-2  text-xs border-[#4D4D4E]/30 shadow-2xl rounded-2xl text-white w-full h-82.5">
       <h2 className="pb-2 text-sm md:text-base lg:text-lg relative h-[2.5em]">
         <span
           className={`absolute left-0 right-0 transition-all duration-500 ${
@@ -60,7 +60,7 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
         Project
       </h3>
       <div
-        className={`h-[2.3125rem] items-center text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
+        className={`h-9.25 items-center text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
           isVisible ? "" : "animate-pulse"
         }`}
       >
@@ -79,7 +79,7 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
         Work Item
       </h3>
       <div
-        className={`gap-2 items-center md:h-[2.3125rem] text-xs font-normal mb-2 flex bg-white/5  rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 lg:whitespace-nowrap overflow-hidden text-ellipsis ${
+        className={`gap-2 items-center md:h-9.25 text-xs font-normal mb-2 flex bg-white/5  rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 lg:whitespace-nowrap overflow-hidden text-ellipsis ${
           isVisible ? "" : "animate-pulse"
         }`}
       >
@@ -98,7 +98,7 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
         Assigned to
       </h3>
       <div
-        className={`items-center  h-[2.3125rem] text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
+        className={`items-center  h-9.25 text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
           isVisible ? "" : "animate-pulse"
         }`}
       >
@@ -117,7 +117,7 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
         Mentioned Users
       </h3>
       <div
-        className={`items-center  h-[2.3125rem] text-xs font-normal  mb-2 flex bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
+        className={`items-center  h-9.25 text-xs font-normal  mb-2 flex bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 ${
           isVisible ? "" : "animate-pulse"
         }`}
       >
