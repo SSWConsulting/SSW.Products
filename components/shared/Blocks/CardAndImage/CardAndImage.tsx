@@ -122,8 +122,10 @@ function CardItem({
   return (
     <div
       className={cn(
-        isOpen ? "" : "",
-        "border-gradient-pink group cursor-pointer w-full hover:[--border-gradient-foreground:var(--gradient-gray)] [--border-gradient-foreground:var(--gradient-black)] rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
+        isOpen
+          ? "border-gradient-pink"
+          : "[background-image:var(--gradient-black)] hover:[background-image:var(--gradient-gray)]",
+        "group cursor-pointer w-full hover:[--border-gradient-foreground:var(--gradient-gray)] [--border-gradient-foreground:var(--gradient-black)] rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
       )}
       onClick={() => {
         if (!isOpen) {
