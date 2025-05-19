@@ -12,8 +12,8 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
-import { FooterQuery } from "../../tina/__generated__/types";
 import { FaXTwitter } from "react-icons/fa6";
+import { FooterQuery } from "../../tina/__generated__/types";
 
 interface FooterClientProps {
   results: FooterQuery | null;
@@ -59,7 +59,7 @@ export default function FooterClient({
       } ${isVisible ? "opacity-100" : "opacity-0"}`}
       style={{ backgroundColor: footerColor }}
     >
-      <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:items-start">
+      <div className="max-w-7xl xl:mx-auto mx-4 flex flex-col lg:flex-row justify-between items-center lg:items-start">
         {/* Footer Items */}
         <div className="flex space-x-4 mb-4 lg:mb-0 justify-center lg:order-2">
           {footerItems?.map((item, index) => {
@@ -82,7 +82,8 @@ export default function FooterClient({
 
         {/* Footer Title */}
         <div className="text-center lg:text-left md:text-sm text-xs lg:order-1">
-          &copy; {dynamicYear.toString()} {footerTitle || "Default Footer Title"}{" "}
+          &copy; {dynamicYear.toString()}{" "}
+          {footerTitle || "Default Footer Title"}{" "}
           {hasPrivacyPolicy && (
             <>
               {"| "}
