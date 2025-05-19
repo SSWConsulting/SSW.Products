@@ -143,7 +143,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
     <nav
       className={`text-white transition-colors sticky duration-300 ease-in-out ${
         scrolled
-          ? `shadow-xs bg-[#131313] bg-opacity-80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
+          ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
           : "py-6"
       } z-40 w-full`}
     >
