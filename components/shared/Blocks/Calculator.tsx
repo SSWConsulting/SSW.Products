@@ -301,9 +301,9 @@ const CalculatorTierCard = ({
     <button
       className={cn(
         isSelected
-          ? "[background-image:var(--background-image-black-gradient),var(--background-image-pink-gradient)] hover:[background-image:var(--background-image-gray-gradient),var(--background-image-pink-gradient)]"
-          : "bg-black-gradient hover:bg-gray-gradient",
-        "w-full box-border border-transparent border bg-origin-border [background-clip:padding-box,border-box] text-white rounded-xl p-6 flex flex-col gap-2 items-start text-start"
+          ? "border-gradient-pink [--border-gradient-foreground:var(--gradient-black)] hover:[--border-gradient-foreground:var(--gradient-gray)]"
+          : "[background-image:var(--gradient-black)] hover:[background-image:var(--gradient-gray)]",
+        "w-full box-border text-white rounded-xl p-6 flex flex-col gap-2 items-start text-start"
       )}
       onClick={() => setSelectedTier(index)}
     >
