@@ -11,12 +11,26 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
-@theme {
-  --color-ssw-red: #cc4141;
-  --color-ssw-charcoal: #333333;
 
+@theme {
+  --gradient-pink: linear-gradient(to right, #cc4141, #d699fb, #ff778e);
+  --gradient-gray: linear-gradient(to right, #141414, #1f1f1f, #2b2a2a);
+  --gradient-black: linear-gradient(to right, #0e0e0e, #131313, #141414);
+  --color-ssw-red: #cc4141;
+  --color-ssw-charcoal: #3333;
   --breakpoint-small: 43.75em;
   --breakpoint-medium: 75rem;
+}
+
+@utility border-gradient-* {
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  background-image: var(
+      --border-gradient-foreground,
+      linear-gradient(white, white)
+    ),
+    --value(--gradient- *);
+  border: 1px solid transparent;
 }
 
 @layer base {

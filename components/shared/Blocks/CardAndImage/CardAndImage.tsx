@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
+import { CircleCheckBig } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
-import { CircleCheckBig } from "lucide-react";
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
 import {
   type PagesPageBlocksCardAndImageCardAndImageItem as Card,
@@ -122,10 +122,8 @@ function CardItem({
   return (
     <div
       className={cn(
-        isOpen
-          ? "[background-image:var(--background-image-black-gradient),var(--background-image-pink-gradient)] hover:[background-image:var(--background-image-gray-gradient),var(--background-image-pink-gradient)]"
-          : "bg-black-gradient hover:bg-gray-gradient",
-        "box-border group cursor-pointer border-transparent border bg-origin-border [background-clip:padding-box,border-box] w-full rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
+        isOpen ? "" : "",
+        "border-gradient-pink group cursor-pointer w-full hover:[--border-gradient-foreground:var(--gradient-gray)] [--border-gradient-foreground:var(--gradient-black)] rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
       )}
       onClick={() => {
         if (!isOpen) {
