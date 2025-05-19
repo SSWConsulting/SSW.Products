@@ -147,7 +147,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           : "py-6"
       } z-40 w-full`}
     >
-      <div className="max-w-7xl w-full mx-auto flex justify-between">
+      <div className="max-w-7xl mx-4 xl:mx-auto flex justify-between">
         <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
           {logo && (
             <Link href="/" className="shrink-0 mb-1.5">
@@ -159,7 +159,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {leftNavItems?.map((item, index) => renderNavItem(item, index))}
           </ul>
         </div>
-        <ul className="sm:flex [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center space-x-5">
+        <ul className="sm:flex gap-5 [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center ">
           {rightNavItems?.map((item, index) => renderNavItem(item, index))}
           <li className="block lg:hidden">
             <button
@@ -197,7 +197,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           </div>
         </div>
       </div>
-      <ul className="flex pt-4 [&>li>*]:w-full [&>li]:w-full justify-center sm:hidden">
+      <ul className="flex pt-4 [&>li>*]:w-full mx-4 xl:mx-0 [&>li]:w-full justify-center sm:hidden">
         {rightNavItems?.map((item, index) => renderNavItem(item, index))}
       </ul>
     </nav>
