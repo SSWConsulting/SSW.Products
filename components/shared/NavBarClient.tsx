@@ -141,9 +141,10 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   return (
     // <div>
     <nav
-      className={`text-white transition-colors my-2 py-4 sticky duration-300 ease-in-out ${
-        scrolled &&
-        `shadow-xs bg-[#131313] bg-opacity-80 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
+      className={`text-white transition-colors sticky duration-300 ease-in-out ${
+        scrolled
+          ? `shadow-xs bg-[#131313] bg-opacity-80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
+          : "py-6"
       } z-40 w-full`}
     >
       <div className="max-w-7xl w-full mx-auto flex justify-between">
