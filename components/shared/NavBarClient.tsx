@@ -139,68 +139,68 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   };
 
   return (
-    <div>
-      <nav
-        className={`text-white transition-colors px-4  duration-300 ease-in-out ${
-          scrolled
-            ? `fixed shadow-xs bg-[#131313] py-4 bg-opacity-80 backdrop-blur-sm animate-slide-in top-0 `
-            : `absolute py-6  `
-        } z-40 w-full`}
-      >
-        <div className="max-w-7xl w-full mx-auto flex justify-between">
-          <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
-            {logo && (
-              <Link href="/" className="shrink-0 mb-1.5">
-                <Image src={logo} alt="Logo" width={200} height={200} />
-              </Link>
-            )}
+    // <div>
+    <nav
+      className={`text-white transition-colors my-2 py-4 px-4 sticky duration-300 ease-in-out ${
+        scrolled
+          ? `shadow-xs bg-[#131313] bg-opacity-80 animate-slide animate-in slide-in-from-top-3 transition-all backdrop-blur-sm animate-slide-in top-0 `
+          : ``
+      } z-40 w-full`}
+    >
+      <div className="max-w-7xl w-full mx-auto flex justify-between">
+        <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
+          {logo && (
+            <Link href="/" className="shrink-0 mb-1.5">
+              <Image src={logo} alt="Logo" width={200} height={200} />
+            </Link>
+          )}
 
-            <ul className="hidden lg:flex items-center gap-5 grow">
+          <ul className="hidden lg:flex items-center gap-5 grow">
+            {leftNavItems?.map((item, index) => renderNavItem(item, index))}
+          </ul>
+        </div>
+        <ul className="sm:flex [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center space-x-5">
+          {rightNavItems?.map((item, index) => renderNavItem(item, index))}
+          <li className="block lg:hidden">
+            <button
+              className="text-3xl fled align-middle"
+              onClick={(e) => {
+                const handleClickOutside = () => {
+                  setIsOpen(false);
+                  window.removeEventListener("click", handleClickOutside);
+                };
+                if (isOpen) {
+                  return;
+                }
+                setIsOpen(true);
+                window.addEventListener("click", handleClickOutside);
+                e.stopPropagation();
+              }}
+            >
+              {isOpen ? <CgClose /> : <HiOutlineBars3 />}
+            </button>
+          </li>
+        </ul>
+        <div
+          className={`${
+            isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+          } ${
+            scrolled
+              ? "bg-stone-700 bg-opacity-100"
+              : "bg-opacity-90 bg-[#222222]"
+          } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
+        >
+          <div className="p-5 max-w-7xl mx-auto w-full">
+            <ul className="flex flex-col pl-2">
               {leftNavItems?.map((item, index) => renderNavItem(item, index))}
             </ul>
           </div>
-          <ul className="sm:flex [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center space-x-5">
-            {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-            <li className="block lg:hidden">
-              <button
-                className="text-3xl fled align-middle"
-                onClick={(e) => {
-                  const handleClickOutside = () => {
-                    setIsOpen(false);
-                    window.removeEventListener("click", handleClickOutside);
-                  };
-                  if (isOpen) {
-                    return;
-                  }
-                  setIsOpen(true);
-                  window.addEventListener("click", handleClickOutside);
-                  e.stopPropagation();
-                }}
-              >
-                {isOpen ? <CgClose /> : <HiOutlineBars3 />}
-              </button>
-            </li>
-          </ul>
-          <div
-            className={`${
-              isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-            } ${
-              scrolled
-                ? "bg-stone-700 bg-opacity-100"
-                : "bg-opacity-90 bg-[#222222]"
-            } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
-          >
-            <div className="p-5 max-w-7xl mx-auto w-full">
-              <ul className="flex flex-col pl-2">
-                {leftNavItems?.map((item, index) => renderNavItem(item, index))}
-              </ul>
-            </div>
-          </div>
         </div>
-        <ul className="flex pt-4 [&>li>*]:w-full [&>li]:w-full justify-center sm:hidden">
-          {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-        </ul>
-      </nav>
-    </div>
+      </div>
+      <ul className="flex pt-4 [&>li>*]:w-full [&>li]:w-full justify-center sm:hidden">
+        {rightNavItems?.map((item, index) => renderNavItem(item, index))}
+      </ul>
+    </nav>
+    // </div>
   );
 }
