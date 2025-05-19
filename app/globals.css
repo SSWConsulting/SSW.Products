@@ -12,6 +12,7 @@
 */
 @theme {
   --color-ssw-red: #cc4141;
+  --color-ssw-charcoal: #333333;
 }
 
 @layer base {
