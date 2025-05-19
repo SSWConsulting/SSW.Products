@@ -17,15 +17,6 @@ import { callToActionTemplate } from "../../components/shared/Blocks/CallToActio
 import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImage/CardAndImage.template";
 import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
 import TryItNowTemplate from "../../components/shared/Blocks/TryItNow.template";
-import * as AntIcons from "../../node_modules/react-icons/ai";
-import {
-  accordionBlock,
-  breadcrumbBlock,
-  buttonBlock,
-  cardCarouselBlock,
-  imageTextBlock,
-  logoCarouselBlock,
-} from "../../node_modules/ssw-tinacms-landingkit/dist";
 import { seoInformation } from "../shared/SEOInformation";
 
 export const bottomPaddingOptions = {
@@ -108,32 +99,6 @@ export const PagesSchema: Collection = {
         ComparisonTable,
         CalculatorTemplate,
         TryItNowTemplate,
-        breadcrumbBlock(
-          "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/breadcrumbs.jpg?raw=true"
-        ),
-        logoCarouselBlock(
-          "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/logo-carousel.png?raw=true?raw=true"
-        ),
-        buttonBlock({
-          icons: AntIcons,
-          previewSrc:
-            "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/button.png?raw=true",
-        }),
-        cardCarouselBlock({
-          icons: AntIcons,
-          previewSrc:
-            "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/card-carousel.jpg?raw=true",
-        }),
-        imageTextBlock({
-          icons: AntIcons,
-          previewSrc:
-            "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/image-text-block.png?raw=true",
-        }),
-        accordionBlock({
-          icons: AntIcons,
-          previewSrc:
-            "https://github.com/SSWConsulting/SSW.TinaCMS.LandingKit/blob/main/tina-starter/public/tina/previews/accordion.png?raw=true",
-        }),
       ],
     },
     {

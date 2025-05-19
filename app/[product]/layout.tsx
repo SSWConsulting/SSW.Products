@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import "ssw-tinacms-landingkit/dist/style.css";
 import NavBarServer from "../../components/shared/NavBarServer";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import "../globals.css";

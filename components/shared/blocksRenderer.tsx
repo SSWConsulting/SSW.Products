@@ -1,28 +1,18 @@
-import Banner from "./Blocks/Banner";
-import FAQ from "./Blocks/FAQ";
-import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
-import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
-import Pricing from "./Blocks/Pricing";
-import VideoDisplay from "./Blocks/VideoDisplay";
-
-import * as AntIcons from "react-icons/ai";
-import {
-  Accordion,
-  Button,
-  CardCarousel,
-  ImageTextBlock,
-  LogoCarousel,
-} from "ssw-tinacms-landingkit";
-
 import Container from "../Container";
+import Banner from "./Blocks/Banner";
 import BentoBox from "./Blocks/BentoBox/BentoBox";
 import CalculatorComponent from "./Blocks/Calculator";
 import CallToAction from "./Blocks/CallToAction";
 import CardAndImageParent from "./Blocks/CardAndImage/CardAndImage";
 import ComparisonTable from "./Blocks/ComparisonTable";
+import FAQ from "./Blocks/FAQ";
+import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
+import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
 import Hero from "./Blocks/Hero/Hero";
+import Pricing from "./Blocks/Pricing";
 import { Timeline } from "./Blocks/Timeline/Timeline";
 import { TryItNow } from "./Blocks/TryItNow";
+import VideoDisplay from "./Blocks/VideoDisplay";
 
 interface Block {
   __typename: string;
@@ -92,27 +82,6 @@ const Blocks = ({ blocks }: BlocksProps) => {
 
       case "PagesPageBlocksBentoBox":
         return <BentoBox data={block} />;
-
-      case "PagesPageBlocksLogoCarousel":
-        //@ts-expect-error typing issue with data
-        return <LogoCarousel key={index} data={block} />;
-      case "PagesPageBlocksCardCarousel":
-        //@ts-expect-error typing issue with data
-        return <CardCarousel icons={AntIcons} data={block} />;
-      case "PagesPageBlocksButton":
-        //@ts-expect-error typing issue with data
-        return <Button icons={AntIcons} data={block} />;
-      case "PagesPageBlocksImageTextBlock":
-        //@ts-expect-error typing issue with data
-        return <ImageTextBlock icons={AntIcons} data={block}></ImageTextBlock>;
-      case "PagesPageBlocksAccordion":
-        return (
-          <Accordion
-            callbackFunctions={null}
-            icons={AntIcons}
-            data={block}
-          ></Accordion>
-        );
       case "PagesPageBlocksTimeline":
         return <Timeline data={block} />;
       case "PagesPageBlocksCardAndImage":
