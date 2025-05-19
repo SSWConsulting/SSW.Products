@@ -10,6 +10,11 @@ interface BookingButtonProps {
   variant?: ButtonVariant;
   className?: string;
 }
+export const variantMap: Record<ButtonVariant, string> = {
+  solidRed: "bg-ssw-red hover:opacity-80 text-white",
+  solidWhite: "text-black hover:opacity-80 border-1 bg-white",
+  outlinedWhite: "border-1 hover:bg-white/20 border-white text-white",
+};
 
 export const BookingButton = ({
   title,
@@ -22,15 +27,6 @@ export const BookingButton = ({
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
 
-  const variantMap: Record<ButtonVariant, string> = {
-    solidRed: "bg-ssw-red text-white",
-    solidWhite: "text-black border-1 bg-white",
-    outlinedWhite: "border-1 border-white text-white",
-    shinyRed: "bg-ssw-red text-white border-1 border-white",
-    charcoalNoBorder: "bg-ssw-charcoal text-white",
-    charcoalWithBorder: "bg-ssw-charcoal text-white border-1 border-white",
-  };
-
   return (
     <>
       <button
@@ -38,7 +34,7 @@ export const BookingButton = ({
         className={cn(
           variantMap[variant],
           className,
-          `px-5 py-2 font-semibold text-center items-center text-white rounded-lg transition-colors hover:bg-white/20 whitespace-nowrap uppercase`
+          `px-5 py-2 font-semibold text-center items-center text-white rounded-lg transition-colors  whitespace-nowrap uppercase`
         )}
       >
         {title}

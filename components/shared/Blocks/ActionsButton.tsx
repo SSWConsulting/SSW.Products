@@ -35,7 +35,7 @@ export const ActionButton = ({
         variantMap[action.variant],
         className,
         sizeMap[action.size],
-        `whitespace-nowrap inline-flex items-center justify-center rounded-lg hover:opacity-80 transition-opacity duration-200 font-semibold uppercase`
+        `whitespace-nowrap inline-flex items-center justify-center rounded-lg transition-opacity duration-200 font-semibold uppercase`
       )}
       target="_blank"
     >
