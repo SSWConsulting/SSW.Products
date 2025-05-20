@@ -185,9 +185,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           className={`${
             isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
           } ${
-            scrolled
-              ? "bg-stone-700 bg-opacity-100"
-              : "bg-opacity-90 bg-[#222222]"
+            scrolled ? "bg-stone-700" : "bg-opacity-90 bg-[#222222]/90"
           } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
         >
           <div className="p-5 max-w-7xl mx-auto w-full">
