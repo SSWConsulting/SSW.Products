@@ -171,8 +171,10 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
   return (
     <div
       className={`plan-card text-white border ${
-        isRecommended ? "border-transparent " : "border-opacity-10 border-white"
-      } px-6 py-10 shadow-xl bg-opacity-20  rounded-3xl hover:bg-opacity-30 transition-opacity duration-200 bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative h-full flex flex-col grow`}
+        isRecommended
+          ? "border-transparent "
+          : "border-opacity-10 border-white/10"
+      } px-6 py-10 shadow-xl rounded-3xl hover:bg-opacity-30 transition-opacity duration-200 bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] relative h-full flex flex-col grow`}
       data-tina-field={tinaField(data, "plans", index)}
     >
       <div className="flex gap-2 items-center ">
