@@ -2,7 +2,6 @@
 import { GridPattern } from "@/components/magicui/grid-background";
 import Container from "@comps/Container";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
 import Image from "next/image";
 import React from "react";
@@ -20,6 +19,7 @@ import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__gener
 
 import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
+import { formatDate } from "@utils/formatDate";
 import client from "../../tina/__generated__/client";
 import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
@@ -36,11 +36,6 @@ type ArticleListProps = RemoveTinaMetadata<BlogsIndexBlocksArticleList>;
 type HeroSearchProps = RemoveTinaMetadata<BlogsIndexBlocksHeroSearch>;
 
 export const PAGE_LIMIT = 3;
-
-const formatDate = (dateString: string) => {
-  const date = dayjs(dateString);
-  return date.format("MMM D, YYYY");
-};
 
 interface BlogIndexClientProps {
   product: string;
