@@ -54,7 +54,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen pt-nav-bar-height-mobile sm:pt-nav-bar-height">
+    <div className="flex flex-col min-h-screen">
       <InteractiveBackground />
 
       <div className="grow">

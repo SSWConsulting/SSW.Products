@@ -26,7 +26,7 @@ export default function HomePageClient({
   return (
     <div
       className={cn(
-        "flex pt-nav-bar-height-mobile sm:pt-nav-bar-height flex-col gap-14 lg:gap-24 mx-auto w-full min-h-[95vh]",
+        "flex flex-col gap-14 lg:gap-24 mx-auto w-full min-h-[95vh]",
         bottomPaddingOptions[
           tinaData?.data?.pages?.pageFormatting
             ?.bottomPadding as keyof typeof bottomPaddingOptions
