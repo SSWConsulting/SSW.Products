@@ -16,6 +16,7 @@
   --gradient-pink: linear-gradient(to right, #cc4141, #d699fb, #ff778e);
   --gradient-gray: linear-gradient(to right, #141414, #1f1f1f, #2b2a2a);
   --gradient-black: linear-gradient(to right, #0e0e0e, #131313, #141414);
+  --gradient-transparent: linear-gradient(transparent, transparent);
   --color-ssw-red: #cc4141;
   --color-ssw-charcoal: #3333;
   --breakpoint-small: 43.75em;
