@@ -105,7 +105,7 @@ export default function DocPostClient({
           ref={tocRef}
           className={`${
             isTableOfContentsOpen ? "block" : "hidden"
-          } absolute top-full left-0 right-0 z-30 bg-black/95 rounded-lg border border-white/10 shadow-xl max-h-1/2 overflow-y-auto`}
+          } absolute top-full left-0 right-0 z-30 bg-black/95 rounded-lg border border-white/10 shadow-xl overflow-y-auto`}
         >
           <div className="flex justify-between items-center p-3 border-b border-white/10">
             <h2 className="text-lg font-medium text-white">

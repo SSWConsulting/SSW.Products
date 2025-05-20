@@ -96,7 +96,7 @@ export function TableOfContentsClient({
     <>
       <SearchBox
         index={tableOfContentsData.algoliaSearchIndex ?? ""}
-        className=" w-full block"
+        className="w-full hidden md:block"
       />
       {tableOfContentsData.parentNavigationGroup &&
         tableOfContentsData.parentNavigationGroup.map(
