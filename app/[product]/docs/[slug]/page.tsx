@@ -127,9 +127,9 @@ export default async function DocPost({ params }: DocPostProps) {
   const paginationData = getPaginationData(tableOfContentsData as any, slug);
   return (
     <>
-      <div className="grid grid-cols-1 pt-nav-bar-height-mobile sm:pt-nav-bar-height md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-360 mx-auto min-h-screen">
+      <div className="grid grid-cols-1 h-full md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-360 mx-auto">
         {/* LEFT COLUMN 1/3 */}
-        <div className="max-h-[calc(100vh-(var(--spacing-nav-bar-height))-7rem)] hidden md:block py-8 bg-gray-darkest max-w-offset-container-8  max-w-offset-container-16 mb-8 rounded-lg left-4 top-[calc(var(--spacing-nav-bar-height)+5rem)] text-white self-start px-6  overflow-y-auto [scrollbar-width:thin] [scrollbar-color:var(--color-gray-neutral)_transparent]  sticky">
+        <div className=" max-h-[calc(100vh-13rem)] mt-20 hidden md:block py-8 bg-gray-darkest max-w-[calc(100%_-_2rem)]  max-w-offset-container-16 mb-8 rounded-lg left-4 top-44 text-white self-start px-6  overflow-y-auto [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent] sticky">
           <TableOfContentsClient
             tableOfContentsData={tableOfContentsData as any}
           />
