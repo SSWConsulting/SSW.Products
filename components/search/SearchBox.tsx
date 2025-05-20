@@ -16,7 +16,7 @@ export const SearchBox = ({
   return (
     <Dialog>
       <DialogContent className="box-border ">
-        <div className="max-w-3xl box-border relative w-offset-8">
+        <div className="max-w-3xl box-border relative w-[calc(100vw_-_2rem)]">
           <AlgoliaSearchProvider index={index}>
             <div className="h-full box-border pb-8 z-70 relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
               <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b">
@@ -52,7 +52,7 @@ const SearchField = ({ className }: SearchFieldProps) => {
       type="text"
       className={cn(
         className,
-        "bg-transparent outline-hidden placeholder-white "
+        "bg-transparent outline-hidden placeholder-white! "
       )}
       placeholder="Search..."
       onChange={(e) => {

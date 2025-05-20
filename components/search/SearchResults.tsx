@@ -13,7 +13,7 @@ const SearchResults = () => {
         </p>
       ) : (
         <Hits
-          className="max-h-96 *:pb-5 snap-mandatory snap-y  box-content [scrollbar-color:var(--color-gray-neutral)_transparent] [scrollbar-width:thin] mask-[linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
+          className="max-h-96 *:pb-5 snap-mandatory snap-y  box-content [scrollbar-color:var(--color-ssw-charcoal)_transparent] [scrollbar-width:thin] mask-[linear-gradient(transparent,white_3%,white_97%,transparent)] overflow-y-scroll relative"
           hitComponent={SearchHighlight}
         />
       )}

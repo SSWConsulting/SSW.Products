@@ -14,7 +14,7 @@ const SearchHighlight = ({
   return (
     <div className="border-b snap-start py-1 px-4 border-gray-lighter/40  ">
       <Link
-        className="hover:underline underline-offset-2 text-ssw-red"
+        className="hover:underline underline-offset-2"
         href={`/docs/${hit?.file}`}
       >
         <Highlight

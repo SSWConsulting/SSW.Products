@@ -20,6 +20,7 @@
   --color-ssw-red: #cc4141;
   --color-ssw-charcoal: #333333;
   --color-gray-darkest: #141414;
+  --color-gray-lighter: #363636;
   --breakpoint-small: 43.75em;
   --breakpoint-medium: 75rem;
 }
