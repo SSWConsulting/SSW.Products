@@ -1,18 +1,17 @@
-import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
+import Container from "@comps/Container";
 import { tinaField } from "tinacms/dist/react";
 import { PagesPageBlocksCallToAction } from "../../../tina/__generated__/types";
 import { ActionButton } from "./ActionsButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
-
 type CallToActionProps = RemoveTinaMetadata<PagesPageBlocksCallToAction> & {
   className?: string;
 };
 
 const CallToAction = ({ className, ...props }: CallToActionProps) => {
   return (
-    <section className={cn("mx-auto text-white", className)}>
-      <div className="rounded-2xl bg-[#131313] relative">
+    <Container className={className}>
+      <div className="rounded-2xl text-white bg-[#131313] relative">
         <div className="max-w-3xl mx-auto text-center ">
           <section className="p-10 sm:p-12 z-10 relative">
             {props.title && (
@@ -45,7 +44,7 @@ const CallToAction = ({ className, ...props }: CallToActionProps) => {
           </section>
         </div>
       </div>
-    </section>
+    </Container>
   );
 };
 

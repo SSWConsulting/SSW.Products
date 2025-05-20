@@ -1,6 +1,6 @@
 "use client";
-
 import { GridPattern } from "@/components/magicui/grid-background";
+import Container from "@comps/Container";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
@@ -89,9 +89,9 @@ const FeaturedArticle = ({
 }: RemoveTinaMetadata<FeaturedBlog>) => {
   const { searchTerm } = useBlogSearch();
   return (
-    <>
+    <Container>
       {featuredBlog && !searchTerm && (
-        <section className="container mx-auto">
+        <section className="mx-auto">
           {props.title && (
             <h2
               data-tina-field={tinaField(props, "title")}
@@ -154,7 +154,7 @@ const FeaturedArticle = ({
           </div>
         </section>
       )}
-    </>
+    </Container>
   );
 };
 
@@ -234,7 +234,7 @@ const RecentArticles = ({
   });
 
   return (
-    <section className="container mx-auto">
+    <Container>
       {props.title && !searchTerm && (
         <h2
           data-tina-field={tinaField(props, "title")}
@@ -322,7 +322,7 @@ const RecentArticles = ({
           </Button>
         )}
       </div>
-    </section>
+    </Container>
   );
 };
 
@@ -406,8 +406,8 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
   }, [searchTerm, updateSearchTerm]);
 
   return (
-    <section className=" relative bg-linear-to-b py-16 bg-[#131313]">
-      <div className="mx-auto container relative z-10">
+    <section className="relative bg-linear-to-b py-16 bg-[#131313]">
+      <Container>
         <div className="max-w-3xl mx-auto text-center mb-12">
           {props.title && (
             <h1
@@ -459,7 +459,7 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
             })}
           </div>
         )}
-      </div>
+      </Container>
     </section>
   );
 };

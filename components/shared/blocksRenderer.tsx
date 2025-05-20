@@ -1,4 +1,3 @@
-import Container from "../Container";
 import Banner from "./Blocks/Banner";
 import BentoBox from "./Blocks/BentoBox/BentoBox";
 import CalculatorComponent from "./Blocks/Calculator";
@@ -91,11 +90,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksCalculator":
         return <CalculatorComponent data={block} />;
       case "PagesPageBlocksCallToAction":
-        return (
-          <Container className="w-full">
-            <CallToAction className="w-full" {...block} />
-          </Container>
-        );
+        return <CallToAction className="w-full" {...block} />;
 
       case "PagesPageBlocksTryItNow":
         return <TryItNow {...block} />;
