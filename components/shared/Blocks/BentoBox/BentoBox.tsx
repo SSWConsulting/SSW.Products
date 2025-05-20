@@ -202,15 +202,6 @@ export function TitleFadeIn({ title }: { title: string }) {
                   "inline-block fade-in animate-in duration-2000 delay-(--text-duration) ease-in-out",
                   isInView ? "opacity-100" : "opacity-0"
                 )}
-                // style={
-                //   isInView
-                //     ? {
-                //         animation: `colorChange 2000ms ease-in-out forwards ${
-                //           index * 100
-                //         }ms`,
-                //       }
-                //     : {}
-                // }
               >
                 {char}
               </span>
