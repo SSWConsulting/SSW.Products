@@ -435,7 +435,9 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
                 setSearchTerm(e.target.value);
               }}
               placeholder="Search articles..."
-              className="w-full bg-ssw-charcoal border text-white border-white/20 rounded-lg py-3 px-4 pl-12 placeholder:text-gray-300 focus:outline-hidden"
+
+              {/*TODO: remove important https://github.com/tailwindlabs/tailwindcss/discussions/17239*/}
+              className="w-full bg-ssw-charcoal placeholder:text-gray-300! border text-white border-white/20 rounded-lg py-3 px-4 pl-12 focus:outline-hidden"
             />
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 h-5 w-5" />
           </div>
