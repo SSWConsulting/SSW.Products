@@ -139,7 +139,6 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   };
 
   return (
-    // <div>
     <nav
       className={`text-white transition-colors sticky duration-300 ease-in-out ${
         scrolled
@@ -199,6 +198,5 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         {rightNavItems?.map((item, index) => renderNavItem(item, index))}
       </ul>
     </nav>
-    // </div>
   );
 }
