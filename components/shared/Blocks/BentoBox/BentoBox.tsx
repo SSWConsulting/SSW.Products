@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { useInView } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -187,21 +188,29 @@ export function TitleFadeIn({ title }: { title: string }) {
         <span className="inline-block max-w-full break-words">
           {firstPart}
           {firstPart ? " " : ""}
-          <span className="whitespace-nowrap">
+          <span className="whitespace-nowrap text-ssw-red">
             {lastWord?.split("").map((char, index) => (
               <span
                 ref={titleWrapper}
                 key={index}
-                className="inline-block text-transparent"
                 style={
-                  isInView
-                    ? {
-                        animation: `colorChange 2000ms ease-in-out forwards ${
-                          index * 100
-                        }ms`,
-                      }
-                    : {}
+                  {
+                    "--text-duration": `${index * 100}ms`,
+                  } as React.CSSProperties
                 }
+                className={cn(
+                  "inline-block fade-in animate-in duration-2000 delay-(--text-duration) ease-in-out",
+                  isInView ? "opacity-100" : "opacity-0"
+                )}
+                // style={
+                //   isInView
+                //     ? {
+                //         animation: `colorChange 2000ms ease-in-out forwards ${
+                //           index * 100
+                //         }ms`,
+                //       }
+                //     : {}
+                // }
               >
                 {char}
               </span>
