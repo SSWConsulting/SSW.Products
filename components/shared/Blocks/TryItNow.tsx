@@ -144,7 +144,7 @@ const Card = ({ card, key }: CardProps) => {
     <div
       key={key}
       className={cn(
-        "bg-gray-neutral flex gap-4 flex-col rounded-2xl pt-8 px-8",
+        "bg-ssw-charcoal flex gap-4 flex-col rounded-2xl pt-8 px-8",
         !card.image?.imgSrc && "pb-8"
       )}
     >

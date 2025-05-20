@@ -33,7 +33,8 @@ export default async function FilePage({ params }: FilePageProps) {
   const fileData = await getPage(product, filename);
 
   return (
-    <CustomizeableBackground tinaData={fileData}>
+    <>
+      <CustomizeableBackground tinaData={fileData} />
       <HomePageClient
         query={fileData.query}
         data={fileData.data}
@@ -50,7 +51,7 @@ export default async function FilePage({ params }: FilePageProps) {
           }}
         />
       )}
-    </CustomizeableBackground>
+    </>
   );
 }
 
