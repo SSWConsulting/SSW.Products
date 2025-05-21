@@ -78,7 +78,7 @@ In order to do this complete the following steps:
 
 1. Get your changes to the docs pages merged into `main`
 2. Pull the `main` branch on your local machine
-3. Ensure that you have the Algolia environmnet variables in your env file you retrieved in the previous section (i.e. **Running this project locally**)
+3. Ensure that you have the Algolia environment variables in your env file you retrieved in the previous section (i.e. **Running this project locally**)
 4. After ensuring that you've installed the node version in the `.nvmrc` file in the project root, Run the following command `yarn run rebuild-search-indices`
 
 ## Wanting to use the Middleware for your own site?
