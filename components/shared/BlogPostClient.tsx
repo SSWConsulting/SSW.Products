@@ -162,12 +162,12 @@ export default function BlogPostClient({
 
           {/* Sidebar - Takes up 1/3 of the space on large screens */}
           <div className="basis-1/3">
-            <div className="sticky top-32 space-y-6">
+            <div className="sticky h-[calc(100vh_-_11rem)] flex flex-col summary overflow-hidden top-32 space-y-6">
               {/* Summary Card Layout */}
               {data.blogs.summaryCard && (
-                <div className="rounded-lg bg-gray-darkest p-6">
+                <div className="rounded-lg bg-gray-darkest p-6 overflow-y-scroll">
                   {/* Company information */}
-                  <div className="[&_p]:text-white/60 [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline">
+                  <div className="[&_p]:text-white/60  [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline">
                     <TinaMarkdown
                       content={data.blogs.summary}
                       components={{
@@ -183,7 +183,7 @@ export default function BlogPostClient({
               )}
 
               {/* Table of Contents Card */}
-              <div className="rounded-lg border border-white/20 [background-image:var(--gradient-black)] p-6">
+              <div className="rounded-lg border shrink-0 border-white/20 [background-image:var(--gradient-black)] p-6">
                 <h3 className="mb-1 font-medium text-white">
                   Table of Contents
                 </h3>
