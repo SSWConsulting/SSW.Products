@@ -6,9 +6,11 @@ The purpose of this repository is to host the product pages for [SSW's](https://
 
 ## Running this project locally?
 
-1. Copy `.env.example` to `.env`
+1. Get access to the environment variables from Keeper
 
-2. Install Dependencies
+2. Paste the varables into your `.env` file
+
+3. Install Dependencies
 
 ```bash
 
@@ -68,6 +70,16 @@ This also means we have to set up the file structure for where we store our cont
 ```
 
 Note in this instance Product1 and Product2 are just the product names such like [YakShaver](www.YakShaver.ai) or TimePro
+
+## Updating the docs pages
+
+Because we are using Algolia for our search functionality you'll need to rebuild the search indices when changes are made to the docs.
+In order to do this complete the following steps:
+
+1. Get your changes to the docs pages merged into `main`
+2. Pull the `main` branch on your local machine
+3. Ensure that you have the Algolia environmnet variables in your env file you retrieved in the previous section (i.e. **Running this project locally**)
+4. After ensuring that you've installed the node version in the `.nvmrc` file in the project root, Run the following command `yarn run rebuild-search-indices`
 
 ## Wanting to use the Middleware for your own site?
 
