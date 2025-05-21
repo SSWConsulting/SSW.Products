@@ -8,7 +8,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { Blogs } from "../../tina/__generated__/types";
 interface BlogPostClientProps extends OptionalProps<FormattedDate> {
@@ -17,19 +16,6 @@ interface BlogPostClientProps extends OptionalProps<FormattedDate> {
   pageData: { blogs: Blogs };
 }
 
-const BreadCrumbs = ({ title }: { title: string }) => {
-  return (
-    <div className="font-light mb-12 text-base inline-flex items-top">
-      <Link className="underline cursor-pointer" href="/blog">
-        BLOG
-      </Link>
-      <span className="mx-2">
-        <MdOutlineKeyboardArrowRight size={20} />
-      </span>
-      <span>{title.toUpperCase()}</span>
-    </div>
-  );
-};
 const articleData = {
   title: "How Ramp scaled a successful bill pay product with Increase",
   url: "https://increase.com/blog/how-ramp-scaled-bill-pay-with-increase",
@@ -76,12 +62,6 @@ export default function BlogPostClient({
     variables,
     data: pageData,
   });
-  if (!data?.blogs) {
-    return <p className="text-center text-white">No content available.</p>;
-  }
-
-  const { title, sswPeopleLink, readLength, author, body } = data.blogs;
-
   // const formattedDate =
   //   parsedDate && !isNaN(parsedDate.getTime())
   //     ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", {
