@@ -7,7 +7,7 @@ import { Tags } from "@comps/Tags";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
@@ -164,63 +164,23 @@ export default function BlogPostClient({
           <div className="basis-1/3">
             <div className="sticky top-8 space-y-6">
               {/* Summary Card Layout */}
-              <div className="rounded-lg bg-gray-darkest p-6">
-                {/* Company information */}
-                <div className="space-y-4 [&_p]:text-white/60 [&_h2]:text-white [&_h1]:text-whit [&_h3]:text-white [&_h4]:text-white">
-                  {[
-                    { title: "Company name", value: "Ramp" },
-                    { title: "Industry", value: "Fintech" },
-                    { title: "Company size", value: "Enterprise" },
-                    {
-                      title: "Pain point",
-                      value: "Tracking payment lifecycle and onboarding",
-                    },
-                  ].map((item, index) => (
-                    <div key={index}>
-                      <h3 className="font-medium text-white">{item.title}</h3>
-                      <p className="">{item.value}</p>
-                    </div>
-                  ))}
-
-                  <div>
-                    <h3 className="font-medium text-white">
-                      Increase products used
-                    </h3>
-                    <ul className="mt-1 space-y-1 text-gray-300">
-                      {["ACH Payments", "Bank accounts", "Wires", "Checks"].map(
-                        (product, index) => (
-                          <li key={index}>
-                            <Link
-                              href="#"
-                              className="text-[#cc4141] hover:underline"
-                            >
-                              {product}
-                            </Link>
+              {data.blogs.summaryCard && (
+                <div className="rounded-lg bg-gray-darkest p-6">
+                  {/* Company information */}
+                  <div className="[&_p]:text-white/60 [&_li]:text-base [&_li]:list-disc [&_p]:text-base text-lg [&_a]:text-base [&_a]:text-ssw-red">
+                    <TinaMarkdown
+                      content={data.blogs.summary}
+                      components={{
+                        li: (props: { children: ReactNode } | undefined) => (
+                          <li className="list-outside ml-6 list-disc">
+                            {props?.children}
                           </li>
-                        )
-                      )}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 className="font-medium text-white">
-                      About the company
-                    </h3>
-                    <p className="mt-1 text-sm">
-                      Ramp is the ultimate platform for modern finance teams.
-                      From spend management and expense management software, to
-                      bill payments and vendor management, Ramps all-in-one
-                      solution is designed to automate finance operations and
-                      build healthier businesses. Over 15,000 businesses have
-                      switched to Ramp to cut their expenses by an average of 5%
-                      and close their books 8x faster. Founded in 2019, Ramp has
-                      raised over $1 billion in funding and is valued at over $8
-                      billion. The company is headquartered in New York City
-                      with offices in Miami, Salt Lake City, and Dublin.
-                    </p>
+                        ),
+                      }}
+                    />
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Table of Contents Card */}
               <div className="rounded-lg border border-white/20 [background-image:var(--gradient-black)] p-6">

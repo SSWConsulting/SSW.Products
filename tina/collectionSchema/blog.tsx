@@ -49,6 +49,7 @@ export const blogCollection: Collection = {
       name: "author",
       label: "Author",
     },
+
     {
       type: "image",
       name: "authorImage",
@@ -76,6 +77,17 @@ export const blogCollection: Collection = {
       label: "Read (time) length",
       description:
         "Want to get an accurate read length? Use a read-o-meter! https://niram.org/read/",
+    },
+    {
+      type: "boolean",
+      name: "summaryCard",
+      label: "Show summary card",
+      description: "Summary card for the blog post",
+    },
+    {
+      type: "rich-text",
+      name: "summary",
+      label: "Summary",
     },
     {
       type: "rich-text",
