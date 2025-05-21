@@ -7,7 +7,7 @@ import { ReadingTime } from "./ReadingTime";
 import { useFormattedDate } from "./hooks/useFormattedDate";
 
 type AuthorInfoProps = {
-  readingTime?: string;
+  readingTime?: string | null;
 } & Author &
   OptionalProps<FormattedDate>;
 
