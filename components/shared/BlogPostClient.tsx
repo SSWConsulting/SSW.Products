@@ -167,7 +167,7 @@ export default function BlogPostClient({
               {data.blogs.summaryCard && (
                 <div className="rounded-lg bg-gray-darkest p-6">
                   {/* Company information */}
-                  <div className="[&_p]:text-white/60 [&_li]:text-base [&_li]:list-disc [&_p]:text-base text-lg [&_a]:text-base [&_a]:text-ssw-red">
+                  <div className="[&_p]:text-white/60 [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline">
                     <TinaMarkdown
                       content={data.blogs.summary}
                       components={{
@@ -184,21 +184,20 @@ export default function BlogPostClient({
 
               {/* Table of Contents Card */}
               <div className="rounded-lg border border-white/20 [background-image:var(--gradient-black)] p-6">
-                <h3 className="mb-3 font-medium text-white">
+                <h3 className="mb-1 font-medium text-white">
                   Table of Contents
                 </h3>
                 <nav>
-                  <ul className="space-y-2 text-sm">
+                  <ul className="text-sm">
                     {articleData.tableOfContents.map((item) => (
                       <li
+                        className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
                         key={item.id}
-                        style={{
-                          paddingLeft: `${(item.level - 2) * 0.75}rem`,
-                        }}
+                        style={{}}
                       >
                         <a
                           href={`#${item.id}`}
-                          className="text-gray-400 transition-colors hover:text-[#cc4141]"
+                          className="transition-colors inset-0 group-hover:text-ssw-red"
                         >
                           {item.title}
                         </a>
