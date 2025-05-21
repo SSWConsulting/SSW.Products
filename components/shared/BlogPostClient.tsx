@@ -145,14 +145,14 @@ export default function BlogPostClient({
             <div className="mb-12 flex justify-between border-t border-gray-800 pt-8">
               <Link
                 href="#"
-                className="flex items-center text-gray-400 hover:text-[#cc4141]"
+                className="flex items-center text-gray-400 transition-colors hover:text-ssw-red"
               >
                 <ChevronLeft className="mr-2 h-4 w-4" />
                 Previous Article
               </Link>
               <Link
                 href="#"
-                className="flex items-center text-gray-400 hover:text-[#cc4141]"
+                className="flex items-center text-gray-400 transition-colors hover:text-ssw-red"
               >
                 Next Article
                 <ChevronRight className="ml-2 h-4 w-4" />
@@ -162,7 +162,7 @@ export default function BlogPostClient({
 
           {/* Sidebar - Takes up 1/3 of the space on large screens */}
           <div className="basis-1/3">
-            <div className="sticky top-8 space-y-6">
+            <div className="sticky top-32 space-y-6">
               {/* Summary Card Layout */}
               {data.blogs.summaryCard && (
                 <div className="rounded-lg bg-gray-darkest p-6">
