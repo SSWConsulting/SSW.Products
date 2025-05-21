@@ -1,17 +1,21 @@
+import { FormattedDate } from "@/formattedDate";
+import { OptionalProps } from "@/optionalProps";
 import { Author } from "@/types/author";
 import Image from "next/image";
 import Link from "next/link";
 import { ReadingTime } from "./ReadingTime";
+import { useFormattedDate } from "./hooks/useFormattedDate";
 
 type AuthorInfoProps = {
-  date: string;
   readingTime?: number;
-} & Author;
+} & Author &
+  OptionalProps<FormattedDate>;
 
 export function AuthorInfo({
   sswPeopleLink,
   author,
-  date,
+  initialFormattedDate,
+  dynamicDate,
   readingTime,
 }: AuthorInfoProps) {
   return (
@@ -31,7 +35,14 @@ export function AuthorInfo({
           <AuthorWrapper sswPeopleLink={sswPeopleLink} author={author} />
         )}
         <div className="text-sm text-gray-400">
-          {date}{" "}
+          {initialFormattedDate && dynamicDate && (
+            <>
+              <Date
+                initialFormattedDate={initialFormattedDate}
+                dynamicDate={dynamicDate}
+              />{" "}
+            </>
+          )}
           {readingTime && (
             <span>
               • <ReadingTime minutes={readingTime} inline />
@@ -53,4 +64,13 @@ const AuthorWrapper = ({ sswPeopleLink, author }: Author) => {
       )}
     </>
   );
+};
+
+const Date = ({ initialFormattedDate, dynamicDate }: FormattedDate) => {
+  const { date } = useFormattedDate({
+    initialFormattedDate,
+    dynamicDate,
+  });
+
+  return <>{date}</>;
 };

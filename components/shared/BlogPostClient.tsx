@@ -1,5 +1,7 @@
 "use client";
 
+import { FormattedDate } from "@/formattedDate";
+import { OptionalProps } from "@/optionalProps";
 import { AuthorInfo } from "@comps/AuthorInfo";
 import { Tags } from "@comps/Tags";
 import { Button } from "@comps/ui/button";
@@ -17,8 +19,7 @@ import { useState } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { Blogs } from "../../tina/__generated__/types";
-
-interface BlogPostClientProps {
+interface BlogPostClientProps extends OptionalProps<FormattedDate> {
   query: string;
   variables: object;
   pageData: { blogs: Blogs };
@@ -75,6 +76,7 @@ export default function BlogPostClient({
   query,
   variables,
   pageData,
+  initialFormattedDate,
 }: BlogPostClientProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -84,21 +86,18 @@ export default function BlogPostClient({
     data: pageData,
   });
 
-  console.log("blog data", data.blogs);
   if (!data?.blogs) {
     return <p className="text-center text-white">No content available.</p>;
   }
 
-  const { title, date, sswPeopleLink, readLength, author, body } = data.blogs;
+  const { title, sswPeopleLink, readLength, author, body } = data.blogs;
 
-  const parsedDate = date ? new Date(date) : null;
-
-  const formattedDate =
-    parsedDate && !isNaN(parsedDate.getTime())
-      ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", {
-          month: "long",
-        })} ${parsedDate.getFullYear()}`
-      : "Unknown Date";
+  // const formattedDate =
+  //   parsedDate && !isNaN(parsedDate.getTime())
+  //     ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", {
+  //         month: "long",
+  //       })} ${parsedDate.getFullYear()}`
+  //     : "Unknown Date";
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100">
@@ -147,7 +146,8 @@ export default function BlogPostClient({
             <AuthorInfo
               author={data.blogs.author}
               sswPeopleLink={articleData.author.avatarUrl}
-              date={articleData.author.date}
+              initialFormattedDate={initialFormattedDate}
+              dynamicDate={data.blogs.date}
               readingTime={8}
             />
           </div>

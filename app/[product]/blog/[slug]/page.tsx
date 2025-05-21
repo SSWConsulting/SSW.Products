@@ -5,6 +5,7 @@ import BlogPostClient from "@comps/shared/BlogPostClient";
 import FooterServer from "@comps/shared/FooterServer";
 import client from "@tina/__generated__/client";
 import { Blogs } from "@tina/__generated__/types";
+import { formatDate } from "@utils/formatDate";
 import { setPageMetadata } from "@utils/setPageMetaData";
 
 interface BlogPostProps {
@@ -59,6 +60,9 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
       <div className="grow">
         <BlogPostClient
+          initialFormattedDate={
+            documentData.blogs.date && formatDate(documentData.blogs.date)
+          }
           query={documentData.query}
           variables={documentData.variables}
           pageData={{ blogs: documentData.blogs }}
