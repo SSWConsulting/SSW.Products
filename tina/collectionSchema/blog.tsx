@@ -15,11 +15,16 @@ export const blogCollection: Collection = {
   },
   fields: [
     seoInformation as TinaField,
+
     {
-      type: "image",
-      name: "bannerImage",
-      label: "Banner Image",
-      description: "Ideally use an image with a 16/9 aspect ratio",
+      label: "Category",
+      name: "category",
+      //TODO: Make this field modifable in TinaCMS https://github.com/SSWConsulting/SSW.Website/issues/3850
+      description:
+        "If you need to add a new category, please contact a developer",
+      required: true,
+      type: "string",
+      options: [DEFAULT_CATEGORY, "What's New", "Getting Started"],
     },
     {
       type: "string",
@@ -57,19 +62,15 @@ export const blogCollection: Collection = {
       description: "Use the author's SSW People profile picture",
     },
     {
-      label: "Category",
-      name: "category",
-      //TODO: Make this field modifable in TinaCMS https://github.com/SSWConsulting/SSW.Website/issues/3850
-      description:
-        "If you need to add a new category, please contact a developer",
-      required: true,
-      type: "string",
-      options: [DEFAULT_CATEGORY, "What's New", "Getting Started"],
-    },
-    {
       type: "string",
       name: "sswPeopleLink",
       label: "Author SSW People Link",
+    },
+    {
+      type: "image",
+      name: "bannerImage",
+      label: "Banner Image",
+      description: "Ideally use an image with a 16/9 aspect ratio",
     },
     {
       type: "string",
