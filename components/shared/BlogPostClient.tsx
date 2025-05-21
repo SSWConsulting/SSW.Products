@@ -166,7 +166,7 @@ export default function BlogPostClient({
               {/* Summary Card Layout */}
               <div className="rounded-lg bg-gray-darkest p-6">
                 {/* Company information */}
-                <div className="space-y-4">
+                <div className="space-y-4 [&_p]:text-white/60 [&_h2]:text-white [&_h1]:text-whit [&_h3]:text-white [&_h4]:text-white">
                   {[
                     { title: "Company name", value: "Ramp" },
                     { title: "Industry", value: "Fintech" },
@@ -178,7 +178,7 @@ export default function BlogPostClient({
                   ].map((item, index) => (
                     <div key={index}>
                       <h3 className="font-medium text-white">{item.title}</h3>
-                      <p className="text-gray-300">{item.value}</p>
+                      <p className="">{item.value}</p>
                     </div>
                   ))}
 
@@ -206,7 +206,7 @@ export default function BlogPostClient({
                     <h3 className="font-medium text-white">
                       About the company
                     </h3>
-                    <p className="mt-1 text-sm text-gray-300">
+                    <p className="mt-1 text-sm">
                       Ramp is the ultimate platform for modern finance teams.
                       From spend management and expense management software, to
                       bill payments and vendor management, Ramps all-in-one
@@ -223,7 +223,7 @@ export default function BlogPostClient({
               </div>
 
               {/* Table of Contents Card */}
-              <div className="rounded-lg border border-gray-800 p-6">
+              <div className="rounded-lg border border-white/20 [background-image:var(--gradient-black)] p-6">
                 <h3 className="mb-3 font-medium text-white">
                   Table of Contents
                 </h3>
