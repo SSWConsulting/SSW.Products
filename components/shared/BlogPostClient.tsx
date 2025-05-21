@@ -70,33 +70,8 @@ export default function BlogPostClient({
   //     : "Unknown Date";
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
+    <div className="min-h-screen text-white">
       {/* Navigation */}
-      <header className="border-b border-gray-800 bg-gray-950">
-        {isMenuOpen && (
-          <div className="border-t border-gray-800 md:hidden">
-            <div className="container mx-auto px-4 py-2">
-              <nav className="flex flex-col space-y-2">
-                {[
-                  "Products",
-                  "Solutions",
-                  "Developers",
-                  "Pricing",
-                  "Updates",
-                ].map((item) => (
-                  <Link
-                    key={item}
-                    href={`/${item.toLowerCase()}`}
-                    className="py-2 text-gray-300 hover:text-white"
-                  >
-                    {item}
-                  </Link>
-                ))}
-              </nav>
-            </div>
-          </div>
-        )}
-      </header>
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
@@ -114,8 +89,9 @@ export default function BlogPostClient({
           {/* Article metadata */}
           <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
             <AuthorInfo
+              authorImage={data.blogs.authorImage}
               author={data.blogs.author}
-              sswPeopleLink={articleData.author.avatarUrl}
+              sswPeopleLink={data.blogs.sswPeopleLink}
               initialFormattedDate={initialFormattedDate}
               dynamicDate={data.blogs.date}
               readingTime={data.blogs.readLength}
@@ -437,92 +413,6 @@ export default function BlogPostClient({
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="mt-16 border-t border-gray-800 bg-gray-950 py-12">
-        <div className="container mx-auto px-4">
-          <div className="mb-8">
-            <Link href="/" className="text-xl font-bold uppercase text-white">
-              INCREASE
-            </Link>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-4">
-            {[
-              {
-                title: "Products",
-                links: [
-                  "ACH",
-                  "Bank Accounts",
-                  "Cards",
-                  "Checks",
-                  "Real Time Payments",
-                  "Wires",
-                ],
-              },
-              {
-                title: "Developers",
-                links: ["Docs", "API Reference", "Changelog", "Status"],
-              },
-              {
-                title: "Solutions",
-                links: [
-                  "Bill Pay",
-                  "Payroll",
-                  "Wallets",
-                  "Embedded banking",
-                  "Fund administration",
-                  "Sponsor banking",
-                ],
-              },
-              {
-                title: "Company",
-                links: [
-                  "Pricing",
-                  "Updates",
-                  "Contact us",
-                  "Privacy",
-                  "Security",
-                  "Terms",
-                ],
-              },
-            ].map((section, index) => (
-              <div key={index}>
-                <h3 className="mb-4 font-semibold text-white">
-                  {section.title}
-                </h3>
-                <ul className="space-y-2">
-                  {section.links.map((link, linkIndex) => (
-                    <li key={linkIndex}>
-                      <Link
-                        href={`/${section.title.toLowerCase()}/${link
-                          .toLowerCase()
-                          .replace(/\s+/g, "-")}`}
-                        className="text-sm text-gray-400 hover:text-white"
-                      >
-                        {link}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-12 border-t border-gray-800 pt-8 text-xs text-gray-500">
-            <p className="mb-4">
-              Increase is not a bank. Banking products and services are offered
-              by Sutton Bank, N.A., Member FDIC and First Internet Bank of
-              Indiana, Member FDIC. Cards issued by Sutton Bank of Indiana,
-              pursuant to a license from Visa®. Deposits are insured by the FDIC
-              up to the maximum allowed by law through Sutton Bank, N.A., Member
-              FDIC and First Internet Bank of Indiana, Member FDIC. FDIC deposit
-              insurance only covers the funds of the FDIC-insured bank.
-            </p>
-            <p>© 2023 Increase. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -13,6 +13,7 @@ type AuthorInfoProps = {
 
 export function AuthorInfo({
   sswPeopleLink,
+  authorImage,
   author,
   initialFormattedDate,
   dynamicDate,
@@ -21,14 +22,16 @@ export function AuthorInfo({
   return (
     <div className="flex items-center space-x-4">
       <div className="h-10 w-10 overflow-hidden rounded-full">
-        <Image
-          src={sswPeopleLink || "/placeholder.svg"}
-          alt=""
-          aria-hidden="true"
-          width={40}
-          height={40}
-          className="h-full w-full object-cover"
-        />
+        {authorImage && (
+          <Image
+            src={authorImage || "/placeholder.svg"}
+            alt=""
+            aria-hidden="true"
+            width={40}
+            height={40}
+            className="h-full w-full object-cover"
+          />
+        )}
       </div>
       <div>
         {author && (

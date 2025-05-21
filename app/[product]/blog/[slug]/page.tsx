@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 
-import InteractiveBackground from "@comps/shared/Background/InteractiveBackground";
 import BlogPostClient from "@comps/shared/BlogPostClient";
 import FooterServer from "@comps/shared/FooterServer";
 import client from "@tina/__generated__/client";
@@ -56,8 +55,6 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <InteractiveBackground />
-
       <div className="grow">
         <BlogPostClient
           initialFormattedDate={
