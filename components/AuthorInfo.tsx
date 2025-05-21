@@ -7,7 +7,7 @@ import { ReadingTime } from "./ReadingTime";
 import { useFormattedDate } from "./hooks/useFormattedDate";
 
 type AuthorInfoProps = {
-  readingTime?: number;
+  readingTime?: string;
 } & Author &
   OptionalProps<FormattedDate>;
 
@@ -45,7 +45,7 @@ export function AuthorInfo({
           )}
           {readingTime && (
             <span>
-              • <ReadingTime minutes={readingTime} inline />
+              • <ReadingTime readingTime={readingTime} inline />
             </span>
           )}
         </div>

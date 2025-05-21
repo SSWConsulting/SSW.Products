@@ -4,15 +4,7 @@ import { FormattedDate } from "@/formattedDate";
 import { OptionalProps } from "@/optionalProps";
 import { AuthorInfo } from "@comps/AuthorInfo";
 import { Tags } from "@comps/Tags";
-import { Button } from "@comps/ui/button";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Facebook,
-  Linkedin,
-  Mail,
-  Twitter,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -79,13 +71,11 @@ export default function BlogPostClient({
   initialFormattedDate,
 }: BlogPostClientProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const { data } = useTina<{ blogs: Blogs }>({
     query,
     variables,
     data: pageData,
   });
-
   if (!data?.blogs) {
     return <p className="text-center text-white">No content available.</p>;
   }
@@ -148,7 +138,7 @@ export default function BlogPostClient({
               sswPeopleLink={articleData.author.avatarUrl}
               initialFormattedDate={initialFormattedDate}
               dynamicDate={data.blogs.date}
-              readingTime={8}
+              readingTime={data.blogs.readLength}
             />
           </div>
 
@@ -157,25 +147,7 @@ export default function BlogPostClient({
             <Tags tags={articleData.tags} />
 
             {/* Social sharing icons */}
-            <div className="flex space-x-2">
-              {/* TODO: Use icons that AREN'T depractated */}
-              {[
-                { icon: Twitter, label: "Share on Twitter" },
-                { icon: Linkedin, label: "Share on LinkedIn" },
-                { icon: Facebook, label: "Share on Facebook" },
-                { icon: Mail, label: "Share via Email" },
-              ].map((item, index) => (
-                <Button
-                  key={index}
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 rounded-full text-gray-400 hover:bg-gray-700 hover:text-white"
-                  aria-label={item.label}
-                >
-                  <item.icon className="h-5 w-5" />
-                </Button>
-              ))}
-            </div>
+            <div className="flex space-x-2"></div>
           </div>
         </div>
 
