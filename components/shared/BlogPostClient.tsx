@@ -78,12 +78,10 @@ export default function BlogPostClient({
         {/* Blog Header */}
         <div className="mb-10">
           <div className="text-sm uppercase tracking-wide text-gray-400">
-            Customer stories
+            {data.blogs.category}
           </div>
-          <h1 className="mt-2 mb-6 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
-            How Ramp scaled a successful
-            <br />
-            bill pay product with Increase
+          <h1 className="mt-2 mb-6 text-3xl max-w-4xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+            {data.blogs.title}
           </h1>
 
           {/* Article metadata */}
