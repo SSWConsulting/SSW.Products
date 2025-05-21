@@ -9,6 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useTina } from "tinacms/dist/react";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
 interface BlogPostClientProps extends OptionalProps<FormattedDate> {
   query: string;
@@ -133,140 +134,11 @@ export default function BlogPostClient({
         </div>
 
         {/* Article Content */}
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div className="flex">
           {/* Main Content - Takes up 2/3 of the space on large screens */}
-          <div className="lg:col-span-2">
-            <p className="mb-8 text-gray-300">
-              Ramp is the ultimate platform for modern finance teams. From spend
-              management and expense management software, to bill payments and
-              vendor management, Ramps all-in-one solution is designed to
-              automate finance operations and build healthier businesses. Over
-              15,000 businesses have switched to Ramp to cut their expenses by
-              an average of 5% and close their books 8x faster.
-            </p>
-
-            <div className="mb-12" id="the-problem">
-              <h2 className="mb-4 text-2xl font-bold text-white">
-                The problem
-              </h2>
-              <p className="mb-4 text-gray-300">
-                In October 2021, Ramp introduced its innovative Bill Pay
-                solution, aimed at helping free users from the time-consuming
-                process of managing their monthly accounts payable. Yet, as the
-                platform expanded its reach, it encountered challenges in
-                tracking the lifecycle of individual bill payments, and faced
-                operational inefficiencies when onboarding new accounts.
-              </p>
-              <p className="mb-4 text-gray-300">
-                Our former banking partner just didnt have the flexibility or
-                control we wanted said Nik Koblov, Director of Engineering. We
-                had to call a support person to get access to 250 virtual
-                accounts at a time. It was also really difficult tracking the
-                settlement for our payments. With payment friction as their Bill
-                Pay product grew, it became a priority for the team to pivot to
-                a new system.
-              </p>
-            </div>
-
-            <div className="mb-12" id="the-solution">
-              <h2 className="mb-4 text-2xl font-bold text-white">
-                The solution
-              </h2>
-              <p className="mb-4 text-gray-300">
-                Ramp partnered with Increase to build a robust platform for
-                their Bill Pay product. Ramp spins up unique accounts per user,
-                which allows them to programmatically track payments instead of
-                needing to parse through a single, massive ledger. They also use
-                Increases ACH product to make bill payments via the Federal
-                Reserves FedACH network, which provides them with great webhooks
-                for each step in the transfer life cycle. This not only speeds
-                up the payments process, but also allows Ramp to access much
-                more in-depth settlement tracking.
-              </p>
-
-              {/* Video Placeholder */}
-              <div className="my-8 rounded-lg bg-gray-800">
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-                  <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-700">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="48"
-                      height="48"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="text-[#cc4141]"
-                    >
-                      <circle cx="12" cy="12" r="10" />
-                      <polygon
-                        points="10 8 16 12 10 16 10 8"
-                        fill="currentColor"
-                      />
-                    </svg>
-                    <p className="mt-4 text-sm text-gray-300">
-                      Ramp + Increase Integration Demo
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <p className="mb-6 text-gray-300">
-                In this demonstration, you can see how Ramps engineering team
-                integrated with Increases API to create a seamless bill payment
-                experience. The video showcases the account creation process,
-                payment initiation flow, and the real-time webhooks that provide
-                visibility into payment status. This integration allowed Ramp to
-                reduce payment processing time by 60% while providing customers
-                with more transparency into their payment lifecycle.
-              </p>
-
-              <div className="my-8 flex justify-center">
-                <Image
-                  src="/basic-payment-flow.png"
-                  alt="Payment flow diagram"
-                  width={600}
-                  height={300}
-                  className="rounded-lg"
-                />
-              </div>
-
-              <div className="mb-8 rounded-lg bg-gray-800 p-6">
-                <blockquote className="border-l-4 border-[#cc4141] pl-4 italic text-gray-300">
-                  Increase has provided us with low level access to the
-                  underlying payment rails which has substantially improved the
-                  stability of our product. The transparency is second to none,
-                  mentioned Nik Koblov. We know exactly when payments are
-                  submitted and when funds are received. This has been a game
-                  changer for our operations team, who now have complete control
-                  of our funds flows.
-                </blockquote>
-              </div>
-
-              <p className="mb-4 text-gray-300">
-                Using Increas APIs, Ramp was able to build a custom solution
-                that fit perfectly with their infrastructure. The Increase API
-                is the best Ive used. Its a breath of fresh air said Kirill
-                Orishchuk, an engineer on Ramps payments team. In addition to
-                building our product flows, we need to build internal APIs for
-                teams with vastly different needs. Because Increase provides
-                such well-reasoned abstractions, were able to surface just the
-                right amount of data to each team.
-              </p>
-            </div>
-
-            <div className="mb-12" id="the-result">
-              <h2 className="mb-4 text-2xl font-bold text-white">The result</h2>
-              <p className="mb-4 text-gray-300">
-                With the help of this new model, Ramp saw a surge of growth in
-                their Bill Pay product. Our Bill Pay product has been a game
-                changer, and Increase has been an invaluable partner in that
-                process, said Nik. Were processing millions of payments with
-                Increase and are excited and confident about how well grow
-                together in the future.
-              </p>
+          <div className="flex flex-col basis-2/3">
+            <div className="grow">
+              <TinaMarkdown content={data.blogs.body} />
             </div>
 
             {/* Article navigation */}
@@ -289,10 +161,10 @@ export default function BlogPostClient({
           </div>
 
           {/* Sidebar - Takes up 1/3 of the space on large screens */}
-          <div className="lg:col-span-1">
+          <div className="basis-1/3">
             <div className="sticky top-8 space-y-6">
               {/* Summary Card Layout */}
-              <div className="rounded-lg bg-gray-800 p-6">
+              <div className="rounded-lg bg-gray-darkest p-6">
                 {/* Company information */}
                 <div className="space-y-4">
                   {[
@@ -384,7 +256,7 @@ export default function BlogPostClient({
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-white">Related Articles</h2>
           </div>
-          <div className="grid gap-8 md:grid-cols-2">
+          <div className="grid md:grid-cols-2">
             {articleData.relatedArticles.map((article) => (
               <Link
                 key={article.id}
