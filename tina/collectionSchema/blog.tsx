@@ -67,6 +67,14 @@ export const blogCollection: Collection = {
       label: "Author SSW People Link",
     },
     {
+      type: "string",
+      name: "labels",
+      label: "Labels",
+      description:
+        "Comma separated list of labels. These will be used to generate the tags for the blog post.",
+      list: true,
+    },
+    {
       type: "image",
       name: "bannerImage",
       label: "Banner Image",

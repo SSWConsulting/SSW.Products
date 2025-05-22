@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useState } from "react";
-import { useTina } from "tinacms/dist/react";
+import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
 interface BlogPostClientProps extends OptionalProps<FormattedDate> {
@@ -99,7 +99,14 @@ export default function BlogPostClient({
 
           {/* Tags and social sharing icons */}
           <div className="mt-6 flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-            <Tags tags={articleData.tags} />
+            {data.blogs.labels && (
+              <Tags
+                data-tina-field={tinaField(data.blogs, "labels")}
+                tags={data.blogs.labels.filter(
+                  (label) => label !== null && label !== undefined
+                )}
+              />
+            )}
 
             {/* Social sharing icons */}
             <div className="flex space-x-2"></div>
