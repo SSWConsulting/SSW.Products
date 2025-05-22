@@ -132,16 +132,17 @@ export default function DocPostClient({
           content={body ?? { type: "root", children: [] }}
           components={{
             ...DocAndBlogMarkdownStyle,
-            h1: (props: { children: ReactNode } | undefined) => (
-              <h1 className="bg-linear-to-br mb-4 mt-8 font-semibold text-2xl from-red-400 to-red-700 bg-clip-text text-transparent">
+            a: (
+              props:
+                | { children: ReactNode | undefined; url: string }
+                | undefined
+            ) => (
+              <a
+                className="underline transition-colors hover:text-white text-[#CC4141]"
+                href={props?.url}
+              >
                 {props?.children}
-              </h1>
-            ),
-
-            h2: (props: { children: ReactNode } | undefined) => (
-              <h2 className="bg-linear-to-br mb-4 mt-8 font-semibold text-2xl from-red-400 to-red-700 bg-clip-text text-transparent">
-                {props?.children}
-              </h2>
+              </a>
             ),
           }}
         />
