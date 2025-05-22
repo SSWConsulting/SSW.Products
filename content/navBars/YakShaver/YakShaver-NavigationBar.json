@@ -25,6 +25,10 @@
       "label": "COMMUNITY",
       "items": [
         {
+          "label": "SUPPORT",
+          "href": "/docs/support"
+        },
+        {
           "label": "ROADMAP",
           "href": "/roadmap"
         },
