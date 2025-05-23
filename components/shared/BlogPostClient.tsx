@@ -70,7 +70,6 @@ const recurseAstTree = (
     accumulatedNodes.push(node);
   }
   if (!node.children) {
-    console.log("No children found", node.children);
     return;
   }
   for (const child of node.children) {
@@ -80,7 +79,9 @@ const recurseAstTree = (
 
 const nodesToText = (node: Node[]) => {
   return node.map((child) => {
-    const text = child.children.map((child) => child.text).join(" ");
+    const text = child.children
+      .map((child) => (child.children ? child.children[0].text : child.text))
+      .join(" ");
 
     return {
       text,
@@ -116,14 +117,6 @@ export default function BlogPostClient({
     const bodyTitles = nodesToText(titleNodes);
     return bodyTitles;
   }, [data.blogs.body]);
-
-  // console.log("Body", data.blogs);
-  // const formattedDate =
-  //   parsedDate && !isNaN(parsedDate.getTime())
-  //     ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", {
-  //         month: "long",
-  //       })} ${parsedDate.getFullYear()}`
-  //     : "Unknown Date";
 
   return (
     <div className="min-h-screen text-white">
@@ -290,7 +283,7 @@ export default function BlogPostClient({
                                     behavior: "smooth",
                                   });
                                 }}
-                                href={`#${title}`}
+                                href={`#${title.text}`}
                                 className="transition-colors inset-0 group-hover:text-ssw-red"
                               >
                                 {title.text}
