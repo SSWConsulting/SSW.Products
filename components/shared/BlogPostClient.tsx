@@ -7,7 +7,7 @@ import { Tags } from "@comps/Tags";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
@@ -51,6 +51,38 @@ const articleData = {
     },
   ],
 };
+
+type Node = { children: Node[]; value: string; type: string; text: string };
+
+const searchAstTree = (node: Node, targetNodes: string[]) => {
+  const results: Node[] = [];
+  recurseAstTree(node, targetNodes, results);
+  return results;
+};
+
+const recurseAstTree = (
+  node: Node,
+  targetNodes: string[],
+  accumulatedNodes: Node[]
+) => {
+  if (targetNodes.includes(node.type)) {
+    accumulatedNodes.push(node);
+  }
+  if (!node.children) {
+    console.log("No children found", node.children);
+    return;
+  }
+  for (const child of node.children) {
+    recurseAstTree(child, targetNodes, accumulatedNodes);
+  }
+};
+
+const nodesToText = (node: Node[]) => {
+  return node.map((child) => {
+    return child.children.map((text) => text.text).join(" ");
+  });
+};
+
 export default function BlogPostClient({
   query,
   variables,
@@ -63,6 +95,23 @@ export default function BlogPostClient({
     variables,
     data: pageData,
   });
+
+  // const titles = searchAstTree(data.blogs.body);
+
+  const titles = useMemo(() => {
+    const titleNodes = searchAstTree(data.blogs.body, [
+      "h1",
+      "h2",
+      "h3",
+      "h4",
+      "h5",
+      "h6",
+    ]);
+    const bodyTitles = nodesToText(titleNodes);
+    return bodyTitles;
+  }, [data.blogs.body]);
+
+  // console.log("Body", data.blogs);
   // const formattedDate =
   //   parsedDate && !isNaN(parsedDate.getTime())
   //     ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", {
@@ -190,29 +239,32 @@ export default function BlogPostClient({
               )}
 
               {/* Table of Contents Card */}
-              <div className="rounded-lg border shrink-0 border-white/20 [background-image:var(--gradient-black)] p-6">
-                <h3 className="mb-1 font-medium text-white">
-                  Table of Contents
-                </h3>
-                <nav>
-                  <ul className="text-sm">
-                    {articleData.tableOfContents.map((item) => (
-                      <li
-                        className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
-                        key={item.id}
-                        style={{}}
-                      >
-                        <a
-                          href={`#${item.id}`}
-                          className="transition-colors inset-0 group-hover:text-ssw-red"
+
+              {titles.length > 0 && (
+                <div className="rounded-lg border shrink-0 border-white/20 [background-image:var(--gradient-black)] p-6">
+                  <h3 className="mb-1 font-medium text-white">
+                    Table of Contents
+                  </h3>
+                  <nav>
+                    <ul className="text-sm">
+                      {articleData.tableOfContents.map((item) => (
+                        <li
+                          className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
+                          key={item.id}
+                          style={{}}
                         >
-                          {item.title}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
+                          <a
+                            href={`#${item.id}`}
+                            className="transition-colors inset-0 group-hover:text-ssw-red"
+                          >
+                            {item.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
+              )}
             </div>
           </div>
         </div>
