@@ -172,7 +172,7 @@ export default function BlogPostClient({
             <div className="sticky h-[calc(100vh_-_11rem)] flex flex-col summary overflow-hidden top-32 space-y-6">
               {/* Summary Card Layout */}
               {data.blogs.summaryCard && (
-                <div className="rounded-lg bg-gray-darkest p-6 overflow-y-scroll">
+                <div className="rounded-lg bg-gray-darkest [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]  p-6 overflow-y-auto">
                   {/* Company information */}
                   <div className="[&_p]:text-white/60  [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline">
                     <TinaMarkdown
