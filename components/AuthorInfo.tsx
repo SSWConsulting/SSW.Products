@@ -37,7 +37,7 @@ export function AuthorInfo({
         {author && (
           <AuthorWrapper sswPeopleLink={sswPeopleLink} author={author} />
         )}
-        <div className="text-sm text-gray-400">
+        <div className="text-sm text-white/60">
           {initialFormattedDate && dynamicDate && (
             <>
               <Date
