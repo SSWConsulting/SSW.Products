@@ -4,6 +4,7 @@ import { FormattedDate } from "@/formattedDate";
 import { OptionalProps } from "@/optionalProps";
 import { AuthorInfo } from "@comps/AuthorInfo";
 import { Tags } from "@comps/Tags";
+import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -79,7 +80,12 @@ const recurseAstTree = (
 
 const nodesToText = (node: Node[]) => {
   return node.map((child) => {
-    return child.children.map((text) => text.text).join(" ");
+    const text = child.children.map((child) => child.text).join(" ");
+
+    return {
+      text,
+      type: child.type,
+    };
   });
 };
 
@@ -194,7 +200,10 @@ export default function BlogPostClient({
           {/* Main Content - Takes up 2/3 of the space on large screens */}
           <div className="flex flex-col basis-2/3">
             <div className="grow">
-              <TinaMarkdown content={data.blogs.body} />
+              <TinaMarkdown
+                components={DocAndBlogMarkdownStyle}
+                content={data.blogs.body}
+              />
             </div>
 
             {/* Article navigation */}
@@ -247,20 +256,49 @@ export default function BlogPostClient({
                   </h3>
                   <nav>
                     <ul className="text-sm">
-                      {articleData.tableOfContents.map((item) => (
-                        <li
-                          className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
-                          key={item.id}
-                          style={{}}
-                        >
-                          <a
-                            href={`#${item.id}`}
-                            className="transition-colors inset-0 group-hover:text-ssw-red"
-                          >
-                            {item.title}
-                          </a>
-                        </li>
-                      ))}
+                      {titles.map(
+                        (title, index) => (
+                          console.log("mappedtitle", title),
+                          (
+                            <li
+                              className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
+                              key={index}
+                              style={{}}
+                            >
+                              <a
+                                onClick={() => {
+                                  const SCROLL_OFFSET = 80;
+
+                                  const heading = document
+                                    .evaluate(
+                                      `//${title.type}[text()="${title.text}"]`,
+                                      document,
+                                      null,
+                                      XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                      null
+                                    )
+                                    .snapshotItem(0);
+                                  if (!heading) return;
+
+                                  const y =
+                                    (
+                                      heading as HTMLElement
+                                    ).getBoundingClientRect().top +
+                                    window.scrollY;
+                                  window.scrollTo({
+                                    top: y - SCROLL_OFFSET,
+                                    behavior: "smooth",
+                                  });
+                                }}
+                                href={`#${title}`}
+                                className="transition-colors inset-0 group-hover:text-ssw-red"
+                              >
+                                {title.text}
+                              </a>
+                            </li>
+                          )
+                        )
+                      )}
                     </ul>
                   </nav>
                 </div>
