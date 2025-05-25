@@ -126,7 +126,7 @@ export default function BlogPostClient({
       <main className="container mx-auto px-4 py-8">
         {/* Blog Header */}
         <div className="mb-10">
-          <div className="text-sm uppercase tracking-wide text-gray-400">
+          <div className="text-sm uppercase tracking-wide text-white/60">
             {data.blogs.category}
           </div>
           <h1 className="mt-2 mb-6 text-3xl max-w-4xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
@@ -200,17 +200,17 @@ export default function BlogPostClient({
             </div>
 
             {/* Article navigation */}
-            <div className="mb-12 flex justify-between border-t border-gray-800 pt-8">
+            <div className="mb-12 flex justify-between border-t border-white/20 pt-8">
               <Link
                 href="#"
-                className="flex items-center text-gray-400 transition-colors hover:text-ssw-red"
+                className="flex items-center text-white/60 transition-colors hover:text-ssw-red"
               >
                 <ChevronLeft className="mr-2 h-4 w-4" />
                 Previous Article
               </Link>
               <Link
                 href="#"
-                className="flex items-center text-gray-400 transition-colors hover:text-ssw-red"
+                className="flex items-center text-white/60 transition-colors hover:text-ssw-red"
               >
                 Next Article
                 <ChevronRight className="ml-2 h-4 w-4" />
