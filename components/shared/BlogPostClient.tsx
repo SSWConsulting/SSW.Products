@@ -1,5 +1,6 @@
 "use client";
 
+import { GridPattern } from "@/components/magicui/grid-background";
 import { FormattedDate } from "@/formattedDate";
 import { OptionalProps } from "@/optionalProps";
 import { AuthorInfo } from "@comps/AuthorInfo";
@@ -119,11 +120,7 @@ export default function BlogPostClient({
 
   return (
     <div className="min-h-screen text-white">
-      {/* Navigation */}
-
-      {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        {/* Blog Header */}
         <div className="mb-10">
           <div className="text-sm uppercase tracking-wide text-white/60">
             {data.blogs.category}
@@ -131,8 +128,6 @@ export default function BlogPostClient({
           <h1 className="mt-2 mb-6 text-3xl max-w-4xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
             {data.blogs.title}
           </h1>
-
-          {/* Article metadata */}
           <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
             <AuthorInfo
               authorImage={data.blogs.authorImage}
@@ -154,36 +149,43 @@ export default function BlogPostClient({
                 )}
               />
             )}
-
-            {/* Social sharing icons */}
-            <div className="flex space-x-2"></div>
           </div>
         </div>
 
-        {/* Hero Image */}
-        <div className="mb-12 overflow-hidden rounded-lg bg-gray-800 p-6">
-          <div className="flex flex-col md:flex-row">
-            <div className="flex items-center justify-center md:w-1/3">
-              <div className="text-center">
-                <div className="mb-4 text-4xl font-bold text-white">ramp</div>
-                <Image
-                  src="/abstract-ramp-design.png"
-                  alt="Ramp logo"
-                  width={50}
-                  height={50}
-                  className="mx-auto"
-                />
-              </div>
-            </div>
-            <div className="mt-6 md:mt-0 md:w-2/3">
-              <Image
-                src="/ramp-dashboard-overview.png"
-                alt="Ramp dashboard interface"
-                width={600}
-                height={400}
-                className="rounded-lg"
-              />
-            </div>
+        <div className="relative flex aspect-video z-0 overflow-hidden">
+          <div className="absolute scale-75  z-20 inset-0   ">
+            {/* The the mask clip border prevents an opaque border from forming around the image */}
+            <Image
+              alt="alt text"
+              objectFit="cover"
+              fill
+              className="rounded-lg p-0.5  mask-b-from-60% mask-b-to-100% mask-clip-padding"
+              aria-hidden="true"
+              src={data.blogs.bannerImage || ""}
+            />
+          </div>
+          <div
+            className="relative z-10 grow mask-radial-[60%_50%] mask-radial-from-52 mask-radial-at-center
+          "
+          >
+            <GridPattern
+              className="bg inset-y-[-30%] skew-y-12 h-[200%] "
+              strokeDasharray={"4 2"}
+              squares={[
+                [4, 4],
+                [5, 1],
+                [8, 2],
+                [5, 3],
+                [5, 5],
+                [10, 10],
+                [12, 15],
+                [15, 10],
+                [10, 15],
+                [15, 10],
+                [10, 15],
+                [15, 10],
+              ]}
+            />
           </div>
         </div>
 
