@@ -1,5 +1,6 @@
 "use client";
 import { GridPattern } from "@/components/magicui/grid-background";
+import type { Author } from "@/types/author";
 import Container from "@comps/Container";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
@@ -18,7 +19,8 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__generated__/types";
 
 import { cn } from "@/lib/utils";
-import { RecentBlog } from "@/types/blog";
+import { Blog } from "@/types/blog";
+import { Modify } from "@/types/modify";
 import { RemoveTinaMetadata } from "@/types/tina";
 import { formatDate } from "@utils/formatDate";
 import client from "../../tina/__generated__/client";
@@ -244,8 +246,22 @@ const RecentArticles = ({
         {data?.pages.map((page) =>
           page?.edges?.map((edge, index) => {
             const post = edge?.node;
+            // const { author, authorImage, sswPeopleLink } = post || {};
+
             return (
-              post && <BlogCard key={index} {...post} />
+              post && (
+                <BlogCard
+                  category={post.category}
+                  bannerImage={post.bannerImage}
+                  title={post.title}
+                  author={{
+                    author: post.author,
+                    authorImage: post.authorImage,
+                    sswPeopleLink: post.sswPeopleLink || "",
+                  }}
+                  slug={post._sys.filename}
+                />
+              )
               // <div
               //   key={index}
               //   className="border bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
@@ -322,19 +338,22 @@ const RecentArticles = ({
   );
 };
 
-const BlogCard = ({
+type BlogCardProps = Modify<
+  Blog,
+  { author?: Author | null; slug?: string | null }
+>;
+
+export const BlogCard = ({
   bannerImage,
   category,
   readLength,
   body,
+  slug,
   title,
   author,
-  _sys,
-  authorImage,
-  sswPeopleLink,
   date,
-}: RecentBlog) => {
-  const slug = _sys?.filename;
+}: BlogCardProps) => {
+  console.log("banner image", bannerImage);
   return (
     <div className="border bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
       <div className="h-full flex flex-col grow shrink-0">
@@ -365,17 +384,18 @@ const BlogCard = ({
               {title}
             </h3>
           </Link>
-          <Author
-            author={author}
-            authorImage={authorImage}
-            sswPeopleLink={sswPeopleLink}
-          />
+          {author && (
+            <Author
+              author={author.author}
+              authorImage={author.authorImage}
+              sswPeopleLink={author.sswPeopleLink}
+            />
+          )}
           <ArticleMetadata
             className="h-fit"
             date={date}
             readLength={readLength}
           />
-
           <section className="text-gray-300 text-sm mb-4 line-clamp-2">
             <TinaMarkdown content={body} />
           </section>
@@ -447,7 +467,6 @@ const Author = ({
     </div>
   );
 };
-
 const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
   const debounceTime = 1000;
   const {
