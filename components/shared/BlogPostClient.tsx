@@ -155,7 +155,7 @@ export default function BlogPostClient({
           </div>
         </div>
         <div className="relative flex  z-0 overflow-hidden">
-          <div className="relative aspect-video w-full mx-60 my-16 a z-20 inset-0   ">
+          <div className="relative aspect-video sm:w-3/4 w-4/5 mx-auto my-16 a z-20 inset-0   ">
             {/* The the mask clip border prevents an opaque border from forming around the image */}
             <Image
               alt="alt text"
