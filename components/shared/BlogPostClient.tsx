@@ -121,7 +121,7 @@ export default function BlogPostClient({
   return (
     <div className="min-h-screen text-white">
       <main className="container mx-auto px-4 py-8">
-        <div className="mb-10">
+        <div className="">
           <div className="text-sm uppercase tracking-wide text-white/60">
             {data.blogs.category}
           </div>
@@ -152,20 +152,20 @@ export default function BlogPostClient({
           </div>
         </div>
 
-        <div className="relative flex aspect-video z-0 overflow-hidden">
-          <div className="absolute scale-75  z-20 inset-0   ">
+        <div className="relative flex  z-0 overflow-hidden">
+          <div className="relative aspect-video w-full mx-60 my-8 a z-20 inset-0   ">
             {/* The the mask clip border prevents an opaque border from forming around the image */}
             <Image
               alt="alt text"
               objectFit="cover"
               fill
-              className="rounded-lg p-0.5  mask-b-from-60% mask-b-to-100% mask-clip-padding"
+              className="rounded-lg p-0.5 mask-b-from-60% mask-b-to-100% mask-clip-padding"
               aria-hidden="true"
               src={data.blogs.bannerImage || ""}
             />
           </div>
           <div
-            className="relative z-10 grow mask-radial-[60%_50%] mask-radial-from-52 mask-radial-at-center
+            className="absolute z-10 inset-0 mask-y-from-90% mask-y-to-100% mask-x-from-90% mask-x-to-100% mask-radial-[60%_100%] mask-radial-from-52 mask-radial-at-center
           "
           >
             <GridPattern
