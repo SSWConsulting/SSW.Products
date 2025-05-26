@@ -18,6 +18,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__generated__/types";
 
 import { cn } from "@/lib/utils";
+import { RecentBlog } from "@/types/blog";
 import { RemoveTinaMetadata } from "@/types/tina";
 import { formatDate } from "@utils/formatDate";
 import client from "../../tina/__generated__/client";
@@ -243,63 +244,63 @@ const RecentArticles = ({
         {data?.pages.map((page) =>
           page?.edges?.map((edge, index) => {
             const post = edge?.node;
-
             return (
-              <div
-                key={index}
-                className="border bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="h-full flex flex-col grow shrink-0">
-                  <div className="relative aspect-video ">
-                    <div className="inset-0 absolute align-middle items-center justify-center flex">
-                      {edge?.node?.bannerImage && (
-                        <div className="rounded-md mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
-                          <Image
-                            alt=""
-                            fill
-                            objectFit="cover"
-                            aria-hidden={true}
-                            src={edge?.node?.bannerImage}
-                          />
-                        </div>
-                      )}
-                    </div>
-                    <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
-                      <GridBackground />
-                    </div>
-                  </div>
-                  <div className="grow shrink-0 gap-3 flex flex-col p-6">
-                    {edge?.node?.category && (
-                      <CategoryLabel className="text-sm">
-                        {edge?.node?.category}
-                      </CategoryLabel>
-                    )}
-                    <Link
-                      className="w-fit"
-                      href={`/blog/${post?._sys.filename}`}
-                    >
-                      <h3 className="text-xl font-bold text-gray-100 hover:text-ssw-red transition-colors">
-                        {post?.title}
-                      </h3>
-                    </Link>
-                    <Author
-                      author={edge?.node?.author}
-                      authorImage={edge?.node?.authorImage}
-                      sswPeopleLink={edge?.node?.sswPeopleLink}
-                    />
-                    <ArticleMetadata
-                      className="h-fit"
-                      date={edge?.node?.date}
-                      readLength={edge?.node?.readLength}
-                    />
+              post && <BlogCard key={index} {...post} />
+              // <div
+              //   key={index}
+              //   className="border bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
+              // >
+              //   <div className="h-full flex flex-col grow shrink-0">
+              //     <div className="relative aspect-video ">
+              //       <div className="inset-0 absolute align-middle items-center justify-center flex">
+              //         {edge?.node?.bannerImage && (
+              //           <div className="rounded-md mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
+              //             <Image
+              //               alt=""
+              //               fill
+              //               objectFit="cover"
+              //               aria-hidden={true}
+              //               src={edge?.node?.bannerImage}
+              //             />
+              //           </div>
+              //         )}
+              //       </div>
+              //       <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
+              //         <GridBackground />
+              //       </div>
+              //     </div>
+              //     <div className="grow shrink-0 gap-3 flex flex-col p-6">
+              //       {edge?.node?.category && (
+              //         <CategoryLabel className="text-sm">
+              //           {edge?.node?.category}
+              //         </CategoryLabel>
+              //       )}
+              //       <Link
+              //         className="w-fit"
+              //         href={`/blog/${post?._sys.filename}`}
+              //       >
+              //         <h3 className="text-xl font-bold text-gray-100 hover:text-ssw-red transition-colors">
+              //           {post?.title}
+              //         </h3>
+              //       </Link>
+              //       <Author
+              //         author={edge?.node?.author}
+              //         authorImage={edge?.node?.authorImage}
+              //         sswPeopleLink={edge?.node?.sswPeopleLink}
+              //       />
+              //       <ArticleMetadata
+              //         className="h-fit"
+              //         date={edge?.node?.date}
+              //         readLength={edge?.node?.readLength}
+              //       />
 
-                    <section className="text-gray-300 text-sm mb-4 line-clamp-2">
-                      <TinaMarkdown content={post?.body} />
-                    </section>
-                    <ReadMore fileName={post?._sys.filename || ""} />
-                  </div>
-                </div>
-              </div>
+              //       <section className="text-gray-300 text-sm mb-4 line-clamp-2">
+              //         <TinaMarkdown content={post?.body} />
+              //       </section>
+              //       <ReadMore fileName={post?._sys.filename || ""} />
+              //     </div>
+              //   </div>
+              // </div>
             );
           })
         )}
@@ -318,6 +319,70 @@ const RecentArticles = ({
         )}
       </div>
     </Container>
+  );
+};
+
+const BlogCard = ({
+  bannerImage,
+  category,
+  readLength,
+  body,
+  title,
+  author,
+  _sys,
+  authorImage,
+  sswPeopleLink,
+  date,
+}: RecentBlog) => {
+  const slug = _sys?.filename;
+  return (
+    <div className="border bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+      <div className="h-full flex flex-col grow shrink-0">
+        <div className="relative aspect-video ">
+          <div className="inset-0 absolute align-middle items-center justify-center flex">
+            {bannerImage && (
+              <div className="rounded-md mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
+                <Image
+                  alt=""
+                  fill
+                  objectFit="cover"
+                  aria-hidden={true}
+                  src={bannerImage}
+                />
+              </div>
+            )}
+          </div>
+          <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
+            <GridBackground />
+          </div>
+        </div>
+        <div className="grow shrink-0 gap-3 flex flex-col p-6">
+          {category && (
+            <CategoryLabel className="text-sm">{category}</CategoryLabel>
+          )}
+          <Link className="w-fit" href={`/blog/${slug}`}>
+            <h3 className="text-xl font-bold text-gray-100 hover:text-ssw-red transition-colors">
+              {title}
+            </h3>
+          </Link>
+          <Author
+            author={author}
+            authorImage={authorImage}
+            sswPeopleLink={sswPeopleLink}
+          />
+          <ArticleMetadata
+            className="h-fit"
+            date={date}
+            readLength={readLength}
+          />
+
+          <section className="text-gray-300 text-sm mb-4 line-clamp-2">
+            <TinaMarkdown content={body} />
+          </section>
+          <ReadMore fileName={slug || ""} />
+        </div>
+      </div>
+    </div>
   );
 };
 
