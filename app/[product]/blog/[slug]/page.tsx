@@ -1,9 +1,11 @@
 import { notFound } from "next/navigation";
 
+import { Blog } from "@/types/blog";
 import BlogPostClient from "@comps/shared/BlogPostClient";
 import FooterServer from "@comps/shared/FooterServer";
 import client from "@tina/__generated__/client";
 import { Blogs } from "@tina/__generated__/types";
+import { getBlogsForProduct } from "@utils/fetchBlogs";
 import { formatDate } from "@utils/formatDate";
 import { setPageMetadata } from "@utils/setPageMetaData";
 
@@ -46,8 +48,29 @@ export async function generateStaticParams() {
 
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = params;
+  getBlogsForProduct({ product });
 
   const documentData = await getBlogPost(product, slug);
+
+  const filter = documentData?.blogs?.title
+    ? { filteredBlogs: [documentData.blogs.title] }
+    : {};
+  const recentBlogs = await getBlogsForProduct({
+    product,
+    limit: 2,
+    ...filter,
+  });
+
+  const mappedRecentBlogs =
+    recentBlogs.edges?.reduce<Blog[]>((acc, blog) => {
+      if (!blog?.node) return acc;
+      const { author, date, title, _sys, category, body, bannerImage } =
+        blog.node;
+      return [
+        ...acc,
+        { author, date, title, _sys, category, body, bannerImage },
+      ];
+    }, []) || [];
 
   if (!documentData) {
     return notFound();
@@ -57,6 +80,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
     <div className="flex flex-col min-h-screen">
       <div className="grow">
         <BlogPostClient
+          recentBlogs={mappedRecentBlogs}
           initialFormattedDate={
             documentData.blogs.date && formatDate(documentData.blogs.date)
           }

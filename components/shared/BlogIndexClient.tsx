@@ -353,54 +353,51 @@ export const BlogCard = ({
   author,
   date,
 }: BlogCardProps) => {
-  console.log("banner image", bannerImage);
   return (
-    <div className="border bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-      <div className="h-full flex flex-col grow shrink-0">
-        <div className="relative aspect-video ">
-          <div className="inset-0 absolute align-middle items-center justify-center flex">
-            {bannerImage && (
-              <div className="rounded-md mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
-                <Image
-                  alt=""
-                  fill
-                  objectFit="cover"
-                  aria-hidden={true}
-                  src={bannerImage}
-                />
-              </div>
-            )}
-          </div>
-          <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
-            <GridBackground />
-          </div>
+    <div className="h-full flex flex-col grow shrink-0 border bg-gradient-black border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+      <div className="relative aspect-video ">
+        <div className="inset-0 absolute align-middle items-center justify-center flex">
+          {bannerImage && (
+            <div className="rounded-md mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
+              <Image
+                alt=""
+                fill
+                objectFit="cover"
+                aria-hidden={true}
+                src={bannerImage}
+              />
+            </div>
+          )}
         </div>
-        <div className="grow shrink-0 gap-3 flex flex-col p-6">
-          {category && (
-            <CategoryLabel className="text-sm">{category}</CategoryLabel>
-          )}
-          <Link className="w-fit" href={`/blog/${slug}`}>
-            <h3 className="text-xl font-bold text-gray-100 hover:text-ssw-red transition-colors">
-              {title}
-            </h3>
-          </Link>
-          {author && (
-            <Author
-              author={author.author}
-              authorImage={author.authorImage}
-              sswPeopleLink={author.sswPeopleLink}
-            />
-          )}
-          <ArticleMetadata
-            className="h-fit"
-            date={date}
-            readLength={readLength}
+        <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
+          <GridBackground />
+        </div>
+      </div>
+      <div className="grow shrink-0 gap-3 flex flex-col p-6">
+        {category && (
+          <CategoryLabel className="text-sm">{category}</CategoryLabel>
+        )}
+        <Link className="w-fit" href={`/blog/${slug}`}>
+          <h3 className="text-xl font-bold text-gray-100 hover:text-ssw-red transition-colors">
+            {title}
+          </h3>
+        </Link>
+        {author && (
+          <Author
+            author={author.author}
+            authorImage={author.authorImage}
+            sswPeopleLink={author.sswPeopleLink}
           />
-          <section className="text-gray-300 text-sm mb-4 line-clamp-2">
-            <TinaMarkdown content={body} />
-          </section>
-          <ReadMore fileName={slug || ""} />
-        </div>
+        )}
+        <ArticleMetadata
+          className="h-fit"
+          date={date}
+          readLength={readLength}
+        />
+        <section className="text-gray-300 text-sm mb-4 line-clamp-2">
+          <TinaMarkdown content={body} />
+        </section>
+        <ReadMore fileName={slug || ""} />
       </div>
     </div>
   );

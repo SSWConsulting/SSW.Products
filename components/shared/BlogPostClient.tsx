@@ -3,6 +3,7 @@
 import { GridPattern } from "@/components/magicui/grid-background";
 import { FormattedDate } from "@/formattedDate";
 import { OptionalProps } from "@/optionalProps";
+import { Blog } from "@/types/blog";
 import { AuthorInfo } from "@comps/AuthorInfo";
 import { Tags } from "@comps/Tags";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
@@ -13,10 +14,12 @@ import { ReactNode, useMemo } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
+import { BlogCard } from "./BlogIndexClient";
 interface BlogPostClientProps extends OptionalProps<FormattedDate> {
   query: string;
   variables: object;
   pageData: { blogs: Blogs };
+  recentBlogs?: Blog[];
 }
 
 const articleData = {
@@ -95,6 +98,7 @@ export default function BlogPostClient({
   query,
   variables,
   pageData,
+  recentBlogs,
   initialFormattedDate,
 }: BlogPostClientProps) {
   const { data } = useTina<{ blogs: Blogs }>({
@@ -298,36 +302,30 @@ export default function BlogPostClient({
           </div>
         </div>
         {/* Related Articles - Full width */}
-        <div className="mt-16 border-t border-gray-800 pt-12">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white">Related Articles</h2>
-          </div>
-          <div className="grid md:grid-cols-2">
-            {articleData.relatedArticles.map((article) => (
-              <Link
-                key={article.id}
-                href={`/blog/${article.slug}`}
-                className="group overflow-hidden rounded-lg border border-gray-800 bg-gray-900 transition-colors hover:border-gray-700"
-              >
-                <div className="aspect-video w-full overflow-hidden">
-                  <Image
-                    src={article.imageUrl || "/placeholder.svg"}
-                    alt={article.title}
-                    width={600}
-                    height={338}
-                    className="h-full w-full object-cover transition-transform group-hover:scale-105"
+        {recentBlogs && (
+          <div className="mt-16 border-t border-gray-800 pt-12">
+            <div className="mb-8">
+              <h2 className="text-2xl font-bold text-white">
+                Related Articles
+              </h2>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {recentBlogs.map((article, index) => {
+                const {} = article;
+                return (
+                  <BlogCard
+                    key={`blog-${index}`}
+                    body={article.body}
+                    date={article.date}
+                    bannerImage={article.bannerImage}
+                    category={""}
+                    title={article.title}
                   />
-                </div>
-                <div className="p-6">
-                  <h3 className="mb-2 text-xl font-medium text-white group-hover:text-[#cc4141]">
-                    {article.title}
-                  </h3>
-                  <p className="text-gray-400">{article.excerpt}</p>
-                </div>
-              </Link>
-            ))}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </main>
     </div>
   );

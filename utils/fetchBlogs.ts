@@ -8,6 +8,7 @@ type GetBlogsForProductProps = {
   keyword?: string;
   product: string;
   category?: string;
+  filteredBlogs?: string[];
 };
 
 // Workaround: graphql doesn't allow you to query by file name
@@ -34,9 +35,13 @@ export async function getBlogsForProduct({
   limit,
   product,
   keyword,
+  filteredBlogs,
 }: GetBlogsForProductProps) {
   try {
     let titles = await getTitlesInTenant(product);
+    if (filteredBlogs && filteredBlogs.length > 0) {
+      titles = titles.filter((title) => !filteredBlogs.includes(title));
+    }
 
     if (keyword) {
       titles = titles.filter((title) =>
