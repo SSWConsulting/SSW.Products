@@ -121,23 +121,22 @@ export default function BlogPostClient({
   return (
     <div className="min-h-screen text-white">
       <main className="container mx-auto px-4 py-8">
-        <div className="">
-          <div className="text-sm uppercase tracking-wide text-white/60">
-            {data.blogs.category}
-          </div>
-          <h1 className="mt-2 mb-6 text-3xl max-w-4xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
-            {data.blogs.title}
-          </h1>
-          <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-            <AuthorInfo
-              authorImage={data.blogs.authorImage}
-              author={data.blogs.author}
-              sswPeopleLink={data.blogs.sswPeopleLink}
-              initialFormattedDate={initialFormattedDate}
-              dynamicDate={data.blogs.date}
-              readingTime={data.blogs.readLength}
-            />
-          </div>
+        {" "}
+        <div className="text-sm uppercase tracking-wide text-white/60">
+          {data.blogs.category}
+        </div>
+        <h1 className="mt-2 mb-6 text-3xl max-w-4xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+          {data.blogs.title}
+        </h1>
+        <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+          <AuthorInfo
+            authorImage={data.blogs.authorImage}
+            author={data.blogs.author}
+            sswPeopleLink={data.blogs.sswPeopleLink}
+            initialFormattedDate={initialFormattedDate}
+            dynamicDate={data.blogs.date}
+            readingTime={data.blogs.readLength}
+          />
 
           {/* Tags and social sharing icons */}
           <div className="mt-6 flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
@@ -151,9 +150,8 @@ export default function BlogPostClient({
             )}
           </div>
         </div>
-
         <div className="relative flex  z-0 overflow-hidden">
-          <div className="relative aspect-video w-full mx-60 my-8 a z-20 inset-0   ">
+          <div className="relative aspect-video w-full mx-60 my-16 a z-20 inset-0   ">
             {/* The the mask clip border prevents an opaque border from forming around the image */}
             <Image
               alt="alt text"
@@ -188,9 +186,8 @@ export default function BlogPostClient({
             />
           </div>
         </div>
-
         {/* Article Content */}
-        <div className="flex">
+        <div className="flex mt-8">
           {/* Main Content - Takes up 2/3 of the space on large screens */}
           <div className="flex flex-col basis-2/3">
             <div className="grow">
@@ -300,7 +297,6 @@ export default function BlogPostClient({
             </div>
           </div>
         </div>
-
         {/* Related Articles - Full width */}
         <div className="mt-16 border-t border-gray-800 pt-12">
           <div className="mb-8">
