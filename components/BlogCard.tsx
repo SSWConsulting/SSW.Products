@@ -7,6 +7,7 @@ import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import ArticleMetadata from "./shared/ArticleMetadata";
 import Author from "./shared/Author";
+import CategoryLabel from "./shared/CategoryLabel";
 import GridBackground from "./shared/GridBackground";
 import ReadMore from "./shared/ReadMore";
 

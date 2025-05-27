@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 const CategoryLabel = ({
   children,
   className,
@@ -16,3 +18,5 @@ const CategoryLabel = ({
     </div>
   );
 };
+
+export default CategoryLabel;

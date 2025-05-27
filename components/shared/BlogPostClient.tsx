@@ -18,6 +18,7 @@ import { ReactNode, useMemo, useState } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
+
 interface BlogPostClientProps extends OptionalProps<FormattedDate> {
   query: string;
   variables: object;

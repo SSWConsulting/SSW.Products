@@ -4,17 +4,16 @@ import Container from "@comps/Container";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Search } from "lucide-react";
 import Image from "next/image";
-import {
-  BlogsIndexBlocksArticleList,
-  BlogsIndexBlocksHeroSearch,
-} from "../../tina/__generated__/types";
-import CallToAction from "./Blocks/CallToAction";
-
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__generated__/types";
+import {
+  BlogsIndexBlocksArticleList,
+  BlogsIndexBlocksHeroSearch,
+  BlogsIndexBlocksFeaturedBlog as FeaturedBlog,
+} from "../../tina/__generated__/types";
+import CallToAction from "./Blocks/CallToAction";
 
 import { RemoveTinaMetadata } from "@/types/tina";
 import { BlogCard } from "@comps/BlogCard";
@@ -25,6 +24,7 @@ import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import { Button } from "../ui/button";
 import ArticleMetadata from "./ArticleMetadata";
+import CategoryLabel from "./CategoryLabel";
 import GridBackground from "./GridBackground";
 import ReadMore from "./ReadMore";
 
