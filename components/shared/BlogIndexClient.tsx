@@ -1,11 +1,9 @@
 "use client";
-import { GridPattern } from "@/components/magicui/grid-background";
 import type { Author } from "@/types/author";
 import Container from "@comps/Container";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 import {
   BlogsIndexBlocksArticleList,
   BlogsIndexBlocksHeroSearch,
@@ -18,17 +16,17 @@ import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__generated__/types";
 
-import { cn } from "@/lib/utils";
-import { Blog } from "@/types/blog";
-import { Modify } from "@/types/modify";
 import { RemoveTinaMetadata } from "@/types/tina";
-import { formatDate } from "@utils/formatDate";
+import { BlogCard } from "@comps/BlogCard";
 import client from "../../tina/__generated__/client";
 import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import { Button } from "../ui/button";
+import ArticleMetadata from "./ArticleMetadata";
+import GridBackground from "./GridBackground";
+import ReadMore from "./ReadMore";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 
@@ -68,18 +66,6 @@ export default function BlogIndexClient({
     </>
   );
 }
-
-const GridBackground = () => {
-  return (
-    <GridPattern
-      stroke="2rem"
-      className="mask-[radial-gradient(400px_circle_at_center,white,transparent)]"
-      strokeDasharray={"4 2"}
-      width={30}
-      height={30}
-    />
-  );
-};
 
 const FeaturedArticle = ({
   featuredBlog,
@@ -179,30 +165,6 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
         }
       })}
     </>
-  );
-};
-
-const ArticleMetadata = ({
-  date,
-  readLength,
-  className,
-}: {
-  date?: string | null;
-  readLength?: string | null;
-  className?: string;
-}) => {
-  return (
-    <div className={cn("flex items-center gap-2 text-gray-400", className)}>
-      <div className="flex items-center gap-1">
-        <Calendar className="h-4 w-4" />
-        <span>{date && formatDate(date)}</span>
-      </div>
-      <span>•</span>
-      <div className="flex items-center gap-1">
-        <Clock className="h-4 w-4" />
-        <span>{readLength}</span>
-      </div>
-    </div>
   );
 };
 
@@ -339,124 +301,6 @@ const RecentArticles = ({
         )}
       </div>
     </Container>
-  );
-};
-
-type BlogCardProps = Modify<
-  Blog,
-  { author?: Author | null; slug?: string | null; groupHover?: boolean }
->;
-
-export const BlogCard = ({
-  bannerImage,
-  category,
-  readLength,
-  body,
-  groupHover,
-  slug,
-  title,
-  author,
-  date,
-}: BlogCardProps) => {
-  return (
-    <div className="h-full flex flex-col grow shrink-0 relative border bg-gradient-black border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
-      {groupHover && (
-        <Link href={`/blog/${slug}`} className="absolute inset-0 z-20" />
-      )}
-      <div className="relative aspect-video ">
-        <div className="inset-0 absolute align-middle items-center justify-center flex">
-          {bannerImage && (
-            <div
-              className={cn(
-                groupHover && "group-hover:scale-105",
-                "rounded-md transition-transform duration-700 mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video"
-              )}
-            >
-              <Image
-                alt=""
-                fill
-                objectFit="cover"
-                aria-hidden={true}
-                src={bannerImage}
-              />
-            </div>
-          )}
-        </div>
-        <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
-          <GridBackground />
-        </div>
-      </div>
-      <div className="grow shrink-0 gap-3 flex flex-col p-6">
-        {category && (
-          <CategoryLabel className="text-sm">{category}</CategoryLabel>
-        )}
-        <Link className="w-fit" href={`/blog/${slug}`}>
-          <h3
-            className={cn(
-              "text-xl font-bold text-gray-100 transition-colors",
-              groupHover ? "group-hover:text-ssw-red" : "hover:text-ssw-red"
-            )}
-          >
-            {title}
-          </h3>
-        </Link>
-        {author && (
-          <Author
-            author={author.author}
-            authorImage={author.authorImage}
-            sswPeopleLink={author.sswPeopleLink}
-          />
-        )}
-        <ArticleMetadata
-          className="h-fit"
-          date={date}
-          readLength={readLength}
-        />
-        <section className="text-gray-300 text-sm mb-4 line-clamp-2">
-          <TinaMarkdown content={body} />
-        </section>
-        <ReadMore groupHover={groupHover} fileName={slug || ""} />
-      </div>
-    </div>
-  );
-};
-
-const CategoryLabel = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <div
-      className={cn(
-        "bg-ssw-charcoal drop-shadow-xs z-10 w-fit text-white px-3 py-1 rounded-full",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
-};
-
-const ReadMore = ({
-  fileName,
-  groupHover,
-}: {
-  fileName: string;
-  groupHover?: boolean;
-}) => {
-  return (
-    <Link
-      href={`/blog/${fileName}`}
-      className={cn(
-        "text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1",
-        groupHover ? "group-hover:text-white" : "hover:text-white"
-      )}
-    >
-      Read More <ArrowRight className="h-4 w-4" />
-    </Link>
   );
 };
 

@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { OptionalProps } from "@/optionalProps";
 import { Blog } from "@/types/blog";
 import { AuthorInfo } from "@comps/AuthorInfo";
+import { BlogCard } from "@comps/BlogCard";
 import Container from "@comps/Container";
 import { TableOfContents } from "@comps/TableOfContents";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
@@ -17,7 +18,6 @@ import { ReactNode, useMemo, useState } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
-import { BlogCard } from "./BlogIndexClient";
 interface BlogPostClientProps extends OptionalProps<FormattedDate> {
   query: string;
   variables: object;
@@ -234,7 +234,6 @@ export default function BlogPostClient({
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
             {recentBlogs.map((article, index) => {
-              const {} = article;
               return (
                 <BlogCard
                   readLength={article.readLength}
