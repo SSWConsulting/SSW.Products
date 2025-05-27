@@ -198,26 +198,28 @@ export default function BlogPostClient({
           </div>
 
           {/* Article navigation */}
-          <div className=" border-t flex border-white/20 pt-6 lg:pt-12">
-            {previousBlog && (
-              <Link
-                href={`/blog/${previousBlog.slug}`}
-                className="flex items-center text-white/60 transition-colors hover:text-white"
-              >
-                <FaArrowLeft className="mr-2 h-4 w-4" />
-                Previous Article
-              </Link>
-            )}
-            {nextBlog && (
-              <Link
-                href={nextBlog.slug ? `/blog/${nextBlog.slug}` : "#"}
-                className="flex ml-auto items-center text-white/60 transition-colors hover:text-white"
-              >
-                Next Article
-                <FaArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            )}
-          </div>
+          {(previousBlog || nextBlog) && (
+            <div className=" border-t flex border-white/20 pt-6 lg:pt-12">
+              {previousBlog && (
+                <Link
+                  href={`/blog/${previousBlog.slug}`}
+                  className="flex items-center text-white/60 transition-colors hover:text-white"
+                >
+                  <FaArrowLeft className="mr-2 h-4 w-4" />
+                  Previous Article
+                </Link>
+              )}
+              {nextBlog && (
+                <Link
+                  href={nextBlog.slug ? `/blog/${nextBlog.slug}` : "#"}
+                  className="flex ml-auto items-center text-white/60 transition-colors hover:text-white"
+                >
+                  Next Article
+                  <FaArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Sidebar - Takes up 1/3 of the space on large screens */}
@@ -310,7 +312,7 @@ export default function BlogPostClient({
         <hr className=" text-white/20 w-full lg:my-12 my-6" />
       </Container>
       {/* Related Articles - Full width */}
-      {recentBlogs && (
+      {recentBlogs && recentBlogs.length > 0 && (
         <Container>
           {" "}
           <h2 className="text-2xl font-bold mb-8 text-white border-ssw-red pl-4 border-l-4">
