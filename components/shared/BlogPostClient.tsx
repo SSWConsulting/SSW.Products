@@ -88,13 +88,13 @@ export default function BlogPostClient({
   }, [data.blogs.body]);
 
   return (
-    <div className="min-h-screen flex flex-col gap-12 md:gap-24 text-white">
+    <div className="min-h-screen text-white">
       <Container className="w-full">
         {" "}
         <div className="text-sm uppercase tracking-wide text-white/60">
           {data.blogs.category}
         </div>
-        <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl mb-2 font-bold text-white md:text-4xl lg:text-5xl">
           {data.blogs.title}
         </h1>
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
@@ -157,7 +157,7 @@ export default function BlogPostClient({
           </div>
 
           {/* Article navigation */}
-          <div className="flex justify-between border-t border-white/20 pt-8">
+          <div className="flex justify-between border-t border-white/20 pt-6 md:pt-12">
             <Link
               href="#"
               className="flex items-center text-white/60 transition-colors hover:text-ssw-red"
@@ -250,14 +250,15 @@ export default function BlogPostClient({
       </Container>
 
       <Container className="w-full">
-        <hr className=" text-white/20 w-full" />
+        <hr className=" text-white/20 w-full lg:my-12 my-6" />
       </Container>
       {/* Related Articles - Full width */}
       {recentBlogs && (
         <Container>
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white">Related Articles</h2>
-          </div>
+          {" "}
+          <h2 className="text-2xl font-bold mb-8 text-white border-ssw-red pl-4 border-l-4 border[]">
+            Recent Blogs
+          </h2>
           <div className="grid gap-6 md:grid-cols-2">
             {recentBlogs.map((article, index) => {
               const {} = article;
