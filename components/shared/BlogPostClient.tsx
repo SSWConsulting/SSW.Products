@@ -181,9 +181,7 @@ export default function BlogPostClient({
         </Container>
       )}
 
-      {/* Article Content */}
       <Container className="sm:flex gap-10">
-        {/* Main Content - Takes up 2/3 of the space on large screens */}
         <div className={cn(showPanel && "basis-2/3", "flex flex-col w-full")}>
           <div className="grow box-border pb-12 lg:pb-24">
             <section
@@ -196,8 +194,6 @@ export default function BlogPostClient({
               />
             </section>
           </div>
-
-          {/* Article navigation */}
           {(previousBlog || nextBlog) && (
             <div className=" border-t flex border-white/20 pt-6 lg:pt-12">
               {previousBlog && (
@@ -266,7 +262,6 @@ export default function BlogPostClient({
       <Container className="w-full">
         <hr className=" text-white/20 w-full lg:my-12 my-6" />
       </Container>
-      {/* Related Articles - Full width */}
       {recentBlogs && recentBlogs.length > 0 && (
         <Container>
           {" "}
