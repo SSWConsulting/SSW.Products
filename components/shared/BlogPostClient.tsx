@@ -222,8 +222,6 @@ export default function BlogPostClient({
           )}
         </div>
 
-        {/* Sidebar - Takes up 1/3 of the space on large screens */}
-
         {showPanel && (
           <div className="basis-1/3 shrink-0">
             <div
@@ -232,10 +230,8 @@ export default function BlogPostClient({
                 titles.length && "sm:h-[calc(100vh_-_11rem)]"
               )}
             >
-              {/* Summary Card Layout */}
               {data.blogs.summaryCard && (
                 <div className="rounded-lg bg-gray-darkest [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]  p-6 overflow-y-auto">
-                  {/* Company information */}
                   <div
                     data-tina-field={tinaField(data.blogs, "summary")}
                     className="[&_p]:text-white/60  [&_li]:text-white/60 [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline"
@@ -313,7 +309,9 @@ const Contents = ({ titles }: { titles: Title[] }) => {
           >
             <a
               onClick={() => {
-                const SCROLL_OFFSET = 80;
+                const SCROLL_OFFSET = document
+                  .querySelectorAll("nav")[0]
+                  .getClientRects()[0].height;
                 const heading = document
                   .evaluate(
                     `//${title.type}[text()="${title.text}"]`,
