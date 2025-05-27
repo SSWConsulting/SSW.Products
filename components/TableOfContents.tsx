@@ -69,7 +69,7 @@ type ButtonProps = {
 const Popover = forwardRef<
   HTMLDivElement,
   { children: React.ReactNode; className?: string }
->(({ children, className }, ref) => {
+>(({ children, className }) => {
   const { open, tocRef, setOpen } = useTableOfContents();
   return (
     <div
