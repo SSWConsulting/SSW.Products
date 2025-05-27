@@ -91,10 +91,10 @@ export default function BlogPostClient({
     <div className="min-h-screen text-white pb-12 pt-20">
       <Container className="w-full">
         {" "}
-        <div className="text-sm uppercase tracking-wide text-white/60">
+        <div className="text-sm uppercase tracking-wide mb-3 text-white/60">
           {data.blogs.category}
         </div>
-        <h1 className="text-3xl mb-2 font-bold text-white md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl mb-3 font-bold text-white md:text-4xl lg:text-5xl">
           {data.blogs.title}
         </h1>
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
