@@ -156,7 +156,7 @@ export default function BlogPostClient({
             "flex flex-col overflow-hidden shrink-1"
           )}
         >
-          <div className="grow">
+          <div className="grow pb-12 lg:pb-24">
             <TinaMarkdown
               components={DocAndBlogMarkdownStyle}
               content={data.blogs.body}
