@@ -13,7 +13,7 @@ import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMark
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useMemo, useState } from "react";
-import { useTina } from "tinacms/dist/react";
+import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
 import { BlogCard } from "./BlogIndexClient";
@@ -103,14 +103,21 @@ export default function BlogPostClient({
     <div className="min-h-screen text-white pb-12 pt-20">
       <Container className="w-full">
         {" "}
-        <div className="text-sm uppercase tracking-wide mb-3 text-white/60">
+        <div
+          data-tina-field={tinaField(data.blogs, "category")}
+          className="text-sm uppercase w-fit tracking-wide mb-3 text-white/60"
+        >
           {data.blogs.category}
         </div>
-        <h1 className="text-3xl mb-3 font-bold text-white md:text-4xl lg:text-5xl ">
+        <h1
+          data-tina-field={tinaField(data.blogs, "title")}
+          className="text-3xl w-fit mb-3 font-bold text-white md:text-4xl lg:text-5xl "
+        >
           {data.blogs.title}
         </h1>
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
           <AuthorInfo
+            data-tina-field={tinaField(data.blogs, "author")}
             authorImage={data.blogs.authorImage}
             author={data.blogs.author}
             sswPeopleLink={data.blogs.sswPeopleLink}
@@ -121,7 +128,10 @@ export default function BlogPostClient({
         </div>
       </Container>
       <div className="relative flex  z-0 overflow-hidden">
-        <div className="relative aspect-video lg:w-1/2 w-4/5 mx-auto my-16 a z-20 inset-0   ">
+        <div
+          data-tina-field={tinaField(data.blogs, "bannerImage")}
+          className="relative aspect-video lg:w-1/2 w-4/5 mx-auto my-16 a z-20 inset-0   "
+        >
           <Image
             alt="alt text"
             objectFit="cover"
@@ -174,17 +184,17 @@ export default function BlogPostClient({
       {/* Article Content */}
       <Container className="sm:flex gap-10">
         {/* Main Content - Takes up 2/3 of the space on large screens */}
-        <div
-          className={cn(
-            showPanel && "basis-2/3",
-            "flex flex-col overflow-hidden w-full"
-          )}
-        >
-          <div className="grow pb-12 lg:pb-24">
-            <TinaMarkdown
-              components={DocAndBlogMarkdownStyle}
-              content={data.blogs.body}
-            />
+        <div className={cn(showPanel && "basis-2/3", "flex flex-col w-full")}>
+          <div className="grow box-border pb-12 lg:pb-24">
+            <section
+              className="box-content"
+              data-tina-field={tinaField(data.blogs, "body")}
+            >
+              <TinaMarkdown
+                components={DocAndBlogMarkdownStyle}
+                content={data.blogs.body}
+              />
+            </section>
           </div>
 
           {/* Article navigation */}
@@ -224,7 +234,10 @@ export default function BlogPostClient({
               {data.blogs.summaryCard && (
                 <div className="rounded-lg bg-gray-darkest [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]  p-6 overflow-y-auto">
                   {/* Company information */}
-                  <div className="[&_p]:text-white/60  [&_li]:text-white/60 [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline">
+                  <div
+                    data-tina-field={tinaField(data.blogs, "summary")}
+                    className="[&_p]:text-white/60  [&_li]:text-white/60 [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline"
+                  >
                     <TinaMarkdown
                       content={data.blogs.summary}
                       components={{

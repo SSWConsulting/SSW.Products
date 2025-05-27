@@ -7,6 +7,7 @@ import { ReadingTime } from "./ReadingTime";
 import { useFormattedDate } from "./hooks/useFormattedDate";
 
 type AuthorInfoProps = {
+  "data-tina-field"?: string;
   readingTime?: string | null;
 } & Author &
   OptionalProps<FormattedDate>;
@@ -18,9 +19,13 @@ export function AuthorInfo({
   initialFormattedDate,
   dynamicDate,
   readingTime,
+  ...props
 }: AuthorInfoProps) {
   return (
-    <div className="flex items-center space-x-4">
+    <div
+      data-tina-field={props["data-tina-field"]}
+      className="flex items-center space-x-4"
+    >
       <div className="h-10 w-10 overflow-hidden rounded-full">
         {authorImage && (
           <Image
