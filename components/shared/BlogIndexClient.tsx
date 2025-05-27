@@ -228,61 +228,6 @@ const RecentArticles = ({
                   slug={post._sys.filename}
                 />
               )
-              // <div
-              //   key={index}
-              //   className="border bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              // >
-              //   <div className="h-full flex flex-col grow shrink-0">
-              //     <div className="relative aspect-video ">
-              //       <div className="inset-0 absolute align-middle items-center justify-center flex">
-              //         {edge?.node?.bannerImage && (
-              //           <div className="rounded-md mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
-              //             <Image
-              //               alt=""
-              //               fill
-              //               objectFit="cover"
-              //               aria-hidden={true}
-              //               src={edge?.node?.bannerImage}
-              //             />
-              //           </div>
-              //         )}
-              //       </div>
-              //       <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
-              //         <GridBackground />
-              //       </div>
-              //     </div>
-              //     <div className="grow shrink-0 gap-3 flex flex-col p-6">
-              //       {edge?.node?.category && (
-              //         <CategoryLabel className="text-sm">
-              //           {edge?.node?.category}
-              //         </CategoryLabel>
-              //       )}
-              //       <Link
-              //         className="w-fit"
-              //         href={`/blog/${post?._sys.filename}`}
-              //       >
-              //         <h3 className="text-xl font-bold text-gray-100 hover:text-ssw-red transition-colors">
-              //           {post?.title}
-              //         </h3>
-              //       </Link>
-              //       <Author
-              //         author={edge?.node?.author}
-              //         authorImage={edge?.node?.authorImage}
-              //         sswPeopleLink={edge?.node?.sswPeopleLink}
-              //       />
-              //       <ArticleMetadata
-              //         className="h-fit"
-              //         date={edge?.node?.date}
-              //         readLength={edge?.node?.readLength}
-              //       />
-
-              //       <section className="text-gray-300 text-sm mb-4 line-clamp-2">
-              //         <TinaMarkdown content={post?.body} />
-              //       </section>
-              //       <ReadMore fileName={post?._sys.filename || ""} />
-              //     </div>
-              //   </div>
-              // </div>
             );
           })
         )}
