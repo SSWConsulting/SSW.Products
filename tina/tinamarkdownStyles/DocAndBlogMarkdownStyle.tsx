@@ -50,11 +50,14 @@ export const DocAndBlogMarkdownStyle: Components<{
   lic: (props) => <span>{props?.children}</span>, // For inline list content
 
   a: (props) => (
-    <a className="underline hover:text-[#CC4141]" href={props?.url}>
+    <a
+      className="underline transition-colors hover:text-white text-[#CC4141]"
+      href={props?.url}
+    >
+      {" "}
       {props?.children}
     </a>
   ),
-
   img: (props) => (
     <>
       <Image
