@@ -5,6 +5,8 @@ import { FormattedDate } from "@/formattedDate";
 import { OptionalProps } from "@/optionalProps";
 import { Blog } from "@/types/blog";
 import { AuthorInfo } from "@comps/AuthorInfo";
+import Container from "@comps/Container";
+
 import { Tags } from "@comps/Tags";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -124,12 +126,12 @@ export default function BlogPostClient({
 
   return (
     <div className="min-h-screen text-white">
-      <main className="container mx-auto px-4 py-8">
+      <Container>
         {" "}
         <div className="text-sm uppercase tracking-wide text-white/60">
           {data.blogs.category}
         </div>
-        <h1 className="mt-2 mb-6 text-3xl max-w-4xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+        <h1 className="mt-2 mb-6 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
           {data.blogs.title}
         </h1>
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
@@ -193,6 +195,7 @@ export default function BlogPostClient({
         {/* Article Content */}
         <div className="flex mt-8">
           {/* Main Content - Takes up 2/3 of the space on large screens */}
+
           <div className="flex flex-col basis-2/3">
             <div className="grow">
               <TinaMarkdown
@@ -263,7 +266,6 @@ export default function BlogPostClient({
                               <a
                                 onClick={() => {
                                   const SCROLL_OFFSET = 80;
-
                                   const heading = document
                                     .evaluate(
                                       `//${title.type}[text()="${title.text}"]`,
@@ -326,7 +328,7 @@ export default function BlogPostClient({
             </div>
           </div>
         )}
-      </main>
+      </Container>
     </div>
   );
 }
