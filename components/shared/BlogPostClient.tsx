@@ -157,19 +157,21 @@ export default function BlogPostClient({
           />
         </div>
       </div>
-      <Container className="w-full relative block sm:hidden">
-        <TableOfContents.Root>
-          <TableOfContents.Button
-            className="my-2"
-            onClick={() => {
-              setContentsOpen(!contentsOpen);
-            }}
-          />
-          <TableOfContents.Popover>
-            <Contents titles={titles} />
-          </TableOfContents.Popover>
-        </TableOfContents.Root>
-      </Container>
+      {titles.length > 0 && (
+        <Container className="w-full relative block sm:hidden">
+          <TableOfContents.Root>
+            <TableOfContents.Button
+              className="my-2"
+              onClick={() => {
+                setContentsOpen(!contentsOpen);
+              }}
+            />
+            <TableOfContents.Popover>
+              <Contents titles={titles} />
+            </TableOfContents.Popover>
+          </TableOfContents.Root>
+        </Container>
+      )}
 
       {/* Article Content */}
       <Container className="flex gap-10">
