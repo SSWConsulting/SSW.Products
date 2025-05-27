@@ -8,6 +8,11 @@ export const blogCollection: Collection = {
   name: "blogs",
   path: "content/blogs/",
   format: "mdx",
+  ui: {
+    router: (item) => {
+      return `/blog/${item.document._sys.filename}`;
+    },
+  },
   defaultItem: () => {
     return {
       category: DEFAULT_CATEGORY,
