@@ -88,13 +88,13 @@ export default function BlogPostClient({
   }, [data.blogs.body]);
 
   return (
-    <div className="min-h-screen text-white">
-      <Container>
+    <div className="min-h-screen flex flex-col gap-12 md:gap-24 text-white">
+      <Container className="w-full">
         {" "}
         <div className="text-sm uppercase tracking-wide text-white/60">
           {data.blogs.category}
         </div>
-        <h1 className="mt-2 mb-6 text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
           {data.blogs.title}
         </h1>
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
@@ -109,7 +109,7 @@ export default function BlogPostClient({
         </div>
       </Container>
       <div className="relative flex  z-0 overflow-hidden">
-        <div className="relative aspect-video sm:w-3/4 w-4/5 mx-auto my-16 a z-20 inset-0   ">
+        <div className="relative aspect-video lg:w-1/2 w-4/5 mx-auto my-16 a z-20 inset-0   ">
           {/* The the mask clip border prevents an opaque border from forming around the image */}
           <Image
             alt="alt text"
@@ -157,7 +157,7 @@ export default function BlogPostClient({
           </div>
 
           {/* Article navigation */}
-          <div className="mb-12 flex justify-between border-t border-white/20 pt-8">
+          <div className="flex justify-between border-t border-white/20 pt-8">
             <Link
               href="#"
               className="flex items-center text-white/60 transition-colors hover:text-ssw-red"
@@ -206,48 +206,41 @@ export default function BlogPostClient({
                 </h3>
                 <nav>
                   <ul className="text-sm">
-                    {titles.map(
-                      (title, index) => (
-                        console.log("mappedtitle", title),
-                        (
-                          <li
-                            className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
-                            key={index}
-                            style={{}}
-                          >
-                            <a
-                              onClick={() => {
-                                const SCROLL_OFFSET = 80;
-                                const heading = document
-                                  .evaluate(
-                                    `//${title.type}[text()="${title.text}"]`,
-                                    document,
-                                    null,
-                                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-                                    null
-                                  )
-                                  .snapshotItem(0);
-                                if (!heading) return;
+                    {titles.map((title, index) => (
+                      <li
+                        className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
+                        key={index}
+                        style={{}}
+                      >
+                        <a
+                          onClick={() => {
+                            const SCROLL_OFFSET = 80;
+                            const heading = document
+                              .evaluate(
+                                `//${title.type}[text()="${title.text}"]`,
+                                document,
+                                null,
+                                XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                null
+                              )
+                              .snapshotItem(0);
+                            if (!heading) return;
 
-                                const y =
-                                  (
-                                    heading as HTMLElement
-                                  ).getBoundingClientRect().top +
-                                  window.scrollY;
-                                window.scrollTo({
-                                  top: y - SCROLL_OFFSET,
-                                  behavior: "smooth",
-                                });
-                              }}
-                              href={`#${title.text}`}
-                              className="transition-colors inset-0 group-hover:text-ssw-red"
-                            >
-                              {title.text}
-                            </a>
-                          </li>
-                        )
-                      )
-                    )}
+                            const y =
+                              (heading as HTMLElement).getBoundingClientRect()
+                                .top + window.scrollY;
+                            window.scrollTo({
+                              top: y - SCROLL_OFFSET,
+                              behavior: "smooth",
+                            });
+                          }}
+                          href={`#${title.text}`}
+                          className="transition-colors inset-0 group-hover:text-ssw-red"
+                        >
+                          {title.text}
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </nav>
               </div>
@@ -255,9 +248,13 @@ export default function BlogPostClient({
           </div>
         </div>
       </Container>
+
+      <Container className="w-full">
+        <hr className=" text-white/20 w-full" />
+      </Container>
       {/* Related Articles - Full width */}
       {recentBlogs && (
-        <Container className="border-t border-gray-800 pt-12">
+        <Container>
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-white">Related Articles</h2>
           </div>
