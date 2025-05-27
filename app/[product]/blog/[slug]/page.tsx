@@ -68,7 +68,15 @@ export default async function BlogPost({ params }: BlogPostProps) {
         blog.node;
       return [
         ...acc,
-        { author, date, title, _sys, category, body, bannerImage },
+        {
+          author,
+          date,
+          title,
+          slug: _sys.filename,
+          category,
+          body,
+          bannerImage,
+        },
       ];
     }, []) || [];
 

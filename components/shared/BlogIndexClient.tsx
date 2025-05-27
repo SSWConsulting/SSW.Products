@@ -246,11 +246,11 @@ const RecentArticles = ({
         {data?.pages.map((page) =>
           page?.edges?.map((edge, index) => {
             const post = edge?.node;
-            // const { author, authorImage, sswPeopleLink } = post || {};
 
             return (
               post && (
                 <BlogCard
+                  key={`blog-${index}`}
                   category={post.category}
                   bannerImage={post.bannerImage}
                   title={post.title}
