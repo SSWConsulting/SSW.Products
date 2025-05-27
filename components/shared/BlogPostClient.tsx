@@ -97,7 +97,7 @@ export default function BlogPostClient({
         <div className="text-sm uppercase tracking-wide mb-3 text-white/60">
           {data.blogs.category}
         </div>
-        <h1 className="text-3xl mb-3 font-bold text-white md:text-4xl lg:text-5xl">
+        <h1 className="text-3xl mb-3 font-bold text-white md:text-4xl lg:text-5xl ">
           {data.blogs.title}
         </h1>
         <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
@@ -153,7 +153,7 @@ export default function BlogPostClient({
         <div
           className={cn(
             showPanel && "basis-2/3",
-            "flex flex-col overflow-hidden shrink-1"
+            "flex flex-col overflow-hidden w-full"
           )}
         >
           <div className="grow pb-12 lg:pb-24">
@@ -217,7 +217,7 @@ export default function BlogPostClient({
                     <ul className="text-sm">
                       {titles.map((title, index) => (
                         <li
-                          className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
+                          className="text-white/60 group py-1 border-l w-fit pl-2 hover:border-white border-white/10"
                           key={index}
                           style={{}}
                         >
@@ -244,7 +244,7 @@ export default function BlogPostClient({
                               });
                             }}
                             href={`#${title.text}`}
-                            className="transition-colors inset-0 group-hover:text-ssw-red"
+                            className="inset-0 group-hover:text-ssw-red"
                           >
                             {title.text}
                           </a>
