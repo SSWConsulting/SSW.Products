@@ -147,8 +147,7 @@ export default function BlogPostClient({
       {/* Article Content */}
       <Container className="flex">
         {/* Main Content - Takes up 2/3 of the space on large screens */}
-
-        <div className="flex flex-col basis-2/3">
+        <div className="flex flex-col basis-2/3 overflow-hidden shrink-1">
           <div className="grow">
             <TinaMarkdown
               components={DocAndBlogMarkdownStyle}
@@ -176,7 +175,7 @@ export default function BlogPostClient({
         </div>
 
         {/* Sidebar - Takes up 1/3 of the space on large screens */}
-        <div className="basis-1/3">
+        <div className="basis-1/3 shrink-0">
           <div className="sticky h-[calc(100vh_-_11rem)] flex flex-col summary overflow-hidden top-32 space-y-6">
             {/* Summary Card Layout */}
             {data.blogs.summaryCard && (
