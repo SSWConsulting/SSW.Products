@@ -194,7 +194,12 @@ export default function BlogPostClient({
 
         {showPanel && (
           <div className="basis-1/3 shrink-0">
-            <div className="sticky h-[calc(100vh_-_11rem)] flex flex-col summary overflow-hidden top-32 space-y-6">
+            <div
+              className={cn(
+                "sticky flex flex-col summary overflow-hidden top-32 space-y-6",
+                titles.length && "h-[calc(100vh_-_11rem)]"
+              )}
+            >
               {/* Summary Card Layout */}
               {data.blogs.summaryCard && (
                 <div className="rounded-lg bg-gray-darkest [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]  p-6 overflow-y-auto">
