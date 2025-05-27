@@ -3,6 +3,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { GridPattern } from "@/components/magicui/grid-background";
 import { FormattedDate } from "@/formattedDate";
+import { cn } from "@/lib/utils";
 import { OptionalProps } from "@/optionalProps";
 import { Blog } from "@/types/blog";
 import { AuthorInfo } from "@comps/AuthorInfo";
@@ -87,6 +88,8 @@ export default function BlogPostClient({
     return bodyTitles;
   }, [data.blogs.body]);
 
+  const showPanel = titles.length > 0 || data.blogs.summaryCard;
+
   return (
     <div className="min-h-screen text-white pb-12 pt-20">
       <Container className="w-full">
@@ -145,9 +148,14 @@ export default function BlogPostClient({
         </div>
       </div>
       {/* Article Content */}
-      <Container className="flex">
+      <Container className="flex gap-10">
         {/* Main Content - Takes up 2/3 of the space on large screens */}
-        <div className="flex flex-col basis-2/3 overflow-hidden shrink-1">
+        <div
+          className={cn(
+            showPanel && "basis-2/3",
+            "flex flex-col overflow-hidden shrink-1"
+          )}
+        >
           <div className="grow">
             <TinaMarkdown
               components={DocAndBlogMarkdownStyle}
@@ -175,77 +183,80 @@ export default function BlogPostClient({
         </div>
 
         {/* Sidebar - Takes up 1/3 of the space on large screens */}
-        <div className="basis-1/3 shrink-0">
-          <div className="sticky h-[calc(100vh_-_11rem)] flex flex-col summary overflow-hidden top-32 space-y-6">
-            {/* Summary Card Layout */}
-            {data.blogs.summaryCard && (
-              <div className="rounded-lg bg-gray-darkest [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]  p-6 overflow-y-auto">
-                {/* Company information */}
-                <div className="[&_p]:text-white/60  [&_li]:text-white/60 [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline">
-                  <TinaMarkdown
-                    content={data.blogs.summary}
-                    components={{
-                      li: (props: { children: ReactNode } | undefined) => (
-                        <li className="list-outside ml-6 list-disc">
-                          {props?.children}
-                        </li>
-                      ),
-                    }}
-                  />
+
+        {showPanel && (
+          <div className="basis-1/3 shrink-0">
+            <div className="sticky h-[calc(100vh_-_11rem)] flex flex-col summary overflow-hidden top-32 space-y-6">
+              {/* Summary Card Layout */}
+              {data.blogs.summaryCard && (
+                <div className="rounded-lg bg-gray-darkest [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]  p-6 overflow-y-auto">
+                  {/* Company information */}
+                  <div className="[&_p]:text-white/60  [&_li]:text-white/60 [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline">
+                    <TinaMarkdown
+                      content={data.blogs.summary}
+                      components={{
+                        li: (props: { children: ReactNode } | undefined) => (
+                          <li className="list-outside ml-6 list-disc">
+                            {props?.children}
+                          </li>
+                        ),
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Table of Contents Card */}
+              {/* Table of Contents Card */}
 
-            {titles.length > 0 && (
-              <div className="rounded-lg border shrink-0 border-white/20 [background-image:var(--gradient-black)] p-6">
-                <h3 className="mb-1 font-medium text-white">
-                  Table of Contents
-                </h3>
-                <nav>
-                  <ul className="text-sm">
-                    {titles.map((title, index) => (
-                      <li
-                        className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
-                        key={index}
-                        style={{}}
-                      >
-                        <a
-                          onClick={() => {
-                            const SCROLL_OFFSET = 80;
-                            const heading = document
-                              .evaluate(
-                                `//${title.type}[text()="${title.text}"]`,
-                                document,
-                                null,
-                                XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-                                null
-                              )
-                              .snapshotItem(0);
-                            if (!heading) return;
-
-                            const y =
-                              (heading as HTMLElement).getBoundingClientRect()
-                                .top + window.scrollY;
-                            window.scrollTo({
-                              top: y - SCROLL_OFFSET,
-                              behavior: "smooth",
-                            });
-                          }}
-                          href={`#${title.text}`}
-                          className="transition-colors inset-0 group-hover:text-ssw-red"
+              {titles.length > 0 && (
+                <div className="rounded-lg border shrink-0 border-white/20 [background-image:var(--gradient-black)] p-6">
+                  <h3 className="mb-1 font-medium text-white">
+                    Table of Contents
+                  </h3>
+                  <nav>
+                    <ul className="text-sm">
+                      {titles.map((title, index) => (
+                        <li
+                          className="text-white/60 group transition-colors py-1 border-l w-fit pl-2 hover:border-white border-white/10"
+                          key={index}
+                          style={{}}
                         >
-                          {title.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-              </div>
-            )}
+                          <a
+                            onClick={() => {
+                              const SCROLL_OFFSET = 80;
+                              const heading = document
+                                .evaluate(
+                                  `//${title.type}[text()="${title.text}"]`,
+                                  document,
+                                  null,
+                                  XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                                  null
+                                )
+                                .snapshotItem(0);
+                              if (!heading) return;
+
+                              const y =
+                                (heading as HTMLElement).getBoundingClientRect()
+                                  .top + window.scrollY;
+                              window.scrollTo({
+                                top: y - SCROLL_OFFSET,
+                                behavior: "smooth",
+                              });
+                            }}
+                            href={`#${title.text}`}
+                            className="transition-colors inset-0 group-hover:text-ssw-red"
+                          >
+                            {title.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </Container>
 
       <Container className="w-full">
