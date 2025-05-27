@@ -252,7 +252,10 @@ const RecentArticles = ({
                 <BlogCard
                   key={`blog-${index}`}
                   category={post.category}
+                  body={post.body}
                   bannerImage={post.bannerImage}
+                  date={post.date}
+                  readLength={post.readLength}
                   title={post.title}
                   author={{
                     author: post.author,
