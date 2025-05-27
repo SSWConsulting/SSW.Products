@@ -5,14 +5,54 @@ seo:
     Find out how you can optimise file sizes so that YakShaver can create better
     quality work items or emails
   openGraphTitle: Optimising File Sizes for YakShaver | Lewis Toh
-bannerImage: /YakShaver/Blogs/video_file_update.png
+category: What's New
 title: Optimising File Sizes for YakShaver
 date: '2025-02-06T13:00:00.000Z'
 author: Lewis Toh
 authorImage: /people/Lewis-Toh.jpg
-category: What's New
 sswPeopleLink: 'https://www.ssw.com.au/people/lewis-toh/'
+bannerImage: /YakShaver/Blogs/video_file_update.png
 readLength: 2 min
+summaryCard: true
+summary: >
+  ## YakShaver Now Handles Bigger Video Files
+
+
+  YakShaver can now process videos larger than 25MB, enabling support for longer
+  and higher-quality recordings.
+
+
+  ***
+
+
+  ## Why the 25MB Limit Before?
+
+
+  The Azure OpenAI Whisper model has a hard 25MB limit for audio input.
+  Uploading full video files would be inefficient and costly—especially if
+  chunked and misused.
+
+
+  ***
+
+
+  ## Smart Workaround: Strip the Visuals
+
+
+  Instead of bypassing the limit, YakShaver extracts only the audio using
+  Xabe.FFmpeg, dramatically reducing file size while keeping transcription
+  quality high.
+
+
+  ***
+
+
+  ## Real File Size Reductions
+
+
+  * 1-min 4K video: 38.87MB ➜ 0.62MB 
+
+  * 30-min 2K video: 209.89MB ➜ 7.95MB
 ---
 
 YakShaver now can process videos greater than 25MB! This means longer and higher quality videos will now be able to be processed through YakShaver, resulting in better quality work items or emails!
