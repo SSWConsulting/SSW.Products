@@ -8,10 +8,11 @@ import { OptionalProps } from "@/optionalProps";
 import { Blog } from "@/types/blog";
 import { AuthorInfo } from "@comps/AuthorInfo";
 import Container from "@comps/Container";
+import { TableOfContents } from "@comps/TableOfContents";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode, useMemo } from "react";
+import { ReactNode, useMemo, useState } from "react";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
@@ -26,6 +27,11 @@ interface BlogPostClientProps extends OptionalProps<FormattedDate> {
 }
 
 type Node = { children: Node[]; value: string; type: string; text: string };
+
+type Title = {
+  text: string;
+  type: string;
+};
 
 const searchAstTree = (node: Node, targetNodes: string[]) => {
   const results: Node[] = [];
@@ -78,7 +84,7 @@ export default function BlogPostClient({
   });
 
   // const titles = searchAstTree(data.blogs.body);
-
+  const [contentsOpen, setContentsOpen] = useState(false);
   const titles = useMemo(() => {
     const titleNodes = searchAstTree(data.blogs.body, [
       "h1",
@@ -151,6 +157,20 @@ export default function BlogPostClient({
           />
         </div>
       </div>
+      <Container className="w-full relative block sm:hidden">
+        <TableOfContents.Root>
+          <TableOfContents.Button
+            className="my-2"
+            onClick={() => {
+              setContentsOpen(!contentsOpen);
+            }}
+          />
+          <TableOfContents.Popover>
+            <Contents titles={titles} />
+          </TableOfContents.Popover>
+        </TableOfContents.Root>
+      </Container>
+
       {/* Article Content */}
       <Container className="flex gap-10">
         {/* Main Content - Takes up 2/3 of the space on large screens */}
@@ -226,7 +246,8 @@ export default function BlogPostClient({
                   <h3 className="mb-1 font-medium text-white">
                     Table of Contents
                   </h3>
-                  <nav>
+                  <Contents titles={titles} />
+                  {/* <nav>
                     <ul className="text-sm">
                       {titles.map((title, index) => (
                         <li
@@ -264,7 +285,7 @@ export default function BlogPostClient({
                         </li>
                       ))}
                     </ul>
-                  </nav>
+                  </nav> */}
                 </div>
               )}
             </div>
@@ -305,3 +326,47 @@ export default function BlogPostClient({
     </div>
   );
 }
+
+const Contents = ({ titles }: { titles: Title[] }) => {
+  return (
+    <nav>
+      <ul className="text-sm">
+        {titles.map((title, index) => (
+          <li
+            className="text-white/60 group py-1 border-l w-fit pl-2 hover:border-white border-white/10"
+            key={index}
+            style={{}}
+          >
+            <a
+              onClick={() => {
+                const SCROLL_OFFSET = 80;
+                const heading = document
+                  .evaluate(
+                    `//${title.type}[text()="${title.text}"]`,
+                    document,
+                    null,
+                    XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
+                    null
+                  )
+                  .snapshotItem(0);
+                if (!heading) return;
+
+                const y =
+                  (heading as HTMLElement).getBoundingClientRect().top +
+                  window.scrollY;
+                window.scrollTo({
+                  top: y - SCROLL_OFFSET,
+                  behavior: "smooth",
+                });
+              }}
+              href={`#${title.text}`}
+              className="inset-0 group-hover:text-ssw-red"
+            >
+              {title.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
