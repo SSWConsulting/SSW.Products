@@ -105,7 +105,8 @@ export default async function BlogPost({ params }: BlogPostProps) {
           previousBlog={previousBlog}
           recentBlogs={flattenedBlogs
             .filter((blog) => blog.title !== documentData.blogs.title)
-            .slice(0, 2)}
+            .slice(-2)
+            .reverse()}
           initialFormattedDate={
             documentData.blogs.date && formatDate(documentData.blogs.date)
           }
