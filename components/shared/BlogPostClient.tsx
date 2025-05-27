@@ -21,6 +21,8 @@ interface BlogPostClientProps extends OptionalProps<FormattedDate> {
   variables: object;
   pageData: { blogs: Blogs };
   recentBlogs?: Blog[];
+  nextBlog?: Blog;
+  previousBlog?: Blog;
 }
 
 type Node = { children: Node[]; value: string; type: string; text: string };
@@ -65,6 +67,8 @@ export default function BlogPostClient({
   variables,
   pageData,
   recentBlogs,
+  previousBlog,
+  nextBlog,
   initialFormattedDate,
 }: BlogPostClientProps) {
   const { data } = useTina<{ blogs: Blogs }>({
@@ -164,21 +168,25 @@ export default function BlogPostClient({
           </div>
 
           {/* Article navigation */}
-          <div className="flex justify-between border-t border-white/20 pt-6 lg:pt-12">
-            <Link
-              href="#"
-              className="flex items-center text-white/60 transition-colors hover:text-white"
-            >
-              <FaArrowLeft className="mr-2 h-4 w-4" />
-              Previous Article
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center text-white/60 transition-colors hover:text-white"
-            >
-              Next Article
-              <FaArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+          <div className=" border-t flex border-white/20 pt-6 lg:pt-12">
+            {previousBlog && (
+              <Link
+                href={`/blog/${previousBlog.slug}`}
+                className="flex items-center text-white/60 transition-colors hover:text-white"
+              >
+                <FaArrowLeft className="mr-2 h-4 w-4" />
+                Previous Article
+              </Link>
+            )}
+            {nextBlog && (
+              <Link
+                href={nextBlog.slug ? `/blog/${nextBlog.slug}` : "#"}
+                className="flex ml-auto items-center text-white/60 transition-colors hover:text-white"
+              >
+                Next Article
+                <FaArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            )}
           </div>
         </div>
 

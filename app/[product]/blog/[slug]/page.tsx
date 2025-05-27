@@ -46,23 +46,20 @@ export async function generateStaticParams() {
   );
 }
 
+let nextBlog: Blog | undefined = undefined;
+let previousBlog: Blog | undefined = undefined;
+
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = params;
-  getBlogsForProduct({ product });
 
   const documentData = await getBlogPost(product, slug);
 
-  const filter = documentData?.blogs?.title
-    ? { filteredBlogs: [documentData.blogs.title] }
-    : {};
-  const recentBlogs = await getBlogsForProduct({
+  const allBlogs = await getBlogsForProduct({
     product,
-    limit: 2,
-    ...filter,
   });
 
-  const mappedRecentBlogs =
-    recentBlogs.edges?.reduce<Blog[]>((acc, blog) => {
+  const flattenedBlogs =
+    allBlogs.edges?.reduce<Blog[]>((acc, blog) => {
       if (!blog?.node) return acc;
       const {
         author,
@@ -89,6 +86,13 @@ export default async function BlogPost({ params }: BlogPostProps) {
       ];
     }, []) || [];
 
+  const currentBlogIndex = flattenedBlogs.findIndex(
+    (blog) => blog.title === documentData?.blogs?.title
+  );
+
+  previousBlog = flattenedBlogs[currentBlogIndex + 1] || undefined;
+  nextBlog = flattenedBlogs[currentBlogIndex - 1] || undefined;
+
   if (!documentData) {
     return notFound();
   }
@@ -97,7 +101,11 @@ export default async function BlogPost({ params }: BlogPostProps) {
     <div className="flex flex-col min-h-screen">
       <div className="grow">
         <BlogPostClient
-          recentBlogs={mappedRecentBlogs}
+          nextBlog={nextBlog}
+          previousBlog={previousBlog}
+          recentBlogs={flattenedBlogs
+            .filter((blog) => blog.title !== documentData.blogs.title)
+            .slice(0, 2)}
           initialFormattedDate={
             documentData.blogs.date && formatDate(documentData.blogs.date)
           }
