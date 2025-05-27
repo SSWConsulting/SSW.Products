@@ -1,4 +1,5 @@
 "use client";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 import { GridPattern } from "@/components/magicui/grid-background";
 import { FormattedDate } from "@/formattedDate";
@@ -7,7 +8,6 @@ import { Blog } from "@/types/blog";
 import { AuthorInfo } from "@comps/AuthorInfo";
 import Container from "@comps/Container";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useMemo } from "react";
@@ -157,20 +157,20 @@ export default function BlogPostClient({
           </div>
 
           {/* Article navigation */}
-          <div className="flex justify-between border-t border-white/20 pt-6 md:pt-12">
+          <div className="flex justify-between border-t border-white/20 pt-6 lg:pt-12">
             <Link
               href="#"
-              className="flex items-center text-white/60 transition-colors hover:text-ssw-red"
+              className="flex items-center text-white/60 transition-colors hover:text-white"
             >
-              <ChevronLeft className="mr-2 h-4 w-4" />
+              <FaArrowLeft className="mr-2 h-4 w-4" />
               Previous Article
             </Link>
             <Link
               href="#"
-              className="flex items-center text-white/60 transition-colors hover:text-ssw-red"
+              className="flex items-center text-white/60 transition-colors hover:text-white"
             >
               Next Article
-              <ChevronRight className="ml-2 h-4 w-4" />
+              <FaArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </div>
         </div>
