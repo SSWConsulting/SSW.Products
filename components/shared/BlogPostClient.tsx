@@ -254,53 +254,12 @@ export default function BlogPostClient({
                 </div>
               )}
 
-              {/* Table of Contents Card */}
-
               {titles.length > 0 && (
                 <div className="hidden sm:block  rounded-lg border shrink-0 border-white/20 [background-image:var(--gradient-black)] p-6">
                   <h3 className="mb-1 font-medium text-white">
                     Table of Contents
                   </h3>
                   <Contents titles={titles} />
-                  {/* <nav>
-                    <ul className="text-sm">
-                      {titles.map((title, index) => (
-                        <li
-                          className="text-white/60 group py-1 border-l w-fit pl-2 hover:border-white border-white/10"
-                          key={index}
-                          style={{}}
-                        >
-                          <a
-                            onClick={() => {
-                              const SCROLL_OFFSET = 80;
-                              const heading = document
-                                .evaluate(
-                                  `//${title.type}[text()="${title.text}"]`,
-                                  document,
-                                  null,
-                                  XPathResult.ORDERED_NODE_SNAPSHOT_TYPE,
-                                  null
-                                )
-                                .snapshotItem(0);
-                              if (!heading) return;
-
-                              const y =
-                                (heading as HTMLElement).getBoundingClientRect()
-                                  .top + window.scrollY;
-                              window.scrollTo({
-                                top: y - SCROLL_OFFSET,
-                                behavior: "smooth",
-                              });
-                            }}
-                            href={`#${title.text}`}
-                            className="inset-0 group-hover:text-ssw-red"
-                          >
-                            {title.text}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </nav> */}
                 </div>
               )}
             </div>
