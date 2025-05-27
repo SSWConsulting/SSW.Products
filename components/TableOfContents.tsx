@@ -93,24 +93,22 @@ const Popover = forwardRef<
 });
 Popover.displayName = "TableOfContents.Popover";
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className }, ref) => {
-    const { setOpen, buttonRef, open } = useTableOfContents();
-    return (
-      <button
-        ref={buttonRef}
-        className={cn(
-          "flex justify-center items-center gap-2 w-full text-white/60 hover:text-white transition-all duration-300 bg-white/10 p-2 rounded-lg",
-          className
-        )}
-        onClick={() => setOpen(!open)}
-      >
-        <MdMenu className="text-[#CC4141]" />
-        <span className="font-light">Table of Contents</span>
-      </button>
-    );
-  }
-);
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className }) => {
+  const { setOpen, buttonRef, open } = useTableOfContents();
+  return (
+    <button
+      ref={buttonRef}
+      className={cn(
+        "flex justify-center items-center gap-2 w-full text-white/60 hover:text-white transition-all duration-300 bg-white/10 p-2 rounded-lg",
+        className
+      )}
+      onClick={() => setOpen(!open)}
+    >
+      <MdMenu className="text-[#CC4141]" />
+      <span className="font-light">Table of Contents</span>
+    </button>
+  );
+});
 
 Button.displayName = "TableOfConents.Button";
 
