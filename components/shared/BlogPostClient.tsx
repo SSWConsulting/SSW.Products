@@ -10,6 +10,7 @@ import { AuthorInfo } from "@comps/AuthorInfo";
 import Container from "@comps/Container";
 import { TableOfContents } from "@comps/TableOfContents";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
+import { nodesToText, searchAstTree } from "@utils/astHelpers";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useMemo, useState } from "react";
@@ -26,46 +27,9 @@ interface BlogPostClientProps extends OptionalProps<FormattedDate> {
   previousBlog?: Blog;
 }
 
-type Node = { children: Node[]; value: string; type: string; text: string };
-
 type Title = {
   text: string;
   type: string;
-};
-
-const searchAstTree = (node: Node, targetNodes: string[]) => {
-  const results: Node[] = [];
-  recurseAstTree(node, targetNodes, results);
-  return results;
-};
-
-const recurseAstTree = (
-  node: Node,
-  targetNodes: string[],
-  accumulatedNodes: Node[]
-) => {
-  if (targetNodes.includes(node.type)) {
-    accumulatedNodes.push(node);
-  }
-  if (!node.children) {
-    return;
-  }
-  for (const child of node.children) {
-    recurseAstTree(child, targetNodes, accumulatedNodes);
-  }
-};
-
-const nodesToText = (node: Node[]) => {
-  return node.map((child) => {
-    const text = child.children
-      .map((child) => (child.children ? child.children[0].text : child.text))
-      .join(" ");
-
-    return {
-      text,
-      type: child.type,
-    };
-  });
 };
 
 export default function BlogPostClient({
