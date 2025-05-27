@@ -83,7 +83,6 @@ export default function BlogPostClient({
     data: pageData,
   });
 
-  // const titles = searchAstTree(data.blogs.body);
   const [contentsOpen, setContentsOpen] = useState(false);
   const titles = useMemo(() => {
     const titleNodes = searchAstTree(data.blogs.body, [
@@ -123,12 +122,11 @@ export default function BlogPostClient({
       </Container>
       <div className="relative flex  z-0 overflow-hidden">
         <div className="relative aspect-video lg:w-1/2 w-4/5 mx-auto my-16 a z-20 inset-0   ">
-          {/* The the mask clip border prevents an opaque border from forming around the image */}
           <Image
             alt="alt text"
             objectFit="cover"
             fill
-            className="rounded-lg p-0.5 mask-b-from-60% mask-b-to-100% mask-clip-padding"
+            className="rounded-lg mask-b-from-60% mask-b-to-100%"
             aria-hidden="true"
             src={data.blogs.bannerImage || ""}
           />
