@@ -166,7 +166,7 @@ export default function BlogPostClient({
                 setContentsOpen(!contentsOpen);
               }}
             />
-            <TableOfContents.Popover>
+            <TableOfContents.Popover className="my-2 mx-4">
               <Contents titles={titles} />
             </TableOfContents.Popover>
           </TableOfContents.Root>
@@ -174,7 +174,7 @@ export default function BlogPostClient({
       )}
 
       {/* Article Content */}
-      <Container className="flex gap-10">
+      <Container className="sm:flex gap-10">
         {/* Main Content - Takes up 2/3 of the space on large screens */}
         <div
           className={cn(
@@ -218,8 +218,8 @@ export default function BlogPostClient({
           <div className="basis-1/3 shrink-0">
             <div
               className={cn(
-                "sticky flex flex-col summary overflow-hidden top-32 space-y-6",
-                titles.length && "h-[calc(100vh_-_11rem)]"
+                "sticky flex flex-col pt-6 sm:pt-0 summary overflow-hidden top-32 space-y-6",
+                titles.length && "sm:h-[calc(100vh_-_11rem)]"
               )}
             >
               {/* Summary Card Layout */}
@@ -244,7 +244,7 @@ export default function BlogPostClient({
               {/* Table of Contents Card */}
 
               {titles.length > 0 && (
-                <div className="rounded-lg border shrink-0 border-white/20 [background-image:var(--gradient-black)] p-6">
+                <div className="hidden sm:block  rounded-lg border shrink-0 border-white/20 [background-image:var(--gradient-black)] p-6">
                   <h3 className="mb-1 font-medium text-white">
                     Table of Contents
                   </h3>

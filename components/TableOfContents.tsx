@@ -68,16 +68,18 @@ type ButtonProps = {
 
 const Popover = forwardRef<
   HTMLDivElement,
-  { children: React.ReactNode; open: boolean; closeCallback: () => void }
->(({ children, closeCallback }, ref) => {
+  { children: React.ReactNode; className?: string }
+>(({ children, className }, ref) => {
   const { open, tocRef, setOpen } = useTableOfContents();
   return (
     <div
       onClick={() => setOpen(false)}
       ref={tocRef}
-      className={`${
-        open ? "block" : "hidden"
-      } absolute top-full left-0 right-0 z-30 bg-black/95 rounded-lg border border-white/10 shadow-xl overflow-y-auto`}
+      className={cn(
+        className,
+        open ? "block" : "hidden",
+        `absolute top-full left-0 right-0 z-30 bg-black/95 rounded-lg border border-white/10 shadow-xl overflow-y-auto`
+      )}
     >
       <div className="flex justify-between items-center p-3 border-b border-white/10">
         <h2 className="text-lg font-medium text-white">Table of Contents</h2>
