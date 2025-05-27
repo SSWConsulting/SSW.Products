@@ -264,6 +264,7 @@ export default function BlogPostClient({
               const {} = article;
               return (
                 <BlogCard
+                  readLength={article.readLength}
                   slug={article.slug}
                   groupHover
                   key={`blog-${index}`}
