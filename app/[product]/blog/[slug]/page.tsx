@@ -64,11 +64,20 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const mappedRecentBlogs =
     recentBlogs.edges?.reduce<Blog[]>((acc, blog) => {
       if (!blog?.node) return acc;
-      const { author, date, title, _sys, category, body, bannerImage } =
-        blog.node;
+      const {
+        author,
+        date,
+        title,
+        _sys,
+        category,
+        body,
+        bannerImage,
+        readLength,
+      } = blog.node;
       return [
         ...acc,
         {
+          readLength,
           author,
           date,
           title,

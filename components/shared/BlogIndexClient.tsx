@@ -255,6 +255,7 @@ const RecentArticles = ({
                   body={post.body}
                   bannerImage={post.bannerImage}
                   date={post.date}
+                  groupHover={false}
                   readLength={post.readLength}
                   title={post.title}
                   author={{
@@ -414,7 +415,7 @@ export const BlogCard = ({
         <section className="text-gray-300 text-sm mb-4 line-clamp-2">
           <TinaMarkdown content={body} />
         </section>
-        <ReadMore groupHover fileName={slug || ""} />
+        <ReadMore groupHover={groupHover} fileName={slug || ""} />
       </div>
     </div>
   );
