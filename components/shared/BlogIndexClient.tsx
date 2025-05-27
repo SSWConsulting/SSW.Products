@@ -93,7 +93,7 @@ const FeaturedArticle = ({
           {props.title && (
             <h2
               data-tina-field={tinaField(props, "title")}
-              className="w-fit text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4"
+              className="w-fit text-2xl font-bold mb-8 border-l-4 border-ssw-red pl-4"
             >
               {props.title}
             </h2>
@@ -236,7 +236,7 @@ const RecentArticles = ({
       {props.title && !searchTerm && (
         <h2
           data-tina-field={tinaField(props, "title")}
-          className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4 w-fit"
+          className="text-2xl font-bold mb-8 border-l-4 border-ssw-red pl-4 w-fit"
         >
           {props.title}
         </h2>
@@ -340,7 +340,7 @@ const RecentArticles = ({
 
 type BlogCardProps = Modify<
   Blog,
-  { author?: Author | null; slug?: string | null }
+  { author?: Author | null; slug?: string | null; groupHover?: boolean }
 >;
 
 export const BlogCard = ({
@@ -348,17 +348,26 @@ export const BlogCard = ({
   category,
   readLength,
   body,
+  groupHover,
   slug,
   title,
   author,
   date,
 }: BlogCardProps) => {
   return (
-    <div className="h-full flex flex-col grow shrink-0 border bg-gradient-black border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+    <div className="h-full flex flex-col grow shrink-0 relative border bg-gradient-black border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
+      {groupHover && (
+        <Link href={`/blog/${slug}`} className="absolute inset-0 z-20" />
+      )}
       <div className="relative aspect-video ">
         <div className="inset-0 absolute align-middle items-center justify-center flex">
           {bannerImage && (
-            <div className="rounded-md mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
+            <div
+              className={cn(
+                groupHover && "group-hover:scale-105",
+                "rounded-md transition-transform duration-700 mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video"
+              )}
+            >
               <Image
                 alt=""
                 fill
@@ -378,7 +387,12 @@ export const BlogCard = ({
           <CategoryLabel className="text-sm">{category}</CategoryLabel>
         )}
         <Link className="w-fit" href={`/blog/${slug}`}>
-          <h3 className="text-xl font-bold text-gray-100 hover:text-ssw-red transition-colors">
+          <h3
+            className={cn(
+              "text-xl font-bold text-gray-100 transition-colors",
+              groupHover ? "group-hover:text-ssw-red" : "hover:text-ssw-red"
+            )}
+          >
             {title}
           </h3>
         </Link>
@@ -397,7 +411,7 @@ export const BlogCard = ({
         <section className="text-gray-300 text-sm mb-4 line-clamp-2">
           <TinaMarkdown content={body} />
         </section>
-        <ReadMore fileName={slug || ""} />
+        <ReadMore groupHover fileName={slug || ""} />
       </div>
     </div>
   );
@@ -422,11 +436,20 @@ const CategoryLabel = ({
   );
 };
 
-const ReadMore = ({ fileName }: { fileName: string }) => {
+const ReadMore = ({
+  fileName,
+  groupHover,
+}: {
+  fileName: string;
+  groupHover?: boolean;
+}) => {
   return (
     <Link
       href={`/blog/${fileName}`}
-      className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
+      className={cn(
+        "text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1",
+        groupHover ? "group-hover:text-white" : "hover:text-white"
+      )}
     >
       Read More <ArrowRight className="h-4 w-4" />
     </Link>

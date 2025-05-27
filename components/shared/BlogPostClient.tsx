@@ -88,7 +88,7 @@ export default function BlogPostClient({
   }, [data.blogs.body]);
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-white pb-12 pt-20">
       <Container className="w-full">
         {" "}
         <div className="text-sm uppercase tracking-wide text-white/60">
@@ -256,14 +256,15 @@ export default function BlogPostClient({
       {recentBlogs && (
         <Container>
           {" "}
-          <h2 className="text-2xl font-bold mb-8 text-white border-ssw-red pl-4 border-l-4 border[]">
-            Recent Blogs
+          <h2 className="text-2xl font-bold mb-8 text-white border-ssw-red pl-4 border-l-4">
+            Recent Articles
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
             {recentBlogs.map((article, index) => {
               const {} = article;
               return (
                 <BlogCard
+                  groupHover
                   key={`blog-${index}`}
                   body={article.body}
                   date={article.date}
