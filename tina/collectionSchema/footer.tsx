@@ -4,7 +4,7 @@ const footerItemIcon = [
   "FaYouTube",
   "FaLinkedIn",
   "FaFacebook",
-  "FaTwitter",
+  "FaXTwitter",
   "FaInstagram",
   "FaTiktok",
   "FaGithub",

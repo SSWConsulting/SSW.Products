@@ -1,16 +1,16 @@
-import React from "react";
-import Actions from "./ActionsButton";
-import { tinaField } from "tinacms/dist/react";
+import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import { tinaField } from "tinacms/dist/react";
 import {
   Components,
   TinaMarkdown,
   TinaMarkdownContent,
 } from "tinacms/dist/rich-text";
 import { YouTubeEmbed } from "../YouTubeEmbed";
+import Actions from "./ActionsButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
-import Link from "next/link";
-import { WordRotate } from "@/components/magicui/word-rotate";
 
 type ActionButton = {
   label: string;
@@ -84,7 +84,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
       ) {
         return (
           <div className="w-full h-full flex items-center justify-center">
-            <YouTubeEmbed src={mediaItem.src} />
+            <YouTubeEmbed className="aspect-video" src={mediaItem.src} />
           </div>
         );
       }
@@ -121,7 +121,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
 
   return (
     <div
-      className={`flex flex-col-reverse lg:flex-row w-full items-center lg:gap-12 gap-8 px-8 ${
+      className={`flex flex-col-reverse lg:flex-row w-full first:pt-20  items-center lg:gap-12 gap-8 px-8 ${
         feature.isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
       }  pb-10 lg:pb-0 3xl:px-20`}
     >
@@ -131,7 +131,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
             {/* First line: Headline (always on the first line) */}
             <div className="w-full md:w-auto lg:w-full xl:w-auto flex items-center">
               <h1
-                className="inline leading-1.5"
+                className="inline"
                 data-tina-field={tinaField(feature, "headline")}
               >
                 {feature.headline}
@@ -187,7 +187,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
         </div>
       </div>
       <div
-        className="lg:w-6/10 xl:w-7/10 w-full flex items-center justify-center h-full"
+        className="w-full flex items-center justify-center h-full"
         data-tina-field={tinaField(feature, "media")}
       >
         {renderMedia()}
@@ -207,12 +207,12 @@ const FeatureBlocks = ({ data, index }: FeatureBlocksProps) => {
   const features =
     data && Array.isArray(data.featureItem) ? data.featureItem : [];
 
-  const sizingClasses = "xl:px-32 3xl:px-60 lg:px-28 md:px-10 pt-32 pb-20";
+  const sizingClasses = "xl:px-32 3xl:px-60 lg:px-28 md:px-10";
 
   return (
     <section
       key={"features-" + index}
-      className={`flex flex-col items-center lg:space-y-12 ${sizingClasses}`}
+      className={`flex flex-col items-center ${sizingClasses}`}
     >
       {features.length > 0 &&
         features.map((feature: FeatureItem, featureIndex: number) => (

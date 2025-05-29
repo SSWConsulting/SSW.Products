@@ -12,7 +12,6 @@ export default function YaksShavedCounterBox() {
       fetch("/api/leaderboard") 
         .then((res) => res.json())
         .then((data) => {
-          console.log("Fetched data:", data);
           setYaksShaved(data.totalShaves);
         })
         .catch((error) =>
@@ -28,7 +27,7 @@ export default function YaksShavedCounterBox() {
           Yaks Shaved
         </div>
         <div className="text-3xl md:text-4xl font-semibold pt-2">
-          <NumberTicker value={yaksShaved*3} className="text-white" />
+          <NumberTicker value={yaksShaved} className="text-white" />
         </div>
       </div>
     );

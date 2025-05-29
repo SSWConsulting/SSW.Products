@@ -6,6 +6,10 @@
 # JetBrains IDE files
 .idea/
 
+
+# compiled typescript files
+/scripts/createIndices.js 
+
 # dependencies
 /node_modules
 /.pnp

@@ -1,5 +1,6 @@
-import React from "react";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { variantMap } from "./BookingButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
 
 type ActionButton = {
@@ -14,6 +15,12 @@ type ActionsProps = {
   className?: string;
 };
 
+const sizeMap = {
+  small: "py-1 px-2 text-sm",
+  medium: "py-2 px-4 text-base",
+  large: "py-3 text-lg px-6 text-lg",
+};
+
 export const ActionButton = ({
   action,
   className,
@@ -24,7 +31,13 @@ export const ActionButton = ({
   return action.url ? (
     <Link
       href={action.url}
-      className={`whitespace-nowrap inline-flex items-center justify-center rounded-lg ${className} ${action.variant} ${action.size} hover:opacity-80 transition-opacity duration-200 font-semibold`}
+      className={cn(
+        variantMap[action.variant],
+        className,
+        sizeMap[action.size],
+        `whitespace-nowrap inline-flex items-center justify-center rounded-lg transition-all duration-200 font-semibold uppercase`
+      )}
+      target="_blank"
     >
       {action.label}
     </Link>

@@ -22,6 +22,24 @@
       "_template": "stringItem"
     },
     {
+      "label": "COMMUNITY",
+      "items": [
+        {
+          "label": "SUPPORT",
+          "href": "/docs/support"
+        },
+        {
+          "label": "ROADMAP",
+          "href": "/roadmap"
+        },
+        {
+          "label": "DISCORD",
+          "href": "https://discord.gg/Jp9dyxKFjR"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
       "label": "Videos",
       "href": "https://www.youtube.com/@SSWYakShaver",
       "_template": "stringItem"
@@ -29,7 +47,7 @@
   ],
   "rightNavItem": [
     {
-      "Title": "TALK TO US",
+      "Title": "JOIN WAITLIST",
       "JotFormId": "243009066097861",
       "_template": "BookingButton"
     }

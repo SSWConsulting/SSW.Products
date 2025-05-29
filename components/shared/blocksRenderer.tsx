@@ -1,22 +1,17 @@
-import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
+import Banner from "./Blocks/Banner";
+import BentoBox from "./Blocks/BentoBox/BentoBox";
+import CalculatorComponent from "./Blocks/Calculator";
+import CallToAction from "./Blocks/CallToAction";
+import CardAndImageParent from "./Blocks/CardAndImage/CardAndImage";
+import ComparisonTable from "./Blocks/ComparisonTable";
 import FAQ from "./Blocks/FAQ";
 import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
+import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
+import Hero from "./Blocks/Hero/Hero";
 import Pricing from "./Blocks/Pricing";
-import Banner from "./Blocks/Banner";
+import { Timeline } from "./Blocks/Timeline/Timeline";
+import { TryItNow } from "./Blocks/TryItNow";
 import VideoDisplay from "./Blocks/VideoDisplay";
-
-import BentoBox from "./Blocks/BentoBox";
-
-import {
-  Accordion,
-  Button,
-  CardCarousel,
-  ImageTextBlock,
-  LogoCarousel,
-} from "ssw-tinacms-landingkit";
-import * as AntIcons from "react-icons/ai";
-import Hero from "./Blocks/Hero";
-
 
 interface Block {
   __typename: string;
@@ -24,7 +19,7 @@ interface Block {
   description?: string | null;
   allPlans?: { title: string | null }[] | null;
   plans?: Plan[] | null;
-  featureItem?: FeatureItem[];
+  featureItem?: null | FeatureItem[];
 }
 
 interface Plan {
@@ -50,7 +45,6 @@ const Blocks = ({ blocks }: BlocksProps) => {
   if (!blocks) return null;
 
   return blocks.map((block: Block, index: number) => {
-    
     switch (block.__typename) {
       case "PagesPageBlocksFeatures":
         if (block.featureItem) {
@@ -87,21 +81,19 @@ const Blocks = ({ blocks }: BlocksProps) => {
 
       case "PagesPageBlocksBentoBox":
         return <BentoBox data={block} />;
+      case "PagesPageBlocksTimeline":
+        return <Timeline data={block} />;
+      case "PagesPageBlocksCardAndImage":
+        return <CardAndImageParent key={index} {...block} />;
+      case "PagesPageBlocksComparisonTable":
+        return <ComparisonTable data={block} />;
+      case "PagesPageBlocksCalculator":
+        return <CalculatorComponent data={block} />;
+      case "PagesPageBlocksCallToAction":
+        return <CallToAction className="w-full" {...block} />;
 
-      case "PagesPageBlocksLogoCarousel":
-        //@ts-expect-error typing issue with data
-        return <LogoCarousel key={index} data={block} />;
-      case "PagesPageBlocksCardCarousel":
-        //@ts-expect-error typing issue with data
-        return <CardCarousel icons={AntIcons} data={block} />;
-      case "PagesPageBlocksButton":
-        //@ts-expect-error typing issue with data
-        return <Button icons={AntIcons} data={block} />;
-      case "PagesPageBlocksImageTextBlock":
-        //@ts-expect-error typing issue with data
-        return <ImageTextBlock icons={AntIcons} data={block}></ImageTextBlock>;
-      case "PagesPageBlocksAccordion":
-        return <Accordion callbackFunctions={null} icons={AntIcons} data={block}></Accordion>;
+      case "PagesPageBlocksTryItNow":
+        return <TryItNow {...block} />;
       default:
         return null;
     }

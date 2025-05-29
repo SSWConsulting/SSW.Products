@@ -8,10 +8,9 @@ const YakShaverGray = "bg-[#131313] shadow-2xl";
 export default function TimeSavedCounterBox() {
   const [timeSaved, setTimeSaved] = useState(0);
   useEffect(() => {
-    fetch("/api/leaderboard") 
+    fetch("/api/leaderboard")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched data:", data);
         setTimeSaved(data.totalShaves);
       })
       .catch((error) =>
@@ -25,13 +24,13 @@ export default function TimeSavedCounterBox() {
     >
       <div className="flex flex-row items-center gap-2 md:text-lg text-md text-gray-200">
         <IoIosTimer />
-        Saving Users
+        Users&#39; Time Saved
       </div>
       <div className=" pt-2 flex flex-row gap-2">
         <div className="text-3xl md:text-4xl font-semibold">
-          <NumberTicker value={timeSaved * 6} className="text-white" />
+          <NumberTicker value={(timeSaved * 30) / 60} className="text-white" />
         </div>
-        <div className="text-gray-400 text-sm place-self-end pb-1">Minutes</div>
+        <div className="text-gray-400 text-sm place-self-end pb-1">hours</div>
       </div>
     </div>
   );

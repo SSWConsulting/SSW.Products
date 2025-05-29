@@ -1,10 +1,6 @@
 import { Template } from "tinacms";
 import { actionsButtonTemplate } from "./ActionsButton.template";
-import { jotFormBookingButtonSchema } from "./BookingButtom.template";
-
-interface AllPlanItem {
-  title?: string;
-}
+import { jotFormBookingButtonSchema } from "./BookingButton.template";
 
 interface PlanItem {
   planTier?: string;
@@ -32,27 +28,6 @@ export const pricingTemplate: Template = {
       type: "rich-text",
     },
     {
-      name: "allPlans",
-      label: "Items included in all plans",
-      type: "object",
-      list: true as const,
-      ui: {
-        itemProps: (item: AllPlanItem) => ({
-          label: item?.title || "All Plan Item",
-        }),
-        defaultItem: () => ({
-          title: "Default All Plan Title",
-        }),
-      },
-      fields: [
-        {
-          name: "title",
-          label: "Title",
-          type: "string" as const,
-        },
-      ],
-    },
-    {
       name: "plans",
       label: "Plans",
       type: "object",
@@ -75,7 +50,7 @@ export const pricingTemplate: Template = {
       fields: [
         {
           name: "planTier",
-          label: "Plan Tier",
+          label: "Plan Tier Name",
           type: "string",
         },
         {
@@ -90,7 +65,17 @@ export const pricingTemplate: Template = {
         },
         {
           name: "subPriceText",
-          label: "Price under Text",
+          label: "Sub-text next to price",
+          type: "string",
+        },
+        {
+          name: "priceDescription",
+          label: "Price Description",
+          type: "string",
+        },
+        {
+          name: "timeSaved",
+          label: "Time Saved",
           type: "string",
         },
         {
@@ -99,19 +84,44 @@ export const pricingTemplate: Template = {
           type: "boolean",
         },
         {
-          name: "actions",
-          label: "Actions",
+          name: "listTitle",
+          label: "List Title",
+          type: "string",
+        },
+        {
+          name: "listItems",
+          label: "List Items",
+          type: "string",
+          list: true,
+        },
+
+        {
+          name: "buttons",
+          label: "Buttons",
+          list: true, //this wont work w/ list: false :(
           type: "object",
-          list: false,
-          ui: {
-            itemProps: (item: { label?: string }) => ({
-              label: item?.label || "Action Item",
-            }),
-          },
-          fields: [
-            ...actionsButtonTemplate.fields,
-            ...jotFormBookingButtonSchema.fields,
-          ],
+          templates: [actionsButtonTemplate, jotFormBookingButtonSchema],
+        },
+      ],
+    },
+    {
+      name: "addOns",
+      label: "Add Ons Section",
+      type: "object",
+      fields: [
+        { name: "title", label: "Title", type: "string" },
+        { name: "description", label: "Description", type: "string" },
+        { name: "price", label: "Price", type: "string" },
+        {
+          name: "subPriceText",
+          label: "Sub-text next to price",
+          type: "string",
+        },
+        {
+          name: "actionButton",
+          label: "Action Button",
+          type: "object",
+          fields: [...actionsButtonTemplate.fields],
         },
       ],
     },

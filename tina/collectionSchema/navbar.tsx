@@ -1,5 +1,5 @@
 import { Collection } from "tinacms";
-import { jotFormBookingButtonSchema } from "../../components/shared/Blocks/BookingButtom.template";
+import { jotFormBookingButtonSchema } from "../../components/shared/Blocks/BookingButton.template";
 
 export const navigationBarCollection: Collection = {
   label: "Navigation Bar",

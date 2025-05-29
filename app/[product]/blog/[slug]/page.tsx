@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation";
 
-import InteractiveBackground from "../../../../components/shared/Background/InteractiveBackground";
-import BlogPostClient from "../../../../components/shared/BlogPostClient";
-import FooterServer from "../../../../components/shared/FooterServer";
-import NavBarServer from "../../../../components/shared/NavBarServer";
-import client from "../../../../tina/__generated__/client";
-import { Blogs } from "../../../../tina/__generated__/types";
-import { setPageMetadata } from "../../../../utils/setPageMetaData";
+import InteractiveBackground from "@comps/shared/Background/InteractiveBackground";
+import BlogPostClient from "@comps/shared/BlogPostClient";
+import FooterServer from "@comps/shared/FooterServer";
+import client from "@tina/__generated__/client";
+import { Blogs } from "@tina/__generated__/types";
+import { setPageMetadata } from "@utils/setPageMetaData";
 
 interface BlogPostProps {
   params: {
@@ -35,13 +34,14 @@ export async function generateMetadata({ params }: BlogPostProps) {
   }
 }
 
-
 export async function generateStaticParams() {
   const sitePosts = await client.queries.blogsConnection({});
-  return sitePosts.data.blogsConnection?.edges?.map((post) => ({
-    slug: post?.node?._sys.filename,
-    product: post?.node?._sys.breadcrumbs[0]
-  })) || []
+  return (
+    sitePosts.data.blogsConnection?.edges?.map((post) => ({
+      slug: post?.node?._sys.filename,
+      product: post?.node?._sys.breadcrumbs[0],
+    })) || []
+  );
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
@@ -56,9 +56,8 @@ export default async function BlogPost({ params }: BlogPostProps) {
   return (
     <div className="flex flex-col min-h-screen">
       <InteractiveBackground />
-      <NavBarServer product={product} />
 
-      <div className="flex-grow">
+      <div className="grow">
         <BlogPostClient
           query={documentData.query}
           variables={documentData.variables}

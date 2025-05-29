@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { NavigationBarQuery } from "../../tina/__generated__/types";
 import Image from "next/image";
-import { BookingButton } from "./Blocks/BookingButton";
 import Link from "next/link";
-import { HiOutlineBars3 } from "react-icons/hi2";
+import { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa6";
+import { HiOutlineBars3 } from "react-icons/hi2";
+import { NavigationBarQuery } from "../../tina/__generated__/types";
+import { BookingButton } from "./Blocks/BookingButton";
 
 interface NavBarClientProps {
   results: NavigationBarQuery | null;
@@ -24,12 +26,12 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         setScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isOpen]);
 
   const { navigationBar } = results || {};
   const leftNavItems = navigationBar?.leftNavItem;
@@ -41,11 +43,11 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       case "NavigationBarLeftNavItemStringItem":
       case "NavigationBarRightNavItemStringItem":
         return (
-          <li
-            key={index}
-            className="flex items-center lg:px-3 xl:px-0 py-1 px-2"
-          >
-            <Link href={item.href} className="hover:underline underline-offset-4 decoration-[#CC4141] text-md">
+          <li key={index} className="flex items-center py-1">
+            <Link
+              href={item.href}
+              className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
+            >
               {item.label.toUpperCase()}
             </Link>
           </li>
@@ -53,18 +55,60 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       case "NavigationBarLeftNavItemGroupOfStringItems":
       case "NavigationBarRightNavItemGroupOfStringItems":
         return (
-          <li key={index} className="flex items-center group relative">
-            <span className="cursor-pointer">{item.label}</span>
-            <ul className="absolute top-full left-0 bg-white text-black hidden group-hover:block mt-2 space-y-1 p-2 rounded shadow-lg">
-              {item.items?.map((subItem: any, subIndex: number) => (
-                <li key={subIndex}>
-                  <Link href={subItem.href}>
-                    {subItem.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </li>
+          <>
+            {/* For lg screens and above - show dropdown */}
+            <li
+              key={index}
+              className="hidden lg:flex items-center group relative"
+            >
+              <span className="cursor-pointer flex items-center gap-2">
+                {item.label.toUpperCase()}{" "}
+                <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
+              </span>
+              <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible pt-2 transition-all duration-300">
+                <ul className="bg-[#222222] text-[#D1D5DB] border border-white/20 mt-0 space-y-2 p-3 rounded shadow-lg min-w-[150px] z-10">
+                  {item.items?.map((subItem: any, subIndex: number) => (
+                    <li
+                      key={subIndex}
+                      className="hover:text-white transition-colors flex items-center gap-1"
+                    >
+                      <Link
+                        href={subItem.href}
+                        className="block w-full hover:underline underline-offset-4 decoration-[#CC4141] flex items-center gap-1"
+                      >
+                        {subItem.label}
+                        {subItem.href &&
+                          (subItem.href.startsWith("http://") ||
+                            subItem.href.startsWith("https://")) && (
+                            <FaExternalLinkAlt className="text-xs text-red-500" />
+                          )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
+
+            {/* For md screens and below - show all subitems directly */}
+            {item.items?.map((subItem: any, subIndex: number) => (
+              <li
+                key={`${index}-${subIndex}`}
+                className="lg:hidden flex items-center py-1"
+              >
+                <Link
+                  href={subItem.href}
+                  className="hover:underline underline-offset-4 decoration-[#CC4141] text-md flex items-center gap-1"
+                >
+                  {subItem.label}
+                  {subItem.href &&
+                    (subItem.href.startsWith("http://") ||
+                      subItem.href.startsWith("https://")) && (
+                      <FaExternalLinkAlt className="text-xs text-red-500 opacity-50" />
+                    )}
+                </Link>
+              </li>
+            ))}
+          </>
         );
       case "NavigationBarLeftNavItemModalButton":
       case "NavigationBarRightNavItemModalButton":
@@ -95,53 +139,64 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   };
 
   return (
-    <div>
-      <nav
-        className={`${
-          scrolled
-            ? "bg-[#131313] bg-opacity-90 backdrop-blur-md border-b border-white/50"
-            : "bg-transparent "
-        } text-gray-300 fixed top-0 inset-x-0 w-full z-50 transition-colors duration-300 flex justify-between place-items-end h-[100px] pb-6 `}
-      >
-        <div className="flex items-end md:justify-between lg:justify-normal  w-full px-4 md:px-20">
+    <nav
+      className={`text-white transition-colors sticky duration-300 ease-in-out ${
+        scrolled
+          ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
+          : "py-6"
+      } z-40 w-full`}
+    >
+      <div className="max-w-7xl mx-4 xl:mx-auto flex justify-between">
+        <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
           {logo && (
-            <Link href="/" className=" lg:px-3 xl:px-0 md:px-3 px-2">
+            <Link href="/" className="shrink-0 mb-1.5">
               <Image src={logo} alt="Logo" width={200} height={200} />
             </Link>
           )}
 
-          <button
-            className="md:block lg:hidden ml-auto block text-3xl"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <CgClose /> : <HiOutlineBars3 />}
-          </button>
-
-          <ul className="hidden lg:flex items-center lg:px-10 space-x-15 xl:space-x-10">
+          <ul className="hidden lg:flex items-center gap-5 grow">
             {leftNavItems?.map((item, index) => renderNavItem(item, index))}
           </ul>
-
-          <ul className="hidden lg:flex items-center lg:ml-auto space-x-15 xl:space-x-20">
-            {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-          </ul>
         </div>
+        <ul className="sm:flex gap-5 [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center ">
+          {rightNavItems?.map((item, index) => renderNavItem(item, index))}
+          <li className="block lg:hidden">
+            <button
+              className="text-3xl fled align-middle"
+              onClick={(e) => {
+                const handleClickOutside = () => {
+                  setIsOpen(false);
+                  window.removeEventListener("click", handleClickOutside);
+                };
+                if (isOpen) {
+                  return;
+                }
+                setIsOpen(true);
+                window.addEventListener("click", handleClickOutside);
+                e.stopPropagation();
+              }}
+            >
+              {isOpen ? <CgClose /> : <HiOutlineBars3 />}
+            </button>
+          </li>
+        </ul>
         <div
           className={`${
             isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
           } ${
-            scrolled ? "bg-stone-700 bg-opacity-100" : "bg-opacity-90 bg-black"
+            scrolled ? "bg-stone-700" : "bg-opacity-90 bg-[#222222]/90"
           } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
         >
-          <div className="p-5">
-            <ul className="flex flex-col">
+          <div className="p-5 max-w-7xl mx-auto w-full">
+            <ul className="flex flex-col pl-2">
               {leftNavItems?.map((item, index) => renderNavItem(item, index))}
-            </ul>
-            <ul className="flex flex-col space-y-3">
-              {rightNavItems?.map((item, index) => renderNavItem(item, index))}
             </ul>
           </div>
         </div>
-      </nav>
-    </div>
+      </div>
+      <ul className="flex pt-4 [&>li>*]:w-full mx-4 xl:mx-0 [&>li]:w-full justify-center sm:hidden">
+        {rightNavItems?.map((item, index) => renderNavItem(item, index))}
+      </ul>
+    </nav>
   );
 }

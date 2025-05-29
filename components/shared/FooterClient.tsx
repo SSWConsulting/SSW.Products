@@ -1,20 +1,23 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FooterQuery } from "../../tina/__generated__/types";
 import {
-  FaYoutube,
-  FaLinkedin,
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaTiktok,
-  FaGithub,
   FaDiscord,
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaTiktok,
+  FaTwitter,
+  FaYoutube,
 } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { FooterQuery } from "../../tina/__generated__/types";
 
 interface FooterClientProps {
   results: FooterQuery | null;
+  hasPrivacyPolicy: boolean;
 }
 
 const iconMap: { [key: string]: JSX.Element } = {
@@ -22,13 +25,17 @@ const iconMap: { [key: string]: JSX.Element } = {
   FaLinkedIn: <FaLinkedin />,
   FaFacebook: <FaFacebook />,
   FaTwitter: <FaTwitter />,
+  FaXTwitter: <FaXTwitter />,
   FaInstagram: <FaInstagram />,
   FaTiktok: <FaTiktok />,
   FaGithub: <FaGithub />,
   FaDiscord: <FaDiscord />,
 };
 
-export default function FooterClient({ results }: FooterClientProps) {
+export default function FooterClient({
+  results,
+  hasPrivacyPolicy,
+}: FooterClientProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -43,16 +50,16 @@ export default function FooterClient({ results }: FooterClientProps) {
   const footerTitle = results?.footer?.footerTitle;
   const footerColor = results.footer.footerColor!;
 
-  const dynamicYear = new Date().getFullYear()
+  const dynamicYear = new Date().getFullYear();
 
   return (
     <footer
-      className={`text-white py-6 transition-opacity duration-300 ${
+      className={`text-white p-6 transition-opacity duration-300 ${
         !footerColor ? "bg-ssw-charcoal" : ""
       } ${isVisible ? "opacity-100" : "opacity-0"}`}
       style={{ backgroundColor: footerColor }}
     >
-      <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center lg:items-start">
+      <div className="max-w-7xl xl:mx-auto mx-4 flex flex-col lg:flex-row justify-between items-center lg:items-start">
         {/* Footer Items */}
         <div className="flex space-x-4 mb-4 lg:mb-0 justify-center lg:order-2">
           {footerItems?.map((item, index) => {
@@ -75,7 +82,16 @@ export default function FooterClient({ results }: FooterClientProps) {
 
         {/* Footer Title */}
         <div className="text-center lg:text-left md:text-sm text-xs lg:order-1">
-          {dynamicYear.toString()} {' '} {footerTitle || "Default Footer Title"}
+          &copy; {dynamicYear.toString()}{" "}
+          {footerTitle || "Default Footer Title"}{" "}
+          {hasPrivacyPolicy && (
+            <>
+              {"| "}
+              <Link href="/privacy" className="underline">
+                Privacy Policy
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </footer>

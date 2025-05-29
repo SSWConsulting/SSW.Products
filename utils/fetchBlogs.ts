@@ -1,8 +1,68 @@
-import client from '../tina/__generated__/client';
+import { cache } from "react";
+import client from "../tina/__generated__/client";
 
-export async function getBlogsForProduct(product: string, offset = 0, limit = 5) {
+type GetBlogsForProductProps = {
+  startCursor?: string;
+  offset?: number;
+  limit?: number;
+  keyword?: string;
+  product: string;
+  category?: string;
+};
+
+// Workaround: graphql doesn't allow you to query by file name
+const getTitlesInTenant = cache(async (product: string) => {
+  const res = await client.queries.blogsConnection();
+  const titles =
+    res.data.blogsConnection.edges?.reduce<string[]>((acc: string[], curr) => {
+      const inCurrentTenant = curr?.node?._sys.path.includes(
+        `/blogs/${product}`
+      );
+      const title = curr?.node?.title;
+      if (title && !acc.includes(title) && inCurrentTenant) {
+        return [...acc, title];
+      }
+      return acc;
+    }, []) || [];
+  return titles;
+});
+
+// Get blogs using reverse pagination https://tina.io/docs/graphql/queries/advanced/pagination#reverse-pagination
+export async function getBlogsForProduct({
+  category,
+  startCursor,
+  limit,
+  product,
+  keyword,
+}: GetBlogsForProductProps) {
   try {
-    const res = await client.queries.getAllBlogs();
+    let titles = await getTitlesInTenant(product);
+
+    if (keyword) {
+      titles = titles.filter((title) =>
+        title.toLowerCase().includes(keyword.toLowerCase())
+      );
+    }
+
+    const categoryFilter = category
+      ? {
+          category: {
+            eq: category,
+          },
+        }
+      : {};
+
+    const beforeFilter = startCursor ? { before: startCursor } : {};
+    const res = await client.queries.blogsConnection({
+      filter: {
+        title: { in: titles },
+        ...categoryFilter,
+      },
+      ...beforeFilter,
+      before: startCursor,
+      last: limit,
+      sort: "date",
+    });
 
     if (
       !res.data ||
@@ -13,29 +73,15 @@ export async function getBlogsForProduct(product: string, offset = 0, limit = 5)
       throw new Error("No documents found");
     }
 
-    const filteredBlogs = res.data.blogsConnection.edges?.filter((edge: any) =>
-      edge.node?._sys?.path?.includes(`/blogs/${product}/`)
+    res.data.blogsConnection.edges = res.data.blogsConnection.edges?.filter(
+      (edge) => {
+        return edge?.node?._sys?.path?.includes(`/blogs/${product}/`);
+      }
     );
 
-    if (!filteredBlogs || !filteredBlogs.length) {
-      throw new Error("No documents found");
-    }
-
-    const sortedBlogs = filteredBlogs.sort((a: any, b: any) => {
-      const dateA = new Date(a.node.date);
-      const dateB = new Date(b.node.date);
-      return dateB.getTime() - dateA.getTime();
-    });
-
-    const paginatedBlogs = sortedBlogs.slice(offset, offset + limit);
-
-    return {
-      query: res.query,
-      data: paginatedBlogs.map((edge: any) => edge.node),
-      hasMore: sortedBlogs.length > offset + limit,
-    };
+    return res.data.blogsConnection;
   } catch (error) {
-    console.error('Error fetching TinaCMS blog data:', error);
+    console.error("Error fetching TinaCMS blog data:", error);
     throw error;
   }
 }

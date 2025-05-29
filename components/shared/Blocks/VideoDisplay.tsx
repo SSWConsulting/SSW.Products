@@ -1,3 +1,4 @@
+import Container from "../../Container";
 import { YouTubeEmbed } from "../YouTubeEmbed";
 
 interface VideoDisplayProps {
@@ -6,21 +7,30 @@ interface VideoDisplayProps {
     altText?: string | null;
     title?: string | null;
     externalVideoLink?: string | null;
+    figureCaption?: string | null;
   };
 }
 
 export default function VideoDisplay({ data }: VideoDisplayProps) {
-  const { externalVideoLink, title } = data;
+  const { externalVideoLink, title, figureCaption } = data;
 
   return (
-    <div className="flex justify-center">
-      <div className="items-center w-1/2 h-auto">
-        <h2 className="text-2xl  text-white font-semibold py-4 text-center">
+    <Container className="flex justify-center mx-auto container">
+      <div className="items-center w-full h-auto ">
+        <h2 className="text-3xl text-white font-semibold pb-12 text-center">
           {" "}
           {title}
         </h2>
-        <YouTubeEmbed src={externalVideoLink || ""} />
+        <YouTubeEmbed
+          className="w-full aspect-video mx-auto"
+          src={externalVideoLink || ""}
+        />
+        {figureCaption && (
+          <p className="text-sm text-gray-400 mt-2 text-left">
+            {figureCaption}
+          </p>
+        )}
       </div>
-    </div>
+    </Container>
   );
 }
