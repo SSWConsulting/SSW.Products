@@ -187,12 +187,14 @@ export default function BlogPostClient({
           <aside className="basis-1/3 shrink-0">
             <div
               className={cn(
-                "sticky flex flex-col pt-6 sm:pt-0 summary overflow-hidden top-32 space-y-6",
+                "sticky flex flex-col pt-6 sm:pt-0 summary top-32 space-y-6",
                 titles.length && "sm:h-[calc(100vh_-_11rem)]"
               )}
             >
               {data.blogs.summaryCard && (
                 <div className="rounded-lg bg-gray-darkest [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]  p-6 overflow-y-auto">
+                  <h2>Summary</h2>
+
                   <div
                     data-tina-field={tinaField(data.blogs, "summary")}
                     className="[&_p]:text-white/60  [&_li]:text-white/60 [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline"
