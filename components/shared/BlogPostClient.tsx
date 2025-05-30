@@ -184,7 +184,7 @@ export default function BlogPostClient({
         </div>
 
         {showPanel && (
-          <div className="basis-1/3 shrink-0">
+          <aside className="basis-1/3 shrink-0">
             <div
               className={cn(
                 "sticky flex flex-col pt-6 sm:pt-0 summary overflow-hidden top-32 space-y-6",
@@ -220,7 +220,7 @@ export default function BlogPostClient({
                 </div>
               )}
             </div>
-          </div>
+          </aside>
         )}
       </Container>
 
