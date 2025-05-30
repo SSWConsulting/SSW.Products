@@ -193,7 +193,7 @@ export default function BlogPostClient({
             >
               {data.blogs.summaryCard && (
                 <div className="rounded-lg bg-gray-darkest [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]  p-6 overflow-y-auto">
-                  <h2>Summary</h2>
+                  <h2 className="text-xl font-semibold mb-1.5">Summary</h2>
 
                   <div
                     data-tina-field={tinaField(data.blogs, "summary")}
