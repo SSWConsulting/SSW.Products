@@ -48,7 +48,6 @@ export async function generateStaticParams() {
 }
 
 const getCategories = async (product: string) => {
-  //get all categories in use from the posts
   const posts = await client.queries.blogsConnection();
   const filteredPosts = posts.data.blogsConnection.edges?.filter((blog) => {
     return blog?.node?._sys?.path.includes(product);
@@ -62,7 +61,6 @@ const getCategories = async (product: string) => {
     }, []);
   }
   return categories;
-  //only return the categories in usfilteredPosts.reduce<string[]>((acc, curr) => {
 };
 
 export default async function BlogIndex({ params }: BlogIndex) {
@@ -71,7 +69,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   const tinaData = await getBlogPageData(product);
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
-    queryKey: [`blogs`], // Ensure queryKey matches BlogIndexClient
+    queryKey: [`blogs`],
     queryFn: () => getBlogsForProduct({ product, limit: 2 }),
     initialPageParam: undefined,
   });
@@ -81,7 +79,6 @@ export default async function BlogIndex({ params }: BlogIndex) {
   return (
     <div className="text-gray-100 flex flex-col">
       <QueryProvider>
-        {/* Padding accomodates for the navbar */}
         <div className="flex flex-col min-h-screen">
           <HydrationBoundary state={dehydratedState}>
             <BlogSearchProvider categories={categories}>
