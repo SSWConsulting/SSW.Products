@@ -1,10 +1,12 @@
 import { notFound } from "next/navigation";
 
-import InteractiveBackground from "@comps/shared/Background/InteractiveBackground";
+import { Blog } from "@/types/blog";
 import BlogPostClient from "@comps/shared/BlogPostClient";
 import FooterServer from "@comps/shared/FooterServer";
 import client from "@tina/__generated__/client";
 import { Blogs } from "@tina/__generated__/types";
+import { getBlogsForProduct } from "@utils/fetchBlogs";
+import { formatDate } from "@utils/formatDate";
 import { setPageMetadata } from "@utils/setPageMetaData";
 
 interface BlogPostProps {
@@ -44,10 +46,52 @@ export async function generateStaticParams() {
   );
 }
 
+let nextBlog: Blog | undefined = undefined;
+let previousBlog: Blog | undefined = undefined;
+
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = params;
 
   const documentData = await getBlogPost(product, slug);
+
+  const allBlogs = await getBlogsForProduct({
+    product,
+  });
+
+  const flattenedBlogs =
+    allBlogs.edges?.reduce<Blog[]>((acc, blog) => {
+      if (!blog?.node) return acc;
+      const {
+        author,
+        date,
+        title,
+        _sys,
+        category,
+        body,
+        bannerImage,
+        readLength,
+      } = blog.node;
+      return [
+        ...acc,
+        {
+          readLength,
+          author,
+          date,
+          title,
+          slug: _sys.filename,
+          category,
+          body,
+          bannerImage,
+        },
+      ];
+    }, []) || [];
+
+  const currentBlogIndex = flattenedBlogs.findIndex(
+    (blog) => blog.title === documentData?.blogs?.title
+  );
+
+  previousBlog = flattenedBlogs[currentBlogIndex + 1] || undefined;
+  nextBlog = flattenedBlogs[currentBlogIndex - 1] || undefined;
 
   if (!documentData) {
     return notFound();
@@ -55,10 +99,17 @@ export default async function BlogPost({ params }: BlogPostProps) {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <InteractiveBackground />
-
       <div className="grow">
         <BlogPostClient
+          nextBlog={nextBlog}
+          previousBlog={previousBlog}
+          recentBlogs={flattenedBlogs
+            .filter((blog) => blog.title !== documentData.blogs.title)
+            .slice(-2)
+            .reverse()}
+          initialFormattedDate={
+            documentData.blogs.date && formatDate(documentData.blogs.date)
+          }
           query={documentData.query}
           variables={documentData.variables}
           pageData={{ blogs: documentData.blogs }}

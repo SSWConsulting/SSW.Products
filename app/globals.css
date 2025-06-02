@@ -39,6 +39,10 @@
   }
 }
 
+@utility bg-gradient-* {
+  background-image: --value(--gradient- *);
+}
+
 @utility border-gradient-* {
   background-clip: padding-box, border-box;
   background-origin: border-box;

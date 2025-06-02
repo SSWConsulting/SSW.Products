@@ -1,11 +1,12 @@
 "use client";
 
 import SearchBox from "@comps/search/SearchBox";
+import { TableOfContents } from "@comps/TableOfContents";
 import { Docs, DocsTableOfContents } from "@tina/__generated__/types";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import Link from "next/link";
-import { ReactNode, useEffect, useRef, useState } from "react";
-import { MdClose, MdMenu, MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { ReactNode } from "react";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { TableOfContentsClient } from "./TableOfContentsClient";
@@ -43,34 +44,6 @@ export default function DocPostClient({
     data: pageData,
   });
 
-  const [isTableOfContentsOpen, setIsTableOfContentsOpen] = useState(false);
-  const tocRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
-
-  // Handle click outside to close the dropdown
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        tocRef.current &&
-        buttonRef.current &&
-        !tocRef.current.contains(event.target as Node) &&
-        !buttonRef.current.contains(event.target as Node)
-      ) {
-        setIsTableOfContentsOpen(false);
-      }
-    }
-
-    // Add event listener when dropdown is open
-    if (isTableOfContentsOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    // Cleanup the event listener
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isTableOfContentsOpen]);
-
   if (!data?.docs) {
     return <p className="text-center text-white">No content available.</p>;
   }
@@ -93,35 +66,12 @@ export default function DocPostClient({
           className="w-full"
           index={tableOfContentsData.algoliaSearchIndex ?? ""}
         />
-        <button
-          ref={buttonRef}
-          className="flex justify-center items-center gap-2 w-full text-white/60 hover:text-white transition-all duration-300 bg-white/10 p-2 rounded-lg"
-          onClick={() => setIsTableOfContentsOpen(!isTableOfContentsOpen)}
-        >
-          <MdMenu className="text-[#CC4141]" />
-          <span className="font-light">Table of Contents</span>
-        </button>
-        <div
-          ref={tocRef}
-          className={`${
-            isTableOfContentsOpen ? "block" : "hidden"
-          } absolute top-full left-0 right-0 z-30 bg-black/95 rounded-lg border border-white/10 shadow-xl overflow-y-auto`}
-        >
-          <div className="flex justify-between items-center p-3 border-b border-white/10">
-            <h2 className="text-lg font-medium text-white">
-              Table of Contents
-            </h2>
-            <button
-              onClick={() => setIsTableOfContentsOpen(false)}
-              className="text-white/60 hover:text-white p-1"
-            >
-              <MdClose className="h-5 w-5" />
-            </button>
-          </div>
-          <div className="py-3 px-7">
+        <TableOfContents.Root>
+          <TableOfContents.Button />
+          <TableOfContents.Popover>
             <TableOfContentsClient tableOfContentsData={tableOfContentsData} />
-          </div>
-        </div>
+          </TableOfContents.Popover>
+        </TableOfContents.Root>
       </div>
       <BreadCrumbs title={title} />
       <h2 className="text-3xl bg-linear-to-br mb-2 linear tracking-wide from-red-400 to-red-700 bg-clip-text text-transparent">

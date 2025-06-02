@@ -8,6 +8,11 @@ export const blogCollection: Collection = {
   name: "blogs",
   path: "content/blogs/",
   format: "mdx",
+  ui: {
+    router: (item) => {
+      return `/blog/${item.document._sys.filename}`;
+    },
+  },
   defaultItem: () => {
     return {
       category: DEFAULT_CATEGORY,
@@ -15,11 +20,16 @@ export const blogCollection: Collection = {
   },
   fields: [
     seoInformation as TinaField,
+
     {
-      type: "image",
-      name: "bannerImage",
-      label: "Banner Image",
-      description: "Ideally use an image with a 16/9 aspect ratio",
+      label: "Category",
+      name: "category",
+      //TODO: Make this field modifable in TinaCMS https://github.com/SSWConsulting/SSW.Website/issues/3850
+      description:
+        "If you need to add a new category, please contact a developer",
+      required: true,
+      type: "string",
+      options: [DEFAULT_CATEGORY, "What's New", "Getting Started"],
     },
     {
       type: "string",
@@ -49,21 +59,12 @@ export const blogCollection: Collection = {
       name: "author",
       label: "Author",
     },
+
     {
       type: "image",
       name: "authorImage",
       label: "Author Image",
       description: "Use the author's SSW People profile picture",
-    },
-    {
-      label: "Category",
-      name: "category",
-      //TODO: Make this field modifable in TinaCMS https://github.com/SSWConsulting/SSW.Website/issues/3850
-      description:
-        "If you need to add a new category, please contact a developer",
-      required: true,
-      type: "string",
-      options: [DEFAULT_CATEGORY, "What's New", "Getting Started"],
     },
     {
       type: "string",
@@ -72,10 +73,35 @@ export const blogCollection: Collection = {
     },
     {
       type: "string",
+      name: "labels",
+      label: "Labels",
+      description:
+        "Comma separated list of labels. These will be used to generate the tags for the blog post.",
+      list: true,
+    },
+    {
+      type: "image",
+      name: "bannerImage",
+      label: "Banner Image",
+      description: "Ideally use an image with a 16/9 aspect ratio",
+    },
+    {
+      type: "string",
       name: "readLength",
       label: "Read (time) length",
       description:
         "Want to get an accurate read length? Use a read-o-meter! https://niram.org/read/",
+    },
+    {
+      type: "boolean",
+      name: "summaryCard",
+      label: "Show summary card",
+      description: "Summary card for the blog post",
+    },
+    {
+      type: "rich-text",
+      name: "summary",
+      label: "Summary",
     },
     {
       type: "rich-text",
