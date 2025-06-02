@@ -16,7 +16,7 @@ type BlogCardProps = Modify<
   { author?: AuthorType | null; slug?: string | null; groupHover?: boolean }
 >;
 
-export const BlogCard = ({
+const BlogCard = ({
   bannerImage,
   category,
   readLength,
@@ -89,3 +89,35 @@ export const BlogCard = ({
     </div>
   );
 };
+
+const SkeletonCard = () => {
+  return (
+    <div className="h-full flex flex-col grow shrink-0 relative  bg-gradient-black rounded-xl overflow-hidden shadow-lg">
+      <div className="rounded-md relative aspect-video">
+        <div className="relative aspect-video ">
+          <div className="inset-0 absolute align-middle items-center justify-center flex">
+            <div
+              className={
+                "rounded-md duration-700 bg-gray-light animate-pulse z-10 h-5/6 relative aspect-video"
+              }
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div className="p-6 flex flex-col grow shrink-0 gap-3">
+        <div className="h-7 bg-gray-light animate-pulse w-36 rounded-full  "></div>
+        <div className="w-5/6 rounded-md bg-gray-light animate-pulse h-7"></div>
+
+        <div className="flex gap-3 **:animate-pulse **:bg-gray-light items-center">
+          <div className="size-8 rounded-full "></div>
+          <div className="h-5 w-19 rounded-md"></div>
+        </div>
+        <div className="w-50 h-6 rounded-md animate-pulse bg-gray-light"></div>
+        <div className="animate-pulse bg-gray-light w-full h-10 rounded-md mb-4"></div>
+        <div className="animate-pulse mt-auto bg-gray-light rounded-md h-6 w-25"></div>
+      </div>
+    </div>
+  );
+};
+
+export { BlogCard, SkeletonCard };

@@ -39,7 +39,9 @@ export default function RootLayout({
           </Script>
         )}
       </head>
-      <body className={`min-h-screen ${inter.className} relative bg-[#222222]`}>
+      <body
+        className={`min-h-screen ${inter.className} relative bg-gray-light`}
+      >
         <div className="overflow-clip">
           <NavBarServer product={params.product} />
           {children}
