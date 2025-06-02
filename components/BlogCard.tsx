@@ -38,7 +38,7 @@ export const BlogCard = ({
             <div
               className={cn(
                 groupHover && "group-hover:scale-105",
-                "rounded-md transition-transform duration-700 mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video"
+                "rounded-md transition-transform duration-700 mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative aspect-video"
               )}
             >
               <Image

@@ -36,7 +36,7 @@ type ArticleListProps = RemoveTinaMetadata<BlogsIndexBlocksArticleList>;
 
 type HeroSearchProps = RemoveTinaMetadata<BlogsIndexBlocksHeroSearch>;
 
-export const PAGE_LIMIT = 3;
+export const PAGE_LIMIT = 2;
 
 interface BlogIndexClientProps {
   product: string;
@@ -173,7 +173,7 @@ const RecentArticles = ({
   ...props
 }: RemoveTinaMetadata<ArticleListProps> & { product: string }) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
-  const { data, fetchNextPage } = useInfiniteQuery({
+  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
     queryKey: [`blogs${searchTerm}${selectedCategory}`],
     queryFn: ({ pageParam }) => {
       return getBlogsForProduct({
@@ -194,7 +194,7 @@ const RecentArticles = ({
   });
 
   return (
-    <Container>
+    <Container className="w-full">
       {props.title && !searchTerm && (
         <h2
           data-tina-field={tinaField(props, "title")}
@@ -205,6 +205,9 @@ const RecentArticles = ({
       )}
 
       <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
+        {/* {Array.from({ length: PAGE_LIMIT }).map((_, index) => (
+          <SkeletonCard key={`skeleton-${index}`} />
+        ))} */}
         {data?.pages.map((page) =>
           page?.edges?.map((edge, index) => {
             const post = edge?.node;
@@ -231,6 +234,7 @@ const RecentArticles = ({
             );
           })
         )}
+        <SkeletonCard />
       </div>
 
       <div className="text-center mt-6">
@@ -353,5 +357,35 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
         )}
       </Container>
     </section>
+  );
+};
+
+const SkeletonCard = () => {
+  return (
+    <div className="h-full flex flex-col grow shrink-0 relative  bg-gradient-black rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
+      <div className="rounded-md   transition-transform duration-700 relative aspect-video">
+        <div className="relative aspect-video ">
+          <div className="inset-0 absolute align-middle items-center justify-center flex">
+            <div
+              className={
+                "rounded-md transition-transform duration-700 bg-[#222222] animate-pulse z-10 h-5/6 relative aspect-video"
+              }
+            ></div>
+          </div>
+        </div>
+      </div>
+      <div className="p-6 flex flex-col grow shrink-0 gap-3">
+        <div className="h-7 bg-[#222222] animate-pulse w-36 rounded-full  "></div>
+        <div className="w-5/6 rounded-md bg-[#222222] animate-pulse h-7"></div>
+
+        <div className="flex gap-3 items-center">
+          <div className="size-8 rounded-full bg-[#222222] animate-pulse"></div>
+          <div className="h-5 w-19 rounded-md bg-[#222222] animate-pulse"></div>
+        </div>
+        <div className="w-50 h-6 rounded-md animate-pulse bg-[#222222]"></div>
+        <div className="animate-pulse bg-[#222222] w-full h-10 rounded-md mb-4"></div>
+        <div className="animate-pulse mt-auto bg-[#222222] rounded-md h-6 w-25"></div>
+      </div>
+    </div>
   );
 };
