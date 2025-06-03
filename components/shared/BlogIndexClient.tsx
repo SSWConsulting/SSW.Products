@@ -87,15 +87,13 @@ const FeaturedArticle = ({
           <div className="bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
             <div className="flex flex-col lg:flex-row">
               <div className="relative w-full grow md:basis-4/12 aspect-video">
-                {/* TODO: Tech debt
-                  Tailwind v3 does not not have a built in image mask class https://github.com/SSWConsulting/SSW.YakShaver/issues/1817 */}
-                <div className="w-full h-full lg:mask-[linear-gradient(to_right,black,black,transparent)] mask-[linear-gradient(black,black,transparent)]">
+                <div className="w-full h-full lg:mask-to-right mask-to-bottom">
                   <GridBackground />
                 </div>
 
                 {featuredBlog.bannerImage && (
                   <div className="inset-0 flex items-center justify-center absolute">
-                    <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-[linear-gradient(black,black,transparent)] aspect-video relative">
+                    <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-to-bottom aspect-video relative">
                       <Image
                         aria-hidden={true}
                         src={featuredBlog.bannerImage}

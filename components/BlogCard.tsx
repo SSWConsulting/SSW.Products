@@ -38,7 +38,7 @@ const BlogCard = ({
             <div
               className={cn(
                 groupHover && "group-hover:scale-105",
-                "rounded-md transition-transform duration-700 mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative aspect-video"
+                "rounded-md transition-transform duration-700 mask-to-bottom z-10 h-5/6 relative aspect-video"
               )}
             >
               <Image
@@ -51,7 +51,7 @@ const BlogCard = ({
             </div>
           )}
         </div>
-        <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
+        <div className="w-full h-full mask-to-bottom">
           <GridBackground />
         </div>
       </div>

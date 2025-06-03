@@ -17,6 +17,8 @@
   --gradient-gray: linear-gradient(to right, #141414, #1f1f1f, #2b2a2a);
   --gradient-black: linear-gradient(to right, #0e0e0e, #131313, #141414);
   --gradient-transparent: linear-gradient(transparent, transparent);
+  --mask-to-right: linear-gradient(to right, black, black, transparent);
+  --mask-to-bottom: linear-gradient(to bottom, black, black, transparent);
   --color-ssw-red: #cc4141;
   --color-ssw-charcoal: #333333;
   --color-gray-dark: #1f1f1f;
@@ -42,6 +44,10 @@
 
 @utility bg-gradient-* {
   background-image: --value(--gradient- *);
+}
+
+@utility mask-* {
+  mask-image: --value(--mask- *);
 }
 
 @utility border-gradient-* {
