@@ -94,14 +94,3 @@ export async function getBlogsForProduct({
     throw error;
   }
 }
-
-const printEdges = (res: any) => {
-  const edges = res?.data?.blogsConnection?.edges;
-  const length = edges?.length || 0;
-  if (edges !== null && edges !== undefined) {
-    for (let i = 0; i < length; i++) {
-      const edge = edges[i];
-      console.log("result", edge?.node?.title);
-    }
-  }
-};
