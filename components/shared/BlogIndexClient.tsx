@@ -169,24 +169,25 @@ const RecentArticles = ({
   ...props
 }: RemoveTinaMetadata<ArticleListProps> & { product: string }) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
-  const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery({
-    queryKey: [`blogs${searchTerm}${selectedCategory}`],
-    queryFn: ({ pageParam }) => {
-      return getBlogsForProduct({
-        product,
-        startCursor: pageParam,
-        keyword: searchTerm,
-        category:
-          selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
-      });
-    },
-    initialPageParam: "",
-    getNextPageParam: (lastPage) => {
-      const lastEntry =
-        lastPage.blogs && lastPage.blogs[lastPage.blogs.length - 1];
-      return lastEntry?.cursor || undefined;
-    },
-  });
+  const { data, fetchNextPage, isFetchingNextPage, isFetching } =
+    useInfiniteQuery({
+      queryKey: [`blogs${searchTerm}${selectedCategory}`],
+      queryFn: ({ pageParam }) => {
+        return getBlogsForProduct({
+          product,
+          startCursor: pageParam,
+          keyword: searchTerm,
+          category:
+            selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
+        });
+      },
+      initialPageParam: "",
+      getNextPageParam: (lastPage) => {
+        const lastEntry =
+          lastPage.blogs && lastPage.blogs[lastPage.blogs.length - 1];
+        return lastEntry?.cursor || undefined;
+      },
+    });
   const totalPages = data?.pages.length || 0;
   const lastPage = data?.pages[totalPages - 1];
   const remainingPages = lastPage?.remainingPages || 0;
@@ -231,6 +232,7 @@ const RecentArticles = ({
           })
         )}
         {isFetchingNextPage && <PlaceholderCards cards={remainingPages} />}
+        {isFetching && !isFetchingNextPage && <PlaceholderCards cards={3} />}
       </div>
 
       <div className="text-center mt-6">
