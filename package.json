@@ -35,12 +35,12 @@
     "strip-markdown": "^6.0.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
-    "tinacms": "^2.7.6",
+    "tinacms": "^2.7.8",
     "unified": "^11.0.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.7",
-    "@tinacms/cli": "^1.9.6",
+    "@tinacms/cli": "^1.9.8",
     "@types/node": "^22.15.17",
     "@types/react": "^18.3.21",
     "@types/react-dom": "^18.3.7",

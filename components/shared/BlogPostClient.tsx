@@ -99,9 +99,8 @@ export default function BlogPostClient({
         >
           <Image
             alt="alt text"
-            objectFit="cover"
             fill
-            className="rounded-lg mask-b-from-60% mask-b-to-100%"
+            className="object-cover rounded-lg mask-b-from-60% mask-b-to-100%"
             aria-hidden="true"
             src={data.blogs.bannerImage || ""}
           />
