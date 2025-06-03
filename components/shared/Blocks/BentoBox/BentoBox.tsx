@@ -70,8 +70,7 @@ function SmAndMdView({ data }: { data: any }) {
           src={"/YakShaver/Arrow-bg.png"}
           alt="yak"
           layout="fill"
-          className="object-cover"
-          className="h-full w-full flex rounded-xl z-20"
+          className="h-full w-full flex rounded-xl z-20 object-cover"
         />
 
         <div className="pt-14 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
@@ -129,8 +128,7 @@ function BeamBox({ data }: { data: any }) {
         src={"/YakShaver/Arrow-bg.png"}
         alt="yak"
         layout="fill"
-        className="object-cover"
-        className="h-full w-full rounded-xl"
+        className="h-full w-full rounded-xl object-cover"
       />
       <div className="absolute inset-0 -bottom-2 flex items-end">
         <AnimatedBeamMultipleOutput data={data} />
@@ -150,8 +148,7 @@ function PhotoBox({ photo }: { photo: string }) {
         src={photo || "/YakShaver/The-Yak.png"}
         alt="yak"
         layout="fill"
-        className="object-cover"
-        className="h-full w-full rounded-xl filter grayscale"
+        className="h-full w-full rounded-xl filter grayscale object-cover"
       />
     </div>
   );
