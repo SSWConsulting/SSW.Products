@@ -171,7 +171,7 @@ const RecentArticles = ({
   ...props
 }: RemoveTinaMetadata<ArticleListProps> & { product: string }) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
-  const { data, fetchNextPage, isFetchingNextPage, isFetching } =
+  const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
     useInfiniteQuery({
       queryKey: [`blogs${searchTerm}${selectedCategory}`],
       queryFn: ({ pageParam }) => {
@@ -205,7 +205,7 @@ const RecentArticles = ({
           {props.title}
         </h2>
       )}
-      {!data?.pages.length && !isFetching ? (
+      {!data?.pages.length && !isFetchingNextPage && !isLoading ? (
         <span className="mx-auto block w-fit">No results found</span>
       ) : (
         <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
@@ -236,11 +236,11 @@ const RecentArticles = ({
           )}
 
           {isFetchingNextPage && <PlaceholderCards cards={remainingPages} />}
-          {isFetching && !isFetchingNextPage && <PlaceholderCards cards={3} />}
+          {isLoading && <PlaceholderCards cards={3} />}
         </div>
       )}
       <div className="text-center mt-6">
-        {(hasMoreBlogs || isFetching) && (
+        {(hasMoreBlogs || isLoading) && (
           <Button
             disabled={isFetching}
             onClick={() => {
