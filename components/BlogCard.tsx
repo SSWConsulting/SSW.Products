@@ -39,7 +39,7 @@ const BlogCard = ({
             <div
               className={cn(
                 groupHover && "group-hover:scale-105",
-                "rounded-md transition-transform mask-to-bottom z-10 h-5/6 relative aspect-video"
+                "rounded-md transition-transform  duration-700 mask-to-bottom z-10 h-5/6 relative aspect-video"
               )}
             >
               <Image
