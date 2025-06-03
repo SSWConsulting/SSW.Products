@@ -44,7 +44,7 @@ export const BlogCard = ({
               <Image
                 alt=""
                 fill
-                objectFit="cover"
+                className="object-cover"
                 aria-hidden={true}
                 src={bannerImage}
               />

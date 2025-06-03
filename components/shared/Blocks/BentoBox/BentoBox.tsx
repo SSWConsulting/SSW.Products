@@ -30,7 +30,8 @@ function IconBox({
               src={image || "/svg/github-mark-white.svg"}
               alt="icon"
               layout="fill"
-              objectFit="contain"
+              
+              className="object-contain"
             />
           </div>
         </div>
@@ -69,7 +70,7 @@ function SmAndMdView({ data }: { data: any }) {
           src={"/YakShaver/Arrow-bg.png"}
           alt="yak"
           layout="fill"
-          objectFit="cover"
+          className="object-cover"
           className="h-full w-full flex rounded-xl z-20"
         />
 
@@ -128,7 +129,7 @@ function BeamBox({ data }: { data: any }) {
         src={"/YakShaver/Arrow-bg.png"}
         alt="yak"
         layout="fill"
-        objectFit="cover"
+        className="object-cover"
         className="h-full w-full rounded-xl"
       />
       <div className="absolute inset-0 -bottom-2 flex items-end">
@@ -149,7 +150,7 @@ function PhotoBox({ photo }: { photo: string }) {
         src={photo || "/YakShaver/The-Yak.png"}
         alt="yak"
         layout="fill"
-        objectFit="cover"
+        className="object-cover"
         className="h-full w-full rounded-xl filter grayscale"
       />
     </div>

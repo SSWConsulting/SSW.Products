@@ -265,7 +265,7 @@ const Author = ({
           src={authorImage || "/default-images/Placeholder-profile.png"}
           alt="placeholder blog author"
           fill
-          objectFit="cover"
+          className="object-cover"
         />
       </div>
       <p className="font-medium h-fit">

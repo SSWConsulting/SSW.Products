@@ -181,10 +181,9 @@ const Card = ({ card, key }: CardProps) => {
             card.image.imgHeight && (
               <Image
                 data-tina-field={tinaField(card, "image")}
-                className="bottom-0 w-full absolute"
+                className="bottom-0 w-full absolute object-contain"
                 src={card.image.imgSrc}
                 aria-hidden="true"
-                objectFit="contain"
                 width={card.image.imgWidth}
                 height={card.image.imgHeight}
                 alt={""}
