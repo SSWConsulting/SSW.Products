@@ -192,7 +192,6 @@ const RecentArticles = ({
   const lastPage = data?.pages[totalPages - 1];
   const remainingPages = lastPage?.remainingPages || 0;
   const hasMoreBlogs = remainingPages > 0;
-  console.log("remaining pages", lastPage);
 
   return (
     <Container className="w-full">
@@ -204,48 +203,51 @@ const RecentArticles = ({
           {props.title}
         </h2>
       )}
+      {!data?.pages.length && !isFetching ? (
+        <span className="mx-auto block w-fit">No results found</span>
+      ) : (
+        <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
+          {data?.pages.map((page) =>
+            page?.blogs?.map((edge, index) => {
+              const post = edge?.node;
+              return (
+                post && (
+                  <BlogCard
+                    key={`blog-${index}`}
+                    category={post.category}
+                    body={post.body}
+                    bannerImage={post.bannerImage}
+                    date={post.date}
+                    groupHover={false}
+                    readLength={post.readLength}
+                    title={post.title}
+                    author={{
+                      author: post.author,
+                      authorImage: post.authorImage,
+                      sswPeopleLink: post.sswPeopleLink || "",
+                    }}
+                    slug={post._sys.filename}
+                  />
+                )
+              );
+            })
+          )}
 
-      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
-        {data?.pages.map((page) =>
-          page?.blogs?.map((edge, index) => {
-            const post = edge?.node;
-            return (
-              post && (
-                <BlogCard
-                  key={`blog-${index}`}
-                  category={post.category}
-                  body={post.body}
-                  bannerImage={post.bannerImage}
-                  date={post.date}
-                  groupHover={false}
-                  readLength={post.readLength}
-                  title={post.title}
-                  author={{
-                    author: post.author,
-                    authorImage: post.authorImage,
-                    sswPeopleLink: post.sswPeopleLink || "",
-                  }}
-                  slug={post._sys.filename}
-                />
-              )
-            );
-          })
-        )}
-        {isFetchingNextPage && <PlaceholderCards cards={remainingPages} />}
-        {isFetching && !isFetchingNextPage && <PlaceholderCards cards={3} />}
-      </div>
-
+          {isFetchingNextPage && <PlaceholderCards cards={remainingPages} />}
+          {isFetching && !isFetchingNextPage && <PlaceholderCards cards={3} />}
+        </div>
+      )}
       <div className="text-center mt-6">
-        {hasMoreBlogs && (
+        {(hasMoreBlogs || isFetching) && (
           <Button
-            disabled={isFetchingNextPage}
+            disabled={isFetching}
             onClick={() => {
               fetchNextPage();
             }}
             className="gap-1"
             variant={"secondary"}
           >
-            {isFetchingNextPage ? (
+            {isFetching ? (
               <>
                 Loading <LoaderCircle className="animate-spin animate size-4" />
               </>
