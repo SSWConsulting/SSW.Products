@@ -70,7 +70,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
     queryKey: [`blogs`],
-    queryFn: () => getBlogsForProduct({ product, limit: 2 }),
+    queryFn: () => getBlogsForProduct({ product }),
     initialPageParam: undefined,
   });
 

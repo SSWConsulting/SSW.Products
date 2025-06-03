@@ -2,7 +2,7 @@
 import type { Author } from "@/types/author";
 import Container from "@comps/Container";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Search } from "lucide-react";
+import { LoaderCircle, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -35,8 +35,6 @@ type Block = Maybe<RemoveTinaMetadata<BlogsIndexBlocks>>;
 type ArticleListProps = RemoveTinaMetadata<BlogsIndexBlocksArticleList>;
 
 type HeroSearchProps = RemoveTinaMetadata<BlogsIndexBlocksHeroSearch>;
-
-export const PAGE_LIMIT = 2;
 
 interface BlogIndexClientProps {
   product: string;
@@ -175,7 +173,6 @@ const RecentArticles = ({
     queryKey: [`blogs${searchTerm}${selectedCategory}`],
     queryFn: ({ pageParam }) => {
       return getBlogsForProduct({
-        limit: PAGE_LIMIT,
         product,
         startCursor: pageParam,
         keyword: searchTerm,
@@ -186,10 +183,15 @@ const RecentArticles = ({
     initialPageParam: "",
     getNextPageParam: (lastPage) => {
       const lastEntry =
-        lastPage.edges && lastPage.edges[lastPage.edges.length - 1];
+        lastPage.blogs && lastPage.blogs[lastPage.blogs.length - 1];
       return lastEntry?.cursor || undefined;
     },
   });
+  const totalPages = data?.pages.length || 0;
+  const lastPage = data?.pages[totalPages - 1];
+  const remainingPages = lastPage?.remainingPages || 0;
+  const hasMoreBlogs = remainingPages > 0;
+  console.log("remaining pages", lastPage);
 
   return (
     <Container className="w-full">
@@ -203,13 +205,9 @@ const RecentArticles = ({
       )}
 
       <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
-        {/* {Array.from({ length: PAGE_LIMIT }).map((_, index) => (
-          <SkeletonCard key={`skeleton-${index}`} />
-        ))} */}
         {data?.pages.map((page) =>
-          page?.edges?.map((edge, index) => {
+          page?.blogs?.map((edge, index) => {
             const post = edge?.node;
-
             return (
               post && (
                 <BlogCard
@@ -232,23 +230,41 @@ const RecentArticles = ({
             );
           })
         )}
-        <SkeletonCard />
+        {isFetchingNextPage && <PlaceholderCards cards={remainingPages} />}
       </div>
 
       <div className="text-center mt-6">
-        {data?.pages[data.pages.length - 1].pageInfo.hasPreviousPage && (
+        {hasMoreBlogs && (
           <Button
+            disabled={isFetchingNextPage}
             onClick={() => {
               fetchNextPage();
             }}
+            className="gap-1"
             variant={"secondary"}
           >
-            Load More Articles
+            {isFetchingNextPage ? (
+              <>
+                Loading <LoaderCircle className="animate-spin animate size-4" />
+              </>
+            ) : (
+              <>Load More Articles</>
+            )}
           </Button>
         )}
+        {/* )} */}
       </div>
     </Container>
   );
+};
+
+type PlaceholderCardsProps = {
+  cards: number;
+};
+const PlaceholderCards = ({ cards }: PlaceholderCardsProps) => {
+  return Array.from({ length: cards }).map((_, index) => (
+    <SkeletonCard key={`skeleton-${index}`} />
+  ));
 };
 
 const Author = ({

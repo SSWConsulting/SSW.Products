@@ -32,7 +32,7 @@ const getTitlesInTenant = cache(async (product: string) => {
 export async function getBlogsForProduct({
   category,
   startCursor,
-  limit,
+  limit = 3,
   product,
   keyword,
   filteredBlogs,
@@ -64,11 +64,11 @@ export async function getBlogsForProduct({
         ...categoryFilter,
       },
       ...beforeFilter,
+      last: limit * 2,
       before: startCursor,
-      last: limit,
       sort: "date",
     });
-
+    await new Promise((resolve) => setTimeout(resolve, 10 * 1000)); // 10 seconds
     if (
       !res.data ||
       !res.data.blogsConnection ||
@@ -78,15 +78,30 @@ export async function getBlogsForProduct({
       throw new Error("No documents found");
     }
 
-    res.data.blogsConnection.edges = res.data.blogsConnection.edges?.filter(
-      (edge) => {
-        return edge?.node?._sys?.path?.includes(`/blogs/${product}/`);
-      }
+    const remainingPages = Math.max(
+      res.data.blogsConnection.edges.length - limit,
+      0
     );
 
-    return res.data.blogsConnection;
+    const croppedBlogResponse = res.data.blogsConnection.edges?.slice(0, limit);
+
+    return {
+      blogs: croppedBlogResponse,
+      remainingPages,
+    };
   } catch (error) {
     console.error("Error fetching TinaCMS blog data:", error);
     throw error;
   }
 }
+
+const printEdges = (res: any) => {
+  const edges = res?.data?.blogsConnection?.edges;
+  const length = edges?.length || 0;
+  if (edges !== null && edges !== undefined) {
+    for (let i = 0; i < length; i++) {
+      const edge = edges[i];
+      console.log("result", edge?.node?.title);
+    }
+  }
+};
