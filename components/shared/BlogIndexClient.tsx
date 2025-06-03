@@ -71,70 +71,72 @@ const FeaturedArticle = ({
 }: RemoveTinaMetadata<FeaturedBlog>) => {
   const { searchTerm } = useBlogSearch();
   return (
-    <Container>
+    <>
       {featuredBlog && !searchTerm && (
-        <section className="mx-auto">
-          {props.title && (
-            <h2
-              data-tina-field={tinaField(props, "title")}
-              className="w-fit text-2xl font-bold mb-8 border-l-4 border-ssw-red pl-4"
-            >
-              {props.title}
-            </h2>
-          )}
-          <div className="bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
-            <div className="flex flex-col lg:flex-row">
-              <div className="relative w-full grow md:basis-4/12 aspect-video">
-                <div className="w-full h-full lg:mask-to-right mask-to-bottom">
-                  <GridBackground />
+        <Container>
+          <section className="mx-auto">
+            {props.title && (
+              <h2
+                data-tina-field={tinaField(props, "title")}
+                className="w-fit text-2xl font-bold mb-8 border-l-4 border-ssw-red pl-4"
+              >
+                {props.title}
+              </h2>
+            )}
+            <div className="bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
+              <div className="flex flex-col lg:flex-row">
+                <div className="relative w-full grow md:basis-4/12 aspect-video">
+                  <div className="w-full h-full lg:mask-to-right mask-to-bottom">
+                    <GridBackground />
+                  </div>
+
+                  {featuredBlog.bannerImage && (
+                    <div className="inset-0 flex items-center justify-center absolute">
+                      <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-to-bottom aspect-video relative">
+                        <Image
+                          aria-hidden={true}
+                          src={featuredBlog.bannerImage}
+                          alt={""}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {featuredBlog.bannerImage && (
-                  <div className="inset-0 flex items-center justify-center absolute">
-                    <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-to-bottom aspect-video relative">
-                      <Image
-                        aria-hidden={true}
-                        src={featuredBlog.bannerImage}
-                        alt={""}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
+                <div className="p-8 md:basis-8/12 flex gap-3 flex-col">
+                  {featuredBlog.category && (
+                    <CategoryLabel className="text-sm">
+                      {featuredBlog.category}
+                    </CategoryLabel>
+                  )}
+                  <Link href={`/blog/${featuredBlog._sys.filename}`}>
+                    <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
+                      {featuredBlog?.title}
+                    </h3>
+                  </Link>
+                  <Author {...featuredBlog} />
+                  <ArticleMetadata className="" {...featuredBlog} />
+
+                  <section className="text-gray-300 text-sm md:text-base mb-6 line-clamp-2 md:line-clamp-none">
+                    <TinaMarkdown
+                      content={extractBlurbAsTinaMarkdownContent(
+                        featuredBlog?.body,
+                        2
+                      )}
+                    />
+                  </section>
+                  <div className="flex justify-between items-center">
+                    <ReadMore fileName={featuredBlog._sys.filename || ""} />
                   </div>
-                )}
-              </div>
-
-              <div className="p-8 md:basis-8/12 flex gap-3 flex-col">
-                {featuredBlog.category && (
-                  <CategoryLabel className="text-sm">
-                    {featuredBlog.category}
-                  </CategoryLabel>
-                )}
-                <Link href={`/blog/${featuredBlog._sys.filename}`}>
-                  <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
-                    {featuredBlog?.title}
-                  </h3>
-                </Link>
-                <Author {...featuredBlog} />
-                <ArticleMetadata className="" {...featuredBlog} />
-
-                <section className="text-gray-300 text-sm md:text-base mb-6 line-clamp-2 md:line-clamp-none">
-                  <TinaMarkdown
-                    content={extractBlurbAsTinaMarkdownContent(
-                      featuredBlog?.body,
-                      2
-                    )}
-                  />
-                </section>
-                <div className="flex justify-between items-center">
-                  <ReadMore fileName={featuredBlog._sys.filename || ""} />
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 
