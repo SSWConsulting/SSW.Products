@@ -68,7 +68,6 @@ export async function getBlogsForProduct({
       before: startCursor,
       sort: "date",
     });
-    await new Promise((resolve) => setTimeout(resolve, 10 * 1000)); // 10 seconds
     if (
       !res.data ||
       !res.data.blogsConnection ||
