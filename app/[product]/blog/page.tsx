@@ -7,7 +7,6 @@ import { notFound } from "next/navigation";
 import { BlogSearchProvider } from "../../../components/providers/BlogSearchProvider";
 import QueryProvider from "../../../components/providers/QueryProvider";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
-import FooterServer from "../../../components/shared/FooterServer";
 import client from "../../../tina/__generated__/client";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
 interface BlogIndex {
@@ -85,7 +84,6 @@ export default async function BlogIndex({ params }: BlogIndex) {
               <BlogIndexClient {...tinaData} product={product} />
             </BlogSearchProvider>
           </HydrationBoundary>
-          <FooterServer product={params.product} />
         </div>
       </QueryProvider>
     </div>

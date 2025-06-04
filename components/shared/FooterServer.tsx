@@ -1,5 +1,5 @@
 import client from "../../tina/__generated__/client";
-import FooterClient from "./FooterClient";
+import FooterContent from "./FooterContent";
 
 interface FooterServerProps {
   product: string;
@@ -29,6 +29,6 @@ export default async function FooterServer({ product }: FooterServerProps) {
     // We don't care about this... for the moment
   }
   return (
-    <FooterClient hasPrivacyPolicy={hasPrivacyPolicy} results={footerData} />
+    <FooterContent hasPrivacyPolicy={hasPrivacyPolicy} results={footerData} />
   );
 }
