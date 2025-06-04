@@ -40,11 +40,11 @@ export default function RootLayout({
           </Script>
         )}
       </head>
-      <body className={`min-h-screen ${inter.className} relative bg-[#222222]`}>
-        <div className="overflow-clip">
-          <NavBarServer product={params.product} />
-          {children}
-        </div>
+      <body
+        className={`min-h-screen [&>*]:grow flex-col flex ${inter.className} relative bg-[#222222]`}
+      >
+        <NavBarServer product={params.product} />
+        {children}
         <FooterServer product={params.product} />
       </body>
     </html>
