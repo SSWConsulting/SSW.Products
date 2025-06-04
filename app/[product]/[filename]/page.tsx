@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 
 import CustomizeableBackground from "../../../components/shared/Background/CustomizeableBackground";
-import FooterServer from "../../../components/shared/FooterServer";
 import HomePageClient from "../../../components/shared/HomePageClient";
 import client from "../../../tina/__generated__/client";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
@@ -40,7 +39,6 @@ export default async function FilePage({ params }: FilePageProps) {
         data={fileData.data}
         variables={{ relativePath: `${product}/${filename}.json` }}
       />
-      <FooterServer product={product} />
       {fileData.data?.pages?.seo?.googleStructuredData && (
         <script
           type="application/ld+json"

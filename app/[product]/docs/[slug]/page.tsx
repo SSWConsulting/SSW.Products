@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { notFound } from "next/navigation";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import FooterServer from "../../../../components/shared/FooterServer";
 import client from "../../../../tina/__generated__/client";
 import {
   Docs,
@@ -150,7 +149,6 @@ export default async function DocPost({ params }: DocPostProps) {
           />
         </div>
       </div>
-      <FooterServer product={product} />
       {documentData?.docs?.seo?.googleStructuredData && (
         <script
           type="application/ld+json"

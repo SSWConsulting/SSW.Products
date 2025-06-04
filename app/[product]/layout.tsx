@@ -1,3 +1,4 @@
+import FooterServer from "@comps/shared/FooterServer";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
@@ -40,12 +41,11 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className={`min-h-screen ${inter.className} relative bg-gray-light`}
+        className={`min-h-screen [&>div]:grow flex-col flex ${inter.className} relative bg-gray-light`}
       >
-        <div className="overflow-clip">
-          <NavBarServer product={params.product} />
-          {children}
-        </div>
+        <NavBarServer product={params.product} />
+        {children}
+        <FooterServer product={params.product} />
       </body>
     </html>
   );

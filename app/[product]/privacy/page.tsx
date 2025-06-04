@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
-import FooterServer from "../../../components/shared/FooterServer";
 import PrivacyPolicyClient from "../../../components/shared/PrivacyPolicyClient";
 import client from "../../../tina/__generated__/client";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
@@ -45,7 +44,6 @@ export default async function PrivacyPolicy({ params }: PrivacyPolicyProps) {
       <div className="grow">
         <PrivacyPolicyClient {...res} />
       </div>
-      <FooterServer product={product} />
     </div>
   );
 }
