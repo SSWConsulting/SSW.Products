@@ -1,4 +1,3 @@
-import FooterServer from "../../components/shared/FooterServer";
 import HomePageClient from "../../components/shared/HomePageClient";
 import client from "../../tina/__generated__/client";
 import { setPageMetadata } from "../../utils/setPageMetaData";
@@ -34,7 +33,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
         data={productData.data}
         variables={{ relativePath: `${product}/home.json` }}
       />
-      <FooterServer product={product} />
       {productData?.data.pages.seo?.googleStructuredData && (
         <script
           type="application/ld+json"

@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 
 import { Blog } from "@/types/blog";
 import BlogPostClient from "@comps/shared/BlogPostClient";
-import FooterServer from "@comps/shared/FooterServer";
 import client from "@tina/__generated__/client";
 import { Blogs } from "@tina/__generated__/types";
 import { getBlogsForProduct } from "@utils/fetchBlogs";
@@ -115,8 +114,6 @@ export default async function BlogPost({ params }: BlogPostProps) {
           pageData={{ blogs: documentData.blogs }}
         />
       </div>
-
-      <FooterServer product={product} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

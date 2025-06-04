@@ -1,3 +1,4 @@
+import FooterServer from "@comps/shared/FooterServer";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
@@ -44,6 +45,7 @@ export default function RootLayout({
           <NavBarServer product={params.product} />
           {children}
         </div>
+        <FooterServer product={params.product} />
       </body>
     </html>
   );
