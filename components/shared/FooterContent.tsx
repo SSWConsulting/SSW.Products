@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import {
   FaDiscord,
   FaFacebook,
@@ -32,16 +29,10 @@ const iconMap: { [key: string]: JSX.Element } = {
   FaDiscord: <FaDiscord />,
 };
 
-export default function FooterClient({
+export default function FooterContent({
   results,
   hasPrivacyPolicy,
 }: FooterClientProps) {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   if (!results?.footer) {
     return <p>Tina connection broken</p>;
   }
@@ -54,9 +45,9 @@ export default function FooterClient({
 
   return (
     <footer
-      className={`text-white p-6 transition-opacity duration-300 ${
-        !footerColor ? "bg-ssw-charcoal" : ""
-      } ${isVisible ? "opacity-100" : "opacity-0"}`}
+      className={
+        "text-white p-6 transition-opacity duration-300 bg-ssw-charcoal opacity-100"
+      }
       style={{ backgroundColor: footerColor }}
     >
       <div className="max-w-7xl xl:mx-auto mx-4 flex flex-col lg:flex-row justify-between items-center lg:items-start">
