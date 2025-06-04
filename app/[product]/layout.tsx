@@ -41,7 +41,7 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className={`min-h-screen [&>*]:grow flex-col flex ${inter.className} relative bg-[#222222]`}
+        className={`min-h-screen [&>*]:grow flex-col flex ${inter.className} relative bg-gray-light`}
       >
         <NavBarServer product={params.product} />
         {children}

@@ -58,7 +58,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
   });
 
   const flattenedBlogs =
-    allBlogs.edges?.reduce<Blog[]>((acc, blog) => {
+    allBlogs.blogs?.reduce<Blog[]>((acc, blog) => {
       if (!blog?.node) return acc;
       const {
         author,
