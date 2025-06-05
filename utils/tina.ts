@@ -1,5 +1,15 @@
 import { Edge, Edges } from "@/types/tina";
 
+const mapConnection = <T extends Edges, R>(
+  edges: T,
+  mapFn: (acc: R[], curr: Edge) => R[]
+): R[] => {
+  if (!edges) return [];
+  return edges.reduce<R[]>((acc: R[], curr: Edge) => {
+    return mapFn(acc, curr);
+  }, []);
+};
+
 const filterEdgesByTenant = <T extends Edges>(
   connection: T,
   product: string
@@ -17,16 +27,6 @@ const getSlugsFromCollections = <T extends Edges>(edges: T): string[] => {
     const slug = curr?.node?._sys.breadcrumbs?.at(-1);
     if (!slug) return acc;
     return [...acc, slug];
-  }, []);
-};
-
-const mapConnection = <T extends Edges, R>(
-  edges: T,
-  mapFn: (acc: R[], curr: Edge) => R[]
-): R[] => {
-  if (!edges) return [];
-  return edges.reduce<R[]>((acc: R[], curr: Edge) => {
-    return mapFn(acc, curr);
   }, []);
 };
 
