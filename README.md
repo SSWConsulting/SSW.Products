@@ -84,3 +84,9 @@ In order to do this complete the following steps:
 ## Wanting to use the Middleware for your own site?
 
 We've documented how we use this middleware for our own sites and clients - [Do you know how to use single codebase for multiple domains with TinaCMS and Next.js?](https://www.ssw.com.au/rules/single-codebase-for-multiple-domains-with-tinacm-nextjs/)
+
+## Updating the sitemap
+
+If you are adding a new page using one of the existing [Tina collections](https://tina.io/docs/reference/collections) for the site, you do not need to update the sitemap as it will automatically include the new page.
+
+If you are however adding a new collection for a page template you'll need to update the sitemap returned by `app/sitemap.xml/route.tsx` to include the new collection.
