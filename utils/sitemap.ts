@@ -39,7 +39,7 @@ const getAllUrls = async (product: string) => {
   return [
     ...docLinks.map((doc) => `docs/${doc}`),
     ...blogLinks.map((blog) => `blog/${blog}`),
-    ...pageLinks.filter((page) => page !== "home").map((page) => `${page}`),
+    ...pageLinks.map((page) => (page === "home" ? "" : page)),
     ...privacyPage,
   ];
 };
