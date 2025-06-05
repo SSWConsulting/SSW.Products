@@ -41,6 +41,8 @@ const getAllUrls = async (product: string) => {
     ...blogLinks.map((blog) => `blog/${blog}`),
     ...pageLinks.map((page) => (page === "home" ? "" : page)),
     ...privacyPage,
+    "blog",
+    "docs",
   ];
 };
 
