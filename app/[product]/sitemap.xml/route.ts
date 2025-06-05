@@ -51,7 +51,6 @@ export async function GET(
 
   const allUrls = await getAllUrls(product);
 
-  console.log("allUrls", allUrls.length);
   const sitemap = await buildSitemap(baseUrl, allUrls);
   return new Response(sitemap, {
     status: 200,
@@ -84,7 +83,7 @@ const getAllUrls = async (product: string) => {
   return [
     ...docLinks.map((doc) => `docs/${doc}`),
     ...blogLinks.map((blog) => `blog/${blog}`),
-    ...pageLinks.map((page) => `${page}`),
+    ...pageLinks.filter((page) => page !== "home").map((page) => `${page}`),
     ...privacyPage,
   ];
 };
