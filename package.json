@@ -32,6 +32,8 @@
     "remark-parse": "^11.0.0",
     "remark-stringify": "^11.0.0",
     "sass": "^1.88.0",
+    "sitemap": "^8.0.0",
+    "stream": "^0.0.3",
     "strip-markdown": "^6.0.0",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
