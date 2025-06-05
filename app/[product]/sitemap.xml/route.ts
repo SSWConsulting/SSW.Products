@@ -22,7 +22,7 @@ export async function GET(
   return new Response(sitemap, {
     status: 200,
     headers: {
-      "content-Type": "application/xml",
+      "Content-Type": "application/xml",
     },
   });
 }
