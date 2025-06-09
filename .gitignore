@@ -10,8 +10,6 @@
 # compiled typescript files
 /scripts/createIndices.js 
 
-/scripts/seo_generator/utils/__pycache__
-
 # dependencies
 /node_modules
 /.pnp
