@@ -34,5 +34,9 @@
       "image": "/YakShaver/UlyPoint.png",
       "_template": "Banner"
     }
-  ]
+  ],
+  "seo": {
+    "description": "Discover YakShaver: innovative AI solutions designed to enhance productivity and streamline workflows for businesses.",
+    "title": "About YakShaver: Innovative AI Solutions for Your Needs"
+  }
 }
