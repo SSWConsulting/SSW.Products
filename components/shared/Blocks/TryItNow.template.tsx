@@ -1,7 +1,7 @@
 import { Template, TinaField } from "tinacms";
 import CustomImageField from "../../../tina/customSchemaComponents/optimizedImageField";
 
-const optimizedImageField: TinaField[] = [
+export const optimizedImageField: TinaField[] = [
   {
     type: "image",
     label: "Image",
