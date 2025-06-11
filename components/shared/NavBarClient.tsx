@@ -7,7 +7,6 @@ import { CgClose } from "react-icons/cg";
 import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { NavigationBarQuery } from "../../tina/__generated__/types";
-import { BookingButton } from "./Blocks/BookingButton";
 interface NavBarClientProps {
   results: NavigationBarQuery | null;
 }
@@ -121,12 +120,12 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             </button>
           </li>
         );
-      case "NavigationBarRightNavItemBookingButton":
-        return (
-          <li key={index} className="flex items-center">
-            <BookingButton title={item.Title} jotFormId={item.JotFormId} />
-          </li>
-        );
+      // case "NavigationBarRightNavItemBookingButton":
+      //   return (
+      //     <li key={index} className="flex items-center">
+      //       <BookingButton title={item.Title} jotFormId={item.JotFormId} />
+      //     </li>
+      //   );
       default:
         return null;
     }
