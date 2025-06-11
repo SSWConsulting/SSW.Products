@@ -26,10 +26,10 @@ const NotFoundClient = ({
 
   return (
     <div className="flex items-center">
-      <div className="md:grid px-4 pb-12 lg:px-0 grid-cols-1 flex flex-col gap-[39px] md:gap-[78px] h-fit md:grid-cols-2 w-248 mx-auto">
+      <div className="md:grid px-4 py-12 lg:px-0 grid-cols-1 flex flex-col gap-[39px] md:gap-[78px] h-fit md:grid-cols-2 w-248 mx-auto">
         {/* background: linear-gradient(98.94deg, #CC4141 48.51%, #D699FB 100.38%, #FF778E 178.58%);
          */}
-        <div className="flex-col flex justify-center text-white">
+        <div className="flex-col flex justify-center pt text-white">
           <h1
             data-tina-field={tinaField(data.notFound, "heading")}
             className="text-6xl  w-fit text-transparent from-50% mb-2 font-bold via-100% to-180% bg-linear-100 from-ssw-red via-[#D699FB] to-[#FF778E] bg-clip-text"
