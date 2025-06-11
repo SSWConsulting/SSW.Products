@@ -27,8 +27,6 @@ const NotFoundClient = ({
   return (
     <div className="flex items-center">
       <div className="md:grid px-4 py-12 lg:px-0 grid-cols-1 flex flex-col gap-[39px] md:gap-[78px] h-fit md:grid-cols-2 w-248 mx-auto">
-        {/* background: linear-gradient(98.94deg, #CC4141 48.51%, #D699FB 100.38%, #FF778E 178.58%);
-         */}
         <div className="flex-col flex justify-center pt text-white">
           <h1
             data-tina-field={tinaField(data.notFound, "heading")}
@@ -42,11 +40,6 @@ const NotFoundClient = ({
           >
             <TinaMarkdown content={body} />
           </section>
-          {/* <p className="text-xl text-white">
-          This page isn’t in our training data. Even our Yak couldn’t generate a
-          prediction for it. If you got here through a broken link consider
-          YakShaving it!
-        </p> */}
         </div>
         {imgSrc && imgHeight && imgWidth && (
           <Image
@@ -61,10 +54,8 @@ const NotFoundClient = ({
           />
         )}
       </div>
-      {/* </Container> */}
     </div>
   );
 };
 
 export default NotFoundClient;
-// This component is a placeholder for the Not Found page in a Next.js application
