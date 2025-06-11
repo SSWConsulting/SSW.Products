@@ -1,5 +1,8 @@
 {
   "Logo": "/EagleEye/Logo.svg",
+  "imgSrc": "/EagleEye/Logo.svg",
+  "imgWidth": 125,
+  "imgHeight": 22,
   "leftNavItem": [
     {
       "label": "Blog",

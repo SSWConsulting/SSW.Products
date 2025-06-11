@@ -1,5 +1,5 @@
-import NavBarClient from "./NavBarClient";
 import client from "../../tina/__generated__/client";
+import NavBarClient from "./NavBarClient";
 
 interface NavBarServerProps {
   product: string;
