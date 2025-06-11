@@ -1,4 +1,4 @@
-import { optimizedImageField } from "@comps/shared/Blocks/TryItNow.template";
+import { optimizedImageField } from "@tina/shared/OptimizedImage";
 import { Collection } from "tinacms";
 import { jotFormBookingButtonSchema } from "../../components/shared/Blocks/BookingButton.template";
 export const navigationBarCollection: Collection = {
@@ -9,11 +9,6 @@ export const navigationBarCollection: Collection = {
   defaultItem: () => {},
   fields: [
     ...optimizedImageField,
-    // {
-    //   name: "Logo",
-    //   label: "Logo",
-    //   type: "image",
-    // },
     {
       name: "leftNavItem",
       label: "Left Side Navigation Item",
