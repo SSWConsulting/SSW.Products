@@ -13,9 +13,7 @@ const NotFoundClient = ({
 }: {
   notFoundDictionary: NotFoundData;
 }) => {
-  console.log("notFoundDictionary", notFoundDictionary);
   const params = useParams<{ product: string }>();
-  console.log("params", params.product);
   const tinaData = notFoundDictionary[params.product];
   const { data } = useTina({
     query: tinaData.query,
