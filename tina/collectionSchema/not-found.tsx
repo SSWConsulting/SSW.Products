@@ -7,10 +7,10 @@ const notFoundCollection: Collection = {
   format: "mdx",
   ui: {
     router: () => `404`,
-    // allowedActions: {
-    //   create: false,
-    //   delete: false,
-    // },
+    allowedActions: {
+      create: false,
+      delete: false,
+    },
   },
   fields: [
     {

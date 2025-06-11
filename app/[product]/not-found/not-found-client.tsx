@@ -26,30 +26,18 @@ const NotFoundClient = ({
 
   return (
     <div className="flex items-center">
-      <div className="grid px-4 pb-12 lg:px-0 grid-cols-1 gap-10 h-fit md:grid-cols-2 w-248 mx-auto">
-        {imgSrc && imgHeight && imgWidth && (
-          <Image
-            data-tina-field={tinaField(data.notFound, "imgSrc")}
-            aria-hidden={true}
-            className="sm:w-109 md:ml-0 mx-auto w-60 rounded-2xl"
-            quality={90}
-            width={imgWidth}
-            height={imgHeight}
-            alt=""
-            src={imgSrc}
-          />
-        )}
+      <div className="md:grid px-4 pb-12 lg:px-0 grid-cols-1 flex flex-col gap-[39px] md:gap-[78px] h-fit md:grid-cols-2 w-248 mx-auto">
         {/* background: linear-gradient(98.94deg, #CC4141 48.51%, #D699FB 100.38%, #FF778E 178.58%);
          */}
         <div className="flex-col flex justify-center text-white">
           <h1
             data-tina-field={tinaField(data.notFound, "heading")}
-            className="text-6xl  w-fit text-transparent from-50% font-bold via-100% to-180% bg-linear-100 from-ssw-red via-[#D699FB] to-[#FF778E] bg-clip-text"
+            className="text-6xl  w-fit text-transparent from-50% mb-2 font-bold via-100% to-180% bg-linear-100 from-ssw-red via-[#D699FB] to-[#FF778E] bg-clip-text"
           >
             {heading}
           </h1>
           <section
-            className="[&_a]:underline [&_a]:underline-offset-2"
+            className="[&_a]:underline text-xl [&_a]:underline-offset-2"
             data-tina-field={tinaField(data.notFound, "body")}
           >
             <TinaMarkdown content={body} />
@@ -60,6 +48,18 @@ const NotFoundClient = ({
           YakShaving it!
         </p> */}
         </div>
+        {imgSrc && imgHeight && imgWidth && (
+          <Image
+            data-tina-field={tinaField(data.notFound, "imgSrc")}
+            aria-hidden={true}
+            className="rounded-2xl"
+            quality={90}
+            width={imgWidth}
+            height={imgHeight}
+            alt=""
+            src={imgSrc}
+          />
+        )}
       </div>
       {/* </Container> */}
     </div>
