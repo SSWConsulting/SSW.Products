@@ -83,7 +83,12 @@ const BlogCard = ({
           readLength={readLength}
         />
         <section className="text-gray-300 text-sm mb-4 line-clamp-2">
-          <TinaMarkdown content={body} />
+          <TinaMarkdown
+            content={body}
+            components={{
+              img: () => <></>,
+            }}
+          />
         </section>
         <ReadMore groupHover={groupHover} fileName={slug || ""} />
       </div>

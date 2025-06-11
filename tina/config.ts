@@ -1,12 +1,12 @@
 import { defineConfig } from "tinacms";
 import { blogCollection, blogIndexCollection } from "./collectionSchema/blog";
 import { docsCollection } from "./collectionSchema/docs";
+import { docsTableOfContentsCollection } from "./collectionSchema/docsTableOfContents";
 import { footerCollection } from "./collectionSchema/footer";
 import { navigationBarCollection } from "./collectionSchema/navbar";
+import { notFoundCollection } from "./collectionSchema/not-found";
 import { PagesSchema } from "./collectionSchema/pages";
 import { privacyPolicyCollection } from "./collectionSchema/privacy";
-import { docsTableOfContentsCollection } from "./collectionSchema/docsTableOfContents";
-
 const branch =
   process.env.GITHUB_BRANCH ||
   process.env.VERCEL_GIT_COMMIT_REF ||
@@ -35,6 +35,7 @@ export default defineConfig({
       PagesSchema,
       privacyPolicyCollection,
       navigationBarCollection,
+      notFoundCollection,
       footerCollection,
       blogCollection,
       blogIndexCollection,
