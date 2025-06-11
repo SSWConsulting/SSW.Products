@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@comps/ui/button";
 import client from "@tina/__generated__/client";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -38,6 +39,9 @@ const NotFoundClient = ({
           >
             <TinaMarkdown content={body} />
           </section>
+          <Button href="/" className="w-fit mt-6" variant={"white"}>
+            Back to Home
+          </Button>
         </div>
         {imgSrc && imgHeight && imgWidth && (
           <Image
