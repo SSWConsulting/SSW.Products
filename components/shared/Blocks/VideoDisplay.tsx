@@ -22,7 +22,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
           {title}
         </h2>
         <YouTubeEmbed
-          className="w-full aspect-video mx-auto"
+          className="w-full  mx-auto"
           src={externalVideoLink || ""}
         />
         {figureCaption && (
