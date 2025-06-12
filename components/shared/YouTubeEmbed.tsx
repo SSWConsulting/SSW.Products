@@ -5,7 +5,7 @@ import React from "react";
 import { FaPlay } from "react-icons/fa6";
 
 type YouTubeEmbedProps = {
-  src: string;
+  src?: string;
   placeholder?: string;
   className?: string;
 };
@@ -17,7 +17,7 @@ export const YouTubeEmbed = ({
   className,
   placeholder,
 }: YouTubeEmbedProps) => {
-  const matches = reg.exec(src);
+  const matches = reg.exec(src || "");
   const videoId = matches ? matches[1] : null;
   const [clicked, setClicked] = React.useState(false);
   return (

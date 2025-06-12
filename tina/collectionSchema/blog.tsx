@@ -1,3 +1,4 @@
+import { optimizedYoutubeFields } from "@comps/shared/Blocks/VideoDisplay.template";
 import React from "react";
 import { Collection, Template, TinaField } from "tinacms";
 import { DEFAULT_CATEGORY } from "../../components/providers/BlogSearchProvider";
@@ -115,15 +116,7 @@ export const blogCollection: Collection = {
         {
           name: "Youtube",
           label: "Youtube Embed",
-          fields: [
-            {
-              type: "string",
-              name: "embedSrc",
-              label: "Embed URL",
-              description:
-                "⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY",
-            },
-          ],
+          fields: [...optimizedYoutubeFields],
         },
       ],
     },
