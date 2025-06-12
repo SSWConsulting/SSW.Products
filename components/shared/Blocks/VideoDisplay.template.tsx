@@ -18,11 +18,12 @@ const VideoUrl = (props: {
   };
   meta: object;
 }) => {
-  const reg = /https:\/\/www.youtube.com\/embed\/([a-zA-Z0-9]*)/;
+  const reg = /https:\/\/www.youtube.com\/embed\/([a-zA-Z0-9\-\_]*)/;
   const matches = reg.exec(props.input.value);
   const videoId = matches ? matches[1] : null;
   if (!props.form)
     throw new Error("Form is required for Video Display component");
+  console.log("videoId", videoId);
 
   const leadingField = props.input.name.replace("externalVideoLink", "");
 
