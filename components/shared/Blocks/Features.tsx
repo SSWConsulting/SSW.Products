@@ -85,8 +85,6 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
           "PagesPageBlocksFeaturesFeatureItemMediaExternalVideo" &&
         mediaItem.externalVideoLink
       ) {
-        console.log("externalVideoLink", mediaItem.externalVideoLink);
-        console.log("placeholder", mediaItem.thumbnail);
         // Assuming YouTubeEmbed is a component that handles YouTube links
         return (
           <div className="w-full h-full flex items-center justify-center">
@@ -97,33 +95,6 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
           </div>
         );
       }
-      // if (
-      //   mediaItem.__typename ===
-      //   "PagesPageBlocksFeaturesFeatureItemMediaThumbnailToExternalLink"
-      // ) {
-      //   return (
-      //     <div className="relative group cursor-pointer">
-      //       <Link href={mediaItem.src || ""} target="_blank">
-      //         <Image
-      //           src={mediaItem.image || ""}
-      //           alt="Home-page thumbnail image"
-      //           width={1000}
-      //           height={1000}
-      //           className="rounded-lg shadow-lg"
-      //         />
-      //         <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
-      //         <div className="absolute inset-0 flex items-center justify-center">
-      //           <Image
-      //             src="/svg/play-button.svg"
-      //             alt="Play Button"
-      //             width={100}
-      //             height={100}
-      //           />
-      //         </div>
-      //       </Link>
-      //     </div>
-      //   );
-      // }
     }
     return null;
   };
