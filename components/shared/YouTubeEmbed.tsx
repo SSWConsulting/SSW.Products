@@ -24,7 +24,6 @@ export const YouTubeEmbed = ({
     <div className={cn("relative aspect-video w-full", className)}>
       {!clicked ? (
         <div className="bg-black group aspect-video  relative rounded-lg **:duration-200">
-          {/* <div className="absolute inset-0 flex items-center justify-center"> */}
           <div className="p-5 inline-flex group-hover:scale-115 items-center justify-center absolute  rounded-full top-1/2 left-1/2 border-gradient-pink -translate-x-1/2 border-gradient-foreground-gray-darkest -translate-y-1/2 z-20">
             <FaPlay
               className="text-white pl-1 transition-transform ease-out md:text-7xl text-5xl cursor-pointer"
@@ -41,7 +40,6 @@ export const YouTubeEmbed = ({
             className="w-full object-cover group-hover:brightness-70 transition-all inset-0 h-auto mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] rounded-lg cursor-pointer"
             onClick={() => setClicked(true)}
           />
-          {/* </div> */}
         </div>
       ) : (
         <iframe
