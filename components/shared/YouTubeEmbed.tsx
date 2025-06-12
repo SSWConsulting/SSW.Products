@@ -38,7 +38,7 @@ export const YouTubeEmbed = ({
             }
             alt="YouTube video placeholder"
             fill
-            className="w-full group-hover:brightness-70 transition-all inset-0 h-auto mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] rounded-lg cursor-pointer"
+            className="w-full object-cover group-hover:brightness-70 transition-all inset-0 h-auto mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] rounded-lg cursor-pointer"
             onClick={() => setClicked(true)}
           />
           {/* </div> */}

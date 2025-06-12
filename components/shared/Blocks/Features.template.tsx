@@ -1,6 +1,7 @@
 import { Template } from "tinacms";
 import { actionsButtonTemplate } from "./ActionsButton.template";
 import { modalButtonTemplate } from "./ModalButton.template";
+import { optimizedYoutubeFields } from "./VideoDisplay.template";
 
 interface FeatureItem {
   headline?: string;
@@ -42,7 +43,7 @@ export const FeaturesTemplate: Template = {
         {
           name: "words",
           label: "Words for Rotate Animation",
-          type: 'string',
+          type: "string",
           list: true,
           required: false,
         },
@@ -83,15 +84,7 @@ export const FeaturesTemplate: Template = {
             {
               name: "externalVideo",
               label: "External Video",
-              fields: [
-                {
-                  name: "src",
-                  label: "URL",
-                  type: "string",
-                  description:
-                    "This is used for videos we embed, such as YouTube embed links.",
-                },
-              ],
+              fields: [...optimizedYoutubeFields],
             },
             {
               name: "thumbnailToExternalLink",
@@ -112,7 +105,7 @@ export const FeaturesTemplate: Template = {
               ],
             },
           ],
-        },        
+        },
         {
           name: "isReversed",
           label: "Is Text on the Right?",

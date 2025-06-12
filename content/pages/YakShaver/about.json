@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "About YakShaver - Innovative AI Solutions for Your Needs",
+    "description": "Discover YakShaver: innovative AI solutions designed to enhance productivity and streamline workflows for businesses."
+  },
   "title": "About YakShaver - Innovative AI Solutions for Your Needs",
   "pageBlocks": [
     {
@@ -8,7 +12,8 @@
           "text": "Ever heard of \"shaving the yak\"? It’s that all-too-familiar feeling when a simple task snowballs into a series of endless, time-wasting chores. We've all been there, so we created YakShaver – an AI agent to help you trim the fluff and get straight to the point.\n\nWith YakShaver, you don’t need to play detective, figuring out who’s the right person for the job. Just record the issue, and our smart, intuitive system takes care of the rest, using AI to instantly route it to the right person or backlog. No more chasing your tail in endless email chains or barking up the wrong tree. That’s why we built it – to make your life a little easier, a bit more organized, and a whole lot less hairy.\n",
           "media": [
             {
-              "src": "https://www.youtube.com/embed/8fnfeuoh4s8?si",
+              "externalVideoLink": "https://www.youtube.com/embed/8fnfeuoh4s8",
+              "thumbnail": "https://img.youtube.com/vi/8fnfeuoh4s8/hqdefault.jpg",
               "_template": "externalVideo"
             }
           ],
@@ -34,9 +39,5 @@
       "image": "/YakShaver/UlyPoint.png",
       "_template": "Banner"
     }
-  ],
-  "seo": {
-    "description": "Discover YakShaver: innovative AI solutions designed to enhance productivity and streamline workflows for businesses.",
-    "title": "About YakShaver - Innovative AI Solutions for Your Needs"
-  }
+  ]
 }

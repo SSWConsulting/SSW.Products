@@ -1,6 +1,5 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { tinaField } from "tinacms/dist/react";
 import {
@@ -29,6 +28,9 @@ export type FeatureItem = {
     __typename: string;
     image?: string;
     src?: string;
+    thumbnail?: string;
+
+    externalVideoLink?: string;
   }>;
   isReversed: boolean;
   hasBackground: boolean;
@@ -59,6 +61,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
   const renderMedia = () => {
     if (feature.media && feature.media.length > 0) {
       const mediaItem = feature.media[0];
+      console.log("mediaItem", mediaItem.__typename);
 
       if (
         mediaItem.__typename ===
@@ -80,41 +83,47 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
       if (
         mediaItem.__typename ===
           "PagesPageBlocksFeaturesFeatureItemMediaExternalVideo" &&
-        mediaItem.src
+        mediaItem.externalVideoLink
       ) {
+        console.log("externalVideoLink", mediaItem.externalVideoLink);
+        console.log("placeholder", mediaItem.thumbnail);
+        // Assuming YouTubeEmbed is a component that handles YouTube links
         return (
           <div className="w-full h-full flex items-center justify-center">
-            <YouTubeEmbed src={mediaItem.src} />
+            <YouTubeEmbed
+              placeholder={mediaItem.thumbnail}
+              src={mediaItem.externalVideoLink}
+            />
           </div>
         );
       }
-      if (
-        mediaItem.__typename ===
-        "PagesPageBlocksFeaturesFeatureItemMediaThumbnailToExternalLink"
-      ) {
-        return (
-          <div className="relative group cursor-pointer">
-            <Link href={mediaItem.src || ""} target="_blank">
-              <Image
-                src={mediaItem.image || ""}
-                alt="Home-page thumbnail image"
-                width={1000}
-                height={1000}
-                className="rounded-lg shadow-lg"
-              />
-              <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Image
-                  src="/svg/play-button.svg"
-                  alt="Play Button"
-                  width={100}
-                  height={100}
-                />
-              </div>
-            </Link>
-          </div>
-        );
-      }
+      // if (
+      //   mediaItem.__typename ===
+      //   "PagesPageBlocksFeaturesFeatureItemMediaThumbnailToExternalLink"
+      // ) {
+      //   return (
+      //     <div className="relative group cursor-pointer">
+      //       <Link href={mediaItem.src || ""} target="_blank">
+      //         <Image
+      //           src={mediaItem.image || ""}
+      //           alt="Home-page thumbnail image"
+      //           width={1000}
+      //           height={1000}
+      //           className="rounded-lg shadow-lg"
+      //         />
+      //         <div className="absolute inset-0 bg-gray-800 opacity-5 group-hover:opacity-50 transition-opacity duration-300 rounded-lg"></div>
+      //         <div className="absolute inset-0 flex items-center justify-center">
+      //           <Image
+      //             src="/svg/play-button.svg"
+      //             alt="Play Button"
+      //             width={100}
+      //             height={100}
+      //           />
+      //         </div>
+      //       </Link>
+      //     </div>
+      //   );
+      // }
     }
     return null;
   };
@@ -188,7 +197,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
       </div>
       <div
         className="w-full flex items-center justify-center h-full"
-        data-tina-field={tinaField(feature, "media")}
+        data-tina-field={tinaField(feature)}
       >
         {renderMedia()}
       </div>

@@ -73,7 +73,7 @@ const VideoUrl = (props: {
   );
 };
 
-const optimizedYoutubeFields: TinaField[] = [
+export const optimizedYoutubeFields: TinaField[] = [
   {
     name: "externalVideoLink",
     type: "string",
