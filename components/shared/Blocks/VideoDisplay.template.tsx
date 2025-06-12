@@ -51,6 +51,8 @@ const VideoUrl = (props: {
     <React.Fragment>
       <TextField
         field={{
+          description:
+            "⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY",
           name: props.field.name,
           component: null,
           placeholder: "",
@@ -101,6 +103,7 @@ export const videoDisplayTemplate: Template = {
     { name: "altText", label: "Alt Text", type: "string" },
     { name: "title", label: "Title", type: "string" },
     ...optimizedYoutubeFields,
+
     { name: "figureCaption", label: "Figure Caption", type: "string" },
   ],
 };
