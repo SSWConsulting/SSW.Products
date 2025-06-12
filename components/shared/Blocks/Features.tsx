@@ -85,7 +85,6 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
           "PagesPageBlocksFeaturesFeatureItemMediaExternalVideo" &&
         mediaItem.externalVideoLink
       ) {
-        // Assuming YouTubeEmbed is a component that handles YouTube links
         return (
           <div className="w-full h-full flex items-center justify-center">
             <YouTubeEmbed
