@@ -42,6 +42,7 @@ interface BlocksProps {
 }
 
 const Blocks = ({ blocks }: BlocksProps) => {
+  // const [test, setTest] = React.useState<string | null>(null);
   if (!blocks) return null;
 
   return blocks.map((block: Block, index: number) => {

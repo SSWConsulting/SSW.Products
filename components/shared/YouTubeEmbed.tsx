@@ -6,20 +6,24 @@ import { FaPlay } from "react-icons/fa6";
 
 type YouTubeEmbedProps = {
   src: string;
+  placeholder?: string;
   className?: string;
 };
 
 const reg = /https:\/\/www.youtube.com\/embed\/([a-zA-Z0-9]*)/;
 
-export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
+export const YouTubeEmbed = ({
+  src,
+  className,
+  placeholder,
+}: YouTubeEmbedProps) => {
   const matches = reg.exec(src);
   const videoId = matches ? matches[1] : null;
   const [clicked, setClicked] = React.useState(false);
-
   return (
     <div className={cn("relative aspect-video w-full", className)}>
       {!clicked ? (
-        <div className="bg-black group  relative rounded-lg **:duration-200">
+        <div className="bg-black group aspect-video  relative rounded-lg **:duration-200">
           {/* <div className="absolute inset-0 flex items-center justify-center"> */}
           <div className="p-5 inline-flex group-hover:scale-115 items-center justify-center absolute  rounded-full top-1/2 left-1/2 border-gradient-pink -translate-x-1/2 border-gradient-foreground-gray-darkest -translate-y-1/2 z-20">
             <FaPlay
@@ -29,13 +33,11 @@ export const YouTubeEmbed = ({ src, className }: YouTubeEmbedProps) => {
           </div>
           <Image
             src={
-              videoId
-                ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
-                : ""
+              placeholder ||
+              "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'><rect width='100%' height='100%' fill='%23999'/></svg>"
             }
             alt="YouTube video placeholder"
-            width={1280}
-            height={720}
+            fill
             className="w-full group-hover:brightness-70 transition-all inset-0 h-auto mask-[linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] rounded-lg cursor-pointer"
             onClick={() => setClicked(true)}
           />

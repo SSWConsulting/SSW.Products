@@ -1,8 +1,8 @@
 {
   "seo": {
     "title": "YakShaver - Record issues & let AI instantly assign them to the right team",
-    "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}",
-    "description": "Explore YakShaver for innovative AI solutions and insights to enhance your business efficiency and growth."
+    "description": "Explore YakShaver for innovative AI solutions and insights to enhance your business efficiency and growth.",
+    "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}"
   },
   "title": "YakShaver - Record issues & let AI instantly assign them to the right team",
   "pageBlocks": [
@@ -10,7 +10,12 @@
       "backgroundImageEnabled": false,
       "titleBeforeRotate": "Make the perfect",
       "titleAfterRotate": "in seconds",
-      "rotatingWords": ["PBI", "task", "ticket", "email"],
+      "rotatingWords": [
+        "PBI",
+        "task",
+        "ticket",
+        "email"
+      ],
       "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly.\n\nSave hours of frustration with YakShaver.\n",
       "ctaLeft": {
         "title": "TRY THE DEMO",
@@ -187,7 +192,10 @@
       "tiers": [
         {
           "tier": "Starter ",
-          "description": ["15 credits per month", "For individuals"],
+          "description": [
+            "15 credits per month",
+            "For individuals"
+          ],
           "price": 0,
           "estimatedHoursSaved": 7.5,
           "itemsAbleToCreate": 15,
@@ -201,7 +209,10 @@
         },
         {
           "tier": "Team",
-          "description": ["100 credits per month", "For growing teams"],
+          "description": [
+            "100 credits per month",
+            "For growing teams"
+          ],
           "price": 39,
           "estimatedHoursSaved": 50,
           "itemsAbleToCreate": 100,
@@ -215,7 +226,10 @@
         },
         {
           "tier": "Growth",
-          "description": ["500 credits per month", "For larger organizations"],
+          "description": [
+            "500 credits per month",
+            "For larger organizations"
+          ],
           "price": 189,
           "estimatedHoursSaved": 250,
           "itemsAbleToCreate": 500,
@@ -229,7 +243,10 @@
         },
         {
           "tier": "Enterprise",
-          "description": ["Custom credit allocation", "For custom solutions"],
+          "description": [
+            "Custom credit allocation",
+            "For custom solutions"
+          ],
           "price": 99999,
           "estimatedHoursSaved": 0,
           "itemsAbleToCreate": 0,
@@ -265,6 +282,7 @@
     {
       "altText": "Making the Perfect PBI | YakShaver",
       "title": "Want to Learn More? ",
+      "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
       "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
       "figureCaption": "Video: Making the Perfect PBI with YakShaver (6 min)",
       "_template": "videoDisplay"
