@@ -34,8 +34,3 @@ Linking your YouTube channel lets YakShaver automatically upload screen recordin
 * **Existing work items** — unchanged. The YouTube link applies only to videos recorded *after* you connect.
 * **New recordings** — uploaded to your channel with a placeholder title; YakShaver later updates the description with a backlink to the newly created work item.
 * **Multiple projects** — repeat these same steps in each project that should upload to the same (or a different) YouTube channel.
-
-## Why YakShaver Requests `https://www.googleapis.com/auth/youtube.force-ssl`
-
-YakShaver uploads each new recording with a temporary title and empty description. After the corresponding GitHub or Azure DevOps issue is created, YakShaver updates the video description with a backlink.\
-To perform both actions, YakShaver asks for the `youtube.force-ssl` scope.
