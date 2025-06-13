@@ -34,15 +34,11 @@ export const DocAndBlogMarkdownStyle: Components<{
   ),
 
   ol: (props) => (
-    <ol className="list-decimal font-light list-inside pl-4 mb-4">
-      {props?.children}
-    </ol>
+    <ol className="list-decimal ps-7 font-light mb-4">{props?.children}</ol>
   ),
 
   ul: (props) => (
-    <ul className="list-disc font-light list-inside pl-4 mb-4">
-      {props?.children}
-    </ul>
+    <ul className="list-disc ps-7 font-light mb-4">{props?.children}</ul>
   ),
 
   li: (props) => <li className="mb-4">{props?.children}</li>,
