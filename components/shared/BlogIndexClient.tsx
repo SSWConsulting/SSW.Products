@@ -94,7 +94,7 @@ const FeaturedArticle = ({
                     <div className="inset-0 flex items-center justify-center absolute">
                       <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-to-bottom aspect-video relative">
                         <Image
-                          loading="eager"
+                          priority={true}
                           aria-hidden={true}
                           src={featuredBlog.bannerImage}
                           alt={""}
