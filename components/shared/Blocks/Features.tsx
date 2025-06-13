@@ -61,7 +61,6 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
   const renderMedia = () => {
     if (feature.media && feature.media.length > 0) {
       const mediaItem = feature.media[0];
-      console.log("mediaItem", mediaItem.__typename);
 
       if (
         mediaItem.__typename ===
