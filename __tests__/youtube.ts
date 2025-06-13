@@ -8,9 +8,7 @@ test("getYouTubeVideoId works", () => {
 
 test("getYouTubeVideoId handles dashes", () => {
   const id = "-7c6uagBBBM";
-  const result = getYouTubeVideoId(
-    "https://www.youtube.com/embed/-7c6uagBBBM?si=6Mxsd3VvDZXn1-OJ"
-  );
+  const result = getYouTubeVideoId("https://www.youtube.com/embed/-7c6uagBBBM");
 
   expect(result).toBe(id);
 });
@@ -24,10 +22,19 @@ test("getYouTubeVideoId handles query params", () => {
   expect(result).toBe(id);
 });
 
+test("getYouTubeVideoId handles dashes query params, underscrores", () => {
+  const id = "8fnf-e_uoh4s8";
+  const result = getYouTubeVideoId(
+    "https://www.youtube.com/embed/8fnf-e_uoh4s8?si=XBvBaWMR7EaZyxWI"
+  );
+
+  expect(result).toBe(id);
+});
+
 test("getYouTubeVideoId handles handles underscores & dashes", () => {
   const id = "-7_c6uagBBBM";
   const result = getYouTubeVideoId(
-    "https://www.youtube.com/embed/-7_c6uagBBBM?si=6Mxsd3VvDZXn1-OJ"
+    "https://www.youtube.com/embed/-7_c6uagBBBM"
   );
 
   expect(result).toBe(id);
