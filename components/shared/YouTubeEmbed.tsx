@@ -10,7 +10,7 @@ type YouTubeEmbedProps = {
   className?: string;
 };
 
-const reg = /https:\/\/www.youtube.com\/embed\/([a-zA-Z0-9\-]*)/;
+const reg = /https:\/\/www.youtube.com\/embed\/([a-zA-Z0-9_\-]*)/;
 
 export const YouTubeEmbed = ({
   src,
