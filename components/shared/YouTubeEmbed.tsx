@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
+import { getYouTubeVideoId } from "@utils/youtube";
 import Image from "next/image";
-
 import React from "react";
 import { FaPlay } from "react-icons/fa6";
 
@@ -10,15 +10,12 @@ type YouTubeEmbedProps = {
   className?: string;
 };
 
-const reg = /https:\/\/www.youtube.com\/embed\/([a-zA-Z0-9_\-]*)/;
-
 export const YouTubeEmbed = ({
   src,
   className,
   placeholder,
 }: YouTubeEmbedProps) => {
-  const matches = reg.exec(src || "");
-  const videoId = matches ? matches[1] : null;
+  const videoId = getYouTubeVideoId(src);
   const [clicked, setClicked] = React.useState(false);
   return (
     <div className={cn("relative aspect-video w-full", className)}>
