@@ -92,43 +92,45 @@ export default function BlogPostClient({
           />
         </div>
       </Container>
-      <div className="relative flex  z-0 overflow-hidden">
-        <div
-          data-tina-field={tinaField(data.blogs, "bannerImage")}
-          className="relative aspect-video lg:w-1/2 w-4/5 mx-auto my-16 a z-20 inset-0   "
-        >
-          <Image
-            alt="alt text"
-            fill
-            className="object-cover rounded-lg mask-b-from-60% mask-b-to-100%"
-            aria-hidden="true"
-            src={data.blogs.bannerImage || ""}
-          />
-        </div>
-        <div
-          className="absolute z-10 inset-0 mask-y-from-90% mask-y-to-100% mask-x-from-90% mask-x-to-100% mask-radial-[60%_100%] mask-radial-from-52 mask-radial-at-center
+      {data.blogs.bannerImage && (
+        <div className="relative flex  z-0 overflow-hidden">
+          <div
+            data-tina-field={tinaField(data.blogs, "bannerImage")}
+            className="relative aspect-video lg:w-1/2 w-4/5 mx-auto my-16 a z-20 inset-0   "
+          >
+            <Image
+              alt="alt text"
+              fill
+              className="object-cover rounded-lg mask-b-from-60% mask-b-to-100%"
+              aria-hidden="true"
+              src={data.blogs.bannerImage}
+            />
+          </div>
+          <div
+            className="absolute z-10 inset-0 mask-y-from-90% mask-y-to-100% mask-x-from-90% mask-x-to-100% mask-radial-[60%_100%] mask-radial-from-52 mask-radial-at-center
           "
-        >
-          <GridPattern
-            className="bg inset-y-[-30%] skew-y-12 h-[200%] "
-            strokeDasharray={"4 2"}
-            squares={[
-              [4, 4],
-              [5, 1],
-              [8, 2],
-              [5, 3],
-              [5, 5],
-              [10, 10],
-              [12, 15],
-              [15, 10],
-              [10, 15],
-              [15, 10],
-              [10, 15],
-              [15, 10],
-            ]}
-          />
+          >
+            <GridPattern
+              className="bg inset-y-[-30%] skew-y-12 h-[200%] "
+              strokeDasharray={"4 2"}
+              squares={[
+                [4, 4],
+                [5, 1],
+                [8, 2],
+                [5, 3],
+                [5, 5],
+                [10, 10],
+                [12, 15],
+                [15, 10],
+                [10, 15],
+                [15, 10],
+                [10, 15],
+                [15, 10],
+              ]}
+            />
+          </div>
         </div>
-      </div>
+      )}
       {titles.length > 0 && (
         <Container className="w-full relative block sm:hidden">
           <TableOfContents.Root>
