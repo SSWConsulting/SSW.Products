@@ -17,16 +17,35 @@ interface FooterClientProps {
   hasPrivacyPolicy: boolean;
 }
 
-const iconMap: { [key: string]: JSX.Element } = {
-  FaYouTube: <FaYoutube />,
-  FaLinkedIn: <FaLinkedin />,
-  FaFacebook: <FaFacebook />,
-  FaTwitter: <FaTwitter />,
-  FaXTwitter: <FaXTwitter />,
-  FaInstagram: <FaInstagram />,
-  FaTiktok: <FaTiktok />,
-  FaGithub: <FaGithub />,
-  FaDiscord: <FaDiscord />,
+const iconMap: { [key: string]: { svg: JSX.Element; linkText: string } } = {
+  FaYouTube: {
+    svg: <FaYoutube />,
+    linkText: "Link to YouTube channel",
+  },
+  FaLinkedIn: { svg: <FaLinkedin />, linkText: "Link to LinkedIn profile" },
+  FaFacebook: {
+    svg: <FaFacebook />,
+
+    linkText: "Link to Facebook page",
+  },
+  FaTwitter: { svg: <FaTwitter />, linkText: "Link to Twitter profile" },
+  FaXTwitter: {
+    svg: <FaXTwitter />,
+    linkText: "Link to X (formerly Twitter) profile",
+  },
+  FaInstagram: {
+    svg: <FaInstagram />,
+    linkText: "Link to Instagram profile",
+  },
+  FaTiktok: {
+    svg: <FaTiktok />,
+    linkText: "Link to TikTok profile",
+  },
+  FaGithub: {
+    linkText: "Link to GitHub project",
+    svg: <FaGithub />,
+  },
+  FaDiscord: { svg: <FaDiscord />, linkText: "Link to Discord server" },
 };
 
 export default function FooterContent({
@@ -55,15 +74,17 @@ export default function FooterContent({
         <div className="flex space-x-4 mb-4 lg:mb-0 justify-center lg:order-2">
           {footerItems?.map((item, index) => {
             if (item) {
+              const icon = iconMap[item.footerItemIcon || ""];
               return (
                 <a
                   key={index}
+                  aria-label={icon?.linkText || "Social media link"}
                   href={item.footerItemLink ?? "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-lg md:text-2xl hover:-translate-y-1 animation ease-in-out duration-300"
                 >
-                  {item.footerItemIcon && iconMap[item.footerItemIcon]}
+                  {icon && icon["svg"]}
                 </a>
               );
             }

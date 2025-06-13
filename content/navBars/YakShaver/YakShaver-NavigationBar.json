@@ -1,5 +1,8 @@
 {
   "Logo": "/YakShaver/YakShaver Darkmode.png",
+  "imgSrc": "/yakshaver-logo.png",
+  "imgWidth": 591,
+  "imgHeight": 90,
   "leftNavItem": [
     {
       "label": "Pricing",

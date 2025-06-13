@@ -22,7 +22,8 @@
           ],
           "media": [
             {
-              "src": "https://www.youtube.com/embed/-7c6uagBBBM?si=V5ZP_lCtpgC3cOqi",
+              "externalVideoLink": "https://www.youtube.com/embed/-7c6uagBBBM?si=M0rh1yT5l3VQmuOA",
+              "thumbnail": "https://img.youtube.com/vi/-7c6uagBBBM/maxresdefault.jpg",
               "_template": "externalVideo"
             }
           ],

@@ -1,3 +1,4 @@
+import { optimizedYoutubeFields } from "@comps/shared/Blocks/VideoDisplay.template";
 import { Collection, TinaField } from "tinacms";
 import { seoInformation } from "../shared/SEOInformation";
 
@@ -41,19 +42,11 @@ export const docsCollection: Collection = {
       },
       templates: [
         {
-          name: 'Youtube',
-          label: 'Youtube Embed',
-          fields: [
-            {
-              type: 'string',
-              name: 'embedSrc',
-              label: 'Embed URL',
-              description:
-                '⚠︎ Only YouTube embed URLs work - they look like this https://www.youtube.com/embed/Yoh2c5RUTiY',
-            },
-          ],
+          name: "Youtube",
+          label: "Youtube Embed",
+          fields: [...optimizedYoutubeFields],
         },
-      ]
+      ],
     },
   ],
 };

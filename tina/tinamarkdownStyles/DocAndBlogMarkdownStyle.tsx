@@ -1,18 +1,24 @@
+import { YouTubeEmbed } from "@comps/shared/YouTubeEmbed";
 import Image from "next/image";
 import { Components } from "tinacms/dist/rich-text";
 export const DocAndBlogMarkdownStyle: Components<{
-  Youtube: { embedSrc: string };
+  Youtube: { thumbnail?: string; externalVideoLink?: string };
 }> = {
-  Youtube: ({ embedSrc }) => (
+  Youtube: (props) => (
     <div className="youtube-container">
-      <iframe
+      <YouTubeEmbed
+        className="w-[560px] h-[315px]"
+        src={props.externalVideoLink}
+        placeholder={props.thumbnail}
+      />
+      {/* <iframe
         width="560"
         height="315"
         src={embedSrc}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen={true}
-      ></iframe>
+      ></iframe> */}
     </div>
   ),
   p: (props) => <p className="text-base font-light mb-4">{props?.children}</p>,

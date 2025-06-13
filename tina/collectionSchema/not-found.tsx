@@ -1,4 +1,4 @@
-import { optimizedImageField } from "@comps/shared/Blocks/TryItNow.template";
+import { optimizedImageField } from "@tina/shared/OptimizedImage";
 import { Collection } from "tinacms";
 const notFoundCollection: Collection = {
   name: "notFound",

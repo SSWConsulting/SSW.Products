@@ -1,42 +1,36 @@
 "use client";
-
+import { useMotionValueEvent, useScroll } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CgClose } from "react-icons/cg";
-import { FaExternalLinkAlt } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa6";
+import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { NavigationBarQuery } from "../../tina/__generated__/types";
 import { BookingButton } from "./Blocks/BookingButton";
-
 interface NavBarClientProps {
   results: NavigationBarQuery | null;
 }
 
 export default function NavBarClient({ results }: NavBarClientProps) {
   const [scrolled, setScrolled] = useState(false);
+
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
+  const { scrollY } = useScroll();
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isOpen]);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  });
 
   const { navigationBar } = results || {};
   const leftNavItems = navigationBar?.leftNavItem;
   const rightNavItems = navigationBar?.rightNavItem;
-  const logo = navigationBar?.Logo;
+  const { imgSrc, imgHeight, imgWidth } = navigationBar || {};
 
   const renderNavItem = (item: any, index: number) => {
     switch (item?.__typename) {
@@ -148,9 +142,15 @@ export default function NavBarClient({ results }: NavBarClientProps) {
     >
       <div className="max-w-7xl mx-4 xl:mx-auto flex justify-between">
         <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
-          {logo && (
-            <Link href="/" className="shrink-0 mb-1.5">
-              <Image src={logo} alt="Logo" width={200} height={200} />
+          {imgWidth && imgHeight && imgSrc && (
+            <Link className="mb-2 shrink-0" href="/">
+              <Image
+                src={imgSrc}
+                className="h-8 w-auto"
+                width={imgWidth}
+                height={imgHeight}
+                alt="Logo"
+              />
             </Link>
           )}
 

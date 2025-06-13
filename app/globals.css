@@ -50,6 +50,13 @@
   mask-image: --value(--mask- *);
 }
 
+@utility border-gradient-foreground-* {
+  --border-gradient-foreground: linear-gradient(
+    --value(--color- *),
+    --value(--color- *)
+  );
+}
+
 @utility border-gradient-* {
   background-clip: padding-box, border-box;
   background-origin: border-box;
@@ -58,7 +65,7 @@
       linear-gradient(white, white)
     ),
     --value(--gradient- *);
-  border: 1px solid transparent;
+  border: var(--border-gradient-width, 1px) solid transparent;
 }
 
 @layer base {

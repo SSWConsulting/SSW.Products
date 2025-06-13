@@ -7,7 +7,8 @@
     "build": "tinacms build && next build",
     "rebuild-search-indices": "tsc --project ./scripts/tsconfig.json && node ./scripts/createIndices.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.2",
@@ -15,6 +16,7 @@
     "@tanstack/react-query": "^5.75.7",
     "@tanstack/react-query-devtools": "^5.76.1",
     "algoliasearch": "5.24.0",
+    "axios": "^1.9.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
@@ -42,14 +44,20 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.7",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@tinacms/cli": "^1.9.8",
+    "@types/jest": "^29.5.14",
     "@types/node": "^22.15.17",
     "@types/react": "^18.3.21",
     "@types/react-dom": "^18.3.7",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.13",
+    "jest": "^30.0.0",
+    "jest-environment-jsdom": "^30.0.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.1.8",
+    "ts-node": "^10.9.2",
     "tw-animate-css": "^1.3.0",
     "typescript": "^5.8.3"
   },
