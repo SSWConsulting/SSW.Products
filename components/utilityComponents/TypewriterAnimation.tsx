@@ -121,30 +121,13 @@ const TypewriterAnimation = React.forwardRef<
       {parts.map((part, index) =>
         part.highlight ? (
           <span
-            key={index}
-            className={`
-              relative overflow-hidden
-              ${
-                isHighlightingComplete
-                  ? "text-black bg-white rounded-[2px]"
-                  : "text-white bg-none"
-              }
-              transition-colors duration-500 ease-in-out
-            `}
+            key={`hightlight-${index}`}
+            className={cn(
+              "px-[0.1rem] transition-colors duration-500 ease-in-out rounded-[2px]",
+              isHighlightingComplete && "text-black bg-white "
+            )}
           >
-            {/* Background highlight with animation */}
-            <span
-              className={`
-                absolute inset-0
-                bg-white
-                rounded-[2px]
-                origin-left
-                ${isHighlightingComplete ? "scale-x-100" : "scale-x-0"}
-                transition-transform duration-500 ease-in-out
-                -z-10
-              `}
-            />
-            <span className={"px-[0.1rem]"}>{part.text}</span>
+            {part.text}
           </span>
         ) : (
           part.text
