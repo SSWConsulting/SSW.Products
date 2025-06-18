@@ -11,6 +11,7 @@ import {
   DocsTableOfContents,
   type DocsTableOfContentsParentNavigationGroup as NavigationGroup,
 } from "@tina/__generated__/types";
+import { useParams } from "next/navigation";
 import React from "react";
 
 interface TableOfContentsClientProps {
@@ -20,14 +21,13 @@ interface TableOfContentsClientProps {
 
 function NavigationGroup({
   navigationGroup,
-  setActiveItem,
   activeItem,
 }: {
   navigationGroup: NavigationGroup;
-  setActiveItem: (value: string) => void;
   activeItem: string;
 }) {
   const [isExpanded, setIsExpanded] = useState(true);
+
   return (
     <>
       <div className="mb-4">
@@ -71,9 +71,6 @@ function NavigationGroup({
                     <div className="absolute h-full w-1 inset-x-0 border-l z-1 box-content border-white/20"></div>
                     <Link
                       href={`/docs/${item?.slug?._sys?.filename}`}
-                      onClick={() =>
-                        setActiveItem(item?.slug?._sys?.filename || "")
-                      }
                       className={cn(
                         `block  p-1.5 ml-6 `,
                         activeItem === item?.slug?._sys?.filename
@@ -97,7 +94,7 @@ function NavigationGroup({
 function TableOfContentsClient({
   tableOfContentsData,
 }: TableOfContentsClientProps) {
-  const [activeItem, setActiveItem] = useState("");
+  const params = useParams<{ product: string; slug: string }>();
   return (
     <>
       <SearchBox
@@ -109,8 +106,7 @@ function TableOfContentsClient({
           (group, index) =>
             group && (
               <NavigationGroup
-                setActiveItem={setActiveItem}
-                activeItem={activeItem}
+                activeItem={params.slug}
                 key={index}
                 navigationGroup={group}
               />
