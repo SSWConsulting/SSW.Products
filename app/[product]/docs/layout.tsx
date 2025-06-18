@@ -75,12 +75,12 @@ async function getDocPost(product: string, slug: string) {
   }
 }
 
-async function getDocsTableOfContents(product: string) {
-  const res = await client.queries.docsTableOfContents({
-    relativePath: `${product}/toc.mdx`,
-  });
-  return res.data.docsTableOfContents;
-}
+// async function getDocsTableOfContents(product: string) {
+//   const res = await client.queries.docsTableOfContents({
+//     relativePath: `${product}/toc.mdx`,
+//   });
+//   return res.data.docsTableOfContents;
+// }
 
 const RootLayout = async ({
   children,

@@ -1,10 +1,6 @@
 import client from "../tina/__generated__/client";
 
-export async function getDocsForProduct(
-  product: string,
-  offset = 0,
-  limit = 5
-) {
+const getDocsForProduct = async (product: string, offset = 0, limit = 5) => {
   try {
     const res = await client.queries.getAllDocs();
 
@@ -52,4 +48,13 @@ export async function getDocsForProduct(
     console.error("Error fetching TinaCMS blog data:", error);
     throw error;
   }
+};
+
+async function getDocsTableOfContents(product: string) {
+  const res = await client.queries.docsTableOfContents({
+    relativePath: `${product}/toc.mdx`,
+  });
+  return res.data.docsTableOfContents;
 }
+
+export { getDocsForProduct, getDocsTableOfContents };

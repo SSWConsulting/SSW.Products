@@ -1,5 +1,5 @@
 // app/[product]/docs/[slug]/TableOfContents.tsx
-import client from "@tina/__generated__/client";
+import { getDocsTableOfContents } from "@utils/fetchDocs";
 import TableOfContentsClient from "./TableOfContentsClient";
 
 export default async function TableOfContents({
@@ -16,10 +16,4 @@ export default async function TableOfContents({
       tableOfContentsData={tableOfContentsData as any}
     />
   );
-}
-async function getDocsTableOfContents(product: string) {
-  const res = await client.queries.docsTableOfContents({
-    relativePath: `${product}/toc.mdx`,
-  });
-  return res.data.docsTableOfContents;
 }

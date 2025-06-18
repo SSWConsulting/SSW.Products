@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { getDocsTableOfContents } from "@utils/fetchDocs";
 import { notFound } from "next/navigation";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import client from "../../../../tina/__generated__/client";
@@ -157,9 +158,9 @@ async function getDocPost(product: string, slug: string) {
   }
 }
 
-async function getDocsTableOfContents(product: string) {
-  const res = await client.queries.docsTableOfContents({
-    relativePath: `${product}/toc.mdx`,
-  });
-  return res.data.docsTableOfContents;
-}
+// async function getDocsTableOfContents(product: string) {
+//   const res = await client.queries.docsTableOfContents({
+//     relativePath: `${product}/toc.mdx`,
+//   });
+//   return res.data.docsTableOfContents;
+// }
