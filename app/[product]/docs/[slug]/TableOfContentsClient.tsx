@@ -65,14 +65,14 @@ function NavigationGroup({
                     <div
                       className={cn(
                         "absolute group-hover:h-full z-2 inset-x-0 box-content  border-l  duration-300 w-1 top-1/2 -translate-y-1/2 transition-all",
-                        isActive ? "h-full border-ssw-red" : "h-0"
+                        isActive ? "h-full border-ssw-red" : "h-0 border-white"
                       )}
                     ></div>
                     <div className="absolute h-full w-1 inset-x-0 border-l z-1 box-content border-white/20"></div>
                     <Link
                       href={`/docs/${item?.slug?._sys?.filename}`}
                       className={cn(
-                        `block  p-1.5 ml-6 `,
+                        `block transition-colors p-1.5 ml-6 `,
                         activeItem === item?.slug?._sys?.filename
                           ? "text-ssw-red"
                           : "text-white/60 group-hover:text-white"

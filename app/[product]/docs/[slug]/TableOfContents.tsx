@@ -2,9 +2,12 @@
 import client from "@tina/__generated__/client";
 import TableOfContentsClient from "./TableOfContentsClient";
 
-export default async function TableOfContents({}) {
+export default async function TableOfContents({
+  product,
+}: {
+  product: string;
+}) {
   // console.log("Fetching Table of Contents for product:", product);
-  const product = "YakShaver";
   // Fetch the data on the server
   const tableOfContentsData = await getDocsTableOfContents(product);
   return (
