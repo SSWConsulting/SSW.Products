@@ -20,15 +20,13 @@ interface TableOfContentsClientProps {
 
 function NavigationGroup({
   navigationGroup,
-}: // activeItem,
-{
+  setActiveItem,
+  activeItem,
+}: {
   navigationGroup: NavigationGroup;
-  // activeItem: string;
+  setActiveItem: (value: string) => void;
+  activeItem: string;
 }) {
-  // const firstItem = useRef(initialItem);
-  const [activeItem, setActiveItem] = useState("");
-  // console.log("path", window.location.pathname);
-  // console.log("activeItem", activeItem);
   const [isExpanded, setIsExpanded] = useState(true);
   return (
     <>
@@ -54,11 +52,6 @@ function NavigationGroup({
         >
           <ul className="pt-1">
             {navigationGroup?.items?.map((item, index) => {
-              // console.log(
-              //   `filename item ${item?.slug?._sys.filename} activeItem ${activeItem}`
-              // );
-              // console.log("Active item");
-
               const isActive = activeItem === item?.slug?._sys?.filename;
               return (
                 <div className="group" key={index}>
@@ -72,7 +65,7 @@ function NavigationGroup({
                     <div
                       className={cn(
                         "absolute group-hover:h-full z-2 inset-x-0 box-content  border-l  duration-300 w-1 top-1/2 -translate-y-1/2 transition-all",
-                        isActive ? "h-full" : "h-1/2"
+                        isActive ? "h-full border-ssw-red" : "h-0"
                       )}
                     ></div>
                     <div className="absolute h-full w-1 inset-x-0 border-l z-1 box-content border-white/20"></div>
@@ -104,13 +97,7 @@ function NavigationGroup({
 function TableOfContentsClient({
   tableOfContentsData,
 }: TableOfContentsClientProps) {
-  // const activeItemRef = useRef(activeItem);
-  // const pathname = usePathname();
-  // const activeItem =
-  // const activeItem = useRef(
-  //   pathname === "/docs" ? "introduction" : pathname.split("/").pop() || ""
-  // );
-  // const [activeItem, setActiveItem] = useState("introduction");
+  const [activeItem, setActiveItem] = useState("");
   return (
     <>
       <SearchBox
@@ -122,15 +109,15 @@ function TableOfContentsClient({
           (group, index) =>
             group && (
               <NavigationGroup
+                setActiveItem={setActiveItem}
+                activeItem={activeItem}
                 key={index}
                 navigationGroup={group}
-                // activeItem={activeItem || ""}
               />
             )
         )}
     </>
   );
 }
-// TableOfContentsClient.displayName = "TableOfContentsClient";
 
 export default React.memo(TableOfContentsClient);
