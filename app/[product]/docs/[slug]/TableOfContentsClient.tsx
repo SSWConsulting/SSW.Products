@@ -11,6 +11,7 @@ import {
   DocsTableOfContents,
   type DocsTableOfContentsParentNavigationGroup as NavigationGroup,
 } from "@tina/__generated__/types";
+import React from "react";
 
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
@@ -22,11 +23,11 @@ function NavigationGroup({
 }: // activeItem,
 {
   navigationGroup: NavigationGroup;
-  activeItem: string;
+  // activeItem: string;
 }) {
   // const firstItem = useRef(initialItem);
   const [activeItem, setActiveItem] = useState("");
-  console.log("path", window.location.pathname);
+  // console.log("path", window.location.pathname);
   // console.log("activeItem", activeItem);
   const [isExpanded, setIsExpanded] = useState(true);
   return (
@@ -62,7 +63,7 @@ function NavigationGroup({
               return (
                 <div className="group" key={index}>
                   <li
-                    key={index}
+                    key={item?.slug?._sys?.filename}
                     className={cn(
                       `text-sm box-content relative  border-transparent`,
                       activeItem === item?.slug?._sys?.filename ? ` ` : ``
@@ -77,6 +78,9 @@ function NavigationGroup({
                     <div className="absolute h-full w-1 inset-x-0 border-l z-1 box-content border-white/20"></div>
                     <Link
                       href={`/docs/${item?.slug?._sys?.filename}`}
+                      onClick={() =>
+                        setActiveItem(item?.slug?._sys?.filename || "")
+                      }
                       className={cn(
                         `block  p-1.5 ml-6 `,
                         activeItem === item?.slug?._sys?.filename
@@ -97,7 +101,7 @@ function NavigationGroup({
   );
 }
 
-export function TableOfContentsClient({
+function TableOfContentsClient({
   tableOfContentsData,
 }: TableOfContentsClientProps) {
   // const activeItemRef = useRef(activeItem);
@@ -106,7 +110,7 @@ export function TableOfContentsClient({
   // const activeItem = useRef(
   //   pathname === "/docs" ? "introduction" : pathname.split("/").pop() || ""
   // );
-  const [activeItem, setActiveItem] = useState("introduction");
+  // const [activeItem, setActiveItem] = useState("introduction");
   return (
     <>
       <SearchBox
@@ -120,10 +124,13 @@ export function TableOfContentsClient({
               <NavigationGroup
                 key={index}
                 navigationGroup={group}
-                activeItem={activeItem || ""}
+                // activeItem={activeItem || ""}
               />
             )
         )}
     </>
   );
 }
+// TableOfContentsClient.displayName = "TableOfContentsClient";
+
+export default React.memo(TableOfContentsClient);

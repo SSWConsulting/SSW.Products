@@ -9,7 +9,7 @@ import { ReactNode } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { TableOfContentsClient } from "./TableOfContentsClient";
+import TableOfContentsClient from "./TableOfContentsClient";
 
 interface DocPostClientProps {
   query: string;

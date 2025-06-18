@@ -1,7 +1,6 @@
 import client from "@tina/__generated__/client";
 import { Docs, DocsTableOfContents } from "@tina/__generated__/types";
-import { notFound } from "next/navigation";
-import TableOfContents from "./TableOfContents";
+import TableOfContents from "./[slug]/TableOfContents";
 
 import Link from "next/link";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -51,7 +50,6 @@ function PaginationLinks({
 
 interface DocPostProps {
   params: {
-    slug: string;
     product: string;
   };
 }
@@ -94,16 +92,16 @@ const RootLayout = async ({
     product: string;
   };
 }) => {
-  const { slug, product } = params;
-  const documentData = await getDocPost(product, slug);
-  const tableOfContentsData = await getDocsTableOfContents(product);
-  const paginationData = getPaginationData(
-    tableOfContentsData as DocsTableOfContents,
-    slug
-  );
-  if (!documentData) {
-    return notFound();
-  }
+  // const { slug, product } = params;
+  // const documentData = await getDocPost(product, slug);
+  // const tableOfContentsData = await getDocsTableOfContents(product);
+  // const paginationData = getPaginationData(
+  //   tableOfContentsData as DocsTableOfContents,
+  //   slug
+  // );
+  // if (!documentData) {
+  //   return notFound();
+  // }
 
   return (
     <>
@@ -111,7 +109,7 @@ const RootLayout = async ({
         {/* LEFT COLUMN 1/3 */}
         <div className=" max-h-[calc(100vh-13rem)] mt-20 hidden md:block py-8 bg-gray-darkest max-w-[calc(100%_-_2rem)]  max-w-offset-container-16 mb-8 rounded-lg left-4 top-44 text-white self-start px-6  overflow-y-auto [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent] sticky">
           <TableOfContents
-            product={product}
+            product={"YakShaver"}
             // tableOfContentsData={tableOfContentsData as any}
           />
         </div>
@@ -119,14 +117,14 @@ const RootLayout = async ({
         {/* RIGHT COLUMN 2/3 */}
         <div className="grow px-4 sm:pt-20 ">
           {children}
-          <PaginationLinks
+          {/* <PaginationLinks
             prev={paginationData.prev}
             next={paginationData.next}
             product={product}
-          />
+          /> */}
         </div>
       </div>
-      {documentData?.docs?.seo?.googleStructuredData && (
+      {/* {documentData?.docs?.seo?.googleStructuredData && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -135,7 +133,7 @@ const RootLayout = async ({
             ),
           }}
         />
-      )}
+      )} */}
     </>
   );
 };
