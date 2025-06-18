@@ -2,8 +2,9 @@
 
 import SearchBox from "@comps/search/SearchBox";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useState } from "react";
+
+import { cn } from "@/lib/utils";
 import { FaChevronDown } from "react-icons/fa";
 
 import {
@@ -13,16 +14,20 @@ import {
 
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
+  activeItem: string;
 }
 
 function NavigationGroup({
   navigationGroup,
-  activeItem,
-}: {
+}: // activeItem,
+{
   navigationGroup: NavigationGroup;
   activeItem: string;
 }) {
-  // console.log("active item", activeItem);
+  // const firstItem = useRef(initialItem);
+  const [activeItem, setActiveItem] = useState("");
+  console.log("path", window.location.pathname);
+  // console.log("activeItem", activeItem);
   const [isExpanded, setIsExpanded] = useState(true);
   return (
     <>
@@ -48,23 +53,36 @@ function NavigationGroup({
         >
           <ul className="pt-1">
             {navigationGroup?.items?.map((item, index) => {
-              console.log(
-                `filename item ${item?.slug?._sys.filename} activeItem ${activeItem}`
-              );
+              // console.log(
+              //   `filename item ${item?.slug?._sys.filename} activeItem ${activeItem}`
+              // );
               // console.log("Active item");
+
+              const isActive = activeItem === item?.slug?._sys?.filename;
               return (
                 <div className="group" key={index}>
                   <li
                     key={index}
-                    className={`text-sm border-l border-[#CC4141]`}
+                    className={cn(
+                      `text-sm box-content relative  border-transparent`,
+                      activeItem === item?.slug?._sys?.filename ? ` ` : ``
+                    )}
                   >
+                    <div
+                      className={cn(
+                        "absolute group-hover:h-full z-2 inset-x-0 box-content  border-l  duration-300 w-1 top-1/2 -translate-y-1/2 transition-all",
+                        isActive ? "h-full" : "h-1/2"
+                      )}
+                    ></div>
+                    <div className="absolute h-full w-1 inset-x-0 border-l z-1 box-content border-white/20"></div>
                     <Link
                       href={`/docs/${item?.slug?._sys?.filename}`}
-                      className={`block  p-1.5 ml-6   ${
+                      className={cn(
+                        `block  p-1.5 ml-6 `,
                         activeItem === item?.slug?._sys?.filename
-                          ? "text-[#CC4141]"
-                          : "text-white/60 group-hover:text-white group-hover:border-white"
-                      }`}
+                          ? "text-ssw-red"
+                          : "text-white/60 group-hover:text-white"
+                      )}
                     >
                       <span className="inline-block">{item?.title}</span>
                     </Link>
@@ -82,11 +100,13 @@ function NavigationGroup({
 export function TableOfContentsClient({
   tableOfContentsData,
 }: TableOfContentsClientProps) {
-  const pathname = usePathname();
-
-  const activeItem =
-    pathname === "/docs" ? "introduction" : pathname.split("/").pop() || "";
-
+  // const activeItemRef = useRef(activeItem);
+  // const pathname = usePathname();
+  // const activeItem =
+  // const activeItem = useRef(
+  //   pathname === "/docs" ? "introduction" : pathname.split("/").pop() || ""
+  // );
+  const [activeItem, setActiveItem] = useState("introduction");
   return (
     <>
       <SearchBox
@@ -100,7 +120,7 @@ export function TableOfContentsClient({
               <NavigationGroup
                 key={index}
                 navigationGroup={group}
-                activeItem={activeItem}
+                activeItem={activeItem || ""}
               />
             )
         )}
