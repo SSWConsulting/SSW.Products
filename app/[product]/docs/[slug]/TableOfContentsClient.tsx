@@ -3,7 +3,7 @@
 import SearchBox from "@comps/search/SearchBox";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 
 import {
@@ -22,6 +22,7 @@ function NavigationGroup({
   navigationGroup: NavigationGroup;
   activeItem: string;
 }) {
+  // console.log("active item", activeItem);
   const [isExpanded, setIsExpanded] = useState(true);
   return (
     <>
@@ -47,21 +48,21 @@ function NavigationGroup({
         >
           <ul className="pt-1">
             {navigationGroup?.items?.map((item, index) => {
+              console.log(
+                `filename item ${item?.slug?._sys.filename} activeItem ${activeItem}`
+              );
+              // console.log("Active item");
               return (
                 <div className="group" key={index}>
                   <li
                     key={index}
-                    className={`text-sm border-l border-white/10 ${
-                      activeItem === item?.slug?._sys?.filename
-                        ? "border-[#CC4141]"
-                        : "border-white/10 group-hover:border-white/80"
-                    }`}
+                    className={`text-sm border-l border-[#CC4141]`}
                   >
                     <Link
                       href={`/docs/${item?.slug?._sys?.filename}`}
                       className={`block  p-1.5 ml-6   ${
                         activeItem === item?.slug?._sys?.filename
-                          ? "text-[#CC4141] font-semibold"
+                          ? "text-[#CC4141]"
                           : "text-white/60 group-hover:text-white group-hover:border-white"
                       }`}
                     >
@@ -81,16 +82,10 @@ function NavigationGroup({
 export function TableOfContentsClient({
   tableOfContentsData,
 }: TableOfContentsClientProps) {
-  const [activeItem, setActiveItem] = useState<string>("");
-
   const pathname = usePathname();
-  useEffect(() => {
-    if (pathname === "/docs") {
-      setActiveItem("introduction");
-    } else {
-      setActiveItem(pathname.split("/").pop() || "");
-    }
-  }, [pathname]);
+
+  const activeItem =
+    pathname === "/docs" ? "introduction" : pathname.split("/").pop() || "";
 
   return (
     <>
