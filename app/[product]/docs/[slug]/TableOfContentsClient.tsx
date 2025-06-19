@@ -92,6 +92,7 @@ function TableOfContentsClient({
   tableOfContentsData,
 }: TableOfContentsClientProps) {
   const params = useParams<{ product: string; slug: string }>();
+
   return (
     <>
       <SearchBox.Trigger />
@@ -101,7 +102,12 @@ function TableOfContentsClient({
           (group, index) =>
             group && (
               <NavigationGroup
-                activeItem={params.slug}
+                activeItem={
+                  params.slug ||
+                  tableOfContentsData?.parentNavigationGroup?.[0]?.items?.[0]
+                    ?.slug?._sys?.filename ||
+                  ""
+                }
                 key={index}
                 navigationGroup={group}
               />
