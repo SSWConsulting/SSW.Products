@@ -1,15 +1,11 @@
+import { getDocPost, getDocsTableOfContents } from "@utils/fetchDocs";
 import Link from "next/link";
-
 import { notFound } from "next/navigation";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import client from "../../../../tina/__generated__/client";
-import {
-  Docs,
-  DocsTableOfContents,
-} from "../../../../tina/__generated__/types";
+import { DocsTableOfContents } from "../../../../tina/__generated__/types";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
 import DocPostClient from "./DocPostClient";
-import { TableOfContentsClient } from "./TableOfContentsClient";
 
 interface DocPostProps {
   params: {
@@ -40,41 +36,49 @@ interface PaginationLink {
   slug: string;
 }
 
-function getPaginationData(
-  tableOfContentsData: DocsTableOfContents,
-  currentSlug: string
-): { prev: PaginationLink | null; next: PaginationLink | null } {
-  const result: { prev: PaginationLink | null; next: PaginationLink | null } = {
-    prev: null,
-    next: null,
-  };
+export default async function DocPost({ params }: DocPostProps) {
+  const { slug, product } = params;
+  const documentData = await getDocPost(product, slug);
+  const tableOfContentsData = await getDocsTableOfContents(product);
 
-  const allDocs: PaginationLink[] = [];
-  tableOfContentsData.parentNavigationGroup?.forEach((group: any) => {
-    if (!group?.items) return;
+  const paginationData = getPaginationData(
+    tableOfContentsData as DocsTableOfContents,
+    slug
+  );
 
-    group.items.forEach((item: any) => {
-      if (item.slug && item.slug._sys && item.slug._sys.filename) {
-        allDocs.push({
-          title: item.title || "",
-          slug: item.slug._sys.filename,
-        });
-      }
-    });
-  });
-  const currentIndex = allDocs.findIndex((doc) => doc.slug === currentSlug);
-  if (currentIndex !== -1) {
-    if (currentIndex > 0) {
-      result.prev = allDocs[currentIndex - 1];
-    }
-
-    if (currentIndex < allDocs.length - 1) {
-      result.next = allDocs[currentIndex + 1];
-    }
+  if (!documentData) {
+    return notFound();
   }
+  return (
+    <>
+      {documentData?.docs?.seo?.googleStructuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              documentData?.docs?.seo?.googleStructuredData ?? {}
+            ),
+          }}
+        />
+      )}
 
-  return result;
+      <DocPostClient
+        query={documentData.query}
+        variables={documentData.variables}
+        pageData={{ docs: documentData.docs }}
+        tableOfContentsData={tableOfContentsData as any}
+      />
+      <PaginationLinks
+        prev={paginationData.prev}
+        next={paginationData.next}
+        product={product}
+      />
+    </>
+  );
 }
+
+// Add revalidation - page wouldn't update although GraphQL was updated. TODO: remove this once @wicksipedia created the global revalidation route.
+export const revalidate = 600;
 
 function PaginationLinks({
   prev,
@@ -114,82 +118,38 @@ function PaginationLinks({
   );
 }
 
-export default async function DocPost({ params }: DocPostProps) {
-  const { slug, product } = params;
-  const documentData = await getDocPost(product, slug);
-  const tableOfContentsData = await getDocsTableOfContents(product);
+const getPaginationData = (
+  tableOfContentsData: DocsTableOfContents,
+  currentSlug: string
+) => {
+  const result: { prev: PaginationLink | null; next: PaginationLink | null } = {
+    prev: null,
+    next: null,
+  };
 
-  if (!documentData) {
-    return notFound();
-  }
+  const allDocs: PaginationLink[] = [];
+  tableOfContentsData.parentNavigationGroup?.forEach((group: any) => {
+    if (!group?.items) return;
 
-  const paginationData = getPaginationData(tableOfContentsData as any, slug);
-  return (
-    <>
-      <div className="grid grid-cols-1 h-full md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-360 mx-auto">
-        {/* LEFT COLUMN 1/3 */}
-        <div className=" max-h-[calc(100vh-13rem)] mt-20 hidden md:block py-8 bg-gray-darkest max-w-[calc(100%_-_2rem)]  max-w-offset-container-16 mb-8 rounded-lg left-4 top-44 text-white self-start px-6  overflow-y-auto [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent] sticky">
-          <TableOfContentsClient
-            tableOfContentsData={tableOfContentsData as any}
-          />
-        </div>
-
-        {/* RIGHT COLUMN 2/3 */}
-        <div className="grow px-4 sm:pt-20 ">
-          <DocPostClient
-            query={documentData.query}
-            variables={documentData.variables}
-            pageData={{ docs: documentData.docs }}
-            tableOfContentsData={tableOfContentsData as any}
-          />
-          <PaginationLinks
-            prev={paginationData.prev}
-            next={paginationData.next}
-            product={product}
-          />
-        </div>
-      </div>
-      {documentData?.docs?.seo?.googleStructuredData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              documentData?.docs?.seo?.googleStructuredData ?? {}
-            ),
-          }}
-        />
-      )}
-    </>
-  );
-}
-
-// Add revalidation - page wouldn't update although GraphQL was updated. TODO: remove this once @wicksipedia created the global revalidation route.
-export const revalidate = 600;
-
-async function getDocPost(product: string, slug: string) {
-  try {
-    const res = await client.queries.docs({
-      relativePath: `${product}/${slug}.mdx`,
+    group.items.forEach((item: any) => {
+      if (item.slug && item.slug._sys && item.slug._sys.filename) {
+        allDocs.push({
+          title: item.title || "",
+          slug: item.slug._sys.filename,
+        });
+      }
     });
-
-    if (!res?.data?.docs) {
-      return null;
+  });
+  const currentIndex = allDocs.findIndex((doc) => doc.slug === currentSlug);
+  if (currentIndex !== -1) {
+    if (currentIndex > 0) {
+      result.prev = allDocs[currentIndex - 1];
     }
 
-    return {
-      query: res.query,
-      variables: res.variables,
-      docs: res.data.docs as Docs,
-    };
-  } catch (error) {
-    console.error("Error fetching doc post:", error);
-    return null;
+    if (currentIndex < allDocs.length - 1) {
+      result.next = allDocs[currentIndex + 1];
+    }
   }
-}
 
-async function getDocsTableOfContents(product: string) {
-  const res = await client.queries.docsTableOfContents({
-    relativePath: `${product}/toc.mdx`,
-  });
-  return res.data.docsTableOfContents;
-}
+  return result;
+};

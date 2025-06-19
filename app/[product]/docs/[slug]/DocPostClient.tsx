@@ -1,6 +1,5 @@
 "use client";
-
-import SearchBox from "@comps/search/SearchBox";
+import * as SearchBox from "@comps/search/SearchBox";
 import { TableOfContents } from "@comps/TableOfContents";
 import { Docs, DocsTableOfContents } from "@tina/__generated__/types";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
@@ -9,7 +8,7 @@ import { ReactNode } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { TableOfContentsClient } from "./TableOfContentsClient";
+import TableOfContentsClient from "./TableOfContentsClient";
 
 interface DocPostClientProps {
   query: string;
@@ -62,10 +61,7 @@ export default function DocPostClient({
   return (
     <div className="mx-auto text-white">
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
-        <SearchBox
-          className="w-full"
-          index={tableOfContentsData.algoliaSearchIndex ?? ""}
-        />
+        <SearchBox.Trigger className="w-full" />
         <TableOfContents.Root>
           <TableOfContents.Button />
           <TableOfContents.Popover>

@@ -1,10 +1,7 @@
+import { Docs } from "@tina/__generated__/types";
 import client from "../tina/__generated__/client";
 
-export async function getDocsForProduct(
-  product: string,
-  offset = 0,
-  limit = 5
-) {
+const getDocsForProduct = async (product: string, offset = 0, limit = 5) => {
   try {
     const res = await client.queries.getAllDocs();
 
@@ -52,4 +49,34 @@ export async function getDocsForProduct(
     console.error("Error fetching TinaCMS blog data:", error);
     throw error;
   }
-}
+};
+
+const getDocsTableOfContents = async (product: string) => {
+  const res = await client.queries.docsTableOfContents({
+    relativePath: `${product}/toc.mdx`,
+  });
+  return res.data.docsTableOfContents;
+};
+
+const getDocPost = async (product: string, slug: string) => {
+  try {
+    const res = await client.queries.docs({
+      relativePath: `${product}/${slug}.mdx`,
+    });
+
+    if (!res?.data?.docs) {
+      return null;
+    }
+
+    return {
+      query: res.query,
+      variables: res.variables,
+      docs: res.data.docs as Docs,
+    };
+  } catch (error) {
+    console.error("Error fetching doc post:", error);
+    return null;
+  }
+};
+
+export { getDocPost, getDocsForProduct, getDocsTableOfContents };
