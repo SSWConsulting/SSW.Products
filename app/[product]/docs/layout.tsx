@@ -2,6 +2,7 @@ import client from "@tina/__generated__/client";
 import { Docs, DocsTableOfContents } from "@tina/__generated__/types";
 import TableOfContents from "./[slug]/TableOfContents";
 
+import { getDocsTableOfContents } from "@utils/fetchDocs";
 import Link from "next/link";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
@@ -48,12 +49,6 @@ function PaginationLinks({
   );
 }
 
-interface DocPostProps {
-  params: {
-    product: string;
-  };
-}
-
 async function getDocPost(product: string, slug: string) {
   try {
     const res = await client.queries.docs({
@@ -75,13 +70,6 @@ async function getDocPost(product: string, slug: string) {
   }
 }
 
-// async function getDocsTableOfContents(product: string) {
-//   const res = await client.queries.docsTableOfContents({
-//     relativePath: `${product}/toc.mdx`,
-//   });
-//   return res.data.docsTableOfContents;
-// }
-
 const RootLayout = async ({
   children,
   params,
@@ -92,39 +80,35 @@ const RootLayout = async ({
     product: string;
   };
 }) => {
-  // const { slug, product } = params;
-  // const documentData = await getDocPost(product, slug);
-  // const tableOfContentsData = await getDocsTableOfContents(product);
-  // const paginationData = getPaginationData(
-  //   tableOfContentsData as DocsTableOfContents,
-  //   slug
-  // );
-  // if (!documentData) {
-  //   return notFound();
-  // }
+  const { slug, product } = params;
+  const documentData = await getDocPost(product, slug);
+  const tableOfContentsData = await getDocsTableOfContents(product);
+  const paginationData = getPaginationData(
+    tableOfContentsData as DocsTableOfContents,
+    slug
+  );
+
+  console.log("paginationData", paginationData);
 
   return (
     <>
       <div className="grid grid-cols-1 h-full md:grid-cols-[1.25fr_3fr] lg:grid-cols-[1fr_3fr] max-w-360 mx-auto">
         {/* LEFT COLUMN 1/3 */}
         <div className=" max-h-[calc(100vh-13rem)] mt-20 hidden md:block py-8 bg-gray-darkest max-w-[calc(100%_-_2rem)]  max-w-offset-container-16 mb-8 rounded-lg left-4 top-44 text-white self-start px-6  overflow-y-auto [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent] sticky">
-          <TableOfContents
-            product={"YakShaver"}
-            // tableOfContentsData={tableOfContentsData as any}
-          />
+          <TableOfContents product={"YakShaver"} />
         </div>
 
         {/* RIGHT COLUMN 2/3 */}
         <div className="grow px-4 sm:pt-20 ">
           {children}
-          {/* <PaginationLinks
+          <PaginationLinks
             prev={paginationData.prev}
             next={paginationData.next}
             product={product}
-          /> */}
+          />
         </div>
       </div>
-      {/* {documentData?.docs?.seo?.googleStructuredData && (
+      {documentData?.docs?.seo?.googleStructuredData && (
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -133,16 +117,16 @@ const RootLayout = async ({
             ),
           }}
         />
-      )} */}
+      )}
     </>
   );
 };
 export default RootLayout;
 
-function getPaginationData(
+const getPaginationData = (
   tableOfContentsData: DocsTableOfContents,
   currentSlug: string
-): { prev: PaginationLink | null; next: PaginationLink | null } {
+) => {
   const result: { prev: PaginationLink | null; next: PaginationLink | null } = {
     prev: null,
     next: null,
@@ -173,4 +157,4 @@ function getPaginationData(
   }
 
   return result;
-}
+};
