@@ -1,21 +1,35 @@
+"use client";
+
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import Input from "@comps/Input";
 import { Search } from "lucide-react";
 import { useSearchBox } from "react-instantsearch";
 
+import { ReactNode } from "react";
 import AlgoliaSearchProvider from "../../components/providers/AlgoliaSearchProvider";
 import SearchResults from "./SearchResults";
-export const SearchBox = ({
-  className,
-  index,
-}: {
+
+const Trigger = ({ className }: { className?: string }) => {
+  return (
+    <DialogTrigger asChild>
+      <Input
+        placeholder="Search..."
+        className={cn("mb-4 shadow-lg", className)}
+        icon={Search}
+      />
+    </DialogTrigger>
+  );
+};
+
+type SearchFieldProps = {
   className?: string;
-  index: string;
-}) => {
+};
+
+const Root = ({ index, children }: { index: string; children: ReactNode }) => {
   return (
     <Dialog>
-      <DialogContent className="box-border ">
+      <DialogContent className="box-border">
         <div className="max-w-3xl box-border relative w-[calc(100vw_-_2rem)]">
           <AlgoliaSearchProvider index={index}>
             <div className="h-full box-border pb-8 z-70 relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
@@ -30,19 +44,9 @@ export const SearchBox = ({
           <div className="absolute z-60 shadow-lg bg-gray-dark/75  inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
         </div>
       </DialogContent>
-      <DialogTrigger asChild>
-        <Input
-          placeholder="Search..."
-          className={cn("mb-4 shadow-lg", className)}
-          icon={Search}
-        />
-      </DialogTrigger>
+      {children}
     </Dialog>
   );
-};
-
-type SearchFieldProps = {
-  className?: string;
 };
 
 const SearchField = ({ className }: SearchFieldProps) => {
@@ -62,4 +66,4 @@ const SearchField = ({ className }: SearchFieldProps) => {
   );
 };
 
-export default SearchBox;
+export { Root, Trigger };

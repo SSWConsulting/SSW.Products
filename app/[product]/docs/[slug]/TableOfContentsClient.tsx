@@ -1,10 +1,9 @@
 "use client";
 
-import SearchBox from "@comps/search/SearchBox";
+import { cn } from "@/lib/utils";
+import * as SearchBox from "@comps/search/SearchBox";
 import Link from "next/link";
 import { useState } from "react";
-
-import { cn } from "@/lib/utils";
 import { FaChevronDown } from "react-icons/fa";
 
 import {
@@ -12,11 +11,9 @@ import {
   type DocsTableOfContentsParentNavigationGroup as NavigationGroup,
 } from "@tina/__generated__/types";
 import { useParams } from "next/navigation";
-import React from "react";
 
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
-  activeItem: string;
 }
 
 function NavigationGroup({
@@ -97,10 +94,8 @@ function TableOfContentsClient({
   const params = useParams<{ product: string; slug: string }>();
   return (
     <>
-      <SearchBox
-        index={tableOfContentsData.algoliaSearchIndex ?? ""}
-        className="w-full hidden md:block"
-      />
+      <SearchBox.Trigger />
+
       {tableOfContentsData.parentNavigationGroup &&
         tableOfContentsData.parentNavigationGroup.map(
           (group, index) =>
@@ -116,4 +111,4 @@ function TableOfContentsClient({
   );
 }
 
-export default React.memo(TableOfContentsClient);
+export default TableOfContentsClient;

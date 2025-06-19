@@ -61,6 +61,7 @@ export default async function DocPost({ params }: DocPostProps) {
           }}
         />
       )}
+
       <DocPostClient
         query={documentData.query}
         variables={documentData.variables}
