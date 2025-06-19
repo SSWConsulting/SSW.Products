@@ -49,10 +49,18 @@ export default async function DocPost({ params }: DocPostProps) {
   if (!documentData) {
     return notFound();
   }
-
-  // const paginationData = getPaginationData(tableOfContentsData as any, slug);
   return (
     <>
+      {documentData?.docs?.seo?.googleStructuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              documentData?.docs?.seo?.googleStructuredData ?? {}
+            ),
+          }}
+        />
+      )}
       <DocPostClient
         query={documentData.query}
         variables={documentData.variables}
