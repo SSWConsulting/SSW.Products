@@ -28,6 +28,10 @@
       "label": "COMMUNITY",
       "items": [
         {
+          "label": "CERTIFICATIONS",
+          "href": "/certifications"
+        },
+        {
           "label": "SUPPORT",
           "href": "/docs/support"
         },
