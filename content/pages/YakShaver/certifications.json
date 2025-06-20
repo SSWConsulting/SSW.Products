@@ -16,6 +16,9 @@
       "counterBox1": {
         "title": "3"
       },
+      "counterBox2": {
+        "title": "4"
+      },
       "_template": "BentoBox"
     },
     {
