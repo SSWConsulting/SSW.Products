@@ -28,10 +28,6 @@
       "label": "COMMUNITY",
       "items": [
         {
-          "label": "CERTIFICATIONS",
-          "href": "/certifications"
-        },
-        {
           "label": "SUPPORT",
           "href": "/docs/support"
         },
@@ -42,6 +38,10 @@
         {
           "label": "DISCORD",
           "href": "https://discord.gg/Jp9dyxKFjR"
+        },
+        {
+          "label": "CERTIFICATIONS",
+          "href": "/certifications"
         }
       ],
       "_template": "groupOfStringItems"
