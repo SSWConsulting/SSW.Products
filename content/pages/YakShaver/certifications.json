@@ -6,6 +6,8 @@
   "title": "YakShaver developer certifications",
   "pageBlocks": [
     {
+      "titleBeforeRotate": "YakShaver developer certifications",
+      "byLine": "TODO replace\\\nWe encourage developers to get verified by running YakShaver and completing the basics before implementing it on a real project.\n",
       "_template": "hero"
     }
   ]
