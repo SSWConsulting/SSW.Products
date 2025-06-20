@@ -6,6 +6,9 @@
   "title": "YakShaver developer certifications",
   "pageBlocks": [
     {
+      "topLeftBox": {
+        "title": "1"
+      },
       "_template": "BentoBox"
     },
     {
