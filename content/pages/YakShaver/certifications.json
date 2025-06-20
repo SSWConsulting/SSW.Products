@@ -13,6 +13,9 @@
         "title": "2",
         "description": "2desc"
       },
+      "counterBox1": {
+        "title": "3"
+      },
       "_template": "BentoBox"
     },
     {
