@@ -9,6 +9,10 @@
       "topLeftBox": {
         "title": "1"
       },
+      "topRightBox": {
+        "title": "2",
+        "description": "2desc"
+      },
       "_template": "BentoBox"
     },
     {
