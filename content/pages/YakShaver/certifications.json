@@ -6,6 +6,12 @@
   "title": "YakShaver developer certifications",
   "pageBlocks": [
     {
+      "table": [
+        {}
+      ],
+      "_template": "comparisonTable"
+    },
+    {
       "topLeftBox": {
         "title": "1"
       },
