@@ -1,0 +1,40 @@
+{
+  "seo": {
+    "title": "YakShaver developer certifications",
+    "description": "Earn a YakShaver Developer Credly Badge for LinkedIn. The badge shows that you're a YakShaver certified developer!"
+  },
+  "title": "YakShaver developer certifications",
+  "pageBlocks": [
+    {
+      "table": [
+        {}
+      ],
+      "_template": "comparisonTable"
+    },
+    {
+      "topLeftBox": {
+        "title": "1"
+      },
+      "topRightBox": {
+        "title": "2",
+        "description": "2desc"
+      },
+      "counterBox1": {
+        "title": "3"
+      },
+      "counterBox2": {
+        "title": "4"
+      },
+      "bottomRightBox": {
+        "title": "bottom right",
+        "description": "bottom right desc"
+      },
+      "_template": "BentoBox"
+    },
+    {
+      "titleBeforeRotate": "YakShaver developer certifications",
+      "byLine": "TODO replace\\\nWe encourage developers to get verified by running YakShaver and completing the basics before implementing it on a real project.\n",
+      "_template": "hero"
+    }
+  ]
+}
