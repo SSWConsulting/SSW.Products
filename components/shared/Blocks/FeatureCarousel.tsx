@@ -7,6 +7,7 @@ interface CarouselItem {
   title: string;
   description: string;
   image: string;
+  [key: string]: unknown;
 }
 
 interface FeatureCarouselProps {
