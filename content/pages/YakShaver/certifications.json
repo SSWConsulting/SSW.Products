@@ -12,6 +12,10 @@
         "title": "yak",
         "link": "https://yakshaver.ai/"
       },
+      "ctaRight": {
+        "title": "yak2",
+        "link": "https://yakshaver.ai/"
+      },
       "_template": "hero"
     }
   ]
