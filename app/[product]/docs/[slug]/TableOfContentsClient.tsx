@@ -53,10 +53,9 @@ function NavigationGroup({
               return (
                 <div className="group" key={item?.slug?._sys?.filename}>
                   <li
-                    key={item?.slug?._sys?.filename}
+                    key={`navigation-item-${index}`}
                     className={cn(
-                      `text-sm box-content relative  border-transparent`,
-                      activeItem === item?.slug?._sys?.filename ? ` ` : ``
+                      `text-sm box-content relative  border-transparent`
                     )}
                   >
                     <div
