@@ -9,7 +9,7 @@
       "titleBeforeRotate": "YakShaver developer certifications",
       "byLine": "We encourage developers to get verified by running YakShaver and completing the basics before implementing it on a real project.\\\n\\\nBenefit: organization gets YakShaver for free if someone has a badge\n\n* create a new test repository in GitHub or Azure DevOps\n* connect it to yakshaver in the client portal\n* do a yakshave to the repository and show that it worked\n* record a done video showing how this process works\n* rerun a failed yakshave (TODO to add feature by YakShaver team)\n* look at the log history (TODO by YakShaver team)\n* Scenario: what would you do in this situation? (base answer off FAQs)\n",
       "ctaLeft": {
-        "title": "How to record a 'Done' video",
+        "title": "How do I record a 'Done' video?",
         "link": "https://www.youtube.com/watch?v=CjwkGk1LcJ0"
       },
       "ctaRight": {
