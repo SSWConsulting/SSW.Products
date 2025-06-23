@@ -6,34 +6,12 @@
   "title": "YakShaver developer certifications",
   "pageBlocks": [
     {
-      "table": [
-        {}
-      ],
-      "_template": "comparisonTable"
-    },
-    {
-      "topLeftBox": {
-        "title": "1"
-      },
-      "topRightBox": {
-        "title": "2",
-        "description": "2desc"
-      },
-      "counterBox1": {
-        "title": "3"
-      },
-      "counterBox2": {
-        "title": "4"
-      },
-      "bottomRightBox": {
-        "title": "bottom right",
-        "description": "bottom right desc"
-      },
-      "_template": "BentoBox"
-    },
-    {
       "titleBeforeRotate": "YakShaver developer certifications",
-      "byLine": "TODO replace\\\nWe encourage developers to get verified by running YakShaver and completing the basics before implementing it on a real project.\n",
+      "byLine": "We encourage developers to get verified by running YakShaver and completing the basics before implementing it on a real project.\\\n\\\nBenefit: organization gets YakShaver for free if someone has a badge\n\n* create a new test repository in GitHub or Azure DevOps\n* connect it to yakshaver in the client portal\n* do a yakshave to the repository and show that it worked\n* record a done video showing how this process works\n* rerun a failed yakshave (TODO to add feature by YakShaver team)\n* look at the log history (TODO by YakShaver team)\n* Scenario: what would you do in this situation? (base answer off FAQs)\n",
+      "ctaLeft": {
+        "title": "yak",
+        "link": "https://yakshaver.ai/"
+      },
       "_template": "hero"
     }
   ]
