@@ -1,7 +1,7 @@
 import Container from "../../Container";
 import { YouTubeEmbed } from "../YouTubeEmbed";
 
-interface VideoDisplayProps {
+type VideoDisplayProps = {
   data: {
     __typename: string;
     altText?: string | null;

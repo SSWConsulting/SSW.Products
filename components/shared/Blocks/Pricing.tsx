@@ -12,7 +12,7 @@ import { BsCheck } from "react-icons/bs";
 import { BookingButton } from "./BookingButton";
 import { ButtonVariant } from "./buttonEnum";
 
-interface PlanAction {
+type PlanAction = {
   label: string;
   url: string;
   variant?: string;
@@ -20,13 +20,13 @@ interface PlanAction {
   __typename: string;
 }
 
-interface JotFormAction {
+type JotFormAction = {
   Title: string;
   JotFormId: string;
   __typename: string;
 }
 
-interface AddOn {
+type AddOn = {
   title: string;
   description: string;
   price: string;
@@ -34,7 +34,7 @@ interface AddOn {
   actionButton: PlanAction | JotFormAction;
 }
 
-interface Plan {
+type Plan = {
   planTier: string;
   planDescription: string;
   price: string;
@@ -47,7 +47,7 @@ interface Plan {
   listItems: string[];
 }
 
-interface PricingData {
+type PricingData = {
   title?: string;
   description?: TinaMarkdownContent;
 
@@ -55,7 +55,7 @@ interface PricingData {
   addOns: AddOn;
 }
 
-interface PricingProps {
+type PricingProps = {
   data: PricingData;
 }
 
@@ -151,7 +151,7 @@ const AddOns = ({ addOns }: { addOns: AddOn }) => {
   );
 };
 
-interface PlanCardProps {
+type PlanCardProps = {
   plan: Plan;
   index: number;
   data: PricingData;

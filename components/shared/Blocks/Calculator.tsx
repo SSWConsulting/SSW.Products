@@ -6,7 +6,7 @@ import Container from "../../Container";
 import Actions from "./ActionsButton";
 import { curlyBracketFormatter } from "./Hero/Hero";
 
-interface CalculatorTier {
+type CalculatorTier = {
   tier: string;
   description: string[];
   price: number;
@@ -14,7 +14,7 @@ interface CalculatorTier {
   actions: any;
 }
 
-interface CustomSliderProps {
+type CustomSliderProps = {
   initialValue: number;
   finalValue: number;
   step: number;

@@ -1,6 +1,6 @@
 import { genericButtonTemplateFields } from './genericButtonTemplateFields';
 
-interface ActionButtonItem {
+type ActionButtonItem = {
   label?: string; 
 }
 

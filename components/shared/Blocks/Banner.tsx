@@ -4,7 +4,7 @@ import Container from "../../Container";
 import Actions from "./ActionsButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
 
-interface BannerProps {
+type BannerProps = {
   data: {
     backgroundColour: string;
     textColour: string;

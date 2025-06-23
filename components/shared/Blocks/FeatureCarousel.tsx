@@ -2,15 +2,14 @@ import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { tinaField } from "tinacms/dist/react";
 
-interface CarouselItem {
+type CarouselItem = {
   tabTitle: string;
   title: string;
   description: string;
   image: string;
-  [key: string]: unknown;
 }
 
-interface FeatureCarouselProps {
+type FeatureCarouselProps = {
   data: {
     headline: string;
     carouselItems: CarouselItem[];

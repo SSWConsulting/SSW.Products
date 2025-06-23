@@ -4,7 +4,7 @@ import Modal from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 import { ButtonVariant } from "./buttonEnum";
 
-interface BookingButtonProps {
+type BookingButtonProps = {
   title: string;
   jotFormId: string;
   variant?: ButtonVariant;
