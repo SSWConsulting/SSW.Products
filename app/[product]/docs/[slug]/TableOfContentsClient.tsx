@@ -51,7 +51,7 @@ function NavigationGroup({
             {navigationGroup?.items?.map((item, index) => {
               const isActive = activeItem === item?.slug?._sys?.filename;
               return (
-                <div className="group" key={index}>
+                <div className="group" key={item?.slug?._sys?.filename}>
                   <li
                     key={item?.slug?._sys?.filename}
                     className={cn(
