@@ -16,6 +16,7 @@
         "title": "yak2",
         "link": "https://yakshaver.ai/"
       },
+      "buttonSubtext": "subtext",
       "_template": "hero"
     }
   ]
