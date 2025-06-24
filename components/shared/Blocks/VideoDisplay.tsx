@@ -7,6 +7,7 @@ interface VideoDisplayProps {
     altText?: string | null;
     title?: string | null;
     externalVideoLink?: string | null;
+    thumbnail?: string | null;
     figureCaption?: string | null;
   };
 }
@@ -22,8 +23,9 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
           {title}
         </h2>
         <YouTubeEmbed
-          className="w-full aspect-video mx-auto"
+          className="w-full  mx-auto"
           src={externalVideoLink || ""}
+          placeholder={data.thumbnail || ""}
         />
         {figureCaption && (
           <p className="text-sm text-gray-400 mt-2 text-left">

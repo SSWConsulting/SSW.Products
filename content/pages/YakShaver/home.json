@@ -1,9 +1,10 @@
 {
   "seo": {
     "title": "YakShaver - Record issues & let AI instantly assign them to the right team",
+    "description": "Explore YakShaver for innovative AI solutions and insights to enhance your business efficiency and growth.",
     "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}"
   },
-  "title": "YakShaver",
+  "title": "YakShaver - Record issues & let AI instantly assign them to the right team",
   "pageBlocks": [
     {
       "backgroundImageEnabled": false,
@@ -64,7 +65,7 @@
             },
             {
               "showTickIcon": true,
-              "Badge": "Snaggit"
+              "Badge": "Snagit"
             },
             {
               "Badge": "and more..."
@@ -282,6 +283,7 @@
       "altText": "Making the Perfect PBI | YakShaver",
       "title": "Want to Learn More? ",
       "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+      "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
       "figureCaption": "Video: Making the Perfect PBI with YakShaver (6 min)",
       "_template": "videoDisplay"
     },

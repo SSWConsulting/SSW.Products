@@ -1,18 +1,24 @@
+import { YouTubeEmbed } from "@comps/shared/YouTubeEmbed";
 import Image from "next/image";
 import { Components } from "tinacms/dist/rich-text";
 export const DocAndBlogMarkdownStyle: Components<{
-  Youtube: { embedSrc: string };
+  Youtube: { thumbnail?: string; externalVideoLink?: string };
 }> = {
-  Youtube: ({ embedSrc }) => (
+  Youtube: (props) => (
     <div className="youtube-container">
-      <iframe
+      <YouTubeEmbed
+        className="w-[560px] h-[315px]"
+        src={props.externalVideoLink}
+        placeholder={props.thumbnail}
+      />
+      {/* <iframe
         width="560"
         height="315"
         src={embedSrc}
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen={true}
-      ></iframe>
+      ></iframe> */}
     </div>
   ),
   p: (props) => <p className="text-base font-light mb-4">{props?.children}</p>,
@@ -34,15 +40,11 @@ export const DocAndBlogMarkdownStyle: Components<{
   ),
 
   ol: (props) => (
-    <ol className="list-decimal font-light list-inside pl-4 mb-4">
-      {props?.children}
-    </ol>
+    <ol className="list-decimal ps-7 font-light mb-4">{props?.children}</ol>
   ),
 
   ul: (props) => (
-    <ul className="list-disc font-light list-inside pl-4 mb-4">
-      {props?.children}
-    </ul>
+    <ul className="list-disc ps-7 font-light mb-4">{props?.children}</ul>
   ),
 
   li: (props) => <li className="mb-4">{props?.children}</li>,
@@ -50,11 +52,14 @@ export const DocAndBlogMarkdownStyle: Components<{
   lic: (props) => <span>{props?.children}</span>, // For inline list content
 
   a: (props) => (
-    <a className="underline hover:text-[#CC4141]" href={props?.url}>
+    <a
+      className="underline transition-colors hover:text-white text-[#CC4141]"
+      href={props?.url}
+    >
+      {" "}
       {props?.children}
     </a>
   ),
-
   img: (props) => (
     <>
       <Image

@@ -8,6 +8,7 @@ type GetBlogsForProductProps = {
   keyword?: string;
   product: string;
   category?: string;
+  filteredBlogs?: string[];
 };
 
 // Workaround: graphql doesn't allow you to query by file name
@@ -31,12 +32,16 @@ const getTitlesInTenant = cache(async (product: string) => {
 export async function getBlogsForProduct({
   category,
   startCursor,
-  limit,
+  limit = 3,
   product,
   keyword,
+  filteredBlogs,
 }: GetBlogsForProductProps) {
   try {
     let titles = await getTitlesInTenant(product);
+    if (filteredBlogs && filteredBlogs.length > 0) {
+      titles = titles.filter((title) => !filteredBlogs.includes(title));
+    }
 
     if (keyword) {
       titles = titles.filter((title) =>
@@ -59,11 +64,10 @@ export async function getBlogsForProduct({
         ...categoryFilter,
       },
       ...beforeFilter,
+      last: limit * 2,
       before: startCursor,
-      last: limit,
       sort: "date",
     });
-
     if (
       !res.data ||
       !res.data.blogsConnection ||
@@ -73,13 +77,17 @@ export async function getBlogsForProduct({
       throw new Error("No documents found");
     }
 
-    res.data.blogsConnection.edges = res.data.blogsConnection.edges?.filter(
-      (edge) => {
-        return edge?.node?._sys?.path?.includes(`/blogs/${product}/`);
-      }
+    const remainingPages = Math.max(
+      res.data.blogsConnection.edges.length - limit,
+      0
     );
 
-    return res.data.blogsConnection;
+    const croppedBlogResponse = res.data.blogsConnection.edges?.slice(0, limit);
+
+    return {
+      blogs: croppedBlogResponse,
+      remainingPages,
+    };
   } catch (error) {
     console.error("Error fetching TinaCMS blog data:", error);
     throw error;

@@ -1,31 +1,32 @@
 "use client";
-import { GridPattern } from "@/components/magicui/grid-background";
+import type { Author } from "@/types/author";
 import Container from "@comps/Container";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import dayjs from "dayjs";
-import { ArrowRight, Calendar, Clock, Search } from "lucide-react";
+import { LoaderCircle, Search } from "lucide-react";
 import Image from "next/image";
-import React from "react";
-import {
-  BlogsIndexBlocksArticleList,
-  BlogsIndexBlocksHeroSearch,
-} from "../../tina/__generated__/types";
-import CallToAction from "./Blocks/CallToAction";
-
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { BlogsIndexBlocksFeaturedBlog as FeaturedBlog } from "../../tina/__generated__/types";
+import {
+  BlogsIndexBlocksArticleList,
+  BlogsIndexBlocksHeroSearch,
+  BlogsIndexBlocksFeaturedBlog as FeaturedBlog,
+} from "../../tina/__generated__/types";
+import CallToAction from "./Blocks/CallToAction";
 
-import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
+import { BlogCard, SkeletonCard } from "@comps/BlogCard";
 import client from "../../tina/__generated__/client";
 import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import { Button } from "../ui/button";
+import ArticleMetadata from "./ArticleMetadata";
+import CategoryLabel from "./CategoryLabel";
+import GridBackground from "./GridBackground";
+import ReadMore from "./ReadMore";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 
@@ -34,13 +35,6 @@ type Block = Maybe<RemoveTinaMetadata<BlogsIndexBlocks>>;
 type ArticleListProps = RemoveTinaMetadata<BlogsIndexBlocksArticleList>;
 
 type HeroSearchProps = RemoveTinaMetadata<BlogsIndexBlocksHeroSearch>;
-
-export const PAGE_LIMIT = 3;
-
-const formatDate = (dateString: string) => {
-  const date = dayjs(dateString);
-  return date.format("MMM D, YYYY");
-};
 
 interface BlogIndexClientProps {
   product: string;
@@ -71,90 +65,79 @@ export default function BlogIndexClient({
   );
 }
 
-const GridBackground = () => {
-  return (
-    <GridPattern
-      stroke="2rem"
-      className="mask-[radial-gradient(400px_circle_at_center,white,transparent)]"
-      strokeDasharray={"4 2"}
-      width={30}
-      height={30}
-    />
-  );
-};
-
 const FeaturedArticle = ({
   featuredBlog,
   ...props
 }: RemoveTinaMetadata<FeaturedBlog>) => {
   const { searchTerm } = useBlogSearch();
   return (
-    <Container>
+    <>
       {featuredBlog && !searchTerm && (
-        <section className="mx-auto">
-          {props.title && (
-            <h2
-              data-tina-field={tinaField(props, "title")}
-              className="w-fit text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4"
-            >
-              {props.title}
-            </h2>
-          )}
-          <div className="bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
-            <div className="flex flex-col lg:flex-row">
-              <div className="relative w-full grow md:basis-4/12 aspect-video">
-                {/* TODO: Tech debt
-                  Tailwind v3 does not not have a built in image mask class https://github.com/SSWConsulting/SSW.YakShaver/issues/1817 */}
-                <div className="w-full h-full lg:mask-[linear-gradient(to_right,black,black,transparent)] mask-[linear-gradient(black,black,transparent)]">
-                  <GridBackground />
+        <Container>
+          <section className="mx-auto">
+            {props.title && (
+              <h2
+                data-tina-field={tinaField(props, "title")}
+                className="w-fit text-2xl font-bold mb-8 border-l-4 border-ssw-red pl-4"
+              >
+                {props.title}
+              </h2>
+            )}
+            <div className="bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
+              <div className="flex flex-col lg:flex-row">
+                <div className="relative w-full grow md:basis-4/12 aspect-video">
+                  <div className="w-full h-full lg:mask-to-right mask-to-bottom">
+                    <GridBackground />
+                  </div>
+
+                  {featuredBlog.bannerImage && (
+                    <div className="inset-0 flex items-center justify-center absolute">
+                      <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-to-bottom aspect-video relative">
+                        <Image
+                          priority={true}
+                          aria-hidden={true}
+                          src={featuredBlog.bannerImage}
+                          alt={""}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                {featuredBlog.bannerImage && (
-                  <div className="inset-0 flex items-center justify-center absolute">
-                    <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-[linear-gradient(black,black,transparent)] aspect-video relative">
-                      <Image
-                        aria-hidden={true}
-                        src={featuredBlog.bannerImage}
-                        alt={""}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
+                <div className="p-8 md:basis-8/12 flex gap-3 flex-col">
+                  {featuredBlog.category && (
+                    <CategoryLabel className="text-sm">
+                      {featuredBlog.category}
+                    </CategoryLabel>
+                  )}
+                  <Link href={`/blog/${featuredBlog._sys.filename}`}>
+                    <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
+                      {featuredBlog?.title}
+                    </h3>
+                  </Link>
+                  <Author {...featuredBlog} />
+                  <ArticleMetadata className="" {...featuredBlog} />
+
+                  <section className="text-gray-300 text-sm md:text-base mb-6 line-clamp-2 md:line-clamp-none">
+                    <TinaMarkdown
+                      content={extractBlurbAsTinaMarkdownContent(
+                        featuredBlog?.body,
+                        2
+                      )}
+                    />
+                  </section>
+                  <div className="flex justify-between items-center">
+                    <ReadMore fileName={featuredBlog._sys.filename || ""} />
                   </div>
-                )}
-              </div>
-
-              <div className="p-8 md:basis-8/12 flex gap-3 flex-col">
-                {featuredBlog.category && (
-                  <CategoryLabel className="text-sm">
-                    {featuredBlog.category}
-                  </CategoryLabel>
-                )}
-                <Link href={`/blog/${featuredBlog._sys.filename}`}>
-                  <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
-                    {featuredBlog?.title}
-                  </h3>
-                </Link>
-                <Author {...featuredBlog} />
-                <ArticleMetadata className="" {...featuredBlog} />
-
-                <section className="text-gray-300 text-sm md:text-base mb-6 line-clamp-2 md:line-clamp-none">
-                  <TinaMarkdown
-                    content={extractBlurbAsTinaMarkdownContent(
-                      featuredBlog?.body,
-                      2
-                    )}
-                  />
-                </section>
-                <div className="flex justify-between items-center">
-                  <ReadMore fileName={featuredBlog._sys.filename || ""} />
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 
@@ -184,176 +167,111 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
   );
 };
 
-const ArticleMetadata = ({
-  date,
-  readLength,
-  className,
-}: {
-  date?: string | null;
-  readLength?: string | null;
-  className?: string;
-}) => {
-  return (
-    <div className={cn("flex items-center gap-2 text-gray-400", className)}>
-      <div className="flex items-center gap-1">
-        <Calendar className="h-4 w-4" />
-        <span>{date && formatDate(date)}</span>
-      </div>
-      <span>•</span>
-      <div className="flex items-center gap-1">
-        <Clock className="h-4 w-4" />
-        <span>{readLength}</span>
-      </div>
-    </div>
-  );
-};
-
 const RecentArticles = ({
   product,
   ...props
 }: RemoveTinaMetadata<ArticleListProps> & { product: string }) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
-  const { data, fetchNextPage } = useInfiniteQuery({
-    queryKey: [`blogs${searchTerm}${selectedCategory}`],
-    queryFn: ({ pageParam }) => {
-      return getBlogsForProduct({
-        limit: PAGE_LIMIT,
-        product,
-        startCursor: pageParam,
-        keyword: searchTerm,
-        category:
-          selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
-      });
-    },
-    initialPageParam: "",
-    getNextPageParam: (lastPage) => {
-      const lastEntry =
-        lastPage.edges && lastPage.edges[lastPage.edges.length - 1];
-      return lastEntry?.cursor || undefined;
-    },
-  });
+  const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
+    useInfiniteQuery({
+      queryKey: [`blogs${searchTerm}${selectedCategory}`],
+      queryFn: ({ pageParam }) => {
+        return getBlogsForProduct({
+          product,
+          startCursor: pageParam,
+          keyword: searchTerm,
+          category:
+            selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
+        });
+      },
+      initialPageParam: "",
+      getNextPageParam: (lastPage) => {
+        const lastEntry =
+          lastPage.blogs && lastPage.blogs[lastPage.blogs.length - 1];
+        return lastEntry?.cursor || undefined;
+      },
+    });
+  const totalPages = data?.pages.length || 0;
+  const lastPage = data?.pages[totalPages - 1];
+  const remainingPages = lastPage?.remainingPages || 0;
+  const hasMoreBlogs = remainingPages > 0;
 
   return (
-    <Container>
+    <Container className="w-full">
       {props.title && !searchTerm && (
         <h2
           data-tina-field={tinaField(props, "title")}
-          className="text-2xl font-bold mb-8 border-l-4 border-[#c41414] pl-4 w-fit"
+          className="text-2xl font-bold mb-8 border-l-4 border-ssw-red pl-4 w-fit"
         >
           {props.title}
         </h2>
       )}
+      {!data?.pages.length && !isFetchingNextPage && !isLoading ? (
+        <span className="mx-auto block w-fit">No results found</span>
+      ) : (
+        <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
+          {data?.pages.map((page) =>
+            page?.blogs?.map((edge, index) => {
+              const post = edge?.node;
+              return (
+                post && (
+                  <BlogCard
+                    key={`blog-${index}`}
+                    category={post.category}
+                    body={post.body}
+                    bannerImage={post.bannerImage}
+                    date={post.date}
+                    groupHover={false}
+                    readLength={post.readLength}
+                    title={post.title}
+                    author={{
+                      author: post.author,
+                      authorImage: post.authorImage,
+                      sswPeopleLink: post.sswPeopleLink || "",
+                    }}
+                    slug={post._sys.filename}
+                  />
+                )
+              );
+            })
+          )}
 
-      <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
-        {data?.pages.map((page) =>
-          page?.edges?.map((edge, index) => {
-            const post = edge?.node;
-
-            return (
-              <div
-                key={index}
-                className="border bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="h-full flex flex-col grow shrink-0">
-                  <div className="relative aspect-video ">
-                    <div className="inset-0 absolute align-middle items-center justify-center flex">
-                      {edge?.node?.bannerImage && (
-                        <div className="rounded-md mask-[linear-gradient(black,black,transparent)] z-10 h-5/6 relative overflow-hidden aspect-video">
-                          <Image
-                            alt=""
-                            fill
-                            objectFit="cover"
-                            aria-hidden={true}
-                            src={edge?.node?.bannerImage}
-                          />
-                        </div>
-                      )}
-                    </div>
-                    <div className="w-full h-full mask-[linear-gradient(black,black,transparent)]">
-                      <GridBackground />
-                    </div>
-                  </div>
-                  <div className="grow shrink-0 gap-3 flex flex-col p-6">
-                    {edge?.node?.category && (
-                      <CategoryLabel className="text-sm">
-                        {edge?.node?.category}
-                      </CategoryLabel>
-                    )}
-                    <Link
-                      className="w-fit"
-                      href={`/blog/${post?._sys.filename}`}
-                    >
-                      <h3 className="text-xl font-bold text-gray-100 hover:text-ssw-red transition-colors">
-                        {post?.title}
-                      </h3>
-                    </Link>
-                    <Author
-                      author={edge?.node?.author}
-                      authorImage={edge?.node?.authorImage}
-                      sswPeopleLink={edge?.node?.sswPeopleLink}
-                    />
-                    <ArticleMetadata
-                      className="h-fit"
-                      date={edge?.node?.date}
-                      readLength={edge?.node?.readLength}
-                    />
-
-                    <section className="text-gray-300 text-sm mb-4 line-clamp-2">
-                      <TinaMarkdown content={post?.body} />
-                    </section>
-                    <ReadMore fileName={post?._sys.filename || ""} />
-                  </div>
-                </div>
-              </div>
-            );
-          })
-        )}
-      </div>
-
+          {isFetchingNextPage && <PlaceholderCards cards={remainingPages} />}
+          {isLoading && <PlaceholderCards cards={3} />}
+        </div>
+      )}
       <div className="text-center mt-6">
-        {data?.pages[data.pages.length - 1].pageInfo.hasPreviousPage && (
+        {(hasMoreBlogs || isLoading) && (
           <Button
+            disabled={isFetching}
             onClick={() => {
               fetchNextPage();
             }}
+            className="gap-1"
             variant={"secondary"}
           >
-            Load More Articles
+            {isFetching ? (
+              <>
+                Loading <LoaderCircle className="animate-spin animate size-4" />
+              </>
+            ) : (
+              <>Load More Articles</>
+            )}
           </Button>
         )}
+        {/* )} */}
       </div>
     </Container>
   );
 };
 
-const CategoryLabel = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
-  return (
-    <div
-      className={cn(
-        "bg-ssw-charcoal drop-shadow-xs z-10 w-fit text-white px-3 py-1 rounded-full",
-        className
-      )}
-    >
-      {children}
-    </div>
-  );
+type PlaceholderCardsProps = {
+  cards: number;
 };
-
-const ReadMore = ({ fileName }: { fileName: string }) => {
-  return (
-    <Link
-      href={`/blog/${fileName}`}
-      className="text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1"
-    >
-      Read More <ArrowRight className="h-4 w-4" />
-    </Link>
-  );
+const PlaceholderCards = ({ cards }: PlaceholderCardsProps) => {
+  return Array.from({ length: cards }).map((_, index) => (
+    <SkeletonCard key={`skeleton-${index}`} />
+  ));
 };
 
 const Author = ({
@@ -372,7 +290,7 @@ const Author = ({
           src={authorImage || "/default-images/Placeholder-profile.png"}
           alt="placeholder blog author"
           fill
-          objectFit="cover"
+          className="object-cover"
         />
       </div>
       <p className="font-medium h-fit">
@@ -387,7 +305,6 @@ const Author = ({
     </div>
   );
 };
-
 const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
   const debounceTime = 1000;
   const {
