@@ -65,7 +65,7 @@
             },
             {
               "showTickIcon": true,
-              "Badge": "Snaggit"
+              "Badge": "Snagit"
             },
             {
               "Badge": "and more..."
@@ -282,8 +282,8 @@
     {
       "altText": "Making the Perfect PBI | YakShaver",
       "title": "Want to Learn More? ",
-      "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
       "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+      "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
       "figureCaption": "Video: Making the Perfect PBI with YakShaver (6 min)",
       "_template": "videoDisplay"
     },
