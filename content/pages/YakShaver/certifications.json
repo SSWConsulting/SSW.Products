@@ -6,7 +6,7 @@
   "title": "YakShaver developer certifications",
   "pageBlocks": [
     {
-      "titleBeforeRotate": "YakShaver developer certifications",
+      "titleBeforeRotate": "YakShaver Admin Certification",
       "byLine": "We recommend that each organization has a certified YakShaver Admin. This person should follow the below steps to demonstrate their understanding of Yakshaver's functionality. Upon successful completion your organization will receive 50 free credits valued at $25.\\\n\n\n1\\. In your YakShaver portal, add the YakShaver playground as a project\n[https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n\n2\\. Do a test Shave into that project. In your Shave, explain to us:\n\n* How you set up the tool you are using (Teams, snipping tool, etc.)\n* Which project to send your Shave to (assume the AI can’t understand what's on your screen)\n* Where the project is shown in the portal, and how you know it has a working backlog\n* How the video processing works - where does it go between being recorded and ending up in the backlog?\\\n\n\nYou will receive an email with your YakShaver Admin badge and instructions to claim your 50 credits.\n",
       "ctaLeft": {
         "title": "How do I record a 'Done' video?",
