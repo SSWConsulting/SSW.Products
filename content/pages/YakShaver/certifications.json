@@ -7,13 +7,13 @@
   "pageBlocks": [
     {
       "titleBeforeRotate": "YakShaver developer certifications",
-      "byLine": "We encourage developers to get verified by running YakShaver and completing the basics before implementing it on a real project.\\\n\\\nBenefit: organization gets YakShaver for free if someone has a badge\n\n* create a new test repository in GitHub or Azure DevOps\n* connect it to yakshaver in the client portal\n* do a yakshave to the repository and show that it worked\n* record a done video showing how this process works\n* rerun a failed yakshave (TODO to add feature by YakShaver team)\n* look at the log history (TODO by YakShaver team)\n* Scenario: what would you do in this situation? (base answer off FAQs)\n",
+      "byLine": "We recommend that each organization has a certified YakShaver Admin. This person should follow the below steps to demonstrate their understanding Upon successful completion your organization will receive 50 free credits valued at $25.\\\n\n\n1\\. In your YakShaver portal, add the YakShaver playground as a project\n[https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n\n2\\. Do a test Shave into that project. In your Shave, explain to us:\n\n* How you set up the tool you are using (Teams, snipping tool, etc.)\n* Which project to send your Shave to (assume the AI can’t understand what's on your screen)\n* Where the project is shown in the portal, and how you know it has a working backlog\n* How the video processing works - where does it go between being recorded and ending up in the backlog?\\\n\n\nYou will receive an email with your YakShaver Admin badge and instructions to claim your 50 credits.\n",
       "ctaLeft": {
         "title": "How do I record a 'Done' video?",
         "link": "https://www.youtube.com/watch?v=CjwkGk1LcJ0"
       },
       "ctaRight": {
-        "title": "yak2",
+        "title": "Submit my video",
         "link": "https://yakshaver.ai/"
       },
       "buttonSubtext": "subtext",
