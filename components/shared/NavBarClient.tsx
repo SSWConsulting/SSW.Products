@@ -154,7 +154,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             </Link>
           )}
 
-          <ul className="hidden lg:flex items-center gap-5 grow">
+          <ul className="hidden lg:flex items-center justify-center px-4 gap-5 grow">
             {leftNavItems?.map((item, index) => renderNavItem(item, index))}
           </ul>
         </div>
