@@ -16,7 +16,7 @@
         "title": "Submit my video",
         "link": "https://yakshaver.ai/"
       },
-      "buttonSubtext": "subtext",
+      "buttonSubtext": "",
       "_template": "hero"
     }
   ]
