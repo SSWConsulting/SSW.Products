@@ -7,9 +7,12 @@
   "pageBlocks": [
     {
       "ParentContainerTitle": "title",
-      "ParentContainerDescription": "1. In your YakShaver portal, add the YakShaver playground project: https://github.com/SSWConsulting/SSW.YakShaver.Playground",
+      "ParentContainerDescription": "desc",
       "CardAndImageItem": [
-        {}
+        {
+          "Header": "header",
+          "Description": "1\\. In your YakShaver portal, add the YakShaver playground project: https\\://github.com/SSWConsulting/SSW\\.YakShaver.Playground\n"
+        }
       ],
       "_template": "CardAndImage"
     },
