@@ -12,6 +12,10 @@
         {
           "Header": "Step 1",
           "Description": "In your YakShaver portal, add the YakShaver playground project: https\\://github.com/SSWConsulting/SSW\\.YakShaver.Playground\n"
+        },
+        {
+          "Header": "Step 2",
+          "Description": "Do a test Shave into that project. In your Shave, explain to us:\n\n* \\- How you set up the tool you are using (Teams, snipping tool, etc.).\n* \\- Which project to send your Shave to.\n* \\- Show the project in your portal, and show it has a backlog.\n* \\- Where does the video go after being recorded?\n"
         }
       ],
       "_template": "CardAndImage"
