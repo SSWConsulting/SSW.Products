@@ -21,7 +21,11 @@
         },
         {
           "Header": "Step 3",
-          "Description": "Do a test Shave into that project. In your Shave, explain to us:\n\n* How you have set up your screen capture tool.\n* Which project to send your Shave to.\n* The project's location in the portal, and it's backlog.\n* Where does the video go after being recorded?\n",
+          "Description": "Read the best practices for Shaving (LINK)\n"
+        },
+        {
+          "Header": "Step 3",
+          "Description": "Do a test Shave into the 'Playground' project. In your Shave, explain to us:\n\n* How you have set up your screen capture tool.\n* Which project to send your Shave to.\n* The project's location in the portal, and it's backlog.\n* Where does the video go after being recorded?\n",
           "media": "/YakShaver/Blogs/getting_started.png"
         },
         {
