@@ -10,8 +10,8 @@
       "ParentContainerDescription": "We recommend that each organization has a certified YakShaver Admin. Upon successful completion your organization will receive 50 free credits valued at $25.",
       "CardAndImageItem": [
         {
-          "Header": "header",
-          "Description": "1\\. In your YakShaver portal, add the YakShaver playground project: https\\://github.com/SSWConsulting/SSW\\.YakShaver.Playground\n"
+          "Header": "Step 1",
+          "Description": "In your YakShaver portal, add the YakShaver playground project: https\\://github.com/SSWConsulting/SSW\\.YakShaver.Playground\n"
         }
       ],
       "_template": "CardAndImage"
