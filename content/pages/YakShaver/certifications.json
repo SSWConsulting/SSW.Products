@@ -11,7 +11,7 @@
       "CardAndImageItem": [
         {
           "Header": "Step 1",
-          "Description": "In your YakShaver portal, add the playground project: https\\://github.com/SSWConsulting/SSW\\.YakShaver.Playground\n",
+          "Description": "In your YakShaver portal, add the playground project: [https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n",
           "media": "/YakShaver/Blogs/getting_started.png"
         },
         {
