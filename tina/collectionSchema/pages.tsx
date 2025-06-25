@@ -12,11 +12,11 @@ import { bentoBoxTemplate } from "../../components/shared/Blocks/BentoBox/BentoB
 import { HeroTemplate } from "../../components/shared/Blocks/Hero/Hero.template";
 import { timelineTemplate } from "../../components/shared/Blocks/Timeline/Timeline.template";
 
-import { RichTextTemplate } from "@comps/shared/Blocks/RichText.template";
 import { CalculatorTemplate } from "../../components/shared/Blocks/Calculator.template";
 import { callToActionTemplate } from "../../components/shared/Blocks/CallToAction.template";
 import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImage/CardAndImage.template";
 import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
+import { RichTextTemplate } from "../../components/shared/Blocks/RichText.template";
 import TryItNowTemplate from "../../components/shared/Blocks/TryItNow.template";
 import { seoInformation } from "../shared/SEOInformation";
 
