@@ -16,6 +16,10 @@
         {
           "Header": "Step 2",
           "Description": "Do a test Shave into that project. In your Shave, explain to us:\n\n* \\- How you set up the tool you are using (Teams, snipping tool, etc.).\n* \\- Which project to send your Shave to.\n* \\- Show the project in your portal, and show it has a backlog.\n* \\- Where does the video go after being recorded?\n"
+        },
+        {
+          "Header": "Step 3",
+          "Description": "That's it! You will receive an email with instructions to claim your 50 credits.\n"
         }
       ],
       "_template": "CardAndImage"
