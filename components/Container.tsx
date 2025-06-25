@@ -5,6 +5,7 @@ type ContainerProps = {
   children: React.ReactNode;
   size?: "small" | "medium";
   className?: string;
+  "data-tina-field"?: string;
 };
 
 const sizeClasses = {
@@ -16,9 +17,13 @@ const Container = ({
   children,
   size = "medium",
   className,
+  ...props
 }: ContainerProps) => {
   return (
-    <section className={cn(className, "px-4 mx-auto", sizeClasses[size])}>
+    <section
+      data-tina-field={props["data-tina-field"]}
+      className={cn("px-4 mx-auto", sizeClasses[size], className)}
+    >
       {children}
     </section>
   );

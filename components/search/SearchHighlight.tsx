@@ -2,6 +2,8 @@ import type { Hit } from "instantsearch.js";
 import Link from "next/link";
 import { Highlight, Snippet } from "react-instantsearch";
 
+import { useDialog } from "./SearchBox";
+
 const SearchHighlight = ({
   hit,
 }: {
@@ -11,9 +13,11 @@ const SearchHighlight = ({
     file: string;
   }>;
 }) => {
+  const { setOpen } = useDialog();
   return (
-    <div className="border-b snap-start py-1 px-4 border-gray-lighter/40  ">
+    <div className="border-b snap-start py-1 px-4 border-gray-lighter/40">
       <Link
+        onClick={() => setOpen(false)}
         className="hover:underline underline-offset-2"
         href={`/docs/${hit?.file}`}
       >
