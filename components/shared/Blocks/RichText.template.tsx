@@ -5,6 +5,7 @@ export const RichTextTemplate: Template = {
   label: "Rich Text",
   name: "richText",
   ui: {
+    previewSrc: "/ComponentPreviews/Richtext-Preview.png",
     defaultItem: () => {
       return {
         textAlign: Object.keys(textAlignOptions)[0],
