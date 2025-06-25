@@ -16,7 +16,7 @@ const RichText = (props: RichTextProps) => {
     textAlignOptions[props.textAlign as keyof typeof textAlignOptions];
   return (
     <Container
-      className={cn("text-white", textAlignment)}
+      className={cn("text-white w-full", textAlignment)}
       data-tina-field={tinaField(props, "body")}
     >
       <TinaMarkdown components={DocAndBlogMarkdownStyle} content={props.body} />
