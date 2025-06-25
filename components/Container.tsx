@@ -22,7 +22,7 @@ const Container = ({
   return (
     <section
       data-tina-field={props["data-tina-field"]}
-      className={cn(className, "px-4 mx-auto", sizeClasses[size])}
+      className={cn("px-4 mx-auto", sizeClasses[size], className)}
     >
       {children}
     </section>
