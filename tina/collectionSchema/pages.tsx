@@ -12,6 +12,7 @@ import { bentoBoxTemplate } from "../../components/shared/Blocks/BentoBox/BentoB
 import { HeroTemplate } from "../../components/shared/Blocks/Hero/Hero.template";
 import { timelineTemplate } from "../../components/shared/Blocks/Timeline/Timeline.template";
 
+import { RichTextTemplate } from "@comps/shared/Blocks/RichText.template";
 import { CalculatorTemplate } from "../../components/shared/Blocks/Calculator.template";
 import { callToActionTemplate } from "../../components/shared/Blocks/CallToAction.template";
 import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImage/CardAndImage.template";
@@ -93,6 +94,7 @@ export const PagesSchema: Collection = {
         BannerTemplate,
         videoDisplayTemplate,
         bentoBoxTemplate,
+        RichTextTemplate,
         timelineTemplate,
         callToActionTemplate,
         CardAndImageTemplate,
