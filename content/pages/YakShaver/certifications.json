@@ -10,7 +10,7 @@
       "textColour": "FFFFFF",
       "headline": "",
       "text": "",
-      "image": "/YakShaver/YakShaver%20horizontal.png",
+      "image": "",
       "_template": "Banner"
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "textAlign": "Left",
-      "body": "1. In your YakShaver portal, add a project called 'Playground' and set the backlog to this public GitHub repo: [https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n2. Set up a Windows or Mac screenshot tool by following [the docs](https://yakshaver.ai/docs/recording-work-item-snipping-tool).\\\n   Note: this will give you access to keyboard shortcuts.\n3. Read the Shaving [best practices](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions).\n4. Do a test Shave into the 'Playground' project. In your Shave, explain to us:\n\n* The project's location in the portal, and it's backlog.\n* How you have set up your screen capture tool, and where the videos will go after being recorded?\n* Why you must verbally mention the destination project and why you can't just rely on the screen.\n",
+      "body": "1. In your YakShaver portal, add a project called 'Playground' and set the backlog to this public GitHub repo: [https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n2. Set up a Windows or Mac screenshot tool by following [the docs](https://yakshaver.ai/docs/recording-work-item-snipping-tool).\\\n   Note: this will give you access to keyboard shortcuts.\n3. Read the Shaving [best practices](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions).\n4. Do a test Shave into the 'Playground' project. In your Shave, explain to us:\n\n              \\- The project's location in the portal, and it's backlog.\n\n1. How you have set up your screen capture tool, and where the videos will go after being recorded?\n2. Why you must verbally mention the destination project and why you can't just rely on the screen.\n",
       "_template": "richText"
     },
     {
