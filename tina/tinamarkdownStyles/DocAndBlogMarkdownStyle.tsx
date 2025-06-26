@@ -1,6 +1,8 @@
 import { YouTubeEmbed } from "@comps/shared/YouTubeEmbed";
 import Image from "next/image";
 import { Components } from "tinacms/dist/rich-text";
+
+import Link from "./Link";
 export const DocAndBlogMarkdownStyle: Components<{
   Youtube: { thumbnail?: string; externalVideoLink?: string };
 }> = {
@@ -11,14 +13,6 @@ export const DocAndBlogMarkdownStyle: Components<{
         src={props.externalVideoLink}
         placeholder={props.thumbnail}
       />
-      {/* <iframe
-        width="560"
-        height="315"
-        src={embedSrc}
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen={true}
-      ></iframe> */}
     </div>
   ),
   p: (props) => <p className="text-base font-light mb-4">{props?.children}</p>,
@@ -51,15 +45,8 @@ export const DocAndBlogMarkdownStyle: Components<{
 
   lic: (props) => <span>{props?.children}</span>, // For inline list content
 
-  a: (props) => (
-    <a
-      className="underline transition-colors hover:text-white text-[#CC4141]"
-      href={props?.url}
-    >
-      {" "}
-      {props?.children}
-    </a>
-  ),
+  a: (props) => Link(props),
+
   img: (props) => (
     <>
       <Image
