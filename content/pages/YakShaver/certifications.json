@@ -50,31 +50,6 @@
         }
       ],
       "_template": "CardAndImage"
-    },
-    {
-      "title": "Admin Certification",
-      "ctaDescription": "We recommend that each organization has a certified YakShaver Admin. Upon successful completion your organization will receive 50 free credits valued at $25.",
-      "ctaButton": {
-        "label": "See instructions below",
-        "variant": "solidRed",
-        "size": "large"
-      },
-      "_template": "callToAction"
-    },
-    {
-      "featureItem": [
-        {
-          "headline": "Instructions",
-          "text": "1\\. In your YakShaver portal, add the YakShaver playground project:\n[https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n\n2\\. Do a test Shave into that project. In your Shave, explain to us:\n\n\\- How you set up the tool you are using (Teams, snipping tool, etc.).\n\n\\- Which project to send your Shave to.\n\n\\- Show the project in your portal, and show it has a backlog.\n\n\\- Where does the video go after being recorded?\n\nThat's it! You will receive an email with instructions to claim your 50 credits.\n",
-          "media": [
-            {
-              "image": "/YakShaver/Blogs/getting_started.png",
-              "_template": "image"
-            }
-          ]
-        }
-      ],
-      "_template": "features"
     }
   ]
 }
