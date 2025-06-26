@@ -2,7 +2,7 @@ import type { Template } from "tinacms";
 import { textAlignOptions } from "./RichText";
 
 export const RichTextTemplate: Template = {
-  label: "Rich Text",
+  label: "Text",
   name: "richText",
   ui: {
     previewSrc: "/ComponentPreviews/Richtext-Preview.png",
