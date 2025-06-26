@@ -6,10 +6,11 @@
   "title": "YakShaver developer certifications",
   "pageBlocks": [
     {
-      "backgroundColour": "#000000",
+      "backgroundColour": "#CC4141",
       "textColour": "FFFFFF",
-      "headline": "Admin Certification",
-      "text": "We recommend that each organization have a certified YakShaver Admin. Upon successful completion of the below steps, and sharing of the certification on your LinkedIn, your organization will receive 50 credits (valued at $25).",
+      "headline": "",
+      "text": "",
+      "image": "/YakShaver/YakShaver%20horizontal.png",
       "_template": "Banner"
     },
     {
