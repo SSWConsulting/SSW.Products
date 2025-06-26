@@ -6,6 +6,11 @@
   "title": "YakShaver developer certifications",
   "pageBlocks": [
     {
+      "textAlign": "Center",
+      "body": "## Admin Certification\n\nWe recommend that each organization have a certified YakShaver Admin. Upon successful completion of the below steps, and sharing of the certification on your LinkedIn, your organization will receive 50 credits (valued at $25).\n",
+      "_template": "richText"
+    },
+    {
       "textAlign": "Left",
       "body": "1. In your YakShaver portal, add a project called 'Playground' and set the backlog to this public GitHub repo: [https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n2. Set up a Windows or Mac screenshot tool by [following the docs](https://yakshaver.ai/docs/recording-work-item-snipping-tool).\\\n   Note: this will give you access to keyboard shortcuts.\n3. Read the [best practices for Shaving](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions).\n4. Do a test Shave into the 'Playground' project. In your Shave, explain to us:\n\n* The project's location in the portal, and it's backlog.\n* How you have set up your screen capture tool, and where the videos will go after being recorded?\n* Why you must verbally mention the destination project and why you can't just rely on the screen.\n\nYou will receive an email from us with instructions to claim your 50 credits.\n",
       "_template": "richText"
