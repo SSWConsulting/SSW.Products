@@ -16,6 +16,7 @@ import { CalculatorTemplate } from "../../components/shared/Blocks/Calculator.te
 import { callToActionTemplate } from "../../components/shared/Blocks/CallToAction.template";
 import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImage/CardAndImage.template";
 import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
+import { RichTextTemplate } from "../../components/shared/Blocks/RichText.template";
 import TryItNowTemplate from "../../components/shared/Blocks/TryItNow.template";
 import { seoInformation } from "../shared/SEOInformation";
 
@@ -93,6 +94,7 @@ export const PagesSchema: Collection = {
         BannerTemplate,
         videoDisplayTemplate,
         bentoBoxTemplate,
+        RichTextTemplate,
         timelineTemplate,
         callToActionTemplate,
         CardAndImageTemplate,
