@@ -1,3 +1,4 @@
+import type { RichText as RichTextProps } from "@/types/components/rich-text";
 import Banner from "./Blocks/Banner";
 import BentoBox from "./Blocks/BentoBox/BentoBox";
 import CalculatorComponent from "./Blocks/Calculator";
@@ -9,6 +10,7 @@ import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
 import Hero from "./Blocks/Hero/Hero";
 import Pricing from "./Blocks/Pricing";
+import RichText from "./Blocks/RichText";
 import { Timeline } from "./Blocks/Timeline/Timeline";
 import { TryItNow } from "./Blocks/TryItNow";
 import VideoDisplay from "./Blocks/VideoDisplay";
@@ -78,7 +80,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <Banner key={index} data={block} />;
       case "PagesPageBlocksVideoDisplay":
         return <VideoDisplay key={index} data={block} />;
-
+      case "PagesPageBlocksRichText":
+        return <RichText key={index} {...(block as RichTextProps)} />;
       case "PagesPageBlocksBentoBox":
         return <BentoBox data={block} />;
       case "PagesPageBlocksTimeline":

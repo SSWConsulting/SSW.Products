@@ -1,4 +1,5 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
+import Link from "@tina/tinamarkdownStyles/Link";
 import Image from "next/image";
 import React from "react";
 import { tinaField } from "tinacms/dist/react";
@@ -39,24 +40,14 @@ export type FeatureItem = {
 export const featureComponents: Components<Record<string, unknown>> = {
   //@ts-expect-error investigate type err
   p: (props: React.HTMLProps<HTMLParagraphElement>) => (
-    <p
-      className="mb-4 text-white  leading-relaxed text-base"
-      //@ts-expect-error investigate type err
-      data-tina-field={tinaField(props, "text")}
-      {...props}
-    />
+    <p className="mb-4 text-white  leading-relaxed text-base" {...props} />
   ),
   //@ts-expect-error investigate type err
   span: (props: React.HTMLProps<HTMLSpanElement>) => (
-    <span
-      className="mb-4 text-white  leading-relaxed text-base"
-      //@ts-expect-error investigate type err
-      data-tina-field={tinaField(props, "text")}
-      {...props}
-    />
+    <span className="mb-4 text-white  leading-relaxed text-base" {...props} />
   ),
+  a: (props) => Link(props),
 };
-
 const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
   const renderMedia = () => {
     if (feature.media && feature.media.length > 0) {
@@ -155,7 +146,10 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
           </div>
         </div>
 
-        <div className="text-base ">
+        <div
+          data-tina-field={tinaField(feature, "text")}
+          className="text-base "
+        >
           <TinaMarkdown content={feature.text} components={featureComponents} />
         </div>
         <div className="flex flex-col lg:flex-row lg:justify-start lg:items-center gap-4 xl:gap-0">

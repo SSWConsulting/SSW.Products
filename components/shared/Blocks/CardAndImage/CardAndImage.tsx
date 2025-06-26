@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
+import Link from "@tina/tinamarkdownStyles/Link";
 import { CircleCheckBig } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -11,11 +12,13 @@ import {
 } from "../../../../tina/__generated__/types";
 import Container from "../../../Container";
 import { curlyBracketFormatter } from "../Hero/Hero";
-const cardAndImageMarkdownRenderer: Components<Record<string, unknown>> = {
+
+const cardAndImageMarkdownRenderer: Components<object> = {
   ul: (props: unknown) => {
     const { children } = props as { children?: React.ReactNode };
     return <ul className="pl-6 md:pl-12 list-disc">{children}</ul>;
   },
+  a: (props) => Link(props),
 };
 
 const NO_OPENED_ITEMS = -1;
@@ -157,7 +160,7 @@ function CardItem({
         style={{ maxHeight: `${contentHeight}px` }}
       >
         <div ref={contentRef}>
-          <div className="text-gray-300 text-lg pt-3">
+          <div className="text-gray-300 text-lg pt-3 ">
             <TinaMarkdown
               content={data.Description}
               components={cardAndImageMarkdownRenderer}
