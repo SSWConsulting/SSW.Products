@@ -16,6 +16,11 @@
       "_template": "richText"
     },
     {
+      "textAlign": "Center",
+      "body": "That's it! You will receive an email from us with instructions to claim your 50 credits.\n",
+      "_template": "richText"
+    },
+    {
       "ParentContainerTitle": "Admin Certification",
       "ParentContainerDescription": "We recommend that each organization have a certified YakShaver Admin. Upon successful completion of the below steps, and sharing of the certification on your LinkedIn, your organization will receive 50 credits (valued at $25).",
       "CardAndImageItem": [
