@@ -43,7 +43,7 @@ export default function RootLayout({
       <body
         className={`min-h-screen flex-col flex ${inter.className} relative bg-gray-light`}
       >
-        <main className="overflow-cli grow">
+        <main className="overflow-clip grow">
           <NavBarServer product={params.product} />
           {children}
         </main>
