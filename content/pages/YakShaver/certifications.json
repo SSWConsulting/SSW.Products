@@ -19,37 +19,6 @@
       "textAlign": "Center",
       "body": "### That's it! You will receive an email from us with instructions to claim your 50 credits.\n",
       "_template": "richText"
-    },
-    {
-      "ParentContainerTitle": "Admin Certification",
-      "ParentContainerDescription": "We recommend that each organization have a certified YakShaver Admin. Upon successful completion of the below steps, and sharing of the certification on your LinkedIn, your organization will receive 50 credits (valued at $25).",
-      "CardAndImageItem": [
-        {
-          "Header": "Step 1",
-          "Description": "In your YakShaver portal, add a project called 'Playground' and set the backlog to this public GitHub repo: [https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n",
-          "media": "/YakShaver/Blogs/getting_started.png"
-        },
-        {
-          "Header": "Step 2",
-          "Description": "Set up a Windows or Mac screenshot tool by [following the docs](https://yakshaver.ai/docs/recording-work-item-snipping-tool).\n\nNote: this will give you access to keyboard shortcuts.\n",
-          "media": "/YakShaver/Blogs/getting_started.png"
-        },
-        {
-          "Header": "Step 3",
-          "Description": "Read the [best practices for Shaving](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions).\n"
-        },
-        {
-          "Header": "Step 4",
-          "Description": "Do a test Shave into the 'Playground' project. In your Shave, explain to us:\n\n* The project's location in the portal, and it's backlog.\n* How you have set up your screen capture tool, and where the videos will go after being recorded?\n* Why you must verbally mention the destination project and why you can't just rely on the screen.\n",
-          "media": "/YakShaver/Blogs/getting_started.png"
-        },
-        {
-          "Header": "Step 5",
-          "Description": "You will receive an email from us with instructions to claim your 50 credits.\n",
-          "media": "/YakShaver/Blogs/getting_started.png"
-        }
-      ],
-      "_template": "CardAndImage"
     }
   ]
 }
