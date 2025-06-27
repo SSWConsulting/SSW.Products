@@ -41,10 +41,12 @@ export default function RootLayout({
         )}
       </head>
       <body
-        className={`min-h-screen [&>div]:grow flex-col flex ${inter.className} relative bg-gray-light`}
+        className={`min-h-screen flex-col flex ${inter.className} relative bg-gray-light`}
       >
-        <NavBarServer product={params.product} />
-        {children}
+        <main className="overflow-clip grow">
+          <NavBarServer product={params.product} />
+          {children}
+        </main>
         <FooterServer product={params.product} />
       </body>
     </html>
