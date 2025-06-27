@@ -36,12 +36,12 @@
           "href": "/roadmap"
         },
         {
-          "label": "DISCORD",
-          "href": "https://discord.gg/Jp9dyxKFjR"
-        },
-        {
           "label": "CERTIFICATIONS",
           "href": "/certifications"
+        },
+        {
+          "label": "DISCORD",
+          "href": "https://discord.gg/Jp9dyxKFjR"
         }
       ],
       "_template": "groupOfStringItems"
