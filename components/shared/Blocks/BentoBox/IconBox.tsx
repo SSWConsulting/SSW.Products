@@ -3,9 +3,15 @@ import { Maybe } from "@tina/__generated__/types";
 import Image from "next/image";
 import Link from "next/link";
 
-const IconBox = ({ iconImage, iconToolTipText, iconLink }: IconBoxProps) => {
+const IconBox = ({
+  iconImage,
+  iconToolTipText,
+  iconLink,
+  iconLinkTitle,
+}: IconBoxProps) => {
   return (
     <IconWrapper
+      linkTitle={iconLinkTitle || undefined}
       href={iconLink}
       className="relative rounded-2xl md:w-[60px] md:h-[60px] w-[50px] h-[50px] flex items-center justify-center top-0 hover:-top-2 transition-all duration-300 group"
     >
@@ -31,16 +37,18 @@ const IconBox = ({ iconImage, iconToolTipText, iconLink }: IconBoxProps) => {
 };
 
 const IconWrapper = ({
+  linkTitle,
   href,
   children,
   className,
 }: {
+  linkTitle?: string;
   children: React.ReactNode;
   className: string;
   href?: Maybe<string>;
 }) =>
   href ? (
-    <Link href={href} className={className}>
+    <Link title={linkTitle} href={href} className={className}>
       {children}
     </Link>
   ) : (

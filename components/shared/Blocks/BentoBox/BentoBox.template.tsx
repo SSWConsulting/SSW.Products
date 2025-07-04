@@ -50,6 +50,11 @@ export const bentoBoxTemplate: Template = {
             { name: "iconImage", label: "Icon Image", type: "image" },
             { name: "iconLink", label: "Icon Link", type: "string" },
             {
+              name: "iconLinkTitle",
+              label: "Icon Link Title",
+              type: "string",
+            },
+            {
               name: "iconToolTipText",
               label: "Icon Tooltip Text",
               type: "string",

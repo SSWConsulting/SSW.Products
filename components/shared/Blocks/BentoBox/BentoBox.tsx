@@ -222,6 +222,7 @@ export default function BentoBox({ data }: { data: any }) {
                     topLeftBox.icons.map(
                       (icon: IconBoxProps, index: number) => (
                         <IconBox
+                          iconLinkTitle={icon?.iconLinkTitle}
                           key={index}
                           iconImage={icon?.iconImage}
                           iconLink={icon?.iconLink}
