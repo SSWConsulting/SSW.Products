@@ -29,6 +29,11 @@
       "textAlign": "Center",
       "body": "### That's it! Your organization will receive 50 YakShaver credits.\n",
       "_template": "richText"
+    },
+    {
+      "textAlign": "Left",
+      "body": "",
+      "_template": "richText"
     }
   ]
 }
