@@ -5,6 +5,11 @@
   "imgHeight": 90,
   "leftNavItem": [
     {
+      "label": "Client Portal",
+      "href": "https://portal.yakshaver.ai/",
+      "_template": "stringItem"
+    },
+    {
       "label": "Pricing",
       "href": "/pricing",
       "_template": "stringItem"
@@ -28,6 +33,10 @@
       "label": "COMMUNITY",
       "items": [
         {
+          "label": "VIDEOS",
+          "href": "https://www.youtube.com/@SSWYakShaver"
+        },
+        {
           "label": "SUPPORT",
           "href": "/docs/support"
         },
@@ -45,11 +54,6 @@
         }
       ],
       "_template": "groupOfStringItems"
-    },
-    {
-      "label": "Videos",
-      "href": "https://www.youtube.com/@SSWYakShaver",
-      "_template": "stringItem"
     }
   ],
   "rightNavItem": [
