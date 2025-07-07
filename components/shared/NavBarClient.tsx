@@ -148,18 +148,18 @@ export default function NavBarClient({ results }: NavBarClientProps) {
               key={index}
             >
               <Link href={item.href || ""}>
-              {item.label}
+                {item.label}
 
-              {item.icon && (
-                <div className="relative size-6">
-                  <Image
-                    fill
-                    src={item.icon}
-                    alt={item.label || "Icon"}
-                    className=" inset-0"
-                  />
-                </div>
-              )}
+                {item.icon && (
+                  <div className="relative size-6">
+                    <Image
+                      fill
+                      src={item.icon}
+                      alt={item.label || "Icon"}
+                      className=" inset-0"
+                    />
+                  </div>
+                )}
               </Link>
             </Button>
           </li>
@@ -187,7 +187,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       } z-40 w-full`}
     >
       <div className="max-w-7xl mx-4 xl:mx-auto flex justify-between">
-        <div className="gap-8 mx-auto flex flex-wrap items-center w-full">
+        <div className="gap-8 mx-auto flex  items-center w-full">
           {imgWidth && imgHeight && imgSrc && (
             <Link className="mb-2 shrink-0" href="/">
               <Image
@@ -200,13 +200,13 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             </Link>
           )}
 
-          <ul className="hidden lg:flex justify-end items-center px-12 gap-6 grow">
+          <ul className="hidden xl:flex justify-end items-center px-12 gap-6 grow">
             {leftNavItems?.map((item, index) => renderNavItem(item, index))}
           </ul>
         </div>
         <ul className="sm:flex gap-5 [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center ">
           {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-          <li className="block lg:hidden">
+          <li className="block xl:hidden">
             <button
               className="text-3xl fled align-middle"
               onClick={(e) => {
@@ -240,7 +240,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           </div>
         </div>
       </div>
-      <ul className="flex pt-4 [&>li>*]:w-full mx-4 xl:mx-0 [&>li]:w-full justify-center sm:hidden">
+      <ul className=" pt-4 flex flex-col [&>li]:w-full [&>li>*]:w-full mx-4 gap-2 xl:mx-0 justify-center sm:hidden">
         {rightNavItems?.map((item, index) => renderNavItem(item, index))}
       </ul>
     </nav>
