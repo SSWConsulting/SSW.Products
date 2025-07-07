@@ -1,4 +1,5 @@
 "use client";
+
 import { useMotionValueEvent, useScroll } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -187,7 +188,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       } z-40 w-full`}
     >
       <div className="max-w-7xl gap-12 mx-4 xl:mx-auto flex justify-between">
-        <div className="gap-8 mx-auto flex  items-center w-full">
+        <div className="gap-8 mx-auto flex @container items-center w-full">
           {imgWidth && imgHeight && imgSrc && (
             <Link className="mb-2 shrink-0" href="/">
               <Image
@@ -200,13 +201,13 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             </Link>
           )}
 
-          <ul className="hidden xl:flex justify-end items-center gap-6 grow">
+          <ul className="hidden @4xl:flex justify-end items-center gap-6 grow">
             {leftNavItems?.map((item, index) => renderNavItem(item, index))}
           </ul>
         </div>
         <ul className="sm:flex gap-5 [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center ">
           {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-          <li className="block xl:hidden">
+          <li className="block lg:hidden">
             <button
               className="text-3xl fled align-middle"
               onClick={(e) => {
