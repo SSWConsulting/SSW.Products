@@ -186,7 +186,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           : "py-6"
       } z-40 w-full`}
     >
-      <div className="max-w-7xl mx-4 xl:mx-auto flex justify-between">
+      <div className="max-w-7xl gap-12 mx-4 xl:mx-auto flex justify-between">
         <div className="gap-8 mx-auto flex  items-center w-full">
           {imgWidth && imgHeight && imgSrc && (
             <Link className="mb-2 shrink-0" href="/">
@@ -200,7 +200,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             </Link>
           )}
 
-          <ul className="hidden xl:flex justify-end items-center px-12 gap-6 grow">
+          <ul className="hidden xl:flex justify-end items-center gap-6 grow">
             {leftNavItems?.map((item, index) => renderNavItem(item, index))}
           </ul>
         </div>
