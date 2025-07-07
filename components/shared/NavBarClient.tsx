@@ -41,82 +41,37 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   const rightNavItems = navigationBar?.rightNavItem;
   const { imgSrc, imgHeight, imgWidth } = navigationBar || {};
 
+  // MenuItem component for single navigation items
+
+  // Helper to render submenu items
+  const renderSubMenuItem = (item: NavItem, index: number) => {
+    if (
+      item?.__typename !== "NavigationBarLeftNavItemGroupOfStringItems" &&
+      item?.__typename !== "NavigationBarRightNavItemGroupOfStringItems"
+    ) {
+      return null;
+    }
+    const label = (item as any).label;
+    const items = (item as any).items;
+    if (!label || !Array.isArray(items)) return null;
+    const filteredItems = items.filter(
+      (subItem: any): subItem is { href: string; label: string } =>
+        !!subItem &&
+        typeof subItem.href === "string" &&
+        typeof subItem.label === "string"
+    );
+    if (filteredItems.length === 0) return null;
+    return <SubMenuItem key={index} label={label} items={filteredItems} />;
+  };
+
   const renderNavItem = (item: NavItem, index: number) => {
     if (!item) return <></>;
     switch (item?.__typename) {
       case "NavigationBarLeftNavItemStringItem":
       case "NavigationBarRightNavItemStringItem":
-        return (
-          item?.href &&
-          item.label && (
-            <li key={index} className="flex items-center py-1">
-              <Link
-                href={item.href}
-                className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
-              >
-                {item.label.toUpperCase()}
-              </Link>
-            </li>
-          )
-        );
-      case "NavigationBarLeftNavItemGroupOfStringItems":
-      case "NavigationBarRightNavItemGroupOfStringItems":
-        return (
-          <>
-            {/* For lg screens and above - show dropdown */}
-            <li
-              key={index}
-              className="hidden xl:flex items-center group relative"
-            >
-              <span className="cursor-pointer flex items-center gap-2">
-                {item.label && item.label.toUpperCase()}{" "}
-                <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
-              </span>
-              <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible pt-2 transition-all duration-300">
-                <ul className="bg-[#222222] text-[#D1D5DB] border border-white/20 mt-0 space-y-2 p-3 rounded shadow-lg min-w-[150px] z-10">
-                  {item.items?.map((subItem: any, subIndex: number) => (
-                    <li
-                      key={subIndex}
-                      className="hover:text-white transition-colors flex items-center gap-1"
-                    >
-                      <Link
-                        href={subItem.href}
-                        className="block w-full hover:underline underline-offset-4 decoration-[#CC4141] flex items-center gap-1"
-                      >
-                        {subItem.label}
-                        {subItem.href &&
-                          (subItem.href.startsWith("http://") ||
-                            subItem.href.startsWith("https://")) && (
-                            <FaExternalLinkAlt className="text-xs text-red-500" />
-                          )}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-
-            {/* For md screens and below - show all subitems directly */}
-            {item.items?.map((subItem: any, subIndex: number) => (
-              <li
-                key={`${index}-${subIndex}`}
-                className="xl:hidden flex items-center py-1"
-              >
-                <Link
-                  href={subItem.href}
-                  className="hover:underline underline-offset-4 decoration-[#CC4141] text-md flex items-center gap-1"
-                >
-                  {subItem.label}
-                  {subItem.href &&
-                    (subItem.href.startsWith("http://") ||
-                      subItem.href.startsWith("https://")) && (
-                      <FaExternalLinkAlt className="text-xs text-red-500 opacity-50" />
-                    )}
-                </Link>
-              </li>
-            ))}
-          </>
-        );
+        return item?.href && item.label ? (
+          <MenuItem key={index} href={item.href} label={item.label} />
+        ) : null;
       case "NavigationBarLeftNavItemModalButton":
         return (
           <li key={index} className="flex items-center">
@@ -201,15 +156,25 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             </Link>
           )}
 
-          <ul className="hidden @4xl:flex justify-end items-center gap-6 grow">
-            {leftNavItems?.map((item, index) => renderNavItem(item, index))}
+          <ul className="hidden @3xl:flex justify-end items-center gap-6 grow">
+            {leftNavItems?.map((item, index) => {
+              return item?.__typename ===
+                "NavigationBarLeftNavItemGroupOfStringItems"
+                ? renderSubMenuItem(item, index)
+                : renderNavItem(item, index);
+            })}
           </ul>
         </div>
         <ul className="sm:flex gap-5 [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center ">
-          {rightNavItems?.map((item, index) => renderNavItem(item, index))}
-          <li className="block lg:hidden">
+          {rightNavItems?.map((item, index) => {
+            return item?.__typename ===
+              "NavigationBarRightNavItemGroupOfStringItems"
+              ? renderSubMenuItem(item, index)
+              : renderNavItem(item, index);
+          })}
+          <li className="block xl:hidden">
             <button
-              className="text-3xl fled align-middle"
+              className="text-3xl flex align-middle"
               onClick={(e) => {
                 const handleClickOutside = () => {
                   setIsOpen(false);
@@ -236,14 +201,95 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         >
           <div className="p-5 max-w-7xl mx-auto w-full">
             <ul className="flex flex-col pl-2">
-              {leftNavItems?.map((item, index) => renderNavItem(item, index))}
+              {leftNavItems?.map((item, index) => {
+                return item?.__typename ===
+                  "NavigationBarLeftNavItemGroupOfStringItems"
+                  ? renderSubMenuItem(item, index)
+                  : renderNavItem(item, index);
+              })}
             </ul>
           </div>
         </div>
       </div>
       <ul className=" pt-4 flex flex-col [&>li]:w-full [&>li>*]:w-full mx-4 gap-2 xl:mx-0 justify-center sm:hidden">
-        {rightNavItems?.map((item, index) => renderNavItem(item, index))}
+        {rightNavItems?.map((item, index) => {
+          return item?.__typename ===
+            "NavigationBarRightNavItemGroupOfStringItems"
+            ? renderSubMenuItem(item, index)
+            : renderNavItem(item, index);
+        })}
       </ul>
     </nav>
   );
 }
+
+const MenuItem = ({ href, label }: { href: string; label: string }) => (
+  <li className="flex items-center py-1">
+    <Link
+      href={href}
+      className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
+    >
+      {label.toUpperCase()}
+    </Link>
+  </li>
+);
+
+// SubMenuItem component for grouped navigation items
+const SubMenuItem = ({
+  label,
+  items,
+}: {
+  label: string;
+  items: { href: string; label: string }[];
+}) => (
+  <>
+    {/* For lg screens and above - show dropdown */}
+    <li className="hidden xl:flex items-center group relative">
+      <span className="cursor-pointer flex items-center gap-2">
+        {label.toUpperCase()}{" "}
+        <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
+      </span>
+      <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible pt-2 transition-all duration-300">
+        <ul className="bg-[#222222] text-[#D1D5DB] border border-white/20 mt-0 space-y-2 p-3 rounded shadow-lg min-w-[150px] z-10">
+          {items.map((subItem, subIndex) => (
+            <li
+              key={subIndex}
+              className="hover:text-white transition-colors flex items-center gap-1"
+            >
+              <Link
+                href={subItem.href}
+                className="w-full hover:underline underline-offset-4 decoration-[#CC4141] flex items-center gap-1"
+              >
+                {subItem.label}
+                {subItem.href &&
+                  (subItem.href.startsWith("http://") ||
+                    subItem.href.startsWith("https://")) && (
+                    <FaExternalLinkAlt className="text-xs text-red-500" />
+                  )}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+    {/* For md screens and below - show all subitems directly */}
+    {items.map((subItem, subIndex) => (
+      <li
+        key={`mobile-${subIndex}`}
+        className="xl:hidden flex items-center py-1"
+      >
+        <Link
+          href={subItem.href}
+          className="hover:underline underline-offset-4 decoration-[#CC4141] text-md flex items-center gap-1"
+        >
+          {subItem.label}
+          {subItem.href &&
+            (subItem.href.startsWith("http://") ||
+              subItem.href.startsWith("https://")) && (
+              <FaExternalLinkAlt className="text-xs text-red-500 opacity-50" />
+            )}
+        </Link>
+      </li>
+    ))}
+  </>
+);
