@@ -14,7 +14,6 @@ import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { NavigationBarQuery } from "../../tina/__generated__/types";
 import { BookingButton } from "./Blocks/BookingButton";
-import { ButtonVariant } from "./Blocks/buttonEnum";
 interface NavBarClientProps {
   results: NavigationBarQuery | null;
 }
@@ -150,11 +149,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           item.Title &&
           item.JotFormId && (
             <li key={index} className="flex items-center">
-              <BookingButton
-                variant={item.variants as ButtonVariant}
-                title={item.Title}
-                jotFormId={item.JotFormId}
-              />
+              <BookingButton title={item.Title} jotFormId={item.JotFormId} />
             </li>
           )
         );
