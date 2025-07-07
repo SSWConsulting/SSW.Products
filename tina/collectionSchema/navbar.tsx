@@ -138,8 +138,40 @@ export const navigationBarCollection: Collection = {
             },
             {
               name: "href",
-              label: "href",
+              label: "Link",
               type: "string",
+            },
+          ],
+        },
+        {
+          name: "buttonLink",
+          label: "Button Link",
+          ui: {
+            itemProps: (item: { label?: string }) => {
+              return {
+                label: item.label || "Button Link",
+              };
+            },
+          },
+          fields: [
+            {
+              name: "label",
+              label: "Label",
+              type: "string",
+            },
+            {
+              name: "href",
+              label: "Link",
+              type: "string",
+            },
+            {
+              name: "variant",
+              label: "Variant",
+              type: "string",
+              options: [
+                { label: "Solid White", value: "white" },
+                { label: "Outlined White", value: "outline" },
+              ],
             },
           ],
         },

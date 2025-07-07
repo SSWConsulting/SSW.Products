@@ -4,13 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { CgClose } from "react-icons/cg";
+import {
+  NavigationBarLeftNavItem as LeftNavItem,
+  NavigationBarRightNavItem as RightNavItem,
+} from "../../tina/__generated__/types";
+
+import { Button } from "@comps/ui/button";
 import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { NavigationBarQuery } from "../../tina/__generated__/types";
 import { BookingButton } from "./Blocks/BookingButton";
+import { ButtonVariant } from "./Blocks/buttonEnum";
 interface NavBarClientProps {
   results: NavigationBarQuery | null;
 }
+
+type NavItem = LeftNavItem | RightNavItem | null;
 
 export default function NavBarClient({ results }: NavBarClientProps) {
   const [scrolled, setScrolled] = useState(false);
@@ -18,7 +27,6 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { scrollY } = useScroll();
-
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 50) {
       setScrolled(true);
@@ -32,19 +40,23 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   const rightNavItems = navigationBar?.rightNavItem;
   const { imgSrc, imgHeight, imgWidth } = navigationBar || {};
 
-  const renderNavItem = (item: any, index: number) => {
+  const renderNavItem = (item: NavItem, index: number) => {
+    if (!item) return <></>;
     switch (item?.__typename) {
       case "NavigationBarLeftNavItemStringItem":
       case "NavigationBarRightNavItemStringItem":
         return (
-          <li key={index} className="flex items-center py-1">
-            <Link
-              href={item.href}
-              className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
-            >
-              {item.label.toUpperCase()}
-            </Link>
-          </li>
+          item?.href &&
+          item.label && (
+            <li key={index} className="flex items-center py-1">
+              <Link
+                href={item.href}
+                className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
+              >
+                {item.label.toUpperCase()}
+              </Link>
+            </li>
+          )
         );
       case "NavigationBarLeftNavItemGroupOfStringItems":
       case "NavigationBarRightNavItemGroupOfStringItems":
@@ -56,7 +68,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
               className="hidden lg:flex items-center group relative"
             >
               <span className="cursor-pointer flex items-center gap-2">
-                {item.label.toUpperCase()}{" "}
+                {item.label && item.label.toUpperCase()}{" "}
                 <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
               </span>
               <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible pt-2 transition-all duration-300">
@@ -105,7 +117,6 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           </>
         );
       case "NavigationBarLeftNavItemModalButton":
-      case "NavigationBarRightNavItemModalButton":
         return (
           <li key={index} className="flex items-center">
             <button
@@ -121,11 +132,31 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             </button>
           </li>
         );
+      case "NavigationBarRightNavItemButtonLink":
+        return (
+          <Button
+            href={item.href || undefined}
+            variant={
+              (item?.variant ? "white" : item.variant) as "outline" | "white"
+            }
+            key={index}
+          >
+            {item.label}
+          </Button>
+        );
       case "NavigationBarRightNavItemBookingButton":
         return (
-          <li key={index} className="flex items-center">
-            <BookingButton title={item.Title} jotFormId={item.JotFormId} />
-          </li>
+          item.variants &&
+          item.Title &&
+          item.JotFormId && (
+            <li key={index} className="flex items-center">
+              <BookingButton
+                variant={item.variants as ButtonVariant}
+                title={item.Title}
+                jotFormId={item.JotFormId}
+              />
+            </li>
+          )
         );
       default:
         return null;
