@@ -60,12 +60,6 @@
       "_template": "buttonLink"
     },
     {
-      "Title": "Client portal",
-      "JotFormId": "DEFAULT-LINK",
-      "variants": "solidWhite",
-      "_template": "BookingButton"
-    },
-    {
       "Title": "JOIN WAITLIST",
       "JotFormId": "243009066097861",
       "_template": "BookingButton"
