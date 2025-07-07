@@ -65,7 +65,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {/* For lg screens and above - show dropdown */}
             <li
               key={index}
-              className="hidden lg:flex items-center group relative"
+              className="hidden xl:flex items-center group relative"
             >
               <span className="cursor-pointer flex items-center gap-2">
                 {item.label && item.label.toUpperCase()}{" "}
@@ -99,7 +99,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {item.items?.map((subItem: any, subIndex: number) => (
               <li
                 key={`${index}-${subIndex}`}
-                className="lg:hidden flex items-center py-1"
+                className="xl:hidden flex items-center py-1"
               >
                 <Link
                   href={subItem.href}
@@ -231,7 +231,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
           } ${
             scrolled ? "bg-stone-700" : "bg-opacity-90 bg-[#222222]/90"
-          } transition-all duration-500 ease-in-out overflow-hidden lg:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
+          } transition-all duration-500 ease-in-out overflow-hidden xl:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
         >
           <div className="p-5 max-w-7xl mx-auto w-full">
             <ul className="flex flex-col pl-2">
