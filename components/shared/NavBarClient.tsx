@@ -136,6 +136,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         return (
           <li>
             <Button
+              asChild
               className={clsx(
                 "flex gap-1",
                 item.iconPosition === "left" ? "flex-row-reverse" : "flex-row"
@@ -146,6 +147,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
               }
               key={index}
             >
+              <Link href={item.href || ""}>
               {item.label}
 
               {item.icon && (
@@ -158,6 +160,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
                   />
                 </div>
               )}
+              </Link>
             </Button>
           </li>
         );
