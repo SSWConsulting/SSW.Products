@@ -54,15 +54,17 @@
   ],
   "rightNavItem": [
     {
-      "label": "Client Portal",
-      "href": "https://portal.yakshaver.ai/",
-      "variant": "white",
-      "_template": "buttonLink"
-    },
-    {
       "Title": "JOIN WAITLIST",
       "JotFormId": "243009066097861",
       "_template": "BookingButton"
+    },
+    {
+      "label": "Portal",
+      "href": "https://portal.yakshaver.ai/",
+      "icon": "/YakShaver/yakshaver-black.svg",
+      "iconPosition": "left",
+      "variant": "white",
+      "_template": "buttonLink"
     }
   ]
 }

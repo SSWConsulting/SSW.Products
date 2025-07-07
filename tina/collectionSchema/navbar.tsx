@@ -124,7 +124,7 @@ export const navigationBarCollection: Collection = {
       templates: [
         {
           name: "stringItem",
-          label: "String Item",
+          label: "Link",
           ui: {
             itemProps: (item: { label: string }) => {
               return { label: "🔗 " + item?.label };
@@ -149,7 +149,7 @@ export const navigationBarCollection: Collection = {
           ui: {
             itemProps: (item: { label?: string }) => {
               return {
-                label: item.label || "Button Link",
+                label: `🔗 ${item.label}` || "Button Link",
               };
             },
           },
@@ -163,6 +163,21 @@ export const navigationBarCollection: Collection = {
               name: "href",
               label: "Link",
               type: "string",
+            },
+            {
+              name: "icon",
+              label: "Icon",
+              type: "image",
+            },
+            {
+              name: "iconPosition",
+              label: "Icon Position",
+              description: "Position of the icon relative to the text",
+              type: "string",
+              options: [
+                { label: "Left", value: "left" },
+                { label: "Right", value: "right" },
+              ],
             },
             {
               name: "variant",

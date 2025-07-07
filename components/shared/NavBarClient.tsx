@@ -10,6 +10,7 @@ import {
 } from "../../tina/__generated__/types";
 
 import { Button } from "@comps/ui/button";
+import clsx from "clsx";
 import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { NavigationBarQuery } from "../../tina/__generated__/types";
@@ -133,15 +134,32 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         );
       case "NavigationBarRightNavItemButtonLink":
         return (
-          <Button
-            href={item.href || undefined}
-            variant={
-              (item?.variant ? "white" : item.variant) as "outline" | "white"
-            }
-            key={index}
-          >
-            {item.label}
-          </Button>
+          <li>
+            <Button
+              className={clsx(
+                "flex gap-1",
+                item.iconPosition === "left" ? "flex-row-reverse" : "flex-row"
+              )}
+              href={item.href || undefined}
+              variant={
+                (item?.variant ? "white" : item.variant) as "outline" | "white"
+              }
+              key={index}
+            >
+              {item.label}
+
+              {item.icon && (
+                <div className="relative size-6">
+                  <Image
+                    fill
+                    src={item.icon}
+                    alt={item.label || "Icon"}
+                    className=" inset-0"
+                  />
+                </div>
+              )}
+            </Button>
+          </li>
         );
       case "NavigationBarRightNavItemBookingButton":
         return (
