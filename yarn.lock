@@ -2236,7 +2236,7 @@
     "@radix-ui/react-roving-focus" "1.1.10"
     "@radix-ui/react-use-controllable-state" "1.2.2"
 
-"@radix-ui/react-navigation-menu@1.2.13":
+"@radix-ui/react-navigation-menu@1.2.13", "@radix-ui/react-navigation-menu@^1.2.13":
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-navigation-menu/-/react-navigation-menu-1.2.13.tgz#8d49ce275bf4f49a8642be520074b5a7438a5fb0"
   integrity sha512-WG8wWfDiJlSF5hELjwfjSGOXcBR/ZMhBFCGYe8vERpC39CQYZeq1PQ2kaYHdye3V95d06H89KGMsVCIE4LWo3g==
