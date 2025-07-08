@@ -38,7 +38,8 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   });
   console.log("NavBarClient rendered", results);
   const { navigationBar } = results || {};
-  const leftNavItems = navigationBar?.leftNavItem;
+  const leftNavItems =
+    navigationBar?.leftNavItem?.filter((item) => item !== null) || [];
   const buttons =
     navigationBar?.buttons?.filter((button) => button !== null) || [];
   // const rightNavItems = navigationBar?.rightNavItem;
@@ -104,16 +105,18 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           <ul className="hidden @3xl:flex justify-end items-center gap-6 grow">
             {leftNavItems?.map((item, index) => {
               return item?.__typename ===
-                "NavigationBarLeftNavItemGroupOfStringItems"
-                ? item.items && (
-                    <SubMenuItem
-                      items={item.items.filter(
-                        (item) => item !== null && item !== undefined
-                      )}
-                      label={item.label}
-                    />
-                  )
-                : renderNavItem(item, index);
+                "NavigationBarLeftNavItemGroupOfStringItems" ? (
+                item.items && (
+                  <SubMenuItem
+                    items={item.items.filter(
+                      (item) => item !== null && item !== undefined
+                    )}
+                    label={item.label}
+                  />
+                )
+              ) : (
+                <MenuItem key={index} href={item?.href} label={item?.label} />
+              );
             })}
           </ul>
         </div>
@@ -171,20 +174,6 @@ export default function NavBarClient({ results }: NavBarClientProps) {
         {buttons?.map((button, index) => {
           return <ButtonMap item={button} key={index} />;
         })}
-        {/* <li></li>
-        {rightNavItems?.map((item, index) => {
-          return item?.__typename ===
-            "NavigationBarRightNavItemGroupOfStringItems"
-            ? item.items && (
-                <SubMenuItem
-                  items={item.items?.filter(
-                    (item) => item !== null && item !== undefined
-                  )}
-                  label={item.label}
-                />
-              )
-            : renderNavItem(item, index);
-        })} */}
       </div>
     </nav>
   );
