@@ -5,9 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { CgClose } from "react-icons/cg";
+
 import {
   NavigationBarLeftNavItem as LeftNavItem,
-  NavigationBarRightNavItem as RightNavItem,
+  NavigationBarButtons,
 } from "../../tina/__generated__/types";
 
 import { Button } from "@comps/ui/button";
@@ -20,7 +21,7 @@ interface NavBarClientProps {
   results: NavigationBarQuery | null;
 }
 
-type NavItem = LeftNavItem | RightNavItem | null;
+type NavItem = LeftNavItem | null;
 
 export default function NavBarClient({ results }: NavBarClientProps) {
   const [scrolled, setScrolled] = useState(false);
@@ -35,34 +36,36 @@ export default function NavBarClient({ results }: NavBarClientProps) {
       setScrolled(false);
     }
   });
-
+  console.log("NavBarClient rendered", results);
   const { navigationBar } = results || {};
   const leftNavItems = navigationBar?.leftNavItem;
-  const rightNavItems = navigationBar?.rightNavItem;
+  const buttons =
+    navigationBar?.buttons?.filter((button) => button !== null) || [];
+  // const rightNavItems = navigationBar?.rightNavItem;
   const { imgSrc, imgHeight, imgWidth } = navigationBar || {};
 
   // MenuItem component for single navigation items
 
   // Helper to render submenu items
-  const renderSubMenuItem = (item: NavItem, index: number) => {
-    if (
-      item?.__typename !== "NavigationBarLeftNavItemGroupOfStringItems" &&
-      item?.__typename !== "NavigationBarRightNavItemGroupOfStringItems"
-    ) {
-      return null;
-    }
-    const label = (item as any).label;
-    const items = (item as any).items;
-    if (!label || !Array.isArray(items)) return null;
-    const filteredItems = items.filter(
-      (subItem: any): subItem is { href: string; label: string } =>
-        !!subItem &&
-        typeof subItem.href === "string" &&
-        typeof subItem.label === "string"
-    );
-    if (filteredItems.length === 0) return null;
-    return <SubMenuItem key={index} label={label} items={filteredItems} />;
-  };
+  // const renderSubMenuItem = (item: NavItem, index: number) => {
+  //   if (
+  //     item?.__typename !== "NavigationBarLeftNavItemGroupOfStringItems" &&
+  //     item?.__typename !== "NavigationBarRightNavItemGroupOfStringItems"
+  //   ) {
+  //     return null;
+  //   }
+  //   const label = (item as any).label;
+  //   const items = (item as any).items;
+  //   if (!label || !Array.isArray(items)) return null;
+  //   const filteredItems = items.filter(
+  //     (subItem: any): subItem is { href: string; label: string } =>
+  //       !!subItem &&
+  //       typeof subItem.href === "string" &&
+  //       typeof subItem.label === "string"
+  //   );
+  //   if (filteredItems.length === 0) return null;
+  //   return <SubMenuItem key={index} label={label} items={filteredItems} />;
+  // };
 
   const renderNavItem = (item: NavItem, index: number) => {
     if (!item) return <></>;
@@ -89,45 +92,11 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           </li>
         );
       case "NavigationBarRightNavItemButtonLink":
-        return (
-          <li>
-            <Button
-              asChild
-              className={clsx(
-                "flex gap-1",
-                item.iconPosition === "left" ? "flex-row-reverse" : "flex-row"
-              )}
-              href={item.href || undefined}
-              variant={
-                (item?.variant ? "white" : item.variant) as "outline" | "white"
-              }
-              key={index}
-            >
-              <Link href={item.href || ""}>
-                {item.label}
-
-                {item.icon && (
-                  <div className="relative size-6">
-                    <Image
-                      fill
-                      src={item.icon}
-                      alt={item.label || "Icon"}
-                      className=" inset-0"
-                    />
-                  </div>
-                )}
-              </Link>
-            </Button>
-          </li>
-        );
+        return <li></li>;
       case "NavigationBarRightNavItemBookingButton":
         return (
           item.Title &&
-          item.JotFormId && (
-            <li key={index} className="flex items-center">
-              <BookingButton title={item.Title} jotFormId={item.JotFormId} />
-            </li>
-          )
+          item.JotFormId && <li key={index} className="flex items-center"></li>
         );
       default:
         return null;
@@ -160,17 +129,16 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             {leftNavItems?.map((item, index) => {
               return item?.__typename ===
                 "NavigationBarLeftNavItemGroupOfStringItems"
-                ? renderSubMenuItem(item, index)
+                ? item.items && (
+                    <SubMenuItem items={item.items} label={item.label} />
+                  )
                 : renderNavItem(item, index);
             })}
           </ul>
         </div>
-        <ul className="sm:flex gap-5 [&>:not(:last-child)]:hidden sm:[&>:not(:last-child)]:block items-center ">
-          {rightNavItems?.map((item, index) => {
-            return item?.__typename ===
-              "NavigationBarRightNavItemGroupOfStringItems"
-              ? renderSubMenuItem(item, index)
-              : renderNavItem(item, index);
+        <ul className="sm:flex gap-5 items-center ">
+          {buttons?.map((button, index) => {
+            return <ButtonMap item={button} key={index} />;
           })}
           <li className="block xl:hidden">
             <button
@@ -203,21 +171,34 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             <ul className="flex flex-col pl-2">
               {leftNavItems?.map((item, index) => {
                 return item?.__typename ===
-                  "NavigationBarLeftNavItemGroupOfStringItems"
-                  ? renderSubMenuItem(item, index)
-                  : renderNavItem(item, index);
+                  "NavigationBarLeftNavItemGroupOfStringItems" ? (
+                  <SubMenuItem items={item.items} label={item.label} />
+                ) : (
+                  renderNavItem(item, index)
+                );
               })}
             </ul>
           </div>
         </div>
       </div>
       <ul className=" pt-4 flex flex-col [&>li]:w-full [&>li>*]:w-full mx-4 gap-2 xl:mx-0 justify-center sm:hidden">
+        {buttons?.map((button, index) => {
+          return <ButtonMap item={button} key={index} />;
+        })}
+        {/* <li></li>
         {rightNavItems?.map((item, index) => {
           return item?.__typename ===
             "NavigationBarRightNavItemGroupOfStringItems"
-            ? renderSubMenuItem(item, index)
+            ? item.items && (
+                <SubMenuItem
+                  items={item.items?.filter(
+                    (item) => item !== null && item !== undefined
+                  )}
+                  label={item.label}
+                />
+              )
             : renderNavItem(item, index);
-        })}
+        })} */}
       </ul>
     </nav>
   );
@@ -293,3 +274,41 @@ const SubMenuItem = ({
     ))}
   </>
 );
+
+const ButtonMap = ({ item }: { item: NavigationBarButtons }) => {
+  switch (item?.__typename) {
+    case "NavigationBarButtonsBookingButton":
+      if (!item.Title || !item.JotFormId) return null;
+      return <BookingButton title={item.Title} jotFormId={item.JotFormId} />;
+    case "NavigationBarButtonsButtonLink":
+      return (
+        <Button
+          asChild
+          className={clsx(
+            "flex gap-1",
+            item.iconPosition === "left" ? "flex-row-reverse" : "flex-row"
+          )}
+          href={item.href || undefined}
+          variant={
+            (item?.variant ? "white" : item.variant) as "outline" | "white"
+          }
+          key={item.label}
+        >
+          <Link href={item.href || ""}>
+            {item.label}
+
+            {item.icon && (
+              <div className="relative size-6">
+                <Image
+                  fill
+                  src={item.icon}
+                  alt={item.label || "Icon"}
+                  className=" inset-0"
+                />
+              </div>
+            )}
+          </Link>
+        </Button>
+      );
+  }
+};
