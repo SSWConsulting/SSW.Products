@@ -3,6 +3,8 @@
 import { useMotionValueEvent, useScroll } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import { NavigationMenu } from "radix-ui";
+
 import { useState } from "react";
 import { CgClose } from "react-icons/cg";
 
@@ -81,6 +83,96 @@ export default function NavBarClient({ results }: NavBarClientProps) {
   };
 
   return (
+    <NavigationMenu.Root
+      className={`text-white transition-colors sticky duration-300 ease-in-out ${
+        scrolled
+          ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
+          : "py-6"
+      } z-40 w-full`}
+    >
+      <NavigationMenu.List className="flex mx-auto max-w-7xl">
+        <NavigationMenu.Item className="gap-8 mx-auto flex @container items-center w-full">
+          {imgWidth && imgHeight && imgSrc && (
+            <Link className="mb-2 shrink-0" href="/">
+              <Image
+                src={imgSrc as string}
+                className="h-8 w-auto"
+                width={Number(imgWidth)}
+                height={Number(imgHeight)}
+                alt="Logo"
+              />
+            </Link>
+          )}
+        </NavigationMenu.Item>
+
+        {leftNavItems?.map((item, index) => {
+          if (
+            item.__typename === "NavigationBarLeftNavItemGroupOfStringItems" &&
+            item.items &&
+            item.items.length > 0
+          ) {
+            return (
+              <NavigationMenu.Item key={index}>
+                <NavigationMenu.Trigger className="flex items-center gap-2 px-3  rounded hover:bg-white/10 transition-colors">
+                  {item.label}
+                  <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
+                </NavigationMenu.Trigger>
+                <NavigationMenu.Content className="absolute  top-full mt-2 bg-[#222222] text-[#D1D5DB] border border-white/20 rounded shadow-lg min-w-[150px] z-10 p-3">
+                  <ul className="space-y-2">
+                    {item.items
+                      .filter(
+                        (subItem) => subItem && subItem.href && subItem.label
+                      )
+                      .map((subItem, subIndex) => (
+                        <li key={subIndex}>
+                          <Link
+                            href={subItem!.href}
+                            className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors"
+                          >
+                            {subItem!.label}
+                            {subItem!.href &&
+                              (subItem!.href.startsWith("http://") ||
+                                subItem!.href.startsWith("https://")) && (
+                                <FaExternalLinkAlt className="text-xs text-red-500" />
+                              )}
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
+                </NavigationMenu.Content>
+              </NavigationMenu.Item>
+            );
+          } else if (
+            item.__typename === "NavigationBarLeftNavItemStringItem" &&
+            item.href &&
+            item.label
+          ) {
+            return (
+              <NavigationMenu.Item key={index}>
+                <Link
+                  href={item.href}
+                  className="px-3 py-2 rounded hover:bg-white/10 transition-colors uppercase"
+                >
+                  {item.label}
+                </Link>
+              </NavigationMenu.Item>
+            );
+          }
+          return null;
+        })}
+
+        {buttons.map((button, index) => {
+          return (
+            <NavigationMenu.Item key={index}>
+              <ButtonMap item={button} />
+            </NavigationMenu.Item>
+          );
+        })}
+      </NavigationMenu.List>
+    </NavigationMenu.Root>
+  );
+
+  return (
     <nav
       className={`text-white transition-colors sticky duration-300 ease-in-out ${
         scrolled
@@ -93,10 +185,10 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           {imgWidth && imgHeight && imgSrc && (
             <Link className="mb-2 shrink-0" href="/">
               <Image
-                src={imgSrc}
+                src={imgSrc as string}
                 className="h-8 w-auto"
-                width={imgWidth}
-                height={imgHeight}
+                width={Number(imgWidth)}
+                height={Number(imgHeight)}
                 alt="Logo"
               />
             </Link>
