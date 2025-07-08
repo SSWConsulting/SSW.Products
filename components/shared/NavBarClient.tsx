@@ -71,33 +71,9 @@ export default function NavBarClient({ results }: NavBarClientProps) {
     if (!item) return <></>;
     switch (item?.__typename) {
       case "NavigationBarLeftNavItemStringItem":
-      case "NavigationBarRightNavItemStringItem":
         return item?.href && item.label ? (
           <MenuItem key={index} href={item.href} label={item.label} />
         ) : null;
-      case "NavigationBarLeftNavItemModalButton":
-        return (
-          <li key={index} className="flex items-center">
-            <button
-              className={`px-4 py-2 rounded ${
-                item.variant === "primary"
-                  ? "bg-blue-500 text-white"
-                  : item.variant === "secondary"
-                  ? "bg-gray-500 text-white"
-                  : "bg-white text-black"
-              }`}
-            >
-              {item.label}
-            </button>
-          </li>
-        );
-      case "NavigationBarRightNavItemButtonLink":
-        return <li></li>;
-      case "NavigationBarRightNavItemBookingButton":
-        return (
-          item.Title &&
-          item.JotFormId && <li key={index} className="flex items-center"></li>
-        );
       default:
         return null;
     }
@@ -130,7 +106,12 @@ export default function NavBarClient({ results }: NavBarClientProps) {
               return item?.__typename ===
                 "NavigationBarLeftNavItemGroupOfStringItems"
                 ? item.items && (
-                    <SubMenuItem items={item.items} label={item.label} />
+                    <SubMenuItem
+                      items={item.items.filter(
+                        (item) => item !== null && item !== undefined
+                      )}
+                      label={item.label}
+                    />
                   )
                 : renderNavItem(item, index);
             })}
@@ -171,11 +152,16 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             <ul className="flex flex-col pl-2">
               {leftNavItems?.map((item, index) => {
                 return item?.__typename ===
-                  "NavigationBarLeftNavItemGroupOfStringItems" ? (
-                  <SubMenuItem items={item.items} label={item.label} />
-                ) : (
-                  renderNavItem(item, index)
-                );
+                  "NavigationBarLeftNavItemGroupOfStringItems"
+                  ? item.items && (
+                      <MobileSubmenu
+                        items={item.items?.filter(
+                          (item) => item !== undefined && item !== null
+                        )}
+                        label={item.label}
+                      />
+                    )
+                  : renderNavItem(item, index);
               })}
             </ul>
           </div>
@@ -215,6 +201,10 @@ const MenuItem = ({ href, label }: { href: string; label: string }) => (
   </li>
 );
 
+type SubMenuProps = {
+  label: string;
+  items: { href: string; label: string }[];
+};
 // SubMenuItem component for grouped navigation items
 const SubMenuItem = ({
   label,
@@ -254,26 +244,33 @@ const SubMenuItem = ({
       </div>
     </li>
     {/* For md screens and below - show all subitems directly */}
-    {items.map((subItem, subIndex) => (
-      <li
-        key={`mobile-${subIndex}`}
-        className="xl:hidden flex items-center py-1"
-      >
-        <Link
-          href={subItem.href}
-          className="hover:underline underline-offset-4 decoration-[#CC4141] text-md flex items-center gap-1"
-        >
-          {subItem.label}
-          {subItem.href &&
-            (subItem.href.startsWith("http://") ||
-              subItem.href.startsWith("https://")) && (
-              <FaExternalLinkAlt className="text-xs text-red-500 opacity-50" />
-            )}
-        </Link>
-      </li>
-    ))}
   </>
 );
+
+const MobileSubmenu = ({ items }: SubMenuProps) => {
+  return (
+    <>
+      {items.map((subItem, subIndex) => (
+        <li
+          key={`mobile-${subIndex}`}
+          className="xl:hidden flex items-center py-1"
+        >
+          <Link
+            href={subItem.href}
+            className="hover:underline underline-offset-4 decoration-[#CC4141] text-md flex items-center gap-1"
+          >
+            {subItem.label}
+            {subItem.href &&
+              (subItem.href.startsWith("http://") ||
+                subItem.href.startsWith("https://")) && (
+                <FaExternalLinkAlt className="text-xs text-red-500 opacity-50" />
+              )}
+          </Link>
+        </li>
+      ))}
+    </>
+  );
+};
 
 const ButtonMap = ({ item }: { item: NavigationBarButtons }) => {
   switch (item?.__typename) {
