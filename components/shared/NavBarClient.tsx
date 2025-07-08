@@ -136,30 +136,30 @@ export default function NavBarClient({ results }: NavBarClientProps) {
             })}
           </ul>
         </div>
-        <ul className="sm:flex gap-5 items-center ">
+        <div className="sm:flex hidden gap-5 items-center ">
           {buttons?.map((button, index) => {
             return <ButtonMap item={button} key={index} />;
           })}
-          <li className="block xl:hidden">
-            <button
-              className="text-3xl flex align-middle"
-              onClick={(e) => {
-                const handleClickOutside = () => {
-                  setIsOpen(false);
-                  window.removeEventListener("click", handleClickOutside);
-                };
-                if (isOpen) {
-                  return;
-                }
-                setIsOpen(true);
-                window.addEventListener("click", handleClickOutside);
-                e.stopPropagation();
-              }}
-            >
-              {isOpen ? <CgClose /> : <HiOutlineBars3 />}
-            </button>
-          </li>
-        </ul>
+          {/* <li className="block xl:hidden"> */}
+          <button
+            className="text-3xl flex align-middle"
+            onClick={(e) => {
+              const handleClickOutside = () => {
+                setIsOpen(false);
+                window.removeEventListener("click", handleClickOutside);
+              };
+              if (isOpen) {
+                return;
+              }
+              setIsOpen(true);
+              window.addEventListener("click", handleClickOutside);
+              e.stopPropagation();
+            }}
+          >
+            {isOpen ? <CgClose /> : <HiOutlineBars3 />}
+          </button>
+          {/* </li> */}
+        </div>
         <div
           className={`${
             isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
@@ -181,7 +181,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           </div>
         </div>
       </div>
-      <ul className=" pt-4 flex flex-col [&>li]:w-full [&>li>*]:w-full mx-4 gap-2 xl:mx-0 justify-center sm:hidden">
+      <div className=" pt-4 flex flex-col [&>li]:w-full [&>li>*]:w-full mx-4 gap-2 xl:mx-0 justify-center sm:hidden">
         {buttons?.map((button, index) => {
           return <ButtonMap item={button} key={index} />;
         })}
@@ -199,7 +199,7 @@ export default function NavBarClient({ results }: NavBarClientProps) {
               )
             : renderNavItem(item, index);
         })} */}
-      </ul>
+      </div>
     </nav>
   );
 }
