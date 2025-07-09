@@ -173,12 +173,12 @@ export default function NavBarClient({
               <Popover.Portal>
                 <Popover.Content
                   className={clsx(
-                    isOpen ? "max-h-screen opacity-100 " : "max-h-0 opacity-0",
+                    // isOpen ? "max-h-screen opacity-100 " : "max-h-0 opacity-0",
 
                     scrolled
                       ? "bg-stone-700 "
                       : "bg-opacity-90 bg-[#222222]/90",
-                    "min-w-screen text-white  top-full flex flex-col items-start space-y-2"
+                    "min-w-screen duration-300 overflow-hidden  data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
                   )}
                 >
                   <>
