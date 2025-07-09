@@ -20,7 +20,9 @@ export const NavigationMenuRoot = React.forwardRef<
       )}
       ref={ref}
     >
-      {children}
+      <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4  sm:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
+        {children}
+      </NavigationMenu.List>
     </NavigationMenu.Root>
   );
 });
