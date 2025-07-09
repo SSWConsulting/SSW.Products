@@ -1,5 +1,4 @@
 "use client";
-
 import useIsScrolled from "@comps/hooks/useIsScrolled";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Image from "next/image";
@@ -173,7 +172,7 @@ export default function NavBarClient({
               className="w-full col-span-1 block sm:hidden [&>button]:w-full"
               key={index}
             >
-              <ButtonMap className="" item={button} />
+              <ButtonMap className="w-full" item={button} />
             </NavigationMenu.Item>
           );
         })}
