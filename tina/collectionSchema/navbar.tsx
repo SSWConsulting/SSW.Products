@@ -43,21 +43,7 @@ export const navigationBarCollection: Collection = {
               return { label: "🔗 " + (item?.label || "Unlabelled") };
             },
           },
-          fields: [
-            ...linkFields,
-            // {
-            //   required: true,
-            //   name: "label",
-            //   label: "Label",
-            //   type: "string",
-            // },
-            // {
-            //   required: true,
-            //   name: "href",
-            //   label: "href",
-            //   type: "string",
-            // },
-          ],
+          fields: [...linkFields],
         },
         {
           name: "groupOfStringItems",
@@ -89,46 +75,6 @@ export const navigationBarCollection: Collection = {
             },
           ],
         },
-        // {
-        //   label: "Modal Button",
-        //   name: "modalButton",
-        //   ui: {
-        //     itemProps: (item) => {
-        //       return { label: "🍌 " + item?.label };
-        //     },
-        //     defaultItem: {
-        //       variant: "default",
-        //       label: "Secondary Action",
-        //       icon: false,
-        //       size: "medium",
-        //     },
-        //   },
-        //   fields: [
-        //     {
-        //       required: true,
-        //       name: "label",
-        //       label: "Label",
-        //       type: "string",
-        //     },
-        //     {
-        //       name: "variant",
-        //       label: "Variant",
-        //       type: "string",
-        //       options: ["default", "primary", "secondary"],
-        //     },
-        //     {
-        //       name: "size",
-        //       label: "Size",
-        //       type: "string",
-        //       options: ["small", "medium", "large"],
-        //     },
-        //     {
-        //       name: "icon",
-        //       label: "Icon",
-        //       type: "boolean",
-        //     },
-        //   ],
-        // },
       ],
     },
     {
