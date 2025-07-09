@@ -53,7 +53,7 @@ export default function NavBarClient({
     <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
       <Popover.Anchor className="w-full" asChild>
         <NavigationMenu.Root
-          className={`text-white sticky transition-colors justify-center z-10  duration-300 ease-in-out ${
+          className={`text-white sticky transition-colors @container justify-center z-10  duration-300 ease-in-out ${
             scrolled
               ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
               : "py-6"
@@ -83,7 +83,7 @@ export default function NavBarClient({
               ) {
                 return (
                   <NavigationMenu.Item
-                    className="my-auto hidden xl:block"
+                    className="my-auto hidden @7xl:block"
                     key={index}
                   >
                     <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center w-full gap-2 px-3  rounded  transition-colors">
@@ -91,7 +91,6 @@ export default function NavBarClient({
                       <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
                     </NavigationMenu.Trigger>
                     <NavigationMenu.Content className="border mt-2 slide-in-from-top-0 rounded text-[#d1d5db] hover:text-white  border-white/20 shadow-lg p-3 space-y-2 bg-gray-light absolute data-[motion=open]:animation-duration-100 data-[state=open]:animate-in  data-[state=closed]:animate-out data-[state=closed]:animation-duration-300 data-[state=open]:fade-in data-[state=closed]:fade-out">
-                      {/* <ul className="space-y-2"> */}
                       {item.items
                         .filter(
                           (subItem) => subItem && subItem.href && subItem.label
@@ -111,7 +110,6 @@ export default function NavBarClient({
                             </Link>
                           </li>
                         ))}
-                      {/* </ul> */}
                     </NavigationMenu.Content>
                   </NavigationMenu.Item>
                 );
@@ -122,7 +120,7 @@ export default function NavBarClient({
               ) {
                 return (
                   <NavigationMenu.Item
-                    className="my-auto hidden xl:block"
+                    className="my-auto hidden @7xl:block"
                     key={index}
                   >
                     <Link
@@ -150,7 +148,7 @@ export default function NavBarClient({
               );
             })}
 
-            <NavigationMenu.Item className="flex xl:hidden justify-end pl-5">
+            <NavigationMenu.Item className="flex @7xl:hidden justify-end pl-5">
               <Popover.Trigger asChild>
                 <button
                   className="text-3xl my-auto flex align-middle"
@@ -170,53 +168,47 @@ export default function NavBarClient({
                   {isOpen ? <CgClose /> : <HiOutlineBars3 />}
                 </button>
               </Popover.Trigger>
-              <Popover.Portal>
-                <Popover.Content
-                  className={clsx(
-                    // isOpen ? "max-h-screen opacity-100 " : "max-h-0 opacity-0",
+              <Popover.Content
+                className={clsx(
+                  scrolled ? "bg-stone-700 " : "bg-opacity-90 bg-[#222222]/90",
+                  "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 @7xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
+                )}
+              >
+                <>
+                  {items.map((item, index) => {
+                    if (!item) return <></>;
 
-                    scrolled
-                      ? "bg-stone-700 "
-                      : "bg-opacity-90 bg-[#222222]/90",
-                    "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
-                  )}
-                >
-                  <>
-                    {items.map((item, index) => {
-                      if (!item) return <></>;
+                    if (
+                      item.__typename ===
+                      "NavigationBarLeftNavItemGroupOfStringItems"
+                    ) {
+                      if (!item.items) return <></>;
 
-                      if (
-                        item.__typename ===
-                        "NavigationBarLeftNavItemGroupOfStringItems"
-                      ) {
-                        if (!item.items) return <></>;
+                      return (
+                        <MobileSubmenu
+                          label=""
+                          key={index}
+                          items={item.items.filter(
+                            (item) => item !== undefined && item !== null
+                          )}
+                        />
+                      );
+                    }
 
-                        return (
-                          <MobileSubmenu
-                            label=""
-                            key={index}
-                            items={item.items.filter(
-                              (item) => item !== undefined && item !== null
-                            )}
-                          />
-                        );
-                      }
-
-                      if (
-                        item.__typename === "NavigationBarLeftNavItemStringItem"
-                      ) {
-                        return (
-                          <MobileMenuItem
-                            label={item.label}
-                            href={item.href}
-                            key={index}
-                          />
-                        );
-                      }
-                    })}
-                  </>
-                </Popover.Content>
-              </Popover.Portal>
+                    if (
+                      item.__typename === "NavigationBarLeftNavItemStringItem"
+                    ) {
+                      return (
+                        <MobileMenuItem
+                          label={item.label}
+                          href={item.href}
+                          key={index}
+                        />
+                      );
+                    }
+                  })}
+                </>
+              </Popover.Content>
             </NavigationMenu.Item>
 
             {/* Mobile Buttons */}
