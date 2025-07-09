@@ -50,10 +50,7 @@ export default function NavBarClient({
           {bannerImage && <NavigationMenuBadge {...bannerImage} />}
           {items.map((item, index) => {
             if (
-              item.__typename ===
-                "NavigationBarLeftNavItemGroupOfStringItems" &&
-              item.items &&
-              item.items.length > 0
+              item.__typename === "NavigationBarLeftNavItemGroupOfStringItems"
             ) {
               return (
                 <NavigationMenuItem
@@ -117,8 +114,6 @@ export default function NavBarClient({
             <MobileMenuContent>
               <>
                 {items.map((item, index) => {
-                  if (!item) return <></>;
-
                   if (
                     item.__typename ===
                     "NavigationBarLeftNavItemGroupOfStringItems"
