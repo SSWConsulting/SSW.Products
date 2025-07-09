@@ -103,26 +103,21 @@ export default function NavBarClient({
                         <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
                       </NavigationMenu.Trigger>
                       <NavigationMenu.Content className="border mt-2 slide-in-from-top-0 rounded text-[#d1d5db] hover:text-white  border-white/20 shadow-lg p-3 space-y-2 bg-gray-light absolute data-[motion=open]:animation-duration-100 data-[state=open]:animate-in  data-[state=closed]:animate-out data-[state=closed]:animation-duration-300 data-[state=open]:fade-in data-[state=closed]:fade-out">
-                        {item.items
-                          .filter(
-                            (subItem) =>
-                              subItem && subItem.href && subItem.label
-                          )
-                          .map((subItem, subIndex) => (
-                            <li key={subIndex}>
-                              <Link
-                                href={subItem!.href}
-                                className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors"
-                              >
-                                {subItem!.label}
-                                {subItem!.href &&
-                                  (subItem!.href.startsWith("http://") ||
-                                    subItem!.href.startsWith("https://")) && (
-                                    <FaExternalLinkAlt className="text-xs text-red-500" />
-                                  )}
-                              </Link>
-                            </li>
-                          ))}
+                        {item.items.map((subItem, subIndex) => (
+                          <li key={subIndex}>
+                            <Link
+                              href={subItem!.href}
+                              className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors"
+                            >
+                              {subItem!.label}
+                              {subItem!.href &&
+                                (subItem!.href.startsWith("http://") ||
+                                  subItem!.href.startsWith("https://")) && (
+                                  <FaExternalLinkAlt className="text-xs text-red-500" />
+                                )}
+                            </Link>
+                          </li>
+                        ))}
                       </NavigationMenu.Content>
                     </NavigationMenu.Item>
                   );
@@ -191,9 +186,7 @@ export default function NavBarClient({
                             <MobileSubmenu
                               label=""
                               key={index}
-                              items={item.items.filter(
-                                (item) => item !== undefined && item !== null
-                              )}
+                              items={item.items}
                             />
                           );
                         }
