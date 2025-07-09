@@ -18,7 +18,10 @@ import {
   MobileMenuRoot,
   MobileMenuTrigger,
 } from "@comps/NavBar/MobileMenu";
-import { NavigationMenuRoot } from "@comps/NavBar/NavigationMenu";
+import {
+  NavigationMenuBadge,
+  NavigationMenuRoot,
+} from "@comps/NavBar/NavigationMenu";
 import { SubGroupContent, SubGroupTrigger } from "@comps/NavBar/SubGroup";
 import { Button } from "@comps/ui/button";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -44,20 +47,7 @@ export default function NavBarClient({
     <MobileMenuRoot>
       <MobileAnchor asChild>
         <NavigationMenuRoot>
-          <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
-            {bannerImage && (
-              <Link className="mb-2 shrink-0" href="/">
-                <Image
-                  src={bannerImage.imgSrc as string}
-                  className="h-8 w-auto"
-                  width={bannerImage.imgWidth}
-                  height={bannerImage.imgHeight}
-                  alt="Logo"
-                />
-              </Link>
-            )}
-          </NavigationMenu.Item>
-
+          {bannerImage && <NavigationMenuBadge {...bannerImage} />}
           {items.map((item, index) => {
             if (
               item.__typename ===
@@ -122,7 +112,6 @@ export default function NavBarClient({
               </NavigationMenu.Item>
             );
           })}
-
           <NavigationMenu.Item className="flex xl:hidden justify-end pl-5">
             <MobileMenuTrigger />
             <MobileMenuContent>
@@ -162,7 +151,6 @@ export default function NavBarClient({
               </>
             </MobileMenuContent>
           </NavigationMenu.Item>
-
           {buttons.map((button, index) => {
             return (
               <NavigationMenu.Item

@@ -1,8 +1,32 @@
 import useIsScrolled from "@comps/hooks/useIsScrolled";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import clsx from "clsx";
+
+import Image from "next/image";
+import Link from "next/link";
 import * as React from "react";
 
+export const NavigationMenuBadge = ({
+  imgSrc,
+  imgWidth,
+  imgHeight,
+}: {
+  imgSrc: string;
+  imgWidth: number;
+  imgHeight: number;
+}) => (
+  <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
+    <Link className="mb-2 shrink-0" href="/">
+      <Image
+        src={imgSrc as string}
+        className="h-8 w-auto"
+        width={imgWidth}
+        height={imgHeight}
+        alt="Logo"
+      />
+    </Link>
+  </NavigationMenu.Item>
+);
 // ForwardRef wrapper for NavigationMenu.Root
 export const NavigationMenuRoot = React.forwardRef<
   React.ElementRef<typeof NavigationMenu.Root>,
