@@ -148,7 +148,6 @@ export default function NavBarClient({
             </MobileMenuContent>
           </NavigationMenuItem>
           {buttons.map((button, index) => {
-            console.log("Button", index);
             return (
               <NavigationMenuItem
                 className={clsx(
