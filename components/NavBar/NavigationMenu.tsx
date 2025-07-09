@@ -1,11 +1,13 @@
 import useIsScrolled from "@comps/hooks/useIsScrolled";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import clsx from "clsx";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
+import * as React from "react";
 
-const NavigationMenuRoot = ({ children }: { children: React.ReactNode }) => {
+// ForwardRef wrapper for NavigationMenu.Root
+export const NavigationMenuRoot = React.forwardRef<
+  React.ElementRef<typeof NavigationMenu.Root>,
+  React.ComponentPropsWithoutRef<typeof NavigationMenu.Root>
+>(({ children }, ref) => {
   const { scrolled } = useIsScrolled();
   return (
     <NavigationMenu.Root
@@ -16,55 +18,11 @@ const NavigationMenuRoot = ({ children }: { children: React.ReactNode }) => {
           : "py-6",
         `z-40 w-full`
       )}
+      ref={ref}
     >
-      <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4  sm:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
-        {children}
-      </NavigationMenu.List>
+      {children}
     </NavigationMenu.Root>
   );
-};
+});
 
-const NavigationMenuLink = ({
-  href,
-  label,
-}: {
-  href: string;
-  label: string;
-}) => {
-  return (
-    <NavigationMenu.Item className="my-auto hidden xl:block">
-      <Link
-        href={href}
-        className="px-3 hover:decoration-ssw-red decoration-transparent underline-offset-3 underline text-base block h-fit rounded transition-colors uppercase"
-      >
-        {label}
-      </Link>
-    </NavigationMenu.Item>
-  );
-};
-
-const NavigationMenuBrand = ({
-  imgSrc,
-  imgHeight,
-  imgWidth,
-}: {
-  imgSrc: string;
-  imgHeight: number;
-  imgWidth: number;
-}) => {
-  return (
-    <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
-      <Link className="mb-2 shrink-0" href="/">
-        <Image
-          src={imgSrc as string}
-          className="h-8 w-auto"
-          width={imgWidth}
-          height={imgHeight}
-          alt="Logo"
-        />
-      </Link>
-    </NavigationMenu.Item>
-  );
-};
-
-export { NavigationMenuBrand, NavigationMenuLink, NavigationMenuRoot };
+NavigationMenuRoot.displayName = "NavigationMenuRoot";

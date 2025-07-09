@@ -1,11 +1,9 @@
 "use client";
 import useIsScrolled from "@comps/hooks/useIsScrolled";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import * as Popover from "@radix-ui/react-popover";
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 import {
   NavigationBarLeftNavItemStringItem as NavItem,
@@ -16,13 +14,15 @@ import { cn } from "@/lib/utils";
 import { NavGroup } from "@/types/nav-group";
 import {
   MobileAnchor,
+  MobileMenuContent,
+  MobileMenuItem,
   MobileMenuRoot,
   MobileMenuTrigger,
-  useMenuContext,
 } from "@comps/NavBar/MobileMenu";
+import { NavigationMenuRoot } from "@comps/NavBar/NavigationMenu";
+import { SubGroupContent, SubGroupTrigger } from "@comps/NavBar/SubGroup";
 import { Button } from "@comps/ui/button";
-import clsx from "clsx";
-import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { BookingButton } from "./Blocks/BookingButton";
 
 interface NavBarClientProps {
@@ -41,22 +41,12 @@ export default function NavBarClient({
   items,
   bannerImage,
 }: NavBarClientProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
   const { scrolled } = useIsScrolled();
 
   return (
     <MobileMenuRoot>
       <MobileAnchor asChild>
-        <NavigationMenu.Root
-          className={clsx(
-            `text-white sticky transition-colors justify-center z-10  duration-300 ease-in-out`,
-            scrolled
-              ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
-              : "py-6",
-            `z-40 w-full`
-          )}
-        >
+        <NavigationMenuRoot>
           <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4  sm:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
             <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
               {bannerImage && (
@@ -84,11 +74,8 @@ export default function NavBarClient({
                     className="my-auto hidden xl:block"
                     key={index}
                   >
-                    <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center w-full gap-2 px-3  rounded  transition-colors">
-                      {item.label}
-                      <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
-                    </NavigationMenu.Trigger>
-                    <NavigationMenu.Content className="border mt-2 slide-in-from-top-0 rounded text-[#d1d5db] hover:text-white  border-white/20 shadow-lg p-3 space-y-2 bg-gray-light absolute data-[motion=open]:animation-duration-100 data-[state=open]:animate-in  data-[state=closed]:animate-out data-[state=closed]:animation-duration-300 data-[state=open]:fade-in data-[state=closed]:fade-out">
+                    <SubGroupTrigger label={item.label} />
+                    <SubGroupContent>
                       {item.items.map((subItem, subIndex) => (
                         <li key={subIndex}>
                           <Link
@@ -104,7 +91,7 @@ export default function NavBarClient({
                           </Link>
                         </li>
                       ))}
-                    </NavigationMenu.Content>
+                    </SubGroupContent>
                   </NavigationMenu.Item>
                 );
               } else if (
@@ -142,53 +129,43 @@ export default function NavBarClient({
 
             <NavigationMenu.Item className="flex xl:hidden justify-end pl-5">
               <MobileMenuTrigger />
-              <Popover.Content
-                asChild
-                className={clsx(
-                  scrolled ? "bg-stone-700 " : "bg-opacity-90 bg-gray-light/90",
-                  "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
-                )}
-              >
-                <ul>
-                  <>
-                    {items.map((item, index) => {
-                      if (!item) return <></>;
+              <MobileMenuContent>
+                <>
+                  {items.map((item, index) => {
+                    if (!item) return <></>;
 
-                      if (
-                        item.__typename ===
-                        "NavigationBarLeftNavItemGroupOfStringItems"
-                      ) {
-                        if (!item.items) return <></>;
+                    if (
+                      item.__typename ===
+                      "NavigationBarLeftNavItemGroupOfStringItems"
+                    ) {
+                      if (!item.items) return <></>;
 
-                        return item.items.map((subItem, subIndex) => {
-                          return (
-                            <MobileMenuItem
-                              key={subIndex}
-                              href={subItem.href}
-                              label={subItem.label}
-                            />
-                          );
-                        });
-                      }
-
-                      if (
-                        item.__typename === "NavigationBarLeftNavItemStringItem"
-                      ) {
+                      return item.items.map((subItem, subIndex) => {
                         return (
                           <MobileMenuItem
-                            label={item.label}
-                            href={item.href}
-                            key={index}
+                            key={subIndex}
+                            href={subItem.href}
+                            label={subItem.label}
                           />
                         );
-                      }
-                    })}
-                  </>
-                </ul>
-              </Popover.Content>
-            </NavigationMenu.Item>
+                      });
+                    }
 
-            {/* Mobile Buttons */}
+                    if (
+                      item.__typename === "NavigationBarLeftNavItemStringItem"
+                    ) {
+                      return (
+                        <MobileMenuItem
+                          label={item.label}
+                          href={item.href}
+                          key={index}
+                        />
+                      );
+                    }
+                  })}
+                </>
+              </MobileMenuContent>
+            </NavigationMenu.Item>
 
             {buttons.map((button, index) => {
               return (
@@ -201,30 +178,11 @@ export default function NavBarClient({
               );
             })}
           </NavigationMenu.List>
-        </NavigationMenu.Root>
+        </NavigationMenuRoot>
       </MobileAnchor>
     </MobileMenuRoot>
   );
 }
-
-const MobileMenuItem = ({ href, label }: { href: string; label: string }) => {
-  const { setIsOpen } = useMenuContext();
-  return (
-    <li className="flex items-center py-1 mb-0">
-      <Link
-        onClick={() => setIsOpen(false)}
-        href={href}
-        className="underline decoration-transparent transition-colors uppercase mb-0 underline-offset-4 hover:decoration-[#CC4141] text-md flex items-center gap-1"
-      >
-        {label}
-        {href &&
-          (href.startsWith("http://") || href.startsWith("https://")) && (
-            <FaExternalLinkAlt className="text-xs text-red-500 opacity-50" />
-          )}
-      </Link>
-    </li>
-  );
-};
 
 const ButtonMap = ({
   item,
