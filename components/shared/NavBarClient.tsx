@@ -41,7 +41,7 @@ export default function NavBarClient({
     <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
       <Popover.Anchor className="w-full" asChild>
         <NavigationMenu.Root
-          className={`text-white sticky transition-colors @container justify-center z-10  duration-300 ease-in-out ${
+          className={`text-white sticky transition-colors justify-center z-10  duration-300 ease-in-out ${
             scrolled
               ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
               : "py-6"
@@ -71,7 +71,7 @@ export default function NavBarClient({
               ) {
                 return (
                   <NavigationMenu.Item
-                    className="my-auto hidden @6xl:block"
+                    className="my-auto hidden xl:block"
                     key={index}
                   >
                     <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center w-full gap-2 px-3  rounded  transition-colors">
@@ -108,7 +108,7 @@ export default function NavBarClient({
               ) {
                 return (
                   <NavigationMenu.Item
-                    className="my-auto hidden @6xl:block"
+                    className="my-auto hidden xl:block"
                     key={index}
                   >
                     <Link
@@ -136,7 +136,7 @@ export default function NavBarClient({
               );
             })}
 
-            <NavigationMenu.Item className="flex @6xl:hidden justify-end pl-5">
+            <NavigationMenu.Item className="flex xl:hidden justify-end pl-5">
               <Popover.Trigger asChild>
                 <button
                   className="text-3xl my-auto flex align-middle"
@@ -159,7 +159,7 @@ export default function NavBarClient({
               <Popover.Content
                 className={clsx(
                   scrolled ? "bg-stone-700 " : "bg-opacity-90 bg-[#222222]/90",
-                  "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 @6xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
+                  "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
                 )}
               >
                 <>
