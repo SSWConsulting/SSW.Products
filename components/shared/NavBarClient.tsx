@@ -178,7 +178,7 @@ export default function NavBarClient({
                     scrolled
                       ? "bg-stone-700 "
                       : "bg-opacity-90 bg-[#222222]/90",
-                    "min-w-screen duration-300 overflow-hidden z-50 data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
+                    "min-w-screen duration-300 overflow-hidden z-50 p-5 data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
                   )}
                 >
                   <>
@@ -198,6 +198,18 @@ export default function NavBarClient({
                             items={item.items.filter(
                               (item) => item !== undefined && item !== null
                             )}
+                          />
+                        );
+                      }
+
+                      if (
+                        item.__typename === "NavigationBarLeftNavItemStringItem"
+                      ) {
+                        return (
+                          <MobileMenuItem
+                            label={item.label}
+                            href={item.href}
+                            key={index}
                           />
                         );
                       }
@@ -394,10 +406,10 @@ const MobileSubmenu = ({ items }: SubMenuProps) => {
 
 const MobileMenuItem = ({ href, label }: { href: string; label: string }) => {
   return (
-    <li className="flex items-center py-1">
+    <li className="flex items-center py-1 mb-0">
       <Link
         href={href}
-        className="hover:underline underline-offset-4 decoration-[#CC4141] text-md flex items-center gap-1"
+        className="underline decoration-transparent transition-colors uppercase mb-0 underline-offset-4 hover:decoration-[#CC4141] text-md flex items-center gap-1"
       >
         {label}
         {href &&
