@@ -9,8 +9,9 @@ import { useState } from "react";
 import { CgClose } from "react-icons/cg";
 
 import {
-  NavigationBarLeftNavItem as NavItem,
+  NavigationBarLeftNavItemStringItem as NavItem,
   NavigationBarButtons,
+  NavigationBarLeftNavItemGroupOfStringItemsItems,
 } from "../../tina/__generated__/types";
 
 import { cn } from "@/lib/utils";
@@ -21,9 +22,16 @@ import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { BookingButton } from "./Blocks/BookingButton";
 
+type NavGroup = {
+  __typename: "NavigationBarLeftNavItemGroupOfStringItems";
+  label: string;
+  items: NavigationBarLeftNavItemGroupOfStringItemsItems[];
+};
+
 interface NavBarClientProps {
   buttons: NavigationBarButtons[];
-  items: NavItem[];
+  items: (NavItem | NavGroup)[];
+
   bannerImage?: {
     imgSrc: string;
     imgHeight: number;
