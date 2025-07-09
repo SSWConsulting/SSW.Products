@@ -24,6 +24,7 @@ import {
 } from "@comps/NavBar/NavigationMenu";
 import { SubGroupContent, SubGroupTrigger } from "@comps/NavBar/SubGroup";
 import { Button } from "@comps/ui/button";
+import clsx from "clsx";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { BookingButton } from "./Blocks/BookingButton";
 
@@ -147,9 +148,15 @@ export default function NavBarClient({
             </MobileMenuContent>
           </NavigationMenuItem>
           {buttons.map((button, index) => {
+            console.log("Button", index);
             return (
               <NavigationMenuItem
-                className="w-full col-span-1 block sm:hidden"
+                className={clsx(
+                  "w-full col-span-1 block sm:hidden",
+                  index === buttons.length - 1 && index % 2 === 0
+                    ? "col-span-2"
+                    : "col-span-1"
+                )}
                 key={index}
               >
                 <ButtonMap className="w-full" item={button} />

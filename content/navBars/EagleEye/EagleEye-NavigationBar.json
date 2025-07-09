@@ -1,5 +1,12 @@
 {
   "Logo": "/EagleEye/Logo.svg",
+  "rightNavItem": [
+    {
+      "Title": "TALK TO US",
+      "JotFormId": "233468468973070",
+      "_template": "BookingButton"
+    }
+  ],
   "imgSrc": "/EagleEye/Logo.svg",
   "imgWidth": 125,
   "imgHeight": 22,
@@ -25,10 +32,11 @@
       "_template": "stringItem"
     }
   ],
-  "rightNavItem": [
+  "buttons": [
     {
       "Title": "TALK TO US",
       "JotFormId": "233468468973070",
+      "variants": "outlinedWhite",
       "_template": "BookingButton"
     }
   ]
