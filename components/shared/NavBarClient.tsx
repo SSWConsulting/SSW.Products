@@ -11,22 +11,16 @@ import { CgClose } from "react-icons/cg";
 import {
   NavigationBarLeftNavItemStringItem as NavItem,
   NavigationBarButtons,
-  NavigationBarLeftNavItemGroupOfStringItemsItems,
 } from "../../tina/__generated__/types";
 
 import { cn } from "@/lib/utils";
+import { NavGroup } from "@/types/nav-group";
 import { Button } from "@comps/ui/button";
 import clsx from "clsx";
 import React from "react";
 import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { BookingButton } from "./Blocks/BookingButton";
-
-type NavGroup = {
-  __typename: "NavigationBarLeftNavItemGroupOfStringItems";
-  label: string;
-  items: NavigationBarLeftNavItemGroupOfStringItemsItems[];
-};
 
 interface NavBarClientProps {
   buttons: NavigationBarButtons[];

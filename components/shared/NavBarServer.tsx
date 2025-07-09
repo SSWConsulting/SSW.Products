@@ -1,19 +1,11 @@
-import {
-  NavigationBarLeftNavItemGroupOfStringItemsItems,
-  NavigationBarLeftNavItemStringItem as NavItem,
-} from "@tina/__generated__/types";
+import { NavGroup } from "@/types/nav-group";
+import { NavigationBarLeftNavItemStringItem as NavItem } from "@tina/__generated__/types";
 import client from "../../tina/__generated__/client";
 import NavBarClient from "./NavBarClient";
 
 interface NavBarServerProps {
   product: string;
 }
-
-type NavGroup = {
-  __typename: "NavigationBarLeftNavItemGroupOfStringItems";
-  label: string;
-  items: NavigationBarLeftNavItemGroupOfStringItemsItems[];
-};
 
 export default async function NavBarServer({ product }: NavBarServerProps) {
   const { data } = await client.queries.navigationBar({
