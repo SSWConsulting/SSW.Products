@@ -160,6 +160,7 @@ export default function NavBarClient({
                   </button>
                 </Popover.Trigger>
                 <Popover.Content
+                  asChild
                   className={clsx(
                     scrolled
                       ? "bg-stone-700 "
@@ -167,40 +168,43 @@ export default function NavBarClient({
                     "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
                   )}
                 >
-                  <>
-                    {items.map((item, index) => {
-                      if (!item) return <></>;
+                  <ul>
+                    <>
+                      {items.map((item, index) => {
+                        if (!item) return <></>;
 
-                      if (
-                        item.__typename ===
-                        "NavigationBarLeftNavItemGroupOfStringItems"
-                      ) {
-                        if (!item.items) return <></>;
+                        if (
+                          item.__typename ===
+                          "NavigationBarLeftNavItemGroupOfStringItems"
+                        ) {
+                          if (!item.items) return <></>;
 
-                        return (
-                          <MobileSubmenu
-                            label=""
-                            key={index}
-                            items={item.items.filter(
-                              (item) => item !== undefined && item !== null
-                            )}
-                          />
-                        );
-                      }
+                          return (
+                            <MobileSubmenu
+                              label=""
+                              key={index}
+                              items={item.items.filter(
+                                (item) => item !== undefined && item !== null
+                              )}
+                            />
+                          );
+                        }
 
-                      if (
-                        item.__typename === "NavigationBarLeftNavItemStringItem"
-                      ) {
-                        return (
-                          <MobileMenuItem
-                            label={item.label}
-                            href={item.href}
-                            key={index}
-                          />
-                        );
-                      }
-                    })}
-                  </>
+                        if (
+                          item.__typename ===
+                          "NavigationBarLeftNavItemStringItem"
+                        ) {
+                          return (
+                            <MobileMenuItem
+                              label={item.label}
+                              href={item.href}
+                              key={index}
+                            />
+                          );
+                        }
+                      })}
+                    </>
+                  </ul>
                 </Popover.Content>
               </NavigationMenu.Item>
 
