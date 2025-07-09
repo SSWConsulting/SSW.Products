@@ -30,7 +30,11 @@ interface NavBarClientProps {
   };
 }
 
-const MenuContext = React.createContext({ setIsOpen: (open: boolean) => {} });
+type MenuContextType = { setIsOpen: (open: boolean) => void };
+
+const MenuContext = React.createContext<MenuContextType>({
+  setIsOpen: () => {},
+});
 
 const useMenuContext = () => React.useContext(MenuContext);
 
