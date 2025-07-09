@@ -83,7 +83,7 @@ export default function NavBarClient({
               ) {
                 return (
                   <NavigationMenu.Item
-                    className="my-auto hidden @7xl:block"
+                    className="my-auto hidden @6xl:block"
                     key={index}
                   >
                     <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center w-full gap-2 px-3  rounded  transition-colors">
@@ -120,7 +120,7 @@ export default function NavBarClient({
               ) {
                 return (
                   <NavigationMenu.Item
-                    className="my-auto hidden @7xl:block"
+                    className="my-auto hidden @6xl:block"
                     key={index}
                   >
                     <Link
@@ -148,7 +148,7 @@ export default function NavBarClient({
               );
             })}
 
-            <NavigationMenu.Item className="flex @7xl:hidden justify-end pl-5">
+            <NavigationMenu.Item className="flex @6xl:hidden justify-end pl-5">
               <Popover.Trigger asChild>
                 <button
                   className="text-3xl my-auto flex align-middle"
@@ -171,7 +171,7 @@ export default function NavBarClient({
               <Popover.Content
                 className={clsx(
                   scrolled ? "bg-stone-700 " : "bg-opacity-90 bg-[#222222]/90",
-                  "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 @7xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
+                  "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 @6xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
                 )}
               >
                 <>
