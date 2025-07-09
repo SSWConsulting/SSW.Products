@@ -27,7 +27,7 @@ const NavigationMenuBadge = ({
     </Link>
   </NavigationMenu.Item>
 );
-// ForwardRef wrapper for NavigationMenu.Root
+
 const NavigationMenuRoot = React.forwardRef<
   React.ElementRef<typeof NavigationMenu.Root>,
   React.ComponentPropsWithoutRef<typeof NavigationMenu.Root>
