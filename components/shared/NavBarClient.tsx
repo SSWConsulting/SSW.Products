@@ -178,7 +178,7 @@ export default function NavBarClient({
                     scrolled
                       ? "bg-stone-700 "
                       : "bg-opacity-90 bg-[#222222]/90",
-                    "min-w-screen duration-300 overflow-hidden z-50 p-5 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
+                    "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
                   )}
                 >
                   <>
