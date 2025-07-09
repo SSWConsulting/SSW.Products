@@ -1,12 +1,9 @@
 "use client";
 import useIsScrolled from "@comps/hooks/useIsScrolled";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import * as Popover from "@radix-ui/react-popover";
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { CgClose } from "react-icons/cg";
 
 import {
   NavigationBarLeftNavItemStringItem as NavItem,
@@ -15,11 +12,16 @@ import {
 
 import { cn } from "@/lib/utils";
 import { NavGroup } from "@/types/nav-group";
-import { MobileMenuRoot, useMenuContext } from "@comps/NavBar/MobileMenu";
+import {
+  MobileAnchor,
+  MobileMenuContent,
+  MobileMenuItem,
+  MobileMenuRoot,
+  MobileMenuTrigger,
+} from "@comps/NavBar/MobileMenu";
 import { Button } from "@comps/ui/button";
 import clsx from "clsx";
 import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
-import { HiOutlineBars3 } from "react-icons/hi2";
 import { BookingButton } from "./Blocks/BookingButton";
 
 interface NavBarClientProps {
@@ -38,13 +40,11 @@ export default function NavBarClient({
   items,
   bannerImage,
 }: NavBarClientProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
   const { scrolled } = useIsScrolled();
 
   return (
     <MobileMenuRoot>
-      <Popover.Anchor asChild>
+      <MobileAnchor asChild>
         <NavigationMenu.Root
           className={clsx(
             `text-white sticky transition-colors justify-center z-10  duration-300 ease-in-out`,
@@ -138,55 +138,43 @@ export default function NavBarClient({
             })}
 
             <NavigationMenu.Item className="flex xl:hidden justify-end pl-5">
-              <Popover.Trigger asChild>
-                <button className="text-3xl my-auto flex align-middle">
-                  {isOpen ? <CgClose /> : <HiOutlineBars3 />}
-                </button>
-              </Popover.Trigger>
-              <Popover.Content
-                asChild
-                className={clsx(
-                  scrolled ? "bg-stone-700 " : "bg-opacity-90 bg-gray-light/90",
-                  "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
-                )}
-              >
-                <ul>
-                  <>
-                    {items.map((item, index) => {
-                      if (!item) return <></>;
+              <MobileMenuTrigger />
+              <MobileMenuContent>
+                <>
+                  {items.map((item, index) => {
+                    if (!item) return <></>;
 
-                      if (
-                        item.__typename ===
-                        "NavigationBarLeftNavItemGroupOfStringItems"
-                      ) {
-                        if (!item.items) return <></>;
+                    if (
+                      item.__typename ===
+                      "NavigationBarLeftNavItemGroupOfStringItems"
+                    ) {
+                      if (!item.items) return <></>;
 
-                        return item.items.map((subItem, subIndex) => {
-                          return (
-                            <MobileMenuItem
-                              key={subIndex}
-                              href={subItem.href}
-                              label={subItem.label}
-                            />
-                          );
-                        });
-                      }
-
-                      if (
-                        item.__typename === "NavigationBarLeftNavItemStringItem"
-                      ) {
+                      return item.items.map((subItem, subIndex) => {
                         return (
                           <MobileMenuItem
-                            label={item.label}
-                            href={item.href}
-                            key={index}
+                            key={subIndex}
+                            href={subItem.href}
+                            label={subItem.label}
                           />
                         );
-                      }
-                    })}
-                  </>
-                </ul>
-              </Popover.Content>
+                      });
+                    }
+
+                    if (
+                      item.__typename === "NavigationBarLeftNavItemStringItem"
+                    ) {
+                      return (
+                        <MobileMenuItem
+                          label={item.label}
+                          href={item.href}
+                          key={index}
+                        />
+                      );
+                    }
+                  })}
+                </>
+              </MobileMenuContent>
             </NavigationMenu.Item>
 
             {/* Mobile Buttons */}
@@ -203,29 +191,10 @@ export default function NavBarClient({
             })}
           </NavigationMenu.List>
         </NavigationMenu.Root>
-      </Popover.Anchor>
+      </MobileAnchor>
     </MobileMenuRoot>
   );
 }
-
-const MobileMenuItem = ({ href, label }: { href: string; label: string }) => {
-  const { setIsOpen } = useMenuContext();
-  return (
-    <li className="flex items-center py-1 mb-0">
-      <Link
-        onClick={() => setIsOpen(false)}
-        href={href}
-        className="underline decoration-transparent transition-colors uppercase mb-0 underline-offset-4 hover:decoration-[#CC4141] text-md flex items-center gap-1"
-      >
-        {label}
-        {href &&
-          (href.startsWith("http://") || href.startsWith("https://")) && (
-            <FaExternalLinkAlt className="text-xs text-red-500 opacity-50" />
-          )}
-      </Link>
-    </li>
-  );
-};
 
 const ButtonMap = ({
   item,
