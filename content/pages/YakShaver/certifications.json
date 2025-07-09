@@ -8,8 +8,8 @@
     {
       "featureItem": [
         {
-          "headline": "Professional YakShaver Certification",
-          "text": "We recommend that each organization have at least one certified YakShaver Admin. Each time someone in your organization completes the below steps, they will receive a badge and your organization will receive 50 credits (valued at $25).\n",
+          "headline": "Become a Chief Yak Officer",
+          "text": "We recommend that each organization have one (or multiple!) certified Chief Yak Officers (CYO). Each time someone in your organization completes the below steps and receives a certification, your organization will receive 50 credits (valued at $25).\n",
           "media": [
             {
               "image": "/YakShaver/YakShaver-Admin-Credly-Badge%20(1).png",
@@ -22,12 +22,17 @@
     },
     {
       "textAlign": "Left",
-      "body": "### To get the YakShaver certification, we will ask you to set up YakShaver, read the best practices, and do a test Shave in which you answer some basic questions to verify your understanding.\n\n1\\. In your [YakShaver portal](https://portal.yakshaver.ai/), add a project called 'Northwind' and set the backlog to this public GitHub repo: [https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n\n2\\. Set up a [Windows or Mac screenshot tool](https://yakshaver.ai/docs/recording-work-item-snipping-tool) by following the docs.\\\nNote: This gives you access to keyboard shortcuts\n\n3\\. Read the Shaving [best practices](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions).\n\n4\\. Do a Shave into the 'Northwind' project. In your recording, explain to us:\n\n* The project's location in the portal, and its backlog.\n* How you have set up your screen capture tool, and where the videos will go after being recorded\n* Why you must verbally mention the destination project and why you can't just rely on the screen.\n\n5\\. We will review your answers, and if successful you will receive an email with your badge.\n\n6\\. Accept and share the badge on LinkedIn.\n",
+      "body": "### You will need to set up YakShaver, understand the best practices, and do a test Shave in which you answer some questions to verify your understanding.\n\n1\\. Join [YakShaver's Discord channel](https://discord.gg/Jp9dyxKFjR) - Leave a message on the #introductions:\n\n* Hi, I am trying out YakShaver for {{ TYPE OF PROJECT }}\n\n2\\. In your [YakShaver portal](https://portal.yakshaver.ai/), add a project called 'Northwind' and set the backlog to this public GitHub repo: [https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n\n* Tip: Check out the Shaving [best practices](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions)\n\n3\\. Set up a [Windows or Mac screenshot tool](https://yakshaver.ai/docs/recording-work-item-snipping-tool) by following the docs.\\\nNote: This gives you access to keyboard shortcuts\n\n4. Use YakShaver - do a Shave into the 'Northwind' project. In your recording:\n\n* Show the project's location in the portal, and its backlog\n* Demonstrate how you have set up your screen capture tool, and where the videos will go after being recorded\n* Explain why you must verbally mention the destination project and why you can't just rely on the screen\n* Scenario: A user complains to you that after recording in Teams, they have received no notification from the Yakshaver bot. What is your course of action?\n* Scenario: A user reports that their Shave went into the wrong backlog. How do you fix this and educate them to avoid the same mistake in the future?\n* Feedback: What is your opinion on YakShaver and what feedback would you like to give the team?\n\n5. We will review your video, and if successful you will receive a badge from [Credly](https://info.credly.com/).\n",
       "_template": "richText"
     },
     {
       "textAlign": "Center",
-      "body": "### That's it! Your organization will receive 50 YakShaver credits.\n",
+      "body": "## That's it! Your organization will receive 50 YakShaver credits.\n",
+      "_template": "richText"
+    },
+    {
+      "textAlign": "Left",
+      "body": "",
       "_template": "richText"
     }
   ]

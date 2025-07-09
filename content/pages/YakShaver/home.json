@@ -125,22 +125,26 @@
         "icons": [
           {
             "iconImage": "/svg/Microsoft Office Teams 2018.svg",
+            "iconLink": "/docs/recording-work-item-teams",
+            "iconLinkTitle": "Setting up YakShaver with Microsoft Teams",
             "iconToolTipText": "Microsoft Teams"
           },
           {
             "iconImage": "/SSW Product Sites.svg",
+            "iconLink": "/docs/recording-work-item-snagit",
+            "iconLinkTitle": "Setting up YakShaver with Snagit",
             "iconToolTipText": "Snagit"
           },
           {
-            "iconImage": "/svg/SSW Product Sites Clip Path Group.svg",
-            "iconToolTipText": "Microsoft Dynamics 365"
-          },
-          {
             "iconImage": "/svg/devops.svg",
+            "iconLink": "/docs/add-azure-devops-projects",
+            "iconLinkTitle": "Setting up YakShaver with Azure DevOps",
             "iconToolTipText": "Azure DevOps"
           },
           {
             "iconImage": "/svg/github-mark-white.svg",
+            "iconLink": "/docs/connect-your-github-account",
+            "iconLinkTitle": "Setting up YakShaver with GitHub",
             "iconToolTipText": "GitHub"
           }
         ]
