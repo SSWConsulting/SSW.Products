@@ -289,7 +289,7 @@ const ButtonMap = ({
             item.iconPosition === "left" ? "flex-row-reverse" : "flex-row",
             className
           )}
-          href={item.href || undefined}
+          href={item.href}
           variant={
             (item?.variant ? "white" : item.variant) as "outline" | "white"
           }
