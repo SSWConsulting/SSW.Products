@@ -1,78 +1,39 @@
 "use client";
 
+import useIsScrolled from "@comps/hooks/useIsScrolled";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { useMotionValueEvent, useScroll } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { CgClose } from "react-icons/cg";
 
 import {
-  NavigationBarLeftNavItem as LeftNavItem,
+  NavigationBarLeftNavItem as NavItem,
   NavigationBarButtons,
 } from "../../tina/__generated__/types";
 
+import { cn } from "@/lib/utils";
 import { Button } from "@comps/ui/button";
-import clsx from "clsx";
-import React from "react";
 import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
-import { NavigationBarQuery } from "../../tina/__generated__/types";
 import { BookingButton } from "./Blocks/BookingButton";
 interface NavBarClientProps {
-  results: NavigationBarQuery | null;
+  buttons: NavigationBarButtons[];
+  items: NavItem[];
+  bannerImage?: {
+    imgSrc: string;
+    imgHeight: number;
+    imgWidth: number;
+  };
 }
-
-type NavItem = LeftNavItem | null;
-
-export default function NavBarClient({ results }: NavBarClientProps) {
-  const [scrolled, setScrolled] = useState(false);
-
+export default function NavBarClient({
+  buttons,
+  items,
+  bannerImage,
+}: NavBarClientProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { scrollY } = useScroll();
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 50) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  });
-  console.log("NavBarClient rendered", results);
-  const { navigationBar } = results || {};
-  const leftNavItems = React.useMemo(() => {
-    return navigationBar?.leftNavItem?.filter((item) => item !== null) || [];
-  }, [navigationBar?.leftNavItem]);
-
-  const buttons =
-    navigationBar?.buttons?.filter((button) => button !== null) || [];
-  // const rightNavItems = navigationBar?.rightNavItem;
-  const { imgSrc, imgHeight, imgWidth } = navigationBar || {};
-
-  console.log("filtering");
-
-  // MenuItem component for single navigation items
-
-  // Helper to render submenu items
-  // const renderSubMenuItem = (item: NavItem, index: number) => {
-  //   if (
-  //     item?.__typename !== "NavigationBarLeftNavItemGroupOfStringItems" &&
-  //     item?.__typename !== "NavigationBarRightNavItemGroupOfStringItems"
-  //   ) {
-  //     return null;
-  //   }
-  //   const label = (item as any).label;
-  //   const items = (item as any).items;
-  //   if (!label || !Array.isArray(items)) return null;
-  //   const filteredItems = items.filter(
-  //     (subItem: any): subItem is { href: string; label: string } =>
-  //       !!subItem &&
-  //       typeof subItem.href === "string" &&
-  //       typeof subItem.label === "string"
-  //   );
-  //   if (filteredItems.length === 0) return null;
-  //   return <SubMenuItem key={index} label={label} items={filteredItems} />;
-  // };
+  const { scrolled } = useIsScrolled();
 
   const renderNavItem = (item: NavItem, index: number) => {
     if (!item) return <></>;
@@ -88,28 +49,28 @@ export default function NavBarClient({ results }: NavBarClientProps) {
 
   return (
     <NavigationMenu.Root
-      className={`text-white sticky @container transition-colors justify-center z-10  duration-300 ease-in-out ${
+      className={`text-white sticky transition-colors justify-center z-10  duration-300 ease-in-out ${
         scrolled
           ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
           : "py-6"
       } z-40 w-full`}
     >
-      <NavigationMenu.List className="flex  mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
-        <NavigationMenu.Item className="gap-8  mx-auto flex @container items-center w-full">
-          {imgWidth && imgHeight && imgSrc && (
+      <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4  sm:gap-x-0 grid-cols-2 @container grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
+        <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
+          {bannerImage && (
             <Link className="mb-2 shrink-0" href="/">
               <Image
-                src={imgSrc as string}
+                src={bannerImage.imgSrc as string}
                 className="h-8 w-auto"
-                width={Number(imgWidth)}
-                height={Number(imgHeight)}
+                width={bannerImage.imgWidth}
+                height={bannerImage.imgHeight}
                 alt="Logo"
               />
             </Link>
           )}
         </NavigationMenu.Item>
 
-        {leftNavItems?.map((item, index) => {
+        {items.map((item, index) => {
           if (
             item.__typename === "NavigationBarLeftNavItemGroupOfStringItems" &&
             item.items &&
@@ -170,11 +131,49 @@ export default function NavBarClient({ results }: NavBarClientProps) {
           }
           return null;
         })}
+        {/* Desktop Buttons */}
+        {buttons.map((button, index) => {
+          return (
+            <NavigationMenu.Item
+              className={`hidden sm:block ${
+                index === buttons.length - 1 ? "pl-5" : "pl-12"
+              }`}
+              key={index}
+            >
+              <ButtonMap item={button} />
+            </NavigationMenu.Item>
+          );
+        })}
+
+        <NavigationMenu.Item className="flex justify-end pl-5">
+          <button
+            className="text-3xl my-auto flex align-middle"
+            onClick={(e) => {
+              const handleClickOutside = () => {
+                setIsOpen(false);
+                window.removeEventListener("click", handleClickOutside);
+              };
+              if (isOpen) {
+                return;
+              }
+              setIsOpen(true);
+              window.addEventListener("click", handleClickOutside);
+              e.stopPropagation();
+            }}
+          >
+            {isOpen ? <CgClose /> : <HiOutlineBars3 />}
+          </button>
+        </NavigationMenu.Item>
+
+        {/* Mobile Buttons */}
 
         {buttons.map((button, index) => {
           return (
-            <NavigationMenu.Item className="pl-12 last:pl-8" key={index}>
-              <ButtonMap item={button} />
+            <NavigationMenu.Item
+              className="w-full col-span-1 block sm:hidden [&>button]:w-full"
+              key={index}
+            >
+              <ButtonMap className="" item={button} />
             </NavigationMenu.Item>
           );
         })}
@@ -363,18 +362,31 @@ const MobileSubmenu = ({ items }: SubMenuProps) => {
   );
 };
 
-const ButtonMap = ({ item }: { item: NavigationBarButtons }) => {
+const ButtonMap = ({
+  item,
+  className,
+}: {
+  item: NavigationBarButtons;
+  className?: string;
+}) => {
   switch (item?.__typename) {
     case "NavigationBarButtonsBookingButton":
       if (!item.Title || !item.JotFormId) return null;
-      return <BookingButton title={item.Title} jotFormId={item.JotFormId} />;
+      return (
+        <BookingButton
+          className={className}
+          title={item.Title}
+          jotFormId={item.JotFormId}
+        />
+      );
     case "NavigationBarButtonsButtonLink":
       return (
         <Button
           asChild
-          className={clsx(
+          className={cn(
             "flex gap-1",
-            item.iconPosition === "left" ? "flex-row-reverse" : "flex-row"
+            item.iconPosition === "left" ? "flex-row-reverse" : "flex-row",
+            className
           )}
           href={item.href || undefined}
           variant={
