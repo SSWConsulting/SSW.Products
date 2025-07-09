@@ -37,18 +37,6 @@ export default function NavBarClient({
 
   const { scrolled } = useIsScrolled();
 
-  const renderNavItem = (item: NavItem, index: number) => {
-    if (!item) return <></>;
-    switch (item?.__typename) {
-      case "NavigationBarLeftNavItemStringItem":
-        return item?.href && item.label ? (
-          <MenuItem key={index} href={item.href} label={item.label} />
-        ) : null;
-      default:
-        return null;
-    }
-  };
-
   return (
     <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
       <Popover.Anchor className="w-full" asChild>
@@ -228,162 +216,12 @@ export default function NavBarClient({
       </Popover.Anchor>
     </Popover.Root>
   );
-
-  return (
-    <nav
-      className={`text-white transition-colors sticky duration-300 ease-in-out ${
-        scrolled
-          ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
-          : "py-6"
-      } z-40 w-full`}
-    >
-      <div className="max-w-7xl gap-12 mx-4 xl:mx-auto flex justify-between">
-        <div className="gap-8 mx-auto flex @container items-center w-full">
-          {imgWidth && imgHeight && imgSrc && (
-            <Link className="mb-2 shrink-0" href="/">
-              <Image
-                src={imgSrc as string}
-                className="h-8 w-auto"
-                width={Number(imgWidth)}
-                height={Number(imgHeight)}
-                alt="Logo"
-              />
-            </Link>
-          )}
-
-          <ul className="hidden @3xl:flex justify-end items-center gap-6 grow">
-            {leftNavItems?.map((item, index) => {
-              return item?.__typename ===
-                "NavigationBarLeftNavItemGroupOfStringItems" ? (
-                item.items && (
-                  <SubMenuItem
-                    items={item.items.filter(
-                      (item) => item !== null && item !== undefined
-                    )}
-                    label={item.label}
-                  />
-                )
-              ) : (
-                <MenuItem key={index} href={item?.href} label={item?.label} />
-              );
-            })}
-          </ul>
-        </div>
-        <div className="sm:flex hidden gap-5 items-center ">
-          {buttons?.map((button, index) => {
-            return <ButtonMap item={button} key={index} />;
-          })}
-          {/* <li className="block xl:hidden"> */}
-          <button
-            className="text-3xl flex align-middle"
-            onClick={(e) => {
-              const handleClickOutside = () => {
-                setIsOpen(false);
-                window.removeEventListener("click", handleClickOutside);
-              };
-              if (isOpen) {
-                return;
-              }
-              setIsOpen(true);
-              window.addEventListener("click", handleClickOutside);
-              e.stopPropagation();
-            }}
-          >
-            {isOpen ? <CgClose /> : <HiOutlineBars3 />}
-          </button>
-          {/* </li> */}
-        </div>
-        <div
-          className={`${
-            isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-          } ${
-            scrolled ? "bg-stone-700" : "bg-opacity-90 bg-[#222222]/90"
-          } transition-all duration-500 ease-in-out overflow-hidden xl:hidden w-full text-white absolute top-full left-0 flex flex-col items-start space-y-2`}
-        >
-          <div className="p-5 max-w-7xl mx-auto w-full">
-            <ul className="flex flex-col pl-2">
-              {leftNavItems?.map((item, index) => {
-                return item?.__typename ===
-                  "NavigationBarLeftNavItemGroupOfStringItems"
-                  ? item.items && (
-                      <MobileSubmenu
-                        items={item.items?.filter(
-                          (item) => item !== undefined && item !== null
-                        )}
-                        label={item.label}
-                      />
-                    )
-                  : renderNavItem(item, index);
-              })}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className=" pt-4 flex flex-col [&>li]:w-full [&>li>*]:w-full mx-4 gap-2 xl:mx-0 justify-center sm:hidden">
-        {buttons?.map((button, index) => {
-          return <ButtonMap item={button} key={index} />;
-        })}
-      </div>
-    </nav>
-  );
 }
-
-const MenuItem = ({ href, label }: { href: string; label: string }) => (
-  <li className="flex items-center py-1">
-    <Link
-      href={href}
-      className="hover:underline underline-offset-4 decoration-[#CC4141] text-md"
-    >
-      {label.toUpperCase()}
-    </Link>
-  </li>
-);
 
 type SubMenuProps = {
   label: string;
   items: { href: string; label: string }[];
 };
-// SubMenuItem component for grouped navigation items
-// const SubMenuItem = ({
-//   label,
-//   items,
-// }: {
-//   label: string;
-//   items: { href: string; label: string }[];
-// }) => (
-//   <>
-//     {/* For lg screens and above - show dropdown */}
-//     <li className="hidden xl:flex items-center group relative">
-//       <span className="cursor-pointer flex items-center gap-2">
-//         {label.toUpperCase()}{" "}
-//         <FaChevronRight className="text-red-500 text-m rotate-90 transition-all duration-300" />
-//       </span>
-//       <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible pt-2 transition-all duration-300">
-//         <ul className="bg-[#222222] text-[#D1D5DB] border border-white/20 mt-0 space-y-2 p-3 rounded shadow-lg min-w-[150px] z-10">
-//           {items.map((subItem, subIndex) => (
-//             <li
-//               key={subIndex}
-//               className="hover:text-white transition-colors flex items-center gap-1"
-//             >
-//               <Link
-//                 href={subItem.href}
-//                 className="w-full hover:underline underline-offset-4 decoration-[#CC4141] flex items-center gap-1"
-//               >
-//                 {subItem.label}
-//                 {subItem.href &&
-//                   (subItem.href.startsWith("http://") ||
-//                     subItem.href.startsWith("https://")) && (
-//                     <FaExternalLinkAlt className="text-xs text-red-500" />
-//                   )}
-//               </Link>
-//             </li>
-//           ))}
-//         </ul>
-//       </div>
-//     </li>
-//     {/* For md screens and below - show all subitems directly */}
-//   </>
-// );
 
 const MobileSubmenu = ({ items }: SubMenuProps) => {
   console.log("MobileSubmenu items:", items);
