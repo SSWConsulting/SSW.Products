@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 
-export const NavigationMenuBadge = ({
+const NavigationMenuBadge = ({
   imgSrc,
   imgWidth,
   imgHeight,
@@ -28,7 +28,7 @@ export const NavigationMenuBadge = ({
   </NavigationMenu.Item>
 );
 // ForwardRef wrapper for NavigationMenu.Root
-export const NavigationMenuRoot = React.forwardRef<
+const NavigationMenuRoot = React.forwardRef<
   React.ElementRef<typeof NavigationMenu.Root>,
   React.ComponentPropsWithoutRef<typeof NavigationMenu.Root>
 >(({ children }, ref) => {
@@ -51,4 +51,8 @@ export const NavigationMenuRoot = React.forwardRef<
   );
 });
 
+const NavigationMenuItem = NavigationMenu.Item;
+
 NavigationMenuRoot.displayName = "NavigationMenuRoot";
+
+export { NavigationMenuBadge, NavigationMenuItem, NavigationMenuRoot };

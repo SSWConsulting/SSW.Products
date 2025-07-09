@@ -1,5 +1,4 @@
 "use client";
-import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -20,6 +19,7 @@ import {
 } from "@comps/NavBar/MobileMenu";
 import {
   NavigationMenuBadge,
+  NavigationMenuItem,
   NavigationMenuRoot,
 } from "@comps/NavBar/NavigationMenu";
 import { SubGroupContent, SubGroupTrigger } from "@comps/NavBar/SubGroup";
@@ -56,7 +56,7 @@ export default function NavBarClient({
               item.items.length > 0
             ) {
               return (
-                <NavigationMenu.Item
+                <NavigationMenuItem
                   className="my-auto hidden xl:block"
                   key={index}
                 >
@@ -78,13 +78,13 @@ export default function NavBarClient({
                       </li>
                     ))}
                   </SubGroupContent>
-                </NavigationMenu.Item>
+                </NavigationMenuItem>
               );
             } else if (
               item.__typename === "NavigationBarLeftNavItemStringItem"
             ) {
               return (
-                <NavigationMenu.Item
+                <NavigationMenuItem
                   className="my-auto hidden xl:block"
                   key={index}
                 >
@@ -94,7 +94,7 @@ export default function NavBarClient({
                   >
                     {item.label}
                   </Link>
-                </NavigationMenu.Item>
+                </NavigationMenuItem>
               );
             }
             return null;
@@ -102,17 +102,17 @@ export default function NavBarClient({
           {/* Desktop Buttons */}
           {buttons.map((button, index) => {
             return (
-              <NavigationMenu.Item
+              <NavigationMenuItem
                 className={`hidden sm:block ${
                   index === buttons.length - 1 ? "pl-5" : "pl-12"
                 }`}
                 key={index}
               >
                 <ButtonMap item={button} />
-              </NavigationMenu.Item>
+              </NavigationMenuItem>
             );
           })}
-          <NavigationMenu.Item className="flex xl:hidden justify-end pl-5">
+          <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
             <MobileMenuTrigger />
             <MobileMenuContent>
               <>
@@ -150,15 +150,15 @@ export default function NavBarClient({
                 })}
               </>
             </MobileMenuContent>
-          </NavigationMenu.Item>
+          </NavigationMenuItem>
           {buttons.map((button, index) => {
             return (
-              <NavigationMenu.Item
+              <NavigationMenuItem
                 className="w-full col-span-1 block sm:hidden [&>button]:w-full"
                 key={index}
               >
                 <ButtonMap className="w-full" item={button} />
-              </NavigationMenu.Item>
+              </NavigationMenuItem>
             );
           })}
         </NavigationMenuRoot>
