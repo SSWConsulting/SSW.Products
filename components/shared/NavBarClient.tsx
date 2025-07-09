@@ -59,7 +59,7 @@ export default function NavBarClient({
               : "py-6"
           } z-40 w-full`}
         >
-          <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4  sm:gap-x-0 grid-cols-2 @container grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
+          <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4  sm:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
             <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
               {bannerImage && (
                 <Link className="mb-2 shrink-0" href="/">
@@ -83,14 +83,14 @@ export default function NavBarClient({
               ) {
                 return (
                   <NavigationMenu.Item
-                    className="my-auto hidden @7xl:block"
+                    className="my-auto hidden xl:block"
                     key={index}
                   >
                     <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center w-full gap-2 px-3  rounded  transition-colors">
                       {item.label}
                       <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
                     </NavigationMenu.Trigger>
-                    <NavigationMenu.Content className="border rounded text-[#d1d5db] hover:text-white  border-white/20 shadow-lg p-3 space-y-2 bg-gray-light absolute data-[state=open]:animation-duration-100 data-[state=open]:animate-in  data-[state=closed]:animate-out data-[state=closed]:animation-duration-300 data-[state=open]:fade-in data-[state=closed]:fade-out">
+                    <NavigationMenu.Content className="border mt-2 slide-in-from-top-0 rounded text-[#d1d5db] hover:text-white  border-white/20 shadow-lg p-3 space-y-2 bg-gray-light absolute data-[motion=open]:animation-duration-100 data-[state=open]:animate-in  data-[state=closed]:animate-out data-[state=closed]:animation-duration-300 data-[state=open]:fade-in data-[state=closed]:fade-out">
                       {/* <ul className="space-y-2"> */}
                       {item.items
                         .filter(
@@ -122,7 +122,7 @@ export default function NavBarClient({
               ) {
                 return (
                   <NavigationMenu.Item
-                    className="my-auto hidden @7xl:block"
+                    className="my-auto hidden xl:block"
                     key={index}
                   >
                     <Link
@@ -150,7 +150,7 @@ export default function NavBarClient({
               );
             })}
 
-            <NavigationMenu.Item className="flex justify-end pl-5">
+            <NavigationMenu.Item className="flex xl:hidden justify-end pl-5">
               <Popover.Trigger asChild>
                 <button
                   className="text-3xl my-auto flex align-middle"
@@ -178,7 +178,7 @@ export default function NavBarClient({
                     scrolled
                       ? "bg-stone-700 "
                       : "bg-opacity-90 bg-[#222222]/90",
-                    "min-w-screen duration-300 overflow-hidden z-50 p-5 data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
+                    "min-w-screen duration-300 overflow-hidden z-50 p-5 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
                   )}
                 >
                   <>
@@ -352,46 +352,46 @@ type SubMenuProps = {
   items: { href: string; label: string }[];
 };
 // SubMenuItem component for grouped navigation items
-const SubMenuItem = ({
-  label,
-  items,
-}: {
-  label: string;
-  items: { href: string; label: string }[];
-}) => (
-  <>
-    {/* For lg screens and above - show dropdown */}
-    <li className="hidden xl:flex items-center group relative">
-      <span className="cursor-pointer flex items-center gap-2">
-        {label.toUpperCase()}{" "}
-        <FaChevronRight className="text-red-500 text-m rotate-90 transition-all duration-300" />
-      </span>
-      <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible pt-2 transition-all duration-300">
-        <ul className="bg-[#222222] text-[#D1D5DB] border border-white/20 mt-0 space-y-2 p-3 rounded shadow-lg min-w-[150px] z-10">
-          {items.map((subItem, subIndex) => (
-            <li
-              key={subIndex}
-              className="hover:text-white transition-colors flex items-center gap-1"
-            >
-              <Link
-                href={subItem.href}
-                className="w-full hover:underline underline-offset-4 decoration-[#CC4141] flex items-center gap-1"
-              >
-                {subItem.label}
-                {subItem.href &&
-                  (subItem.href.startsWith("http://") ||
-                    subItem.href.startsWith("https://")) && (
-                    <FaExternalLinkAlt className="text-xs text-red-500" />
-                  )}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </li>
-    {/* For md screens and below - show all subitems directly */}
-  </>
-);
+// const SubMenuItem = ({
+//   label,
+//   items,
+// }: {
+//   label: string;
+//   items: { href: string; label: string }[];
+// }) => (
+//   <>
+//     {/* For lg screens and above - show dropdown */}
+//     <li className="hidden xl:flex items-center group relative">
+//       <span className="cursor-pointer flex items-center gap-2">
+//         {label.toUpperCase()}{" "}
+//         <FaChevronRight className="text-red-500 text-m rotate-90 transition-all duration-300" />
+//       </span>
+//       <div className="absolute top-full left-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible pt-2 transition-all duration-300">
+//         <ul className="bg-[#222222] text-[#D1D5DB] border border-white/20 mt-0 space-y-2 p-3 rounded shadow-lg min-w-[150px] z-10">
+//           {items.map((subItem, subIndex) => (
+//             <li
+//               key={subIndex}
+//               className="hover:text-white transition-colors flex items-center gap-1"
+//             >
+//               <Link
+//                 href={subItem.href}
+//                 className="w-full hover:underline underline-offset-4 decoration-[#CC4141] flex items-center gap-1"
+//               >
+//                 {subItem.label}
+//                 {subItem.href &&
+//                   (subItem.href.startsWith("http://") ||
+//                     subItem.href.startsWith("https://")) && (
+//                     <FaExternalLinkAlt className="text-xs text-red-500" />
+//                   )}
+//               </Link>
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     </li>
+//     {/* For md screens and below - show all subitems directly */}
+//   </>
+// );
 
 const MobileSubmenu = ({ items }: SubMenuProps) => {
   console.log("MobileSubmenu items:", items);
