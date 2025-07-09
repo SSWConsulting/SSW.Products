@@ -149,7 +149,7 @@ export default function NavBarClient({
           {buttons.map((button, index) => {
             return (
               <NavigationMenuItem
-                className="w-full col-span-1 block sm:hidden [&>button]:w-full"
+                className="w-full col-span-1 block sm:hidden"
                 key={index}
               >
                 <ButtonMap className="w-full" item={button} />
