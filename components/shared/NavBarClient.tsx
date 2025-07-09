@@ -1,6 +1,8 @@
 "use client";
 import useIsScrolled from "@comps/hooks/useIsScrolled";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import * as Popover from "@radix-ui/react-popover";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -13,6 +15,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { Button } from "@comps/ui/button";
+import clsx from "clsx";
 import { FaChevronRight, FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
 import { BookingButton } from "./Blocks/BookingButton";
@@ -47,137 +50,179 @@ export default function NavBarClient({
   };
 
   return (
-    <NavigationMenu.Root
-      className={`text-white sticky transition-colors justify-center z-10  duration-300 ease-in-out ${
-        scrolled
-          ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
-          : "py-6"
-      } z-40 w-full`}
-    >
-      <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4  sm:gap-x-0 grid-cols-2 @container grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
-        <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
-          {bannerImage && (
-            <Link className="mb-2 shrink-0" href="/">
-              <Image
-                src={bannerImage.imgSrc as string}
-                className="h-8 w-auto"
-                width={bannerImage.imgWidth}
-                height={bannerImage.imgHeight}
-                alt="Logo"
-              />
-            </Link>
-          )}
-        </NavigationMenu.Item>
-
-        {items.map((item, index) => {
-          if (
-            item.__typename === "NavigationBarLeftNavItemGroupOfStringItems" &&
-            item.items &&
-            item.items.length > 0
-          ) {
-            return (
-              <NavigationMenu.Item
-                className="my-auto hidden @7xl:block"
-                key={index}
-              >
-                <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center gap-2 px-3  rounded  transition-colors">
-                  {item.label}
-                  <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
-                </NavigationMenu.Trigger>
-                <NavigationMenu.Content className="border rounded text-[#d1d5db] hover:text-white border-white/20 shadow-lg p-3 space-y-2 bg-gray-light absolute data-[state=open]:animation-duration-100 data-[state=open]:animate-in  data-[state=closed]:animate-out data-[state=closed]:animation-duration-300 data-[state=open]:fade-in data-[state=closed]:fade-out">
-                  {/* <ul className="space-y-2"> */}
-                  {item.items
-                    .filter(
-                      (subItem) => subItem && subItem.href && subItem.label
-                    )
-                    .map((subItem, subIndex) => (
-                      <li key={subIndex}>
-                        <Link
-                          href={subItem!.href}
-                          className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors"
-                        >
-                          {subItem!.label}
-                          {subItem!.href &&
-                            (subItem!.href.startsWith("http://") ||
-                              subItem!.href.startsWith("https://")) && (
-                              <FaExternalLinkAlt className="text-xs text-red-500" />
-                            )}
-                        </Link>
-                      </li>
-                    ))}
-                  {/* </ul> */}
-                </NavigationMenu.Content>
-              </NavigationMenu.Item>
-            );
-          } else if (
-            item.__typename === "NavigationBarLeftNavItemStringItem" &&
-            item.href &&
-            item.label
-          ) {
-            return (
-              <NavigationMenu.Item
-                className="my-auto hidden @7xl:block"
-                key={index}
-              >
-                <Link
-                  href={item.href}
-                  className="px-3 hover:decoration-ssw-red decoration-transparent underline-offset-3 underline text-base block h-fit rounded transition-colors uppercase"
-                >
-                  {item.label}
+    <Popover.Root open={isOpen} onOpenChange={setIsOpen}>
+      <Popover.Anchor className="w-full" asChild>
+        <NavigationMenu.Root
+          className={`text-white sticky transition-colors justify-center z-10  duration-300 ease-in-out ${
+            scrolled
+              ? `shadow-xs bg-[#131313]/80 my-2 py-4 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
+              : "py-6"
+          } z-40 w-full`}
+        >
+          <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4  sm:gap-x-0 grid-cols-2 @container grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
+            <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
+              {bannerImage && (
+                <Link className="mb-2 shrink-0" href="/">
+                  <Image
+                    src={bannerImage.imgSrc as string}
+                    className="h-8 w-auto"
+                    width={bannerImage.imgWidth}
+                    height={bannerImage.imgHeight}
+                    alt="Logo"
+                  />
                 </Link>
-              </NavigationMenu.Item>
-            );
-          }
-          return null;
-        })}
-        {/* Desktop Buttons */}
-        {buttons.map((button, index) => {
-          return (
-            <NavigationMenu.Item
-              className={`hidden sm:block ${
-                index === buttons.length - 1 ? "pl-5" : "pl-12"
-              }`}
-              key={index}
-            >
-              <ButtonMap item={button} />
+              )}
             </NavigationMenu.Item>
-          );
-        })}
 
-        <NavigationMenu.Item className="flex justify-end pl-5">
-          <button
-            className="text-3xl my-auto flex align-middle"
-            onClick={(e) => {
-              const handleClickOutside = () => {
-                setIsOpen(false);
-                window.removeEventListener("click", handleClickOutside);
-              };
-              if (isOpen) {
-                return;
+            {items.map((item, index) => {
+              if (
+                item.__typename ===
+                  "NavigationBarLeftNavItemGroupOfStringItems" &&
+                item.items &&
+                item.items.length > 0
+              ) {
+                return (
+                  <NavigationMenu.Item
+                    className="my-auto hidden @7xl:block"
+                    key={index}
+                  >
+                    <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center w-full gap-2 px-3  rounded  transition-colors">
+                      {item.label}
+                      <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
+                    </NavigationMenu.Trigger>
+                    <NavigationMenu.Content className="border rounded text-[#d1d5db] hover:text-white  border-white/20 shadow-lg p-3 space-y-2 bg-gray-light absolute data-[state=open]:animation-duration-100 data-[state=open]:animate-in  data-[state=closed]:animate-out data-[state=closed]:animation-duration-300 data-[state=open]:fade-in data-[state=closed]:fade-out">
+                      {/* <ul className="space-y-2"> */}
+                      {item.items
+                        .filter(
+                          (subItem) => subItem && subItem.href && subItem.label
+                        )
+                        .map((subItem, subIndex) => (
+                          <li key={subIndex}>
+                            <Link
+                              href={subItem!.href}
+                              className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors"
+                            >
+                              {subItem!.label}
+                              {subItem!.href &&
+                                (subItem!.href.startsWith("http://") ||
+                                  subItem!.href.startsWith("https://")) && (
+                                  <FaExternalLinkAlt className="text-xs text-red-500" />
+                                )}
+                            </Link>
+                          </li>
+                        ))}
+                      {/* </ul> */}
+                    </NavigationMenu.Content>
+                  </NavigationMenu.Item>
+                );
+              } else if (
+                item.__typename === "NavigationBarLeftNavItemStringItem" &&
+                item.href &&
+                item.label
+              ) {
+                return (
+                  <NavigationMenu.Item
+                    className="my-auto hidden @7xl:block"
+                    key={index}
+                  >
+                    <Link
+                      href={item.href}
+                      className="px-3 hover:decoration-ssw-red decoration-transparent underline-offset-3 underline text-base block h-fit rounded transition-colors uppercase"
+                    >
+                      {item.label}
+                    </Link>
+                  </NavigationMenu.Item>
+                );
               }
-              setIsOpen(true);
-              window.addEventListener("click", handleClickOutside);
-              e.stopPropagation();
-            }}
-          >
-            {isOpen ? <CgClose /> : <HiOutlineBars3 />}
-          </button>
-        </NavigationMenu.Item>
+              return null;
+            })}
+            {/* Desktop Buttons */}
+            {buttons.map((button, index) => {
+              return (
+                <NavigationMenu.Item
+                  className={`hidden sm:block ${
+                    index === buttons.length - 1 ? "pl-5" : "pl-12"
+                  }`}
+                  key={index}
+                >
+                  <ButtonMap item={button} />
+                </NavigationMenu.Item>
+              );
+            })}
 
-        {/* Mobile Buttons */}
+            <NavigationMenu.Item className="flex justify-end pl-5">
+              <Popover.Trigger asChild>
+                <button
+                  className="text-3xl my-auto flex align-middle"
+                  onClick={(e) => {
+                    const handleClickOutside = () => {
+                      setIsOpen(false);
+                      window.removeEventListener("click", handleClickOutside);
+                    };
+                    if (isOpen) {
+                      return;
+                    }
+                    setIsOpen(true);
+                    window.addEventListener("click", handleClickOutside);
+                    e.stopPropagation();
+                  }}
+                >
+                  {isOpen ? <CgClose /> : <HiOutlineBars3 />}
+                </button>
+              </Popover.Trigger>
+              <Popover.Portal>
+                <Popover.Content
+                  className={clsx(
+                    isOpen ? "max-h-screen opacity-100 " : "max-h-0 opacity-0",
 
-        {buttons.map((button, index) => {
-          return (
-            <NavigationMenu.Item
-              className="w-full col-span-1 block sm:hidden [&>button]:w-full"
-              key={index}
-            >
-              <ButtonMap className="w-full" item={button} />
+                    scrolled
+                      ? "bg-stone-700 "
+                      : "bg-opacity-90 bg-[#222222]/90",
+                    "min-w-screen text-white  top-full flex flex-col items-start space-y-2"
+                  )}
+                >
+                  <>
+                    {items.map((item, index) => {
+                      if (!item) return <></>;
+
+                      if (
+                        item.__typename ===
+                        "NavigationBarLeftNavItemGroupOfStringItems"
+                      ) {
+                        if (!item.items) return <></>;
+
+                        return (
+                          <MobileSubmenu
+                            label=""
+                            key={index}
+                            items={item.items.filter(
+                              (item) => item !== undefined && item !== null
+                            )}
+                          />
+                        );
+                      }
+                    })}
+                  </>
+                </Popover.Content>
+              </Popover.Portal>
             </NavigationMenu.Item>
-          );
-        })}
-      </NavigationMenu.List>
-    </NavigationMenu.Root>
+
+            {/* Mobile Buttons */}
+
+            {buttons.map((button, index) => {
+              return (
+                <NavigationMenu.Item
+                  className="w-full col-span-1 block sm:hidden [&>button]:w-full"
+                  key={index}
+                >
+                  <ButtonMap className="w-full" item={button} />
+                </NavigationMenu.Item>
+              );
+            })}
+          </NavigationMenu.List>
+        </NavigationMenu.Root>
+      </Popover.Anchor>
+    </Popover.Root>
   );
 
   return (
@@ -337,13 +382,11 @@ const SubMenuItem = ({
 );
 
 const MobileSubmenu = ({ items }: SubMenuProps) => {
+  console.log("MobileSubmenu items:", items);
   return (
     <>
       {items.map((subItem, subIndex) => (
-        <li
-          key={`mobile-${subIndex}`}
-          className="xl:hidden flex items-center py-1"
-        >
+        <li key={`mobile-${subIndex}`} className="flex items-center py-1">
           <Link
             href={subItem.href}
             className="hover:underline underline-offset-4 decoration-[#CC4141] text-md flex items-center gap-1"
