@@ -2,6 +2,7 @@
 import { Button } from "@comps/ui/button";
 import client from "@tina/__generated__/client";
 import Image from "next/image";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -39,8 +40,10 @@ const NotFoundClient = ({
           >
             <TinaMarkdown content={body} />
           </section>
-          <Button href="/" className="w-fit mt-6" variant={"white"}>
-            Back to Home
+          <Button className="w-fit mt-6" variant={"white"} asChild>
+            <Link className="w-fit mt-6" href="/">
+              Back to Home
+            </Link>
           </Button>
         </div>
         {imgSrc && imgHeight && imgWidth && (
