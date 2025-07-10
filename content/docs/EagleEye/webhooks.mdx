@@ -1,10 +1,9 @@
 ---
 seo:
   title: Webhooks
-  description: >-
-    Learn what webhooks are and how to use them in EagleEye.
+  description: Learn what webhooks are and how to use them in EagleEye.
 title: Learn about webhooks
-date: "2025-04-29T14:00:00.000Z"
+date: '2025-04-29T14:00:00.000Z'
 ---
 
 ## What are webhooks?
@@ -26,10 +25,11 @@ Webhooks can be useful in many situations:
 Learn how to use Webhhoks in EagleEye to trigger workflows that are associated to a Tag:
 
 <Youtube thumbnail="https://img.youtube.com/vi/Wtrk1KZB_aI/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/Wtrk1KZB_aI?si=MBlUkVSRw2Kf3UxB" />
+
 **Video: EagleEye - How to use Webhooks (5 min)**
 
 ## Examples
- 
+
 Here are some examples of how webhooks can be used with this AI tool:
 
 * **Organize your inbox** - EagleEye recognises when someone is assigned tasks by detecting a greeting like "Hi John" followed by an ordered list. When EagleEye detects that some tasks have been assigned to you, it can trigger a webhook to move those emails into a high-priority folder. Other emails can be routed to a low-priority folder for quick review and deletion
@@ -37,3 +37,7 @@ Here are some examples of how webhooks can be used with this AI tool:
 * **Flag issues to managers automatically** - When words like "problem", "issue", or "we’re blocked" are found in an email, EagleEye can trigger a webhook to alert a manager or log the issue into your internal reporting system
 * **Auto-reply with AI-generated responses** - If EagleEye detects requests such as "can you send..." or "do you have...", it can trigger a webhook that kicks off a Power Automate flow, which uses AI to draft and send a relevant response—saving time and improving turnaround
 * **Store client details in Dynamics 365** - Emails that contain phrases like "new client details", "contact info below", or "updated client profile" can trigger a webhook to automatically update or create a record in Microsoft Dynamics 365
+
+Below is an example of a webhook that sends a Teams notification using a Power Automate Flow whenever an email with extremely positive sentiment is found 🎉
+
+![](/EagleEye/Webhook-example.png)Figure: Example of a webhook implementation 
