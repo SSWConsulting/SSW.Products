@@ -27,7 +27,7 @@ const MobileMenuRoot = ({ children }: { children: React.ReactNode }) => {
       <Popover.Root open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
         {children}
       </Popover.Root>
-      ;
+   
     </MenuContextProvider>
   );
 };
