@@ -1,0 +1,27 @@
+---
+title: Non-AI Tags
+date: '2025-07-15T22:00:00.000Z'
+---
+
+Non-AI tags use a simple rules-based system to categorize emails. These tags are the most straightforward to implement and are suitable for cases where the categorization logic can be expressed through clear rules.
+
+## How to Create a Non-AI Tag
+
+1. **Basic Information**
+   * Name: The display name of the tag
+   * Description: Optional description of the tag's purpose
+   * Link: Optional URL to related documentation or rules
+2. **Rules Configuration**
+   * Rules are based on email properties (subject, body, sender, etc.)
+   * Each rule consists of:
+     * Rule Type (e.g., Subject, Body, Sender)
+     * Condition Type (e.g., Contains, Equals, StartsWith)
+     * Data (the value to match against)
+
+```json
+{
+  "RuleType": "Subject",
+    "ConditionType": "Contains",
+      "Data": "SSW.Design"
+}
+```
