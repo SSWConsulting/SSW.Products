@@ -6,11 +6,11 @@ title: Installation
 date: '2025-07-15T13:00:00.000Z'
 ---
 
-# Overview
+## Overview
 
 SSW EagleEye is an AI-powered email management solution that helps organizations categorize and process emails automatically using Azure OpenAI. This guide will walk you through the installation process using Azure Managed Applications.
 
-# Prerequisites
+## Prerequisites
 
 Before starting the installation, ensure you have:
 
@@ -20,13 +20,13 @@ Before starting the installation, ensure you have:
 * **Power BI** workspace (optional, for reporting)
 * **Custom domain** and DNS zone in Azure (optional)
 
-# Deployment Types
+## Deployment Types
 
-Current Deployment Method: Service Catalog
+### Current Deployment Method: Service Catalog
 
 SSW EagleEye is currently deployed via Azure Service Catalog for internal testing and validation.
 
-## Future Deployment Method: Azure Marketplace
+### Future Deployment Method: Azure Marketplace
 
 **TODO**: Azure Marketplace deployment will be available in the future, providing:
 
@@ -36,11 +36,11 @@ SSW EagleEye is currently deployed via Azure Service Catalog for internal testin
 
 *Note: This guide currently covers Service Catalog deployment. It will be updated when Azure Marketplace deployment becomes available.*
 
-# Installation Process
+## Installation Process
 
-## Phase 1: Deploy Managed Application
+### Phase 1: Deploy Managed Application
 
-### Step 1: Access the Managed Application
+#### Step 1: Access the Managed Application
 
 1. Go to **Azure Portal** > **All services** > **Service Catalog Managed Applications**
 2. Find **SSW EagleEye** in the catalog
@@ -48,22 +48,22 @@ SSW EagleEye is currently deployed via Azure Service Catalog for internal testin
 
 > **Note**: Azure Marketplace deployment will be available in the future and will provide a streamlined experience through the Azure Marketplace.
 
-### Step 2: Configure Application Settings
+#### Step 2: Configure Application Settings
 
 Follow the deployment wizard with these configuration steps:
 
-#### 2.1 Application Configuration
+##### 2.1 Application Configuration
 
 * **Project Name**: Enter a unique prefix (3-15 characters, lowercase letters and numbers)
 * **Environment**: Select `production` or `staging`
 * **Location**: Choose your preferred Azure region
 
-#### 2.2 Azure AD Configuration
+##### 2.2 Azure AD Configuration
 
 * **Azure Tenant ID**: Your Azure AD tenant ID
 * **Azure Group Name**: Enter the Azure AD group name for email processing
 
-#### 2.3 App Registration Configuration
+##### 2.3 App Registration Configuration
 
 You can select existing app registrations or create new ones during this step:
 
@@ -74,7 +74,7 @@ You can select existing app registrations or create new ones during this step:
 
 **Note**: If you don't have existing app registrations, you can create them during deployment or refer to the **App Registration Creation Guide** section below for detailed instructions.
 
-#### 2.4 Database Configuration
+##### 2.4 Database Configuration
 
 * **Database Pricing Tier**: Select appropriate tier (Basic, S0, S1, S2)
 * **Database Users**: Configure three database users:
@@ -82,32 +82,32 @@ You can select existing app registrations or create new ones during this step:
   * ReadWrite user (read/write access)
   * ReadOnly user (read-only access)
 
-#### 2.5 Azure OpenAI Configuration
+##### 2.5 Azure OpenAI Configuration
 
 * **Location**: Select Azure region (currently East US)
 * **Model**: Choose GPT-4.1 Mini or GPT-4o Mini
 * **Capacity**: Set tokens per minute (verify your quota first)
 
-#### 2.6 Power BI Configuration (Optional)
+##### 2.6 Power BI Configuration (Optional)
 
 * **Power BI Embed URL**: Enter embed URL for reports
 * **Power BI Report URL**: Enter direct report URL
 
-#### 2.7 Domain Configuration (Optional)
+##### 2.7 Domain Configuration (Optional)
 
 * **Custom Domain**: Enter your custom domain
 * **DNS Resource Group**: Specify where your DNS zone is located
 
-### Step 3: Review and Deploy
+#### Step 3: Review and Deploy
 
 1. Review all configuration settings
 2. Click **Create** to start deployment
 3. Monitor deployment progress in the Azure Portal
 4. Deployment typically takes 15-30 minutes
 
-## Phase 2: Post-Deployment Configuration
+### Phase 2: Post-Deployment Configuration
 
-### Step 4: Configure Portal Frontend Redirect URL
+#### Step 4: Configure Portal Frontend Redirect URL
 
 After deployment completes, you need to configure the authentication redirect URL:
 
@@ -120,14 +120,14 @@ After deployment completes, you need to configure the authentication redirect UR
    * Example: `https://ca-nextjs-4d33i5xxemxsu.happyfield-d167da8e.australiaeast.azurecontainerapps.io/api/auth/callback/azure-ad`
 7. Click **Save**
 
-### Step 5: Verify Deployment
+#### Step 5: Verify Deployment
 
 1. **Access the Portal**: Navigate to the Portal container app URL
 2. **Test Authentication**: Sign in with your Azure AD credentials
 3. **Check API Connectivity**: Verify the Portal can communicate with the API
 4. **Test Email Processing**: Run a manual job to categorize emails
 
-# Architecture Overview
+## Architecture Overview
 
 The deployed solution includes:
 
@@ -138,18 +138,18 @@ The deployed solution includes:
 * **Application Insights**: Monitoring and telemetry
 * **Container Registry**: Docker image storage
 
-# Next Steps
+## Next Steps
 
 After successful deployment:
 
 1. Configure Email Tags
 2. Set Up Power BI
 
-# App Registration Creation Guide
+## App Registration Creation Guide
 
 You need the following 3 app registrations for the managed application:
 
-## Engine App Registration (SSW\.EagleEye)
+### Engine App Registration (SSW\.EagleEye)
 
 This app registration is used by the Engine CLI and Portal API to access Microsoft Graph.
 
@@ -176,7 +176,7 @@ This app registration is used by the Engine CLI and Portal API to access Microso
 4. Click **Add**
 5. **Save the secret value** - you'll need this during creation of the managed application
 
-## Portal Backend App Registration (SSW\.EagleEye.Api)
+### Portal Backend App Registration (SSW\.EagleEye.Api)
 
 This app registration exposes an API that the Portal frontend will call.
 
@@ -198,7 +198,7 @@ This app registration exposes an API that the Portal frontend will call.
 4. Click **Add**
 5. **Save the secret value** - you'll need this during creation of the managed application
 
-## Portal Frontend App Registration (SSW\.EagleEye.Portal)
+### Portal Frontend App Registration (SSW\.EagleEye.Portal)
 
 This app registration is used by the Portal web application for user authentication.
 
@@ -217,6 +217,6 @@ This app registration is used by the Portal web application for user authenticat
 4. Click **Add**
 5. **Save the secret value** - you'll need this during creation of the managed application
 
-# References
+## References
 
 * [Azure Managed Applications overview](https://learn.microsoft.com/en-us/azure/managed-applications/overview)
