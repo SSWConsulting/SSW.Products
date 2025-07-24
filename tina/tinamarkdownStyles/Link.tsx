@@ -4,7 +4,7 @@ const Link = (
   return (
     <a
       href={props?.url}
-      className="text-ssw-red underline transition-colors hover:text-white"
+      className="text-white underline transition-colors hover:text-ssw-red"
     >
       {props?.children}
     </a>
