@@ -73,7 +73,7 @@ export default function DocPostClient({
       <h2 className="text-3xl bg-linear-to-br mb-2 linear tracking-wide from-red-400 to-red-700 bg-clip-text text-transparent">
         {title}
       </h2>
-      <div className="text-base font-light lg:prose-xl">
+      <div className="text-base font-light mb-12 lg:prose-xl">
         <TinaMarkdown
           content={body ?? { type: "root", children: [] }}
           components={{
@@ -93,10 +93,9 @@ export default function DocPostClient({
           }}
         />
       </div>
-      <div className="text-sm font-light text-gray-300 uppercase mb-4">
-        <br />
+      <div className="text-sm font-light text-gray-300 uppercase mb-4 mt-12">
         <div>
-          <span>Last Updated: {formattedDate}</span>
+          <span>Last updated: {formattedDate}</span>
         </div>
       </div>
     </div>

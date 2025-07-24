@@ -90,7 +90,7 @@ function PaginationLinks({
   product: string;
 }) {
   return (
-    <div className="flex lg:justify-between py-4  rounded-lg overflow-hidden">
+    <div className="flex justify-between py-12 rounded-lg overflow-hidden">
       {prev ? (
         <Link
           href={`/${product}/docs/${prev.slug}`}
