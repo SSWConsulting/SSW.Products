@@ -7,9 +7,9 @@ export const DocAndBlogMarkdownStyle: Components<{
   Youtube: { thumbnail?: string; externalVideoLink?: string; size?: string };
 }> = {
   Youtube: (props) => {
-    let sizeClass = "w-[560px] h-[315px]";
+    let sizeClass = "w-full h-auto max-w-[560px]";
     if (props.size === "large") {
-      sizeClass = "w-[800px] h-[600px]";
+      sizeClass = "w-full h-auto max-w-[800px]";
     }
     return (
       <div className="youtube-container">
