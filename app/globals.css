@@ -92,6 +92,10 @@
   border: var(--border-gradient-width, 1px) solid transparent;
 }
 
+strong {
+  font-weight: bold;
+}
+
 @layer base {
   button:not(:disabled),
   [role="button"]:not(:disabled) {
