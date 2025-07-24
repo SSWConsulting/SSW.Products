@@ -4,17 +4,23 @@ import { Components } from "tinacms/dist/rich-text";
 
 import Link from "./Link";
 export const DocAndBlogMarkdownStyle: Components<{
-  Youtube: { thumbnail?: string; externalVideoLink?: string };
+  Youtube: { thumbnail?: string; externalVideoLink?: string; size?: string };
 }> = {
-  Youtube: (props) => (
-    <div className="youtube-container">
-      <YouTubeEmbed
-        className="w-[560px] h-[315px]"
-        src={props.externalVideoLink}
-        placeholder={props.thumbnail}
-      />
-    </div>
-  ),
+  Youtube: (props) => {
+    let sizeClass = "w-full h-auto max-w-[560px]";
+    if (props.size === "large") {
+      sizeClass = "w-full h-auto max-w-[800px]";
+    }
+    return (
+      <div className="youtube-container">
+        <YouTubeEmbed
+          className={sizeClass}
+          src={props.externalVideoLink}
+          placeholder={props.thumbnail}
+        />
+      </div>
+    );
+  },
   p: (props) => <p className="text-base font-light mb-4">{props?.children}</p>,
 
   h1: (props) => (

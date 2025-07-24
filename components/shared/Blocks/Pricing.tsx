@@ -47,13 +47,13 @@ interface Plan {
   listItems: string[];
 }
 
-interface PricingData {
+type PricingData = {
   title?: string;
   description?: TinaMarkdownContent;
 
   plans?: Plan[];
   addOns: AddOn;
-}
+};
 
 interface PricingProps {
   data: PricingData;

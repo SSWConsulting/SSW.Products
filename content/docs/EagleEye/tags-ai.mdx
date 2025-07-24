@@ -1,0 +1,35 @@
+---
+title: AI tags
+date: '2025-07-15T22:00:00.000Z'
+---
+
+AI tags use artificial intelligence to analyze email content and determine if the tag should be applied. These tags are more flexible and can understand context and nuances in the email content.
+
+## How to create an AI tag
+
+1. **Basic information**
+   * Same as Non-AI tags
+   * Tag Type: Select "🤖 AI"
+2. **Rules configuration**
+   * Similar to Non-AI tags, but rules are used as initial filters
+   * The AI will only process emails that pass these rules
+3. **Checking prompt**
+   * Required for AI tags
+   * The prompt should instruct the AI how to determine if the tag should be applied
+   * The AI will return true/false based on the prompt
+4. **Example prompt**
+
+```
+ Analyze if this email indicates a task is completed.
+ Look for phrases like "done", "completed", "finished", etc.
+```
+
+## Example
+
+Here is an example of a prompt that we use to scan emails that we sent to ourselves.
+
+Learn more on [Do you send yourself emails?](https://www.ssw.com.au/rules/send-to-myself-emails/)
+
+Explore [EagleEye Tags](https://portal.ssweagleeye.com/tags).
+
+![](/EagleEye/ai-tag-example-2.png)**Figure: Example of AI prompts for the "To myself" tag**

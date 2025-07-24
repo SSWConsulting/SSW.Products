@@ -10,4 +10,21 @@ date: '2025-04-16T14:00:00.000Z'
 
 By default, the **"Watch the video"** link in a work item points to a publicly unlisted video hosted on **Microsoft Stream** via **SharePoint**. This setup provides secure access and automatic transcript support, while still allowing easy sharing with people inside and outside the organization.
 
-We’re actively expanding video hosting options. A planned feature will allow clients to assign a **YouTube channel per Project**, offering greater flexibility for public or semi-public sharing. This will be especially useful for users working with more sensitive or externally-facing content.
+## SharePoint vs YouTube Hosting
+
+### SharePoint (Default - Recommended)
+- **Security**: Full control over video access through your organization's SharePoint instance
+- **Scalability**: No daily upload limits
+- **Integration**: Seamless integration with Microsoft ecosystem
+- **Transcripts**: Automatic transcript support
+- **Best Practice**: Links expire after 30 days for security and content management
+
+### YouTube (Optional)
+- **Permanence**: Videos don't expire (unlike SharePoint's 30-day default)
+- **Public sharing**: Better for content that may be shared outside your organization
+- **Limitations**:
+  - Daily quota of ~100 video uploads per channel per day
+  - Less secure - if unlisted links are accidentally shared, anyone can access them
+  - No organizational control over access permissions
+
+**Note**: SharePoint's 30-day link expiry is a security best practice. For high-volume usage or when permanent access is required, YouTube hosting is available but comes with daily upload limits and security considerations.
