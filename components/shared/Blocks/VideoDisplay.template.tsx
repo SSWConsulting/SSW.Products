@@ -96,6 +96,17 @@ export const optimizedYoutubeFields: TinaField[] = [
     label: "Thumbnail",
     type: "string",
   },
+  {
+    name: "size",
+    label: "Embed Size",
+    type: "string",
+    options: [
+      { value: "medium", label: "Medium (560x315)" },
+      { value: "large", label: "Large (800x600)" },
+    ],
+    description: "Choose the size of the YouTube embed.",
+    required: false,
+  },
 ];
 
 export const videoDisplayTemplate: Template = {
