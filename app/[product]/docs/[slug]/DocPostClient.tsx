@@ -93,7 +93,7 @@ export default function DocPostClient({
           }}
         />
       </div>
-      <div className="text-sm font-light text-gray-300 uppercase">
+      <div className="text-sm font-light text-gray-300 uppercase mb-4">
         <br />
         <div>
           <span>Last Updated: {formattedDate}</span>
