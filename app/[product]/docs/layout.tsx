@@ -25,7 +25,7 @@ const RootLayout = async ({
           </div>
 
           {/* RIGHT COLUMN 2/3 */}
-          <div className="grow px-4 sm:pt-20 sm:pt-20 ">{children}</div>
+          <div className="grow pl-4 pr-12 sm:pt-20 sm:pt-20 ">{children}</div>
         </div>
       </SearchBox.Root>
     </>
