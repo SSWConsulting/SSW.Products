@@ -73,10 +73,9 @@ export default function DocPostClient({
         {title}
       </h2>
       <div className="text-base font-light mb-12 lg:prose-xl">
-        <TinaMarkdown
-          content={body ?? { type: "root", children: [] }}
-          components={DocAndBlogMarkdownStyle}
-        />
+        {body && (
+          <TinaMarkdown content={body} components={DocAndBlogMarkdownStyle} />
+        )}
       </div>
       <div className="text-sm font-light text-gray-300 uppercase mb-4 mt-12">
         <div>
