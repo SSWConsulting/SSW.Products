@@ -4,7 +4,6 @@ import { TableOfContents } from "@comps/TableOfContents";
 import { Docs, DocsTableOfContents } from "@tina/__generated__/types";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import Link from "next/link";
-import { ReactNode } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -76,21 +75,7 @@ export default function DocPostClient({
       <div className="text-base font-light mb-12 lg:prose-xl">
         <TinaMarkdown
           content={body ?? { type: "root", children: [] }}
-          components={{
-            ...DocAndBlogMarkdownStyle,
-            a: (
-              props:
-                | { children: ReactNode | undefined; url: string }
-                | undefined
-            ) => (
-              <a
-                className="underline transition-colors hover:text-white text-[#CC4141]"
-                href={props?.url}
-              >
-                {props?.children}
-              </a>
-            ),
-          }}
+          components={DocAndBlogMarkdownStyle}
         />
       </div>
       <div className="text-sm font-light text-gray-300 uppercase mb-4 mt-12">
