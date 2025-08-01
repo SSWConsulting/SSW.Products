@@ -57,30 +57,4 @@ export function GradientBackground({ className }: { className?: string }) {
       </defs>
     </svg>
   );
-
-  // return (
-  //   <div className="absolute inset-0 z-[-1] pointer-events-none">
-  //     {/*Webkit Transform fixes for IOS*/}
-  //     <div
-  //       className="absolute -left-[80%] blur-[50px] opacity-40 rounded-full top-[313px] z-[-1]"
-  //       style={{
-  //         WebkitTransform: "translate3d(0, 0, 0);",
-  //         width: "1374px",
-  //         height: "865px",
-  //         background:
-  //           "linear-gradient(110.05deg, #F6983D 0.07%, #CC4141 40.61%, #AF33E4 69.54%, #080808 100.44%)", //in-line style is the best way to get control of a 40 stop gradient
-  //       }}
-  //     />
-  //   </div>
-  // );
 }
-
-/* Rectangle 39947 */
-
-// position: absolute;
-// width: 413px;
-// height: 232px;
-// left: 561px;
-// top: 890px;
-
-// background: linear-gradient(110.05deg, #F6983D 0.07%, #CC4141 40.61%, #AF33E4 69.54%, #080808 100.44%);
