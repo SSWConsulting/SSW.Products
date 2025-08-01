@@ -181,7 +181,7 @@ export const highlightCurlyBracketFormatter = (byLine: string) => {
 export default function Hero({ data }: { data: any }) {
   return (
     <div className="relative max-w-7xl mx-auto">
-      <GradientBackground className="absolute -left-330 scale-95 -z-1" />
+      <GradientBackground />
       <div className="flex items-center w-full justify-center mx-auto relative overflow-hidden">
         {/* Content (z-10 to appear above the background) */}
         <div className="z-10 flex flex-col items-center justify-center w-full">
