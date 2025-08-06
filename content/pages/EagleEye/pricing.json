@@ -42,7 +42,7 @@
           ],
           "buttons": [
             {
-              "label": "Free while under development",
+              "label": "Under development",
               "variant": "outlinedWhite",
               "size": "medium",
               "url": "#",
