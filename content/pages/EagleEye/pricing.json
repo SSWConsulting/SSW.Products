@@ -1,0 +1,58 @@
+{
+  "title": "EagleEye Pricing Plans and Options",
+  "pageBlocks": [
+    {
+      "title": "{Simple, Transparent Pricing}",
+      "description": "🎉 **Great news!** EagleEye is currently **completely free** to use through the Azure Marketplace! 🚀",
+      "plans": [
+        {
+          "planTier": "Free",
+          "planDescription": "For small team",
+          "price": "$0",
+          "subPriceText": "1 - 5 units",
+          "priceDescription": "* Install Through Azure Marketplace",
+          "isRecommended": true,
+          "listTitle": "Get started with",
+          "listItems": [
+            "Full access to AI features",
+            "Full webhook support"
+          ],
+          "buttons": [
+            {
+              "label": "Get Started",
+              "variant": "solidRed",
+              "size": "medium",
+              "url": "https://ssweagleeye.com/docs/installation",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "planTier": "Pro",
+          "planDescription": "For large team",
+          "price": "$1 / unit / month",
+          "subPriceText": "5+ units",
+          "priceDescription": "* Install Through Azure Marketplace",
+          "isRecommended": false,
+          "listTitle": "Get started with",
+          "listItems": [
+            "{Everything in Free, plus}",
+            "Unlimited team size",
+            "Unlimited mailboxes for email analysis"
+          ],
+          "buttons": [
+            {
+              "label": "Free while under development",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "#",
+              "disabled": true,
+              "_template": "actions"
+            }
+          ]
+        }
+      ],
+      "_template": "pricing"
+    }
+  ]
+}
