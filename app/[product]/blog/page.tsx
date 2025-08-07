@@ -9,6 +9,7 @@ import QueryProvider from "../../../components/providers/QueryProvider";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
 import client from "../../../tina/__generated__/client";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
+import { getLocale, getBlogIndexWithFallback } from "../../../utils/i18n";
 interface BlogIndex {
   params: { product: string };
 }
@@ -26,17 +27,6 @@ export async function generateMetadata({ params }: BlogIndex) {
   };
 }
 
-const getBlogPageData = async (product: string) => {
-  try {
-    const res = await client.queries.blogsIndex({
-      relativePath: `${product}/blog/index.json`,
-    });
-    return res;
-  } catch (error) {
-    console.error("Error fetching blog page data:", error);
-    return notFound();
-  }
-};
 export async function generateStaticParams() {
   const sitePosts = await client.queries.blogsConnection({});
   return (
@@ -64,8 +54,10 @@ const getCategories = async (product: string) => {
 
 export default async function BlogIndex({ params }: BlogIndex) {
   const product = params.product;
+  const locale = getLocale();
+  
   const categories = await getCategories(product);
-  const tinaData = await getBlogPageData(product);
+  const tinaData = await getBlogIndexWithFallback(product, locale);
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
     queryKey: [`blogs`],

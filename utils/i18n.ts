@@ -59,3 +59,43 @@ export async function getPageWithFallback(
     notFound();
   }
 }
+
+export async function getBlogIndexWithFallback(
+  product: string,
+  locale: string = 'en',
+  options?: {
+    fetchOptions?: {
+      next?: {
+        revalidate?: number;
+      };
+    };
+  }
+) {
+  try {
+    let relativePath: string;
+    
+    if (locale === 'zh') {
+      relativePath = `${product}/zh/blog/index.json`;
+      
+      try {
+        const res = await client.queries.blogsIndex(
+          { relativePath },
+          options
+        );
+        return res;
+      } catch (error) {
+        console.log(`Chinese blog index not found, falling back to English for ${product}`);
+      }
+    }
+    
+    relativePath = `${product}/blog/index.json`;
+    const res = await client.queries.blogsIndex(
+      { relativePath },
+      options
+    );
+    return res;
+  } catch (error) {
+    console.error("Error fetching blog index data:", error);
+    notFound();
+  }
+}
