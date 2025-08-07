@@ -1,0 +1,336 @@
+{
+  "seo": {
+    "title": "YakShaver - 记录问题，让AI立即将其分配给正确的团队",
+    "description": "探索YakShaver创新的AI解决方案和见解，提高您的业务效率和增长。",
+    "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}"
+  },
+  "title": "YakShaver - 记录问题，让AI立即将其分配给正确的团队",
+  "pageBlocks": [
+    {
+      "backgroundImageEnabled": false,
+      "titleBeforeRotate": "制作完美的",
+      "titleAfterRotate": "只需几秒钟",
+      "rotatingWords": [
+        "PBI",
+        "任务",
+        "工单",
+        "邮件"
+      ],
+      "byLine": "不要浪费时间写错误报告。\n\nYakShaver AI代理分析录制内容，生成任务，并立即将其分配给正确的团队。\n\n使用YakShaver节省数小时的挫败感。\n",
+      "ctaLeft": {
+        "title": "试用演示",
+        "link": "/try-it-now"
+      },
+      "ctaRight": {
+        "title": "观看视频",
+        "link": "https://www.youtube.com/shorts/0TPo98R1tnI"
+      },
+      "buttonSubtext": "无需信用卡",
+      "reportUIEnabled": true,
+      "reportUI": {
+        "leftHandSide": {
+          "issueReportName": "Ulysses Maclaren",
+          "issueReportTime": "周一上午9:13",
+          "issueReportText": [
+            "我刚刚在{TinaCloud}中遇到了一个问题。当我尝试上传大于5MB的文件时，{应用程序}完全{崩溃}了。",
+            "我使用的是最新版本的{Chrome}。这严重影响了用户功能，我将其归类为{优先级1}。",
+            "我记得{Matt和Adam}之前也遇到过类似问题。你能让{Betty}为我检查一下吗？"
+          ],
+          "issueReportSummaryTitle": "报告问题",
+          "issueReportSummarySubtitle": "YakShaver实时记录和转录视频，处理信息以便立即分析。"
+        },
+        "rightHandSide": {
+          "issueReportSummaryTitle": "问题摘要",
+          "issueReportSummarySubtitle": "工作项实时生成，分配到正确的项目待办事项列表，指派负责人，并通知相关人员。"
+        }
+      },
+      "_template": "hero"
+    },
+    {
+      "ParentContainerTitle": "YakShaver的工作原理",
+      "ParentContainerDescription": "",
+      "CardAndImageItem": [
+        {
+          "AboveHeaderText": "{发现它}",
+          "Header": "1 - 录制视频",
+          "Description": "发现错误或有想法？使用任何您喜欢的应用程序录制您的屏幕和声音。\n",
+          "Badges": [
+            {
+              "showTickIcon": true,
+              "Badge": "Teams"
+            },
+            {
+              "showTickIcon": true,
+              "Badge": "截图工具"
+            },
+            {
+              "showTickIcon": true,
+              "Badge": "Snagit"
+            },
+            {
+              "Badge": "以及更多..."
+            }
+          ],
+          "delimiters": {
+            "enabled": false,
+            "delimeter": ""
+          },
+          "media": "/Browser1.png",
+          "textOnLeft": true
+        },
+        {
+          "AboveHeaderText": "{处理它}",
+          "Header": "2 - YakShaver接管",
+          "Description": "YakShaver观看您的视频，将您的话转换为文本，并分析正在发生的事情。\n",
+          "media": "/Browser2.png",
+          "textOnLeft": true
+        },
+        {
+          "AboveHeaderText": "{解决它}",
+          "Header": "3 - 创建任务",
+          "Description": "**YakShaver在您最喜欢的系统中创建任务、错误报告或功能请求**（Azure DevOps、GitHub）。YakShaver还可以发送邮件。\n\n它将包含一个很好的标题、描述和任务，以及原始视频以提供额外的上下文。\n",
+          "Badges": [
+            {
+              "showTickIcon": true,
+              "Badge": "GitHub"
+            },
+            {
+              "showTickIcon": true,
+              "Badge": "DevOps"
+            },
+            {
+              "showTickIcon": true,
+              "Badge": "邮件"
+            },
+            {
+              "Badge": "以及更多..."
+            }
+          ],
+          "delimiters": {
+            "enabled": false,
+            "delimeter": "或"
+          },
+          "media": "/Browser3.png",
+          "textOnLeft": true
+        }
+      ],
+      "_template": "CardAndImage"
+    },
+    {
+      "badge": "由SSW提供支持",
+      "badgeLink": "https://ssw.com.au",
+      "title": "认识您的新助手，YakShaver",
+      "topLeftBox": {
+        "title": "与您最喜欢的软件开发和协作工具配合使用",
+        "icons": [
+          {
+            "iconImage": "/svg/Microsoft Office Teams 2018.svg",
+            "iconLink": "/docs/recording-work-item-teams",
+            "iconLinkTitle": "使用Microsoft Teams设置YakShaver",
+            "iconToolTipText": "Microsoft Teams"
+          },
+          {
+            "iconImage": "/SSW Product Sites.svg",
+            "iconLink": "/docs/recording-work-item-snagit",
+            "iconLinkTitle": "使用Snagit设置YakShaver",
+            "iconToolTipText": "Snagit"
+          },
+          {
+            "iconImage": "/svg/devops.svg",
+            "iconLink": "/docs/add-azure-devops-projects",
+            "iconLinkTitle": "使用Azure DevOps设置YakShaver",
+            "iconToolTipText": "Azure DevOps"
+          },
+          {
+            "iconImage": "/svg/github-mark-white.svg",
+            "iconLink": "/docs/connect-your-github-account",
+            "iconLinkTitle": "使用GitHub设置YakShaver",
+            "iconToolTipText": "GitHub"
+          }
+        ]
+      },
+      "topRightBox": {
+        "title": "实时PBI",
+        "description": "在PBI被创建、分配或需要跟进时立即获得更新"
+      },
+      "counterBox1": {
+        "title": "已解决的问题",
+        "counterMetric": "YakShaved"
+      },
+      "counterBox2": {
+        "title": "为用户节省的时间",
+        "counterMetric": "MinutesSaved"
+      },
+      "bottomLeftBox": {
+        "media": "/YakShaver/The-Yak.png"
+      },
+      "bottomRightBox": {
+        "title": "自动化任务创建：从想法到行动",
+        "description": "释放自动化的力量，通过生成式AI无缝地将视频、音频和屏幕共享转换为可操作的产品待办事项",
+        "inputItem": [
+          {
+            "name": "视频",
+            "icon": "FaVideo"
+          },
+          {
+            "name": "图像",
+            "icon": "FaImage"
+          },
+          {
+            "name": "聊天",
+            "icon": "IoChatbox"
+          },
+          {
+            "name": "文档",
+            "icon": "FaFile"
+          }
+        ],
+        "middleLogo": "/svg/yak-icon-fill.svg",
+        "outputText": "工作项"
+      },
+      "_template": "BentoBox"
+    },
+    {
+      "title": "简单透明的定价",
+      "desc": "一个共享的积分池。一次性付费，组织中的任何人都可以报告问题。零座位费用 - 只需使用您的积分。",
+      "tiers": [
+        {
+          "tier": "入门版",
+          "description": [
+            "每月15个积分",
+            "适合个人用户"
+          ],
+          "price": 0,
+          "estimatedHoursSaved": 7.5,
+          "itemsAbleToCreate": 15,
+          "priceDescription": "永久免费",
+          "actions": {
+            "label": "开始使用",
+            "variant": "outlinedWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "团队版",
+          "description": [
+            "每月100个积分",
+            "适合成长中的团队"
+          ],
+          "price": 39,
+          "estimatedHoursSaved": 50,
+          "itemsAbleToCreate": 100,
+          "priceDescription": "每月",
+          "actions": {
+            "label": "开始使用",
+            "variant": "solidRed",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "增长版",
+          "description": [
+            "每月500个积分",
+            "适合大型组织"
+          ],
+          "price": 189,
+          "estimatedHoursSaved": 250,
+          "itemsAbleToCreate": 500,
+          "priceDescription": "每月",
+          "actions": {
+            "label": "开始使用",
+            "variant": "outlinedWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        },
+        {
+          "tier": "企业版",
+          "description": [
+            "自定义积分分配",
+            "适合定制解决方案"
+          ],
+          "price": 99999,
+          "estimatedHoursSaved": 0,
+          "itemsAbleToCreate": 0,
+          "actions": {
+            "label": "开始使用",
+            "variant": "solidWhite",
+            "size": "medium",
+            "url": "/"
+          }
+        }
+      ],
+      "addOns": {
+        "title": "积分包",
+        "description": "需要补充？添加一些积分",
+        "price": "25",
+        "subPriceText": "每50个积分",
+        "actionButton": {
+          "label": "完整定价详情",
+          "variant": "outlinedWhite",
+          "size": "medium",
+          "url": "/pricing"
+        }
+      },
+      "bottomBox": "\\* 平均时薪包括工资、福利和管理费用。\n\n\\*\\* 我们的价值回收计算：基于客户数据，YakShaver将问题报告时间减少了90% - 从每周5小时减少到仅30分钟。\n",
+      "bottomAction": {
+        "label": "完整定价详情",
+        "variant": "solidWhite",
+        "size": "large",
+        "url": "/pricing"
+      },
+      "_template": "calculator"
+    },
+    {
+      "altText": "制作完美的PBI | YakShaver",
+      "title": "想了解更多？",
+      "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+      "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
+      "figureCaption": "视频：使用YakShaver制作完美的PBI（6分钟）",
+      "_template": "videoDisplay"
+    },
+    {
+      "headline": "常见问题",
+      "text": "",
+      "questions": [
+        {
+          "question": "对于非技术团队来说，YakShaver容易使用吗？",
+          "answer": "当然。YakShaver的直观设计使任何人，无论技术专长如何，都能轻松报告问题和高效委派任务。"
+        },
+        {
+          "question": "YakShaver能与我现有的系统配合使用吗？",
+          "answer": "YakShaver可以从多个系统中提取您的人员和项目数据，包括Dynamics 365、Active Directory、Salesforce，甚至只是Excel导入！对于工作项创建，它与Exchange、GitHub、Azure DevOps、Jira、Zendesk等集成！"
+        },
+        {
+          "question": "YakShaver支持屏幕录制吗？",
+          "answer": "是的，YakShaver包含Microsoft Teams的内置屏幕录制功能，使在报告问题时轻松捕获和使用视觉信息。它还可以与独立的屏幕录制器（如Snagit）集成。"
+        },
+        {
+          "question": "我可以使用YakShaver报告什么类型的问题？",
+          "answer": "您可以报告任何类型的问题！YakShaver旨在处理各种任务、错误或功能，并自动将它们打包成包含相关信息的工作项，并发送给相关人员。"
+        },
+        {
+          "question": "您支持什么文件格式？",
+          "answer": "目前，YakShaver支持.mp4和.mov视频文件扩展名。"
+        }
+      ],
+      "_template": "faq"
+    },
+    {
+      "title": "与YakShaver专家交谈",
+      "ctaDescription": "正在为您的团队评估YakShaver？与YakShaver架构师预约30分钟的通话",
+      "ctaButton": {
+        "label": "安排通话",
+        "variant": "solidWhite",
+        "size": "large",
+        "buttonLink": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6%40ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous="
+      },
+      "_template": "callToAction"
+    }
+  ],
+  "pageFormatting": {
+    "bottomPadding": "small"
+  }
+}

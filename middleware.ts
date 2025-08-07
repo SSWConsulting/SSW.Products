@@ -40,15 +40,22 @@ function handleLocalRequest(
     (product) => product.product === pathSegments[0]
   );
 
+  const language = pathname.startsWith('/zh') ? 'zh' : 'en';
+
   if (isProduct) {
     const rewriteUrl = new URL(`/${pathSegments.join("/")}`, request.url);
-    return NextResponse.rewrite(rewriteUrl);
+    const response = NextResponse.rewrite(rewriteUrl);
+    response.headers.set('x-language', language);
+    return response;
   } else {
+    const cleanPath = pathname.startsWith('/zh') ? pathname.substring(3) : pathname;
     const rewriteUrl = new URL(
-      `/${process.env.DEFAULT_PRODUCT}${pathname}`,
+      `/${process.env.DEFAULT_PRODUCT}${cleanPath}`,
       request.url
     );
-    return NextResponse.rewrite(rewriteUrl);
+    const response = NextResponse.rewrite(rewriteUrl);
+    response.headers.set('x-language', language);
+    return response;
   }
 }
 
@@ -58,10 +65,15 @@ function handleProductionRequest(
   pathname: string,
   request: NextRequest
 ) {
+  const language = pathname.startsWith('/zh') ? 'zh' : 'en';
+
   for (const product of productList) {
     if (hostname === product.domain) {
-      const rewriteUrl = new URL(`/${product.product}${pathname}`, request.url);
-      return NextResponse.rewrite(rewriteUrl);
+      const cleanPath = pathname.startsWith('/zh') ? pathname.substring(3) : pathname;
+      const rewriteUrl = new URL(`/${product.product}${cleanPath}`, request.url);
+      const response = NextResponse.rewrite(rewriteUrl);
+      response.headers.set('x-language', language);
+      return response;
     }
   }
   return NextResponse.next();
