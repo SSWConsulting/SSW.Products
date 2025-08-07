@@ -64,7 +64,8 @@ export default function NavBarClient({
                       <li key={subIndex}>
                         <Link
                           href={subItem!.href}
-                          className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors"
+                          className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors whitespace-nowrap"
+                          style={{ writingMode: 'horizontal-tb' }}
                         >
                           {subItem!.label}
                           {subItem!.href &&
@@ -88,7 +89,8 @@ export default function NavBarClient({
                 >
                   <Link
                     href={item.href}
-                    className="px-3 hover:decoration-ssw-red decoration-transparent underline-offset-3 underline text-base block h-fit rounded transition-colors uppercase"
+                    className="px-3 hover:decoration-ssw-red decoration-transparent underline-offset-3 underline text-base block h-fit rounded transition-colors uppercase whitespace-nowrap"
+                    style={{ writingMode: 'horizontal-tb' }}
                   >
                     {item.label}
                   </Link>

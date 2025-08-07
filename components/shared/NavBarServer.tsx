@@ -1,6 +1,6 @@
 import { NavGroup } from "@/types/nav-group";
 import { NavigationBarLeftNavItemStringItem as NavItem } from "@tina/__generated__/types";
-import client from "../../tina/__generated__/client";
+import { getNavigationBarWithFallback } from "@utils/i18n";
 import NavBarClient from "./NavBarClient";
 
 interface NavBarServerProps {
@@ -9,9 +9,13 @@ interface NavBarServerProps {
 }
 
 export default async function NavBarServer({ product, locale }: NavBarServerProps) {
-  const { data } = await client.queries.navigationBar({
-    relativePath: `${product}/${product}-NavigationBar.json`,
-  });
+  const result = await getNavigationBarWithFallback(product, locale);
+  
+  if (!result?.data) {
+    return null;
+  }
+  
+  const { data } = result;
   const items =
     data.navigationBar.leftNavItem?.reduce<(NavGroup | NavItem)[]>(
       (acc, item) => {

@@ -148,3 +148,83 @@ export async function getBlogWithFallback(
     return null;
   }
 }
+
+export async function getNavigationBarWithFallback(
+  product: string,
+  locale: string = 'en',
+  options?: {
+    fetchOptions?: {
+      next?: {
+        revalidate?: number;
+      };
+    };
+  }
+) {
+  try {
+    let relativePath: string;
+    
+    if (locale === 'zh') {
+      relativePath = `${product}/zh/${product}-NavigationBar.json`;
+      
+      try {
+        const res = await client.queries.navigationBar(
+          { relativePath },
+          options
+        );
+        return res;
+      } catch (error) {
+        console.log(`Chinese navigation bar not found, falling back to English for ${product}`);
+      }
+    }
+    
+    relativePath = `${product}/${product}-NavigationBar.json`;
+    const res = await client.queries.navigationBar(
+      { relativePath },
+      options
+    );
+    return res;
+  } catch (error) {
+    console.error("Error fetching navigation bar:", error);
+    return null;
+  }
+}
+
+export async function getFooterWithFallback(
+  product: string,
+  locale: string = 'en',
+  options?: {
+    fetchOptions?: {
+      next?: {
+        revalidate?: number;
+      };
+    };
+  }
+) {
+  try {
+    let relativePath: string;
+    
+    if (locale === 'zh') {
+      relativePath = `${product}/zh/${product}-Footer.json`;
+      
+      try {
+        const res = await client.queries.footer(
+          { relativePath },
+          options
+        );
+        return res;
+      } catch (error) {
+        console.log(`Chinese footer not found, falling back to English for ${product}`);
+      }
+    }
+    
+    relativePath = `${product}/${product}-Footer.json`;
+    const res = await client.queries.footer(
+      { relativePath },
+      options
+    );
+    return res;
+  } catch (error) {
+    console.error("Error fetching footer:", error);
+    return null;
+  }
+}
