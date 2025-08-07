@@ -60,8 +60,8 @@ export default async function BlogIndex({ params }: BlogIndex) {
   const tinaData = await getBlogIndexWithFallback(product, locale);
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
-    queryKey: [`blogs`],
-    queryFn: () => getBlogsForProduct({ product }),
+    queryKey: [`blogs${locale || 'en'}`],
+    queryFn: () => getBlogsForProduct({ product, locale }),
     initialPageParam: undefined,
   });
 
@@ -73,7 +73,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
         <div className="flex flex-col min-h-screen">
           <HydrationBoundary state={dehydratedState}>
             <BlogSearchProvider categories={categories}>
-              <BlogIndexClient {...tinaData} product={product} />
+              <BlogIndexClient {...tinaData} product={product} locale={locale} />
             </BlogSearchProvider>
           </HydrationBoundary>
         </div>

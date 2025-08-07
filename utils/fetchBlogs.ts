@@ -9,18 +9,27 @@ type GetBlogsForProductProps = {
   product: string;
   category?: string;
   filteredBlogs?: string[];
+  locale?: string;
 };
 
 // Workaround: graphql doesn't allow you to query by file name
-const getTitlesInTenant = cache(async (product: string) => {
+const getTitlesInTenant = cache(async (product: string, locale?: string) => {
   const res = await client.queries.blogsConnection();
   const titles =
     res.data.blogsConnection.edges?.reduce<string[]>((acc: string[], curr) => {
-      const inCurrentTenant = curr?.node?._sys.path.includes(
-        `/blogs/${product}`
-      );
+      const pathToCheck = locale === 'zh' 
+        ? `/blogs/${product}/zh` 
+        : `/blogs/${product}`;
+      
+      const inCurrentTenant = curr?.node?._sys.path.includes(pathToCheck);
+      
+      // For English (default), exclude zh paths
+      const isCorrectLanguage = locale === 'zh' 
+        ? curr?.node?._sys.path.includes(`/blogs/${product}/zh`)
+        : !curr?.node?._sys.path.includes(`/blogs/${product}/zh`);
+      
       const title = curr?.node?.title;
-      if (title && !acc.includes(title) && inCurrentTenant) {
+      if (title && !acc.includes(title) && inCurrentTenant && isCorrectLanguage) {
         return [...acc, title];
       }
       return acc;
@@ -36,9 +45,10 @@ export async function getBlogsForProduct({
   product,
   keyword,
   filteredBlogs,
+  locale,
 }: GetBlogsForProductProps) {
   try {
-    let titles = await getTitlesInTenant(product);
+    let titles = await getTitlesInTenant(product, locale);
     if (filteredBlogs && filteredBlogs.length > 0) {
       titles = titles.filter((title) => !filteredBlogs.includes(title));
     }
