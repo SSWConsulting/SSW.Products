@@ -4,9 +4,10 @@ import FooterContent from "./FooterContent";
 
 interface FooterServerProps {
   product: string;
+  locale?: string;
 }
 
-export default async function FooterServer({ product }: FooterServerProps) {
+export default async function FooterServer({ product, locale }: FooterServerProps) {
   let footerData = null;
   const hasPrivacyPolicy = await tenantHasPrivacyPolicy(product);
 

@@ -5,9 +5,10 @@ import NavBarClient from "./NavBarClient";
 
 interface NavBarServerProps {
   product: string;
+  locale?: string;
 }
 
-export default async function NavBarServer({ product }: NavBarServerProps) {
+export default async function NavBarServer({ product, locale }: NavBarServerProps) {
   const { data } = await client.queries.navigationBar({
     relativePath: `${product}/${product}-NavigationBar.json`,
   });
