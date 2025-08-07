@@ -112,10 +112,10 @@
         }
       ],
       "addOns": {
-        "title": "{Credit Pack}",
-        "description": "Need a top up? Add some credits",
+        "title": "{Booster Pack}",
+        "description": "Need a top up? Add some extra credits",
         "price": "$25",
-        "subPriceText": "per 50 credits",
+        "subPriceText": "per 50 shaves",
         "actionButton": {
           "label": "Re-fill Here",
           "variant": "outlinedWhite",
