@@ -1,5 +1,3 @@
-import { notFound } from "next/navigation";
-
 import CustomizeableBackground from "../../../components/shared/Background/CustomizeableBackground";
 import HomePageClient from "../../../components/shared/HomePageClient";
 import client from "../../../tina/__generated__/client";

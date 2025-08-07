@@ -3,7 +3,6 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { notFound } from "next/navigation";
 import { BlogSearchProvider } from "../../../components/providers/BlogSearchProvider";
 import QueryProvider from "../../../components/providers/QueryProvider";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
