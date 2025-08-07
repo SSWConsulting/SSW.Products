@@ -1,21 +1,17 @@
 import HomePageClient from "../../components/shared/HomePageClient";
 import client from "../../tina/__generated__/client";
 import { setPageMetadata } from "../../utils/setPageMetaData";
-import { headers } from 'next/headers';
+import { getLocale, getPageWithFallback, getRelativePath } from "../../utils/i18n";
 
 interface ProductPageProps {
   params: { product: string };
 }
 
-function getLocaleFromPath(): string {
-  const headersList = headers();
-  return headersList.get('x-language') || 'en';
-}
 
 export async function generateMetadata({ params }: ProductPageProps) {
   const { product } = params;
-  const locale = getLocaleFromPath();
-  const productData = await getPage(product, locale);
+  const locale = getLocale();
+  const productData = await getPageWithFallback(product, 'home', locale);
   const metadata = setPageMetadata(productData.data?.pages?.seo, product);
   return metadata;
 }
@@ -31,10 +27,10 @@ export async function generateStaticParams() {
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const product = params.product;
-  const locale = getLocaleFromPath();
+  const locale = getLocale();
 
-  const productData = await getPage(product, locale);
-  const relativePath = locale === 'zh' ? `${product}/zh/home.json` : `${product}/home.json`;
+  const productData = await getPageWithFallback(product, 'home', locale);
+  const relativePath = getRelativePath(product, 'home', locale);
   
   return (
     <div>
@@ -57,35 +53,3 @@ export default async function ProductPage({ params }: ProductPageProps) {
   );
 }
 
-async function getPage(product: string, locale: string = 'en') {
-  try {
-    let relativePath: string;
-    
-    if (locale === 'zh') {
-      relativePath = `${product}/zh/home.json`;
-      
-      try {
-        const res = await client.queries.pages({ relativePath });
-        return {
-          query: res.query,
-          data: res.data,
-          variables: res.variables,
-        };
-      } catch (error) {
-        console.log(`Chinese version not found, falling back to English for ${product}`);
-      }
-    }
-    
-    // Default English version
-    relativePath = `${product}/home.json`;
-    const res = await client.queries.pages({ relativePath });
-    return {
-      query: res.query,
-      data: res.data,
-      variables: res.variables,
-    };
-  } catch (error) {
-    console.error("Error fetching TinaCMS data:", error);
-    throw new Error(`Could not fetch data for ${product}/home.json`);
-  }
-}

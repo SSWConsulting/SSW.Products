@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
-import { headers } from 'next/headers';
+import { getLocale } from "../../utils/i18n";
 import "../globals.css";
 
 const inter = Inter({
@@ -11,10 +11,6 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-function getLocaleFromPath(): string {
-  const headersList = headers();
-  return headersList.get('x-language') || 'en';
-}
 
 export default function RootLayout({
   children,
@@ -24,7 +20,7 @@ export default function RootLayout({
   params: { product: string };
 }) {
   const googleTagId = getGoogleTagId(params.product);
-  const locale = getLocaleFromPath();
+  const locale = getLocale();
   const htmlLang = locale === 'zh' ? 'zh-CN' : 'en';
 
   return (
