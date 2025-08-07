@@ -23,7 +23,6 @@ const getTitlesInTenant = cache(async (product: string, locale?: string) => {
       
       const inCurrentTenant = curr?.node?._sys.path.includes(pathToCheck);
       
-      // For English (default), exclude zh paths
       const isCorrectLanguage = locale === 'zh' 
         ? curr?.node?._sys.path.includes(`/blogs/${product}/zh`)
         : !curr?.node?._sys.path.includes(`/blogs/${product}/zh`);

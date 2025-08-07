@@ -99,3 +99,52 @@ export async function getBlogIndexWithFallback(
     notFound();
   }
 }
+
+export async function getBlogWithFallback(
+  product: string,
+  slug: string,
+  locale: string = 'en',
+  options?: {
+    fetchOptions?: {
+      next?: {
+        revalidate?: number;
+      };
+    };
+  }
+) {
+  try {
+    let relativePath: string;
+    
+    if (locale === 'zh') {
+      relativePath = `${product}/zh/${slug}.mdx`;
+      
+      try {
+        const res = await client.queries.blogs(
+          { relativePath },
+          options
+        );
+        
+        if (res?.data?.blogs) {
+          return res;
+        }
+      } catch (error) {
+        console.log(`Chinese blog post not found, falling back to English for ${product}/${slug}`);
+      }
+    }
+    
+    relativePath = `${product}/${slug}.mdx`;
+    const res = await client.queries.blogs(
+      { relativePath },
+      options
+    );
+    
+    if (!res?.data?.blogs) {
+      return null;
+    }
+    
+    return res;
+  } catch (error) {
+    console.error("Error fetching blog post:", error);
+    return null;
+  }
+}
