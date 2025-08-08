@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import client from "../../../tina/__generated__/client";
+import { getLocale } from "../../../utils/i18n";
 import DocPost from "./[slug]/page";
 
 interface DocsIndex {
@@ -31,9 +32,10 @@ export async function generateStaticParams() {
 export default async function DocsIndex({ params }: DocsIndex) {
   const { product } = params;
   const defaultSlug = "introduction";
+  const locale = getLocale();
 
   try {
-    return <DocPost params={{ product, slug: defaultSlug }} />;
+    return <DocPost params={{ product, slug: defaultSlug }} locale={locale} />;
   } catch (error) {
     console.error("Error rendering doc post:", error);
     return notFound();

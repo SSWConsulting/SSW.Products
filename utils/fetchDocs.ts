@@ -51,32 +51,53 @@ const getDocsForProduct = async (product: string, offset = 0, limit = 5) => {
   }
 };
 
-const getDocsTableOfContents = async (product: string) => {
-  const res = await client.queries.docsTableOfContents({
-    relativePath: `${product}/toc.mdx`,
-  });
-  return res.data.docsTableOfContents;
+const getDocsTableOfContents = async (product: string, locale: string = 'en') => {
+  const paths = locale === 'zh' 
+    ? [`${product}/zh/toc.mdx`, `${product}/toc.mdx`]
+    : [`${product}/toc.mdx`];
+
+  for (const relativePath of paths) {
+    try {
+      const res = await client.queries.docsTableOfContents({ relativePath });
+      return res.data.docsTableOfContents;
+    } catch (error) {
+      if (relativePath.includes('/zh/')) {
+        console.log(`Chinese docs table of contents not found, falling back to English for ${product}`);
+      } else {
+        console.error("Error fetching docs table of contents:", error);
+        throw error;
+      }
+    }
+  }
 };
 
-const getDocPost = async (product: string, slug: string) => {
-  try {
-    const res = await client.queries.docs({
-      relativePath: `${product}/${slug}.mdx`,
-    });
+const getDocPost = async (product: string, slug: string, locale: string = 'en') => {
+  const paths = locale === 'zh' 
+    ? [`${product}/zh/${slug}.mdx`, `${product}/${slug}.mdx`]
+    : [`${product}/${slug}.mdx`];
 
-    if (!res?.data?.docs) {
-      return null;
+  for (const relativePath of paths) {
+    try {
+      const res = await client.queries.docs({ relativePath });
+      
+      if (res?.data?.docs) {
+        return {
+          query: res.query,
+          variables: res.variables,
+          docs: res.data.docs as Docs,
+        };
+      }
+    } catch (error) {
+      if (relativePath.includes('/zh/')) {
+        console.log(`Chinese doc post not found, falling back to English for ${product}/${slug}`);
+      } else {
+        console.error("Error fetching doc post:", error);
+        return null;
+      }
     }
-
-    return {
-      query: res.query,
-      variables: res.variables,
-      docs: res.data.docs as Docs,
-    };
-  } catch (error) {
-    console.error("Error fetching doc post:", error);
-    return null;
   }
+  
+  return null;
 };
 
 export { getDocPost, getDocsForProduct, getDocsTableOfContents };

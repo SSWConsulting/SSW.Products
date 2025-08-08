@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import client from "../../../../tina/__generated__/client";
 import { DocsTableOfContents } from "../../../../tina/__generated__/types";
+import { getLocale } from "../../../../utils/i18n";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
 import DocPostClient from "./DocPostClient";
 
@@ -12,11 +13,20 @@ interface DocPostProps {
     slug: string;
     product: string;
   };
+  locale?: string;
 }
 
-export async function generateMetadata({ params }: DocPostProps) {
+interface DocPostMetadataProps {
+  params: {
+    slug: string;
+    product: string;
+  };
+}
+
+export async function generateMetadata({ params }: DocPostMetadataProps) {
   const { product, slug } = params;
-  const docs = await getDocPost(product, slug);
+  const locale = getLocale();
+  const docs = await getDocPost(product, slug, locale);
   const metadata = setPageMetadata(docs?.docs?.seo, product);
   return metadata;
 }
@@ -36,10 +46,11 @@ interface PaginationLink {
   slug: string;
 }
 
-export default async function DocPost({ params }: DocPostProps) {
+export default async function DocPost({ params, locale }: DocPostProps) {
   const { slug, product } = params;
-  const documentData = await getDocPost(product, slug);
-  const tableOfContentsData = await getDocsTableOfContents(product);
+  const currentLocale = locale || getLocale();
+  const documentData = await getDocPost(product, slug, currentLocale);
+  const tableOfContentsData = await getDocsTableOfContents(product, currentLocale);
 
   const paginationData = getPaginationData(
     tableOfContentsData as DocsTableOfContents,
