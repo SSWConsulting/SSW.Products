@@ -82,7 +82,6 @@ export default async function DocPost({ params, locale }: DocPostProps) {
       <PaginationLinks
         prev={paginationData.prev}
         next={paginationData.next}
-        product={product}
         locale={currentLocale}
       />
     </>
@@ -95,12 +94,10 @@ export const revalidate = 600;
 function PaginationLinks({
   prev,
   next,
-  product,
   locale,
 }: {
   prev: PaginationLink | null;
   next: PaginationLink | null;
-  product: string;
   locale: string;
 }) {
   return (
