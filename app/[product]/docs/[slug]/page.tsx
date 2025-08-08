@@ -83,6 +83,7 @@ export default async function DocPost({ params, locale }: DocPostProps) {
         prev={paginationData.prev}
         next={paginationData.next}
         product={product}
+        locale={currentLocale}
       />
     </>
   );
@@ -95,16 +96,18 @@ function PaginationLinks({
   prev,
   next,
   product,
+  locale,
 }: {
   prev: PaginationLink | null;
   next: PaginationLink | null;
   product: string;
+  locale: string;
 }) {
   return (
     <div className="flex justify-between py-12 rounded-lg overflow-hidden">
       {prev ? (
         <Link
-          href={`/${product}/docs/${prev.slug}`}
+          href={`${locale === 'zh' ? '/zh' : ''}/docs/${prev.slug}`}
           className="flex gap-2 items-center text-white/60 hover:text-white transition-all duration-300"
         >
           <FaArrowLeft />
@@ -116,7 +119,7 @@ function PaginationLinks({
 
       {next ? (
         <Link
-          href={`/${product}/docs/${next.slug}`}
+          href={`${locale === 'zh' ? '/zh' : ''}/docs/${next.slug}`}
           className="flex gap-2 text-end items-center text-white/60 hover:text-white transition-all duration-300 "
         >
           <span>{next.title}</span>
