@@ -8,7 +8,6 @@ type ActionButton = {
   url: string;
   variant: ButtonVariant;
   size: ButtonSize;
-  disabled: boolean;
 };
 
 type ActionsProps = {
@@ -36,8 +35,7 @@ export const ActionButton = ({
         variantMap[action.variant],
         className,
         sizeMap[action.size],
-        `whitespace-nowrap inline-flex items-center justify-center rounded-lg transition-all duration-200 font-semibold uppercase`,
-        action.disabled ? "opacity-50 cursor-not-allowed pointer-events-none" : "hover:opacity-80"
+        `whitespace-nowrap inline-flex items-center rounded-lg transition-all duration-200 font-semibold uppercase`,
       )}
       target="_blank"
     >

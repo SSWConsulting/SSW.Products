@@ -10,11 +10,12 @@
           "planDescription": "For small team",
           "price": "$0",
           "subPriceText": "1 - 5 units",
-          "priceDescription": "* Install Through Azure Marketplace",
+          "priceDescription": "* Units are calculated based on the number of mailboxes",
           "isRecommended": true,
+          "recommendation": "3 Months Free Trial",
           "listTitle": "Get started with",
           "listItems": [
-            "Full access to AI features",
+            "Basic Tag features",
             "Full webhook support"
           ],
           "buttons": [
@@ -32,22 +33,20 @@
           "planDescription": "For large team",
           "price": "$1 / unit / month",
           "subPriceText": "5+ units",
-          "priceDescription": "* Install Through Azure Marketplace",
+          "priceDescription": "* Units are calculated based on the number of mailboxes",
           "isRecommended": false,
           "listTitle": "Get started with",
           "listItems": [
             "{Everything in Free, plus}",
+            "Advanced AI-powerd Tag features",
             "Unlimited team size",
             "Unlimited mailboxes for email analysis"
           ],
           "buttons": [
             {
-              "label": "Under development",
-              "variant": "outlinedWhite",
-              "size": "medium",
-              "url": "#",
-              "disabled": true,
-              "_template": "actions"
+              "Title": "Join Waitlist",
+              "JotFormId": "233468468973070",
+              "_template": "BookingButton"
             }
           ]
         }

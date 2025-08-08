@@ -23,6 +23,5 @@ export const actionsButtonTemplate = {
   fields: [
     ...genericButtonTemplateFields.fields,
     { name: 'url', label: 'URL', type: 'string' as const },
-    { name: 'disabled', label: 'Disabled', type: 'boolean' as const },
   ],
 };
