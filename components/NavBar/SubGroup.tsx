@@ -10,7 +10,7 @@ const SubGroupContent = ({ children }: { children: React.ReactNode }) => {
 
 const SubGroupTrigger = ({ label }: { label: string }) => {
   return (
-    <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center w-full gap-2 px-3  rounded  transition-colors">
+    <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center w-full gap-2 px-3  rounded  transition-colors whitespace-nowrap writing-mode-horizontal">
       {label}
       <FaChevronRight className="text-red-500 text-sm rotate-90 transition-all duration-300" />
     </NavigationMenu.Trigger>

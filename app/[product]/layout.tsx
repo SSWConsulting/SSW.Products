@@ -3,12 +3,14 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
+import { getLocale } from "../../utils/i18n";
 import "../globals.css";
 
 const inter = Inter({
   weight: ["400", "600", "700"],
   subsets: ["latin"],
 });
+
 
 export default function RootLayout({
   children,
@@ -18,9 +20,11 @@ export default function RootLayout({
   params: { product: string };
 }) {
   const googleTagId = getGoogleTagId(params.product);
+  const locale = getLocale();
+  const htmlLang = locale === 'zh' ? 'zh-CN' : 'en';
 
   return (
-    <html lang="en">
+    <html lang={htmlLang}>
       <head>
         <link rel="icon" href={`/favicons/${params.product}.ico`} />
 
@@ -44,10 +48,10 @@ export default function RootLayout({
         className={`min-h-screen flex-col flex ${inter.className} relative bg-gray-light`}
       >
         <main className="overflow-clip grow">
-          <NavBarServer product={params.product} />
+          <NavBarServer product={params.product} locale={locale} />
           {children}
         </main>
-        <FooterServer product={params.product} />
+        <FooterServer product={params.product} locale={locale} />
       </body>
     </html>
   );

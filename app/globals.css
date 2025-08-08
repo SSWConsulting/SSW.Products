@@ -96,6 +96,10 @@ strong {
   font-weight: bold;
 }
 
+.writing-mode-horizontal {
+  writing-mode: horizontal-tb;
+}
+
 @layer base {
   button:not(:disabled),
   [role="button"]:not(:disabled) {
