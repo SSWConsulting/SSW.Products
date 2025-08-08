@@ -1,5 +1,26 @@
 import { NextRequest, NextResponse } from "next/server";
 
+function detectLanguage(pathname: string): string {
+  return pathname.startsWith('/zh') ? 'zh' : 'en';
+}
+
+function cleanPathFromLanguage(pathname: string): string {
+  return pathname.startsWith('/zh') ? pathname.substring(3) : pathname;
+}
+
+function parsePathSegments(pathname: string): string[] {
+  return pathname
+    .split("/")
+    .filter((segment) => segment.length > 0);
+}
+
+function createRewriteResponse(targetPath: string, language: string, request: NextRequest): NextResponse {
+  const rewriteUrl = new URL(targetPath, request.url);
+  const response = NextResponse.rewrite(rewriteUrl);
+  response.headers.set('x-language', language);
+  return response;
+}
+
 export function middleware(request: NextRequest) {
   const hostname = request.headers.get("host");
   const { pathname } = request.nextUrl;
@@ -21,41 +42,35 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  const language = detectLanguage(pathname);
+
   if (isLocal || isStaging) {
-    return handleLocalRequest(pathname, productList, request);
+    return handleLocalRequest(pathname, productList, request, language);
   } else {
-    return handleProductionRequest(hostname, productList, pathname, request);
+    return handleProductionRequest(hostname, productList, pathname, request, language);
   }
 }
 
 function handleLocalRequest(
   pathname: string,
   productList: any[],
-  request: NextRequest
+  request: NextRequest,
+  language: string
 ) {
-  const pathSegments = pathname
-    .split("/")
-    .filter((segment) => segment.length > 0);
+  const pathSegments = parsePathSegments(pathname);
   const isProduct = productList.some(
     (product) => product.product === pathSegments[0]
   );
 
-  const language = pathname.startsWith('/zh') ? 'zh' : 'en';
-
   if (isProduct) {
-    const rewriteUrl = new URL(`/${pathSegments.join("/")}`, request.url);
-    const response = NextResponse.rewrite(rewriteUrl);
-    response.headers.set('x-language', language);
-    return response;
+    return createRewriteResponse(`/${pathSegments.join("/")}`, language, request);
   } else {
-    const cleanPath = pathname.startsWith('/zh') ? pathname.substring(3) : pathname;
-    const rewriteUrl = new URL(
+    const cleanPath = cleanPathFromLanguage(pathname);
+    return createRewriteResponse(
       `/${process.env.DEFAULT_PRODUCT}${cleanPath}`,
-      request.url
+      language,
+      request
     );
-    const response = NextResponse.rewrite(rewriteUrl);
-    response.headers.set('x-language', language);
-    return response;
   }
 }
 
@@ -63,17 +78,13 @@ function handleProductionRequest(
   hostname: string | null,
   productList: any[],
   pathname: string,
-  request: NextRequest
+  request: NextRequest,
+  language: string
 ) {
-  const language = pathname.startsWith('/zh') ? 'zh' : 'en';
-
   for (const product of productList) {
     if (hostname === product.domain) {
-      const cleanPath = pathname.startsWith('/zh') ? pathname.substring(3) : pathname;
-      const rewriteUrl = new URL(`/${product.product}${cleanPath}`, request.url);
-      const response = NextResponse.rewrite(rewriteUrl);
-      response.headers.set('x-language', language);
-      return response;
+      const cleanPath = cleanPathFromLanguage(pathname);
+      return createRewriteResponse(`/${product.product}${cleanPath}`, language, request);
     }
   }
   return NextResponse.next();
