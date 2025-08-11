@@ -28,8 +28,8 @@ interface TextNode {
         const paragraphNode = { ...node, children: [] }; //clone the node structure for the blurb
         for (const child of node.children) {
           if (child.type === 'text' && typeof child.text === 'string') {
-            //split the text into sentences based on common punctuation (.!?)
-            const sentences = child.text.match(/[^\.!\?]+[\.!\?]+/g) || [];
+            //split the text into sentences based on common punctuation (.!? and Chinese 。！？)
+            const sentences = child.text.match(/[^\.!\?。！？]+[\.!\?。！？]+/g) || [];
             for (const sentence of sentences) {
               if (sentenceCount < sentenceLimit) {
                 paragraphNode.children.push({ type: 'text', text: sentence });

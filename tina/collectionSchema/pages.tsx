@@ -65,7 +65,13 @@ export const PagesSchema: Collection = {
   format: "json",
   // This ui is needed because of the dynamic routing with [filename] -> tina is looking for a static path (i.e pages/TimePro, pages/YakShaver)
   ui: {
-    router: ({ document }) => {
+    router: ({ document, collection }) => {
+      const relativePath = document?._sys.relativePath;
+      if (relativePath) {
+        return `/${relativePath
+          .replace(`.${collection.format}`, '')
+          .split('/').slice(1).join('/')}`;
+      }
       return `/${document?._sys.filename}`;
     },
   },
