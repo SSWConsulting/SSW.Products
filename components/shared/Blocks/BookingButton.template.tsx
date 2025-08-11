@@ -32,5 +32,10 @@ export const jotFormBookingButtonSchema: Template = {
         { value: "outlinedWhite", label: "Outlined White" },
       ],
     },
+    {
+      name: "className",
+      label: "ClassName",
+      type: "string",
+    },
   ],
 };

@@ -11,6 +11,7 @@ import { ShineBorder } from "@/components/magicui/shine-border";
 import { BsCheck } from "react-icons/bs";
 import { BookingButton } from "./BookingButton";
 import { ButtonVariant } from "./buttonEnum";
+import { cn } from "@/lib/utils";
 
 interface PlanAction {
   label: string;
@@ -23,6 +24,7 @@ interface PlanAction {
 interface JotFormAction {
   Title: string;
   JotFormId: string;
+  className?: string;
   __typename: string;
 }
 
@@ -45,6 +47,7 @@ interface Plan {
   timeSaved: string;
   listTitle: string;
   listItems: string[];
+  recommendation?: string;
 }
 
 type PricingData = {
@@ -61,6 +64,18 @@ interface PricingProps {
 
 const Pricing = ({ data }: PricingProps) => {
   const { title, description, plans, addOns } = data;
+
+  const getGridClasses = (planCount: number) => {
+    if (planCount === 1) {
+      return "grid grid-cols-1 gap-8 xl:grid-cols-3 lg:justify-items-center px-12 lg:px-12";
+    } else if (planCount === 2) {
+      return "grid grid-cols-1 gap-8 lg:grid-cols-2 px-12 lg:px-12";
+    } else if (planCount === 3) {
+      return "grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3 px-12 lg:px-12";
+    } else {
+      return "grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-4 px-12 lg:px-12";
+    }
+  };
 
   return (
     <div className="pricing-component first:pt-20 container mx-auto px-4 mb-14 lg:mb-4 md:mt-0 lg:pb-20">
@@ -82,11 +97,16 @@ const Pricing = ({ data }: PricingProps) => {
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-4 px-12 lg:px-12">
+      <div className={getGridClasses(plans?.length || 0)}>
         {plans &&
           plans.length > 0 &&
           plans.map((plan, index) => (
-            <div className="flex flex-col h-full" key={index}>
+            <div
+              className={cn(
+                "flex flex-col h-full",
+                plans.length === 1 ? "first:xl:col-start-2" : "")}
+              key={index}
+            >
               {plan.isRecommended ? (
                 <div className="relative h-full flex flex-col mt-9">
                   <ShineBorder
@@ -186,7 +206,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
 
         {isRecommended && (
           <div className="text-white text-center text-xs bg-linear-to-br from-red-400 to-red-700 rounded-full h-auto px-4 py-1 -mt-1">
-            Most Popular
+            { plan.recommendation || "Most Popular" }
           </div>
         )}
       </div>
@@ -211,7 +231,6 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
                   <Actions
                     //@ts-expect-error investigate after
                     actions={[plan.buttons[0]]}
-                    className="w-full"
                   />
                 );
               case "PagesPageBlocksPricingPlansButtonsBookingButton":
@@ -225,6 +244,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
                           ? ButtonVariant.SolidRed
                           : ButtonVariant.OutlinedWhite
                       }
+                      className={plan.buttons[0].className}
                     />
                   );
                 }

@@ -192,12 +192,12 @@
     },
     {
       "title": "Simple, Transparent Pricing",
-      "desc": "One shared credit pool. Pay once, and anyone in your organisation can report issues. Zero per seat fees - just use your credits.",
+      "desc": "One shared pool of shaves. Pay once, and anyone in your organisation can report issues. Zero per seat fees - just shave away!",
       "tiers": [
         {
           "tier": "Starter ",
           "description": [
-            "15 credits per month",
+            "15 shaves per month",
             "For individuals"
           ],
           "price": 0,
@@ -214,7 +214,7 @@
         {
           "tier": "Team",
           "description": [
-            "100 credits per month",
+            "100 shaves per month",
             "For growing teams"
           ],
           "price": 39,
@@ -231,7 +231,7 @@
         {
           "tier": "Growth",
           "description": [
-            "500 credits per month",
+            "500 shaves per month",
             "For larger organizations"
           ],
           "price": 189,
@@ -248,7 +248,7 @@
         {
           "tier": "Enterprise",
           "description": [
-            "Custom credit allocation",
+            "Custom shaves allocation",
             "For custom solutions"
           ],
           "price": 99999,
