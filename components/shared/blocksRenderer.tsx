@@ -9,6 +9,7 @@ import FAQ from "./Blocks/FAQ";
 import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
 import Hero from "./Blocks/Hero/Hero";
+import MediaHero from "./Blocks/MediaHero";
 import Pricing from "./Blocks/Pricing";
 import RichText from "./Blocks/RichText";
 import { Timeline } from "./Blocks/Timeline/Timeline";
@@ -97,6 +98,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
 
       case "PagesPageBlocksTryItNow":
         return <TryItNow {...block} />;
+      case "PagesPageBlocksMediaHero":
+        return <MediaHero key={index} {...block} />;
       default:
         return null;
     }

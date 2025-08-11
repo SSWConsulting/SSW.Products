@@ -18,6 +18,7 @@ import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImag
 import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
 import { RichTextTemplate } from "../../components/shared/Blocks/RichText.template";
 import TryItNowTemplate from "../../components/shared/Blocks/TryItNow.template";
+import { MediaHeroTemplate } from "../../components/shared/Blocks/MediaHero.template";
 import { seoInformation } from "../shared/SEOInformation";
 
 export const bottomPaddingOptions = {
@@ -93,6 +94,7 @@ export const PagesSchema: Collection = {
       },
       templates: [
         HeroTemplate,
+        MediaHeroTemplate,
         FeaturesTemplate,
         FAQTemplate,
         CarouselFeatureTemplate,

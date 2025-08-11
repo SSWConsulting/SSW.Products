@@ -1,0 +1,17 @@
+{
+  "title": "YakShaver Logo and Brand Assets",
+  "pageBlocks": [
+    {
+      "heroTitle": "YakShaver Logo and Brand Assets",
+      "heroDescription": "Download YakShaver Brand Guide to explore comprehensive guidelines on our visual identity, messaging, and design assets. Get all the insights you need to maintain brand consistency and make a strong impact.",
+      "heroButton": {
+        "label": "DOWNLOAD BRAND GUIDE",
+        "iconSrc": "/svg/file-download.svg",
+        "href": "https://yakshaver.ai/",
+        "target": "_blank"
+      },
+      "dateText": "Last updated 10/08/2025",
+      "_template": "mediaHero"
+    }
+  ]
+}
