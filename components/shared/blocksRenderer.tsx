@@ -10,6 +10,7 @@ import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
 import Hero from "./Blocks/Hero/Hero";
 import ImageGrid from "./Blocks/ImageGrid";
+import ImageShowcase from "./Blocks/ImageShowcase";
 import MediaHero from "./Blocks/MediaHero";
 import Pricing from "./Blocks/Pricing";
 import RichText from "./Blocks/RichText";
@@ -30,6 +31,8 @@ interface Block {
     pngSrc?: string;
     alt?: string;
   }>;
+  showcaseImages?: string[];
+  showcaseDescription?: string;
   itemsPerRow?: number;
 }
 
@@ -110,6 +113,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <MediaHero key={index} {...block} />;
       case "PagesPageBlocksImageGrid":
         return <ImageGrid key={index} {...block} />;
+      case "PagesPageBlocksImageShowcase":
+        return <ImageShowcase key={index} showcaseImages={block.showcaseImages} title={block.title} showcaseDescription={block.showcaseDescription} />;
       default:
         return null;
     }

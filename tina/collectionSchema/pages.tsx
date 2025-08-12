@@ -20,6 +20,7 @@ import { RichTextTemplate } from "../../components/shared/Blocks/RichText.templa
 import TryItNowTemplate from "../../components/shared/Blocks/TryItNow.template";
 import { MediaHeroTemplate } from "../../components/shared/Blocks/MediaHero.template";
 import { ImageGridTemplate } from "../../components/shared/Blocks/ImageGrid.template";
+import { ImageShowcaseTemplate } from "../../components/shared/Blocks/ImageShowcase.template";
 import { seoInformation } from "../shared/SEOInformation";
 
 export const bottomPaddingOptions = {
@@ -97,6 +98,7 @@ export const PagesSchema: Collection = {
         HeroTemplate,
         MediaHeroTemplate,
         ImageGridTemplate,
+        ImageShowcaseTemplate,
         FeaturesTemplate,
         FAQTemplate,
         CarouselFeatureTemplate,
