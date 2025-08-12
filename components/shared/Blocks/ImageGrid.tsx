@@ -10,12 +10,16 @@ interface ImageItem {
 }
 
 interface ImageGridProps {
+  title?: string;
+  gridDescription?: string;
   images?: ImageItem[];
   itemsPerRow?: number;
   className?: string;
 }
 
 const ImageGrid = ({
+  title,
+  gridDescription,
   images = [],
   itemsPerRow = 3,
   className = "",
@@ -44,27 +48,42 @@ const ImageGrid = ({
   };
 
   return (
-    <div className={`w-full py-16 px-6 ${className}`}>
-      <Container size="medium" className="max-w-7xl mx-auto">
-        <div className={`grid ${getGridCols()} gap-6`}>
-          {images?.map((image, index) => {
+    <div className={`w-[68%] mx-auto ${className}`}>
+      {/* Title and Description Section */}
+      {(title || gridDescription) && (
+        <div className="text-center mb-12">
+          {title && (
+            <h2 className="text-[32px] font-semibold text-white mb-1">
+              {title}
+            </h2>
+          )}
+          {gridDescription && (
+            <p className="text-[14px] text-white font-medium leading-relaxed max-w-3xl mx-auto">
+              {gridDescription}
+            </p>
+          )}
+        </div>
+      )}
+
+      <div className={`grid ${getGridCols()} gap-6`}>
+        {images?.map((image, index) => {
             const displaySrc = image.svgSrc || image.pngSrc;
             if (!displaySrc) return null;
 
             return (
               <div
                 key={image.id || index}
-                className="relative group overflow-hidden rounded-2xl"
+                className="relative group overflow-hidden rounded-xl"
               >
                 <Image
                   src={displaySrc}
                   alt={image.alt || ""}
                   width={400}
                   height={300}
-                  className="w-full h-auto object-contain rounded-2xl"
+                  className="w-full h-auto object-contain rounded-xl"
                 />
 
-                <div className="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl">
+                <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-90 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-xl">
                   {image.svgSrc && (
                     <button
                       onClick={() => handleDownload(image.svgSrc!, 'image.svg')}
@@ -89,7 +108,6 @@ const ImageGrid = ({
             );
           })}
         </div>
-      </Container>
     </div>
   );
 };

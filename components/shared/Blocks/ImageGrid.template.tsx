@@ -5,6 +5,21 @@ export const ImageGridTemplate: Template = {
   name: "imageGrid",
   fields: [
     {
+      type: "string",
+      label: "Title",
+      name: "title",
+      description: "Optional title displayed above the image grid",
+    },
+    {
+      type: "string",
+      label: "Description",
+      name: "gridDescription",
+      description: "Optional description displayed below the title",
+      ui: {
+        component: "textarea",
+      },
+    },
+    {
       type: "object",
       label: "Images",
       name: "images",
