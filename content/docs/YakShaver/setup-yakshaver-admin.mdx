@@ -8,22 +8,25 @@ date: '2025-08-11T14:00:00.000Z'
 YakShaver connects to your Microsoft 365 tenant using Microsoft Entra ID. It’s a multi‑tenant cloud app that uses the admin‑consent flow to request Microsoft Graph application permissions (organisation‑wide, service‑to‑service access). Your tenant admin approves access once for your organisation. YakShaver does not create resources in your tenant.
 
 Who is this for
-- Tenant admins who can approve access: Global Administrator or Cloud Application Administrator
-- End users simply sign in to YakShaver after approval (if sign‑in is used), but they don’t grant tenant‑wide access
+
+* Tenant admins who can approve access: Global Administrator or Cloud Application Administrator
+* End users simply sign in to YakShaver after approval (if sign‑in is used), but they don’t grant tenant‑wide access
 
 Application permissions:
-- User.Read.All - read all users' basic profiles across the directory (used to list/select users)
-- Channel.ReadBasic.All - read basic details of Teams channels across the tenant
-- Team.ReadBasic.All - read basic details of Teams across the tenant
-- Files.Read.All - read files across the organisation (used for accessing videos in OneDrive/SharePoint features)
+
+* User.Read.All - read all users' basic profiles across the directory (used to list/select users)
+* Channel.ReadBasic.All - read basic details of Teams channels across the tenant
+* Team.ReadBasic.All - read basic details of Teams across the tenant
+* Files.Read.All - read files across the organisation (used for accessing videos in OneDrive/SharePoint features)
 
 Delegated permissions:
-- profile, openid, email
-- User.Read
 
-Azure DevOps
+* profile, openid, email
+* User.Read
 
-GitHub
+Connect YakShaver to your Azure DevOps projects
+
+Connect YakShaver to your GitHub repositories
 
 Watch a Demo of the Wizard:
 
