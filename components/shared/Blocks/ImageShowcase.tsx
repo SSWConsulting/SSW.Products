@@ -19,11 +19,14 @@ const ImageShowcase = ({ title, gridDescription, showcaseImages, showcaseTitle, 
   const handleDownloadZip = async () => {
     if (!showcaseImages || showcaseImages.length === 0) return;
     
+    const validImages = showcaseImages.filter(image => image && image.trim() !== '');
+    if (validImages.length === 0) return;
+    
     try {
       const zip = new JSZip();
       
-      for (let i = 0; i < showcaseImages.length; i++) {
-        const response = await fetch(showcaseImages[i]);
+      for (let i = 0; i < validImages.length; i++) {
+        const response = await fetch(validImages[i]);
         const blob = await response.blob();
         const fileName = `image_${i + 1}.${blob.type.split('/')[1] || 'jpg'}`;
         zip.file(fileName, blob);
@@ -46,13 +49,13 @@ const ImageShowcase = ({ title, gridDescription, showcaseImages, showcaseTitle, 
     }
   };
 
-  if (!showcaseImages || showcaseImages.length === 0) {
-    return null;
-  }
+  const firstImage = showcaseImages?.[0];
+  const hasValidImage = firstImage && firstImage.trim() !== '';
+  
+  const validImagesCount = showcaseImages?.filter(image => image && image.trim() !== '').length || 0;
 
   return (
-    <div className="w-[68%] mx-auto pb-8">
-      {/* Title and Description Section */}
+    <div className="w-[68%] mx-auto py-8">
       {(title || gridDescription) && (
         <div className="text-center mb-12">
           {title && (
@@ -71,36 +74,38 @@ const ImageShowcase = ({ title, gridDescription, showcaseImages, showcaseTitle, 
       <div className="w-full">
         <div className="max-w-4xl mx-auto">
           <div className="bg-black rounded-2xl p-4">
-            <div 
-              className="relative overflow-hidden rounded-2xl mb-6"
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              <Image
-                src={showcaseImages[0]}
-                alt="Showcase image"
-                width={800}
-                height={400}
-                className="w-full h-auto object-cover rounded-2xl"
-              />
-              
-              <div className={`absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90' : 'opacity-0'}`}>
-                <button
-                  onClick={handleDownloadZip}
-                  className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
-                >
-                  <Download className="w-5 h-5" />
-                  Download ZIP ({showcaseImages.length} images)
-                </button>
+            {hasValidImage && (
+              <div 
+                className="relative overflow-hidden rounded-2xl mb-6"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <Image
+                  src={firstImage}
+                  alt="Showcase image"
+                  width={800}
+                  height={400}
+                  className="w-full h-auto object-cover rounded-2xl"
+                />
+                
+                <div className={`absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90' : 'opacity-0'}`}>
+                  <button
+                    onClick={handleDownloadZip}
+                    className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
+                  >
+                    <Download className="w-5 h-5" />
+                    Download ZIP ({validImagesCount} images)
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
 
             {showcaseTitle && (
               <h2 className="text-white text-2xl font-bold mb-3">{showcaseTitle}</h2>
             )}
 
             {showcaseDescription && (
-              <p className="text-gray-300 text-base">{showcaseDescription}</p>
+              <p className="text-gray-300 text-sm">{showcaseDescription}</p>
             )}
           </div>
         </div>

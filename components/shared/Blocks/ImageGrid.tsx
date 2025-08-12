@@ -48,7 +48,7 @@ const ImageGrid = ({
   };
 
   return (
-    <div className={`w-[68%] mx-auto ${className}`}>
+    <div className={`w-[68%] py-8 mx-auto ${className}`}>
       {/* Title and Description Section */}
       {(title || gridDescription) && (
         <div className="text-center mb-12">

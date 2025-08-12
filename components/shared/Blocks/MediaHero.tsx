@@ -25,7 +25,7 @@ const MediaHero = ({
   className = "",
 }: MediaHeroProps) => {
   return (
-    <div className={`w-full py-20 px-6 ${className}`}>
+    <div className={`w-full py-8 px-6 ${className}`}>
       <Container 
         size="small" 
         className="flex flex-col items-center justify-center text-center w-[50%] max-w-none mx-auto"
