@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "WebFetch(domain:tina.io)",
+      "WebFetch(domain:github.com)",
+      "Bash(npm install:*)",
+      "Bash(yarn add:*)",
+      "Bash(git checkout:*)",
+      "Bash(yarn cache:*)"
+    ],
+    "deny": []
+  }
+}
