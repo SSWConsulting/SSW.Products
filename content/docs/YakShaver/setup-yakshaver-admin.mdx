@@ -24,7 +24,28 @@ Delegated permissions:
 * profile, openid, email
 * User.Read
 
-Connect YakShaver to your Azure DevOps projects
+## Connect YakShaver to Azure DevOps (optional)
+
+YakShaver can connect to your Azure DevOps organization using Microsoft Entra ID for enhanced project management features. It's a multi‑tenant cloud app that uses the admin‑consent flow to request Azure DevOps application permissions (organisation‑wide access to projects, users, and work items). Your tenant admin approves access once for your organisation. YakShaver does not create resources in your Azure DevOps tenant.
+
+Who is this for
+
+* Tenant admins who can approve access: Global Administrator, Cloud Application Administrator, or Azure DevOps Organization Administrator
+* End users simply sign in to YakShaver after approval, but they don't grant organization‑wide access
+
+Application permissions:
+
+* vso.graph - read organizational structure, groups, and team memberships across Azure DevOps (used to understand your org structure)
+* vso.identity - read user and group identity information across the organization (used to identify users and permissions)
+* vso.memberentitlementmanagement - manage user licenses and access levels organization‑wide (used to assign proper permissions)
+* vso.profile - read and write user profile information across Azure DevOps (used to manage user settings)
+* vso.project - read and manage projects, teams, and project settings organization‑wide (used to access and configure projects)
+* vso.work\_write - create, read, update work items, boards, and queries across all projects (core functionality for work management)
+
+Delegated permissions:
+
+* User.Read - read the signed‑in user's basic profile from Microsoft Graph
+* user\_impersonation - access Azure DevOps services on behalf of the signed‑in user
 
 Connect YakShaver to your GitHub repositories
 
