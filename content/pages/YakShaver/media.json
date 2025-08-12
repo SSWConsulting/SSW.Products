@@ -46,16 +46,13 @@
       "_template": "imageGrid"
     },
     {
-      "textAlign": "Center",
-      "body": "## Backgrounds\n\nDownload YakShaver official backgrounds\n",
-      "_template": "richText"
-    },
-    {
+      "title": "Backgrounds",
+      "gridDescription": "Download YakShaver official backgrounds",
       "showcaseImages": [
         "/Browser2.png",
         "/Browser1.png"
       ],
-      "title": "YakShaver gradient background",
+      "showcaseTitle": "YakShaver gradient background",
       "showcaseDescription": "To ensure our brand image is effectively integrated without overwhelming the viewer, it should occupy no more than one-third of the screen in any digital or print media. This balance allows for other essential content to be clearly communicated while maintaining our brand’s presence. ",
       "_template": "imageShowcase"
     }

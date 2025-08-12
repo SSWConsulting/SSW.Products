@@ -22,6 +22,7 @@ interface Block {
   __typename: string;
   title?: string | null;
   description?: string | null;
+  gridDescription?: string | null;
   allPlans?: { title: string | null }[] | null;
   plans?: Plan[] | null;
   featureItem?: null | FeatureItem[];
@@ -32,6 +33,7 @@ interface Block {
     alt?: string;
   }>;
   showcaseImages?: string[];
+  showcaseTitle?: string;
   showcaseDescription?: string;
   itemsPerRow?: number;
 }
@@ -114,7 +116,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksImageGrid":
         return <ImageGrid key={index} {...block} />;
       case "PagesPageBlocksImageShowcase":
-        return <ImageShowcase key={index} showcaseImages={block.showcaseImages} title={block.title} showcaseDescription={block.showcaseDescription} />;
+        return <ImageShowcase key={index} title={block.title} gridDescription={block.gridDescription} showcaseImages={block.showcaseImages} showcaseTitle={block.showcaseTitle} showcaseDescription={block.showcaseDescription} />;
       default:
         return null;
     }

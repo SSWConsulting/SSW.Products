@@ -6,12 +6,14 @@ import { Download, Upload } from "lucide-react";
 import JSZip from "jszip";
 
 interface ImageShowcaseProps {
-  showcaseImages?: string[];
   title?: string;
+  gridDescription?: string;
+  showcaseImages?: string[];
+  showcaseTitle?: string;
   showcaseDescription?: string;
 }
 
-const ImageShowcase = ({ showcaseImages, title, showcaseDescription }: ImageShowcaseProps) => {
+const ImageShowcase = ({ title, gridDescription, showcaseImages, showcaseTitle, showcaseDescription }: ImageShowcaseProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleDownloadZip = async () => {
@@ -49,40 +51,58 @@ const ImageShowcase = ({ showcaseImages, title, showcaseDescription }: ImageShow
   }
 
   return (
-    <div className="w-full py-16 px-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="bg-black rounded-2xl p-8">
-          <div 
-            className="relative overflow-hidden rounded-xl mb-6"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <Image
-              src={showcaseImages[0]}
-              alt="Showcase image"
-              width={800}
-              height={400}
-              className="w-full h-auto object-cover rounded-xl"
-            />
-            
-            <div className={`absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center transition-opacity duration-200 rounded-xl ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-              <button
-                onClick={handleDownloadZip}
-                className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
-              >
-                <Download className="w-5 h-5" />
-                Download ZIP ({showcaseImages.length} images)
-              </button>
-            </div>
-          </div>
-
+    <div className="w-[68%] mx-auto pb-8">
+      {/* Title and Description Section */}
+      {(title || gridDescription) && (
+        <div className="text-center mb-12">
           {title && (
-            <h2 className="text-white text-2xl font-bold mb-3">{title}</h2>
+            <h2 className="text-[32px] font-semibold text-white mb-1">
+              {title}
+            </h2>
           )}
+          {gridDescription && (
+            <p className="text-[14px] text-white font-medium leading-relaxed max-w-3xl mx-auto">
+              {gridDescription}
+            </p>
+          )}
+        </div>
+      )}
 
-          {showcaseDescription && (
-            <p className="text-gray-300 text-base">{showcaseDescription}</p>
-          )}
+      <div className="w-full">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-black rounded-2xl p-4">
+            <div 
+              className="relative overflow-hidden rounded-2xl mb-6"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
+              <Image
+                src={showcaseImages[0]}
+                alt="Showcase image"
+                width={800}
+                height={400}
+                className="w-full h-auto object-cover rounded-2xl"
+              />
+              
+              <div className={`absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90' : 'opacity-0'}`}>
+                <button
+                  onClick={handleDownloadZip}
+                  className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
+                >
+                  <Download className="w-5 h-5" />
+                  Download ZIP ({showcaseImages.length} images)
+                </button>
+              </div>
+            </div>
+
+            {showcaseTitle && (
+              <h2 className="text-white text-2xl font-bold mb-3">{showcaseTitle}</h2>
+            )}
+
+            {showcaseDescription && (
+              <p className="text-gray-300 text-base">{showcaseDescription}</p>
+            )}
+          </div>
         </div>
       </div>
     </div>
