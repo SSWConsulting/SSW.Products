@@ -9,6 +9,7 @@ import FAQ from "./Blocks/FAQ";
 import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
 import Hero from "./Blocks/Hero/Hero";
+import ImageGrid from "./Blocks/ImageGrid";
 import MediaHero from "./Blocks/MediaHero";
 import Pricing from "./Blocks/Pricing";
 import RichText from "./Blocks/RichText";
@@ -23,6 +24,13 @@ interface Block {
   allPlans?: { title: string | null }[] | null;
   plans?: Plan[] | null;
   featureItem?: null | FeatureItem[];
+  images?: Array<{
+    id?: string;
+    svgSrc?: string;
+    pngSrc?: string;
+    alt?: string;
+  }>;
+  itemsPerRow?: number;
 }
 
 interface Plan {
@@ -100,6 +108,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <TryItNow {...block} />;
       case "PagesPageBlocksMediaHero":
         return <MediaHero key={index} {...block} />;
+      case "PagesPageBlocksImageGrid":
+        return <ImageGrid key={index} {...block} />;
       default:
         return null;
     }

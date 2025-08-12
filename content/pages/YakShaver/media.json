@@ -12,6 +12,25 @@
       },
       "dateText": "Last updated 10/08/2025",
       "_template": "mediaHero"
+    },
+    {
+      "textAlign": "Center",
+      "body": "## Logos\n\nDownload the SVG and PNG logo kit\n",
+      "_template": "richText"
+    },
+    {
+      "images": [
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon1.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon1.png"
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon1.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon1.png"
+        }
+      ],
+      "itemsPerRow": 3,
+      "_template": "imageGrid"
     }
   ]
 }
