@@ -15,7 +15,6 @@ interface MediaHeroProps {
   heroDescription?: string;
   heroButton?: MediaHeroButtonProps;
   dateText?: string;
-  className?: string;
 }
 
 const MediaHero = ({
@@ -23,7 +22,6 @@ const MediaHero = ({
   heroDescription,
   heroButton,
   dateText,
-  className = "",
 }: MediaHeroProps) => {
   return (
     <div className="relative max-w-7xl mx-auto">
@@ -50,8 +48,8 @@ const MediaHero = ({
         {heroButton && (
           <div>
             <Link
-              href={heroButton.href || "#"}
-              target={heroButton.target || "_self"}
+              href={heroButton.href}
+              target={heroButton.target}
               className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 rounded-md text-base font-semibold hover:bg-gray-100 transition-all duration-200 shadow-lg"
             >
               {heroButton.iconSrc && (
