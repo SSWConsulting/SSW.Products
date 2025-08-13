@@ -22,12 +22,6 @@ export const ImageShowcaseTemplate: Template = {
       label: "Showcase Images",
       list: true,
       description: "Upload multiple images to showcase",
-      ui: {
-        defaultItem: "",
-        itemProps: (item: any) => ({ 
-          label: item ? `Image: ${item.split('/').pop()}` : "New Image" 
-        }),
-      },
     },
     {
       type: "string",
