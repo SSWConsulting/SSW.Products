@@ -28,7 +28,7 @@ const MediaHero = ({
       <div className="relative" style={{ top: '310px', left: '30px' }}>
         <GradientBackground />
       </div>
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 md:px-12 sm:px-8 medium:px-0 max-w-300 mx-auto pt-20">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 mx-auto max-w-300 md:px-12 sm:px-8 medium:px-0 pt-20">
         {heroTitle && (
           <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-8 leading-tight">
             {heroTitle}

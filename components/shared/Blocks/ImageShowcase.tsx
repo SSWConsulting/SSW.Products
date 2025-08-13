@@ -25,7 +25,7 @@ const ImageShowcase = ({ title, gridDescription, showcaseImage, showcaseTitle, s
   const hasValidImage = showcaseImage && showcaseImage.trim() !== '';
 
   return (
-    <div className="py-8 px-4 md:px-12 sm:px-8 medium:px-0 max-w-300 mx-auto">
+    <div className="py-8 px-4 mx-auto max-w-300 md:px-12 sm:px-8 medium:px-0">
       {(title || gridDescription) && (
         <div className="text-center mb-12">
           {title && (

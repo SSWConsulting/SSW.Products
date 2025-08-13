@@ -89,7 +89,7 @@ const ImageGrid = ({
   );
 
   return (
-    <div className={`py-8 px-4 md:px-12 sm:px-8 medium:px-0 max-w-300 mx-auto ${className}`}>
+    <div className={`py-8 px-4 mx-auto max-w-300 md:px-12 sm:px-8 medium:px-0 ${className}`}>
       {(title || gridDescription) && (
         <div className="text-center mb-12">
           {title && (
