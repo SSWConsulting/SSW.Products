@@ -48,7 +48,7 @@ const ImageGrid = ({
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(blobUrl);
-    } catch (error) {
+    } catch {
       try {
         const link = document.createElement('a');
         link.href = url;
@@ -59,7 +59,7 @@ const ImageGrid = ({
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-      } catch (fallbackError) {
+      } catch {
         window.open(url, '_blank');
       }
     }
