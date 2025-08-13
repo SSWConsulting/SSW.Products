@@ -71,17 +71,17 @@ const ImageGrid = ({
             return (
               <div
                 key={image.id || index}
-                className="relative group overflow-hidden rounded-xl"
+                className="relative group overflow-hidden rounded-2xl"
               >
                 <Image
                   src={displaySrc}
                   alt={image.alt || ""}
                   width={400}
                   height={300}
-                  className="w-full h-auto object-contain rounded-xl"
+                  className="w-full h-auto object-contain rounded-2xl"
                 />
 
-                <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-90 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-xl">
+                <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-90 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl">
                   {image.svgSrc && (
                     <button
                       onClick={() => handleDownload(image.svgSrc!, 'image.svg')}
