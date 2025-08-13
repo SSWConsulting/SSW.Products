@@ -6,11 +6,11 @@ import { Download } from "lucide-react";
 import JSZip from "jszip";
 
 interface ImageShowcaseProps {
-  title?: string;
-  gridDescription?: string;
+  title?: string | null;
+  gridDescription?: string | null;
   showcaseImages?: string[];
-  showcaseTitle?: string;
-  showcaseDescription?: string;
+  showcaseTitle?: string | null;
+  showcaseDescription?: string | null;
 }
 
 const ImageShowcase = ({ title, gridDescription, showcaseImages, showcaseTitle, showcaseDescription }: ImageShowcaseProps) => {

@@ -9,8 +9,8 @@ interface ImageItem {
 }
 
 interface ImageGridProps {
-  title?: string;
-  gridDescription?: string;
+  title?: string | null;
+  gridDescription?: string | null;
   images?: ImageItem[];
   itemsPerRow?: number;
   className?: string;

@@ -116,7 +116,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksImageGrid":
         return <ImageGrid key={index} {...block} />;
       case "PagesPageBlocksImageShowcase":
-        return <ImageShowcase key={index} title={block.title} gridDescription={block.gridDescription} showcaseImages={block.showcaseImages} showcaseTitle={block.showcaseTitle} showcaseDescription={block.showcaseDescription} />;
+        return <ImageShowcase key={index} {...block} />;
       default:
         return null;
     }
