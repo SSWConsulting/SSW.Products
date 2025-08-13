@@ -16,6 +16,12 @@
     {
       "title": "Logos",
       "gridDescription": "Download the SVG and PNG logo kit",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon1.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon1.png"
+        }
+      ],
       "itemsPerRow": 3,
       "_template": "imageGrid"
     },
