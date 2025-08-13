@@ -26,11 +26,13 @@ const MediaHero = ({
   className = "",
 }: MediaHeroProps) => {
   return (
-    <div className={`relative w-full py-8 px-6 ${className}`}>
-      <GradientBackground />
+    <div className="relative max-w-7xl mx-auto">
+      <div className="relative" style={{ top: '310px', left: '30px' }}>
+        <GradientBackground />
+      </div>
       <Container 
         size="small" 
-        className="relative z-10 flex flex-col items-center justify-center text-center w-[50%] max-w-none mx-auto"
+        className="relative z-10 flex flex-col items-center justify-center text-center w-[50%] max-w-none mx-auto pt-20"
       >
         {heroTitle && (
           <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-8 leading-tight">
