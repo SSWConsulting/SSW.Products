@@ -12,7 +12,7 @@ export const DocAndBlogMarkdownStyle: Components<{
       sizeClass = "w-full h-auto max-w-[800px]";
     }
     return (
-      <div className="youtube-container">
+      <div className="youtube-container mb-2">
         <YouTubeEmbed
           className={sizeClass}
           src={props.externalVideoLink}
