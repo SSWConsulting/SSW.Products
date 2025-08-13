@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import Container from "../../Container";
 import { GradientBackground } from "./Hero/GradientBackground";
 
 interface MediaHeroButtonProps {
@@ -29,10 +28,7 @@ const MediaHero = ({
       <div className="relative" style={{ top: '310px', left: '30px' }}>
         <GradientBackground />
       </div>
-      <Container 
-        size="small" 
-        className="relative z-10 flex flex-col items-center justify-center text-center w-[50%] max-w-none mx-auto pt-20"
-      >
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4 md:px-12 sm:px-8 medium:px-0 max-w-300 mx-auto pt-20">
         {heroTitle && (
           <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-8 leading-tight">
             {heroTitle}
@@ -73,7 +69,7 @@ const MediaHero = ({
             {dateText}
           </p>
         )}
-      </Container>
+      </div>
     </div>
   );
 };

@@ -33,7 +33,6 @@ const ImageGrid = ({
   itemsPerRow = 3,
   className = "",
 }: ImageGridProps) => {
-  // 如果没有图片且没有标题和描述，则不显示任何内容
   if (!images?.length && !title && !gridDescription) return null;
 
   const downloadFile = async (url: string, filename: string) => {
@@ -90,7 +89,7 @@ const ImageGrid = ({
   );
 
   return (
-    <div className={`w-[65%] py-8 mx-auto ${className}`}>
+    <div className={`py-8 px-4 md:px-12 sm:px-8 medium:px-0 max-w-300 mx-auto ${className}`}>
       {(title || gridDescription) && (
         <div className="text-center mb-12">
           {title && (
