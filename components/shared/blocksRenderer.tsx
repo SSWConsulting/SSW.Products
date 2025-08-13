@@ -26,16 +26,6 @@ interface Block {
   allPlans?: { title: string | null }[] | null;
   plans?: Plan[] | null;
   featureItem?: null | FeatureItem[];
-  images?: Array<{
-    id?: string;
-    svgSrc?: string;
-    pngSrc?: string;
-    alt?: string;
-  }>;
-  showcaseImages?: string[];
-  showcaseTitle?: string;
-  showcaseDescription?: string;
-  itemsPerRow?: number;
 }
 
 interface Plan {

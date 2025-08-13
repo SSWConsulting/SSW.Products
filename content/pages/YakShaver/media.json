@@ -80,9 +80,8 @@
     {
       "title": "Backgrounds",
       "gridDescription": "Download YakShaver official backgrounds",
-      "showcaseImages": [
-        "/YakShaver/background.png"
-      ],
+      "showcaseImage": "/YakShaver/background.svg",
+      "downloadLink": "",
       "showcaseTitle": "YakShaver gradient background",
       "showcaseDescription": "To ensure our brand image is effectively integrated without overwhelming the viewer, it should occupy no more than one-third of the screen in any digital or print media. This balance allows for other essential content to be clearly communicated while maintaining our brand’s presence. ",
       "_template": "imageShowcase"

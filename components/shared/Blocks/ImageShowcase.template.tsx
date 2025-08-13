@@ -18,10 +18,15 @@ export const ImageShowcaseTemplate: Template = {
     },
     {
       type: "image",
-      name: "showcaseImages",
-      label: "Showcase Images",
-      list: true,
-      description: "Upload multiple images to showcase",
+      name: "showcaseImage",
+      label: "Showcase Image",
+      description: "Upload a single image to showcase",
+    },
+    {
+      type: "string",
+      name: "downloadLink",
+      label: "Download Link",
+      description: "External link to redirect when clicking the download button",
     },
     {
       type: "string",

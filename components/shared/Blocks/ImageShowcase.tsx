@@ -3,59 +3,29 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Download } from "lucide-react";
-import JSZip from "jszip";
 
 interface ImageShowcaseProps {
   title?: string | null;
   gridDescription?: string | null;
-  showcaseImages?: string[];
+  showcaseImage?: string | null;
   showcaseTitle?: string | null;
   showcaseDescription?: string | null;
+  downloadLink?: string | null;
 }
 
-const ImageShowcase = ({ title, gridDescription, showcaseImages, showcaseTitle, showcaseDescription }: ImageShowcaseProps) => {
+const ImageShowcase = ({ title, gridDescription, showcaseImage, showcaseTitle, showcaseDescription, downloadLink }: ImageShowcaseProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleDownloadZip = async () => {
-    if (!showcaseImages || showcaseImages.length === 0) return;
-    
-    const validImages = showcaseImages.filter(image => image && image.trim() !== '');
-    if (validImages.length === 0) return;
-    
-    try {
-      const zip = new JSZip();
-      
-      for (let i = 0; i < validImages.length; i++) {
-        const response = await fetch(validImages[i]);
-        const blob = await response.blob();
-        const fileName = `image_${i + 1}.${blob.type.split('/')[1] || 'jpg'}`;
-        zip.file(fileName, blob);
-      }
-      
-      const zipBlob = await zip.generateAsync({ type: "blob" });
-      const downloadUrl = URL.createObjectURL(zipBlob);
-      
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = `images_${new Date().toISOString().split('T')[0]}.zip`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      URL.revokeObjectURL(downloadUrl);
-    } catch (error) {
-      console.error('Error creating zip file:', error);
-      alert('Download failed, please try again');
+  const handleDownloadClick = () => {
+    if (downloadLink) {
+      window.open(downloadLink, '_blank');
     }
   };
 
-  const firstImage = showcaseImages?.[0];
-  const hasValidImage = firstImage && firstImage.trim() !== '';
-  
-  const validImagesCount = showcaseImages?.filter(image => image && image.trim() !== '').length || 0;
+  const hasValidImage = showcaseImage && showcaseImage.trim() !== '';
 
   return (
-    <div className="w-[68%] mx-auto py-8">
+    <div className="w-[65%] mx-auto py-8">
       {(title || gridDescription) && (
         <div className="text-center mb-12">
           {title && (
@@ -72,7 +42,7 @@ const ImageShowcase = ({ title, gridDescription, showcaseImages, showcaseTitle, 
       )}
 
       <div className="w-full">
-        <div className="max-w-4xl mx-auto">
+        <div className="w-full">
           <div className="bg-black rounded-2xl p-4">
             {hasValidImage && (
               <div 
@@ -81,7 +51,7 @@ const ImageShowcase = ({ title, gridDescription, showcaseImages, showcaseTitle, 
                 onMouseLeave={() => setIsHovered(false)}
               >
                 <Image
-                  src={firstImage}
+                  src={showcaseImage}
                   alt="Showcase image"
                   width={800}
                   height={400}
@@ -89,13 +59,15 @@ const ImageShowcase = ({ title, gridDescription, showcaseImages, showcaseTitle, 
                 />
                 
                 <div className={`absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90' : 'opacity-0'}`}>
-                  <button
-                    onClick={handleDownloadZip}
-                    className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
-                  >
-                    <Download className="w-5 h-5" />
-                    Download ZIP ({validImagesCount} images)
-                  </button>
+                  {downloadLink && (
+                    <button
+                      onClick={handleDownloadClick}
+                      className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
+                    >
+                      <Download className="w-5 h-5" />
+                      Download
+                    </button>
+                  )}
                 </div>
               </div>
             )}
