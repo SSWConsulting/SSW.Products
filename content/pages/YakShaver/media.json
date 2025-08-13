@@ -24,6 +24,10 @@
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon2.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon2.png"
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon3.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon3.png"
         }
       ],
       "itemsPerRow": 3,
