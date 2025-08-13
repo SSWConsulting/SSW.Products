@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Download } from "lucide-react";
+import { useState } from "react";
 
 interface ImageItem {
   id?: string;
@@ -33,6 +34,8 @@ const ImageGrid = ({
   itemsPerRow = 3,
   className = "",
 }: ImageGridProps) => {
+  const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
+  
   if (!images?.length && !title && !gridDescription) return null;
 
   const downloadFile = async (url: string, filename: string) => {
@@ -68,9 +71,12 @@ const ImageGrid = ({
 
   const getGridCols = () => GRID_COLS_MAP[itemsPerRow] || GRID_COLS_MAP[3];
 
-  const renderSVGButton = (src: string, alt?: string) => (
+  const renderSVGButton = (src: string, alt?: string, imageIndex: number) => (
     <button
-      onClick={() => downloadFile(src, `${alt || 'image'}.svg`)}
+      onClick={(e) => {
+        e.stopPropagation();
+        downloadFile(src, `${alt || 'image'}.svg`);
+      }}
       className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
     >
       <Download className="w-4 h-4" />
@@ -78,9 +84,12 @@ const ImageGrid = ({
     </button>
   );
 
-  const renderPNGButton = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string) => (
+  const renderPNGButton = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string, imageIndex: number) => (
     <button
-      onClick={() => downloadPNG(pngSrc, pngDownloadUrl, alt)}
+      onClick={(e) => {
+        e.stopPropagation();
+        downloadPNG(pngSrc, pngDownloadUrl, alt);
+      }}
       className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
     >
       <Download className="w-4 h-4" />
@@ -114,7 +123,10 @@ const ImageGrid = ({
             return (
               <div
                 key={image.id || index}
-                className="relative group overflow-hidden rounded-2xl"
+                className="relative group overflow-hidden rounded-2xl cursor-pointer"
+                onMouseEnter={() => setActiveImageIndex(index)}
+                onMouseLeave={() => setActiveImageIndex(null)}
+                onClick={() => setActiveImageIndex(activeImageIndex === index ? null : index)}
               >
                 <Image
                   src={displaySrc}
@@ -124,9 +136,9 @@ const ImageGrid = ({
                   className="w-full h-auto object-contain rounded-2xl"
                 />
 
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl" style={{ backgroundColor: 'rgba(34, 34, 34, 0.8)' }}>
-                  {image.svgSrc && renderSVGButton(image.svgSrc, image.alt)}
-                  {image.pngSrc && renderPNGButton(image.pngSrc, image.pngDownloadUrl, image.alt)}
+                <div className={`absolute inset-0 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl ${activeImageIndex === index ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} style={{ backgroundColor: 'rgba(34, 34, 34, 0.8)' }}>
+                  {image.svgSrc && renderSVGButton(image.svgSrc, image.alt, index)}
+                  {image.pngSrc && renderPNGButton(image.pngSrc, image.pngDownloadUrl, image.alt, index)}
                 </div>
               </div>
             );

@@ -46,9 +46,10 @@ const ImageShowcase = ({ title, gridDescription, showcaseImage, showcaseTitle, s
           <div className="bg-black rounded-2xl p-4">
             {hasValidImage && (
               <div 
-                className="relative overflow-hidden rounded-2xl mb-6"
+                className="relative overflow-hidden rounded-2xl mb-6 cursor-pointer"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
+                onClick={() => setIsHovered(!isHovered)}
               >
                 <Image
                   src={showcaseImage}
@@ -58,10 +59,13 @@ const ImageShowcase = ({ title, gridDescription, showcaseImage, showcaseTitle, s
                   className="w-full h-auto object-cover rounded-2xl"
                 />
                 
-                <div className={`absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90' : 'opacity-0'}`}>
+                <div className={`absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                   {downloadLink && (
                     <button
-                      onClick={handleDownloadClick}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDownloadClick();
+                      }}
                       className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
                     >
                       <Download className="w-5 h-5" />
