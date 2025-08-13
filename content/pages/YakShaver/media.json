@@ -50,24 +50,12 @@
       "gridDescription": "Download the SVG and PNG logo kit",
       "images": [
         {
-          "svgSrc": "/YakShaver/Icon/yak-icon1.svg",
-          "pngSrc": "/YakShaver/Icon/yak-icon1.png"
-        },
-        {
           "svgSrc": "/YakShaver/Icon/yak-icon2.svg",
           "pngSrc": "/YakShaver/Icon/yak-icon2.png"
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-icon3.svg",
           "pngSrc": "/YakShaver/Icon/yak-icon3.png"
-        },
-        {
-          "svgSrc": "/YakShaver/Icon/yak-icon4.svg",
-          "pngSrc": "/YakShaver/Icon/yak-icon4.png"
-        },
-        {
-          "svgSrc": "/YakShaver/Icon/yak-icon5.svg",
-          "pngSrc": "/YakShaver/Icon/yak-icon5.png"
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-icon6.svg",
@@ -89,20 +77,6 @@
     {
       "title": "Fonts",
       "gridDescription": "The official fonts used in YakShaver is Inter",
-      "images": [
-        {
-          "svgSrc": "/YakShaver/Icon/yak-icon4.svg",
-          "pngSrc": "/YakShaver/Icon/yak-icon4.png"
-        },
-        {
-          "svgSrc": "/YakShaver/Icon/yak-icon7.svg",
-          "pngSrc": "/YakShaver/Icon/yak-icon7.png"
-        },
-        {
-          "svgSrc": "/YakShaver/Icon/yak-icon6.svg",
-          "pngSrc": "/YakShaver/Icon/yak-icon6.png"
-        }
-      ],
       "itemsPerRow": 3,
       "_template": "imageGrid"
     }

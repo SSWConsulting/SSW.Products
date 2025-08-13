@@ -37,6 +37,12 @@ export const ImageGridTemplate: Template = {
           name: "pngSrc",
           description: "Select PNG file from Media Manager",
         },
+        {
+          type: "string",
+          label: "PNG Download URL",
+          name: "pngDownloadUrl",
+          description: "Optional custom download link for PNG. If set, opens in new tab instead of downloading directly",
+        },
       ],
     },
     {

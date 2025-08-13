@@ -5,6 +5,7 @@ interface ImageItem {
   id?: string;
   svgSrc?: string;
   pngSrc?: string;
+  pngDownloadUrl?: string;
   alt?: string;
 }
 
@@ -32,7 +33,8 @@ const ImageGrid = ({
   itemsPerRow = 3,
   className = "",
 }: ImageGridProps) => {
-  if (!images?.length) return null;
+  // 如果没有图片且没有标题和描述，则不显示任何内容
+  if (!images?.length && !title && !gridDescription) return null;
 
   const downloadFile = async (url: string, filename: string) => {
     try {
@@ -55,15 +57,35 @@ const ImageGrid = ({
     }
   };
 
+  const downloadPNG = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string) => {
+    const filename = `${alt || 'image'}.png`;
+    
+    if (pngDownloadUrl) {
+      window.open(pngDownloadUrl, '_blank');
+    } else {
+      downloadFile(pngSrc, filename);
+    }
+  };
+
   const getGridCols = () => GRID_COLS_MAP[itemsPerRow] || GRID_COLS_MAP[3];
 
-  const renderDownloadButton = (src: string, type: 'SVG' | 'PNG', alt?: string) => (
+  const renderSVGButton = (src: string, alt?: string) => (
     <button
-      onClick={() => downloadFile(src, `${alt || 'image'}.${type.toLowerCase()}`)}
+      onClick={() => downloadFile(src, `${alt || 'image'}.svg`)}
       className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
     >
       <Download className="w-4 h-4" />
-      {type}
+      SVG
+    </button>
+  );
+
+  const renderPNGButton = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string) => (
+    <button
+      onClick={() => downloadPNG(pngSrc, pngDownloadUrl, alt)}
+      className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
+    >
+      <Download className="w-4 h-4" />
+      PNG
     </button>
   );
 
@@ -84,32 +106,34 @@ const ImageGrid = ({
         </div>
       )}
 
-      <div className={`grid ${getGridCols()} gap-6`}>
-        {images.map((image, index) => {
-          const displaySrc = image.svgSrc || image.pngSrc;
-          if (!displaySrc) return null;
+      {images?.length > 0 && (
+        <div className={`grid ${getGridCols()} gap-6`}>
+          {images.map((image, index) => {
+            const displaySrc = image.svgSrc || image.pngSrc;
+            if (!displaySrc) return null;
 
-          return (
-            <div
-              key={image.id || index}
-              className="relative group overflow-hidden rounded-2xl"
-            >
-              <Image
-                src={displaySrc}
-                alt={image.alt || ""}
-                width={400}
-                height={300}
-                className="w-full h-auto object-contain rounded-2xl"
-              />
+            return (
+              <div
+                key={image.id || index}
+                className="relative group overflow-hidden rounded-2xl"
+              >
+                <Image
+                  src={displaySrc}
+                  alt={image.alt || ""}
+                  width={400}
+                  height={300}
+                  className="w-full h-auto object-contain rounded-2xl"
+                />
 
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl" style={{ backgroundColor: 'rgba(34, 34, 34, 0.8)' }}>
-                {image.svgSrc && renderDownloadButton(image.svgSrc, 'SVG', image.alt)}
-                {image.pngSrc && renderDownloadButton(image.pngSrc, 'PNG', image.alt)}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl" style={{ backgroundColor: 'rgba(34, 34, 34, 0.8)' }}>
+                  {image.svgSrc && renderSVGButton(image.svgSrc, image.alt)}
+                  {image.pngSrc && renderPNGButton(image.pngSrc, image.pngDownloadUrl, image.alt)}
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };
