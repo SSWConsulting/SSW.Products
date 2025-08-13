@@ -49,12 +49,31 @@
       "title": "Backgrounds",
       "gridDescription": "Download YakShaver official backgrounds",
       "showcaseImages": [
-        "/Browser2.png",
-        "/Browser1.png"
+        "/YakShaver/background.png"
       ],
       "showcaseTitle": "YakShaver gradient background",
       "showcaseDescription": "To ensure our brand image is effectively integrated without overwhelming the viewer, it should occupy no more than one-third of the screen in any digital or print media. This balance allows for other essential content to be clearly communicated while maintaining our brand’s presence. ",
       "_template": "imageShowcase"
+    },
+    {
+      "title": "Fonts",
+      "gridDescription": "The official fonts used in YakShaver is Inter",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon4.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon4.png"
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon7.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon7.png"
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon6.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon6.png"
+        }
+      ],
+      "itemsPerRow": 3,
+      "_template": "imageGrid"
     }
   ]
 }
