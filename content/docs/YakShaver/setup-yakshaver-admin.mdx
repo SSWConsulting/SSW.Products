@@ -16,14 +16,16 @@ Who is this for
 * Tenant admins who can approve access: Global Administrator or Cloud Application Administrator
 * End users simply sign in to YakShaver after approval, but they don’t grant tenant‑wide access
 
-Application permissions:
+##### Required Permissions
+
+**Application permissions:**
 
 * User.Read.All - read all users' basic profiles across the directory (used to list/select users)
 * Channel.ReadBasic.All - read basic details of Teams channels across the tenant
 * Team.ReadBasic.All - read basic details of Teams across the tenant
 * Files.Read.All - read files across the organisation (used for accessing videos in OneDrive/SharePoint features)
 
-Delegated permissions:
+**Delegated permissions:**
 
 * profile, openid, email
 * User.Read
@@ -41,16 +43,18 @@ Who is this for
 * Organization owners who can approve organization‑wide access to all repositories
 * Admins who can authorize access to their own repositories and public repositories
 
-Repository permissions:
+##### Permissions and Scope
+
+**Repository permissions:**
 
 * Read access to metadata - read basic repository information, branches, and settings (used to get project information)
 * Read and write access to code, issues, organization projects, and repository projects - full access to repository content, issue tracking, and project boards (used to create and update work items in projects)
 
-User permissions:
+**User permissions:**
 
 * Read access to email addresses - access your primary email address and public email information (used for user identification)
 
-Installation scope:
+**Installation scope:**
 
 * All repositories - applies to all current and future repositories owned by the resource owner, including public repositories (read‑only access to public repos)
 * Individual repository selection also available during installation
