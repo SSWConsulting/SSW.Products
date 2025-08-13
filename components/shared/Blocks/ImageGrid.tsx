@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Download } from "lucide-react";
-import Container from "../../Container";
 
 interface ImageItem {
   id?: string;

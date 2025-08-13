@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { Download, Upload } from "lucide-react";
+import { Download } from "lucide-react";
 import JSZip from "jszip";
 
 interface ImageShowcaseProps {
