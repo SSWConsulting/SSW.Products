@@ -41,27 +41,17 @@ const ImageGrid = ({
       const blobUrl = URL.createObjectURL(blob);
       
       const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = filename;
-      link.style.display = 'none';
+      Object.assign(link, { href: blobUrl, download: filename });
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(blobUrl);
     } catch {
-      try {
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = filename;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } catch {
-        window.open(url, '_blank');
-      }
+      const link = Object.assign(document.createElement('a'), {
+        href: url,
+        download: filename,
+      });
+      link.click();
     }
   };
 
