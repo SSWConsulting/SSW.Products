@@ -71,7 +71,7 @@ const ImageGrid = ({
 
   const getGridCols = () => GRID_COLS_MAP[itemsPerRow] || GRID_COLS_MAP[3];
 
-  const renderSVGButton = (src: string, alt?: string, imageIndex: number) => (
+  const renderSVGButton = (src: string, alt?: string) => (
     <button
       onClick={(e) => {
         e.stopPropagation();
@@ -84,7 +84,7 @@ const ImageGrid = ({
     </button>
   );
 
-  const renderPNGButton = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string, imageIndex: number) => (
+  const renderPNGButton = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string) => (
     <button
       onClick={(e) => {
         e.stopPropagation();
@@ -137,8 +137,8 @@ const ImageGrid = ({
                 />
 
                 <div className={`absolute inset-0 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl ${activeImageIndex === index ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} style={{ backgroundColor: 'rgba(34, 34, 34, 0.8)' }}>
-                  {image.svgSrc && renderSVGButton(image.svgSrc, image.alt, index)}
-                  {image.pngSrc && renderPNGButton(image.pngSrc, image.pngDownloadUrl, image.alt, index)}
+                  {image.svgSrc && renderSVGButton(image.svgSrc, image.alt)}
+                  {image.pngSrc && renderPNGButton(image.pngSrc, image.pngDownloadUrl, image.alt)}
                 </div>
               </div>
             );
