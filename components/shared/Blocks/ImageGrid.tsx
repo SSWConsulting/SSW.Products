@@ -47,16 +47,16 @@ const ImageGrid = ({
       const blobUrl = URL.createObjectURL(blob);
       
       const link = document.createElement('a');
-      Object.assign(link, { href: blobUrl, download: filename });
+      link.href = blobUrl;
+      link.download = filename;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(blobUrl);
     } catch {
-      const link = Object.assign(document.createElement('a'), {
-        href: url,
-        download: filename,
-      });
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
       link.click();
     }
   };
@@ -73,29 +73,21 @@ const ImageGrid = ({
 
   const getGridCols = () => GRID_COLS_MAP[itemsPerRow] || GRID_COLS_MAP[3];
 
-  const renderSVGButton = (src: string, alt?: string) => (
-    <button
-      onClick={(e) => {
-        e.stopPropagation();
-        downloadFile(src, `${alt || 'image'}.svg`);
-      }}
-      className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
-    >
-      <Download className="w-4 h-4" />
-      SVG
-    </button>
-  );
+  const buttonClassName = "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200";
 
-  const renderPNGButton = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string) => (
+  const renderDownloadButton = (
+    onClick: () => void, 
+    label: string
+  ) => (
     <button
       onClick={(e) => {
         e.stopPropagation();
-        downloadPNG(pngSrc, pngDownloadUrl, alt);
+        onClick();
       }}
-      className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
+      className={buttonClassName}
     >
       <Download className="w-4 h-4" />
-      PNG
+      {label}
     </button>
   );
 
@@ -143,9 +135,15 @@ const ImageGrid = ({
                   style={{ transform: `scale(${image.imageScale || 1})` }}
                 />
 
-                <div className={`absolute inset-0 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl overflow-hidden ${activeImageIndex === index ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} style={{ backgroundColor: 'rgba(34, 34, 34, 0.8)' }}>
-                  {image.svgSrc && renderSVGButton(image.svgSrc, image.alt)}
-                  {image.pngSrc && renderPNGButton(image.pngSrc, image.pngDownloadUrl, image.alt)}
+                <div className={`absolute inset-0 bg-black/80 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl overflow-hidden ${activeImageIndex === index ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+                  {image.svgSrc && renderDownloadButton(
+                    () => downloadFile(image.svgSrc!, `${image.alt || 'image'}.svg`),
+                    'SVG'
+                  )}
+                  {image.pngSrc && renderDownloadButton(
+                    () => downloadPNG(image.pngSrc!, image.pngDownloadUrl, image.alt),
+                    'PNG'
+                  )}
                 </div>
               </div>
             );
