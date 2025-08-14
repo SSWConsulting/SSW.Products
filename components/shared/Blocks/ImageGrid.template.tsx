@@ -59,7 +59,7 @@ export const ImageGridTemplate: Template = {
           description: "Scale factor for the image (0.1 to 2.0, default: 1.0)",
           ui: {
             step: 0.1,
-            validate: (value) => {
+            validate: (value: number) => {
               if (value && (value < 0.1 || value > 2.0)) {
                 return "Scale must be between 0.1 and 2.0";
               }
@@ -74,7 +74,7 @@ export const ImageGridTemplate: Template = {
       name: "itemsPerRow",
       description: "Number of images per row (1-6)",
       ui: {
-        validate: (value) => {
+        validate: (value: number) => {
           if (value < 1 || value > 6) {
             return "Must be between 1 and 6";
           }
