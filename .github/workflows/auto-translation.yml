@@ -36,6 +36,12 @@ jobs:
           yarn install --frozen-lockfile
           npm install minimatch@3.1.2 openai
 
+      - name: Verify dependencies
+        run: |
+          echo "Checking installed packages:"
+          npm list minimatch openai
+          node -e "console.log('minimatch:', require('minimatch')); console.log('openai:', require('openai'))"
+
       - name: Get PR number
         id: pr
         run: |
