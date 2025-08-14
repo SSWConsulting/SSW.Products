@@ -30,7 +30,9 @@ async function translateFiles() {
         const fileContent = fs.readFileSync(fileChange.path, 'utf8');
         const userPrompt = translationPrompt.user.replace('{content}', fileContent);
         
-        const apiUrl = `${AZURE_OPENAI_ENDPOINT}/openai/deployments/${AZURE_OPENAI_DEPLOYMENT_NAME}/chat/completions?api-version=${apiVersion}`;
+        const deploymentName = encodeURIComponent(AZURE_OPENAI_DEPLOYMENT_NAME);
+        const apiUrl = `${AZURE_OPENAI_ENDPOINT}/openai/deployments/${deploymentName}/chat/completions?api-version=${apiVersion}`;
+        console.log(`Deployment name: ${AZURE_OPENAI_DEPLOYMENT_NAME}`);
         console.log(`Calling API: ${apiUrl}`);
         const response = await axios.post(
           apiUrl,
@@ -58,7 +60,12 @@ async function translateFiles() {
         });
 
       } catch (error) {
-        console.error(`Failed to translate ${fileChange.path}: ${error.message}`);
+        console.error(`Failed to translate ${fileChange.path}:`);
+        console.error(`Error: ${error.message}`);
+        if (error.response) {
+          console.error(`Status: ${error.response.status}`);
+          console.error(`Response: ${JSON.stringify(error.response.data, null, 2)}`);
+        }
       }
     }
 
