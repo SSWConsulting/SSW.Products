@@ -26,7 +26,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: main 
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git
@@ -37,9 +36,12 @@ jobs:
       - name: Ensure latest main
         run: |
           git fetch origin main
-          git reset --hard origin/main
-          echo "Current HEAD: $(git rev-parse HEAD)"
           echo "Latest main: $(git rev-parse origin/main)"
+          
+          if [ ! -f ".github/scripts/detect-changes.js" ]; then
+            echo "Error: Script files not found"
+            exit 1
+          fi
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -51,12 +53,6 @@ jobs:
         run: |
           yarn install --frozen-lockfile
           npm install minimatch@3.1.2 openai axios
-
-      - name: Verify dependencies
-        run: |
-          echo "Checking installed packages:"
-          npm list minimatch openai
-          node -e "console.log('minimatch:', require('minimatch')); console.log('openai:', require('openai'))"
 
       - name: Get PR number
         id: pr
@@ -97,15 +93,14 @@ jobs:
         id: create_branch
         if: steps.translate.outputs.translation_completed == 'true' || steps.filter.outputs.has_deletions == 'true'
         run: |
-          git checkout main
-          git pull origin main
+          git fetch origin main
           
           TIMESTAMP=$(date +%s)
           BRANCH_NAME="auto-translation-pr-${{ steps.pr.outputs.pr_number }}-$TIMESTAMP"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
           
-          git checkout -b $BRANCH_NAME
-          echo "Created branch: $BRANCH_NAME from $(git rev-parse main)"
+          git checkout -b $BRANCH_NAME origin/main
+          echo "Created branch: $BRANCH_NAME from origin/main"
           echo "branch_created=true" >> $GITHUB_OUTPUT
 
       - name: Generate Chinese files
@@ -122,19 +117,14 @@ jobs:
         id: commit_changes
         if: steps.create_branch.outputs.branch_created == 'true'
         run: |
-          echo "Adding Chinese translation files..."
           git add content/
-          
-          echo "Files to be committed:"
-          git diff --cached --name-only
           
           if ! git diff --cached --quiet; then
             git commit -m "🤖 Auto Translation: Chinese content for PR #${{ steps.pr.outputs.pr_number }}"
             git push origin $BRANCH_NAME
             echo "changes_pushed=true" >> $GITHUB_OUTPUT
-            echo "Pushed changes to branch: $BRANCH_NAME"
           else
-            echo "No actual changes to commit"
+            echo "No changes to commit"
             echo "changes_pushed=false" >> $GITHUB_OUTPUT
           fi
 
@@ -151,9 +141,7 @@ jobs:
 
       - name: Cleanup temporary files
         if: always()
-        run: |
-          echo "Cleaning up temporary files..."
-          rm -f .github/temp-*.json
+        run: rm -f .github/temp-*.json
 
       - name: Summary
         if: always()
