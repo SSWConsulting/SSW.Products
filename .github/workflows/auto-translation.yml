@@ -5,7 +5,7 @@ on:
     types: [closed]
     branches: [main]
   push:
-    branches: [feature/GitHub-Action]  # 临时测试用，记得删除
+    branches: [feature/GitHub-Action]  # For testing
   workflow_dispatch:
     inputs:
       pr_number:
@@ -17,18 +17,29 @@ jobs:
   auto-translate:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main 
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+      - name: Ensure latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+          echo "Current HEAD: $(git rev-parse HEAD)"
+          echo "Latest main: $(git rev-parse origin/main)"
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -62,8 +73,10 @@ jobs:
       - name: Detect file changes
         id: changes
         env:
-          GH_TOKEN: ${{ github.token }}
-        run: node .github/scripts/detect-changes.js ${{ steps.pr.outputs.pr_number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+        run: node .github/scripts/detect-changes.js
 
       - name: Filter YakShaver files
         id: filter
@@ -80,48 +93,56 @@ jobs:
           AZURE_OPENAI_API_VERSION: ${{ secrets.AZURE_OPENAI_API_VERSION }}
         run: node .github/scripts/translate-files.js
 
+      - name: Create translation branch
+        id: create_branch
+        if: steps.translate.outputs.translation_completed == 'true' || steps.filter.outputs.has_deletions == 'true'
+        run: |
+          git checkout main
+          git pull origin main
+          
+          TIMESTAMP=$(date +%s)
+          BRANCH_NAME="auto-translation-pr-${{ steps.pr.outputs.pr_number }}-$TIMESTAMP"
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+          
+          git checkout -b $BRANCH_NAME
+          echo "Created branch: $BRANCH_NAME from $(git rev-parse main)"
+          echo "branch_created=true" >> $GITHUB_OUTPUT
+
       - name: Generate Chinese files
         id: generate
-        if: steps.translate.outputs.translation_completed == 'true'
+        if: steps.create_branch.outputs.branch_created == 'true' && steps.translate.outputs.translation_completed == 'true'
         run: node .github/scripts/generate-files.js
 
       - name: Handle deletions
         id: cleanup
-        if: steps.filter.outputs.has_deletions == 'true'
+        if: steps.create_branch.outputs.branch_created == 'true' && steps.filter.outputs.has_deletions == 'true'
         run: node .github/scripts/handle-deletions.js
 
-      - name: Create and push branch
-        id: create_branch
-        if: steps.generate.outputs.files_generated == 'true' || steps.cleanup.outputs.files_cleaned == 'true'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
-          REPO: ${{ github.repository }}
-          SERVER_URL: ${{ github.server_url }}
+      - name: Commit and push changes
+        id: commit_changes
+        if: steps.create_branch.outputs.branch_created == 'true'
         run: |
-          BRANCH_NAME="auto-translation-${{ steps.pr.outputs.pr_number }}-$(date +%s)"
-          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
-          
-          git checkout main
-          git pull origin main
-          git checkout -b $BRANCH_NAME
-          
+          echo "Adding Chinese translation files..."
           git add content/
+          
+          echo "Files to be committed:"
+          git diff --cached --name-only
           
           if ! git diff --cached --quiet; then
             git commit -m "🤖 Auto Translation: Chinese content for PR #${{ steps.pr.outputs.pr_number }}"
             git push origin $BRANCH_NAME
-            echo "branch_created=true" >> $GITHUB_OUTPUT
+            echo "changes_pushed=true" >> $GITHUB_OUTPUT
+            echo "Pushed changes to branch: $BRANCH_NAME"
           else
             echo "No actual changes to commit"
-            echo "branch_created=false" >> $GITHUB_OUTPUT
+            echo "changes_pushed=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Create PR
         id: create_pr
-        if: steps.create_branch.outputs.branch_created == 'true'
+        if: steps.commit_changes.outputs.changes_pushed == 'true'
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
           BRANCH_NAME: ${{ env.BRANCH_NAME }}
           REPO: ${{ github.repository }}

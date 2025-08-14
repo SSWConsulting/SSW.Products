@@ -1,4 +1,5 @@
 const axios = require('axios');
+const fs = require('fs');
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const PR_NUMBER = process.env.PR_NUMBER;
@@ -33,6 +34,11 @@ Original PR: ${SERVER_URL}/${REPO}/pull/${PR_NUMBER}
     );
 
     console.log(`Successfully created PR #${response.data.number}: ${response.data.html_url}`);
+
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, `translation_pr_number=${response.data.number}\n`);
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, `translation_pr_url=${response.data.html_url}\n`);
+    }
 
     if (response.data.number) {
       try {
