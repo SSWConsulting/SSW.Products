@@ -7,7 +7,9 @@ async function translateFiles() {
     const filteredData = JSON.parse(fs.readFileSync('.github/temp-filtered.json', 'utf8'));
 
     if (filteredData.filesToTranslate.length === 0) {
-      console.log(`::set-output name=translation_completed::false`);
+      if (process.env.GITHUB_OUTPUT) {
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, 'translation_completed=false\n');
+      }
       return;
     }
 
@@ -67,11 +69,15 @@ async function translateFiles() {
     fs.writeFileSync('.github/temp-translations.json', JSON.stringify(result));
 
     console.log(`Translated ${translatedFiles.length} files`);
-    console.log(`::set-output name=translation_completed::${result.translationCompleted}`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, `translation_completed=${result.translationCompleted}\n`);
+    }
 
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    console.log(`::set-output name=translation_completed::false`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, 'translation_completed=false\n');
+    }
     process.exit(1);
   }
 }

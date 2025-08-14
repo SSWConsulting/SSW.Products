@@ -7,7 +7,9 @@ async function handleDeletions() {
     const filteredData = JSON.parse(fs.readFileSync('.github/temp-filtered.json', 'utf8'));
 
     if (filteredData.filesToDelete.length === 0) {
-      console.log(`::set-output name=files_cleaned::false`);
+      if (process.env.GITHUB_OUTPUT) {
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, 'files_cleaned=false\n');
+      }
       return;
     }
 
@@ -48,11 +50,15 @@ async function handleDeletions() {
     fs.writeFileSync('.github/temp-deletions.json', JSON.stringify(result));
 
     console.log(`Deleted ${deletedFiles.length} files`);
-    console.log(`::set-output name=files_cleaned::${result.filesCleaned}`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, `files_cleaned=${result.filesCleaned}\n`);
+    }
 
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    console.log(`::set-output name=files_cleaned::false`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, 'files_cleaned=false\n');
+    }
     process.exit(1);
   }
 }

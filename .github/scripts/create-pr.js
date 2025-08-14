@@ -32,7 +32,9 @@ async function createPR() {
     }
 
     if (!hasChanges) {
-      console.log(`::set-output name=translation_pr_created::false`);
+      if (process.env.GITHUB_OUTPUT) {
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, 'translation_pr_created=false\n');
+      }
       return;
     }
 
@@ -50,7 +52,9 @@ async function createPR() {
 
     const statusOutput = execSync('git status --porcelain', { encoding: 'utf8' });
     if (!statusOutput.trim()) {
-      console.log(`::set-output name=translation_pr_created::false`);
+      if (process.env.GITHUB_OUTPUT) {
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, 'translation_pr_created=false\n');
+      }
       return;
     }
 
@@ -85,13 +89,15 @@ Original PR: ${originalPrInfo?.url || `#${originalPrNumber}`}`;
     const prNumber = prUrl.match(/\/pull\/(\d+)$/)?.[1] || 'unknown';
 
     console.log(`Created translation PR: ${prUrl}`);
-    console.log(`::set-output name=translation_pr_created::true`);
-    console.log(`::set-output name=translation_pr_number::${prNumber}`);
-    console.log(`::set-output name=translation_pr_url::${prUrl}`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, `translation_pr_created=true\ntranslation_pr_number=${prNumber}\ntranslation_pr_url=${prUrl}\n`);
+    }
 
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    console.log(`::set-output name=translation_pr_created::false`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, 'translation_pr_created=false\n');
+    }
     process.exit(1);
   }
 }

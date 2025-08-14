@@ -7,7 +7,9 @@ async function generateFiles() {
     const translationsData = JSON.parse(fs.readFileSync('.github/temp-translations.json', 'utf8'));
 
     if (translationsData.translatedFiles.length === 0) {
-      console.log(`::set-output name=files_generated::false`);
+      if (process.env.GITHUB_OUTPUT) {
+        fs.appendFileSync(process.env.GITHUB_OUTPUT, 'files_generated=false\n');
+      }
       return;
     }
 
@@ -53,11 +55,15 @@ async function generateFiles() {
     fs.writeFileSync('.github/temp-generated.json', JSON.stringify(result));
 
     console.log(`Generated ${generatedFiles.length} files`);
-    console.log(`::set-output name=files_generated::${result.filesGenerated}`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, `files_generated=${result.filesGenerated}\n`);
+    }
 
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    console.log(`::set-output name=files_generated::false`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, 'files_generated=false\n');
+    }
     process.exit(1);
   }
 }

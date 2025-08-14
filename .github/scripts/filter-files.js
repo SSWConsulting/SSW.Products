@@ -34,13 +34,15 @@ async function filterFiles() {
     fs.writeFileSync('.github/temp-filtered.json', JSON.stringify(result));
     
     console.log(`Found ${filesToTranslate.length} files to translate, ${filesToDelete.length} to delete`);
-    console.log(`::set-output name=has_files::${result.hasFiles}`);
-    console.log(`::set-output name=has_deletions::${result.hasDeletions}`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_files=${result.hasFiles}\nhas_deletions=${result.hasDeletions}\n`);
+    }
 
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    console.log(`::set-output name=has_files::false`);
-    console.log(`::set-output name=has_deletions::false`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, 'has_files=false\nhas_deletions=false\n');
+    }
     process.exit(1);
   }
 }

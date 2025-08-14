@@ -50,6 +50,8 @@ jobs:
 
       - name: Detect file changes
         id: changes
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: node .github/scripts/detect-changes.js ${{ steps.pr.outputs.pr_number }}
 
       - name: Filter YakShaver files

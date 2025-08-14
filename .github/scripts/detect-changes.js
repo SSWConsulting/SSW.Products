@@ -29,11 +29,15 @@ async function detectChanges() {
     fs.writeFileSync('.github/temp-changes.json', JSON.stringify(result));
     
     console.log(`Detected ${fileChanges.length} changes`);
-    console.log(`::set-output name=changes_detected::true`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, 'changes_detected=true\n');
+    }
 
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    console.log(`::set-output name=changes_detected::false`);
+    if (process.env.GITHUB_OUTPUT) {
+      fs.appendFileSync(process.env.GITHUB_OUTPUT, 'changes_detected=false\n');
+    }
     process.exit(1);
   }
 }
