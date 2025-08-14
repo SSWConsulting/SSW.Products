@@ -13,6 +13,11 @@ on:
         required: true
         type: string
 
+env:
+  PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number || github.event_name == 'push' && '407' || github.event.pull_request.number }}
+  HAS_CHANGED_FILES: false
+  HAS_FILE_OPERATIONS: false
+
 jobs:
   auto-translate:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
@@ -54,86 +59,60 @@ jobs:
           yarn install --frozen-lockfile
           npm install minimatch@3.1.2 openai axios
 
-      - name: Get PR number
-        id: pr
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            PR_NUMBER="${{ github.event.inputs.pr_number }}"
-          elif [ "${{ github.event_name }}" = "push" ]; then
-            PR_NUMBER="407" # For test
-          else
-            PR_NUMBER="${{ github.event.pull_request.number }}"
-          fi
-          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
-
-      - name: Detect file changes
-        id: changes
+      - name: Get changed files from merged PR
+        id: get-changed-files
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
         run: node .github/scripts/detect-changes.js
 
-      - name: Filter YakShaver files
-        id: filter
-        if: steps.changes.outputs.changes_detected == 'true'
-        run: node .github/scripts/filter-files.js
+      - name: Handle file operations (deletions and renames)
+        id: handle-operations
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: node .github/scripts/handle-file-operations.js
 
-      - name: Translate files
-        id: translate
-        if: steps.filter.outputs.has_files == 'true'
+      - name: Create translation branch
+        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
+        run: |
+          TIMESTAMP=$(date +%s)
+          BRANCH_NAME="auto-translation-pr-${{ env.PR_NUMBER }}-$TIMESTAMP"
+          git checkout origin/main
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Translate changed files
+        if: env.HAS_CHANGED_FILES == 'true'
         env:
           AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
           AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
           AZURE_OPENAI_DEPLOYMENT_NAME: ${{ secrets.AZURE_OPENAI_DEPLOYMENT_NAME }}
           AZURE_OPENAI_API_VERSION: ${{ secrets.AZURE_OPENAI_API_VERSION }}
-        run: node .github/scripts/translate-files.js
-
-      - name: Create translation branch
-        id: create_branch
-        if: steps.translate.outputs.translation_completed == 'true' || steps.filter.outputs.has_deletions == 'true'
-        run: |
-          git fetch origin main
-          
-          TIMESTAMP=$(date +%s)
-          BRANCH_NAME="auto-translation-pr-${{ steps.pr.outputs.pr_number }}-$TIMESTAMP"
-          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
-          
-          git checkout -b $BRANCH_NAME origin/main
-          echo "Created branch: $BRANCH_NAME from origin/main"
-          echo "branch_created=true" >> $GITHUB_OUTPUT
-
-      - name: Generate Chinese files
-        id: generate
-        if: steps.create_branch.outputs.branch_created == 'true' && steps.translate.outputs.translation_completed == 'true'
-        run: node .github/scripts/generate-files.js
-
-      - name: Handle deletions
-        id: cleanup
-        if: steps.create_branch.outputs.branch_created == 'true' && steps.filter.outputs.has_deletions == 'true'
-        run: node .github/scripts/handle-deletions.js
+        run: node .github/scripts/translate-and-generate.js
 
       - name: Commit and push changes
-        id: commit_changes
-        if: steps.create_branch.outputs.branch_created == 'true'
+        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
         run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
           git add content/
-          
-          if ! git diff --cached --quiet; then
-            git commit -m "🤖 Auto Translation: Chinese content for PR #${{ steps.pr.outputs.pr_number }}"
-            git push origin $BRANCH_NAME
-            echo "changes_pushed=true" >> $GITHUB_OUTPUT
-          else
+
+          if git diff --staged --quiet; then
             echo "No changes to commit"
-            echo "changes_pushed=false" >> $GITHUB_OUTPUT
+            exit 0
           fi
+
+          git commit -m "🤖 Auto Translation: Chinese content for PR #${{ env.PR_NUMBER }}"
+          git push origin $BRANCH_NAME
 
       - name: Create PR
         id: create_pr
-        if: steps.commit_changes.outputs.changes_pushed == 'true'
+        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
           BRANCH_NAME: ${{ env.BRANCH_NAME }}
           REPO: ${{ github.repository }}
           SERVER_URL: ${{ github.server_url }}
@@ -147,10 +126,5 @@ jobs:
         if: always()
         run: |
           echo "## Auto Translation Summary" >> $GITHUB_STEP_SUMMARY
-          echo "- Original PR: #${{ steps.pr.outputs.pr_number }}" >> $GITHUB_STEP_SUMMARY
-          if [ "${{ steps.create_pr.outputs.translation_pr_number }}" != "" ]; then
-            echo "- Translation PR: #${{ steps.create_pr.outputs.translation_pr_number }}" >> $GITHUB_STEP_SUMMARY
-            echo "- Translation PR URL: ${{ steps.create_pr.outputs.translation_pr_url }}" >> $GITHUB_STEP_SUMMARY
-          else
-            echo "- No translation PR created (no translatable changes found)" >> $GITHUB_STEP_SUMMARY
-          fi
+          echo "- Original PR: #${{ env.PR_NUMBER }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Process completed successfully" >> $GITHUB_STEP_SUMMARY
