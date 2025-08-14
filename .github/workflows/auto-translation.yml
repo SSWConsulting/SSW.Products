@@ -4,6 +4,8 @@ on:
   pull_request:
     types: [closed]
     branches: [main]
+  push:
+    branches: [feature/GitHub-Action]  # 临时测试用，记得删除
   workflow_dispatch:
     inputs:
       pr_number:
@@ -13,7 +15,7 @@ on:
 
 jobs:
   auto-translate:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
     runs-on: ubuntu-latest
     
     steps:
@@ -39,6 +41,8 @@ jobs:
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             PR_NUMBER="${{ github.event.inputs.pr_number }}"
+          elif [ "${{ github.event_name }}" = "push" ]; then
+            PR_NUMBER="407" # For test
           else
             PR_NUMBER="${{ github.event.pull_request.number }}"
           fi
