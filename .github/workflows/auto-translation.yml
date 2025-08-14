@@ -96,25 +96,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # 只添加 content/ 目录的变更
           git add content/
-
-          # 显示将要提交的文件，确保只包含 content/ 目录
-          echo "Files to be committed:"
-          git diff --staged --name-only
-
-          # 验证所有暂存文件都在 content/ 目录下
-          STAGED_FILES=$(git diff --staged --name-only)
-          if [ -n "$STAGED_FILES" ]; then
-            for file in $STAGED_FILES; do
-              if [[ ! "$file" == content/* ]]; then
-                echo "❌ Error: File outside content/ directory detected: $file"
-                echo "Only content/ directory changes should be committed"
-                exit 1
-              fi
-            done
-            echo "✅ All staged files are in content/ directory"
-          fi
 
           if git diff --staged --quiet; then
             echo "No changes to commit"
