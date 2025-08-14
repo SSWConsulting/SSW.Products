@@ -58,6 +58,7 @@ export const ImageGridTemplate: Template = {
           name: "imageScale",
           description: "Scale factor for the image (0.1 to 2.0, default: 1.0)",
           ui: {
+            component: "number",
             step: 0.1,
             validate: (value: any) => {
               const numValue = Number(value);
@@ -65,7 +66,7 @@ export const ImageGridTemplate: Template = {
                 return "Scale must be between 0.1 and 2.0";
               }
             },
-          },
+          } as any,
         },
       ],
     },
