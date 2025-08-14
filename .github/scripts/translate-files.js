@@ -30,8 +30,10 @@ async function translateFiles() {
         const fileContent = fs.readFileSync(fileChange.path, 'utf8');
         const userPrompt = translationPrompt.user.replace('{content}', fileContent);
         
+        const apiUrl = `${AZURE_OPENAI_ENDPOINT}/openai/deployments/${AZURE_OPENAI_DEPLOYMENT_NAME}/chat/completions?api-version=${apiVersion}`;
+        console.log(`Calling API: ${apiUrl}`);
         const response = await axios.post(
-          `${AZURE_OPENAI_ENDPOINT}/openai/deployments/${AZURE_OPENAI_DEPLOYMENT_NAME}/chat/completions?api-version=${apiVersion}`,
+          apiUrl,
           {
             messages: [
               { role: 'system', content: translationPrompt.system },
