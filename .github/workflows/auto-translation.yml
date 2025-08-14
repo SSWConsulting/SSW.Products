@@ -1,0 +1,99 @@
+name: Auto Translation for YakShaver Content
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to process'
+        required: true
+        type: string
+
+jobs:
+  auto-translate:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+          npm install -g minimatch axios
+
+      - name: Get PR number
+        id: pr
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            PR_NUMBER="${{ github.event.inputs.pr_number }}"
+          else
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+          fi
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+
+      - name: Detect file changes
+        id: changes
+        run: node .github/scripts/detect-changes.js ${{ steps.pr.outputs.pr_number }}
+
+      - name: Filter YakShaver files
+        id: filter
+        if: steps.changes.outputs.changes_detected == 'true'
+        run: node .github/scripts/filter-files.js
+
+      - name: Translate files
+        id: translate
+        if: steps.filter.outputs.has_files == 'true'
+        env:
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_DEPLOYMENT_NAME: ${{ secrets.AZURE_OPENAI_DEPLOYMENT_NAME }}
+          AZURE_OPENAI_API_VERSION: ${{ secrets.AZURE_OPENAI_API_VERSION }}
+        run: node .github/scripts/translate-files.js
+
+      - name: Generate Chinese files
+        id: generate
+        if: steps.translate.outputs.translation_completed == 'true'
+        run: node .github/scripts/generate-files.js
+
+      - name: Handle deletions
+        id: cleanup
+        if: steps.filter.outputs.has_deletions == 'true'
+        run: node .github/scripts/handle-deletions.js
+
+      - name: Create translation PR
+        id: create_pr
+        if: steps.generate.outputs.files_generated == 'true' || steps.cleanup.outputs.files_cleaned == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/create-pr.js ${{ steps.pr.outputs.pr_number }}
+
+      - name: Cleanup temporary files
+        if: always()
+        run: |
+          echo "Cleaning up temporary files..."
+          rm -f .github/temp-*.json
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Auto Translation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "- Original PR: #${{ steps.pr.outputs.pr_number }}" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.create_pr.outputs.translation_pr_number }}" != "" ]; then
+            echo "- Translation PR: #${{ steps.create_pr.outputs.translation_pr_number }}" >> $GITHUB_STEP_SUMMARY
+            echo "- Translation PR URL: ${{ steps.create_pr.outputs.translation_pr_url }}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "- No translation PR created (no translatable changes found)" >> $GITHUB_STEP_SUMMARY
+          fi
