@@ -1,122 +1,72 @@
-const { execSync } = require('child_process');
-const fs = require('fs');
+const axios = require('axios');
 
-async function createPR() {
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const PR_NUMBER = process.env.PR_NUMBER;
+const BRANCH_NAME = process.env.BRANCH_NAME;
+const REPO = process.env.REPO;
+const [OWNER, REPO_NAME] = REPO.split('/');
+const SERVER_URL = process.env.GITHUB_SERVER_URL || 'https://github.com';
+
+async function createPullRequest() {
   try {
-    const originalPrNumber = process.argv[2];
-    if (!originalPrNumber) throw new Error('PR number required');
+    const prTitle = `🤖 Auto Translation: PR #${PR_NUMBER}`;
+    const prBody = `🤖 Automated Chinese translation for PR #${PR_NUMBER}
 
-    const config = JSON.parse(fs.readFileSync('.github/translation-config.json', 'utf8'));
-    
-    let hasChanges = false;
-    let generatedFiles = [];
-    let deletedFiles = [];
-    let originalPrInfo = null;
+Original PR: ${SERVER_URL}/${REPO}/pull/${PR_NUMBER}
 
-    if (fs.existsSync('.github/temp-generated.json')) {
-      const data = JSON.parse(fs.readFileSync('.github/temp-generated.json', 'utf8'));
-      if (data.filesGenerated) {
-        hasChanges = true;
-        generatedFiles = data.generatedFiles;
-        originalPrInfo = data.originalPr;
-      }
-    }
+⚠️ AI-generated content - please review before merging`;
 
-    if (fs.existsSync('.github/temp-deletions.json')) {
-      const data = JSON.parse(fs.readFileSync('.github/temp-deletions.json', 'utf8'));
-      if (data.filesCleaned) {
-        hasChanges = true;
-        deletedFiles = data.deletedFiles;
-        originalPrInfo = originalPrInfo || data.originalPr;
-      }
-    }
+    const response = await axios.post(
+      `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls`,
+      {
+        title: prTitle,
+        body: prBody,
+        head: BRANCH_NAME,
+        base: 'main',
+      },
+      {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json',
+        },
+      },
+    );
 
-    if (!hasChanges) {
-      if (process.env.GITHUB_OUTPUT) {
-        fs.appendFileSync(process.env.GITHUB_OUTPUT, 'translation_pr_created=false\n');
-      }
-      return;
-    }
+    console.log(`Successfully created PR #${response.data.number}: ${response.data.html_url}`);
 
-    // 生成唯一分支名
-    let branchName = `${config.github.branchPrefix}${originalPrNumber}`;
-    let suffix = 1;
-    
-    execSync('git checkout main && git pull origin main', { stdio: 'inherit' });
-    
-    // 检查分支是否存在，如果存在就添加后缀
-    while (true) {
+    if (response.data.number) {
       try {
-        execSync(`git ls-remote --heads origin ${branchName}`, { stdio: 'pipe' });
-        // 如果分支存在，添加后缀
-        branchName = `${config.github.branchPrefix}${originalPrNumber}-${suffix}`;
-        suffix++;
-      } catch {
-        // 分支不存在，可以使用
-        break;
+        await axios.post(
+          `https://api.github.com/repos/${OWNER}/${REPO_NAME}/issues/${response.data.number}/labels`,
+          { labels: ['Auto-Translation', 'YakShaver'] },
+          {
+            headers: {
+              Authorization: `token ${GITHUB_TOKEN}`,
+              Accept: 'application/vnd.github.v3+json',
+            },
+          },
+        );
+        console.log(`Added labels to PR #${response.data.number}`);
+      } catch (labelError) {
+        console.warn(`Warning: Failed to add labels: ${labelError.message}`);
       }
     }
-    
-    console.log(`Using branch name: ${branchName}`);
-    execSync(`git checkout -b ${branchName}`, { stdio: 'inherit' });
 
-    for (const file of generatedFiles) {
-      execSync(`git add "${file.targetPath}"`);
-    }
-    for (const file of deletedFiles) {
-      try { execSync(`git add "${file.deletedPath}"`); } catch {}
-    }
-
-    const statusOutput = execSync('git status --porcelain', { encoding: 'utf8' });
-    if (!statusOutput.trim()) {
-      if (process.env.GITHUB_OUTPUT) {
-        fs.appendFileSync(process.env.GITHUB_OUTPUT, 'translation_pr_created=false\n');
-      }
-      return;
-    }
-
-    const commitMessage = `🤖 Auto Translation: Chinese content for PR #${originalPrNumber}
-
-- Generated ${generatedFiles.length} Chinese files
-- Deleted ${deletedFiles.length} obsolete Chinese files
-
-Original PR: ${originalPrInfo?.url || `#${originalPrNumber}`}`;
-
-    execSync(`git commit -m "${commitMessage}"`, { stdio: 'inherit' });
-    execSync(`git push origin ${branchName}`, { stdio: 'inherit' });
-
-    const fileList = [
-      ...generatedFiles.map(f => `- Generated: \`${f.targetPath}\``),
-      ...deletedFiles.map(f => `- Deleted: \`${f.deletedPath}\``)
-    ].join('\n');
-
-    const prBody = config.github.prBodyTemplate
-      .replace('#{originalPrNumber}', originalPrNumber)
-      .replace('#{originalPrLink}', originalPrInfo?.url || `#${originalPrNumber}`)
-      .replace('{translatedFilesCount}', generatedFiles.length)
-      .replace('{fileList}', fileList);
-
-    const prTitle = config.github.prTitle.replace('#{originalPrNumber}', originalPrNumber);
-    
-    const prUrl = execSync(
-      `gh pr create --title "${prTitle}" --body "${prBody}" --label "${config.github.prLabels.join(',')}"`,
-      { encoding: 'utf8' }
-    ).trim();
-
-    const prNumber = prUrl.match(/\/pull\/(\d+)$/)?.[1] || 'unknown';
-
-    console.log(`Created translation PR: ${prUrl}`);
-    if (process.env.GITHUB_OUTPUT) {
-      fs.appendFileSync(process.env.GITHUB_OUTPUT, `translation_pr_created=true\ntranslation_pr_number=${prNumber}\ntranslation_pr_url=${prUrl}\n`);
-    }
-
+    return response.data;
   } catch (error) {
-    console.error(`Error: ${error.message}`);
-    if (process.env.GITHUB_OUTPUT) {
-      fs.appendFileSync(process.env.GITHUB_OUTPUT, 'translation_pr_created=false\n');
+    console.error('Error creating pull request:', error.message);
+    if (error.response) {
+      console.error(`API response: ${JSON.stringify(error.response.data)}`);
     }
-    process.exit(1);
+    throw error;
   }
 }
 
-if (require.main === module) createPR();
+async function main() {
+  await createPullRequest();
+}
+
+main().catch((error) => {
+  console.error('Failed to create pull request:', error);
+  process.exit(1);
+});
