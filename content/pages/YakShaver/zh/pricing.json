@@ -1,0 +1,375 @@
+{
+  "seo": {
+    "title": "YakShaver AI 价格计划与选项",
+    "description": "发现为满足您需求量身定制的灵活 YakShaver AI 价格计划。探索各种选项，找到最适合您项目的方案。"
+  },
+  "title": "YakShaver AI 价格计划与选项",
+  "pageBlocks": [
+    {
+      "title": "{简单透明的定价}",
+      "description": "选择适合您团队的计划，**立即开始节省**问题报告的时间**吧**\n",
+      "plans": [
+        {
+          "planTier": "入门",
+          "planDescription": "适合刚起步的个人",
+          "price": "免费",
+          "subPriceText": "永久 *",
+          "priceDescription": "* 需使用您自己的 OpenAI API 密钥",
+          "timeSaved": "~每月节省7.5小时 ",
+          "isRecommended": false,
+          "listTitle": "开始使用",
+          "listItems": [
+            "{每月15次剃除}",
+            "{每月约节省7.5小时}",
+            "2个项目",
+            "基础集成",
+            "2分钟视频录制",
+            "手动工作项分配",
+            "SharePoint 视频托管"
+          ],
+          "buttons": [
+            {
+              "Title": "加入候补名单",
+              "JotFormId": "243009066097861",
+              "_template": "BookingButton"
+            }
+          ]
+        },
+        {
+          "planTier": "团队",
+          "planDescription": "适合团队和小型企业",
+          "price": "$39",
+          "subPriceText": "/月",
+          "priceDescription": "公司范围内无限席位",
+          "timeSaved": "~每月节省50小时",
+          "isRecommended": true,
+          "listTitle": "让您的团队加入",
+          "listItems": [
+            "{每月100次剃除}",
+            "{每月约节省50小时}",
+            "{无限项目}",
+            "所有集成",
+            "5分钟视频录制",
+            "YouTube 视频托管",
+            "自动工作项分配",
+            "Discord 支持"
+          ],
+          "buttons": [
+            {
+              "Title": "加入候补名单",
+              "JotFormId": "243009066097861",
+              "_template": "BookingButton"
+            }
+          ]
+        },
+        {
+          "planTier": "成长",
+          "planDescription": "适合拥有多个团队的组织",
+          "price": "$189",
+          "subPriceText": "/月",
+          "priceDescription": "公司范围内无限席位",
+          "timeSaved": "~每月节省250小时",
+          "listTitle": "包含团队计划的所有内容，外加",
+          "listItems": [
+            "{每月500次剃除}",
+            "{每月约节省250小时}",
+            "15分钟视频录制",
+            "高级分析仪表盘",
+            "优先支持（Discord + 邮件）",
+            "专属客户经理"
+          ],
+          "buttons": [
+            {
+              "Title": "加入候补名单",
+              "JotFormId": "243009066097861",
+              "_template": "BookingButton"
+            }
+          ]
+        },
+        {
+          "planTier": "企业",
+          "planDescription": "适合有定制需求的大型组织",
+          "price": "定制",
+          "subPriceText": "",
+          "priceDescription": "联系我们获取定制价格",
+          "timeSaved": "定制",
+          "listTitle": "包含成长计划的所有内容，外加",
+          "listItems": [
+            "{定制剃除} 配额",
+            "30分钟视频录制",
+            "定制培训与入职",
+            "专属支持",
+            "定制集成",
+            "单点登录（SSO）"
+          ],
+          "buttons": [
+            {
+              "Title": "加入候补名单",
+              "JotFormId": "243009066097861",
+              "_template": "BookingButton"
+            }
+          ]
+        }
+      ],
+      "addOns": {
+        "title": "{增强包}",
+        "description": "需要充值？添加额外积分",
+        "price": "$25",
+        "subPriceText": "每50次剃除",
+        "actionButton": {
+          "label": "这里充值",
+          "variant": "outlinedWhite",
+          "size": "large",
+          "url": "/pricing"
+        }
+      },
+      "_template": "pricing"
+    },
+    {
+      "headline": "{功能对比}",
+      "sectionDescription": "比较我们不同计划中的所有功能，找到最适合您需求的方案",
+      "table": [
+        {
+          "title": "概览",
+          "footerText": "* 每个 Teams 实例只能分配1个免费用户。",
+          "rows": [
+            {
+              "column1": "功能",
+              "column1SubText": "",
+              "column2": "入门",
+              "column3": "团队",
+              "column4": "成长",
+              "column5": "企业"
+            },
+            {
+              "column1": "价格",
+              "column2": "免费",
+              "column2SubText": "(需使用您自己的 OpenAI API 密钥)",
+              "column3": "美元$39/月",
+              "column4": "美元$189/月",
+              "column5": "定制"
+            },
+            {
+              "column1": "适用对象",
+              "column2": "个人",
+              "column3": "团队",
+              "column4": "拥有多个团队的组织",
+              "column5": "企业"
+            },
+            {
+              "column1": "席位数",
+              "column2": "1*",
+              "column2SubText": "",
+              "column3": "无限",
+              "column3SubText": "(公司范围内)",
+              "column4": "无限",
+              "column4SubText": "(公司范围内)",
+              "column5": "无限",
+              "column5SubText": "(公司范围内)"
+            },
+            {
+              "column1": "节省时间",
+              "column2": "~每月7.5小时",
+              "column3": "~每月50小时",
+              "column3SubText": "",
+              "column4": "~每月250小时",
+              "column4SubText": "",
+              "column5": "定制",
+              "column5SubText": ""
+            }
+          ]
+        },
+        {
+          "title": "核心捕获与处理",
+          "footerText": "",
+          "rows": [
+            {
+              "column1": "功能",
+              "column1SubText": "",
+              "column2": "入门",
+              "column3": "团队",
+              "column4": "成长",
+              "column5": "企业"
+            },
+            {
+              "column1": "Microsoft Teams 集成",
+              "column2": "✅",
+              "column2SubText": " ",
+              "column3": "✅",
+              "column3SubText": " ",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "最大视频录制时长",
+              "column2": "2 分钟",
+              "column3": "5 分钟",
+              "column4": "15 分钟",
+              "column5": "30 分钟"
+            },
+            {
+              "column1": "视频/录制托管",
+              "column2": "SharePoint",
+              "column3": "SharePoint 或 YouTube",
+              "column4": "SharePoint 或 YouTube",
+              "column5": "定制"
+            }
+          ]
+        },
+        {
+          "title": "开发者集成",
+          "footerText": "",
+          "rows": [
+            {
+              "column1": "功能",
+              "column2": "入门",
+              "column3": "团队",
+              "column4": "成长",
+              "column5": "企业"
+            },
+            {
+              "column1": "Azure DevOps 集成",
+              "column2": "✅",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "GitHub 集成",
+              "column2": "✅",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "更多集成（Jira、Zendesk、Linear）",
+              "column2": "即将推出",
+              "column3": "即将推出",
+              "column4": "即将推出",
+              "column5": "即将推出"
+            },
+            {
+              "column1": "邮件创建",
+              "column2": "✅",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "工作项分配",
+              "column2": "手动",
+              "column3": "自动",
+              "column4": "自动",
+              "column5": "自动"
+            },
+            {
+              "column1": "项目/仓库分配",
+              "column2": "自动",
+              "column3": "自动",
+              "column4": "自动 ",
+              "column5": "自动"
+            },
+            {
+              "column1": "工作项优先级",
+              "column1SubText": "(测试版)",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "重复项检测",
+              "column1SubText": "(测试版)",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "自定义集成（Jira、Zendesk）",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            }
+          ]
+        },
+        {
+          "title": "定制与管理",
+          "rows": [
+            {
+              "column1": "功能",
+              "column2": "入门",
+              "column3": "团队",
+              "column4": "成长",
+              "column5": "企业"
+            },
+            {
+              "column1": "自定义工作模板",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "用户管理",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "分析",
+              "column2": "❌",
+              "column3": "基础",
+              "column4": "高级仪表盘",
+              "column5": "定制"
+            },
+            {
+              "column1": "数据库提供",
+              "column2": "共享",
+              "column3": "私有",
+              "column4": "私有",
+              "column5": "私有"
+            }
+          ]
+        },
+        {
+          "title": "支持与安全",
+          "footerText": "",
+          "rows": [
+            {
+              "column1": "功能",
+              "column2": "入门",
+              "column3": "团队",
+              "column4": "成长",
+              "column5": "企业"
+            },
+            {
+              "column1": "支持访问",
+              "column2": "❌",
+              "column3": "Discord",
+              "column4": "优先 Discord + 邮件",
+              "column5": "专属支持"
+            },
+            {
+              "column1": "单点登录（SSO）",
+              "column2": "❌",
+              "column3": "✅",
+              "column4": "✅",
+              "column5": "✅"
+            },
+            {
+              "column1": "专属客户经理",
+              "column2": "❌",
+              "column3": "❌",
+              "column4": "✅",
+              "column5": "✅"
+            }
+          ]
+        }
+      ],
+      "_template": "comparisonTable"
+    }
+  ]
+}
