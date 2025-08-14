@@ -38,9 +38,26 @@ async function createPR() {
       return;
     }
 
-    const branchName = `${config.github.branchPrefix}${originalPrNumber}`;
+    // 生成唯一分支名
+    let branchName = `${config.github.branchPrefix}${originalPrNumber}`;
+    let suffix = 1;
     
     execSync('git checkout main && git pull origin main', { stdio: 'inherit' });
+    
+    // 检查分支是否存在，如果存在就添加后缀
+    while (true) {
+      try {
+        execSync(`git ls-remote --heads origin ${branchName}`, { stdio: 'pipe' });
+        // 如果分支存在，添加后缀
+        branchName = `${config.github.branchPrefix}${originalPrNumber}-${suffix}`;
+        suffix++;
+      } catch {
+        // 分支不存在，可以使用
+        break;
+      }
+    }
+    
+    console.log(`Using branch name: ${branchName}`);
     execSync(`git checkout -b ${branchName}`, { stdio: 'inherit' });
 
     for (const file of generatedFiles) {
