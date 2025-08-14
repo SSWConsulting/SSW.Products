@@ -19,27 +19,42 @@
       "images": [
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon1.svg",
-          "pngSrc": "/YakShaver/Icon/yak-title-icon1.png"
+          "pngSrc": "/YakShaver/Icon/yak-title-icon1.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon2.svg",
-          "pngSrc": "/YakShaver/Icon/yak-title-icon2.png"
+          "pngSrc": "/YakShaver/Icon/yak-title-icon2.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon3.svg",
-          "pngSrc": "/YakShaver/Icon/yak-title-icon3.png"
+          "pngSrc": "/YakShaver/Icon/yak-title-icon3.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon4.svg",
-          "pngSrc": "/YakShaver/Icon/yak-title-icon4.png"
+          "pngSrc": "/YakShaver/Icon/yak-title-icon4.png",
+          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-horizontal-Color.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon5.svg",
-          "pngSrc": "/YakShaver/Icon/yak-title-icon5.png"
+          "pngSrc": "/YakShaver/Icon/yak-title-icon5.png",
+          "pngDownloadUrl": "https://www.ssw.com.au/logo/yakshaver",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon6.svg",
-          "pngSrc": "/YakShaver/Icon/yak-title-icon6.png"
+          "pngSrc": "/YakShaver/Icon/yak-title-icon6.png",
+          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-Vertical-Black.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7
         }
       ],
       "itemsPerRow": 3,
@@ -50,16 +65,22 @@
       "gridDescription": "Download the SVG and PNG logo kit",
       "images": [
         {
+          "svgSrc": "/YakShaver/Icon/yak-icon1.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon1.png",
+          "blockColor": "#333333",
+          "imageScale": 0.4
+        },
+        {
           "svgSrc": "/YakShaver/Icon/yak-icon2.svg",
-          "pngSrc": "/YakShaver/Icon/yak-icon2.png"
+          "pngSrc": "/YakShaver/Icon/yak-icon2.png",
+          "blockColor": "#333333",
+          "imageScale": 0.4
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-icon3.svg",
-          "pngSrc": "/YakShaver/Icon/yak-icon3.png"
-        },
-        {
-          "svgSrc": "/YakShaver/Icon/yak-icon1.svg",
-          "pngSrc": "/YakShaver/Icon/yak-icon1.png"
+          "pngSrc": "/YakShaver/Icon/yak-icon3.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.4
         }
       ],
       "itemsPerRow": 3,

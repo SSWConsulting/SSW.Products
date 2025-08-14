@@ -43,6 +43,29 @@ export const ImageGridTemplate: Template = {
           name: "pngDownloadUrl",
           description: "Optional custom download link for PNG. If set, opens in new tab instead of downloading directly",
         },
+        {
+          type: "string",
+          label: "Block Color",
+          name: "blockColor",
+          description: "Background color for the image block (e.g., #ffffff, red, transparent)",
+          ui: {
+            component: "color",
+          },
+        },
+        {
+          type: "number",
+          label: "Image Scale",
+          name: "imageScale",
+          description: "Scale factor for the image (0.1 to 2.0, default: 1.0)",
+          ui: {
+            step: 0.1,
+            validate: (value) => {
+              if (value && (value < 0.1 || value > 2.0)) {
+                return "Scale must be between 0.1 and 2.0";
+              }
+            },
+          },
+        },
       ],
     },
     {

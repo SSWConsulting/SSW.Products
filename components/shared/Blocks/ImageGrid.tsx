@@ -8,6 +8,8 @@ interface ImageItem {
   pngSrc?: string;
   pngDownloadUrl?: string;
   alt?: string;
+  blockColor?: string;
+  imageScale?: number;
 }
 
 interface ImageGridProps {
@@ -98,7 +100,7 @@ const ImageGrid = ({
   );
 
   return (
-    <div className={`py-8 px-4 mx-auto max-w-300 md:px-12 sm:px-8 medium:px-0 ${className}`}>
+    <div className={`py-8 px-4 mx-auto w-full max-w-300 md:px-12 sm:px-8 medium:px-0 ${className}`}>
       {(title || gridDescription) && (
         <div className="text-center mb-12">
           {title && (
@@ -123,7 +125,11 @@ const ImageGrid = ({
             return (
               <div
                 key={image.id || index}
-                className="relative group overflow-hidden rounded-2xl cursor-pointer"
+                className="relative group overflow-hidden rounded-2xl cursor-pointer flex items-center justify-center"
+                style={{ 
+                  backgroundColor: image.blockColor || 'transparent',
+                  aspectRatio: '1 / 0.65'
+                }}
                 onMouseEnter={() => setActiveImageIndex(index)}
                 onMouseLeave={() => setActiveImageIndex(null)}
                 onClick={() => setActiveImageIndex(activeImageIndex === index ? null : index)}
@@ -134,9 +140,10 @@ const ImageGrid = ({
                   width={400}
                   height={300}
                   className="w-full h-auto object-contain rounded-2xl"
+                  style={{ transform: `scale(${image.imageScale || 1})` }}
                 />
 
-                <div className={`absolute inset-0 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl ${activeImageIndex === index ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} style={{ backgroundColor: 'rgba(34, 34, 34, 0.8)' }}>
+                <div className={`absolute inset-0 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl overflow-hidden ${activeImageIndex === index ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`} style={{ backgroundColor: 'rgba(34, 34, 34, 0.8)' }}>
                   {image.svgSrc && renderSVGButton(image.svgSrc, image.alt)}
                   {image.pngSrc && renderPNGButton(image.pngSrc, image.pngDownloadUrl, image.alt)}
                 </div>
