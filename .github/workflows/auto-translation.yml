@@ -66,21 +66,20 @@ jobs:
           PR_NUMBER: ${{ env.PR_NUMBER }}
         run: node .github/scripts/detect-changes.js
 
+      - name: Create translation branch
+        if: env.HAS_CHANGED_FILES == 'true'
+        run: |
+          TIMESTAMP=$(date +%s)
+          BRANCH_NAME="auto-translation-pr-${{ env.PR_NUMBER }}-$TIMESTAMP"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
       - name: Handle file operations (deletions and renames)
-        id: handle-operations
+        if: env.HAS_CHANGED_FILES == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ env.PR_NUMBER }}
         run: node .github/scripts/handle-file-operations.js
-
-      - name: Create translation branch
-        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
-        run: |
-          TIMESTAMP=$(date +%s)
-          BRANCH_NAME="auto-translation-pr-${{ env.PR_NUMBER }}-$TIMESTAMP"
-          git checkout origin/main
-          git checkout -b $BRANCH_NAME
-          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
 
       - name: Translate changed files
         if: env.HAS_CHANGED_FILES == 'true'
@@ -97,7 +96,25 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
+          # 只添加 content/ 目录的变更
           git add content/
+
+          # 显示将要提交的文件，确保只包含 content/ 目录
+          echo "Files to be committed:"
+          git diff --staged --name-only
+
+          # 验证所有暂存文件都在 content/ 目录下
+          STAGED_FILES=$(git diff --staged --name-only)
+          if [ -n "$STAGED_FILES" ]; then
+            for file in $STAGED_FILES; do
+              if [[ ! "$file" == content/* ]]; then
+                echo "❌ Error: File outside content/ directory detected: $file"
+                echo "Only content/ directory changes should be committed"
+                exit 1
+              fi
+            done
+            echo "✅ All staged files are in content/ directory"
+          fi
 
           if git diff --staged --quiet; then
             echo "No changes to commit"
@@ -117,10 +134,6 @@ jobs:
           REPO: ${{ github.repository }}
           SERVER_URL: ${{ github.server_url }}
         run: node .github/scripts/create-pr.js
-
-      - name: Cleanup temporary files
-        if: always()
-        run: rm -f .github/temp-*.json
 
       - name: Summary
         if: always()
