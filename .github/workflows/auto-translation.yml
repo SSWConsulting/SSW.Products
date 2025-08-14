@@ -102,8 +102,11 @@ jobs:
           BRANCH_NAME="auto-translation-${{ steps.pr.outputs.pr_number }}-$(date +%s)"
           echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
           
+          git checkout main
+          git pull origin main
           git checkout -b $BRANCH_NAME
-          git add -A
+          
+          git add content/
           
           if ! git diff --cached --quiet; then
             git commit -m "🤖 Auto Translation: Chinese content for PR #${{ steps.pr.outputs.pr_number }}"
