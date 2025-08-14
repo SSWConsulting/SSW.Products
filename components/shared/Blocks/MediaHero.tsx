@@ -42,26 +42,22 @@ const MediaHero = ({
         )}
 
         {heroButton && (
-          <div>
-            <Link
-              href={heroButton.href}
-              target={heroButton.target}
-              className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 rounded-md text-base font-semibold hover:bg-gray-100 transition-all duration-200 shadow-lg"
-            >
-              {heroButton.iconSrc && (
-                <span className="flex items-center justify-center">
-                  <Image 
-                    src={heroButton.iconSrc} 
-                    alt="" 
-                    width={16} 
-                    height={16}
-                    className="w-4 h-4"
-                  />
-                </span>
-              )}
-              {heroButton.label}
-            </Link>
-          </div>
+          <Link
+            href={heroButton.href}
+            target={heroButton.target}
+            className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 rounded-md text-base font-semibold hover:bg-gray-100 transition-all duration-200 shadow-lg"
+          >
+            {heroButton.iconSrc && (
+              <Image 
+                src={heroButton.iconSrc} 
+                alt="" 
+                width={16} 
+                height={16}
+                className="w-4 h-4"
+              />
+            )}
+            {heroButton.label}
+          </Link>
         )}
 
         {dateText && (
