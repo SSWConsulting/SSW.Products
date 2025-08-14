@@ -16,14 +16,6 @@ interface ImageShowcaseProps {
 const ImageShowcase = ({ title, gridDescription, showcaseImage, showcaseTitle, showcaseDescription, downloadLink }: ImageShowcaseProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleDownloadClick = () => {
-    if (downloadLink) {
-      window.open(downloadLink, '_blank');
-    }
-  };
-
-  const hasValidImage = showcaseImage && showcaseImage.trim() !== '';
-
   return (
     <div className="py-8 px-4 mx-auto max-w-300 md:px-12 sm:px-8 medium:px-0">
       {(title || gridDescription) && (
@@ -41,10 +33,8 @@ const ImageShowcase = ({ title, gridDescription, showcaseImage, showcaseTitle, s
         </div>
       )}
 
-      <div className="w-full">
-        <div className="w-full">
-          <div className="bg-black rounded-2xl p-4">
-            {hasValidImage && (
+      <div className="bg-black rounded-2xl p-4">
+        {showcaseImage?.trim() && (
               <div 
                 className="relative overflow-hidden rounded-2xl mb-6 cursor-pointer"
                 onMouseEnter={() => setIsHovered(true)}
@@ -59,32 +49,30 @@ const ImageShowcase = ({ title, gridDescription, showcaseImage, showcaseTitle, s
                   className="w-full h-auto object-cover rounded-2xl"
                 />
                 
-                <div className={`absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-                  {downloadLink && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleDownloadClick();
-                      }}
-                      className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
-                    >
-                      <Download className="w-5 h-5" />
-                      Download
-                    </button>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {showcaseTitle && (
-              <h2 className="text-white text-2xl font-bold mb-3">{showcaseTitle}</h2>
-            )}
-
-            {showcaseDescription && (
-              <p className="text-gray-300 text-sm">{showcaseDescription}</p>
-            )}
+            <div className={`absolute inset-0 bg-black/70 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+              {downloadLink && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    window.open(downloadLink, '_blank');
+                  }}
+                  className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
+                >
+                  <Download className="w-5 h-5" />
+                  Download
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        )}
+
+        {showcaseTitle && (
+          <h2 className="text-white text-2xl font-bold mb-3">{showcaseTitle}</h2>
+        )}
+
+        {showcaseDescription && (
+          <p className="text-gray-300 text-sm">{showcaseDescription}</p>
+        )}
       </div>
     </div>
   );
