@@ -65,8 +65,8 @@
       "gridDescription": "Download the SVG and PNG logo kit",
       "images": [
         {
-          "svgSrc": "",
-          "pngSrc": "",
+          "svgSrc": "/YakShaver/Icon/yak-icon-1.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-1.png",
           "blockColor": "#333333",
           "imageScale": 0.4
         },
