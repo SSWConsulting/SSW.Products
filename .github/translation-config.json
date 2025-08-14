@@ -35,7 +35,7 @@
   },
   "github": {
     "branchPrefix": "auto-translation-",
-    "prLabels": ["Auto-Translation"],
+    "prLabels": ["Auto-Translation", "YakShaver"],
     "prTitle": "🤖 Auto Translation: PR #{originalPrNumber}",
     "prBodyTemplate": "🤖 Automated Chinese translation for PR #{originalPrNumber}\n\nOriginal PR: #{originalPrLink}\nFiles translated: {translatedFilesCount}\n\n⚠️ AI-generated content - please review before merging"
   }
