@@ -1,5 +1,5 @@
 const fs = require('fs');
-const axios = require('axios');
+const { AzureOpenAI } = require('openai');
 
 async function translateFiles() {
   try {
@@ -14,11 +14,18 @@ async function translateFiles() {
     }
 
     const { AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_API_KEY, AZURE_OPENAI_DEPLOYMENT_NAME } = process.env;
-    const apiVersion = process.env.AZURE_OPENAI_API_VERSION || '2024-02-15-preview';
+    const apiVersion = process.env.AZURE_OPENAI_API_VERSION || '2024-04-01-preview';
 
     if (!AZURE_OPENAI_ENDPOINT || !AZURE_OPENAI_API_KEY || !AZURE_OPENAI_DEPLOYMENT_NAME) {
       throw new Error('Azure OpenAI environment variables missing');
     }
+
+    const client = new AzureOpenAI({
+      endpoint: AZURE_OPENAI_ENDPOINT,
+      apiKey: AZURE_OPENAI_API_KEY,
+      deployment: AZURE_OPENAI_DEPLOYMENT_NAME,
+      apiVersion: apiVersion
+    });
 
     const { azure, projects: { YakShaver: { translationPrompt } } } = config;
     const translatedFiles = [];
@@ -30,42 +37,25 @@ async function translateFiles() {
         const fileContent = fs.readFileSync(fileChange.path, 'utf8');
         const userPrompt = translationPrompt.user.replace('{content}', fileContent);
         
-        const deploymentName = encodeURIComponent(AZURE_OPENAI_DEPLOYMENT_NAME);
-        const apiUrl = `${AZURE_OPENAI_ENDPOINT}/openai/deployments/${deploymentName}/chat/completions?api-version=${apiVersion}`;
-        console.log(`Deployment name: ${AZURE_OPENAI_DEPLOYMENT_NAME}`);
-        console.log(`Calling API: ${apiUrl}`);
-        const response = await axios.post(
-          apiUrl,
-          {
-            messages: [
-              { role: 'system', content: translationPrompt.system },
-              { role: 'user', content: userPrompt }
-            ],
-            max_tokens: azure.maxTokens,
-            temperature: azure.temperature,
-            model: azure.model
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              'api-key': AZURE_OPENAI_API_KEY
-            }
-          }
-        );
+        console.log(`Translating: ${fileChange.path}`);
+        const response = await client.chat.completions.create({
+          messages: [
+            { role: 'system', content: translationPrompt.system },
+            { role: 'user', content: userPrompt }
+          ],
+          max_tokens: azure.maxTokens,
+          temperature: azure.temperature,
+          model: AZURE_OPENAI_DEPLOYMENT_NAME
+        });
 
         translatedFiles.push({
           originalPath: fileChange.path,
-          translatedContent: response.data.choices[0].message.content,
+          translatedContent: response.choices[0].message.content,
           status: fileChange.status
         });
 
       } catch (error) {
-        console.error(`Failed to translate ${fileChange.path}:`);
-        console.error(`Error: ${error.message}`);
-        if (error.response) {
-          console.error(`Status: ${error.response.status}`);
-          console.error(`Response: ${JSON.stringify(error.response.data, null, 2)}`);
-        }
+        console.error(`Failed to translate ${fileChange.path}: ${error.message}`);
       }
     }
 
