@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { minimatch } = require('minimatch');
+const minimatch = require('minimatch');
 
 async function filterFiles() {
   try {
