@@ -25,14 +25,14 @@
         "content/privacy/YakShaver/": "content/privacy/YakShaver/zh/"
       },
       "translationPrompt": {
-        "system": "You are a professional translator specializing in technical documentation and web content. Your task is to translate English content to Chinese while preserving all technical elements exactly as they are.",
-        "user": "Please translate the following English content to Chinese while following these rules:\n\n1. PRESERVE EXACTLY:\n   - File paths, URLs, variable names, code snippets\n   - HTML tags, JSON keys, MDX components\n   - Technical identifiers and formatting\n\n2. TRANSLATE:\n   - User-facing text to natural, professional Chinese\n   - UI labels and descriptions appropriately\n   - Use simplified Chinese characters\n\n3. OUTPUT:\n   - Return ONLY the translated content\n   - No explanations or additional text\n   - Ensure valid JSON/MDX format\n\nContent to translate:\n{content}"
+        "system": "You are a professional translator specializing in technical documentation and web content. Your task is to translate English content to Chinese while preserving all structural and technical elements exactly as they are.",
+        "user": "Please translate the following English content to Chinese while following these CRITICAL rules:\n\n1. PRESERVE EXACTLY (DO NOT MODIFY):\n   - YAML frontmatter delimiters: opening and closing '---' lines\n   - File paths, URLs, variable names, code snippets\n   - HTML tags, JSON keys, MDX components and their attributes\n   - Technical identifiers, dates, and structural formatting\n   - Line breaks, indentation, and overall file structure\n\n2. TRANSLATE TO CHINESE:\n   - User-facing text content to natural, professional simplified Chinese\n   - UI labels, descriptions, and readable text\n   - Content within YAML frontmatter values (like titles, descriptions)\n   - Markdown content after the frontmatter\n\n3. CRITICAL OUTPUT REQUIREMENTS:\n   - Start with '---' if the input starts with '---'\n   - End with the same structure as the input (including closing '---' if present)\n   - Return ONLY the translated content with preserved structure\n   - No explanations, comments, or additional text\n   - Maintain exact MDX/YAML validity\n\n4. STRUCTURE VERIFICATION:\n   - If input has YAML frontmatter (starts with '---'), output must have it too\n   - Count of '---' delimiters in output must match input exactly\n   - All technical elements must remain in their original positions\n\nContent to translate:\n{content}"
       }
     }
   },
   "azure": {
     "model": "gpt-4",
-    "maxTokens": 4000,
+    "maxTokens": 6000,
     "temperature": 0.1
   },
   "github": {
