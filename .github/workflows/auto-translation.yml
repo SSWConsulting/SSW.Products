@@ -85,6 +85,8 @@ jobs:
 
       - name: Commit Changes
         if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git add content/
           if ! git diff --staged --quiet; then
