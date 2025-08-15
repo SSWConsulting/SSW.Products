@@ -1,0 +1,105 @@
+{
+  "title": "YakShaver Logo and Brand Assets",
+  "pageBlocks": [
+    {
+      "heroTitle": "YakShaver Logo and Brand Assets",
+      "heroDescription": "Download YakShaver Brand Guide to explore comprehensive guidelines on our visual identity, messaging, and design assets. Get all the insights you need to maintain brand consistency and make a strong impact.",
+      "heroButton": {
+        "label": "DOWNLOAD BRAND GUIDE",
+        "iconSrc": "/svg/file-download.svg",
+        "href": "/YakShaver/YakShaver-Brand-Guide-V3.pdf",
+        "target": "_blank"
+      },
+      "dateText": "Last updated 10/08/2025",
+      "_template": "mediaHero"
+    },
+    {
+      "title": "Logos",
+      "gridDescription": "Download the SVG and PNG logo kit",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-1.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-1.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-2.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-2.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-3.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-3.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-4.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-4.png",
+          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-horizontal-Color.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-5.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-5.png",
+          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-Vertical-Color.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-6.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-6.png",
+          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-Vertical-Black.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7
+        }
+      ],
+      "itemsPerRow": 3,
+      "_template": "imageGrid"
+    },
+    {
+      "title": "Logos",
+      "gridDescription": "Download the SVG and PNG logo kit",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon-1.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-1.png",
+          "blockColor": "#333333",
+          "imageScale": 0.4
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon-2.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-2.png",
+          "blockColor": "#333333",
+          "imageScale": 0.4
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon-3.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-3.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.4
+        }
+      ],
+      "itemsPerRow": 3,
+      "_template": "imageGrid"
+    },
+    {
+      "title": "Backgrounds",
+      "gridDescription": "Download YakShaver official backgrounds",
+      "showcaseImage": "/YakShaver/background.svg",
+      "downloadLink": "https://sswcom.sharepoint.com/:f:/s/SSWDesigners/EmZj4STyKVdEsYdPScAnjLUBAPxKs0-8VfEQY0sV7r01Qg?e=wwW2RW",
+      "showcaseTitle": "YakShaver gradient background",
+      "showcaseDescription": "To ensure our brand image is effectively integrated without overwhelming the viewer, it should occupy no more than one-third of the screen in any digital or print media. This balance allows for other essential content to be clearly communicated while maintaining our brand’s presence. ",
+      "_template": "imageShowcase"
+    },
+    {
+      "title": "Fonts",
+      "gridDescription": "The official fonts used in YakShaver is Inter",
+      "itemsPerRow": 3,
+      "_template": "imageGrid"
+    }
+  ]
+}
