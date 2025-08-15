@@ -84,6 +84,5 @@ jobs:
       - name: Summary
         if: always()
         run: |
-          echo "## Auto Translation Summary" >> $GITHUB_STEP_SUMMARY
           echo "- Original PR: #${{ env.PR_NUMBER }}" >> $GITHUB_STEP_SUMMARY
           echo "- Status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
