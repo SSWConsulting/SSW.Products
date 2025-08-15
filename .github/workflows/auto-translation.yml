@@ -11,7 +11,7 @@ on:
       pr_number:
         description: 'PR number to process'
         required: true
-        type: string
+        type: number
 
 env:
   PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number || github.event_name == 'push' && '407' || github.event.pull_request.number }}
@@ -38,16 +38,6 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-      - name: Ensure latest main
-        run: |
-          git fetch origin main
-          echo "Latest main: $(git rev-parse origin/main)"
-          
-          if [ ! -f ".github/scripts/detect-changes.js" ]; then
-            echo "Error: Script files not found"
-            exit 1
-          fi
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:

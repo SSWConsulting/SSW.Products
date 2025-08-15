@@ -13,7 +13,7 @@ async function detectChanges() {
 
     console.log(`Fetching PR #${prNumber} files from GitHub API...`);
 
-    // 获取 PR 文件变更
+    // Get changed files list
     const response = await axios.get(
       `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls/${prNumber}/files`,
       {
@@ -24,41 +24,70 @@ async function detectChanges() {
       }
     );
 
-    // 读取配置来过滤文件
+    // Filter Rule
     const config = JSON.parse(fs.readFileSync('.github/translation-config.json', 'utf8'));
     const { watchPaths, excludePaths } = config.projects.YakShaver;
 
-    // 过滤符合条件的文件，只处理添加或修改的文件
-    const relevantFiles = response.data
-      .filter(file => {
-        // 只处理添加或修改的文件，跳过删除和重命名的文件
-        if (file.status === 'removed') {
-          console.log(`Skipping deleted file: ${file.filename}`);
-          return false;
-        }
-        
-        // 对于重命名的文件，使用新文件名
-        const fileToCheck = file.status === 'renamed' ? file.filename : file.filename;
-        
-        const isWatched = watchPaths.some(pattern => minimatch(fileToCheck, pattern));
-        const isExcluded = excludePaths.some(pattern => minimatch(fileToCheck, pattern));
-        
-        if (file.status === 'renamed') {
-          console.log(`File renamed: ${file.previous_filename} -> ${file.filename}`);
-        }
-        
-        return isWatched && !isExcluded;
-      })
-      .map(file => file.filename);
+    // Separate file operations and content changes
+    const fileOperations = [];
+    const contentFiles = [];
+
+    response.data.forEach(file => {
+      const fileToCheck = file.status === 'renamed' ? file.filename : file.filename;
+      const isWatched = watchPaths.some(pattern => minimatch(fileToCheck, pattern));
+      const isExcluded = excludePaths.some(pattern => minimatch(fileToCheck, pattern));
+      
+      if (!isWatched || isExcluded) return;
+
+      if (file.status === 'removed') {
+        console.log(`File deleted: ${file.filename}`);
+        fileOperations.push({
+          operation: 'removed',
+          filename: file.filename
+        });
+      } else if (file.status === 'renamed') {
+        console.log(`File renamed: ${file.previous_filename} -> ${file.filename}`);
+        fileOperations.push({
+          operation: 'renamed',
+          previous_filename: file.previous_filename,
+          filename: file.filename
+        });
+        // Also include renamed file for content translation
+        contentFiles.push(file.filename);
+      } else if (file.status === 'copied') {
+        console.log(`File copied: ${file.previous_filename} -> ${file.filename}`);
+        fileOperations.push({
+          operation: 'copied',
+          previous_filename: file.previous_filename,
+          filename: file.filename
+        });
+        // Also include copied file for content translation
+        contentFiles.push(file.filename);
+      } else {
+        // added or modified files
+        contentFiles.push(file.filename);
+      }
+    });
+
+    const relevantFiles = contentFiles;
 
     console.log(`Found ${relevantFiles.length} relevant files for translation`);
+    console.log(`Found ${fileOperations.length} file operations`);
 
+    // Set environment variables for content files
     if (relevantFiles.length > 0) {
-      // 设置环境变量供后续步骤使用 (TinaCMS 模式)
       fs.appendFileSync(process.env.GITHUB_ENV, `HAS_CHANGED_FILES=true\n`);
       fs.appendFileSync(process.env.GITHUB_ENV, `CHANGED_FILES<<EOF\n${relevantFiles.join('\n')}\nEOF\n`);
     } else {
       fs.appendFileSync(process.env.GITHUB_ENV, `HAS_CHANGED_FILES=false\n`);
+    }
+
+    // Set environment variables for file operations
+    if (fileOperations.length > 0) {
+      fs.appendFileSync(process.env.GITHUB_ENV, `HAS_FILE_OPERATIONS=true\n`);
+      fs.appendFileSync(process.env.GITHUB_ENV, `FILE_OPERATIONS<<EOF\n${JSON.stringify(fileOperations)}\nEOF\n`);
+    } else {
+      fs.appendFileSync(process.env.GITHUB_ENV, `HAS_FILE_OPERATIONS=false\n`);
     }
 
   } catch (error) {
