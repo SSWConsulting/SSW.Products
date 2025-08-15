@@ -1,0 +1,44 @@
+{
+  "projects": {
+    "YakShaver": {
+      "watchPaths": [
+        "content/blogs/YakShaver/**/*.{json,mdx}",
+        "content/docs/YakShaver/**/*.{json,mdx}",
+        "content/pages/YakShaver/**/*.{json,mdx}",
+        "content/footer/YakShaver/**/*.{json,mdx}",
+        "content/navBars/YakShaver/**/*.{json,mdx}",
+        "content/indexPages/YakShaver/**/*.{json,mdx}",
+        "content/docsTableOfContents/YakShaver/**/*.{json,mdx}",
+        "content/privacy/YakShaver/**/*.{json,mdx}"
+      ],
+      "excludePaths": [
+        "**/zh/**"
+      ],
+      "translationMapping": {
+        "content/blogs/YakShaver/": "content/blogs/YakShaver/zh/",
+        "content/docs/YakShaver/": "content/docs/YakShaver/zh/",
+        "content/pages/YakShaver/": "content/pages/YakShaver/zh/",
+        "content/footer/YakShaver/": "content/footer/YakShaver/zh/",
+        "content/navBars/YakShaver/": "content/navBars/YakShaver/zh/",
+        "content/indexPages/YakShaver/": "content/indexPages/YakShaver/zh/",
+        "content/docsTableOfContents/YakShaver/": "content/docsTableOfContents/YakShaver/zh/",
+        "content/privacy/YakShaver/": "content/privacy/YakShaver/zh/"
+      },
+      "translationPrompt": {
+        "system": "You are a professional translator. Translate English text to Chinese while preserving ALL structural and technical elements exactly.",
+        "user": "Translate ONLY the text content to Chinese. Follow these rules:\n\n**PRESERVE EXACTLY:**\n- File structure, syntax, formatting\n- Indentation, line breaks, spacing\n- JSON keys, HTML tags, URLs, code\n- Technical identifiers, delimiters\n- All brackets, quotes, structural markers\n\n**TRANSLATE:**\n- User-facing text content to simplified Chinese\n- Keep all technical terms unchanged\n\n**OUTPUT:**\n- Return only the translated content\n- Maintain identical structure to input\n- No explanations or additional text\n\nContent:\n{content}"
+      }
+    }
+  },
+  "azure": {
+    "model": "gpt-4",
+    "maxTokens": 6000,
+    "temperature": 0.1
+  },
+  "github": {
+    "branchPrefix": "auto-translation-",
+    "prLabels": ["Auto-Translation", "YakShaver"],
+    "prTitle": "🤖 Auto Translation: PR #{originalPrNumber}",
+    "prBodyTemplate": "🤖 Automated Chinese translation for PR #{originalPrNumber}\n\nOriginal PR: #{originalPrLink}\nFiles translated: {translatedFilesCount}\n\n⚠️ AI-generated content - please review before merging"
+  }
+}

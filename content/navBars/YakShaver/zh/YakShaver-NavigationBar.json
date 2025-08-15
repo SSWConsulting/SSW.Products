@@ -40,7 +40,7 @@
           "href": "/certifications"
         },
         {
-          "label": "DISCORD",
+          "label": "Discord",
           "href": "https://discord.gg/Jp9dyxKFjR"
         }
       ],
@@ -54,7 +54,7 @@
   ],
   "buttons": [
     {
-      "label": "控制台",
+      "label": "门户",
       "href": "https://portal.yakshaver.ai/",
       "icon": "/YakShaver/yakshaver-black.svg",
       "iconPosition": "left",
