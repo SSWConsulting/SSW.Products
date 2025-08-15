@@ -4,8 +4,6 @@ on:
   pull_request:
     types: [closed]
     branches: [main]
-  push:
-    branches: [feature/GitHub-Action]
   workflow_dispatch:
     inputs:
       pr_number:
@@ -14,11 +12,11 @@ on:
         type: number
 
 env:
-  PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number || github.event_name == 'push' && '407' || github.event.pull_request.number }}
+  PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number || github.event.pull_request.number }}
 
 jobs:
   translate:
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch' || github.event_name == 'push'
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write
