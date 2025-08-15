@@ -1,66 +1,90 @@
 const axios = require('axios');
 const fs = require('fs');
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const PR_NUMBER = process.env.PR_NUMBER;
-const BRANCH_NAME = process.env.BRANCH_NAME;
-const REPO = process.env.REPO;
-const [OWNER, REPO_NAME] = REPO.split('/');
-const SERVER_URL = process.env.GITHUB_SERVER_URL || 'https://github.com';
+function validateEnvironment() {
+  const required = ['GITHUB_TOKEN', 'PR_NUMBER', 'BRANCH_NAME', 'REPO'];
+  const missing = required.filter(key => !process.env[key]);
+  
+  if (missing.length > 0) {
+    throw new Error(`Missing environment variables: ${missing.join(', ')}`);
+  }
+  
+  const [owner, repoName] = process.env.REPO.split('/');
+  if (!owner || !repoName) {
+    throw new Error('Invalid REPO format');
+  }
+  
+  return {
+    token: process.env.GITHUB_TOKEN,
+    prNumber: process.env.PR_NUMBER,
+    branchName: process.env.BRANCH_NAME,
+    owner,
+    repoName,
+    serverUrl: process.env.GITHUB_SERVER_URL || 'https://github.com'
+  };
+}
 
-async function createPullRequest() {
-  try {
-    const prTitle = `🤖 Auto Translation: PR #${PR_NUMBER}`;
-    const prBody = `🤖 Automated Chinese translation for PR #${PR_NUMBER}
+function generatePRContent(prNumber, repo, serverUrl) {
+  const title = `🤖 Auto Translation: PR #${prNumber}`;
+  const body = `🤖 Automated Chinese translation for PR #${prNumber}
 
-Original PR: ${SERVER_URL}/${REPO}/pull/${PR_NUMBER}
+Original PR: ${serverUrl}/${repo}/pull/${prNumber}
 
 ⚠️ AI-generated content - please review before merging`;
 
-    const response = await axios.post(
-      `https://api.github.com/repos/${OWNER}/${REPO_NAME}/pulls`,
-      {
-        title: prTitle,
-        body: prBody,
-        head: BRANCH_NAME,
-        base: 'main',
-      },
-      {
-        headers: {
-          Authorization: `token ${GITHUB_TOKEN}`,
-          Accept: 'application/vnd.github.v3+json',
-        },
-      },
+  return { title, body };
+}
+
+async function makeRequest(url, data, token) {
+  return axios.post(url, data, {
+    headers: {
+      Authorization: `token ${token}`,
+      Accept: 'application/vnd.github.v3+json',
+    },
+  });
+}
+
+async function addLabels(owner, repoName, prNumber, token) {
+  try {
+    await makeRequest(
+      `https://api.github.com/repos/${owner}/${repoName}/issues/${prNumber}/labels`,
+      { labels: ['Auto-Translation', 'YakShaver'] },
+      token
+    );
+    console.log(`Added labels to PR #${prNumber}`);
+  } catch (error) {
+    console.warn(`Warning: Failed to add labels: ${error.message}`);
+  }
+}
+
+function writeOutput(prNumber, prUrl) {
+  const githubOutput = process.env.GITHUB_OUTPUT;
+  if (githubOutput) {
+    fs.appendFileSync(githubOutput, `translation_pr_number=${prNumber}\n`);
+    fs.appendFileSync(githubOutput, `translation_pr_url=${prUrl}\n`);
+  }
+}
+
+async function createPullRequest() {
+  try {
+    const { token, prNumber, branchName, owner, repoName, serverUrl } = validateEnvironment();
+    const { title, body } = generatePRContent(prNumber, process.env.REPO, serverUrl);
+    
+    const response = await makeRequest(
+      `https://api.github.com/repos/${owner}/${repoName}/pulls`,
+      { title, body, head: branchName, base: 'main' },
+      token
     );
 
-    console.log(`Successfully created PR #${response.data.number}: ${response.data.html_url}`);
-
-    if (process.env.GITHUB_OUTPUT) {
-      fs.appendFileSync(process.env.GITHUB_OUTPUT, `translation_pr_number=${response.data.number}\n`);
-      fs.appendFileSync(process.env.GITHUB_OUTPUT, `translation_pr_url=${response.data.html_url}\n`);
-    }
-
-    if (response.data.number) {
-      try {
-        await axios.post(
-          `https://api.github.com/repos/${OWNER}/${REPO_NAME}/issues/${response.data.number}/labels`,
-          { labels: ['Auto-Translation', 'YakShaver'] },
-          {
-            headers: {
-              Authorization: `token ${GITHUB_TOKEN}`,
-              Accept: 'application/vnd.github.v3+json',
-            },
-          },
-        );
-        console.log(`Added labels to PR #${response.data.number}`);
-      } catch (labelError) {
-        console.warn(`Warning: Failed to add labels: ${labelError.message}`);
-      }
-    }
-
+    const { number, html_url } = response.data;
+    console.log(`Successfully created PR #${number}: ${html_url}`);
+    
+    writeOutput(number, html_url);
+    await addLabels(owner, repoName, number, token);
+    
     return response.data;
   } catch (error) {
-    console.error('Error creating pull request:', error.message);
+    console.error(`Error creating pull request: ${error.message}`);
     if (error.response) {
       console.error(`API response: ${JSON.stringify(error.response.data)}`);
     }
@@ -69,10 +93,12 @@ Original PR: ${SERVER_URL}/${REPO}/pull/${PR_NUMBER}
 }
 
 async function main() {
-  await createPullRequest();
+  try {
+    await createPullRequest();
+  } catch (error) {
+    console.error(`Failed to create pull request: ${error.message}`);
+    process.exit(1);
+  }
 }
 
-main().catch((error) => {
-  console.error('Failed to create pull request:', error);
-  process.exit(1);
-});
+if (require.main === module) main();
