@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const { AzureOpenAI } = require('openai');
-const { applyLinkReplacements } = require('./process-links');
 
 function loadConfig() {
   const config = JSON.parse(fs.readFileSync('.github/translation-config.json', 'utf8'));
@@ -72,11 +71,8 @@ async function processFile(filePath, config, client, deploymentName) {
 
     const translatedContent = await translateContent(content, translationPrompt, client, azure, deploymentName);
     
-    // Apply link replacements to the translated content
-    const processedContent = applyLinkReplacements(translatedContent);
-    
     ensureDirectoryExists(targetPath);
-    fs.writeFileSync(targetPath, processedContent, 'utf8');
+    fs.writeFileSync(targetPath, translatedContent, 'utf8');
     console.log(`Translated: ${filePath} -> ${targetPath}`);
     
     return targetPath;

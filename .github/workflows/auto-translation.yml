@@ -69,7 +69,6 @@ jobs:
 
           if [ "$HAS_CHANGED_FILES" = "true" ]; then
             node .github/scripts/translate-files.js
-            node .github/scripts/process-links.js
           fi
 
       - name: Verify TinaCMS Schema
