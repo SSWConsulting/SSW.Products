@@ -76,7 +76,7 @@ jobs:
         if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
         run: |
           yarn install
-          timeout 180s yarn dev || echo "Dev server check completed"
+          timeout 120s yarn dev || echo "Dev server check completed"
           
           if [ -f "tina/__generated__/tina-lock.json" ]; then
             git add tina/__generated__/tina-lock.json
