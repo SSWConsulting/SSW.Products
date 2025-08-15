@@ -1,0 +1,74 @@
+---
+title: 配置自定义系统提示
+date: '2025-08-03T16:00:00.000Z'
+---
+
+了解如何在 YakShaver 中配置自定义系统提示，以根据团队需求定制 AI 生成的 PBI。
+
+## 在 YakShaver 门户中配置系统自定义提示
+
+YakShaver 支持用于 PBI 生成的自定义系统提示，允许您定制 AI 生成的内容以符合团队的具体需求。
+
+按照以下步骤配置自定义系统提示：
+
+### 前提条件
+
+您需要拥有租户的管理员权限。只有管理员账户可以编辑自定义系统提示。
+
+### 访问门户
+
+通过以下任一方式访问 YakShaver 门户：
+
+1. 点击 yakshaver.ai 主页右上角的“Portal”按钮
+2. 或直接访问 [https://portal.yakshaver.ai/](https://portal.yakshaver.ai/)
+
+![Open Portal](/YakShaver/Docs/open-portal.png)
+*图示：从主页访问 YakShaver 门户*
+
+### 配置级别
+
+YakShaver 允许管理员用户在两个级别配置自定义系统提示：**租户级别** 和 **项目级别**。
+
+#### 租户级别配置
+
+租户级别提示适用于当前租户下的所有项目。管理员用户可以通过打开系统信息侧边栏并编辑“Tenant Prompt Configuration”卡片来修改。
+
+![Edit Tenant Prompt](/YakShaver/Docs/edit-tenant-prompt.png)
+*图示：编辑租户级别提示配置*
+
+普通用户可以在项目页面通过将鼠标悬停在页面标题下方带下划线的“View details”文字上查看当前租户级别提示。
+
+![View Tenant Prompt](/YakShaver/Docs/view-tenant-prompt.png)
+*图示：普通用户查看租户级别提示*
+
+#### 项目级别配置
+
+用户也可以配置特定项目级别的提示以覆盖租户设置。管理员账户可以点击单个项目进入项目详情，然后在“Custom System Prompt”字段中修改提示。
+
+![Edit Project Prompt](/YakShaver/Docs/edit-project-prompt.png)
+*图示：编辑项目级别提示配置*
+
+普通用户可以在项目列表页面查看每个项目的提示。
+
+![View Project Prompt](/YakShaver/Docs/view-project-prompt.png)
+*图示：在项目列表中查看项目级别提示*
+
+**⚠️ 注意：** 当租户级别和项目级别提示同时存在时，项目级别提示优先级更高，会覆盖租户级别提示。
+
+## 示例：语言定制
+
+以下是自定义系统提示如何用于定制 YakShaver 输出的实际示例。
+
+假设一个讲中文的团队使用 YakShaver，而 YakShaver 的默认 PBI 语言是英文。您可以配置租户级别系统提示，确保所有项目生成中文 PBI。
+
+![Configure Tenant Prompt](/YakShaver/Docs/config-tenant-prompt.png)
+*图示：在租户级别设置中文语言提示*
+
+有了此配置，无论视频录制语言如何，YakShaver 都会生成中文 PBI。
+
+![Chinese PBI](/YakShaver/Docs/Chinese-PBI.png)
+*图示：生成的中文 PBI*
+
+自定义系统提示还可以配置 PBI 生成的各种方面，包括格式、语言、语气和风格。
+
+**⚠️ 重要提示：** 请谨慎使用自定义系统提示。结果可能有所不同，且不一定总能达到预期。
