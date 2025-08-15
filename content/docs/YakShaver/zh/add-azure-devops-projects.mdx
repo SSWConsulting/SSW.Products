@@ -1,0 +1,33 @@
+---
+seo:
+  title: 如何将 Azure DevOps 项目连接到 YakShaver
+  description: >-
+    了解如何将您的 Azure DevOps 代码库与 YakShaver 集成。启用自动化工作项创建，简化您的 DevOps 工作流程。
+  openGraphTitle: 如何将 Azure DevOps 项目连接到 YakShaver
+  openGraphDescription: >-
+    了解如何将您的 Azure DevOps 代码库与 YakShaver 集成。启用自动化工作项创建，简化您的 DevOps 工作流程。
+title: 添加 Azure DevOps 项目
+date: '2025-06-19T14:00:00.000Z'
+---
+
+要通过 YakShaver 在您的 Azure DevOps 代码库中开始创建 shaves，请按照以下步骤操作。
+
+> 注意：您必须同时拥有组织租户和 Azure DevOps 账户的管理员权限。
+
+### 逐步操作指南
+
+1. **将 Azure DevOps 连接到 YakShaver**\
+   访问 [YakShaver Integrations Settings](https://portal.yakshaver.ai/settings/integrations)，并使用管理员账户授权。
+2. **在 Azure DevOps 中添加 YakShaver 作为用户**\
+   进入您的 Azure DevOps 组织设置：[https://dev.azure.com/yourorganization](https://dev.azure.com/yourorganization)
+3. 转到 **General | Users | Add Users**，添加以下内容：\
+   **用户/服务主体**：YakShaver.ai (ID: `be9ecbe4-c377-43b8-a560-ab137326ebf2`)\
+   **访问级别**：Basic\
+   **添加到项目**：包含所有 YakShaver 应访问以创建工作项的项目\
+   **Azure DevOps 组**：Project Contributors
+4. **对每个组织重复操作**\
+   如果您管理多个 Azure DevOps 组织，请对每个组织重复步骤 2-3。
+5. **在 YakShaver 中同步项目**\
+   访问 YakShaver 的 [Projects Settings page](https://portal.yakshaver.ai/settings/projects)，同步您的 Azure DevOps 项目。您的更改应立即反映在门户中。
+
+一切就绪——YakShaver 现已连接到您的 Azure DevOps 项目。

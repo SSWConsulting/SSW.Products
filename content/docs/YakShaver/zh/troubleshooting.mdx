@@ -1,0 +1,48 @@
+---
+title: YakShaver 创建 PBI 失败
+date: '2025-07-17T14:00:00.000Z'
+---
+
+如果用户已经完成录制，但 YakShaver 没有任何反应——请按照以下步骤继续排查，直到问题解决。
+
+## 1. 测试 YakShaver 是否在线
+
+* A. 运行 /help 命令。此操作用于检查 YakShaver 机器人是否有响应
+
+![yakshaver help response](/YakShaver/Docs/yakshaver-help.jpg)**图示：这表示 YakShaver 正在响应 🟢**
+
+## 2. 如果 YakShaver 没有响应
+
+* A. 检查 [YakShaver 的健康状态](https://api.yakshaver.ai/health)
+* B. 如果 YakShaver 状态不健康，请放心，团队已经知晓，服务将很快恢复上线。您也可以通过邮件联系我们确认。
+
+![](/YakShaver/Docs/yakshaver-healthy.jpg)
+
+图示：YakShaver 状态“健康” 🟢
+
+## 3. 如果 YakShaver 状态健康
+
+* A. 访问 **[YakShaver 门户](https://portal.yakshaver.ai) | 我的 Shaves**
+* B. 检查您最近的 shave 状态并重新运行（如果可用）。
+  当 Shave 处于待处理状态时，可能是因为用户未回答机器人提出的问题（例如选择使用哪个项目待办事项）。
+* C. 如果最近的 shave 未显示（或无法重新运行），请继续执行步骤 4
+
+## 4. 如果上述步骤无效
+
+#### 如果通过 Teams 录制
+
+* A. 在 OneDrive 文件夹中找到录制文件，然后在同一文件夹内复制该文件。此操作将触发新的 shave
+* B. 如果录制文件不存在，请在 Teams 中重新录制视频（从头开始）。如果问题依旧，尝试使用其他录制工具或联系 [YakShaver 支持](https://yakshaver.ai/docs/support)
+
+#### 如果通过支持的第三方工具录制
+
+* C. 在 OneDrive 文件夹中找到录制文件
+* D. 如果视频不存在，请检查录制工具配置是否正确。详情见：[https://yakshaver.ai/docs#Supported-Tools](https://yakshaver.ai/docs#Supported-Tools)
+* E. 如果视频存在，检查 OneDrive 服务是否已开启。如果已开启，请执行上述步骤 4a
+* F. 如果 OneDrive 未开启，请开启它，YakShaver 将自动检测新视频
+
+![](/image%20\(17\).png)
+
+图示：蓝色图标和“已更新”表示状态良好 🟢
+
+## 5. 在 [Discord](https://discord.gg/Jp9dyxKFjR) 寻求社区支持，或联系 [YakShaver 支持](https://yakshaver.ai/docs/support)
