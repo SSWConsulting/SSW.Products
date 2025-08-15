@@ -1,0 +1,37 @@
+---
+seo:
+  title: 视频上传选项 – YouTube 或 OneDrive
+  description: 如何让 YakShaver 剃须任务中的共享视频链接永久有效
+  openGraphTitle: 通过上传到 YouTube 让您的视频永久保存
+  openGraphDescription: 如何让 YakShaver 剃须任务中的共享视频链接永久有效
+title: 视频上传选项 – YouTube 或 OneDrive
+date: '2025-06-16T14:00:00.000Z'
+---
+
+**⚠️ 警告：** 默认情况下，YakShaver 通过 **OneDrive** 共享的视频链接会在 30 天后过期。这是我们共享规则的一部分，以确保内容保持最新且存储使用效率高。
+
+![](/zh/30-day-expire-settings.png)
+**图示：默认情况下，可共享链接将在 30 天后过期**
+
+![](/zh/video-expired.png)
+**图示：视频过期时显示的错误**
+
+![](/zh/remarks-official-documentation.png)
+**图示：[官方文档](https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0&tabs=csharp#remarks)**
+
+## 使视频永久保存
+
+如果您希望视频永久可用，可以将您的 **YouTube** 账户连接到项目。连接后，上传的视频将发布到您的 YouTube 账户，并且不会过期。
+
+**⚠️ YouTube 限制：**
+- **每日配额**：每个已验证频道每天仅约允许上传 100 个视频
+- **安全性**：如果无列表链接被意外分享，任何人都可以访问
+- **无组织控制**：视频托管在 YouTube 上，而非您组织的基础设施
+
+## 如何设置 YouTube 上传：
+
+1. 访问您希望通过 [门户](https://portal.yakshaver.ai/settings/projects) 上传视频的项目
+2. [连接您的 YouTube 账户](/zh/docs/connect-your-youtube-channel-to-a-project)（如果尚未连接）
+3. 为该项目创建一个剃须任务——它将以无列表形式发布到您的 YouTube 频道，且不会过期
+
+**注意**：SharePoint 链接的 30 天过期是安全最佳实践，确保内容保持最新并减少长期存储和安全风险。仅当确实需要永久访问时，才应使用 YouTube 托管，同时需考虑每日上传限制和安全因素。

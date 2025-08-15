@@ -1,0 +1,73 @@
+{
+  "seo": {
+    "title": "立即试用",
+    "description": "安装 YakShaver 浏览器扩展并使用的分步说明",
+    "openGraphTitle": "立即试用",
+    "openGraphDescription": "安装 YakShaver 浏览器扩展并使用的分步说明"
+  },
+  "title": "立即试用",
+  "pageBlocks": [
+    {
+      "topImage": {
+        "imgSrc": "/YakShaver/YakShaver Darkmode.png",
+        "imgWidth": 514,
+        "imgHeight": 104
+      },
+      "tryItNowTitle": "使用 YakShaver 浏览器扩展，3 步开始录制！",
+      "tryItNowCards": [
+        {
+          "title": "1. 下载",
+          "description": "点击下面的按钮，从 Google Chrome 商店下载 YakShaver 浏览器扩展。\n",
+          "image": {
+            "imgWidth": 480,
+            "imgHeight": 336
+          },
+          "button": {
+            "enableButton": true,
+            "label": "下载\n",
+            "link": "https://chromewebstore.google.com/detail/yakshaver/glcoihkbmomiblcbpnlkafcipcfnikjc"
+          }
+        },
+        {
+          "title": "2. 固定",
+          "description": "点击浏览器右上角的 ![](/zh/TryItNow/extension.svg)，然后点击 YakShaver 旁边的 ![](/zh/TryItNow/pin.svg) 将其固定到浏览器窗口。\n",
+          "image": {
+            "imgSrc": "/TryItNow/pin-yakshaver-2.png",
+            "imgWidth": 480,
+            "imgHeight": 336
+          },
+          "button": {
+            "label": ""
+          }
+        },
+        {
+          "title": "3. 开始录制",
+          "description": "点击浏览器窗口顶部的 YakShaver 标志 ![](/zh/TryItNow/yakshaver.svg)，然后点击开始录制。\n",
+          "image": {
+            "imgSrc": "/TryItNow/yakshaver-this-tab.png",
+            "imgWidth": 480,
+            "imgHeight": 336
+          },
+          "button": {
+            "label": ""
+          }
+        }
+      ],
+      "bottomLinks": [
+        {
+          "label": "![](/zh/TryItNow/question.svg)了解更多\n",
+          "url": "/docs/recording-work-item-browser-extension"
+        },
+        {
+          "label": "![](/zh/TryItNow/camera.svg)观看视频\n",
+          "url": "https://www.youtube.com/watch?v=CBes1SEvV54"
+        }
+      ],
+      "_template": "tryItNow"
+    }
+  ],
+  "pageFormatting": {
+    "backgroundColor": "black",
+    "bottomPadding": "small"
+  }
+}
