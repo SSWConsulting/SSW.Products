@@ -76,7 +76,7 @@ jobs:
             git commit -m "🤖 Auto Translation: Chinese content for PR #${{ env.PR_NUMBER }}"
             git push origin $BRANCH_NAME
             
-            REPO=${{ github.repository }} SERVER_URL=${{ github.server_url }} node .github/scripts/create-pr.js
+            REPO=${{ github.repository }} SERVER_URL=${{ github.server_url }} BRANCH_NAME=$BRANCH_NAME node .github/scripts/create-pr.js
           else
             echo "No changes to commit"
           fi
