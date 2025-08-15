@@ -2,13 +2,13 @@
   "blocks": [
     {
       "title": "YakShaver.ai 博客",
-      "description": "关于问题报告与 AI 驱动生产力的见解、技巧与故事",
+      "description": "关于问题报告和 AI 驱动生产力的见解、技巧和故事",
       "showCategories": false,
       "_template": "heroSearch"
     },
     {
       "title": "精选文章",
-      "featuredBlog": "content/blogs/YakShaver/zh/how-much-time-does-yakshaver-save.mdx",
+      "featuredBlog": "content/blogs/YakShaver/how-much-time-does-yakshaver-save.mdx",
       "_template": "featuredBlog"
     },
     {
@@ -17,9 +17,9 @@
     },
     {
       "title": "与 YakShaver 专家交流",
-      "ctaDescription": "正在评估是否将 YakShaver 应用于您的项目？立即预约与 YakShaver 架构师进行 30 分钟通话",
+      "ctaDescription": "正在评估 YakShaver 用于您的项目？预约与 YakShaver 架构师的 30 分钟通话",
       "ctaButton": {
-        "label": "预 约 通 话",
+        "label": "安排通话",
         "variant": "solidWhite",
         "size": "large",
         "buttonLink": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6%40ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous="
