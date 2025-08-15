@@ -8,7 +8,8 @@
         "content/footer/YakShaver/**/*.{json,mdx}",
         "content/navBars/YakShaver/**/*.{json,mdx}",
         "content/indexPages/YakShaver/**/*.{json,mdx}",
-        "content/docsTableOfContents/YakShaver/**/*.{json,mdx}"
+        "content/docsTableOfContents/YakShaver/**/*.{json,mdx}",
+        "content/privacy/YakShaver/**/*.{json,mdx}"
       ],
       "excludePaths": [
         "**/zh/**"
@@ -20,7 +21,8 @@
         "content/footer/YakShaver/": "content/footer/YakShaver/zh/",
         "content/navBars/YakShaver/": "content/navBars/YakShaver/zh/",
         "content/indexPages/YakShaver/": "content/indexPages/YakShaver/zh/",
-        "content/docsTableOfContents/YakShaver/": "content/docsTableOfContents/YakShaver/zh/"
+        "content/docsTableOfContents/YakShaver/": "content/docsTableOfContents/YakShaver/zh/",
+        "content/privacy/YakShaver/": "content/privacy/YakShaver/zh/"
       },
       "translationPrompt": {
         "system": "You are a professional translator specializing in technical documentation and web content. Your task is to translate English content to Chinese while preserving all technical elements exactly as they are.",
