@@ -4,7 +4,10 @@ const { AzureOpenAI } = require('openai');
 
 function loadConfig() {
   const config = JSON.parse(fs.readFileSync('.github/translation-config.json', 'utf8'));
-  return config.projects.YakShaver;
+  return {
+    ...config.projects.YakShaver,
+    azure: config.azure
+  };
 }
 
 function validateEnvironment() {
