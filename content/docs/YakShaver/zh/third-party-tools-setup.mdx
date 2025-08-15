@@ -1,0 +1,106 @@
+---
+displayOrder: 3
+seo:
+  title: 使用 YakShaver 与第三方录制工具
+  description: >-
+    配置第三方录制工具与 YakShaver 集成，简化工作项创建，提升开发工作流程
+title: 使用 YakShaver 与第三方录制工具
+date: '2025-01-15T15:00:00.000Z'
+---
+
+虽然 [Microsoft Teams](recording-work-item-teams) 和 [浏览器扩展](recording-work-item-browser-extension) 是开始使用 YakShaver 的推荐方式，我们也支持多种第三方录制工具。这些工具为高级用户提供额外的灵活性和功能，如键盘快捷键，帮助优化工作流程。
+
+## 工作原理
+
+配置正确时，YakShaver 会监控您 OneDrive 中的特定文件夹以检测新录制内容。发现新录制后，它会自动将其处理为工作项。
+
+## Snagit 设置
+
+[Snagit](https://www.techsmith.com/screen-capture.html) 是一款流行的屏幕录制工具，可与 YakShaver 无缝配合。设置完成后的详细使用说明，请参见我们的[使用 Snagit 录制指南](recording-work-item-snagit)。
+
+### 初始设置
+
+1. 打开 Snagit 编辑器
+2. 进入 **编辑 | 编辑器首选项**
+3. 打开 **库** 标签
+4. 将库位置更改为您的 OneDrive 录制文件夹：\
+   `OneDrive/Recordings/Snagit/`
+5. 点击 **确定**（系统会提示您重启 Snagit）
+
+![](/zh/snagit-tutorial.jpg)
+**图示：将 Snagit 库位置设置为您的 OneDrive 文件夹**
+
+### 配置键盘快捷键
+
+成为高级用户，请设置快捷键以快速录制：
+
+1. 在 Snagit 中，确保选择了 “All-in-one”
+2. 设置您的“捕获”快捷键（建议使用“Print Screen”）
+
+![](/zh/YakShaver/All-in-One.png)
+**图示：“All-in-One” 已选中并设置快捷键**
+
+### 重要的 YakShaver 配置
+
+1. 在 Microsoft Teams 中打开 YakShaver
+2. 在 YakShaver Teams 机器人中输入 **OFF**\
+   （此操作防止在设置期间处理旧视频）
+3. 配置 Snagit 后，在 YakShaver 中输入 **ON** 重新启用处理功能
+
+### 快速开始录制
+
+1. 按下您配置的快捷键（例如“Print Screen”）
+2. 选择视频录制选项
+3. 录制屏幕并讲解任务
+4. 录制完成后停止
+5. YakShaver 会自动处理录制内容
+
+📖 详细录制说明和最佳实践，请参见我们的[使用 Snagit 录制指南](recording-work-item-snagit)
+
+## Windows 截图工具
+
+内置的 Windows 截图工具也可以配置为与 YakShaver 配合使用。设置完成后的详细使用说明，请参见我们的[Windows 截图工具指南](recording-work-item-snipping-tool)。
+
+### 初始设置
+
+1. 打开 Windows 设置 > 系统 > 存储
+2. 在“保存位置”下，将视频保存位置设置为您的 OneDrive 文件夹：\
+   `OneDrive/Recordings/SnippingTool/`
+3. 打开截图工具设置，确保录制内容保存到此位置
+
+📖 详细录制说明和最佳实践，请参见我们的[Windows 截图工具指南](recording-work-item-snipping-tool)
+
+## Mac 截图应用
+
+内置的 Mac 截图应用为 MacOS 用户创建工作项提供了简便方式。设置完成后的详细使用说明，请参见我们的[Mac 截图应用指南](recording-work-item-screenshot-app)。
+
+### 初始设置
+
+1. 创建录制文件夹：\
+   `OneDrive/Recordings/ScreenshotApp/`
+2. 配置截图应用保存到此位置
+3. 启用麦克风访问权限
+
+📖 详细录制说明和最佳实践，请参见我们的[Mac 截图应用指南](recording-work-item-screenshot-app)
+
+## 其他录制工具
+
+如果录制工具能保存到指定文件夹，几乎都可以与 YakShaver 配合使用。只需将录制工具配置为保存到：
+
+`OneDrive/Recordings/[ToolName]/`
+
+## 故障排除
+
+### 常见问题
+
+* **文件格式错误？**\
+  确保录制工具保存为 .mp4 或 .mov 格式
+* **文件保存到错误位置？**\
+  请仔细检查录制工具设置中的保存位置
+
+## 其他资源
+
+* [创建高效工作项的技巧](yakshaver-tips)
+* [视频托管选项](video-hosting)
+* [常见问题解答](frequently-asked-questions)
+* [连接您的 GitHub 账户](connect-your-github-account)

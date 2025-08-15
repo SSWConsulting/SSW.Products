@@ -1,0 +1,92 @@
+---
+displayOrder: 1
+seo:
+  title: '工具：在 Microsoft Teams 中记录工作项'
+  description: >-
+    了解如何使用 YakShaver 直接在 Microsoft Teams 中记录工作项。
+    将录音转化为可执行任务
+title: '工具：在 Microsoft Teams 中记录工作项'
+date: '2025-01-15T13:00:00.000Z'
+---
+
+Microsoft Teams 集成是开始使用 YakShaver 的推荐方式，能够无缝融入您现有的工作流程。本指南涵盖安装、设置及录制方法。
+
+## 在 Microsoft Teams 中安装 YakShaver
+
+1. 在 Microsoft Teams 中，点击左侧边栏的 **应用**
+2. 在搜索框中搜索 “YakShaver”
+3. 点击 **添加** 安装 YakShaver 机器人
+
+![](/zh/adding-bot.png)
+
+**图示：添加 YakShaver 机器人**
+
+💡 **提示：** 右键点击 YakShaver 并选择“固定”，以便将其保留在侧边栏。
+
+## 激活 YakShaver
+
+1. 从侧边栏或应用列表中打开 YakShaver
+2. 在聊天框中输入 `on` 以激活自动处理
+3. 激活后，您将看到确认卡片
+
+![](/zh/turn-on-card.png)
+
+**图示：YakShaver 激活确认**
+
+## Teams 中的录制选项
+
+### 选项 1：在会议或群组通话中录制
+
+1. 在会议中共享您想录制的屏幕
+2. 点击 **更多 | 录制和转录 | 开始录制**
+3. 录制开始时，清晰说明任务内容以便 YakShaver 处理
+4. 完成后，停止录制以发送处理
+
+### 选项 2：自行录制
+
+1. 进入您的 Teams 日历
+2. 点击 **立即开会**，然后点击 **开始会议**
+
+   ![](/zh/YakShaver/Blogs/meeting-with-yourself.png)
+   **图示：与自己开始会议**
+3. 共享您想捕获的屏幕
+4. 点击 **更多 | 录制和转录 | 开始录制**
+5. 清晰说明任务内容以便 YakShaver 处理
+6. 完成后，停止录制或离开通话
+
+   ![](/zh/YakShaver/Blogs/start-recording.png)
+   **图示：在 Teams 中开始录制**
+7. YakShaver 会自动处理您的录音
+
+   ![](/zh/YakShaver/yakshaver-is-done.png)
+   **图示：Teams 中 YakShaver 任务确认**
+
+## 后续流程
+
+处理完录音后，YakShaver 会创建一个工作项并通过以下方式通知您：
+
+1. Teams 消息确认
+2. 根据您的项目设置，发送以下类型之一的邮件：
+   * 邮件任务本身
+   * 带链接的 GitHub 问题通知
+   * 带链接的 Azure DevOps 工作项通知
+
+![](/zh/YakShaver/yakshaver-github-email.png)
+**图示：GitHub 通知邮件示例**
+
+## 聊天命令
+
+您可以在 Teams 聊天中使用以下命令控制 YakShaver：
+
+* `on` - 设置 YakShaver 始终处理您的视频
+* `off` - 设置 YakShaver 处理前询问您
+* `status` - 查看当前设置
+* `leaderboard` - 查看排行榜
+* `help` - 显示命令列表
+* `hi` - 显示欢迎信息
+
+## 提示与故障排除
+
+* **忘记开启？** YakShaver 会询问您是否处理新录音。
+* **录制中想取消？** 说“中止”、“取消任务”或“算了”。
+* **需要工作项而非邮件？** 使用邮件中的转换按钮。
