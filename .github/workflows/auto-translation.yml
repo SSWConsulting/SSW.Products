@@ -69,8 +69,23 @@ jobs:
 
           if [ "$HAS_CHANGED_FILES" = "true" ]; then
             node .github/scripts/translate-files.js
+            node .github/scripts/process-links.js
           fi
 
+      - name: Verify TinaCMS Schema
+        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
+        run: |
+          yarn install
+          timeout 180s yarn dev || echo "Dev server check completed"
+          
+          if [ -f "tina/__generated__/tina-lock.json" ]; then
+            git add tina/__generated__/tina-lock.json
+            echo "Added tina-lock.json to staging"
+          fi
+
+      - name: Commit Changes
+        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
+        run: |
           git add content/
           if ! git diff --staged --quiet; then
             git commit -m "🤖 Auto Translation: Chinese content for PR #${{ env.PR_NUMBER }}"
