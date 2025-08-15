@@ -25,16 +25,37 @@ function loadConfig() {
 }
 
 async function fetchPRFiles(owner, repoName, prNumber, githubToken) {
-  const response = await axios.get(
-    `https://api.github.com/repos/${owner}/${repoName}/pulls/${prNumber}/files`,
-    {
-      headers: {
-        Authorization: `token ${githubToken}`,
-        Accept: 'application/vnd.github.v3+json',
-      },
+  let allFiles = [];
+  let page = 1;
+  const perPage = 100; // GitHub API maximum per page
+  
+  while (true) {
+    const response = await axios.get(
+      `https://api.github.com/repos/${owner}/${repoName}/pulls/${prNumber}/files`,
+      {
+        headers: {
+          Authorization: `token ${githubToken}`,
+          Accept: 'application/vnd.github.v3+json',
+        },
+        params: {
+          page: page,
+          per_page: perPage
+        }
+      }
+    );
+    
+    const files = response.data;
+    allFiles = allFiles.concat(files);
+    
+    if (files.length < perPage) {
+      break;
     }
-  );
-  return response.data;
+    
+    page++;
+  }
+  
+  console.log(`Fetched ${allFiles.length} files from PR #${prNumber}`);
+  return allFiles;
 }
 
 function shouldProcessFile(filename, watchPaths, excludePaths) {
