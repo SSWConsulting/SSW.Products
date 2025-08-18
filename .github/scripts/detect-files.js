@@ -136,8 +136,13 @@ async function detectChanges() {
     
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    fs.appendFileSync(process.env.GITHUB_ENV, `HAS_CHANGED_FILES=false\n`);
-    process.exit(1);
+    try {
+      fs.appendFileSync(process.env.GITHUB_ENV, `HAS_CHANGED_FILES=false\n`);
+      fs.appendFileSync(process.env.GITHUB_ENV, `HAS_FILE_OPERATIONS=false\n`);
+    } catch (writeError) {
+      console.error(`Failed to write environment variables: ${writeError.message}`);
+    }
+    throw error;
   }
 }
 
