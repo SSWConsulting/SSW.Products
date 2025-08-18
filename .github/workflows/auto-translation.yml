@@ -1,0 +1,107 @@
+name: Auto Translation
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to process'
+        required: true
+        type: number
+
+env:
+  PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number || github.event.pull_request.number }}
+
+jobs:
+  translate:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Setup
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          yarn install --frozen-lockfile
+          npm install --no-save minimatch@3.1.2 openai@4.75.0 axios@1.9.0
+
+      - name: Detect Changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+        run: node .github/scripts/detect-files.js
+
+      - name: Process Translation
+        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+          AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          AZURE_OPENAI_DEPLOYMENT_NAME: ${{ secrets.AZURE_OPENAI_DEPLOYMENT_NAME }}
+          AZURE_OPENAI_API_VERSION: ${{ secrets.AZURE_OPENAI_API_VERSION }}
+        run: |
+          TIMESTAMP=$(date +%s)
+          BRANCH_NAME="auto-translation-pr-${{ env.PR_NUMBER }}-$TIMESTAMP"
+          git checkout -b $BRANCH_NAME
+          echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+
+          if [ "$HAS_FILE_OPERATIONS" = "true" ]; then
+            node .github/scripts/sync-files.js
+          fi
+
+          if [ "$HAS_CHANGED_FILES" = "true" ]; then
+            node .github/scripts/translate-files.js
+          fi
+
+      - name: Verify TinaCMS Schema
+        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
+        run: |
+          yarn install
+          
+          # TinaCMS schema verification with adequate time
+          yarn dev &
+          sleep 60
+          kill $! 2>/dev/null || true
+          
+          if [ -f "tina/tina-lock.json" ]; then
+            git add tina/tina-lock.json
+            echo "Added tina-lock.json to staging"
+          fi
+
+      - name: Commit Changes
+        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add content/
+          git add tina/tina-lock.json 2>/dev/null || true
+          if ! git diff --staged --quiet; then
+            git commit -m "🤖 Auto Translation: Chinese content for PR #${{ env.PR_NUMBER }}"
+            git push origin $BRANCH_NAME
+            
+            REPO=${{ github.repository }} SERVER_URL=${{ github.server_url }} BRANCH_NAME=$BRANCH_NAME node .github/scripts/create-pr.js
+          else
+            echo "No changes to commit"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "- Original PR: #${{ env.PR_NUMBER }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
