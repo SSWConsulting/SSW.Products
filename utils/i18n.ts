@@ -228,3 +228,43 @@ export async function getFooterWithFallback(
     return null;
   }
 }
+
+export async function getPrivacyWithFallback(
+  product: string,
+  locale: string = 'en',
+  options?: {
+    fetchOptions?: {
+      next?: {
+        revalidate?: number;
+      };
+    };
+  }
+) {
+  try {
+    let relativePath: string;
+    
+    if (locale === 'zh') {
+      relativePath = `${product}/zh/index.mdx`;
+      
+      try {
+        const res = await client.queries.privacy(
+          { relativePath },
+          options
+        );
+        return res;
+      } catch (error) {
+        console.log(`Chinese privacy policy not found, falling back to English for ${product}`);
+      }
+    }
+    
+    relativePath = `${product}/index.mdx`;
+    const res = await client.queries.privacy(
+      { relativePath },
+      options
+    );
+    return res;
+  } catch (error) {
+    console.error("Error fetching privacy policy:", error);
+    notFound();
+  }
+}

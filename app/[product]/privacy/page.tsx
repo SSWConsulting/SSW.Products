@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
 import PrivacyPolicyClient from "../../../components/shared/PrivacyPolicyClient";
-import client from "../../../tina/__generated__/client";
+import { getLocale, getPrivacyWithFallback } from "../../../utils/i18n";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
 
 interface PrivacyPolicyProps {
@@ -14,7 +14,8 @@ interface PrivacyPolicyProps {
 export async function generateMetadata({
   params: { product },
 }: PrivacyPolicyProps): Promise<Metadata> {
-  const res = await getPrivacyPolicy(product);
+  const locale = getLocale();
+  const res = await getPrivacyWithFallback(product, locale);
 
   const privacy = res.data.privacy;
   const metadata = setPageMetadata(privacy.seo, product);
@@ -22,21 +23,10 @@ export async function generateMetadata({
   return metadata;
 }
 
-async function getPrivacyPolicy(product: string) {
-  try {
-    const res = await client.queries.privacy({
-      relativePath: `${product}/index.mdx`,
-    });
-
-    return res;
-  } catch {
-    return notFound();
-  }
-}
-
 export default async function PrivacyPolicy({ params }: PrivacyPolicyProps) {
   const { product } = params;
-  const res = await getPrivacyPolicy(product);
+  const locale = getLocale();
+  const res = await getPrivacyWithFallback(product, locale);
 
   return (
     <div className="flex flex-col min-h-screen">
