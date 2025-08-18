@@ -38,7 +38,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           yarn install --frozen-lockfile
-          npm install minimatch@3.1.2 openai axios
+          npm install --no-save minimatch@3.1.2 openai@4.75.0 axios@1.9.0
 
       - name: Detect Changes
         env:
@@ -73,7 +73,11 @@ jobs:
         if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
         run: |
           yarn install
-          timeout 60s yarn dev || echo "Dev server check completed"
+          
+          # TinaCMS schema verification with adequate time
+          yarn dev &
+          sleep 60
+          kill $! 2>/dev/null || true
           
           if [ -f "tina/tina-lock.json" ]; then
             git add tina/tina-lock.json
