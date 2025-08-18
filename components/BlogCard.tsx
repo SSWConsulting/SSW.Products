@@ -1,3 +1,4 @@
+"use client";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 import type { Author as AuthorType } from "@/types/author";
@@ -11,6 +12,7 @@ import Author from "./shared/Author";
 import CategoryLabel from "./shared/CategoryLabel";
 import GridBackground from "./shared/GridBackground";
 import ReadMore from "./shared/ReadMore";
+import { useBlogUrl } from "@utils/blogUrl";
 
 type BlogCardProps = Modify<
   Blog,
@@ -28,10 +30,11 @@ const BlogCard = ({
   author,
   date,
 }: BlogCardProps) => {
+  const getBlogUrl = useBlogUrl();
   return (
     <div className="h-full flex flex-col grow shrink-0 relative border bg-gradient-black border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
       {groupHover && (
-        <Link href={`/blog/${slug}`} className="absolute inset-0 z-20" />
+        <Link href={getBlogUrl(slug || '')} className="absolute inset-0 z-20" />
       )}
       <div className="relative aspect-video ">
         <div className="inset-0 absolute align-middle items-center justify-center flex">
@@ -60,7 +63,7 @@ const BlogCard = ({
         {category && (
           <CategoryLabel className="text-sm">{category}</CategoryLabel>
         )}
-        <Link className="w-fit" href={`/blog/${slug}`}>
+        <Link className="w-fit" href={getBlogUrl(slug || '')}>
           <h3
             className={cn(
               "text-xl font-bold text-gray-100 transition-colors",
