@@ -1,0 +1,105 @@
+{
+  "title": "YakShaver 标志和品牌资产",
+  "pageBlocks": [
+    {
+      "heroTitle": "YakShaver 标志和品牌资产",
+      "heroDescription": "下载 YakShaver 品牌指南，探索我们视觉识别、信息传达和设计资产的全面指南。获取维护品牌一致性并产生强烈影响所需的所有见解。",
+      "heroButton": {
+        "label": "下载品牌指南",
+        "iconSrc": "/svg/file-download.svg",
+        "href": "/YakShaver/YakShaver-Brand-Guide-V3.pdf",
+        "target": "_blank"
+      },
+      "dateText": "最后更新 2025/10/08",
+      "_template": "mediaHero"
+    },
+    {
+      "title": "标志",
+      "gridDescription": "下载 SVG 和 PNG 标志包",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-1.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-1.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-2.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-2.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-3.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-3.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-4.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-4.png",
+          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-horizontal-Color.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-5.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-5.png",
+          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-Vertical-Color.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-6.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-6.png",
+          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-Vertical-Black.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7
+        }
+      ],
+      "itemsPerRow": 3,
+      "_template": "imageGrid"
+    },
+    {
+      "title": "标志",
+      "gridDescription": "下载 SVG 和 PNG 标志包",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon-1.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-1.png",
+          "blockColor": "#333333",
+          "imageScale": 0.4
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon-2.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-2.png",
+          "blockColor": "#333333",
+          "imageScale": 0.4
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon-3.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-3.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.4
+        }
+      ],
+      "itemsPerRow": 3,
+      "_template": "imageGrid"
+    },
+    {
+      "title": "背景",
+      "gridDescription": "下载 YakShaver 官方背景",
+      "showcaseImage": "/YakShaver/background.svg",
+      "downloadLink": "https://sswcom.sharepoint.com/:f:/s/SSWDesigners/EmZj4STyKVdEsYdPScAnjLUBAPxKs0-8VfEQY0sV7r01Qg?e=wwW2RW",
+      "showcaseTitle": "YakShaver 渐变背景",
+      "showcaseDescription": "为了确保我们的品牌形象有效融合且不会压倒观众，它在任何数字或印刷媒体中应占屏幕不超过三分之一的面积。这种平衡允许其他重要内容清晰传达，同时保持我们的品牌存在感。",
+      "_template": "imageShowcase"
+    },
+    {
+      "title": "字体",
+      "gridDescription": "YakShaver 使用的官方字体是 Inter",
+      "itemsPerRow": 3,
+      "_template": "imageGrid"
+    }
+  ]
+}

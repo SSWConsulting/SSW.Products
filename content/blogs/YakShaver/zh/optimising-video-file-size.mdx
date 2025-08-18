@@ -1,0 +1,44 @@
+---
+author: Lewis Toh
+authorImage: /people/Lewis-Toh.jpg
+bannerImage: /YakShaver/Blogs/video_file_update.png
+category: 新动态
+date: '2025-02-06T13:00:00.000Z'
+readLength: 2 分钟
+seo:
+  description: 了解如何优化文件大小，使 YakShaver 能创建更高质量的工作项或邮件
+  openGraphTitle: 为 YakShaver 优化文件大小 | Lewis Toh
+  title: 为 YakShaver 优化文件大小 | Lewis Toh
+sswPeopleLink: https://www.ssw.com.au/people/lewis-toh/
+summary: "## YakShaver 现支持更大视频文件\n\nYakShaver 现在可以处理大于 25MB\
+  \ 的视频，支持更长时间和更高质量的录制。\n\n***\n\n## 为什么之前有 25MB\
+  \ 限制？\n\nAzure OpenAI Whisper 模型对音频输入有 25MB 的硬性限制。上传完整\
+  \ 视频文件效率低且成本高——尤其是在分块处理且被滥用的情况下。\n\n***\n\n##\
+  \ 智能解决方案：剥离视频画面\n\nYakShaver 不是绕过限制，而是使用 Xabe.FFmpeg\
+  \ 仅提取音频，大幅减少文件大小，同时保持转录质量。\n\n***\n\n## 实际文件大小\
+  \ 减少\n\n* 1 分钟 4K 视频：38.87MB \u279C 0.62MB \n* 30 分钟 2K 视频：209.89MB\
+  \ \u279C 7.95MB\n"
+summaryCard: true
+title: 为 YakShaver 优化文件大小
+---
+YakShaver 现在可以处理大于 25MB 的视频！这意味着更长时间和更高质量的视频现在可以通过 YakShaver 处理，从而生成更高质量的工作项或邮件！
+
+#### 为什么一开始有 25MB 限制？
+
+我们使用的是 [Azure OpenAI 的 Whisper AI 模型](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/whisper-overview)，该模型目前有 25MB 的文件大小限制。
+
+#### Azure OpenAI 的 Whisper AI 模型允许你进行[批量转录](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/batch-transcription)，为什么不这样做？
+
+没有硬性大小限制并将视频截断成 25MB 的块进行批处理，从长远来看并不是一个好主意。这可能会浪费大量处理能力，并且如果没有检查机制，很容易被滥用，发送极大的文件。
+
+此外，该功能要求你的视频文件存储在 Blob 存储中，这意味着处理更长视频的成本更高。
+
+#### 我们是如何突破 25MB 限制的？
+
+简短的回答是我们没有突破限制，而是去除了 Whisper 不需要的部分——视频文件中占用大部分字节的画面。
+
+我们使用一个在代码中实现了 [FFmpeg](https://ffmpeg.org/) 的库，名为 [Xabe.FFmpeg](https://ffmpeg.xabe.net/index.html)，它允许我们操作和处理媒体文件。通过仅从视频文件中提取音频，我们显著减少了文件大小，只保留转录服务所需的数据——音频。
+
+以下是转录前文件大小的几个示例：
+1 分钟 4K 视频 - 38.87 MB -> 0.62 MB 音频 .mp3（视频大小的 1.5%）
+30 分钟 2K 视频 - 209.89 MB -> 7.95 MB 音频 .mp3（视频大小的 3.8%）

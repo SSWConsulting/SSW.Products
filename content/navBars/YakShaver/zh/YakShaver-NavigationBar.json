@@ -6,22 +6,22 @@
   "leftNavItem": [
     {
       "label": "定价",
-      "href": "/pricing",
+      "href": "/zh/pricing",
       "_template": "stringItem"
     },
     {
       "label": "关于",
-      "href": "/about",
+      "href": "/zh/about",
       "_template": "stringItem"
     },
     {
       "label": "博客",
-      "href": "/blog",
+      "href": "/zh/blog",
       "_template": "stringItem"
     },
     {
       "label": "文档",
-      "href": "/docs",
+      "href": "/zh/docs",
       "_template": "stringItem"
     },
     {
@@ -29,22 +29,22 @@
       "items": [
         {
           "label": "支持",
-          "href": "/docs/support"
+          "href": "/zh/docs/support"
         },
         {
           "label": "路线图",
-          "href": "/roadmap"
+          "href": "/zh/roadmap"
         },
         {
           "label": "认证",
-          "href": "/certifications"
+          "href": "/zh/certifications"
         },
         {
-          "label": "媒体素材",
-          "href": "/media"
+          "label": "媒体",
+          "href": "/zh/media"
         },
         {
-          "label": "DISCORD",
+          "label": "Discord",
           "href": "https://discord.gg/Jp9dyxKFjR"
         }
       ],
@@ -58,7 +58,7 @@
   ],
   "buttons": [
     {
-      "label": "控制台",
+      "label": "门户",
       "href": "https://portal.yakshaver.ai/",
       "icon": "/YakShaver/yakshaver-black.svg",
       "iconPosition": "left",

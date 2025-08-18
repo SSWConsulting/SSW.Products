@@ -1,0 +1,60 @@
+---
+title: 为您的组织设置 YakShaver
+date: '2025-08-11T14:00:00.000Z'
+---
+
+使用我们的设置向导，轻松为您的组织启动 YakShaver！请观看下面的视频并查看所需权限，以确保顺利完成设置过程。
+
+<Youtube thumbnail="https://img.youtube.com/vi/dxZGcqpSXFQ/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/dxZGcqpSXFQ" size="medium" />
+
+## 将 YakShaver 连接到 Microsoft Entra ID（必需）
+
+YakShaver 通过 Microsoft Entra ID 连接到您的 Microsoft 365 租户。它是一个多租户云应用，使用管理员同意流程请求 Microsoft Graph 应用权限（组织范围，服务到服务访问）。您的租户管理员为您的组织批准一次访问。YakShaver 不会在您的租户中创建资源。
+
+**适用对象**
+
+* 可以批准访问的租户管理员：全局管理员或云应用管理员
+* 终端用户在批准后只需登录 YakShaver，但他们不授予租户范围的访问权限
+
+#### 所需权限
+
+**应用权限：**
+
+* User.Read.All - 读取目录中所有用户的基本资料（用于列出/选择用户）
+* Channel.ReadBasic.All - 读取租户中 Teams 频道的基本信息
+* Team.ReadBasic.All - 读取租户中 Teams 的基本信息
+* Files.Read.All - 读取组织中的文件（用于访问 OneDrive/SharePoint 功能中的视频）
+
+**委托权限：**
+
+* profile, openid, email
+* User.Read
+
+## 将 YakShaver 连接到 Azure DevOps（可选）
+
+要集成 Azure DevOps，请在组织的用户管理中为 YakShaver 应用分配基础许可证和项目贡献者角色。了解更多：[https://yakshaver.ai/zh/docs/add-azure-devops-projects](https://yakshaver.ai/docs/add-azure-devops-projects)
+
+## 将 YakShaver 连接到 GitHub（可选）
+
+YakShaver 可以连接到您的 GitHub 组织，使用 YakShaver GitHub 应用自动向组织的仓库创建问题。组织所有者可以批准整个组织的访问权限，管理员可以授权访问其个人仓库。YakShaver 不会在您的 GitHub 账户中创建资源。
+
+**适用对象**
+
+* 可以批准组织范围内所有仓库访问的组织所有者
+* 可以授权访问其个人仓库和公共仓库的管理员
+
+#### 权限和范围
+
+**仓库权限：**
+
+* 读取元数据访问 - 读取基本仓库信息、分支和设置（用于获取项目信息）
+* 读写代码、问题、组织项目和仓库项目访问 - 完全访问仓库内容、问题跟踪和项目看板（用于创建和更新项目中的工作项）
+
+**用户权限：**
+
+* 读取电子邮件地址访问 - 访问您的主电子邮件地址和公开电子邮件信息（用于用户识别）
+
+**安装范围：**
+
+* 所有仓库 - 适用于资源所有者拥有的所有当前和未来仓库，包括公共仓库（对公共仓库为只读访问）
+* 安装时也可选择单个仓库
