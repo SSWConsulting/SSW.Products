@@ -96,8 +96,12 @@ async function handleFileOperations() {
     
   } catch (error) {
     console.error(`Error: ${error.message}`);
-    fs.appendFileSync(process.env.GITHUB_ENV, `HAS_FILE_OPERATIONS=false\n`);
-    process.exit(1);
+    try {
+      fs.appendFileSync(process.env.GITHUB_ENV, `HAS_FILE_OPERATIONS=false\n`);
+    } catch (writeError) {
+      console.error(`Failed to write environment variables: ${writeError.message}`);
+    }
+    throw error;
   }
 }
 
