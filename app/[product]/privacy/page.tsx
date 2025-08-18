@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
 import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
 import PrivacyPolicyClient from "../../../components/shared/PrivacyPolicyClient";
 import { getLocale, getPrivacyWithFallback } from "../../../utils/i18n";
