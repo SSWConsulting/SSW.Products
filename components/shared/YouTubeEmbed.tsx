@@ -20,8 +20,8 @@ export const YouTubeEmbed = ({
   return (
     <div className={cn("relative aspect-video w-full", className)}>
       {!clicked ? (
-        <div className="bg-black group aspect-video  relative rounded-lg **:duration-200">
-          <div className="p-5 inline-flex group-hover:scale-115 items-center justify-center absolute  rounded-full top-1/2 left-1/2 border-gradient-pink -translate-x-1/2 border-gradient-foreground-gray-darkest -translate-y-1/2 z-20">
+        <div className="bg-black group aspect-video relative rounded-lg **:duration-200">
+          <div className="p-5 inline-flex group-hover:scale-115 items-center justify-center absolute rounded-full top-1/2 left-1/2 -translate-x-1/2 bg-ssw-red -translate-y-1/2 z-20">
             <FaPlay
               className="text-white pl-1 transition-transform ease-out md:text-7xl text-5xl cursor-pointer"
               onClick={() => setClicked(true)}
