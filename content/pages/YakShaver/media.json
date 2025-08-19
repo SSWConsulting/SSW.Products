@@ -20,6 +20,7 @@
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-1.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-1.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.png",
           "blockColor": "#333333",
           "imageScale": 0.7
         },
