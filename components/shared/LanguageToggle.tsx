@@ -73,8 +73,18 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
             onClick={() => setIsOpen(false)}
           />
           
-          <div className="relative bg-[#222222] rounded-lg p-6 max-w-xs w-full mx-4 shadow-2xl">
-            <h2 className="text-white text-lg font-semibold text-center mb-4">
+                    <div className="relative bg-[#222222] rounded-xl p-8 max-w-xl w-full mx-4 shadow-2xl">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors w-6 h-6 flex items-center justify-center"
+              aria-label="Close"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 4L4 12M4 4L12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </button>
+            
+            <h2 className="text-white text-3xl font-semibold text-center mb-6">
               Select your language
             </h2>
             
@@ -85,19 +95,42 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
                   handleLanguageSwitch('en');
                 }}
                 disabled={currentLocale === 'en'}
-                className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${
+                className={`w-full flex items-center justify-between p-5 rounded-xl transition-all duration-300 relative ${
                   currentLocale === 'en'
-                    ? 'bg-[#121212] cursor-not-allowed opacity-70'
+                    ? 'bg-[#333333] cursor-default'
                     : 'bg-[#333333] hover:bg-[#404040] cursor-pointer'
                 }`}
+                style={currentLocale === 'en' ? {
+                  border: '1px solid transparent',
+                  backgroundImage: 'linear-gradient(#333333, #333333), linear-gradient(83.78deg, #CC4141 23.25%, #D699FB 63.5%, #FF778E 124.16%)',
+                  backgroundOrigin: 'border-box',
+                  backgroundClip: 'padding-box, border-box'
+                } : {}}
               >
-                <Image
-                  src="/svg/icon-en.svg"
-                  alt="English"
-                  width={20}
-                  height={20}
-                />
-                <span className="text-white">English</span>
+                <div className="flex items-center gap-4">
+                  <Image
+                    src="/svg/icon-en.svg"
+                    alt="English"
+                    width={36}
+                    height={36}
+                  />
+                  <div className="text-left">
+                    <div className="text-gray-400 text-sm">English</div>
+                    <div className="text-white text-xl font-medium">English</div>
+                  </div>
+                </div>
+                {currentLocale === 'en' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12l2 2 4-4" stroke="url(#gradient)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <defs>
+                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="23.25%" stopColor="#CC4141"/>
+                        <stop offset="63.5%" stopColor="#D699FB"/>
+                        <stop offset="124.16%" stopColor="#FF778E"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                )}
               </button>
 
               <button
@@ -106,19 +139,42 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
                   handleLanguageSwitch('zh');
                 }}
                 disabled={currentLocale === 'zh'}
-                className={`w-full flex items-center gap-3 p-3 rounded-lg transition-colors ${
+                className={`w-full flex items-center justify-between p-5 rounded-xl transition-all duration-300 relative ${
                   currentLocale === 'zh'
-                    ? 'bg-[#121212] cursor-not-allowed opacity-70'
+                    ? 'bg-[#333333] cursor-default'
                     : 'bg-[#333333] hover:bg-[#404040] cursor-pointer'
                 }`}
+                style={currentLocale === 'zh' ? {
+                  border: '1px solid transparent',
+                  backgroundImage: 'linear-gradient(#333333, #333333), linear-gradient(83.78deg, #CC4141 23.25%, #D699FB 63.5%, #FF778E 124.16%)',
+                  backgroundOrigin: 'border-box',
+                  backgroundClip: 'padding-box, border-box'
+                } : {}}
               >
-                <Image
-                  src="/svg/icon-zh.svg"
-                  alt="中文"
-                  width={20}
-                  height={20}
-                />
-                <span className="text-white">中文</span>
+                <div className="flex items-center gap-4">
+                  <Image
+                    src="/svg/icon-zh.svg"
+                    alt="中文"
+                    width={36}
+                    height={36}
+                  />
+                  <div className="text-left">
+                    <div className="text-gray-400 text-sm">Chinese</div>
+                    <div className="text-white text-xl font-medium">中文</div>
+                  </div>
+                </div>
+                {currentLocale === 'zh' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12l2 2 4-4" stroke="url(#gradient2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <defs>
+                      <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="23.25%" stopColor="#CC4141"/>
+                        <stop offset="63.5%" stopColor="#D699FB"/>
+                        <stop offset="124.16%" stopColor="#FF778E"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                )}
               </button>
             </div>
           </div>
