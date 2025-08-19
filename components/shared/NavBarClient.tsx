@@ -113,7 +113,7 @@ export default function NavBarClient({
               </NavigationMenuItem>
             );
           })}
-          <NavigationMenuItem className="hidden sm:block pl-5 my-auto">
+          <NavigationMenuItem className="hidden sm:block pl-5 flex items-center">
             <LanguageToggle currentLocale={currentLocale} />
           </NavigationMenuItem>
           <NavigationMenuItem className="flex xl:hidden justify-end pl-5">

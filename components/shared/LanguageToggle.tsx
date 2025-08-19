@@ -54,7 +54,7 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-md hover:shadow-lg transition-shadow"
+        className="w-10 h-10 rounded-full overflow-hidden shadow-md hover:shadow-lg transition-shadow"
         aria-label="Switch language"
       >
         <Image
@@ -62,7 +62,7 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
           alt={currentLocale === 'zh' ? 'Chinese' : 'English'}
           width={32}
           height={32}
-          className="rounded-full"
+          className="w-full h-full object-cover"
         />
       </button>
 
