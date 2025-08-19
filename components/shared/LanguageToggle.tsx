@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 
 interface LanguageToggleProps {
@@ -12,9 +13,11 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [hostname, setHostname] = useState<string>('');
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setHostname(window.location.hostname);
+    setMounted(true);
   }, []);
 
   const getAlternateUrl = (targetLocale: 'en' | 'zh'): string => {
@@ -66,14 +69,16 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
         />
       </button>
 
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
+      {isOpen && mounted && createPortal(
+        <>
           <div 
-            className="absolute inset-0 bg-black bg-opacity-50"
+            className="fixed inset-0 bg-black/60 backdrop-blur-[1px] z-40"
             onClick={() => setIsOpen(false)}
           />
           
-                    <div className="relative bg-[#222222] rounded-xl p-8 max-w-xl w-full mx-4 shadow-2xl">
+          <div 
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#222222] rounded-xl p-8 shadow-2xl z-50 w-[90%] max-w-[576px]"
+          >
             <button
               onClick={() => setIsOpen(false)}
               className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors w-6 h-6 flex items-center justify-center"
@@ -178,7 +183,8 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
               </button>
             </div>
           </div>
-        </div>
+        </>,
+        document.body
       )}
     </>
   );
