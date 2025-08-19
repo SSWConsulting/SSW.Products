@@ -63,12 +63,8 @@ const ImageGrid = ({
 
   const downloadPNG = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string) => {
     const filename = `${alt || 'image'}.png`;
-    
-    if (pngDownloadUrl) {
-      window.open(pngDownloadUrl, '_blank');
-    } else {
-      downloadFile(pngSrc, filename);
-    }
+    const downloadUrl = pngDownloadUrl || pngSrc;
+    downloadFile(downloadUrl, filename);
   };
 
   const getGridCols = () => GRID_COLS_MAP[itemsPerRow] || GRID_COLS_MAP[3];
