@@ -27,10 +27,12 @@ import { Button } from "@comps/ui/button";
 import clsx from "clsx";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { BookingButton } from "./Blocks/BookingButton";
+import LanguageToggle from "./LanguageToggle";
 
 interface NavBarClientProps {
   buttons: NavigationBarButtons[];
   items: (NavItem | NavGroup)[];
+  currentLocale: string;
 
   bannerImage?: {
     imgSrc: string;
@@ -42,6 +44,7 @@ interface NavBarClientProps {
 export default function NavBarClient({
   buttons,
   items,
+  currentLocale,
   bannerImage,
 }: NavBarClientProps) {
   return (
@@ -110,6 +113,9 @@ export default function NavBarClient({
               </NavigationMenuItem>
             );
           })}
+          <NavigationMenuItem className="hidden sm:block pl-5 my-auto">
+            <LanguageToggle currentLocale={currentLocale} />
+          </NavigationMenuItem>
           <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
             <MobileMenuTrigger />
             <MobileMenuContent>
