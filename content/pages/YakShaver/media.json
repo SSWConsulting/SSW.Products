@@ -77,6 +77,7 @@
         {
           "svgSrc": "/YakShaver/Icon/yak-icon-2.svg",
           "pngSrc": "/YakShaver/Icon/yak-icon-2.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.png",
           "blockColor": "#333333",
           "imageScale": 0.4
         },
