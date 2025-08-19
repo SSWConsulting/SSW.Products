@@ -40,31 +40,14 @@ const ImageGrid = ({
   
   if (!images?.length && !title && !gridDescription) return null;
 
-  const downloadFile = async (url: string, filename: string) => {
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(blobUrl);
-    } catch {
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = filename;
-      link.click();
-    }
+  const downloadFile = (url: string, filename: string) => {
+    const proxyUrl = `/api/download?url=${encodeURIComponent(url)}&filename=${encodeURIComponent(filename)}`;
+    window.location.href = proxyUrl;
   };
 
   const downloadPNG = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string) => {
     const filename = `${alt || 'image'}.png`;
-    const downloadUrl = pngDownloadUrl || pngSrc;
-    downloadFile(downloadUrl, filename);
+    downloadFile(pngDownloadUrl || pngSrc, filename);
   };
 
   const getGridCols = () => GRID_COLS_MAP[itemsPerRow] || GRID_COLS_MAP[3];
