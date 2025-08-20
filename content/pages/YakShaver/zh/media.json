@@ -3,102 +3,136 @@
   "pageBlocks": [
     {
       "heroTitle": "YakShaver 标志和品牌资产",
-      "heroDescription": "下载 YakShaver 品牌指南，探索我们视觉识别、信息传达和设计资产的全面指南。获取维护品牌一致性并产生强烈影响所需的所有见解。",
+      "heroDescription": "下载 YakShaver 品牌指南，探索我们视觉识别、信息传达和设计资产的全面指南。获取维护品牌一致性并产生强大影响所需的所有见解。",
       "heroButton": {
         "label": "下载品牌指南",
         "iconSrc": "/svg/file-download.svg",
         "href": "/YakShaver/YakShaver-Brand-Guide-V3.pdf",
         "target": "_blank"
       },
-      "dateText": "最后更新 2025/10/08",
+      "dateText": "最后更新于 2025/10/08",
       "_template": "mediaHero"
     },
     {
       "title": "标志",
-      "gridDescription": "下载 SVG 和 PNG 标志包",
+      "gridDescription": "下载 SVG 和 PNG 标志包\n",
       "images": [
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-1.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-1.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.png",
           "blockColor": "#333333",
-          "imageScale": 0.7
+          "imageScale": 0.7,
+          "enableDownload": true
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-2.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-2.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.png",
           "blockColor": "#333333",
-          "imageScale": 0.7
+          "imageScale": 0.7,
+          "enableDownload": true
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-3.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-3.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.png",
           "blockColor": "#333333",
-          "imageScale": 0.7
+          "imageScale": 0.7,
+          "enableDownload": true
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-4.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-4.png",
-          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-horizontal-Color.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.png",
           "blockColor": "#FFFFFF",
-          "imageScale": 0.7
+          "imageScale": 0.7,
+          "enableDownload": true
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-5.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-5.png",
-          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-Vertical-Color.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color.png",
           "blockColor": "#FFFFFF",
-          "imageScale": 0.7
+          "imageScale": 0.7,
+          "enableDownload": true
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-6.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-6.png",
-          "pngDownloadUrl": "https://assets.tina.io/8a7b77f2-cde8-44e7-a592-ebeb7e9dc437/company-logos/downloads/YakShaver-Vertical-Black.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.png",
           "blockColor": "#FFFFFF",
-          "imageScale": 0.7
+          "imageScale": 0.7,
+          "enableDownload": true
         }
       ],
       "itemsPerRow": 3,
+      "aspectRatio": 0.65,
       "_template": "imageGrid"
     },
     {
       "title": "标志",
-      "gridDescription": "下载 SVG 和 PNG 标志包",
+      "gridDescription": "下载 SVG 和 PNG 标志包\n",
       "images": [
         {
           "svgSrc": "/YakShaver/Icon/yak-icon-1.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Red.svg",
           "pngSrc": "/YakShaver/Icon/yak-icon-1.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Red.png",
           "blockColor": "#333333",
-          "imageScale": 0.4
+          "imageScale": 0.4,
+          "enableDownload": true
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-icon-2.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.svg",
           "pngSrc": "/YakShaver/Icon/yak-icon-2.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.png",
           "blockColor": "#333333",
-          "imageScale": 0.4
+          "imageScale": 0.4,
+          "enableDownload": true
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-icon-3.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Black.svg",
           "pngSrc": "/YakShaver/Icon/yak-icon-3.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Black.png",
           "blockColor": "#FFFFFF",
-          "imageScale": 0.4
+          "imageScale": 0.4,
+          "enableDownload": true
         }
       ],
       "itemsPerRow": 3,
+      "aspectRatio": 0.65,
       "_template": "imageGrid"
     },
     {
       "title": "背景",
-      "gridDescription": "下载 YakShaver 官方背景",
+      "gridDescription": "下载 YakShaver 官方背景\n",
       "showcaseImage": "/YakShaver/background.svg",
       "downloadLink": "https://sswcom.sharepoint.com/:f:/s/SSWDesigners/EmZj4STyKVdEsYdPScAnjLUBAPxKs0-8VfEQY0sV7r01Qg?e=wwW2RW",
       "showcaseTitle": "YakShaver 渐变背景",
-      "showcaseDescription": "为了确保我们的品牌形象有效融合且不会压倒观众，它在任何数字或印刷媒体中应占屏幕不超过三分之一的面积。这种平衡允许其他重要内容清晰传达，同时保持我们的品牌存在感。",
+      "showcaseDescription": "为了确保我们的品牌形象有效融合且不会压倒观众，它在任何数字或印刷媒体中应占屏幕不超过三分之一的面积。这种平衡允许其他重要内容清晰传达，同时保持我们品牌的存在感。",
       "_template": "imageShowcase"
     },
     {
       "title": "字体",
-      "gridDescription": "YakShaver 使用的官方字体是 Inter",
-      "itemsPerRow": 3,
+      "gridDescription": "YakShaver 使用的官方字体是 [Inter](https://fonts.google.com/specimen/Inter)，这是一款现代且多功能的无衬线字体。Inter 的简洁线条和出色的可读性使其非常适合数字和印刷媒体，确保所有平台上的清晰沟通。\n",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/font-yak.svg",
+          "pngSrc": "",
+          "enableDownload": false
+        }
+      ],
+      "itemsPerRow": 1,
+      "aspectRatio": 0.5,
       "_template": "imageGrid"
     }
   ]
