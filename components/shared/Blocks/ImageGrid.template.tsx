@@ -33,6 +33,12 @@ export const ImageGridTemplate: Template = {
           name: "svgSrc",
           description: "Select SVG file from Media Manager",
         },
+         {
+          type: "string",
+          label: "SVG Download URL",
+          name: "svgDownloadUrl",
+          description: "Optional custom download link for SVG. If provided, takes priority over the SVG file from Media Manager",
+        },
         {
           type: "image",
           label: "PNG File", 

@@ -19,6 +19,7 @@
       "images": [
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-1.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-1.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.png",
           "blockColor": "#333333",
@@ -27,6 +28,7 @@
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-2.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-2.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.png",
           "blockColor": "#333333",
@@ -35,6 +37,7 @@
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-3.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-3.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.png",
           "blockColor": "#333333",
@@ -43,6 +46,7 @@
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-4.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-4.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.png",
           "blockColor": "#FFFFFF",
@@ -51,6 +55,7 @@
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-5.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-5.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color.png",
           "blockColor": "#FFFFFF",
@@ -59,6 +64,7 @@
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-title-icon-6.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-6.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.png",
           "blockColor": "#FFFFFF",
@@ -76,6 +82,7 @@
       "images": [
         {
           "svgSrc": "/YakShaver/Icon/yak-icon-1.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Red.svg",
           "pngSrc": "/YakShaver/Icon/yak-icon-1.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Red.png",
           "blockColor": "#333333",
@@ -84,6 +91,7 @@
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-icon-2.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.svg",
           "pngSrc": "/YakShaver/Icon/yak-icon-2.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.png",
           "blockColor": "#333333",
@@ -92,6 +100,7 @@
         },
         {
           "svgSrc": "/YakShaver/Icon/yak-icon-3.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Black.svg",
           "pngSrc": "/YakShaver/Icon/yak-icon-3.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Black.png",
           "blockColor": "#FFFFFF",
