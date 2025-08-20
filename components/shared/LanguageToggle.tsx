@@ -69,7 +69,7 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
     if (typeof window === 'undefined') return '/';
     
     const { hostname } = window.location;
-    const isProduction = hostname === 'yakshaver.ai' || hostname === 'yakshaver.cn';
+    const isProduction = ['yakshaver.ai', 'yakshaver.cn', 'yakshaver.com.cn'].includes(hostname);
     const basePath = pathname.replace(/^\/zh/, '') || '/';
     
     if (!isProduction) {
@@ -77,7 +77,7 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
     }
     
     const urlMap = {
-      zh: `https://yakshaver.cn${basePath}`,
+      zh: hostname === 'yakshaver.ai' ? `https://yakshaver.cn${basePath}` : basePath,
       en: `https://yakshaver.ai${basePath}`
     };
     
