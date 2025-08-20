@@ -28,7 +28,6 @@ const ImageShowcase = ({
   const handleDownload = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (downloadFile) {
-      // Create a temporary anchor element to trigger download
       const link = document.createElement('a');
       link.href = downloadFile;
       link.download = downloadFile.split('/').pop() || 'download.zip';
