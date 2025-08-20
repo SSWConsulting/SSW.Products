@@ -11,10 +11,10 @@ export const ImageShowcaseTemplate: Template = {
       description: "Main title displayed at the top of the component",
     },
     {
-      type: "string",
+      type: "rich-text",
       name: "gridDescription",
       label: "Main Description",
-      description: "Main description displayed below the main title",
+      description: "Main description displayed below the main title. Supports rich text formatting including links, bold, italic, etc.",
     },
     {
       type: "image",

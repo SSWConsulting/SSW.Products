@@ -1,5 +1,10 @@
 import { Template } from "tinacms";
 
+const validateNumber = (min: number, max: number, errorMsg: string) => (value: any) => {
+  const numValue = Number(value);
+  return !isNaN(numValue) && (numValue < min || numValue > max) ? errorMsg : undefined;
+};
+
 export const ImageGridTemplate: Template = {
   label: "Image Grid",
   name: "imageGrid",
@@ -11,13 +16,10 @@ export const ImageGridTemplate: Template = {
       description: "Optional title displayed above the image grid",
     },
     {
-      type: "string",
+      type: "rich-text",
       label: "Description",
       name: "gridDescription",
-      description: "Optional description displayed below the title",
-      ui: {
-        component: "textarea",
-      },
+      description: "Optional description displayed below the title. Supports rich text formatting including links, bold, italic, etc.",
     },
     {
       type: "object",
@@ -48,9 +50,7 @@ export const ImageGridTemplate: Template = {
           label: "Block Color",
           name: "blockColor",
           description: "Background color for the image block (e.g., #ffffff, red, transparent)",
-          ui: {
-            component: "color",
-          },
+          ui: { component: "color" },
         },
         {
           type: "number",
@@ -60,13 +60,15 @@ export const ImageGridTemplate: Template = {
           ui: {
             component: "number",
             step: 0.1,
-            validate: (value: any) => {
-              const numValue = Number(value);
-              if (!isNaN(numValue) && (numValue < 0.1 || numValue > 2.0)) {
-                return "Scale must be between 0.1 and 2.0";
-              }
-            },
+            validate: validateNumber(0.1, 2.0, "Scale must be between 0.1 and 2.0"),
           } as any,
+        },
+        {
+          type: "boolean",
+          label: "Enable Download Button",
+          name: "enableDownload",
+          description: "Show download button on hover. If disabled, only displays the image without download functionality.",
+          ui: { component: "toggle" },
         },
       ],
     },
@@ -75,14 +77,18 @@ export const ImageGridTemplate: Template = {
       label: "Items Per Row",
       name: "itemsPerRow",
       description: "Number of images per row (1-6)",
+      ui: { validate: validateNumber(1, 6, "Must be between 1 and 6") },
+    },
+    {
+      type: "number",
+      label: "Aspect Ratio",
+      name: "aspectRatio",
+      description: "Height ratio relative to width (0.65 for default, 0.8 for taller, 0.5 for shorter)",
       ui: {
-        validate: (value: any) => {
-          const numValue = Number(value);
-          if (!isNaN(numValue) && (numValue < 1 || numValue > 6)) {
-            return "Must be between 1 and 6";
-          }
-        },
-      },
+        component: "number",
+        step: 0.05,
+        validate: validateNumber(0.01, 2, "Aspect ratio must be between 0.01 and 2"),
+      } as any,
     },
   ],
 };
