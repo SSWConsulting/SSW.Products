@@ -5,6 +5,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
+import { isProductionEnvironment, cleanPathForLocale } from '@utils/environment';
 
 type Locale = 'en' | 'zh';
 
@@ -68,26 +69,18 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
   const buildUrl = useMemo(() => (targetLocale: Locale): string => {
     if (typeof window === 'undefined') return '/';
     
-    const { hostname } = window.location;
-    const isProduction = ['yakshaver.ai', 'yakshaver.cn', 'yakshaver.com.cn'].includes(hostname);
+    const basePath = cleanPathForLocale(pathname, currentLocale);
     
-    let basePath = '/';
-    if (isProduction) {
-      basePath = pathname;
-    } else {
-      basePath = currentLocale === 'zh' ? pathname.replace(/^\/zh/, '') || '/' : pathname;
-    }
-    
-    if (!isProduction) {
+    if (!isProductionEnvironment()) {
       return targetLocale === 'zh' ? `/zh${basePath}` : basePath;
     }
     
-    const urlMap = {
-      zh: hostname === 'yakshaver.ai' ? `https://yakshaver.cn${basePath}` : basePath,
-      en: `https://yakshaver.ai${basePath}`
-    };
-    
-    return urlMap[targetLocale];
+    const { hostname } = window.location;
+    return targetLocale === 'zh' && hostname === 'yakshaver.ai'
+      ? `https://yakshaver.cn${basePath}`
+      : targetLocale === 'en'
+        ? `https://yakshaver.ai${basePath}`
+        : basePath;
   }, [pathname, currentLocale]);
 
   const switchLanguage = (targetLocale: Locale) => {

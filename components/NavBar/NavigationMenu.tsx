@@ -5,6 +5,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
+import { getLocalizedPath } from "@utils/environment";
 
 const NavigationMenuBadge = ({
   imgSrc,
@@ -16,34 +17,19 @@ const NavigationMenuBadge = ({
   imgWidth: number;
   imgHeight: number;
   currentLocale?: string;
-}) => {
-  const getHomeHref = () => {
-    if (typeof window === 'undefined') return '/';
-    
-    const { hostname } = window.location;
-    const isProduction = ['yakshaver.ai', 'yakshaver.cn', 'yakshaver.com.cn'].includes(hostname);
-    
-    if (isProduction) {
-      return '/';
-    }
-    
-    return currentLocale === 'zh' ? '/zh' : '/';
-  };
-  
-  return (
-    <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
-      <Link className="mb-2 shrink-0" href={getHomeHref()}>
-        <Image
-          src={imgSrc as string}
-          className="h-8 w-auto"
-          width={imgWidth}
-          height={imgHeight}
-          alt="Logo"
-        />
-      </Link>
-    </NavigationMenu.Item>
-  );
-};
+}) => (
+  <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
+    <Link className="mb-2 shrink-0" href={getLocalizedPath('/', currentLocale)}>
+      <Image
+        src={imgSrc}
+        className="h-8 w-auto"
+        width={imgWidth}
+        height={imgHeight}
+        alt="Logo"
+      />
+    </Link>
+  </NavigationMenu.Item>
+);
 
 const NavigationMenuRoot = React.forwardRef<
   React.ElementRef<typeof NavigationMenu.Root>,
