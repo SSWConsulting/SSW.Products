@@ -133,7 +133,7 @@ const FeaturedArticle = ({
                     />
                   </section>
                   <div className="flex justify-between items-center">
-                    <ReadMore fileName={featuredBlog._sys.filename || ""} />
+                    <ReadMore fileName={featuredBlog._sys.filename || ""} locale={locale} />
                   </div>
                 </div>
               </div>
@@ -237,6 +237,7 @@ const RecentArticles = ({
                       sswPeopleLink: post.sswPeopleLink || "",
                     }}
                     slug={post._sys.filename}
+                    locale={locale}
                   />
                 )
               );

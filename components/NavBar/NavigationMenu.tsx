@@ -7,18 +7,20 @@ import Link from "next/link";
 import * as React from "react";
 import { getLocalizedPath } from "@utils/environment";
 
+interface NavigationMenuBadgeProps {
+  imgSrc: string;
+  imgWidth: number;
+  imgHeight: number;
+  currentLocale?: string;
+}
+
 const NavigationMenuBadge = ({
   imgSrc,
   imgWidth,
   imgHeight,
   currentLocale = 'en',
-}: {
-  imgSrc: string;
-  imgWidth: number;
-  imgHeight: number;
-  currentLocale?: string;
-}) => (
-  <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
+}: NavigationMenuBadgeProps) => (
+  <NavigationMenu.Item className="gap-8 mx-auto flex items-center w-full">
     <Link className="mb-2 shrink-0" href={getLocalizedPath('/', currentLocale)}>
       <Image
         src={imgSrc}

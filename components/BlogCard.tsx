@@ -14,10 +14,12 @@ import GridBackground from "./shared/GridBackground";
 import ReadMore from "./shared/ReadMore";
 import { useBlogUrl } from "@utils/blogUrl";
 
-type BlogCardProps = Modify<
-  Blog,
-  { author?: AuthorType | null; slug?: string | null; groupHover?: boolean }
->;
+type BlogCardProps = Modify<Blog, {
+  author?: AuthorType | null;
+  slug?: string | null;
+  groupHover?: boolean;
+  locale?: string;
+}>;
 
 const BlogCard = ({
   bannerImage,
@@ -29,8 +31,9 @@ const BlogCard = ({
   title,
   author,
   date,
+  locale = 'en',
 }: BlogCardProps) => {
-  const getBlogUrl = useBlogUrl();
+  const getBlogUrl = useBlogUrl(locale);
   return (
     <div className="h-full flex flex-col grow shrink-0 relative border bg-gradient-black border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
       {groupHover && (
@@ -93,7 +96,7 @@ const BlogCard = ({
             }}
           />
         </section>
-        <ReadMore groupHover={groupHover} fileName={slug || ""} />
+        <ReadMore groupHover={groupHover} fileName={slug || ""} locale={locale} />
       </div>
     </div>
   );

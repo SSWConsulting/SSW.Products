@@ -4,14 +4,14 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useBlogUrl } from "@utils/blogUrl";
 
-const ReadMore = ({
-  fileName,
-  groupHover,
-}: {
+interface ReadMoreProps {
   fileName: string;
   groupHover?: boolean;
-}) => {
-  const getBlogUrl = useBlogUrl();
+  locale?: string;
+}
+
+const ReadMore = ({ fileName, groupHover, locale = 'en' }: ReadMoreProps) => {
+  const getBlogUrl = useBlogUrl(locale);
   return (
     <Link
       href={getBlogUrl(fileName)}

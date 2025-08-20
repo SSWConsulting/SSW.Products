@@ -5,7 +5,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { ChevronRight } from 'lucide-react';
-import { isProductionEnvironment, cleanPathForLocale } from '@utils/environment';
+import { isProductionEnvironment, cleanPathForLocale, getLocalizedPath } from '@utils/environment';
 
 type Locale = 'en' | 'zh';
 
@@ -72,15 +72,17 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
     const basePath = cleanPathForLocale(pathname, currentLocale);
     
     if (!isProductionEnvironment()) {
-      return targetLocale === 'zh' ? `/zh${basePath}` : basePath;
+      return getLocalizedPath(basePath, targetLocale);
     }
     
     const { hostname } = window.location;
-    return targetLocale === 'zh' && hostname === 'yakshaver.ai'
-      ? `https://yakshaver.cn${basePath}`
-      : targetLocale === 'en'
-        ? `https://yakshaver.ai${basePath}`
-        : basePath;
+    if (targetLocale === 'zh' && hostname === 'yakshaver.ai') {
+      return `https://yakshaver.cn${basePath}`;
+    }
+    if (targetLocale === 'en') {
+      return `https://yakshaver.ai${basePath}`;
+    }
+    return basePath;
   }, [pathname, currentLocale]);
 
   const switchLanguage = (targetLocale: Locale) => {
