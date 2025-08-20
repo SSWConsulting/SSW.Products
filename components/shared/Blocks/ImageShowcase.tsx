@@ -12,7 +12,7 @@ interface ImageShowcaseProps {
   showcaseImage?: string | null;
   showcaseTitle?: string | null;
   showcaseDescription?: string | null;
-  downloadLink?: string | null;
+  downloadFile?: string | null;
 }
 
 const ImageShowcase = ({ 
@@ -21,14 +21,22 @@ const ImageShowcase = ({
   showcaseImage, 
   showcaseTitle, 
   showcaseDescription, 
-  downloadLink 
+  downloadFile 
 }: ImageShowcaseProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleDownload = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    if (downloadLink) window.open(downloadLink, '_blank');
-  }, [downloadLink]);
+    if (downloadFile) {
+      // Create a temporary anchor element to trigger download
+      const link = document.createElement('a');
+      link.href = downloadFile;
+      link.download = downloadFile.split('/').pop() || 'download.zip';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  }, [downloadFile]);
 
   const toggleHover = useCallback(() => setIsHovered(prev => !prev), []);
 
@@ -71,7 +79,7 @@ const ImageShowcase = ({
               className="w-full h-auto object-cover rounded-2xl"
             />
             
-            {downloadLink && (
+            {downloadFile && (
               <div className={`absolute inset-0 bg-black/70 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <button
                   onClick={handleDownload}
