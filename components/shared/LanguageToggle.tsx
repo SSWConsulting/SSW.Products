@@ -69,15 +69,15 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
     if (typeof window === 'undefined') return '/';
     
     const { hostname } = window.location;
-    const isLocal = /localhost|127\.0\.0\.1/.test(hostname);
+    const isProduction = hostname === 'yakshaver.ai' || hostname === 'yakshaver.cn';
     const basePath = pathname.replace(/^\/zh/, '') || '/';
     
-    if (isLocal) {
+    if (!isProduction) {
       return targetLocale === 'zh' ? `/zh${basePath}` : basePath;
     }
     
     const urlMap = {
-      zh: hostname === 'yakshaver.ai' ? `https://yakshaver.cn${basePath}` : basePath,
+      zh: `https://yakshaver.cn${basePath}`,
       en: `https://yakshaver.ai${basePath}`
     };
     
