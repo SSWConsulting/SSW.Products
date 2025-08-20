@@ -1,90 +1,81 @@
 import Image from "next/image";
 import { Download } from "lucide-react";
 import { useState } from "react";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 
 interface ImageItem {
   id?: string;
   svgSrc?: string;
   pngSrc?: string;
   pngDownloadUrl?: string;
+  svgDownloadUrl?: string;
   alt?: string;
   blockColor?: string;
   imageScale?: number;
+  enableDownload?: boolean;
 }
 
 interface ImageGridProps {
   title?: string | null;
-  gridDescription?: string | null;
+  gridDescription?: any;
   images?: ImageItem[];
   itemsPerRow?: number;
+  aspectRatio?: number;
   className?: string;
 }
 
-const GRID_COLS_MAP: Record<number, string> = {
+const GRID_COLS = {
   1: "grid-cols-1",
-  2: "grid-cols-1 md:grid-cols-2",
+  2: "grid-cols-1 md:grid-cols-2", 
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
   5: "grid-cols-1 md:grid-cols-3 lg:grid-cols-5",
   6: "grid-cols-1 md:grid-cols-3 lg:grid-cols-6",
-};
+} as const;
 
 const ImageGrid = ({
   title,
   gridDescription,
   images = [],
   itemsPerRow = 3,
+  aspectRatio = 0.65,
   className = "",
 }: ImageGridProps) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
-  
-  if (!images?.length && !title && !gridDescription) return null;
 
-  const downloadFile = async (url: string, filename: string) => {
+  const downloadFile = async (url: string, fallbackUrl?: string) => {
     try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(blobUrl);
+      const testResponse = await fetch(url, { method: 'HEAD' });
+      if (!testResponse.ok) throw new Error();
+      window.location.href = `/api/download?url=${encodeURIComponent(url)}`;
     } catch {
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = filename;
-      link.click();
+      if (fallbackUrl) {
+        window.location.href = `/api/download?url=${encodeURIComponent(fallbackUrl)}`;
+      } else {
+        alert('Invalid Link');
+      }
     }
   };
 
-  const downloadPNG = (pngSrc: string, pngDownloadUrl: string | undefined, alt?: string) => {
-    const filename = `${alt || 'image'}.png`;
+  const handleInteraction = (index: number, action: 'enter' | 'leave' | 'click') => {
+    if (images[index]?.enableDownload === false) return;
     
-    if (pngDownloadUrl) {
-      window.open(pngDownloadUrl, '_blank');
-    } else {
-      downloadFile(pngSrc, filename);
-    }
+    setActiveImageIndex(
+      action === 'enter' ? index :
+      action === 'leave' ? null :
+      prev => prev === index ? null : index
+    );
   };
+  
+  if (!images.length && !title && !gridDescription) return null;
+  
+  const gridCols = GRID_COLS[itemsPerRow as keyof typeof GRID_COLS] || GRID_COLS[3];
 
-  const getGridCols = () => GRID_COLS_MAP[itemsPerRow] || GRID_COLS_MAP[3];
-
-  const buttonClassName = "flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200";
-
-  const renderDownloadButton = (
-    onClick: () => void, 
-    label: string
-  ) => (
+  const DownloadButton = ({ onClick, label }: { onClick: () => void; label: string }) => (
     <button
-      onClick={(e) => {
-        e.stopPropagation();
-        onClick();
-      }}
-      className={buttonClassName}
+      onClick={(e) => { e.stopPropagation(); onClick(); }}
+      className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
     >
       <Download className="w-4 h-4" />
       {label}
@@ -101,30 +92,33 @@ const ImageGrid = ({
             </h2>
           )}
           {gridDescription && (
-            <p className="text-[14px] text-white font-medium leading-relaxed max-w-3xl mx-auto">
-              {gridDescription}
-            </p>
+            <div className="text-[14px] text-white font-medium leading-relaxed max-w-3xl mx-auto">
+              <TinaMarkdown components={DocAndBlogMarkdownStyle} content={gridDescription} />
+            </div>
           )}
         </div>
       )}
 
-      {images?.length > 0 && (
-        <div className={`grid ${getGridCols()} gap-6`}>
+      {images.length > 0 && (
+        <div className={`grid ${gridCols} gap-6`}>
           {images.map((image, index) => {
             const displaySrc = image.svgSrc || image.pngSrc;
             if (!displaySrc) return null;
 
+            const isDownloadEnabled = image.enableDownload !== false;
+            const isActive = activeImageIndex === index;
+
             return (
               <div
                 key={image.id || index}
-                className="relative group overflow-hidden rounded-2xl cursor-pointer flex items-center justify-center"
+                className={`relative group overflow-hidden rounded-2xl flex items-center justify-center ${isDownloadEnabled ? 'cursor-pointer' : ''}`}
                 style={{ 
                   backgroundColor: image.blockColor || 'transparent',
-                  aspectRatio: '1 / 0.65'
+                  aspectRatio: `1 / ${aspectRatio}`
                 }}
-                onMouseEnter={() => setActiveImageIndex(index)}
-                onMouseLeave={() => setActiveImageIndex(null)}
-                onClick={() => setActiveImageIndex(activeImageIndex === index ? null : index)}
+                onMouseEnter={() => handleInteraction(index, 'enter')}
+                onMouseLeave={() => handleInteraction(index, 'leave')}
+                onClick={() => handleInteraction(index, 'click')}
               >
                 <Image
                   src={displaySrc}
@@ -135,16 +129,28 @@ const ImageGrid = ({
                   style={{ transform: `scale(${image.imageScale || 1})` }}
                 />
 
-                <div className={`absolute inset-0 bg-black/80 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl overflow-hidden ${activeImageIndex === index ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-                  {image.svgSrc && renderDownloadButton(
-                    () => downloadFile(image.svgSrc!, `${image.alt || 'image'}.svg`),
-                    'SVG'
-                  )}
-                  {image.pngSrc && renderDownloadButton(
-                    () => downloadPNG(image.pngSrc!, image.pngDownloadUrl, image.alt),
-                    'PNG'
-                  )}
-                </div>
+                {isDownloadEnabled && (
+                  <div className={`absolute inset-0 bg-black/80 transition-opacity duration-200 flex items-center justify-center gap-3 rounded-2xl overflow-hidden ${isActive ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+                    {image.svgSrc && (
+                      <DownloadButton
+                        onClick={() => downloadFile(
+                          image.svgDownloadUrl || image.svgSrc!,
+                          image.svgDownloadUrl ? image.svgSrc : undefined
+                        )}
+                        label="SVG"
+                      />
+                    )}
+                    {image.pngSrc && (
+                      <DownloadButton
+                        onClick={() => downloadFile(
+                          image.pngDownloadUrl || image.pngSrc!,
+                          image.pngDownloadUrl ? image.pngSrc : undefined
+                        )}
+                        label="PNG"
+                      />
+                    )}
+                  </div>
+                )}
               </div>
             );
           })}
