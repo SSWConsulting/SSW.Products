@@ -25,18 +25,18 @@ const ImageShowcase = ({
 }: ImageShowcaseProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const hasHeader = title || gridDescription;
-  const hasShowcaseImage = showcaseImage?.trim();
-  const hasContent = hasHeader || hasShowcaseImage || showcaseTitle || showcaseDescription;
-
-  if (!hasContent) return null;
-
   const handleDownload = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     if (downloadLink) window.open(downloadLink, '_blank');
   }, [downloadLink]);
 
   const toggleHover = useCallback(() => setIsHovered(prev => !prev), []);
+
+  const hasHeader = title || gridDescription;
+  const hasShowcaseImage = showcaseImage?.trim();
+  const hasContent = hasHeader || hasShowcaseImage || showcaseTitle || showcaseDescription;
+
+  if (!hasContent) return null;
 
   return (
     <div className="py-8 px-4 mx-auto max-w-300 md:px-12 sm:px-8 medium:px-0">

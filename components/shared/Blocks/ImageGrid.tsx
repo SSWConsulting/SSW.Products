@@ -42,29 +42,11 @@ const ImageGrid = ({
   className = "",
 }: ImageGridProps) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
-  
-  const hasContent = images.length > 0 || title || gridDescription;
-  if (!hasContent) return null;
 
   const downloadFile = useCallback((url: string, filename: string) => {
     const proxyUrl = `/api/download?url=${encodeURIComponent(url)}&filename=${encodeURIComponent(filename)}`;
     window.location.href = proxyUrl;
   }, []);
-
-  const gridCols = GRID_COLS_MAP[itemsPerRow] || GRID_COLS_MAP[3];
-
-  const DownloadButton = ({ onClick, label }: { onClick: () => void; label: string }) => (
-    <button
-      onClick={(e) => {
-        e.stopPropagation();
-        onClick();
-      }}
-      className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
-    >
-      <Download className="w-4 h-4" />
-      {label}
-    </button>
-  );
 
   const handleImageInteraction = useCallback((index: number, action: 'enter' | 'leave' | 'click') => {
     const image = images[index];
@@ -82,6 +64,24 @@ const ImageGrid = ({
         break;
     }
   }, [images]);
+  
+  const hasContent = images.length > 0 || title || gridDescription;
+  if (!hasContent) return null;
+
+  const gridCols = GRID_COLS_MAP[itemsPerRow] || GRID_COLS_MAP[3];
+
+  const DownloadButton = ({ onClick, label }: { onClick: () => void; label: string }) => (
+    <button
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+      className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
+    >
+      <Download className="w-4 h-4" />
+      {label}
+    </button>
+  );
 
   return (
     <div className={`py-8 px-4 mx-auto w-full max-w-300 md:px-12 sm:px-8 medium:px-0 ${className}`}>
