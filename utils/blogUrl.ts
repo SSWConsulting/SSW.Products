@@ -1,12 +1,8 @@
 "use client";
-import { usePathname } from 'next/navigation';
 
-export const useBlogUrl = () => {
-  const pathname = usePathname();
-  const isZhLocale = pathname.startsWith('/zh');
-  
+export const useBlogUrl = (currentLocale: string) => {
   return (slug: string) => {
-    return isZhLocale ? `/zh/blog/${slug}` : `/blog/${slug}`;
+    return currentLocale === 'zh' ? `/zh/blog/${slug}` : `/blog/${slug}`;
   };
 };
 

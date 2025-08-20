@@ -70,7 +70,13 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
     
     const { hostname } = window.location;
     const isProduction = ['yakshaver.ai', 'yakshaver.cn', 'yakshaver.com.cn'].includes(hostname);
-    const basePath = pathname.replace(/^\/zh/, '') || '/';
+    
+    let basePath = '/';
+    if (isProduction) {
+      basePath = pathname;
+    } else {
+      basePath = currentLocale === 'zh' ? pathname.replace(/^\/zh/, '') || '/' : pathname;
+    }
     
     if (!isProduction) {
       return targetLocale === 'zh' ? `/zh${basePath}` : basePath;
@@ -82,7 +88,7 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
     };
     
     return urlMap[targetLocale];
-  }, [pathname]);
+  }, [pathname, currentLocale]);
 
   const switchLanguage = (targetLocale: Locale) => {
     if (targetLocale === currentLocale) return;

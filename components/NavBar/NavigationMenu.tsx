@@ -10,23 +10,40 @@ const NavigationMenuBadge = ({
   imgSrc,
   imgWidth,
   imgHeight,
+  currentLocale = 'en',
 }: {
   imgSrc: string;
   imgWidth: number;
   imgHeight: number;
-}) => (
-  <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
-    <Link className="mb-2 shrink-0" href="/">
-      <Image
-        src={imgSrc as string}
-        className="h-8 w-auto"
-        width={imgWidth}
-        height={imgHeight}
-        alt="Logo"
-      />
-    </Link>
-  </NavigationMenu.Item>
-);
+  currentLocale?: string;
+}) => {
+  const getHomeHref = () => {
+    if (typeof window === 'undefined') return '/';
+    
+    const { hostname } = window.location;
+    const isProduction = ['yakshaver.ai', 'yakshaver.cn', 'yakshaver.com.cn'].includes(hostname);
+    
+    if (isProduction) {
+      return '/';
+    }
+    
+    return currentLocale === 'zh' ? '/zh' : '/';
+  };
+  
+  return (
+    <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
+      <Link className="mb-2 shrink-0" href={getHomeHref()}>
+        <Image
+          src={imgSrc as string}
+          className="h-8 w-auto"
+          width={imgWidth}
+          height={imgHeight}
+          alt="Logo"
+        />
+      </Link>
+    </NavigationMenu.Item>
+  );
+};
 
 const NavigationMenuRoot = React.forwardRef<
   React.ElementRef<typeof NavigationMenu.Root>,

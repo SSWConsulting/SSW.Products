@@ -51,7 +51,7 @@ export default function NavBarClient({
     <MobileMenuRoot>
       <MobileAnchor asChild>
         <NavigationMenuRoot>
-          {bannerImage && <NavigationMenuBadge {...bannerImage} />}
+          {bannerImage && <NavigationMenuBadge {...bannerImage} currentLocale={currentLocale} />}
           {items.map((item, index) => {
             if (
               item.__typename === "NavigationBarLeftNavItemGroupOfStringItems"
