@@ -63,38 +63,35 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  const hostname = useMemo(() => {
-    if (typeof window === 'undefined') return '';
-    return window.location.hostname;
-  }, []);
+  useEffect(() => setMounted(true), []);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const getAlternateUrl = (targetLocale: Locale): string => {
-    const isLocal = hostname.includes('localhost') || hostname.includes('127.0.0.1');
-    const cleanPath = pathname.startsWith('/zh') ? pathname.substring(3) : pathname;
-    const basePath = cleanPath || '/';
-
+  const buildUrl = useMemo(() => (targetLocale: Locale): string => {
+    if (typeof window === 'undefined') return '/';
+    
+    const { hostname } = window.location;
+    const isLocal = /localhost|127\.0\.0\.1/.test(hostname);
+    const basePath = pathname.replace(/^\/zh/, '') || '/';
+    
     if (isLocal) {
       return targetLocale === 'zh' ? `/zh${basePath}` : basePath;
     }
     
-    if (targetLocale === 'zh') {
-      return hostname === 'yakshaver.ai' ? `https://yakshaver.cn${basePath}` : basePath;
-    }
-    return `https://yakshaver.ai${basePath}`;
-  };
+    const urlMap = {
+      zh: hostname === 'yakshaver.ai' ? `https://yakshaver.cn${basePath}` : basePath,
+      en: `https://yakshaver.ai${basePath}`
+    };
+    
+    return urlMap[targetLocale];
+  }, [pathname]);
 
-  const handleLanguageSwitch = (targetLocale: Locale) => {
+  const switchLanguage = (targetLocale: Locale) => {
     if (targetLocale === currentLocale) return;
     
-    const url = getAlternateUrl(targetLocale);
+    const url = buildUrl(targetLocale);
     window.location[url.startsWith('http') ? 'href' : 'pathname'] = url;
   };
 
-  const currentLanguage = LANGUAGES.find(lang => lang.code === currentLocale) || LANGUAGES[0];
+  const currentLanguage = LANGUAGES.find(({ code }) => code === currentLocale) ?? LANGUAGES[0];
 
   if (!mounted) return null;
 
@@ -144,7 +141,7 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
                   isActive={language.code === currentLocale}
                   onClick={() => {
                     setIsOpen(false);
-                    handleLanguageSwitch(language.code);
+                    switchLanguage(language.code);
                   }}
                 />
               ))}
