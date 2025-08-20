@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import { ChevronRight } from 'lucide-react';
 
 interface LanguageToggleProps {
   currentLocale: string;
@@ -77,7 +78,7 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
           />
           
           <div 
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#222222] rounded-xl p-8 shadow-2xl z-50 w-[90%] max-w-[576px]"
+            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#222222] rounded-2xl p-8 shadow-2xl z-50 w-[90%] max-w-[576px]"
           >
             <button
               onClick={() => setIsOpen(false)}
@@ -102,40 +103,29 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
                 disabled={currentLocale === 'en'}
                 className={`w-full flex items-center justify-between p-5 rounded-xl transition-all duration-300 relative ${
                   currentLocale === 'en'
-                    ? 'bg-[#333333] cursor-default'
-                    : 'bg-[#333333] hover:bg-[#404040] cursor-pointer'
+                    ? 'bg-[#222222] cursor-default'
+                    : 'bg-[#333333] hover:bg-[#404040] hover:shadow-lg hover:scale-[1.02] cursor-pointer'
                 }`}
                 style={currentLocale === 'en' ? {
                   border: '1px solid transparent',
-                  backgroundImage: 'linear-gradient(#333333, #333333), linear-gradient(83.78deg, #CC4141 23.25%, #D699FB 63.5%, #FF778E 124.16%)',
+                  backgroundImage: 'linear-gradient(#222222, #222222), linear-gradient(83.78deg, #CC4141 23.25%, #D699FB 63.5%, #FF778E 124.16%)',
                   backgroundOrigin: 'border-box',
                   backgroundClip: 'padding-box, border-box'
                 } : {}}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 ml-4">
                   <Image
                     src="/svg/icon-en.svg"
                     alt="English"
-                    width={36}
-                    height={36}
+                    width={42}
+                    height={42}
                   />
                   <div className="text-left">
-                    <div className="text-gray-400 text-sm">English</div>
-                    <div className="text-white text-xl font-medium">English</div>
+                    <div className="text-[#CC4141] text-lg font-semibold">English</div>
+                    <div className="text-white text-2xl font-bold">English</div>
                   </div>
                 </div>
-                {currentLocale === 'en' && (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 12l2 2 4-4" stroke="url(#gradient)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <defs>
-                      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="23.25%" stopColor="#CC4141"/>
-                        <stop offset="63.5%" stopColor="#D699FB"/>
-                        <stop offset="124.16%" stopColor="#FF778E"/>
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                )}
+                <ChevronRight size={32} className="text-[#CC4141] mr-2" />
               </button>
 
               <button
@@ -146,40 +136,29 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
                 disabled={currentLocale === 'zh'}
                 className={`w-full flex items-center justify-between p-5 rounded-xl transition-all duration-300 relative ${
                   currentLocale === 'zh'
-                    ? 'bg-[#333333] cursor-default'
-                    : 'bg-[#333333] hover:bg-[#404040] cursor-pointer'
+                    ? 'bg-[#222222] cursor-default'
+                    : 'bg-[#333333] hover:bg-[#404040] hover:shadow-lg hover:scale-[1.02] cursor-pointer'
                 }`}
                 style={currentLocale === 'zh' ? {
                   border: '1px solid transparent',
-                  backgroundImage: 'linear-gradient(#333333, #333333), linear-gradient(83.78deg, #CC4141 23.25%, #D699FB 63.5%, #FF778E 124.16%)',
+                  backgroundImage: 'linear-gradient(#222222, #222222), linear-gradient(83.78deg, #CC4141 23.25%, #D699FB 63.5%, #FF778E 124.16%)',
                   backgroundOrigin: 'border-box',
                   backgroundClip: 'padding-box, border-box'
                 } : {}}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 ml-4">
                   <Image
                     src="/svg/icon-zh.svg"
                     alt="中文"
-                    width={36}
-                    height={36}
+                    width={42}
+                    height={42}
                   />
                   <div className="text-left">
-                    <div className="text-gray-400 text-sm">Chinese</div>
-                    <div className="text-white text-xl font-medium">中文</div>
+                    <div className="text-[#CC4141] text-lg font-semibold">Chinese</div>
+                    <div className="text-white text-2xl font-bold">中文</div>
                   </div>
                 </div>
-                {currentLocale === 'zh' && (
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 12l2 2 4-4" stroke="url(#gradient2)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <defs>
-                      <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="23.25%" stopColor="#CC4141"/>
-                        <stop offset="63.5%" stopColor="#D699FB"/>
-                        <stop offset="124.16%" stopColor="#FF778E"/>
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                )}
+                <ChevronRight size={32} className="text-[#CC4141] mr-2" />
               </button>
             </div>
           </div>
