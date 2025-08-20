@@ -24,9 +24,9 @@ export const ImageShowcaseTemplate: Template = {
     },
     {
       type: "string",
-      name: "downloadLink",
-      label: "Download Link",
-      description: "External link to redirect when clicking the download button",
+      name: "downloadFile",
+      label: "Download File Path",
+      description: "Path to the downloadable file (e.g., '/YakShaver/YakShaver-Background.zip')",
     },
     {
       type: "string",
