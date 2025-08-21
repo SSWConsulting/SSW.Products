@@ -83,16 +83,24 @@ function handleProductionRequest(
   language: string,
   isChineseDomain: boolean
 ) {
-  if (isChineseDomain) {
-    return createRewriteResponse(`/YakShaver${pathname}`, language, request);
-  }
+  let targetProduct: string | null = null;
   
-  for (const product of productList) {
-    if (hostname === product.domain) {
-      const cleanPath = cleanPathFromLanguage(pathname);
-      return createRewriteResponse(`/${product.product}${cleanPath}`, language, request);
+  if (isChineseDomain) {
+    targetProduct = 'YakShaver';
+  } else {
+    for (const product of productList) {
+      if (hostname === product.domain) {
+        targetProduct = product.product;
+        break;
+      }
     }
   }
+  
+  if (targetProduct) {
+    const cleanPath = cleanPathFromLanguage(pathname);
+    return createRewriteResponse(`/${targetProduct}${cleanPath}`, language, request);
+  }
+  
   return NextResponse.next();
 }
 
