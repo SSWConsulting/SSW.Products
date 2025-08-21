@@ -69,9 +69,9 @@ export default function FooterContent({
   if (typeof window !== "undefined") {
     const hostname = window.location.hostname;
     
-    if (locale === "zh" || hostname === "yakshaver.cn") {
+    if (locale === "zh" || hostname === "yakshaver.cn" || hostname === "www.yakshaver.cn") {
       icpFiling = "浙ICP备20009588号-6";
-    } else if (hostname === "yakshaver.com.cn") {
+    } else if (hostname === "yakshaver.com.cn" || hostname === "www.yakshaver.com.cn") {
       icpFiling = "浙ICP备20009588号-7";
     }
   }

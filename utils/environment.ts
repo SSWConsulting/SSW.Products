@@ -1,4 +1,4 @@
-const PRODUCTION_HOSTS = new Set(['yakshaver.ai', 'yakshaver.cn', 'yakshaver.com.cn']);
+const PRODUCTION_HOSTS = new Set(['yakshaver.ai', 'yakshaver.cn', 'www.yakshaver.cn', 'yakshaver.com.cn', 'www.yakshaver.com.cn']);
 
 export const isProductionEnvironment = (): boolean => 
   typeof window !== 'undefined' && PRODUCTION_HOSTS.has(window.location.hostname);
