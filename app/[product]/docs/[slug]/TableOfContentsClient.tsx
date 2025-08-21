@@ -15,13 +15,11 @@ import { useParams } from "next/navigation";
 
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
-  locale: string;
 }
 
-function NavigationGroup({ navigationGroup, activeItem, locale }: {
+function NavigationGroup({ navigationGroup, activeItem }: {
   navigationGroup: NavigationGroup;
   activeItem: string;
-  locale: string;
 }) {
   const [isExpanded, setIsExpanded] = useState(true);
   const contextualHref = useContextualLink();
@@ -88,7 +86,7 @@ function NavigationGroup({ navigationGroup, activeItem, locale }: {
   );
 }
 
-function TableOfContentsClient({ tableOfContentsData, locale }: TableOfContentsClientProps) {
+function TableOfContentsClient({ tableOfContentsData }: TableOfContentsClientProps) {
   const params = useParams<{ product: string; slug: string }>();
 
   return (
@@ -108,7 +106,6 @@ function TableOfContentsClient({ tableOfContentsData, locale }: TableOfContentsC
                 }
                 key={index}
                 navigationGroup={group}
-                locale={locale}
               />
             )
         )}

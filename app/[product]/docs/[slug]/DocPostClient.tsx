@@ -66,7 +66,7 @@ export default function DocPostClient({
         <TableOfContents.Root>
           <TableOfContents.Button />
           <TableOfContents.Popover>
-            <TableOfContentsClient tableOfContentsData={tableOfContentsData} locale={locale} />
+            <TableOfContentsClient tableOfContentsData={tableOfContentsData} />
           </TableOfContents.Popover>
         </TableOfContents.Root>
       </div>

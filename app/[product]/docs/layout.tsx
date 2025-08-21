@@ -23,7 +23,6 @@ const RootLayout = async ({
           <div className=" max-h-[calc(100vh-13rem)] mt-20 hidden md:block py-8 bg-gray-darkest max-w-[calc(100%_-_2rem)] mb-8 rounded-lg left-4 top-44 text-white self-start px-6 overflow-y-auto [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent] sticky">
             <TableOfContentsClient
               tableOfContentsData={tableOfContentsData as DocsTableOfContents}
-              locale={locale}
             />
           </div>
 
