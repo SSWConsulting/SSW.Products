@@ -81,6 +81,12 @@ function handleProductionRequest(
   request: NextRequest,
   language: string
 ) {
+  const isChineseDomain = hostname?.endsWith('yakshaver.cn') || hostname?.endsWith('yakshaver.com.cn');
+  
+  if (isChineseDomain) {
+    return createRewriteResponse(`/YakShaver/zh${pathname}`, 'zh', request);
+  }
+  
   for (const product of productList) {
     if (hostname === product.domain) {
       const cleanPath = cleanPathFromLanguage(pathname);

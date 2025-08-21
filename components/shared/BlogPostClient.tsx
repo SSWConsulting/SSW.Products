@@ -26,6 +26,7 @@ interface BlogPostClientProps extends OptionalProps<FormattedDate> {
   recentBlogs?: Blog[];
   nextBlog?: Blog;
   previousBlog?: Blog;
+  locale?: string;
 }
 
 type Title = {
@@ -41,6 +42,7 @@ export default function BlogPostClient({
   previousBlog,
   nextBlog,
   initialFormattedDate,
+  locale,
 }: BlogPostClientProps) {
   const { data } = useTina<{ blogs: Blogs }>({
     query,
@@ -249,6 +251,7 @@ export default function BlogPostClient({
                   bannerImage={article.bannerImage}
                   category={""}
                   title={article.title}
+                  locale={locale}
                 />
               );
             })}

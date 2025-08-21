@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   FaDiscord,
@@ -15,6 +16,7 @@ import { FooterQuery } from "../../tina/__generated__/types";
 interface FooterClientProps {
   results: FooterQuery | null;
   hasPrivacyPolicy: boolean;
+  locale?: string;
 }
 
 const iconMap: { [key: string]: { svg: JSX.Element; linkText: string } } = {
@@ -51,6 +53,7 @@ const iconMap: { [key: string]: { svg: JSX.Element; linkText: string } } = {
 export default function FooterContent({
   results,
   hasPrivacyPolicy,
+  locale,
 }: FooterClientProps) {
   if (!results?.footer) {
     return <p>Tina connection broken</p>;
@@ -61,6 +64,17 @@ export default function FooterContent({
   const footerColor = results.footer.footerColor!;
 
   const dynamicYear = new Date().getFullYear();
+  
+  let icpFiling: string | null = null;
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname;
+    
+    if (locale === "zh" || hostname === "yakshaver.cn" || hostname === "www.yakshaver.cn") {
+      icpFiling = "浙ICP备20009588号-6";
+    } else if (hostname === "yakshaver.com.cn" || hostname === "www.yakshaver.com.cn") {
+      icpFiling = "浙ICP备20009588号-7";
+    }
+  }
 
   return (
     <footer
@@ -103,6 +117,20 @@ export default function FooterContent({
                 Privacy Policy
               </Link>
             </>
+          )}
+          {/* ICP Filing */}
+          {icpFiling && (
+            <div className="mt-1">
+              网站备案号:{" "}
+              <a
+                href="https://beian.miit.gov.cn"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                {icpFiling}
+              </a>
+            </div>
           )}
         </div>
       </div>

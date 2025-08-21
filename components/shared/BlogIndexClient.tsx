@@ -27,6 +27,7 @@ import ArticleMetadata from "./ArticleMetadata";
 import CategoryLabel from "./CategoryLabel";
 import GridBackground from "./GridBackground";
 import ReadMore from "./ReadMore";
+import { getBlogUrl } from "@utils/blogUrl";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 
@@ -69,8 +70,9 @@ export default function BlogIndexClient({
 
 const FeaturedArticle = ({
   featuredBlog,
+  locale,
   ...props
-}: RemoveTinaMetadata<FeaturedBlog>) => {
+}: RemoveTinaMetadata<FeaturedBlog> & { locale?: string }) => {
   const { searchTerm } = useBlogSearch();
   return (
     <>
@@ -114,7 +116,7 @@ const FeaturedArticle = ({
                       {featuredBlog.category}
                     </CategoryLabel>
                   )}
-                  <Link href={`/blog/${featuredBlog._sys.filename}`}>
+                  <Link href={getBlogUrl(featuredBlog._sys.filename, locale)}>
                     <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
                       {featuredBlog?.title}
                     </h3>
@@ -131,7 +133,7 @@ const FeaturedArticle = ({
                     />
                   </section>
                   <div className="flex justify-between items-center">
-                    <ReadMore fileName={featuredBlog._sys.filename || ""} />
+                    <ReadMore fileName={featuredBlog._sys.filename || ""} locale={locale} />
                   </div>
                 </div>
               </div>
@@ -161,7 +163,7 @@ const Blocks = ({ blocks, product, locale }: BlocksProps) => {
           case "BlogsIndexBlocksArticleList":
             return <RecentArticles {...block} product={product} locale={locale} />;
           case "BlogsIndexBlocksFeaturedBlog":
-            return <FeaturedArticle {...block} />;
+            return <FeaturedArticle {...block} locale={locale} />;
           default:
             return <></>;
         }
@@ -235,6 +237,7 @@ const RecentArticles = ({
                       sswPeopleLink: post.sswPeopleLink || "",
                     }}
                     slug={post._sys.filename}
+                    locale={locale}
                   />
                 )
               );

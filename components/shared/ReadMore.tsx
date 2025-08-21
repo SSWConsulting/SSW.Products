@@ -1,17 +1,20 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useBlogUrl } from "@utils/blogUrl";
 
-const ReadMore = ({
-  fileName,
-  groupHover,
-}: {
+interface ReadMoreProps {
   fileName: string;
   groupHover?: boolean;
-}) => {
+  locale?: string;
+}
+
+const ReadMore = ({ fileName, groupHover, locale = 'en' }: ReadMoreProps) => {
+  const getBlogUrl = useBlogUrl(locale);
   return (
     <Link
-      href={`/blog/${fileName}`}
+      href={getBlogUrl(fileName)}
       className={cn(
         "text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1",
         groupHover ? "group-hover:text-white" : "hover:text-white"
