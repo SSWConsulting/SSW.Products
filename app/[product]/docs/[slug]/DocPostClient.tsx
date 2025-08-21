@@ -14,7 +14,6 @@ interface DocPostClientProps {
   variables: object;
   pageData: { docs: Docs };
   tableOfContentsData: DocsTableOfContents;
-  locale: string;
 }
 
 const BreadCrumbs = ({ title }: { title: string }) => {
@@ -36,7 +35,6 @@ export default function DocPostClient({
   variables,
   pageData,
   tableOfContentsData,
-  locale,
 }: DocPostClientProps) {
   const { data } = useTina<{ docs: Docs }>({
     query,
