@@ -1,12 +1,11 @@
 import { getDocPost, getDocsTableOfContents } from "@utils/fetchDocs";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import client from "../../../../tina/__generated__/client";
 import { DocsTableOfContents } from "../../../../tina/__generated__/types";
 import { getLocale } from "../../../../utils/i18n";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
 import DocPostClient from "./DocPostClient";
+import PaginationLinksClient from "./PaginationLinksClient";
 
 interface DocPostProps {
   params: {
@@ -80,10 +79,9 @@ export default async function DocPost({ params, locale }: DocPostProps) {
         tableOfContentsData={tableOfContentsData as any}
         locale={currentLocale}
       />
-      <PaginationLinks
+      <PaginationLinksClient
         prev={paginationData.prev}
         next={paginationData.next}
-        locale={currentLocale}
       />
     </>
   );
@@ -92,43 +90,6 @@ export default async function DocPost({ params, locale }: DocPostProps) {
 // Add revalidation - page wouldn't update although GraphQL was updated. TODO: remove this once @wicksipedia created the global revalidation route.
 export const revalidate = 600;
 
-function PaginationLinks({
-  prev,
-  next,
-  locale,
-}: {
-  prev: PaginationLink | null;
-  next: PaginationLink | null;
-  locale: string;
-}) {
-  return (
-    <div className="flex justify-between py-12 rounded-lg overflow-hidden">
-      {prev ? (
-        <Link
-          href={`${locale === 'zh' ? '/zh' : ''}/docs/${prev.slug}`}
-          className="flex gap-2 items-center text-white/60 hover:text-white transition-all duration-300"
-        >
-          <FaArrowLeft />
-          <span>{prev.title}</span>
-        </Link>
-      ) : (
-        <div></div>
-      )}
-
-      {next ? (
-        <Link
-          href={`${locale === 'zh' ? '/zh' : ''}/docs/${next.slug}`}
-          className="flex gap-2 text-end items-center text-white/60 hover:text-white transition-all duration-300 "
-        >
-          <span>{next.title}</span>
-          <FaArrowRight />
-        </Link>
-      ) : (
-        <div></div>
-      )}
-    </div>
-  );
-}
 
 const getPaginationData = (
   tableOfContentsData: DocsTableOfContents,

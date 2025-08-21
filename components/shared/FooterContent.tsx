@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useContextualLink } from "@utils/contextualLink";
 import {
   FaDiscord,
   FaFacebook,
@@ -50,11 +51,8 @@ const iconMap: { [key: string]: { svg: JSX.Element; linkText: string } } = {
   FaDiscord: { svg: <FaDiscord />, linkText: "Link to Discord server" },
 };
 
-export default function FooterContent({
-  results,
-  hasPrivacyPolicy,
-  locale,
-}: FooterClientProps) {
+export default function FooterContent({ results, hasPrivacyPolicy, locale }: FooterClientProps) {
+  const contextualHref = useContextualLink();
   if (!results?.footer) {
     return <p>Tina connection broken</p>;
   }
@@ -113,7 +111,7 @@ export default function FooterContent({
           {hasPrivacyPolicy && (
             <>
               {"| "}
-              <Link href="/privacy" className="underline">
+              <Link href={contextualHref("/privacy")} className="underline">
                 Privacy Policy
               </Link>
             </>
