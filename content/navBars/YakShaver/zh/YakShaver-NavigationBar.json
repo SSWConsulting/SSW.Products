@@ -6,22 +6,22 @@
   "leftNavItem": [
     {
       "label": "定价",
-      "href": "/zh/pricing",
+      "href": "/pricing",
       "_template": "stringItem"
     },
     {
       "label": "关于",
-      "href": "/zh/about",
+      "href": "/about",
       "_template": "stringItem"
     },
     {
       "label": "博客",
-      "href": "/zh/blog",
+      "href": "/blog",
       "_template": "stringItem"
     },
     {
       "label": "文档",
-      "href": "/zh/docs",
+      "href": "/docs",
       "_template": "stringItem"
     },
     {
@@ -29,19 +29,19 @@
       "items": [
         {
           "label": "支持",
-          "href": "/zh/docs/support"
+          "href": "/docs/support"
         },
         {
           "label": "路线图",
-          "href": "/zh/roadmap"
+          "href": "/roadmap"
         },
         {
           "label": "认证",
-          "href": "/zh/certifications"
+          "href": "/certifications"
         },
         {
           "label": "媒体",
-          "href": "/zh/media"
+          "href": "/media"
         },
         {
           "label": "Discord",
