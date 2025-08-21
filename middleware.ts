@@ -22,7 +22,7 @@ function createRewriteResponse(targetPath: string, language: string, request: Ne
 }
 
 export function middleware(request: NextRequest) {
-  const hostname = request.headers.get("host");
+  const hostname = request.headers.get("x-original-host") || request.headers.get("host");
   const { pathname } = request.nextUrl;
 
   const isLocal =
@@ -84,7 +84,7 @@ function handleProductionRequest(
   const isChineseDomain = hostname?.endsWith('yakshaver.cn') || hostname?.endsWith('yakshaver.com.cn');
   
   if (isChineseDomain) {
-    return createRewriteResponse(`/YakShaver/zh${pathname}`, 'zh', request);
+    return createRewriteResponse(`/YakShaver${pathname}`, 'zh', request);
   }
   
   for (const product of productList) {
