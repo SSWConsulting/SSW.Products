@@ -42,12 +42,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const language = detectLanguage(pathname);
+  const isChineseDomain = !!(hostname?.endsWith('yakshaver.cn') || hostname?.endsWith('yakshaver.com.cn'));
+  const language = isChineseDomain ? 'zh' : detectLanguage(pathname);
 
   if (isLocal || isStaging) {
     return handleLocalRequest(pathname, productList, request, language);
   } else {
-    return handleProductionRequest(hostname, productList, pathname, request, language);
+    return handleProductionRequest(hostname, productList, pathname, request, language, isChineseDomain);
   }
 }
 
@@ -79,12 +80,11 @@ function handleProductionRequest(
   productList: any[],
   pathname: string,
   request: NextRequest,
-  language: string
+  language: string,
+  isChineseDomain: boolean
 ) {
-  const isChineseDomain = hostname?.endsWith('yakshaver.cn') || hostname?.endsWith('yakshaver.com.cn');
-  
   if (isChineseDomain) {
-    return createRewriteResponse(`/YakShaver${pathname}`, 'zh', request);
+    return createRewriteResponse(`/YakShaver${pathname}`, language, request);
   }
   
   for (const product of productList) {
