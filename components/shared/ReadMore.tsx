@@ -2,19 +2,18 @@
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { useBlogUrl } from "@utils/blogUrl";
+import { useContextualLink } from "@utils/contextualLink";
 
 interface ReadMoreProps {
   fileName: string;
   groupHover?: boolean;
-  locale?: string;
 }
 
-const ReadMore = ({ fileName, groupHover, locale = 'en' }: ReadMoreProps) => {
-  const getBlogUrl = useBlogUrl(locale);
+const ReadMore = ({ fileName, groupHover }: ReadMoreProps) => {
+  const contextualHref = useContextualLink();
   return (
     <Link
-      href={getBlogUrl(fileName)}
+      href={contextualHref(`/blog/${fileName}`)}
       className={cn(
         "text-ssw-red w-fit bottom-0 transition-colors hover:text-white mt-auto inline-flex items-center gap-1",
         groupHover ? "group-hover:text-white" : "hover:text-white"

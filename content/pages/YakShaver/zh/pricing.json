@@ -120,7 +120,7 @@
           "label": "这里充值",
           "variant": "outlinedWhite",
           "size": "large",
-          "url": "/zh/pricing"
+          "url": "/pricing"
         }
       },
       "_template": "pricing"

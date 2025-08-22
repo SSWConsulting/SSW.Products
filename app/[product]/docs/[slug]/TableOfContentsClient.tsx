@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import * as SearchBox from "@comps/search/SearchBox";
 import Link from "next/link";
 import { useState } from "react";
+import { useContextualLink } from "@utils/contextualLink";
 import { FaChevronDown } from "react-icons/fa";
 
 import {
@@ -14,19 +15,14 @@ import { useParams } from "next/navigation";
 
 interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
-  locale: string;
 }
 
-function NavigationGroup({
-  navigationGroup,
-  activeItem,
-  locale,
-}: {
+function NavigationGroup({ navigationGroup, activeItem }: {
   navigationGroup: NavigationGroup;
   activeItem: string;
-  locale: string;
 }) {
   const [isExpanded, setIsExpanded] = useState(true);
+  const contextualHref = useContextualLink();
 
   return (
     <>
@@ -69,7 +65,7 @@ function NavigationGroup({
                     ></div>
                     <div className="absolute h-full w-1 inset-x-0 border-l z-1 box-content border-white/20"></div>
                     <Link
-                      href={`${locale === 'zh' ? '/zh' : ''}/docs/${item?.slug?._sys?.filename}`}
+                      href={contextualHref(`/docs/${item?.slug?._sys?.filename}`)}
                       className={cn(
                         `block transition-colors p-1.5 ml-6 `,
                         activeItem === item?.slug?._sys?.filename
@@ -90,10 +86,7 @@ function NavigationGroup({
   );
 }
 
-function TableOfContentsClient({
-  tableOfContentsData,
-  locale,
-}: TableOfContentsClientProps) {
+function TableOfContentsClient({ tableOfContentsData }: TableOfContentsClientProps) {
   const params = useParams<{ product: string; slug: string }>();
 
   return (
@@ -113,7 +106,6 @@ function TableOfContentsClient({
                 }
                 key={index}
                 navigationGroup={group}
-                locale={locale}
               />
             )
         )}

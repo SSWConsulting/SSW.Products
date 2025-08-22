@@ -27,7 +27,7 @@ import ArticleMetadata from "./ArticleMetadata";
 import CategoryLabel from "./CategoryLabel";
 import GridBackground from "./GridBackground";
 import ReadMore from "./ReadMore";
-import { getBlogUrl } from "@utils/blogUrl";
+import { useContextualLink } from "@utils/contextualLink";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 
@@ -70,10 +70,10 @@ export default function BlogIndexClient({
 
 const FeaturedArticle = ({
   featuredBlog,
-  locale,
   ...props
-}: RemoveTinaMetadata<FeaturedBlog> & { locale?: string }) => {
+}: RemoveTinaMetadata<FeaturedBlog>) => {
   const { searchTerm } = useBlogSearch();
+  const contextualHref = useContextualLink();
   return (
     <>
       {featuredBlog && !searchTerm && (
@@ -116,7 +116,7 @@ const FeaturedArticle = ({
                       {featuredBlog.category}
                     </CategoryLabel>
                   )}
-                  <Link href={getBlogUrl(featuredBlog._sys.filename, locale)}>
+                  <Link href={contextualHref(`/blog/${featuredBlog._sys.filename}`)}>
                     <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
                       {featuredBlog?.title}
                     </h3>
@@ -133,7 +133,7 @@ const FeaturedArticle = ({
                     />
                   </section>
                   <div className="flex justify-between items-center">
-                    <ReadMore fileName={featuredBlog._sys.filename || ""} locale={locale} />
+                    <ReadMore fileName={featuredBlog._sys.filename || ""} />
                   </div>
                 </div>
               </div>
@@ -163,7 +163,7 @@ const Blocks = ({ blocks, product, locale }: BlocksProps) => {
           case "BlogsIndexBlocksArticleList":
             return <RecentArticles {...block} product={product} locale={locale} />;
           case "BlogsIndexBlocksFeaturedBlog":
-            return <FeaturedArticle {...block} locale={locale} />;
+            return <FeaturedArticle {...block} />;
           default:
             return <></>;
         }
@@ -237,7 +237,6 @@ const RecentArticles = ({
                       sswPeopleLink: post.sswPeopleLink || "",
                     }}
                     slug={post._sys.filename}
-                    locale={locale}
                   />
                 )
               );

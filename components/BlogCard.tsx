@@ -12,13 +12,12 @@ import Author from "./shared/Author";
 import CategoryLabel from "./shared/CategoryLabel";
 import GridBackground from "./shared/GridBackground";
 import ReadMore from "./shared/ReadMore";
-import { useBlogUrl } from "@utils/blogUrl";
+import { useContextualLink } from "@utils/contextualLink";
 
 type BlogCardProps = Modify<Blog, {
   author?: AuthorType | null;
   slug?: string | null;
   groupHover?: boolean;
-  locale?: string;
 }>;
 
 const BlogCard = ({
@@ -31,13 +30,13 @@ const BlogCard = ({
   title,
   author,
   date,
-  locale = 'en',
 }: BlogCardProps) => {
-  const getBlogUrl = useBlogUrl(locale);
+  const contextualHref = useContextualLink();
+  const blogUrl = contextualHref(`/blog/${slug || ''}`);
   return (
     <div className="h-full flex flex-col grow shrink-0 relative border bg-gradient-black border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
       {groupHover && (
-        <Link href={getBlogUrl(slug || '')} className="absolute inset-0 z-20" />
+        <Link href={blogUrl} className="absolute inset-0 z-20" />
       )}
       <div className="relative aspect-video ">
         <div className="inset-0 absolute align-middle items-center justify-center flex">
@@ -66,13 +65,11 @@ const BlogCard = ({
         {category && (
           <CategoryLabel className="text-sm">{category}</CategoryLabel>
         )}
-        <Link className="w-fit" href={getBlogUrl(slug || '')}>
-          <h3
-            className={cn(
-              "text-xl font-bold text-gray-100 transition-colors",
-              groupHover ? "group-hover:text-ssw-red" : "hover:text-ssw-red"
-            )}
-          >
+        <Link className="w-fit" href={blogUrl}>
+          <h3 className={cn(
+            "text-xl font-bold text-gray-100 transition-colors",
+            groupHover ? "group-hover:text-ssw-red" : "hover:text-ssw-red"
+          )}>
             {title}
           </h3>
         </Link>
@@ -96,7 +93,7 @@ const BlogCard = ({
             }}
           />
         </section>
-        <ReadMore groupHover={groupHover} fileName={slug || ""} locale={locale} />
+        <ReadMore groupHover={groupHover} fileName={slug || ""} />
       </div>
     </div>
   );
