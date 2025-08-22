@@ -251,7 +251,6 @@ export default function BlogPostClient({
                   bannerImage={article.bannerImage}
                   category={""}
                   title={article.title}
-                  locale={locale}
                 />
               );
             })}
