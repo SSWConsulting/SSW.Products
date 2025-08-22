@@ -10,6 +10,7 @@ import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 import { AnimatedComponent } from "@/types/components/animated";
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { useContextualLink } from "@utils/contextualLink";
 import {
   ParagraphAnimations,
   TypewriterParagraphAnimation,
@@ -179,6 +180,8 @@ export const highlightCurlyBracketFormatter = (byLine: string) => {
 };
 
 export default function Hero({ data }: { data: any }) {
+  const contextualHref = useContextualLink();
+  
   return (
     <div className="relative max-w-7xl mx-auto">
       <GradientBackground />
@@ -219,7 +222,7 @@ export default function Hero({ data }: { data: any }) {
               {data?.ctaLeft?.title && data?.ctaLeft?.link && (
                 <Link
                   className="bg-white hover:bg-white/80 text-[#222222] px-5 py-2 font-bold rounded-lg transition-all ease-in-out duration-300 border border-white uppercase"
-                  href={data.ctaLeft?.link}
+                  href={contextualHref(data.ctaLeft?.link)}
                 >
                   {data.ctaLeft?.title}
                 </Link>
@@ -227,7 +230,7 @@ export default function Hero({ data }: { data: any }) {
               {data?.ctaRight?.title && data?.ctaRight?.link && (
                 <Link
                   className="px-5 py-2 font-bold rounded-lg text-white border border-white bg-none flex items-center text-center justify-center gap-2 hover:bg-white/20 transition-all ease-in-out duration-300 uppercase"
-                  href={data.ctaRight?.link}
+                  href={contextualHref(data.ctaRight?.link)}
                 >
                   {data.ctaRight?.title} <FaChevronRight className="pb-0.5" />
                 </Link>
