@@ -274,7 +274,7 @@
           "url": "/pricing"
         }
       },
-      "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\*\\* Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
+      "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\** Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
       "bottomAction": {
         "label": "Full Pricing Details",
         "variant": "solidWhite",
@@ -313,7 +313,7 @@
         },
         {
           "question": "What file formats do you support?",
-          "answer": "Currently, YakShaver supports .mp4 and .mov video file extensions."
+          "answer": "Currently, YakShaver supports MP4 and MOV video files."
         }
       ],
       "_template": "faq"
