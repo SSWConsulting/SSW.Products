@@ -114,7 +114,6 @@ export default async function BlogPost({ params }: BlogPostProps) {
           query={documentData.query}
           variables={documentData.variables}
           pageData={{ blogs: documentData.blogs }}
-          locale={locale}
         />
       </div>
       <script
