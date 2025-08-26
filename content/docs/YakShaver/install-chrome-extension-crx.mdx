@@ -1,0 +1,96 @@
+---
+displayOrder: 3
+seo:
+  title: 'Alternative Installation: Chrome Extension via CRX File'
+  description: >-
+    Learn how to install the YakShaver Chrome extension using a CRX file for users who cannot access the Chrome Web Store.
+title: 'Alternative Installation: Chrome Extension via CRX File'
+date: '2025-08-26T14:00:00.000Z'
+---
+
+For users who cannot access the Chrome Web Store (particularly users in China), you can install the YakShaver Chrome extension using a CRX file. This method allows you to manually install the extension without needing VPN access to the Chrome Web Store.
+
+## Installation Steps
+
+### Step 1: Download the CRX File
+
+1. Click the download link for the YakShaver extension CRX file: [Download YakShaver Extension](https://your-azure-storage-url/yakshaver-extension.crx)
+2. The file will automatically download to your Downloads folder
+3. Chrome will attempt to install the extension automatically and show a notification saying you cannot install it
+4. **Important:** Dismiss this notification - we will install it manually in the next steps
+
+![Placeholder for download screenshot](/YakShaver/Docs/crx-download-placeholder.png)
+**Figure: Downloading the YakShaver extension CRX file**
+
+![Placeholder for Chrome security warning](/YakShaver/Docs/chrome-security-warning-placeholder.png)
+**Figure: Chrome security warning when trying to auto-install CRX files**
+
+### Step 2: Open Chrome Extensions Management
+
+1. Open Google Chrome
+2. Type `chrome://extensions/` in the address bar and press Enter
+3. Alternatively, you can:
+   - Click the three dots menu (⋮) in the top-right corner
+   - Go to **Extensions** > **Manage Extensions**
+
+![Placeholder for extensions page](/YakShaver/Docs/chrome-extensions-page-placeholder.png)
+**Figure: Chrome Extensions management page**
+
+### Step 3: Enable Developer Mode
+
+1. In the Extensions page, locate the **Developer mode** toggle in the top-right corner
+2. Click the toggle to enable Developer mode
+3. You should see additional options appear, including "Load unpacked" and "Pack extension"
+
+![Placeholder for developer mode toggle](/YakShaver/Docs/developer-mode-toggle-placeholder.png)
+**Figure: Enabling Developer mode in Chrome Extensions**
+
+### Step 4: Install the Extension
+
+1. Open your Downloads folder where the CRX file was saved
+2. Drag and drop the `yakshaver-extension.crx` file directly onto the Chrome Extensions page (make sure Developer mode is enabled)
+
+![Placeholder for drag and drop](/YakShaver/Docs/crx-drag-drop-placeholder.png)
+**Figure: Dragging the CRX file to the Extensions page**
+
+### Step 5: Confirm Installation
+
+1. Chrome will display a confirmation dialog asking if you want to add the extension
+2. Click **Add extension** to confirm the installation
+3. The YakShaver extension should now appear in your extensions list
+
+![Placeholder for installation confirmation](/YakShaver/Docs/extension-install-confirm-placeholder.png)
+**Figure: Confirming the extension installation**
+
+### Step 6: Pin the Extension (Optional)
+
+1. Click the puzzle piece icon (🧩) in the Chrome toolbar to open the extensions menu
+2. Find YakShaver in the list
+3. Click the pin icon next to YakShaver to pin it to your toolbar for easy access
+
+![Placeholder for pinning extension](/YakShaver/Docs/pin-extension-placeholder.png)
+**Figure: Pinning the YakShaver extension to the toolbar**
+
+## Verification
+
+After successful installation, you should see:
+- The YakShaver icon in your browser toolbar (if pinned)
+- YakShaver listed in your extensions at `chrome://extensions/`
+- The extension status should show as "Enabled"
+
+## Troubleshooting
+
+**Extension won't install:**
+- Make sure Developer mode is enabled
+- Try restarting Chrome and repeating the process
+- Ensure the CRX file is not corrupted by re-downloading it
+
+**Security warnings:**
+- Chrome may show warnings about installing extensions from unknown sources
+- This is normal for manually installed extensions
+- Click through the warnings if you trust the source
+
+**Extension appears but doesn't work:**
+- Check if the extension is enabled in `chrome://extensions/`
+- Try disabling and re-enabling the extension
+- Restart Chrome completely
