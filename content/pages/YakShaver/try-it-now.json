@@ -17,7 +17,7 @@
       "tryItNowCards": [
         {
           "title": "1. Download",
-          "description": "Download  the YakShaver browser extension from the Google Chrome store by clicking the button below.\n",
+          "description": "Download  the YakShaver browser extension from the Google Chrome store by clicking the button below.\n\nIf you can't access the Chrome Web Store, then check this [docs about how to install extension manually](/docs/install-extension-manually).\n",
           "image": {
             "imgWidth": 480,
             "imgHeight": 336
