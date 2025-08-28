@@ -17,7 +17,7 @@
       "tryItNowCards": [
         {
           "title": "1. 下载",
-          "description": "点击下面的按钮，从 Google Chrome 商店下载 YakShaver 浏览器扩展。\n",
+          "description": "点击下面的按钮，从 Google Chrome 商店下载 YakShaver 浏览器扩展。\n\n如果您无法访问 Chrome 网上应用店，请参阅[手动安装扩展的文档](/docs/install-extension-manually)。\n",
           "image": {
             "imgWidth": 480,
             "imgHeight": 336
@@ -30,7 +30,7 @@
         },
         {
           "title": "2. 固定",
-          "description": "点击浏览器右上角的 ![](/TryItNow/extension.svg)，然后点击 YakShaver 旁的 ![](/TryItNow/pin.svg) 将其固定到浏览器窗口。\n",
+          "description": "点击浏览器右上角的 ![](/TryItNow/extension.svg)，然后点击 YakShaver 旁边的 ![](/TryItNow/pin.svg) 将其固定到浏览器窗口。\n",
           "image": {
             "imgSrc": "/TryItNow/pin-yakshaver-2.png",
             "imgWidth": 480,
