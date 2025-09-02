@@ -46,6 +46,10 @@
         {
           "label": "DISCORD",
           "href": "https://discord.gg/Jp9dyxKFjR"
+        },
+        {
+          "label": "EVENTS",
+          "href": "/events"
         }
       ],
       "_template": "groupOfStringItems"
