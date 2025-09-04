@@ -56,7 +56,7 @@ const MobileMenuTrigger = () => {
 
   return (
     <Popover.Trigger asChild>
-      <button className="text-3xl my-auto flex align-middle">
+      <button aria-label="Toggle menu" className="text-3xl my-auto flex align-middle">
         {isOpen ? <CgClose /> : <HiOutlineBars3 />}
       </button>
     </Popover.Trigger>
