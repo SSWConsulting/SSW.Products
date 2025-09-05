@@ -1,9 +1,12 @@
 {
+  "seo": {
+    "title": "Pricing"
+  },
   "title": "EagleEye Pricing Plans and Options",
   "pageBlocks": [
     {
       "title": "{Simple, Transparent Pricing}",
-      "description": "🎉 **Great news!** EagleEye is currently **completely free** to use through the Azure Marketplace! 🚀",
+      "description": "🎉 **Great news!** EagleEye is currently **completely free** to use through the Azure Marketplace! 🚀\n",
       "plans": [
         {
           "planTier": "Free",
