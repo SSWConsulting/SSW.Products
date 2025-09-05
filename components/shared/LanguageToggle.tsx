@@ -51,11 +51,11 @@ const LanguageButton = ({ language, isActive, onClick }: {
     <div className="flex items-center gap-4 ml-4">
       <Image src={language.icon} alt={language.alt} width={42} height={42} />
       <div className="text-left">
-        <div className="text-[#CC4141] text-lg font-semibold">{language.label}</div>
+        <div className="text-[#AAAAAA] text-lg font-semibold">{language.label}</div>
         <div className="text-white text-2xl font-bold">{language.nativeLabel}</div>
       </div>
     </div>
-    <ChevronRight size={32} className="text-[#CC4141] mr-2" />
+    <ChevronRight size={32} className="text-white mr-2" />
   </button>
 );
 
