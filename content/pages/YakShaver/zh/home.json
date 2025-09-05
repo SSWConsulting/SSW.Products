@@ -1,26 +1,22 @@
 {
   "seo": {
-    "title": "YakShaver - 记录问题并让 AI 即时分配给正确的团队",
-    "description": "探索 YakShaver 的创新 AI 解决方案和洞察，提升您的业务效率和增长。",
+    "title": "首页 - 几秒钟内完成完美任务",
+    "description": "探索 YakShaver 的创新 AI 解决方案和见解，提升您的业务效率和增长。",
     "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}"
   },
-  "title": "YakShaver - 记录问题并让 AI 即时分配给正确的团队",
+  "title": "YakShaver - 记录问题并让 AI 即刻分配给正确团队",
   "pageBlocks": [
     {
       "backgroundImageEnabled": false,
-      "titleBeforeRotate": "几秒内制作完美的",
-      "titleAfterRotate": "",
+      "titleBeforeRotate": "制作完美的",
+      "titleAfterRotate": "仅需几秒",
       "rotatingWords": [
         "PBI",
         "任务",
         "工单",
         "邮件"
       ],
-      "byLine": "别再浪费时间写错误报告。\n\nYakShaver AI 代理分析录音，生成任务，并即时分配给正确的团队。\n\n使用 YakShaver 节省数小时的挫败感。\n",
-      "ctaLeft": {
-        "title": "试用演示",
-        "link": "/try-it-now"
-      },
+      "byLine": "别再浪费时间写错误报告。\n\nYakShaver AI 代理分析录音，生成任务，并即时分配给正确团队。\n\n用 YakShaver 节省数小时的挫败感。\n",
       "ctaRight": {
         "title": "观看视频",
         "link": "https://www.youtube.com/shorts/0TPo98R1tnI"
@@ -30,14 +26,14 @@
       "reportUI": {
         "leftHandSide": {
           "issueReportName": "尤利西斯·麦克拉伦",
-          "issueReportTime": "周一 上午9:13",
+          "issueReportTime": "星期一 上午9:13",
           "issueReportText": [
             "我刚在 {TinaCloud} 遇到一个问题。当我尝试上传大于5MB的文件时，{应用程序} 完全{崩溃}了。",
-            "我使用的是最新版本的 {Chrome}。这严重影响了用户功能，我将其归类为{优先级1}。",
+            "我使用的是最新版本的 {Chrome}。这严重影响用户功能，我将其归类为{优先级1}。",
             "我记得 {Matt 和 Adam} 之前遇到过类似问题。能请 {Betty} 帮我检查一下吗？"
           ],
           "issueReportSummaryTitle": "报告问题",
-          "issueReportSummarySubtitle": "YakShaver 实时录制并转录视频，处理信息以便即时分析。"
+          "issueReportSummarySubtitle": "YakShaver 实时录制和转录视频，处理信息以便即时分析。"
         },
         "rightHandSide": {
           "issueReportSummaryTitle": "问题摘要",
@@ -47,7 +43,7 @@
       "_template": "hero"
     },
     {
-      "ParentContainerTitle": "YakShaver 的工作原理",
+      "ParentContainerTitle": "YakShaver 如何工作",
       "ParentContainerDescription": "",
       "CardAndImageItem": [
         {
@@ -68,7 +64,7 @@
               "Badge": "Snagit"
             },
             {
-              "Badge": "等等..."
+              "Badge": "以及更多..."
             }
           ],
           "delimiters": {
@@ -81,7 +77,7 @@
         {
           "AboveHeaderText": "{剃除}",
           "Header": "2 - YakShaver 接管",
-          "Description": "YakShaver 观看您的视频，将您说的话转换成文本，并分析发生了什么。\n",
+          "Description": "YakShaver 观看您的视频，将您说的话转成文字，并分析发生了什么。\n",
           "media": "/Browser2.png",
           "textOnLeft": true
         },
@@ -103,7 +99,7 @@
               "Badge": "邮件"
             },
             {
-              "Badge": "等等..."
+              "Badge": "以及更多..."
             }
           ],
           "delimiters": {
@@ -151,7 +147,7 @@
       },
       "topRightBox": {
         "title": "实时 PBI",
-        "description": "当 PBI 被创建、分配或需要跟进时，立即保持更新"
+        "description": "当 PBI 被创建、指派或需要跟进时，立即保持更新"
       },
       "counterBox1": {
         "title": "剃除的 Yaks",
@@ -274,7 +270,7 @@
           "url": "/pricing"
         }
       },
-      "bottomBox": "\\* 平均小时费率包括薪资、福利和间接费用。\n\n\\*\\* 我们的价值回收计算：基于客户数据，YakShaver 将问题报告时间减少90%——从每周5小时缩短到仅30分钟。\n",
+      "bottomBox": "\\* 平均小时费率包括薪资、福利和间接费用。\n\n\\*\\* 我们的价值回收计算：基于客户数据，YakShaver 将问题报告时间减少90%——从每周5小时缩短至仅30分钟。\n",
       "bottomAction": {
         "label": "完整定价详情",
         "variant": "solidWhite",
@@ -296,20 +292,20 @@
       "text": "",
       "questions": [
         {
-          "question": "YakShaver 对非技术团队来说容易使用吗？",
-          "answer": "绝对容易。YakShaver 的直观设计使任何人，无论技术水平如何，都能高效报告问题和委派任务。"
+          "question": "YakShaver 对非技术团队来说易用吗？",
+          "answer": "绝对易用。YakShaver 的直观设计让任何人，无论技术水平如何，都能高效报告问题和分配任务。"
         },
         {
           "question": "YakShaver 能与我现有的系统配合使用吗？",
-          "answer": "YakShaver 可以从多个系统拉取人员和项目数据，包括 Dynamics 365、Active Directory、Salesforce，甚至是 Excel 导入！在工作项创建方面，它支持 Exchange、GitHub、Azure DevOps、Jira、Zendesk 等集成！"
+          "answer": "YakShaver 可以从多个系统获取您的人员和项目数据，包括 Dynamics 365、Active Directory、Salesforce，甚至是 Excel 导入！在工作项创建方面，它支持 Exchange、GitHub、Azure DevOps、Jira、Zendesk 等集成！"
         },
         {
           "question": "YakShaver 支持屏幕录制吗？",
-          "answer": "支持，YakShaver 内置了 Microsoft Teams 的屏幕录制功能，方便在报告问题时捕捉和使用视觉信息。它还可以与独立屏幕录制工具如 Snagit 集成。"
+          "answer": "支持，YakShaver 内置了 Microsoft Teams 的屏幕录制功能，方便捕捉和使用视觉信息报告问题。它还可以与独立屏幕录制工具如 Snagit 集成。"
         },
         {
           "question": "我可以用 YakShaver 报告哪些类型的问题？",
-          "answer": "您可以报告任何类型的问题！YakShaver 设计用于处理各种任务、错误或功能请求，并自动将它们打包成带有相关信息的工作项，发送给相关人员。"
+          "answer": "您可以报告任何类型的问题！YakShaver 设计用于处理各种任务、错误或功能请求，自动打包成带有相关信息的工作项并发送给相关人员。"
         },
         {
           "question": "支持哪些文件格式？",
@@ -322,7 +318,7 @@
       "title": "与 YakShaver 专家交流",
       "ctaDescription": "正在为您的团队评估 YakShaver？预约与 YakShaver 架构师的30分钟通话",
       "ctaButton": {
-        "label": "预约通话",
+        "label": "安排通话",
         "variant": "solidWhite",
         "size": "large",
         "buttonLink": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6%40ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous="
