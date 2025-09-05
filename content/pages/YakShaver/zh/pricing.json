@@ -1,31 +1,31 @@
 {
   "seo": {
-    "title": "YakShaver AI 价格计划和选项",
-    "description": "发现为满足您需求量身定制的灵活 YakShaver AI 价格计划。探索选项，找到适合您项目的完美方案。"
+    "title": "定价 - 简单透明的定价",
+    "description": "发现适合您需求的YakShaver AI灵活定价方案。探索选项，找到适合您项目的完美方案。"
   },
-  "title": "YakShaver AI 价格计划和选项",
+  "title": "YakShaver AI定价方案和选项",
   "pageBlocks": [
     {
       "title": "{简单透明的定价}",
-      "description": "选择适合您团队的计划，**今天就开始节省问题报告时间**\n",
+      "description": "选择适合您团队的方案，**今天就开始节省**问题报告的时间\n",
       "plans": [
         {
           "planTier": "入门",
           "planDescription": "适合刚起步的个人",
           "price": "免费",
           "subPriceText": "永久 *",
-          "priceDescription": "* 需使用您自己的 OpenAI API 密钥",
+          "priceDescription": "* 使用您自己的OpenAI API密钥",
           "timeSaved": "~每月节省7.5小时 ",
           "isRecommended": false,
           "listTitle": "开始使用",
           "listItems": [
-            "{每月15次修剪}",
+            "{每月15次剃须}",
             "{每月约节省7.5小时}",
             "2个项目",
             "基础集成",
             "2分钟视频录制",
             "手动工作项分配",
-            "SharePoint 视频托管"
+            "SharePoint视频托管"
           ],
           "buttons": [
             {
@@ -45,14 +45,14 @@
           "isRecommended": true,
           "listTitle": "让您的团队加入",
           "listItems": [
-            "{每月100次修剪}",
+            "{每月100次剃须}",
             "{每月约节省50小时}",
             "{无限项目}",
             "所有集成",
             "5分钟视频录制",
-            "YouTube 视频托管",
+            "YouTube视频托管",
             "自动工作项分配",
-            "Discord 支持"
+            "Discord支持"
           ],
           "buttons": [
             {
@@ -69,12 +69,12 @@
           "subPriceText": "/月",
           "priceDescription": "公司范围内无限席位",
           "timeSaved": "~每月节省250小时",
-          "listTitle": "团队计划的全部功能，外加",
+          "listTitle": "团队方案的全部功能，外加",
           "listItems": [
-            "{每月500次修剪}",
+            "{每月500次剃须}",
             "{每月约节省250小时}",
             "15分钟视频录制",
-            "高级分析仪表板",
+            "高级分析仪表盘",
             "优先支持（Discord + 邮件）",
             "专属客户经理"
           ],
@@ -93,14 +93,14 @@
           "subPriceText": "",
           "priceDescription": "联系我们获取定制价格",
           "timeSaved": "定制",
-          "listTitle": "成长计划的全部功能，外加",
+          "listTitle": "成长方案的全部功能，外加",
           "listItems": [
-            "{定制修剪} 配额",
+            "{定制剃须}分配",
             "30分钟视频录制",
             "定制培训与入职",
             "专属支持",
             "定制集成",
-            "单点登录 (SSO)"
+            "单点登录（SSO）"
           ],
           "buttons": [
             {
@@ -113,9 +113,9 @@
       ],
       "addOns": {
         "title": "{增强包}",
-        "description": "需要充值？添加额外积分",
+        "description": "需要充值？添加一些额外积分",
         "price": "$25",
-        "subPriceText": "每50次修剪",
+        "subPriceText": "每50次剃须",
         "actionButton": {
           "label": "这里充值",
           "variant": "outlinedWhite",
@@ -127,11 +127,11 @@
     },
     {
       "headline": "{功能对比}",
-      "sectionDescription": "比较我们不同计划的所有功能，找到最适合您需求的方案",
+      "sectionDescription": "比较我们不同方案的所有功能，找到最适合您需求的方案",
       "table": [
         {
           "title": "概览",
-          "footerText": "* 每个 Teams 实例只能分配1个免费用户。",
+          "footerText": "* 每个Teams实例只能分配1个免费用户。",
           "rows": [
             {
               "column1": "功能",
@@ -144,7 +144,7 @@
             {
               "column1": "价格",
               "column2": "免费",
-              "column2SubText": "(需使用您自己的 OpenAI API 密钥)",
+              "column2SubText": "(使用您自己的OpenAI API密钥)",
               "column3": "美元$39/月",
               "column4": "美元$189/月",
               "column5": "定制"
@@ -192,7 +192,7 @@
               "column5": "企业"
             },
             {
-              "column1": "Microsoft Teams 集成",
+              "column1": "Microsoft Teams集成",
               "column2": "✅",
               "column2SubText": " ",
               "column3": "✅",
@@ -202,16 +202,16 @@
             },
             {
               "column1": "最大视频录制时长",
-              "column2": "2 分钟",
-              "column3": "5 分钟",
-              "column4": "15 分钟",
-              "column5": "30 分钟"
+              "column2": "2分钟",
+              "column3": "5分钟",
+              "column4": "15分钟",
+              "column5": "30分钟"
             },
             {
               "column1": "视频/录制托管",
               "column2": "SharePoint",
-              "column3": "SharePoint 或 YouTube",
-              "column4": "SharePoint 或 YouTube",
+              "column3": "SharePoint或YouTube",
+              "column4": "SharePoint或YouTube",
               "column5": "定制"
             }
           ]
@@ -228,21 +228,21 @@
               "column5": "企业"
             },
             {
-              "column1": "Azure DevOps 集成",
+              "column1": "Azure DevOps集成",
               "column2": "✅",
               "column3": "✅",
               "column4": "✅",
               "column5": "✅"
             },
             {
-              "column1": "GitHub 集成",
+              "column1": "GitHub集成",
               "column2": "✅",
               "column3": "✅",
               "column4": "✅",
               "column5": "✅"
             },
             {
-              "column1": "更多集成（Jira、Zendesk、Linear）",
+              "column1": "更多集成（Jira, Zendesk, Linear）",
               "column2": "即将推出",
               "column3": "即将推出",
               "column4": "即将推出",
@@ -286,7 +286,7 @@
               "column5": "✅"
             },
             {
-              "column1": "自定义集成（Jira、Zendesk）",
+              "column1": "定制集成（Jira, Zendesk）",
               "column2": "❌",
               "column3": "✅",
               "column4": "✅",
@@ -322,11 +322,11 @@
               "column1": "分析",
               "column2": "❌",
               "column3": "基础",
-              "column4": "高级仪表板",
+              "column4": "高级仪表盘",
               "column5": "定制"
             },
             {
-              "column1": "提供数据库",
+              "column1": "数据库提供",
               "column2": "共享",
               "column3": "私有",
               "column4": "私有",
@@ -349,11 +349,11 @@
               "column1": "支持访问",
               "column2": "❌",
               "column3": "Discord",
-              "column4": "优先 Discord + 邮件",
+              "column4": "优先Discord + 邮件",
               "column5": "专属支持"
             },
             {
-              "column1": "单点登录 (SSO)",
+              "column1": "单点登录（SSO）",
               "column2": "❌",
               "column3": "✅",
               "column4": "✅",
