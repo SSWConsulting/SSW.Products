@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: DocPostMetadataProps) {
   const { product, slug } = params;
   const locale = getLocale();
   const docs = await getDocPost(product, slug, locale);
-  const metadata = setPageMetadata(docs?.docs?.seo, product);
+  const metadata = setPageMetadata(docs?.docs?.seo, product, 'Docs');
   return metadata;
 }
 
