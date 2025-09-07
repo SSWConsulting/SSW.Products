@@ -17,16 +17,17 @@ date: '2025-06-16T14:00:00.000Z'
 **Figure: Error given when a video has expired**
 
 ![](/remarks-official-documentation.png)
-**Figure: [Official documentation](https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0&tabs=csharp#remarks)**
+**Figure: [Official documentation](https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0\&tabs=csharp#remarks)**
 
 ## Making Videos Permanent
 
 If you want your videos to remain permanently available, you can connect your **YouTube** account to the project. Once connected, uploaded videos will be published to your YouTube account and won't expire.
 
 **⚠️ YouTube Limitations:**
-- **Daily quota**: Only ~100 video uploads per verified channel per day
-- **Security**: If unlisted links are accidentally shared, anyone can access them
-- **No organizational control**: Videos are hosted on YouTube, not your organization's infrastructure
+
+* **Daily Upload Quota: **YouTube allows only \~100 video uploads per verified channel per day. For high-volume usage, this may cause processing delays when the quota is reached.
+* **Security Considerations: **YouTube videos are hosted outside your organization's infrastructure. If unlisted links are accidentally shared, anyone with the link can access them.
+* **Confidentiality considerations: **If your video contains confidential information, even when unlisted, can lead to the video being removed by YouTube. See YouTube's Community Guidelines.
 
 ## How to set up YouTube uploads:
 
