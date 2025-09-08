@@ -146,7 +146,7 @@ const Pricing = ({ data }: PricingProps) => {
 
 const AddOns = ({ addOns }: { addOns: AddOn }) => {
   return (
-    <div className="flex max-w-3xl mx-auto p-10 my-4 lg:my-8 flex-col w-full bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
+    <div className="flex max-w-3xl mx-auto p-10 my-4 lg:my-8 flex-col w-full bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
       <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20">
         <div className="flex flex-col">
           <h3 className="text-3xl font-bold text-white mb-2">
