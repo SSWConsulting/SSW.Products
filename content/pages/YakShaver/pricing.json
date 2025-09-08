@@ -128,7 +128,7 @@
           "label": "Re-fill Here",
           "variant": "outlinedWhite",
           "size": "large",
-          "url": "/pricing"
+          "url": "https://portal.yakshaver.ai/settings/plan"
         }
       },
       "_template": "pricing"
