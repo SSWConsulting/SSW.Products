@@ -8,7 +8,7 @@ import { FaCheck } from "react-icons/fa6";
 const Table = ({ table }: { table: any }) => {
   const regularBoxStyling = "text-white/60 p-2 md:p-4 text-center";
   const primaryBoxStyling =
-    " text-white bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] p-2 md:p-4";
+    " text-white bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] p-2 md:p-4";
 
   // Helper function to render content with check icon replacement
   const renderContent = (content: any) => {
