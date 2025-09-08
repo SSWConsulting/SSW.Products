@@ -29,11 +29,6 @@
           ],
           "buttons": [
             {
-              "Title": "Join Waitlist",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
-            },
-            {
               "label": "SIGN UP",
               "variant": "outlinedWhite",
               "size": "medium",
