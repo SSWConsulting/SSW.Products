@@ -67,13 +67,13 @@ const Pricing = ({ data }: PricingProps) => {
 
   const getGridClasses = (planCount: number) => {
     if (planCount === 1) {
-      return "grid grid-cols-1 gap-4 lg:gap-8 xl:grid-cols-3 lg:justify-items-center px-6 lg:px-12";
+      return "grid grid-cols-1 gap-4 lg:gap-8 xl:grid-cols-3 lg:justify-items-center px-4 lg:px-12";
     } else if (planCount === 2) {
-      return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 px-6 lg:px-12";
+      return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 px-4 lg:px-12";
     } else if (planCount === 3) {
-      return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 xl:grid-cols-3 px-6 lg:px-12";
+      return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 xl:grid-cols-3 px-4 lg:px-12";
     } else {
-      return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 xl:grid-cols-4 px-6 lg:px-12";
+      return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 xl:grid-cols-4 px-4 lg:px-12";
     }
   };
 
@@ -137,7 +137,7 @@ const Pricing = ({ data }: PricingProps) => {
             </div>
           ))}
       </div>
-      <div className="px-6 lg:px-12">
+      <div className="px-4 lg:px-12">
         {addOns && <AddOns addOns={addOns} />}
       </div>
     </div>

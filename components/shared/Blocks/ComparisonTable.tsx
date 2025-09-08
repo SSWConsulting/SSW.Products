@@ -30,7 +30,7 @@ const Table = ({ table }: { table: any }) => {
   };
 
   return (
-    <div className="mb-10 border-2 border-white/20 rounded-xl overflow-hidden">
+    <div className="mb-4 lg:mb-10 border-2 border-white/20 rounded-xl overflow-hidden">
       {/* Title outside of scroll container */}
       <div className="text-white bg-[#141414] p-4 text-center font-semibold rounded-t-xl">
         {table.title}
@@ -131,7 +131,7 @@ const Table = ({ table }: { table: any }) => {
 
 export default function ComparisonTable({ data }: { data: any }) {
   return (
-    <div className="container max-w-7xl mx-auto p-2 md:p-4 mb-14 lg:mb-4 md:mt-0 lg:pb-40">
+    <div className="container max-w-7xl mx-auto px-4 md:p-4 mb-14 lg:mb-4 md:mt-0 lg:pb-40">
       {data.headline && (
         <h1
           className="text-2xl md:text-4xl text-center font-semibold text-white mb-4"
@@ -149,7 +149,7 @@ export default function ComparisonTable({ data }: { data: any }) {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-2 md:px-4">
+      <div className="max-w-7xl mx-auto px-4">
         {data.table &&
           data.table.map((tableItem: any, index: number) => (
             <Table key={index} table={tableItem} />
