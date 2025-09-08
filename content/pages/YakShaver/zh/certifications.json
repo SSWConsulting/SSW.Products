@@ -1,6 +1,6 @@
 {
   "seo": {
-    "title": "YakShaver 开发者认证",
+    "title": "开发者认证",
     "description": "获得 YakShaver 开发者 Credly 徽章以展示于 LinkedIn。该徽章表明您是 YakShaver 认证开发者！"
   },
   "title": "专业 YakShaver 认证",
@@ -9,7 +9,7 @@
       "featureItem": [
         {
           "headline": "成为首席牦牛官",
-          "text": "我们建议每个组织至少拥有一名认证的首席牦牛官 (CYO)。每当您组织中的某人获得认证时，组织将获得 50 积分（价值 25 美元）。\n",
+          "text": "我们建议每个组织至少拥有一名认证的首席牦牛官（CYO）。每当您组织中的某人获得认证时，组织将获得 50 积分（价值 25 美元）。\n",
           "media": [
             {
               "image": "/YakShaver/YakShaver-Chief-Yak-Officer-Credly-Badge.png",
@@ -22,7 +22,7 @@
     },
     {
       "textAlign": "Left",
-      "body": "### 您需要设置 YakShaver，了解最佳实践，并进行一次测试 Shave，在其中回答一些问题以验证您的理解。\n\n1\\. 按照[文档](https://yakshaver.ai/docs/support)加入 YakShaver 的 Discord 频道。\n\n2\\. 在您的 [YakShaver 门户](https://portal.yakshaver.ai/)中，添加一个名为“Northwind”的项目，并将待办事项设置为此 GitHub 仓库：[https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n\n3\\. 查看 Shaving 的[最佳实践](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions)。\n\n4\\. 按照文档设置[Windows 或 Mac 截图工具](https://yakshaver.ai/docs/recording-work-item-snipping-tool)。\\\n注意：这将使您可以使用键盘快捷键\n\n5\\. 进行一次正常的 Shave —— 访问 [northwind365.com](https://northwind365.com/) 并报告标题大小过小。\n\n6\\. 在“Northwind”项目中进行一次非传统 Shave。在您的录制中：\n\n* 展示项目在门户中的位置及其待办事项\n* 演示您如何设置屏幕捕获工具，以及录制后视频的存放位置\n* 解释为何必须口头提及项目，不能仅依赖屏幕显示\n* 场景 A - 假设有用户向您投诉，在 Teams 录制后未收到 YakShaver 机器人通知。您的处理方案是什么？\n* 场景 B - 有用户报告其 Shave 进入了错误的待办事项。您如何教育他们避免未来犯同样的错误？\n* 给 YakShaver 打分 /10\n* 您希望向团队提供什么反馈？\n\n7. 将您的 YakShaver 通知邮件转发至 [support@yakshaver.ai](mailto:support@yakshaver.com.au?cc=sswmarketing@ssw.com.au\\&subject=Chief%20Yak%20Officer%20-%20I%20haven't%20received%20my%20certification.\\&body=Hello%20YakShaver%20team%2C%0AIt%20has%20been%20%7B%7B%20NUMBER%20%7D%7D%20days%20since%20I%20completed%20the%20certification%20steps.%0A%0A1.%20Please%20investigate%20why%20I%20haven't%20received%20my%20certification%20yet.).\n\n7\\. 我们将审核您的视频，若成功，您将获得来自 [Credly](https://info.credly.com/) 的徽章。\n",
+      "body": "### 您需要设置 YakShaver，了解最佳实践，并进行一次测试 Shave，在其中回答一些问题以验证您的理解。\n\n1\\. 按照 [文档](https://yakshaver.ai/docs/support) 加入 YakShaver 的 Discord 频道。\n\n2\\. 在您的 [YakShaver 门户](https://portal.yakshaver.ai/) 中，添加一个名为“Northwind”的项目，并将待办事项设置为此 GitHub 仓库：[https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n\n3\\. 查看 Shaving 的[最佳实践](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions)。\n\n4\\. 按照文档设置一个[Windows 或 Mac 截图工具](https://yakshaver.ai/docs/recording-work-item-snipping-tool)。\\\n注意：这将使您可以使用键盘快捷键\n\n5\\. 进行一次正常的 Shave —— 访问 [northwind365.com](https://northwind365.com/) 并报告标题大小过小。\n\n6\\. 在“Northwind”项目中进行一次非传统的 Shave。在您的录制中：\n\n* 展示项目在门户中的位置及其待办事项\n* 演示您如何设置屏幕捕获工具，以及录制后视频的存放位置\n* 解释为什么必须口头提及项目，不能仅依赖屏幕显示\n* 场景 A - 假设有用户向您投诉，在 Teams 中录制后未收到 YakShaver 机器人通知。您将如何处理？\n* 场景 B - 有用户报告其 Shave 进入了错误的待办事项。您如何教育他们避免未来犯同样的错误？\n* 给 YakShaver 打分，满分 10 分\n* 您希望向团队提供什么反馈？\n\n1. 将您的 YakShaver 通知邮件转发至 [support@yakshaver.ai](mailto:support@yakshaver.com.au?cc=sswmarketing@ssw.com.au\\&subject=Chief%20Yak%20Officer%20-%20I%20haven't%20received%20my%20certification.\\&body=Hello%20YakShaver%20team%2C%0AIt%20has%20been%20%7B%7B%20NUMBER%20%7D%7D%20days%20since%20I%20completed%20the%20certification%20steps.%0A%0A1.%20Please%20investigate%20why%20I%20haven't%20received%20my%20certification%20yet.).\n\n7\\. 我们将审核您的视频，若成功，您将获得来自 [Credly](https://info.credly.com/) 的徽章。\n",
       "_template": "richText"
     },
     {
