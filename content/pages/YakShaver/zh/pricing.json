@@ -29,9 +29,11 @@
           ],
           "buttons": [
             {
-              "Title": "加入候补名单",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "注册",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         },
@@ -56,9 +58,11 @@
           ],
           "buttons": [
             {
-              "Title": "加入候补名单",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "注册",
+              "variant": "solidRed",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         },
@@ -74,15 +78,17 @@
             "{每月500次剃须}",
             "{每月约节省250小时}",
             "15分钟视频录制",
-            "高级分析仪表盘",
+            "高级分析仪表板",
             "优先支持（Discord + 邮件）",
             "专属客户经理"
           ],
           "buttons": [
             {
-              "Title": "加入候补名单",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "注册",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         },
@@ -104,9 +110,11 @@
           ],
           "buttons": [
             {
-              "Title": "加入候补名单",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "注册",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         }
@@ -120,18 +128,18 @@
           "label": "这里充值",
           "variant": "outlinedWhite",
           "size": "large",
-          "url": "/pricing"
+          "url": "https://portal.yakshaver.ai/settings/plan"
         }
       },
       "_template": "pricing"
     },
     {
-      "headline": "{功能对比}",
+      "headline": "{功能比较}",
       "sectionDescription": "比较我们不同方案的所有功能，找到最适合您需求的方案",
       "table": [
         {
           "title": "概览",
-          "footerText": "* 每个Teams实例只能分配1个免费用户。",
+          "footerText": "* 每个团队实例只能分配1个免费用户。",
           "rows": [
             {
               "column1": "功能",
@@ -270,7 +278,7 @@
               "column5": "自动"
             },
             {
-              "column1": "工作项优先级排序",
+              "column1": "工作项优先级",
               "column1SubText": "(测试版)",
               "column2": "❌",
               "column3": "✅",
@@ -322,7 +330,7 @@
               "column1": "分析",
               "column2": "❌",
               "column3": "基础",
-              "column4": "高级仪表盘",
+              "column4": "高级仪表板",
               "column5": "定制"
             },
             {
