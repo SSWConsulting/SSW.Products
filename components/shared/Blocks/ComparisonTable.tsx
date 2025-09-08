@@ -31,7 +31,7 @@ const Table = ({ table }: { table: any }) => {
 
   return (
     <div className="mb-10 border-2 border-white/20 rounded-xl overflow-hidden">
-      {/* Fixed title outside of scroll container */}
+      {/* Title outside of scroll container */}
       <div className="text-white bg-[#141414] p-4 text-center font-semibold rounded-t-xl">
         {table.title}
       </div>
