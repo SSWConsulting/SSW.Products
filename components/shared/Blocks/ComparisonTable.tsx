@@ -133,7 +133,7 @@ const Table = ({ table }: { table: any }) => {
 
 export default function ComparisonTable({ data }: { data: any }) {
   return (
-    <div className="container max-w-7xl mx-auto p-4 mb-14 pt-20 lg:pt-0 lg:mb-4 mt-20 lg:mt-0 md:mt-0 lg:pb-40">
+    <div className="container max-w-7xl mx-auto p-4 mb-14 lg:mb-4 md:mt-0 lg:pb-40">
       {data.headline && (
         <h1
           className="text-4xl text-center font-semibold text-white mb-4"
