@@ -8,7 +8,7 @@ import { FaCheck } from "react-icons/fa6";
 const Table = ({ table }: { table: any }) => {
   const regularBoxStyling = "text-white/60 p-4 text-center";
   const primaryBoxStyling =
-    " text-white bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] p-4 rounded-bl-xl";
+    " text-white bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] p-4";
 
   // Helper function to render content with check icon replacement
   const renderContent = (content: any) => {
@@ -30,7 +30,7 @@ const Table = ({ table }: { table: any }) => {
   };
 
   return (
-    <div className="mb-10 border-2 border-white/20 rounded-xl">
+    <div className="mb-10 border-2 border-white/20 rounded-xl overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full border-collapse table-fixed">
           <tbody className="divide-y divide-white/10">
