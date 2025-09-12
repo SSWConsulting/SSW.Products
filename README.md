@@ -10,7 +10,9 @@ The purpose of this repository is to host the product pages for [SSW's](https://
 
 2. Paste the varables into your `.env` file
 
-3. Install Dependencies
+3. Ensure you set `DEFAULT_PRODUCT` environment variable to a valid product such as "YakShaver" or "TimePro"
+
+4. Install Dependencies
 
 ```bash
 
