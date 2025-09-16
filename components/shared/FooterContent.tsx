@@ -68,9 +68,9 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
       style={{ backgroundColor: footerColor }}
     >
       <div className="max-w-7xl xl:mx-auto mx-4 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4">
+        <div className={`grid grid-cols-1 items-center gap-4 ${poweredByTinaBanner ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`}>
           {/* Left: Copyright & Policy (bottom on mobile) */}
-          <div className="order-3 lg:order-1 text-center lg:text-left md:text-sm text-xs">
+          <div className={`${poweredByTinaBanner ? 'order-3 lg:order-1' : 'order-2 lg:order-1 lg:pl-4'} text-center lg:text-left md:text-sm text-xs`}>
             &copy; {dynamicYear} {footerTitle || "Default Footer Title"} {hasPrivacyPolicy && (
               <>
                 {"| "}
@@ -111,7 +111,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
           )}
 
           {/* Right: Social Icons (middle on mobile) */}
-            <div className="order-2 lg:order-3 flex space-x-4 justify-center lg:justify-end">
+            <div className={`${poweredByTinaBanner ? 'order-2 lg:order-3' : 'order-1 lg:order-2'} flex space-x-4 justify-center lg:justify-end lg:pr-4`}>
             {footerItems?.map((item, index: number) => {
               if (!item) return null;
               const icon = iconMap[item.footerItemIcon || ""];
