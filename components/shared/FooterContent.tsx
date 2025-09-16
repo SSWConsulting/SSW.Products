@@ -22,17 +22,11 @@ interface FooterClientProps {
 }
 
 const iconMap: { [key: string]: { svg: JSX.Element; linkText: string } } = {
-  FaYouTube: {
-    svg: <FaYoutube />,
-    linkText: "Link to YouTube channel",
-  },
+  FaYouTube: { svg: <FaYoutube />, linkText: "Link to YouTube channel" },
   FaLinkedIn: { svg: <FaLinkedin />, linkText: "Link to LinkedIn profile" },
   FaFacebook: { svg: <FaFacebook />, linkText: "Link to Facebook page" },
   FaTwitter: { svg: <FaTwitter />, linkText: "Link to Twitter profile" },
-  FaXTwitter: {
-    svg: <FaXTwitter />,
-    linkText: "Link to X (formerly Twitter) profile",
-  },
+  FaXTwitter: { svg: <FaXTwitter />, linkText: "Link to X (formerly Twitter) profile" },
   FaInstagram: { svg: <FaInstagram />, linkText: "Link to Instagram profile" },
   FaTiktok: { svg: <FaTiktok />, linkText: "Link to TikTok profile" },
   FaGithub: { svg: <FaGithub />, linkText: "Link to GitHub project" },
@@ -45,17 +39,17 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
     return <p>Tina connection broken</p>;
   }
 
-  const footerItems = results.footer?.footer;
-  const footerTitle = results.footer?.footerTitle;
+  const footerItems = results?.footer?.footer;
+  const footerTitle = results?.footer?.footerTitle;
   const footerColor = results.footer.footerColor!;
   const dynamicYear = new Date().getFullYear();
-  const poweredByTinaBanner = results.footer.poweredByTinaBanner;
-  
+  const poweredByTinaBanner = results?.footer?.poweredByTinaBanner;
+
 
   let icpFiling: string | null = null;
   if (typeof window !== "undefined") {
     const hostname = window.location.hostname;
-    
+
     if (locale === "zh" || hostname === "yakshaver.cn" || hostname === "www.yakshaver.cn") {
       icpFiling = "浙ICP备20009588号-6";
     } else if (hostname === "yakshaver.com.cn" || hostname === "www.yakshaver.com.cn") {
@@ -98,21 +92,21 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
           {/* Center: Tina Banner (top on mobile) */}
           {poweredByTinaBanner && (
             <div className="order-1 lg:order-2 flex justify-center">
-            <a
-              className="flex items-center justify-center py-2 hover:text-orange-500 no-underline"
-              href={poweredByTinaBanner.url || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={poweredByTinaBanner?.text || "TinaCMS"}
-            >
-              <Image alt="TinaCMS logo" width={30} height={30} src={poweredByTinaBanner?.image || ""} />
-              <span className="ml-2 uppercase tracking-widest text-xs md:text-sm">{poweredByTinaBanner?.text}</span>
-            </a>
-          </div>
+              <a
+                className="flex items-center justify-center py-2 hover:text-orange-500 no-underline"
+                href={poweredByTinaBanner.url || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={poweredByTinaBanner?.text || "TinaCMS"}
+              >
+                <Image alt="TinaCMS logo" width={30} height={30} src={poweredByTinaBanner?.image || ""} />
+                <span className="ml-2 uppercase tracking-widest text-xs md:text-sm">{poweredByTinaBanner?.text}</span>
+              </a>
+            </div>
           )}
 
           {/* Right: Social Icons (middle on mobile) */}
-            <div className={`${poweredByTinaBanner ? 'order-2 lg:order-3' : 'order-1 lg:order-2'} flex space-x-4 justify-center lg:justify-end lg:pr-4`}>
+          <div className={`${poweredByTinaBanner ? 'order-2 lg:order-3' : 'order-1 lg:order-2'} flex space-x-4 justify-center lg:justify-end lg:pr-4`}>
             {footerItems?.map((item, index: number) => {
               if (!item) return null;
               const icon = iconMap[item.footerItemIcon || ""];
