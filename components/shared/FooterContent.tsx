@@ -45,9 +45,9 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
     return <p>Tina connection broken</p>;
   }
 
-  const footerItems = results.footer.footer;
-  const footerTitle = results.footer.footerTitle;
-  const footerColor = results.footer.footerColor || "#000";
+  const footerItems = results.footer?.footer;
+  const footerTitle = results.footer?.footerTitle;
+  const footerColor = results.footer.footerColor!;
   const dynamicYear = new Date().getFullYear();
   const poweredByTinaBanner = results.footer.poweredByTinaBanner;
   
@@ -55,6 +55,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
   let icpFiling: string | null = null;
   if (typeof window !== "undefined") {
     const hostname = window.location.hostname;
+    
     if (locale === "zh" || hostname === "yakshaver.cn" || hostname === "www.yakshaver.cn") {
       icpFiling = "浙ICP备20009588号-6";
     } else if (hostname === "yakshaver.com.cn" || hostname === "www.yakshaver.com.cn") {
@@ -124,7 +125,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
                   rel="noopener noreferrer"
                   className="flex items-center space-x-2 text-lg md:text-2xl hover:-translate-y-1 animation ease-in-out duration-300"
                 >
-                  {icon && icon.svg}
+                  {icon && icon["svg"]}
                 </a>
               );
             })}
