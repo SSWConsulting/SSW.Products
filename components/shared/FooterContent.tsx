@@ -49,6 +49,8 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
   const footerTitle = results.footer.footerTitle;
   const footerColor = results.footer.footerColor || "#000";
   const dynamicYear = new Date().getFullYear();
+  const poweredByTinaBanner = results.footer.poweredByTinaBanner;
+  
 
   let icpFiling: string | null = null;
   if (typeof window !== "undefined") {
@@ -93,18 +95,20 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
           </div>
 
           {/* Center: Tina Banner (top on mobile) */}
-          <div className="order-1 lg:order-2 flex justify-center">
+          {poweredByTinaBanner && (
+            <div className="order-1 lg:order-2 flex justify-center">
             <a
               className="flex items-center justify-center py-2 hover:text-orange-500 no-underline"
-              href="https://tina.io"
+              href={poweredByTinaBanner.url || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Powered by TinaCMS"
+              aria-label={poweredByTinaBanner?.text || "TinaCMS"}
             >
-              <Image alt="TinaCMS logo" width={30} height={30} src="/tina-llama-orange.png" />
-              <span className="ml-2 uppercase tracking-widest text-xs md:text-sm">Powered by TinaCMS</span>
+              <Image alt="TinaCMS logo" width={30} height={30} src={poweredByTinaBanner?.image || ""} />
+              <span className="ml-2 uppercase tracking-widest text-xs md:text-sm">{poweredByTinaBanner?.text}</span>
             </a>
           </div>
+          )}
 
           {/* Right: Social Icons (middle on mobile) */}
             <div className="order-2 lg:order-3 flex space-x-4 justify-center lg:justify-end">
