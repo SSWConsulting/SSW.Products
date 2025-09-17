@@ -56,5 +56,35 @@ export const footerCollection: Collection = {
         },
       ],
     },
+    {
+      name: "poweredByTinaBanner",
+      label: "Powered By Tina Banner",
+      type: "object",
+      fields: [
+        {
+          name: "textColour",
+          label: "Text Colour",
+          type: "string",
+          ui: {
+            component: 'color',
+          }
+        },
+        {
+          name: "text",
+          label: "Text",
+          type: "string",
+        },
+        {
+          name: "image",
+          label: "Image",
+          type: "string",
+        },
+        {
+          name: "url",
+          label: "URL",
+          type: "string",
+        },
+      ],
+    },
   ],
 };
