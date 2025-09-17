@@ -93,7 +93,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
           {poweredByTinaBanner && (
             <div className="order-1 lg:order-2 flex justify-center">
               <a
-                className="flex items-center justify-center py-2 hover:text-orange-500 no-underline"
+                className="flex items-center justify-center py-2 hover:text-orange-500 no-underline transition-colors duration-300"
                 href={poweredByTinaBanner.url || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
