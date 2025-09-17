@@ -34,5 +34,11 @@
       "footerItemIcon": "FaDiscord",
       "footerItemLink": "https://discord.gg/Jp9dyxKFjR"
     }
-  ]
+  ],
+  "poweredByTinaBanner": {
+    "textColour": "#ffffff",
+    "text": "由 TinaCMS 提供支持",
+    "image": "/tina-llama-orange.png",
+    "url": "https://tina.io"
+  }
 }
