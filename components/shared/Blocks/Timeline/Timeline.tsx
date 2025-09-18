@@ -26,7 +26,7 @@ const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
         )}
             {data.badgeTitle && (
               data.badgeLink ? (
-                <Link href={data.badgeLink} className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-white px-4 py-2 text-sm font-medium border border-[#CC4141] bg-transparent shadow-2xl transition-shadow duration-200 hover:shadow-[0_0_0_1px_#CC4141]">
+                <Link href={data.badgeLink} target="_blank" className="rounded-full w-auto flex justify-center text-center items-center whitespace-nowrap text-white px-4 py-2 text-sm font-medium border border-[#CC4141] bg-transparent shadow-2xl transition-shadow duration-200 hover:shadow-[0_0_0_1px_#CC4141]">
                   {data.badgeTitle}
                 </Link>
               ) : (
