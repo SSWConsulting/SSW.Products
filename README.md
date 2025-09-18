@@ -4,6 +4,12 @@ This project uses [TinaCMS](https://tina.io) and a custom [middleware](https://g
 
 The purpose of this repository is to host the product pages for [SSW's](https://www.ssw.com.au) custom [software](https://www.ssw.com.au/products).
 
+The `YakShaver` and `EagleEye` websites should be used as a guide for creating future product pages. 
+`Tina` branding, e.g. 'Powered By Tina' should be included in the footers.
+This is enabled by default, and can be configured in the respective `{product}-footer.json` files.
+
+
+
 ## Running this project locally?
 
 1. Get access to the environment variables from Keeper
@@ -92,3 +98,5 @@ We've documented how we use this middleware for our own sites and clients - [Do 
 If you are adding a new page using one of the existing [Tina collections](https://tina.io/docs/reference/collections) for the site, you do not need to update the sitemap as it will automatically include the new page.
 
 If you are however adding a new collection for a page template you'll need to update the sitemap returned by `app/sitemap.xml/route.tsx` to include the new collection.
+
+## 
