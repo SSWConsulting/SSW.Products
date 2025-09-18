@@ -4,10 +4,17 @@ This project uses [TinaCMS](https://tina.io) and a custom [middleware](https://g
 
 The purpose of this repository is to host the product pages for [SSW's](https://www.ssw.com.au) custom [software](https://www.ssw.com.au/products).
 
+## Deployed Sites
+
+- [YakShaver (yakshaver.ai)](https://yakshaver.ai)
+- [EagleEye (ssweagleeye.com)](https://ssweagleeye.com)
+
 The `YakShaver` and `EagleEye` websites should be used as a guide for creating future product pages. 
+
+###  Tina Branding 
+
 `Tina` branding, e.g. 'Powered By Tina' should be included in the footers.
 This is enabled by default, and can be configured in the respective `{product}-footer.json` files.
-
 
 
 ## Running this project locally?
