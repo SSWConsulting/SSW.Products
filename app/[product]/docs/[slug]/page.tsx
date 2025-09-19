@@ -76,7 +76,7 @@ export default async function DocPost({ params, locale }: DocPostProps) {
         query={documentData.query}
         variables={documentData.variables}
         pageData={{ docs: documentData.docs }}
-        tableOfContentsData={tableOfContentsData as any}
+        tableOfContentsData={tableOfContentsData as DocsTableOfContents}
       />
       <PaginationLinksClient
         prev={paginationData.prev}
