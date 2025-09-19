@@ -1,6 +1,7 @@
 import { optimizedYoutubeFields } from "@comps/shared/Blocks/VideoDisplay.template";
 import { Collection, TinaField } from "tinacms";
 import { seoInformation } from "../shared/SEOInformation";
+import { imageEmbedTemplate } from "@comps/shared/Blocks/ImageEmbed";
 
 export const docsCollection: Collection = {
   label: "Docs",
@@ -46,6 +47,7 @@ export const docsCollection: Collection = {
           label: "Youtube Embed",
           fields: [...optimizedYoutubeFields],
         },
+        imageEmbedTemplate,
       ],
     },
   ],
