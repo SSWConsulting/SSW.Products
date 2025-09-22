@@ -1,0 +1,76 @@
+---
+seo:
+  title: Configure Custom System Prompt
+title: Configure Custom System Prompt
+date: '2025-08-03T16:00:00.000Z'
+---
+
+Learn how to configure custom system prompts in YakShaver to tailor AI-generated PBIs to your team's requirements.
+
+## Configure System Custom Prompt in YakShaver Portal
+
+YakShaver supports custom system prompts for PBI generation, allowing you to customize AI-generated content to match your team's specific requirements.
+
+Follow these steps to configure custom system prompts:
+
+### Prerequisites
+
+You need admin permission for your tenant. Only admin accounts can edit custom system prompts.
+
+### Accessing the Portal
+
+Access the YakShaver portal using one of these methods:
+
+1. Clicking the "Portal" button in the top-right corner of the yakshaver.ai home page
+2. Or directly visiting [https://portal.yakshaver.ai/](https://portal.yakshaver.ai/)
+
+![Open Portal](/YakShaver/Docs/open-portal.png)
+*Figure: Access the YakShaver portal from the home page*
+
+### Configuration Levels
+
+YakShaver allows admin users to configure custom system prompts at two levels: **tenant level** and **project level**.
+
+#### Tenant Level Configuration
+
+Tenant level prompts apply to all projects under current tenant. Admin users can modify it by opening the system info sidebar and editing the “Tenant Prompt Configuration” card.
+
+![Edit Tenant Prompt](/YakShaver/Docs/edit-tenant-prompt.png)
+*Figure: Edit tenant level prompt configuration*
+
+Regular users can view the current tenant level prompt on the projects page by hovering over the "View details" underlined text below the page title.
+
+![View Tenant Prompt](/YakShaver/Docs/view-tenant-prompt.png)
+*Figure: View tenant level prompt as a regular user*
+
+#### Project Level Configuration
+
+Users can also configure specific project level prompts to override the tenant settings. Admin accounts can click on an individual project to enter the project details, then modify the prompt in the "Custom System Prompt" field.
+
+![Edit Project Prompt](/YakShaver/Docs/edit-project-prompt.png)
+*Figure: Edit project level prompt configuration*
+
+Regular users can view each project's prompt in the project list page.
+
+![View Project Prompt](/YakShaver/Docs/view-project-prompt.png)
+*Figure: View project level prompts in the project list*
+
+**⚠️ Note:** When both tenant level and project level prompts exist, the project level prompt always takes higher priority and will override the tenant level prompt.
+
+## Example: Language Customization
+
+Here's a practical example of how custom system prompts can be used to customize YakShaver's output.
+
+Consider a Chinese-speaking team using YakShaver, where the default PBI language for YakShaver is English. You can configure a tenant level system prompt to ensure all projects generate Chinese PBIs.
+
+![Configure Tenant Prompt](/YakShaver/Docs/config-tenant-prompt.png)
+*Figure: Setting up Chinese language prompt at tenant level*
+
+With this configuration, YakShaver will generate Chinese PBIs regardless of the video recording language.
+
+![Chinese PBI](/YakShaver/Docs/Chinese-PBI.png)
+*Figure: Generated PBI in Chinese language*
+
+Custom system prompts can also configure various aspects of PBI generation, including format, language, tone, and style.
+
+**⚠️ Important:** Use custom system prompts carefully. Results may vary and may not always meet expectations.

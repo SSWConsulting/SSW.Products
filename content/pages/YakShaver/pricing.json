@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Pricing - Simple, Transparent Pricing",
+    "description": "Discover flexible pricing plans for YakShaver AI, tailored to meet your needs. Explore options and find the perfect fit for your project."
+  },
   "title": "YakShaver AI Pricing Plans and Options",
   "pageBlocks": [
     {
@@ -15,7 +19,7 @@
           "isRecommended": false,
           "listTitle": "Get started with",
           "listItems": [
-            "{15 credits} per month",
+            "{15 shaves} per month",
             "{~7.5 hours saved} per month",
             "2 projects",
             "Basic integrations",
@@ -25,9 +29,11 @@
           ],
           "buttons": [
             {
-              "Title": "Join Waitlist",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "SIGN UP",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         },
@@ -41,7 +47,7 @@
           "isRecommended": true,
           "listTitle": "Get your team onboard with",
           "listItems": [
-            "{100 credits} per month",
+            "{100 shaves} per month",
             "{~50 hours saved} per month",
             "{Unlimited projects}",
             "All integrations",
@@ -52,9 +58,11 @@
           ],
           "buttons": [
             {
-              "Title": "Join Waitlist",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "SIGN UP",
+              "variant": "solidRed",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         },
@@ -67,7 +75,7 @@
           "timeSaved": "~250 hours/mo",
           "listTitle": "Everything in Team plan, plus",
           "listItems": [
-            "{500 credits} per month",
+            "{500 shaves} per month",
             "{~250 hours saved} per month",
             "15-minute video recordings",
             "Advanced analytics dashboard",
@@ -76,9 +84,11 @@
           ],
           "buttons": [
             {
-              "Title": "Join Waitlist",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "SIGN UP",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         },
@@ -91,7 +101,7 @@
           "timeSaved": "Custom",
           "listTitle": "Everything in Growth plan, plus",
           "listItems": [
-            "{Custom credits} allocation",
+            "{Custom shaves} allocation",
             "30-minute video recordings",
             "Custom training & onboarding",
             "Dedicated support",
@@ -100,23 +110,25 @@
           ],
           "buttons": [
             {
-              "Title": "Join Waitlist",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "SIGN UP",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         }
       ],
       "addOns": {
-        "title": "{Credit Pack}",
-        "description": "Need a top up? Add some credits",
+        "title": "{Booster Pack}",
+        "description": "Need a top up? Add some extra credits",
         "price": "$25",
-        "subPriceText": "per 50 credits",
+        "subPriceText": "per 50 shaves",
         "actionButton": {
           "label": "Re-fill Here",
           "variant": "outlinedWhite",
           "size": "large",
-          "url": "/pricing"
+          "url": "https://portal.yakshaver.ai/settings/plan"
         }
       },
       "_template": "pricing"
@@ -367,9 +379,5 @@
       ],
       "_template": "comparisonTable"
     }
-  ],
-  "seo": {
-    "description": "Discover flexible pricing plans for YakShaver AI, tailored to meet your needs. Explore options and find the perfect fit for your project.",
-    "title": "YakShaver AI Pricing Plans and Options"
-  }
+  ]
 }

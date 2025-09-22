@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import * as SearchBox from "@comps/search/SearchBox";
 import Link from "next/link";
 import { useState } from "react";
+import { useContextualLink } from "@utils/contextualLink";
 import { FaChevronDown } from "react-icons/fa";
 
 import {
@@ -16,14 +17,12 @@ interface TableOfContentsClientProps {
   tableOfContentsData: DocsTableOfContents;
 }
 
-function NavigationGroup({
-  navigationGroup,
-  activeItem,
-}: {
+function NavigationGroup({ navigationGroup, activeItem }: {
   navigationGroup: NavigationGroup;
   activeItem: string;
 }) {
   const [isExpanded, setIsExpanded] = useState(true);
+  const contextualHref = useContextualLink();
 
   return (
     <>
@@ -44,7 +43,7 @@ function NavigationGroup({
 
         <div
           className={`overflow-hidden transition-all duration-300 ease-in-out ${
-            isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+            isExpanded ? "opacity-100" : "max-h-0 opacity-0"
           }`}
         >
           <ul className="pt-1">
@@ -66,7 +65,7 @@ function NavigationGroup({
                     ></div>
                     <div className="absolute h-full w-1 inset-x-0 border-l z-1 box-content border-white/20"></div>
                     <Link
-                      href={`/docs/${item?.slug?._sys?.filename}`}
+                      href={contextualHref(`/docs/${item?.slug?._sys?.filename}`)}
                       className={cn(
                         `block transition-colors p-1.5 ml-6 `,
                         activeItem === item?.slug?._sys?.filename
@@ -87,9 +86,7 @@ function NavigationGroup({
   );
 }
 
-function TableOfContentsClient({
-  tableOfContentsData,
-}: TableOfContentsClientProps) {
+function TableOfContentsClient({ tableOfContentsData }: TableOfContentsClientProps) {
   const params = useParams<{ product: string; slug: string }>();
 
   return (

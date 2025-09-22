@@ -1,23 +1,32 @@
 import { getDocPost, getDocsTableOfContents } from "@utils/fetchDocs";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import client from "../../../../tina/__generated__/client";
 import { DocsTableOfContents } from "../../../../tina/__generated__/types";
+import { getLocale } from "../../../../utils/i18n";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
 import DocPostClient from "./DocPostClient";
+import PaginationLinksClient from "./PaginationLinksClient";
 
 interface DocPostProps {
   params: {
     slug: string;
     product: string;
   };
+  locale?: string;
 }
 
-export async function generateMetadata({ params }: DocPostProps) {
+interface DocPostMetadataProps {
+  params: {
+    slug: string;
+    product: string;
+  };
+}
+
+export async function generateMetadata({ params }: DocPostMetadataProps) {
   const { product, slug } = params;
-  const docs = await getDocPost(product, slug);
-  const metadata = setPageMetadata(docs?.docs?.seo, product);
+  const locale = getLocale();
+  const docs = await getDocPost(product, slug, locale);
+  const metadata = setPageMetadata(docs?.docs?.seo, product, 'Docs');
   return metadata;
 }
 
@@ -36,10 +45,11 @@ interface PaginationLink {
   slug: string;
 }
 
-export default async function DocPost({ params }: DocPostProps) {
+export default async function DocPost({ params, locale }: DocPostProps) {
   const { slug, product } = params;
-  const documentData = await getDocPost(product, slug);
-  const tableOfContentsData = await getDocsTableOfContents(product);
+  const currentLocale = locale || getLocale();
+  const documentData = await getDocPost(product, slug, currentLocale);
+  const tableOfContentsData = await getDocsTableOfContents(product, currentLocale);
 
   const paginationData = getPaginationData(
     tableOfContentsData as DocsTableOfContents,
@@ -66,12 +76,11 @@ export default async function DocPost({ params }: DocPostProps) {
         query={documentData.query}
         variables={documentData.variables}
         pageData={{ docs: documentData.docs }}
-        tableOfContentsData={tableOfContentsData as any}
+        tableOfContentsData={tableOfContentsData as DocsTableOfContents}
       />
-      <PaginationLinks
+      <PaginationLinksClient
         prev={paginationData.prev}
         next={paginationData.next}
-        product={product}
       />
     </>
   );
@@ -80,43 +89,6 @@ export default async function DocPost({ params }: DocPostProps) {
 // Add revalidation - page wouldn't update although GraphQL was updated. TODO: remove this once @wicksipedia created the global revalidation route.
 export const revalidate = 600;
 
-function PaginationLinks({
-  prev,
-  next,
-  product,
-}: {
-  prev: PaginationLink | null;
-  next: PaginationLink | null;
-  product: string;
-}) {
-  return (
-    <div className="flex lg:justify-between py-4  rounded-lg overflow-hidden">
-      {prev ? (
-        <Link
-          href={`/${product}/docs/${prev.slug}`}
-          className="flex gap-2 items-center text-white/60 hover:text-white transition-all duration-300"
-        >
-          <FaArrowLeft />
-          <span>{prev.title}</span>
-        </Link>
-      ) : (
-        <div></div>
-      )}
-
-      {next ? (
-        <Link
-          href={`/${product}/docs/${next.slug}`}
-          className="flex gap-2 text-end items-center text-white/60 hover:text-white transition-all duration-300 "
-        >
-          <span>{next.title}</span>
-          <FaArrowRight />
-        </Link>
-      ) : (
-        <div></div>
-      )}
-    </div>
-  );
-}
 
 const getPaginationData = (
   tableOfContentsData: DocsTableOfContents,

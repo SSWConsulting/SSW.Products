@@ -1,0 +1,60 @@
+{
+  "seo": {
+    "title": "Pricing"
+  },
+  "title": "EagleEye Pricing Plans and Options",
+  "pageBlocks": [
+    {
+      "title": "{Simple, Transparent Pricing}",
+      "description": "🎉 **Great news!** EagleEye is currently **completely free** to use through the Azure Marketplace! 🚀\n",
+      "plans": [
+        {
+          "planTier": "Free",
+          "planDescription": "For small team",
+          "price": "$0",
+          "subPriceText": "1 - 5 units",
+          "priceDescription": "* Units are calculated based on the number of mailboxes",
+          "isRecommended": true,
+          "recommendation": "3 Months Free Trial",
+          "listTitle": "Get started with",
+          "listItems": [
+            "Basic Tag features",
+            "Full webhook support"
+          ],
+          "buttons": [
+            {
+              "label": "Get Started",
+              "variant": "solidRed",
+              "size": "medium",
+              "url": "https://ssweagleeye.com/docs/installation",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "planTier": "Pro",
+          "planDescription": "For large team",
+          "price": "$1 / unit / month",
+          "subPriceText": "5+ units",
+          "priceDescription": "* Units are calculated based on the number of mailboxes",
+          "isRecommended": false,
+          "listTitle": "Get started with",
+          "listItems": [
+            "{Everything in Free, plus}",
+            "Advanced AI-powerd Tag features",
+            "Unlimited team size",
+            "Unlimited mailboxes for email analysis"
+          ],
+          "buttons": [
+            {
+              "Title": "Join Waitlist",
+              "JotFormId": "233468468973070",
+              "_template": "BookingButton"
+            }
+          ]
+        }
+      ],
+      "_template": "pricing"
+    }
+  ]
+}

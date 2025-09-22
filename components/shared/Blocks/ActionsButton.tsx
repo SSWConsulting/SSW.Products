@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useContextualLink } from "@utils/contextualLink";
 import { variantMap } from "./BookingButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
 
@@ -28,20 +29,24 @@ export const ActionButton = ({
   action: ActionButton;
   className?: string;
 }) => {
-  return action.url ? (
+  const contextualHref = useContextualLink();
+  
+  if (!action.url) return null;
+  
+  return (
     <Link
-      href={action.url}
+      href={contextualHref(action.url)}
       className={cn(
         variantMap[action.variant],
-        className,
         sizeMap[action.size],
-        `whitespace-nowrap inline-flex items-center justify-center rounded-lg transition-all duration-200 font-semibold uppercase`
+        "whitespace-nowrap inline-flex items-center rounded-lg transition-all duration-200 font-semibold uppercase",
+        className
       )}
       target="_blank"
     >
       {action.label}
     </Link>
-  ) : null;
+  );
 };
 
 const Actions = ({ actions, className }: ActionsProps) => {

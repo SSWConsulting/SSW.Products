@@ -34,5 +34,11 @@
       "footerItemIcon": "FaDiscord",
       "footerItemLink": "https://discord.gg/Jp9dyxKFjR"
     }
-  ]
+  ],
+  "poweredByTinaBanner": {
+    "textColour": "#ffffff",
+    "text": "Powered by TinaCMS",
+    "image": "/tina-llama-orange.png",
+    "url": "https://tina.io"
+  }
 }

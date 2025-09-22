@@ -1,7 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 
+function detectLanguage(pathname: string): string {
+  return pathname.startsWith('/zh') ? 'zh' : 'en';
+}
+
+function cleanPathFromLanguage(pathname: string): string {
+  return pathname.startsWith('/zh') ? pathname.substring(3) : pathname;
+}
+
+function parsePathSegments(pathname: string): string[] {
+  return pathname
+    .split("/")
+    .filter((segment) => segment.length > 0);
+}
+
+function createRewriteResponse(targetPath: string, language: string, request: NextRequest): NextResponse {
+  const rewriteUrl = new URL(targetPath, request.url);
+  const response = NextResponse.rewrite(rewriteUrl);
+  response.headers.set('x-language', language);
+  return response;
+}
+
 export function middleware(request: NextRequest) {
-  const hostname = request.headers.get("host");
+  const hostname = request.headers.get("x-original-host") || request.headers.get("host");
   const { pathname } = request.nextUrl;
 
   const isLocal =
@@ -21,34 +42,36 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  const isChineseDomain = !!(hostname?.endsWith('yakshaver.cn') || hostname?.endsWith('yakshaver.com.cn'));
+  const language = isChineseDomain ? 'zh' : detectLanguage(pathname);
+
   if (isLocal || isStaging) {
-    return handleLocalRequest(pathname, productList, request);
+    return handleLocalRequest(pathname, productList, request, language);
   } else {
-    return handleProductionRequest(hostname, productList, pathname, request);
+    return handleProductionRequest(hostname, productList, pathname, request, language, isChineseDomain);
   }
 }
 
 function handleLocalRequest(
   pathname: string,
   productList: any[],
-  request: NextRequest
+  request: NextRequest,
+  language: string
 ) {
-  const pathSegments = pathname
-    .split("/")
-    .filter((segment) => segment.length > 0);
+  const pathSegments = parsePathSegments(pathname);
   const isProduct = productList.some(
     (product) => product.product === pathSegments[0]
   );
 
   if (isProduct) {
-    const rewriteUrl = new URL(`/${pathSegments.join("/")}`, request.url);
-    return NextResponse.rewrite(rewriteUrl);
+    return createRewriteResponse(`/${pathSegments.join("/")}`, language, request);
   } else {
-    const rewriteUrl = new URL(
-      `/${process.env.DEFAULT_PRODUCT}${pathname}`,
-      request.url
+    const cleanPath = cleanPathFromLanguage(pathname);
+    return createRewriteResponse(
+      `/${process.env.DEFAULT_PRODUCT}${cleanPath}`,
+      language,
+      request
     );
-    return NextResponse.rewrite(rewriteUrl);
   }
 }
 
@@ -56,14 +79,28 @@ function handleProductionRequest(
   hostname: string | null,
   productList: any[],
   pathname: string,
-  request: NextRequest
+  request: NextRequest,
+  language: string,
+  isChineseDomain: boolean
 ) {
-  for (const product of productList) {
-    if (hostname === product.domain) {
-      const rewriteUrl = new URL(`/${product.product}${pathname}`, request.url);
-      return NextResponse.rewrite(rewriteUrl);
+  let targetProduct: string | null = null;
+  
+  if (isChineseDomain) {
+    targetProduct = 'YakShaver';
+  } else {
+    for (const product of productList) {
+      if (hostname === product.domain) {
+        targetProduct = product.product;
+        break;
+      }
     }
   }
+  
+  if (targetProduct) {
+    const cleanPath = cleanPathFromLanguage(pathname);
+    return createRewriteResponse(`/${targetProduct}${cleanPath}`, language, request);
+  }
+  
   return NextResponse.next();
 }
 

@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Roadmap ",
+    "description": "Explore YakShaver's roadmap for innovative AI solutions and future developments. Stay updated on our journey and milestones."
+  },
   "pageBlocks": [
     {
       "titleBeforeRotate": "YakShaver Roadmap",
@@ -53,7 +57,7 @@
       "title": "Coming Soon",
       "items": [
         {
-          "title": "Redesigned Agentic Workflow",
+          "title": "MCP - Redesigned Agentic Workflow",
           "description": "We're replacing the current workflow with a new agentic system that allows for more automation and better task management"
         },
         {
@@ -67,9 +71,5 @@
       ],
       "_template": "Timeline"
     }
-  ],
-  "seo": {
-    "description": "Explore YakShaver's roadmap for innovative AI solutions and future developments. Stay updated on our journey and milestones.",
-    "title": "YakShaver Roadmap - Future Plans and Developments"
-  }
+  ]
 }

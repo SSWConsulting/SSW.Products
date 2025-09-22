@@ -4,7 +4,6 @@ import { TableOfContents } from "@comps/TableOfContents";
 import { Docs, DocsTableOfContents } from "@tina/__generated__/types";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import Link from "next/link";
-import { ReactNode } from "react";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -70,33 +69,17 @@ export default function DocPostClient({
         </TableOfContents.Root>
       </div>
       <BreadCrumbs title={title} />
-      <h2 className="text-3xl bg-linear-to-br mb-2 linear tracking-wide from-red-400 to-red-700 bg-clip-text text-transparent">
+      <h2 className="text-3xl bg-linear-to-br mb-2 linear from-red-400 to-red-700 bg-clip-text text-transparent">
         {title}
       </h2>
-      <div className="text-base font-light lg:prose-xl">
-        <TinaMarkdown
-          content={body ?? { type: "root", children: [] }}
-          components={{
-            ...DocAndBlogMarkdownStyle,
-            a: (
-              props:
-                | { children: ReactNode | undefined; url: string }
-                | undefined
-            ) => (
-              <a
-                className="underline transition-colors hover:text-white text-[#CC4141]"
-                href={props?.url}
-              >
-                {props?.children}
-              </a>
-            ),
-          }}
-        />
+      <div className="text-base font-light mb-12 lg:prose-xl">
+        {body && (
+          <TinaMarkdown content={body} components={DocAndBlogMarkdownStyle} />
+        )}
       </div>
-      <div className="text-sm font-light text-gray-300 uppercase mb-4">
-        <br />
+      <div className="text-sm font-light text-gray-300 uppercase mb-4 mt-12">
         <div>
-          <span>Last Updated: {formattedDate}</span>
+          <span>Last updated: {formattedDate}</span>
         </div>
       </div>
     </div>

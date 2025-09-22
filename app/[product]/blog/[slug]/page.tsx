@@ -7,6 +7,7 @@ import { Blogs } from "@tina/__generated__/types";
 import { getBlogsForProduct } from "@utils/fetchBlogs";
 import { formatDate } from "@utils/formatDate";
 import { setPageMetadata } from "@utils/setPageMetaData";
+import { getLocale, getBlogWithFallback } from "@utils/i18n";
 
 interface BlogPostProps {
   params: {
@@ -17,17 +18,16 @@ interface BlogPostProps {
 
 export async function generateMetadata({ params }: BlogPostProps) {
   const { slug, product } = params;
+  const locale = getLocale();
 
   try {
-    const res = await client.queries.blogs({
-      relativePath: `${product}/${slug}.mdx`,
-    });
+    const res = await getBlogWithFallback(product, slug, locale);
 
     if (!res?.data?.blogs) {
       return null;
     }
 
-    const metadata = setPageMetadata(res?.data?.blogs?.seo, product);
+    const metadata = setPageMetadata(res?.data?.blogs?.seo, product, 'Blog');
     return metadata;
   } catch (e) {
     console.error(e);
@@ -50,11 +50,13 @@ let previousBlog: Blog | undefined = undefined;
 
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = params;
+  const locale = getLocale();
 
   const documentData = await getBlogPost(product, slug);
 
   const allBlogs = await getBlogsForProduct({
     product,
+    locale,
   });
 
   const flattenedBlogs =
@@ -127,22 +129,16 @@ export default async function BlogPost({ params }: BlogPostProps) {
 }
 
 async function getBlogPost(product: string, slug: string) {
-  try {
-    const res = await client.queries.blogs({
-      relativePath: `${product}/${slug}.mdx`,
-    });
-
-    if (!res?.data?.blogs) {
-      return null;
-    }
-
-    return {
-      query: res.query,
-      variables: res.variables,
-      blogs: res.data.blogs as Blogs,
-    };
-  } catch (error) {
-    console.error("Error fetching blog post:", error);
+  const locale = getLocale();
+  const res = await getBlogWithFallback(product, slug, locale);
+  
+  if (!res?.data?.blogs) {
     return null;
   }
+
+  return {
+    query: res.query,
+    variables: res.variables,
+    blogs: res.data.blogs as Blogs,
+  };
 }

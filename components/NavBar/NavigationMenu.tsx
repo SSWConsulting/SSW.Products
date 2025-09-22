@@ -5,20 +5,25 @@ import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
+import { getLocalizedPath } from "@utils/environment";
+
+interface NavigationMenuBadgeProps {
+  imgSrc: string;
+  imgWidth: number;
+  imgHeight: number;
+  currentLocale?: string;
+}
 
 const NavigationMenuBadge = ({
   imgSrc,
   imgWidth,
   imgHeight,
-}: {
-  imgSrc: string;
-  imgWidth: number;
-  imgHeight: number;
-}) => (
-  <NavigationMenu.Item className="gap-8  mx-auto flex items-center w-full">
-    <Link className="mb-2 shrink-0" href="/">
+  currentLocale = 'en',
+}: NavigationMenuBadgeProps) => (
+  <NavigationMenu.Item className="gap-8 mx-auto flex items-center w-full">
+    <Link className="mb-2 shrink-0" href={getLocalizedPath('/', currentLocale)}>
       <Image
-        src={imgSrc as string}
+        src={imgSrc}
         className="h-8 w-auto"
         width={imgWidth}
         height={imgHeight}

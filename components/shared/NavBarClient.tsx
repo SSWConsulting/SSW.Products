@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useContextualLink } from "@utils/contextualLink";
 
 import {
   NavigationBarLeftNavItemStringItem as NavItem,
@@ -27,10 +28,12 @@ import { Button } from "@comps/ui/button";
 import clsx from "clsx";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { BookingButton } from "./Blocks/BookingButton";
+import LanguageToggle from "./LanguageToggle";
 
 interface NavBarClientProps {
   buttons: NavigationBarButtons[];
   items: (NavItem | NavGroup)[];
+  currentLocale: string;
 
   bannerImage?: {
     imgSrc: string;
@@ -39,16 +42,13 @@ interface NavBarClientProps {
   };
 }
 
-export default function NavBarClient({
-  buttons,
-  items,
-  bannerImage,
-}: NavBarClientProps) {
+export default function NavBarClient({ buttons, items, currentLocale, bannerImage }: NavBarClientProps) {
+  const contextualHref = useContextualLink();
   return (
     <MobileMenuRoot>
       <MobileAnchor asChild>
         <NavigationMenuRoot>
-          {bannerImage && <NavigationMenuBadge {...bannerImage} />}
+          {bannerImage && <NavigationMenuBadge {...bannerImage} currentLocale={currentLocale} />}
           {items.map((item, index) => {
             if (
               item.__typename === "NavigationBarLeftNavItemGroupOfStringItems"
@@ -63,8 +63,8 @@ export default function NavBarClient({
                     {item.items.map((subItem, subIndex) => (
                       <li key={subIndex}>
                         <Link
-                          href={subItem!.href}
-                          className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors"
+                          href={contextualHref(subItem!.href)}
+                          className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors whitespace-nowrap writing-mode-horizontal"
                         >
                           {subItem!.label}
                           {subItem!.href &&
@@ -87,8 +87,8 @@ export default function NavBarClient({
                   key={index}
                 >
                   <Link
-                    href={item.href}
-                    className="px-3 hover:decoration-ssw-red decoration-transparent underline-offset-3 underline text-base block h-fit rounded transition-colors uppercase"
+                    href={contextualHref(item.href)}
+                    className="px-3 hover:decoration-ssw-red decoration-transparent underline-offset-3 underline text-base block h-fit rounded transition-colors uppercase whitespace-nowrap writing-mode-horizontal"
                   >
                     {item.label}
                   </Link>
@@ -106,10 +106,13 @@ export default function NavBarClient({
                 }`}
                 key={index}
               >
-                <ButtonMap item={button} />
+                <ButtonMap item={button} contextualHref={contextualHref} />
               </NavigationMenuItem>
             );
           })}
+          <NavigationMenuItem className="hidden sm:block pl-5 flex items-center">
+            <LanguageToggle currentLocale={currentLocale} />
+          </NavigationMenuItem>
           <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
             <MobileMenuTrigger />
             <MobileMenuContent>
@@ -125,7 +128,7 @@ export default function NavBarClient({
                       return (
                         <MobileMenuItem
                           key={subIndex}
-                          href={subItem.href}
+                          href={contextualHref(subItem.href)}
                           label={subItem.label}
                         />
                       );
@@ -138,7 +141,7 @@ export default function NavBarClient({
                     return (
                       <MobileMenuItem
                         label={item.label}
-                        href={item.href}
+                        href={contextualHref(item.href)}
                         key={index}
                       />
                     );
@@ -158,7 +161,7 @@ export default function NavBarClient({
                 )}
                 key={index}
               >
-                <ButtonMap className="w-full" item={button} />
+                <ButtonMap className="w-full" item={button} contextualHref={contextualHref} />
               </NavigationMenuItem>
             );
           })}
@@ -168,12 +171,10 @@ export default function NavBarClient({
   );
 }
 
-const ButtonMap = ({
-  item,
-  className,
-}: {
+const ButtonMap = ({ item, className, contextualHref }: {
   item: NavigationBarButtons;
   className?: string;
+  contextualHref: (href: string) => string;
 }) => {
   switch (item?.__typename) {
     case "NavigationBarButtonsBookingButton":
@@ -200,7 +201,7 @@ const ButtonMap = ({
           }
           key={item.label}
         >
-          <Link href={item.href || ""}>
+          <Link href={contextualHref(item.href || "")}>
             {item.label}
 
             {item.icon && (

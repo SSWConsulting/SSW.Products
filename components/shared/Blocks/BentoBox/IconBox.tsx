@@ -2,6 +2,7 @@ import { IconBox as IconBoxProps } from "@/types/components/icon-box";
 import { Maybe } from "@tina/__generated__/types";
 import Image from "next/image";
 import Link from "next/link";
+import { useContextualLink } from "@utils/contextualLink";
 
 const IconBox = ({
   iconImage,
@@ -46,13 +47,16 @@ const IconWrapper = ({
   children: React.ReactNode;
   className: string;
   href?: Maybe<string>;
-}) =>
-  href ? (
-    <Link title={linkTitle} href={href} className={className}>
+}) => {
+  const contextualHref = useContextualLink();
+  
+  return href ? (
+    <Link title={linkTitle} href={contextualHref(href)} className={className}>
       {children}
     </Link>
   ) : (
-    <div className={className}>{children} </div>
+    <div className={className}>{children}</div>
   );
+};
 
 export default IconBox;

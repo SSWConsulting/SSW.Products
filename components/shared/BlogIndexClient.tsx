@@ -27,6 +27,7 @@ import ArticleMetadata from "./ArticleMetadata";
 import CategoryLabel from "./CategoryLabel";
 import GridBackground from "./GridBackground";
 import ReadMore from "./ReadMore";
+import { useContextualLink } from "@utils/contextualLink";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 
@@ -38,6 +39,7 @@ type HeroSearchProps = RemoveTinaMetadata<BlogsIndexBlocksHeroSearch>;
 
 interface BlogIndexClientProps {
   product: string;
+  locale?: string;
 }
 
 export default function BlogIndexClient({
@@ -45,6 +47,7 @@ export default function BlogIndexClient({
   query,
   variables,
   product,
+  locale,
 }: BlogIndexClientProps & BlogTinaProps) {
   const blogData = useTina({
     data: pageData,
@@ -58,7 +61,7 @@ export default function BlogIndexClient({
     <>
       <div className="grow flex flex-col pb-12 gap-14 lg:gap-24 ">
         {blogsIndex.blocks && (
-          <Blocks product={product} blocks={blogsIndex.blocks} />
+          <Blocks product={product} locale={locale} blocks={blogsIndex.blocks} />
         )}
       </div>
     </>
@@ -70,10 +73,11 @@ const FeaturedArticle = ({
   ...props
 }: RemoveTinaMetadata<FeaturedBlog>) => {
   const { searchTerm } = useBlogSearch();
+  const contextualHref = useContextualLink();
   return (
     <>
       {featuredBlog && !searchTerm && (
-        <Container>
+        <Container className="w-full">
           <section className="mx-auto">
             {props.title && (
               <h2
@@ -112,7 +116,7 @@ const FeaturedArticle = ({
                       {featuredBlog.category}
                     </CategoryLabel>
                   )}
-                  <Link href={`/blog/${featuredBlog._sys.filename}`}>
+                  <Link href={contextualHref(`/blog/${featuredBlog._sys.filename}`)}>
                     <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
                       {featuredBlog?.title}
                     </h3>
@@ -144,9 +148,10 @@ const FeaturedArticle = ({
 type BlocksProps = {
   blocks: Maybe<RemoveTinaMetadata<Block>>[];
   product: string;
+  locale?: string;
 };
 
-const Blocks = ({ blocks, product }: BlocksProps) => {
+const Blocks = ({ blocks, product, locale }: BlocksProps) => {
   return (
     <>
       {blocks.map((block) => {
@@ -156,7 +161,7 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
           case "BlogsIndexBlocksCallToAction":
             return <CallToAction className="container" {...block} />;
           case "BlogsIndexBlocksArticleList":
-            return <RecentArticles {...block} product={product} />;
+            return <RecentArticles {...block} product={product} locale={locale} />;
           case "BlogsIndexBlocksFeaturedBlog":
             return <FeaturedArticle {...block} />;
           default:
@@ -169,12 +174,13 @@ const Blocks = ({ blocks, product }: BlocksProps) => {
 
 const RecentArticles = ({
   product,
+  locale,
   ...props
-}: RemoveTinaMetadata<ArticleListProps> & { product: string }) => {
+}: RemoveTinaMetadata<ArticleListProps> & { product: string; locale?: string }) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
   const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
     useInfiniteQuery({
-      queryKey: [`blogs${searchTerm}${selectedCategory}`],
+      queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
       queryFn: ({ pageParam }) => {
         return getBlogsForProduct({
           product,
@@ -182,6 +188,7 @@ const RecentArticles = ({
           keyword: searchTerm,
           category:
             selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
+          locale,
         });
       },
       initialPageParam: "",

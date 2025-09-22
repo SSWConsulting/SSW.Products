@@ -10,8 +10,12 @@ export const blogCollection: Collection = {
   path: "content/blogs/",
   format: "mdx",
   ui: {
-    router: (item) => {
-      return `/blog/${item.document._sys.filename}`;
+    router: ({ document }) => {
+      const relativePath = document?._sys.relativePath;
+      if (relativePath?.includes('/zh/')) {
+        return `/zh/blog/${document?._sys.filename}`;
+      }
+      return `/blog/${document?._sys.filename}`;
     },
   },
   defaultItem: () => {
@@ -212,7 +216,11 @@ export const blogIndexCollection: Collection = {
       create: false,
       delete: false,
     },
-    router: () => {
+    router: ({ document }) => {
+      const relativePath = document?._sys.relativePath;
+      if (relativePath?.includes('/zh/')) {
+        return `/zh/blog`;
+      }
       return `/blog`;
     },
   },

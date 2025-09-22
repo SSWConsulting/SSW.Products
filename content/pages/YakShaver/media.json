@@ -1,0 +1,142 @@
+{
+  "seo": {
+    "title": "Media - YakShaver Logo and Brand Assets"
+  },
+  "title": "YakShaver Logo and Brand Assets",
+  "pageBlocks": [
+    {
+      "heroTitle": "YakShaver Logo and Brand Assets",
+      "heroDescription": "Download YakShaver Brand Guide to explore comprehensive guidelines on our visual identity, messaging, and design assets. Get all the insights you need to maintain brand consistency and make a strong impact.",
+      "heroButton": {
+        "label": "DOWNLOAD BRAND GUIDE",
+        "iconSrc": "/svg/file-download.svg",
+        "href": "/YakShaver/YakShaver-Brand-Guide-V3.pdf",
+        "target": "_blank"
+      },
+      "dateText": "Last updated 10th Aug 2025",
+      "_template": "mediaHero"
+    },
+    {
+      "title": "Logos",
+      "gridDescription": "Download the SVG and PNG logo kit\n",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-1.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-1.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7,
+          "enableDownload": true
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-2.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-2.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7,
+          "enableDownload": true
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-3.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-3.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.png",
+          "blockColor": "#333333",
+          "imageScale": 0.7,
+          "enableDownload": true
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-4.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-4.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7,
+          "enableDownload": true
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-5.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-5.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7,
+          "enableDownload": true
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-title-icon-6.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.svg",
+          "pngSrc": "/YakShaver/Icon/yak-title-icon-6.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.7,
+          "enableDownload": true
+        }
+      ],
+      "itemsPerRow": 3,
+      "aspectRatio": 0.65,
+      "_template": "imageGrid"
+    },
+    {
+      "title": "Logos",
+      "gridDescription": "Download the SVG and PNG logo kit\n",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon-1.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Red.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-1.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Red.png",
+          "blockColor": "#333333",
+          "imageScale": 0.4,
+          "enableDownload": true
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon-2.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-2.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.png",
+          "blockColor": "#333333",
+          "imageScale": 0.4,
+          "enableDownload": true
+        },
+        {
+          "svgSrc": "/YakShaver/Icon/yak-icon-3.svg",
+          "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Black.svg",
+          "pngSrc": "/YakShaver/Icon/yak-icon-3.png",
+          "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-Black.png",
+          "blockColor": "#FFFFFF",
+          "imageScale": 0.4,
+          "enableDownload": true
+        }
+      ],
+      "itemsPerRow": 3,
+      "aspectRatio": 0.65,
+      "_template": "imageGrid"
+    },
+    {
+      "title": "Backgrounds",
+      "gridDescription": "Download YakShaver official backgrounds\n",
+      "showcaseImage": "/YakShaver/background.svg",
+      "downloadFile": "/YakShaver/YakShaver-Background.zip",
+      "showcaseTitle": "YakShaver gradient background",
+      "showcaseDescription": "To ensure our brand image is effectively integrated without overwhelming the viewer, it should occupy no more than one-third of the screen in any digital or print media. This balance allows for other essential content to be clearly communicated while maintaining our brand’s presence. ",
+      "_template": "imageShowcase"
+    },
+    {
+      "title": "Fonts",
+      "gridDescription": "The official fonts used in YakShaver is [Inter](https://fonts.google.com/specimen/Inter), a modern and versatile sans-serif typeface. Inter’s clean lines and excellent readability make it well-suited for both digital and print media, ensuring clear communication across all platforms. \n",
+      "images": [
+        {
+          "svgSrc": "/YakShaver/font-yak.svg",
+          "pngSrc": "",
+          "enableDownload": false
+        }
+      ],
+      "itemsPerRow": 1,
+      "aspectRatio": 0.5,
+      "_template": "imageGrid"
+    }
+  ]
+}
