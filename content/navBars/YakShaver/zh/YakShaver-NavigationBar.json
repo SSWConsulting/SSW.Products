@@ -40,7 +40,11 @@
           "href": "/certifications"
         },
         {
-          "label": "DISCORD",
+          "label": "媒体",
+          "href": "/media"
+        },
+        {
+          "label": "Discord",
           "href": "https://discord.gg/Jp9dyxKFjR"
         }
       ],
@@ -54,18 +58,12 @@
   ],
   "buttons": [
     {
-      "label": "控制台",
+      "label": "免费注册",
       "href": "https://portal.yakshaver.ai/",
       "icon": "/YakShaver/yakshaver-black.svg",
       "iconPosition": "left",
       "variant": "white",
       "_template": "buttonLink"
-    },
-    {
-      "Title": "加入候补名单",
-      "JotFormId": "243009066097861",
-      "variants": "outlinedWhite",
-      "_template": "BookingButton"
     }
   ]
 }

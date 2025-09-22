@@ -1,6 +1,6 @@
 {
   "seo": {
-    "title": "YakShaver AI Pricing Plans and Options",
+    "title": "Pricing - Simple, Transparent Pricing",
     "description": "Discover flexible pricing plans for YakShaver AI, tailored to meet your needs. Explore options and find the perfect fit for your project."
   },
   "title": "YakShaver AI Pricing Plans and Options",
@@ -29,9 +29,11 @@
           ],
           "buttons": [
             {
-              "Title": "Join Waitlist",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "SIGN UP",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         },
@@ -56,9 +58,11 @@
           ],
           "buttons": [
             {
-              "Title": "Join Waitlist",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "SIGN UP",
+              "variant": "solidRed",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         },
@@ -80,9 +84,11 @@
           ],
           "buttons": [
             {
-              "Title": "Join Waitlist",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "SIGN UP",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         },
@@ -104,9 +110,11 @@
           ],
           "buttons": [
             {
-              "Title": "Join Waitlist",
-              "JotFormId": "243009066097861",
-              "_template": "BookingButton"
+              "label": "SIGN UP",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "url": "https://portal.yakshaver.ai",
+              "_template": "actions"
             }
           ]
         }
@@ -120,7 +128,7 @@
           "label": "Re-fill Here",
           "variant": "outlinedWhite",
           "size": "large",
-          "url": "/pricing"
+          "url": "https://portal.yakshaver.ai/settings/plan"
         }
       },
       "_template": "pricing"

@@ -1,14 +1,14 @@
 ---
 displayOrder: 0
 seo:
-  title: 如何使用 YakShaver - 设置与指南
+  title: 如何使用 YakShaver
   description: >-
-    全面了解 YakShaver 的功能，以及它如何通过录屏自动生成工作事项，轻松提升你的工作效率。
+    清晰了解 YakShaver 的功能及其如何帮助自动从录屏中创建工作项。轻松提升您的工作效率。
 title: 如何使用 YakShaver - 设置与指南
 date: '2025-01-15T13:00:00.000Z'
 ---
 
-YakShaver 通过将你的屏幕录制内容转化为结构化文档，从而简化工作事项的创建流程。请选择你偏好的录制方式，并按照设置指南开始使用。为了获得最佳体验，我们建议从 Microsoft Teams 或浏览器扩展开始。
+YakShaver 通过将您的屏幕录制转换为结构化文档，简化了工作项的创建。请选择您偏好的录制方式，并按照设置说明开始使用。为了获得最佳体验，我们推荐从 Microsoft Teams 或浏览器扩展开始。
 
 ## Microsoft Teams 设置
 
@@ -16,10 +16,10 @@ Teams 集成提供无缝的协作功能，非常适合团队环境。
 
 ### 安装步骤
 
-1. 在 Microsoft Teams 中，点击左侧边栏的 **应用**
-2. 在搜索框中搜索 "YakShaver"
-3. 点击 **添加** 来安装 YakShaver 机器人
-4. 右键点击 YakShaver 并选择“固定”将其保留在侧边栏
+1. 在 Microsoft Teams 左侧边栏点击 **应用**
+2. 在搜索框中搜索 “YakShaver”
+3. 点击 **添加** 安装 YakShaver 机器人
+4. 右键点击 YakShaver，选择“固定”以将其保留在侧边栏
 
 ![](/adding-bot.png)
 
@@ -27,79 +27,58 @@ Teams 集成提供无缝的协作功能，非常适合团队环境。
 
 ### 初始配置
 
-1. 在 Teams 的侧边栏中打开 YakShaver 机器人
-2. 在聊天框中输入 `on` 激活自动处理功能
-3. 当 YakShaver 启动时，你会看到一张确认卡片
+1. 进入 Teams 侧边栏中的 YakShaver 机器人
+2. 如果尚未设置 YakShaver，系统会提示您前往 [门户](https://portal.yakshaver.ai/)。详见 [为您的组织设置 YakShaver](/docs/setup-yakshaver-admin)
+3. 完成设置后，在聊天框输入 'on' 激活自动处理
+4. 激活后，您将看到确认卡片
 
 ![](/turn-on-card.png)
 
 **图示：YakShaver 激活确认**
 
-### 可用指令
+### 可用命令
 
-* `on` - 让 YakShaver 始终处理你的视频
-* `off` - 每次处理前询问是否确认
-* `status` - 查看当前设置状态
+* `help` - 显示命令列表
+* `on` - 设置 YakShaver 始终处理您的视频
+* `ask` - 设置 YakShaver 处理前询问
+* `off` - 设置 YakShaver 从不处理您的视频
+* `status` - 查看当前设置
 * `leaderboard` - 查看排行榜
-* `help` - 显示指令列表
 * `hi` - 显示欢迎信息
+* `github` - [连接您的 GitHub 账户](/docs/connect-your-github-account)
 
-📖 准备好在 Teams 中开始录制了吗？查看我们的 [Teams 录制指南](/docs/recording-work-item-teams)
-
-## 浏览器扩展设置
-
-浏览器扩展可无缝集成至 Chrome 和 Edge 浏览器。
-
-### 安装步骤
-
-1. 访问 [YakShaver 官网](https://yakshaver.ai) 并点击“立即试用”
-2. 将扩展程序添加到 Chrome 或 Edge
-   ![](/YakShaver/Docs/Try-it-now.png)
-
-**图示：安装并固定 YakShaver 浏览器扩展**
-
-3. 将其固定到浏览器工具栏，便于访问
-
-4. 当出现权限提示时，请允许相关权限
-
-💡 **重要提示：**
-
-* 请确保你当前页面支持录制（如 chrome://extensions 这类系统页面不支持）
-* 为获得最佳效果，请启用麦克风权限
-* 此扩展在 Chrome 或 Edge 浏览器上体验最佳
-
-📖 想开始录制？查阅我们的 [浏览器扩展录制指南](/docs/recording-work-item-browser-extension)
+📖 准备在 Teams 中录制？请参阅我们的 [Teams 录制指南](/docs/recording-work-item-teams)
 
 ## 第三方工具设置
 
-YakShaver 支持多种录屏工具，适合偏好自定义工作流或有特定需求的用户。
+YakShaver 支持多种录制工具，适合偏好现有工作流程或需要特定功能的用户。
 
 ### 支持的工具
 
-* **[Snagit](/docs/recording-work-item-snagit)** - 专业的屏幕捕捉工具（推荐 Windows 用户）
+* **[Snagit](/docs/recording-work-item-snagit)** - 专业屏幕捕获工具（推荐 Windows 用户）
   * 提供高级编辑功能
   * 支持自定义快捷键
-  * 非常适合高级用户
+  * 适合高级用户
 * **[Windows 截图工具](/docs/recording-work-item-snipping-tool)** - Windows 内置工具
-  * 无需额外安装软件
+  * 无需额外软件
   * 快速易用
-  * 快捷键：Windows键 + Shift + R
+  * Windows 键 + Shift + R 快捷键
 * **[Mac 截图应用](/docs/recording-work-item-screenshot-app)** - MacOS 内置工具
-  * 与 MacOS 深度集成
-  * 快捷键：CMD + Shift + 5
-  * 无需额外安装软件
+  * 原生 MacOS 集成
+  * CMD + Shift + 5 快捷键
+  * 无需额外软件
 
 ### 通用设置流程
 
-1. 在 OneDrive 中创建一个专用文件夹：
-   * 对于 Snagit：`OneDrive/Recordings/Snagit/`
-   * 对于截图工具：`OneDrive/Recordings/SnippingTool/`
-   * 对于 Screenshot App：`OneDrive/Recordings/ScreenshotApp/`
-2. 配置你的工具将录制内容保存至相应文件夹
-3. 确保麦克风设置正常
-4. 测试一次录制以验证设置是否成功
+1. 在 OneDrive 中创建专用文件夹：
+   * Snagit: `OneDrive/Recordings/Snagit/`
+   * 截图工具: `OneDrive/Recordings/SnippingTool/`
+   * 截图应用: `OneDrive/Recordings/ScreenshotApp/`
+2. 配置您的工具将录制文件保存到相应文件夹
+3. 确保麦克风正确设置
+4. 测试录制以验证设置
 
-📖 获取详细设置说明，请访问：
+📖 详细设置说明，请访问：
 
 * [Snagit 设置指南](/docs/recording-work-item-snagit)
 * [Windows 截图工具指南](/docs/recording-work-item-snipping-tool)
@@ -107,15 +86,15 @@ YakShaver 支持多种录屏工具，适合偏好自定义工作流或有特定�
 
 ## 其他资源
 
-* [创建高质量工作事项的技巧](/docs/yakshaver-tips)
+* [创建高效工作项的技巧](/docs/yakshaver-tips)
 * [常见问题解答](/docs/frequently-asked-questions)
-* [连接你的 GitHub 账户](/docs/connect-your-github-account)
+* [连接您的 GitHub 账户](/docs/connect-your-github-account)
 * [视频托管选项](/docs/video-hosting)
 
-💡 **专业建议：**
+💡 **专业提示：**
 
-* 录制开始时，请清晰说明录制目的
-* 对于 Bug 报告，请包含复现步骤和预期行为
-* 提及相关团队成员以便通知（例如："Cc @username"）
-* 若有需要，你可在创建后将邮件任务转为工作事项
-* 视频默认托管在 SharePoint，也可选择 YouTube（注意：YouTube 有每日上传限制及不同的安全策略）
+* 录制开始时请明确说明目的
+* 对于缺陷报告，包含复现步骤和预期行为
+* 提及需通知的团队成员（例如，“抄送 @用户名”）
+* 如有需要，可在创建后将邮件任务转换为工作项
+* 视频默认安全托管于 SharePoint，YouTube 为可选替代（注意：YouTube 有每日上传限制且安全策略不同）

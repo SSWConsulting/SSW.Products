@@ -30,5 +30,11 @@
       "footerItemIcon": "FaGithub",
       "footerItemLink": "https://www.github.com/sswconsulting"
     }
-  ]
+  ],
+  "poweredByTinaBanner": {
+    "textColour": "#ffffff",
+    "text": "Powered by TinaCMS",
+    "image": "/tina-llama-orange.png",
+    "url": "https://tina.io"
+  }
 }

@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
 import { createContext, ReactNode, useContext } from "react";
 
 import { tinaField } from "tinacms/dist/react";
@@ -13,6 +13,7 @@ import {
 } from "../../../tina/__generated__/types";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
+import Link from "@tina/tinamarkdownStyles/Link";
 
 export type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
 
@@ -28,6 +29,7 @@ const components = {
       />
     </span>
   ),
+  a: (props: any) => Link(props),
 };
 
 export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
@@ -84,14 +86,14 @@ export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
               return (
                 <>
                   {link?.url ? (
-                    <Link
+                    <NextLink
                       target="_blank"
                       {...props}
                       className={cn(className, "hover:underline")}
                       href={link.url}
                     >
                       {children}
-                    </Link>
+                    </NextLink>
                   ) : (
                     <span {...props} className={className}>
                       {children}
@@ -204,9 +206,9 @@ const CardButton = (button: CardButtonProps) => {
     button: CardButtonProps;
   }) => {
     return button.link ? (
-      <Link target="_blank" href={button.link}>
+      <NextLink target="_blank" href={button.link}>
         {children}
-      </Link>
+      </NextLink>
     ) : (
       <>{children}</>
     );

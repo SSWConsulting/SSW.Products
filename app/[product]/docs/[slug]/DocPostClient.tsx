@@ -14,7 +14,6 @@ interface DocPostClientProps {
   variables: object;
   pageData: { docs: Docs };
   tableOfContentsData: DocsTableOfContents;
-  locale: string;
 }
 
 const BreadCrumbs = ({ title }: { title: string }) => {
@@ -36,7 +35,6 @@ export default function DocPostClient({
   variables,
   pageData,
   tableOfContentsData,
-  locale,
 }: DocPostClientProps) {
   const { data } = useTina<{ docs: Docs }>({
     query,
@@ -66,12 +64,12 @@ export default function DocPostClient({
         <TableOfContents.Root>
           <TableOfContents.Button />
           <TableOfContents.Popover>
-            <TableOfContentsClient tableOfContentsData={tableOfContentsData} locale={locale} />
+            <TableOfContentsClient tableOfContentsData={tableOfContentsData} />
           </TableOfContents.Popover>
         </TableOfContents.Root>
       </div>
       <BreadCrumbs title={title} />
-      <h2 className="text-3xl bg-linear-to-br mb-2 linear tracking-wide from-red-400 to-red-700 bg-clip-text text-transparent">
+      <h2 className="text-3xl bg-linear-to-br mb-2 linear from-red-400 to-red-700 bg-clip-text text-transparent">
         {title}
       </h2>
       <div className="text-base font-light mb-12 lg:prose-xl">

@@ -12,6 +12,6 @@ export default async function FooterServer({ product, locale }: FooterServerProp
   const result = await getFooterWithFallback(product, locale);
   
   return (
-    <FooterContent hasPrivacyPolicy={hasPrivacyPolicy} results={result?.data || null} />
+    <FooterContent hasPrivacyPolicy={hasPrivacyPolicy} results={result?.data || null} locale={locale} />
   );
 }

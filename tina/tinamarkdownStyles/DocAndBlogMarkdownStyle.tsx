@@ -3,8 +3,11 @@ import Image from "next/image";
 import { Components } from "tinacms/dist/rich-text";
 
 import Link from "./Link";
+import { ImageEmbed } from "@comps/shared/Blocks/ImageEmbed";
 export const DocAndBlogMarkdownStyle: Components<{
   Youtube: { thumbnail?: string; externalVideoLink?: string; size?: string };
+  imageEmbed: { src?: string; alt?: string; size?: string; showBorder?: boolean };
+
 }> = {
   Youtube: (props) => {
     let sizeClass = "w-full h-auto max-w-[560px]";
@@ -12,7 +15,7 @@ export const DocAndBlogMarkdownStyle: Components<{
       sizeClass = "w-full h-auto max-w-[800px]";
     }
     return (
-      <div className="youtube-container">
+      <div className="youtube-container mb-2">
         <YouTubeEmbed
           className={sizeClass}
           src={props.externalVideoLink}
@@ -21,6 +24,7 @@ export const DocAndBlogMarkdownStyle: Components<{
       </div>
     );
   },
+  imageEmbed: (props) => <ImageEmbed data={props} />,
   p: (props) => <p className="text-base font-light mb-4">{props?.children}</p>,
 
   h1: (props) => (

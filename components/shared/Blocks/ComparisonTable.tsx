@@ -6,9 +6,9 @@ import { RxCross1 } from "react-icons/rx";
 import { FaCheck } from "react-icons/fa6";
 
 const Table = ({ table }: { table: any }) => {
-  const regularBoxStyling = "text-white/60 p-4 text-center";
+  const regularBoxStyling = "text-white/60 p-2 md:p-4 text-center";
   const primaryBoxStyling =
-    " text-white bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] p-4 rounded-bl-xl";
+    " text-white bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] p-2 md:p-4";
 
   // Helper function to render content with check icon replacement
   const renderContent = (content: any) => {
@@ -30,24 +30,22 @@ const Table = ({ table }: { table: any }) => {
   };
 
   return (
-    <div className="mb-10 border-2 border-white/20 rounded-xl">
+    <div className="mb-4 lg:mb-10 border-2 border-white/20 rounded-xl overflow-hidden">
+      {/* Title outside of scroll container */}
+      <div className="text-white bg-[#141414] p-4 text-center font-semibold rounded-t-xl">
+        {table.title}
+      </div>
+
+      {/* Scrollable table content */}
       <div className="overflow-x-auto">
-        <table className="w-full border-collapse table-fixed">
+        <table className="w-full border-collapse min-w-[800px] md:min-w-0 md:table-fixed">
           <tbody className="divide-y divide-white/10">
-            <tr>
-              <td
-                colSpan={5}
-                className={`text-white bg-[#141414] p-4 text-center font-semibold rounded-t-xl`}
-              >
-                {table.title}
-              </td>
-            </tr>
             {table?.rows?.map((row: any, rowIndex: number) => (
               <tr key={rowIndex} className={``}>
                 <td
                   className={`${primaryBoxStyling} ${
                     rowIndex === 0 ? "font-bold" : "font-medium"
-                  } w-1/4`}
+                  } w-auto md:w-1/4 text-sm md:text-base`}
                 >
                   {renderContent(row.column1)}
                   {row.column1SubText && (
@@ -59,7 +57,7 @@ const Table = ({ table }: { table: any }) => {
                 <td
                   className={`${regularBoxStyling} ${
                     rowIndex === 0 ? "font-bold bg-[#141414]" : "font-medium"
-                  }`}
+                  } w-auto text-sm md:text-base`}
                 >
                   {renderContent(row.column2)}
                   {row.column2SubText && (
@@ -71,7 +69,7 @@ const Table = ({ table }: { table: any }) => {
                 <td
                   className={`${regularBoxStyling} ${
                     rowIndex === 0 ? "font-bold bg-[#141414]" : "font-medium"
-                  } relative`}
+                  } relative w-auto text-sm md:text-base`}
                 >
                   <div className="absolute inset-0 bg-[#13131394] h-full z-0"></div>
                   <div className="relative z-10 text-white/75">
@@ -91,7 +89,7 @@ const Table = ({ table }: { table: any }) => {
                 <td
                   className={`${regularBoxStyling} ${
                     rowIndex === 0 ? "font-bold bg-[#141414]" : "font-medium"
-                  }`}
+                  } w-auto text-sm md:text-base`}
                 >
                   {renderContent(row.column4)}
                   {row.column4SubText && (
@@ -103,7 +101,7 @@ const Table = ({ table }: { table: any }) => {
                 <td
                   className={`${regularBoxStyling} ${
                     rowIndex === 0 ? "font-bold bg-[#141414]" : "font-medium"
-                  }`}
+                  } w-auto text-sm md:text-base`}
                 >
                   {renderContent(row.column5)}
                   {row.column5SubText && (
@@ -133,10 +131,10 @@ const Table = ({ table }: { table: any }) => {
 
 export default function ComparisonTable({ data }: { data: any }) {
   return (
-    <div className="container max-w-7xl mx-auto p-4 mb-14 pt-20 lg:pt-0 lg:mb-4 mt-20 lg:mt-0 md:mt-0 lg:pb-40">
+    <div className="container max-w-7xl mx-auto px-4 md:p-4 mb-14 lg:mb-4 md:mt-0 lg:pb-40">
       {data.headline && (
         <h1
-          className="text-4xl text-center font-semibold text-white mb-4"
+          className="text-2xl md:text-4xl text-center font-semibold text-white mb-4"
           data-tina-field={tinaField(data, "title")}
         >
           {curlyBracketFormatter(data.headline)}
@@ -144,7 +142,7 @@ export default function ComparisonTable({ data }: { data: any }) {
       )}
       {data.sectionDescription && (
         <div
-          className="text-white text-base text-center px-4 mb-8"
+          className="text-white text-sm md:text-base text-center px-2 md:px-4 mb-8"
           data-tina-field={tinaField(data, "sectionDescription")}
         >
           <p>{curlyBracketFormatter(data.sectionDescription)}</p>
