@@ -43,6 +43,10 @@ export const DocAndBlogMarkdownStyle: Components<{
     <h4 className="text-lg font-semibold mb-3 mt-6">{props?.children}</h4>
   ),
 
+  blockquote: (props) => (
+    <blockquote className="p-4 my-4 border-s-4 border-white/20">{props?.children}</blockquote>
+  ),
+  
   ol: (props) => (
     <ol className="list-decimal ps-7 font-light mb-4">{props?.children}</ol>
   ),
