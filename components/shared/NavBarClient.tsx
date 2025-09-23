@@ -70,7 +70,7 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                           {subItem!.href &&
                             (subItem!.href.startsWith("http://") ||
                               subItem!.href.startsWith("https://")) && (
-                              <FaExternalLinkAlt className="text-xs text-red-500" />
+                              <FaExternalLinkAlt className="text-xs text-ssw-red" />
                             )}
                         </Link>
                       </li>
