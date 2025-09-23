@@ -57,6 +57,27 @@ Regular users can view each project's prompt in the project list page.
 
 **⚠️ Note:** When both tenant level and project level prompts exist, the project level prompt always takes higher priority and will override the tenant level prompt.
 
+### Default Tenant Prompt
+
+Every new tenant in YakShaver starts with a default system prompt provided by YakShaver. This ensures that even without any customization, AI-generated PBIs follow a consistent format, and this will help you build the perfect prompt for you.
+
+The default tenant prompt is:
+
+```plaintext
+PBI Title:
+If bug → "🐛 Bug - {{DESCRIPTION}}"
+
+If feature/change →
+- "✨ {{FEATURE_NAME}} - {{DESCRIPTION}}" if a feature name can be extracted and differs from the description
+- "✨ {{DESCRIPTION}}" if no feature name can be extracted or it’s the same as the description
+
+Feature name rules:
+- Extract core feature from description
+- Max 2 words, no extra actions
+- Remove filler words like "feature", "module", "component"
+- Description should describe the change, not repeat the feature name
+```
+
 ## Example: Language Customization
 
 Here's a practical example of how custom system prompts can be used to customize YakShaver's output.
