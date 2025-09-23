@@ -9,7 +9,7 @@ date: '2025-08-03T16:00:00.000Z'
 
 ## 在 YakShaver 门户中配置系统自定义提示
 
-YakShaver 支持用于 PBI 生成的自定义系统提示，允许您定制 AI 生成的内容以符合团队的具体需求。
+YakShaver 支持用于 PBI 生成的自定义系统提示，允许您定制 AI 生成的内容以匹配团队的具体需求。
 
 按照以下步骤配置自定义系统提示：
 
@@ -17,60 +17,78 @@ YakShaver 支持用于 PBI 生成的自定义系统提示，允许您定制 AI �
 
 您需要拥有租户的管理员权限。只有管理员账户可以编辑自定义系统提示。
 
+
 ### 访问门户
 
 通过以下方法之一访问 YakShaver 门户：
 
-1. 点击 yakshaver.ai 主页右上角的“Portal”按钮
+1. 点击 [yakshaver.ai](https://yakshaver.ai) 主页右上角的“Portal”按钮
 2. 或直接访问 [https://portal.yakshaver.ai/](https://portal.yakshaver.ai/)
 
 ![Open Portal](/YakShaver/Docs/open-portal.png)
-*图示：从主页访问 YakShaver 门户*
+**图示：从主页访问 YakShaver 门户**
 
 ### 配置级别
 
-YakShaver 允许管理员用户在两个级别配置自定义系统提示：**租户级别**和**项目级别**。
+YakShaver 支持两种自定义提示配置级别：**租户级别** 和 **项目级别**。
 
 #### 租户级别配置
 
-租户级别提示适用于当前租户下的所有项目。管理员用户可以通过打开系统信息侧边栏并编辑“租户提示配置”卡片来修改。
+租户级别提示适用于当前租户下的所有项目。所有租户初始均使用 YakShaver 默认提示：
+
+```plaintext
+PBI 标题：
+如果是缺陷 → "🐛 Bug - {{DESCRIPTION}}"
+
+如果是功能/变更 →
+- 如果能提取功能名称且与描述不同，则为 "✨ {{FEATURE_NAME}} - {{DESCRIPTION}}"
+- 如果无法提取功能名称或与描述相同，则为 "✨ {{DESCRIPTION}}"
+
+功能名称规则：
+- 从描述中提取核心功能
+- 最多 2 个词，不做额外操作
+- 去除“feature”、“module”、“component”等填充词
+- 描述应描述变更内容，不重复功能名称
+```
+
+管理员可以在 [系统信息页面](https://portal.yakshaver.ai/settings/systeminfo)的 **租户提示配置** 卡片中查看和编辑此提示。
 
 ![Edit Tenant Prompt](/YakShaver/Docs/edit-tenant-prompt.png)
-*图示：编辑租户级别提示配置*
+**图示：编辑租户级别提示配置**
 
-普通用户可以在项目页面通过将鼠标悬停在页面标题下方带下划线的“查看详情”文字上查看当前租户级别提示。
-
-![View Tenant Prompt](/YakShaver/Docs/view-tenant-prompt.png)
-*图示：普通用户查看租户级别提示*
 
 #### 项目级别配置
 
-用户也可以配置特定项目级别的提示以覆盖租户设置。管理员账户可以点击单个项目进入项目详情，然后在“自定义系统提示”字段中修改提示。
+⚠️ **注意：** 设置项目级提示将覆盖该项目的租户级提示。
+
+管理员可通过打开一个[项目](https://portal.yakshaver.ai/settings/projects)并编辑 **自定义系统提示** 字段来设置。
 
 ![Edit Project Prompt](/YakShaver/Docs/edit-project-prompt.png)
-*图示：编辑项目级别提示配置*
+**图示：编辑项目级别提示配置**
 
-普通用户可以在项目列表页面查看每个项目的提示。
+
+普通用户可以在项目列表页面查看各项目的提示。
 
 ![View Project Prompt](/YakShaver/Docs/view-project-prompt.png)
-*图示：在项目列表中查看项目级别提示*
+**图示：在项目列表中查看项目级提示**
 
-**⚠️ 注意：** 当租户级别和项目级别提示同时存在时，项目级别提示优先级更高，会覆盖租户级别提示。
 
 ## 示例：语言定制
 
 以下是自定义系统提示如何用于定制 YakShaver 输出的实际示例。
 
-假设一个讲中文的团队使用 YakShaver，而 YakShaver 的默认 PBI 语言是英语。您可以配置租户级别系统提示，确保所有项目生成中文 PBI。
+假设一个讲中文的团队使用 YakShaver，而 YakShaver 默认的 PBI 语言是英文。您可以配置租户级系统提示，确保所有项目生成中文 PBI。
 
 ![Configure Tenant Prompt](/YakShaver/Docs/config-tenant-prompt.png)
-*图示：在租户级别设置中文语言提示*
+**图示：在租户级设置中文语言提示**
 
-通过此配置，无论视频录制语言如何，YakShaver 都会生成中文 PBI。
+
+有了此配置，无论视频录制语言如何，YakShaver 都会生成中文 PBI。
 
 ![Chinese PBI](/YakShaver/Docs/Chinese-PBI.png)
-*图示：生成的中文 PBI*
+**图示：生成的中文 PBI**
 
-自定义系统提示还可以配置 PBI 生成的各种方面，包括格式、语言、语气和风格。
 
-**⚠️ 重要：** 请谨慎使用自定义系统提示。结果可能有所不同，且不一定总能满足预期。
+自定义系统提示还可以配置 PBI 生成的各个方面，包括格式、语言、语气和风格。
+
+**⚠️ 重要提示：** 请谨慎使用自定义系统提示。结果可能有所不同，且不一定总能满足预期。
