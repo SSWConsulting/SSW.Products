@@ -33,7 +33,7 @@ YakShaver supports two configuration levels for custom prompts: **tenant level**
 
 #### Tenant Level Configuration
 
-All tenants starts with the YakShaver default prompt:
+Tenant level prompts apply to all projects under current tenant. All tenants starts with the YakShaver default prompt:
 
 ```plaintext
 PBI Title:
@@ -50,16 +50,14 @@ Feature name rules:
 - Description should describe the change, not repeat the feature name
 ```
 
-Admins can view and edit this prompt in the **Tenant Prompt Configuration** card
-
-Tenant level prompts apply to all projects under current tenant. Admin users can modify it by opening the system info sidebar and editing the “Tenant Prompt Configuration” card.
+Admins can view and edit this prompt in the **Tenant Prompt Configuration** card in the [System Info page](https://portal.yakshaver.ai/settings/systeminfo).
 
 ![Edit Tenant Prompt](/YakShaver/Docs/edit-tenant-prompt.png)
 *Figure: Edit tenant level prompt configuration*
 
 #### Project Level Configuration
 
-Project-level prompts override the tenant-level prompt.  
+Project-level prompts override the tenant-level prompt.
 
 Admins can set this by opening a project and editing the **Custom System Prompt** field.
 
