@@ -46,7 +46,7 @@ export const DocAndBlogMarkdownStyle: Components<{
   blockquote: (props) => (
     <blockquote className="p-4 my-4 border-s-4 border-white/20">{props?.children}</blockquote>
   ),
-  
+
   ol: (props) => (
     <ol className="list-decimal ps-7 font-light mb-4">{props?.children}</ol>
   ),
