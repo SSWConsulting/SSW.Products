@@ -40,6 +40,10 @@
           "href": "/certifications"
         },
         {
+          "label": "MEDIA",
+          "href": "/media"
+        },
+        {
           "label": "DISCORD",
           "href": "https://discord.gg/Jp9dyxKFjR"
         }
@@ -54,18 +58,12 @@
   ],
   "buttons": [
     {
-      "label": "Portal",
+      "label": "Sign Up for Free",
       "href": "https://portal.yakshaver.ai/",
       "icon": "/YakShaver/yakshaver-black.svg",
       "iconPosition": "left",
       "variant": "white",
       "_template": "buttonLink"
-    },
-    {
-      "Title": "JOIN WAITLIST",
-      "JotFormId": "243009066097861",
-      "variants": "outlinedWhite",
-      "_template": "BookingButton"
     }
   ]
 }

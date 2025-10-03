@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: BlogPostProps) {
       return null;
     }
 
-    const metadata = setPageMetadata(res?.data?.blogs?.seo, product);
+    const metadata = setPageMetadata(res?.data?.blogs?.seo, product, 'Blog');
     return metadata;
   } catch (e) {
     console.error(e);

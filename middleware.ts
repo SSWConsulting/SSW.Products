@@ -22,7 +22,7 @@ function createRewriteResponse(targetPath: string, language: string, request: Ne
 }
 
 export function middleware(request: NextRequest) {
-  const hostname = request.headers.get("host");
+  const hostname = request.headers.get("x-original-host") || request.headers.get("host");
   const { pathname } = request.nextUrl;
 
   const isLocal =
@@ -42,12 +42,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const language = detectLanguage(pathname);
+  const isChineseDomain = !!(hostname?.endsWith('yakshaver.cn') || hostname?.endsWith('yakshaver.com.cn'));
+  const language = isChineseDomain ? 'zh' : detectLanguage(pathname);
 
   if (isLocal || isStaging) {
     return handleLocalRequest(pathname, productList, request, language);
   } else {
-    return handleProductionRequest(hostname, productList, pathname, request, language);
+    return handleProductionRequest(hostname, productList, pathname, request, language, isChineseDomain);
   }
 }
 
@@ -79,14 +80,27 @@ function handleProductionRequest(
   productList: any[],
   pathname: string,
   request: NextRequest,
-  language: string
+  language: string,
+  isChineseDomain: boolean
 ) {
-  for (const product of productList) {
-    if (hostname === product.domain) {
-      const cleanPath = cleanPathFromLanguage(pathname);
-      return createRewriteResponse(`/${product.product}${cleanPath}`, language, request);
+  let targetProduct: string | null = null;
+  
+  if (isChineseDomain) {
+    targetProduct = 'YakShaver';
+  } else {
+    for (const product of productList) {
+      if (hostname === product.domain) {
+        targetProduct = product.product;
+        break;
+      }
     }
   }
+  
+  if (targetProduct) {
+    const cleanPath = cleanPathFromLanguage(pathname);
+    return createRewriteResponse(`/${targetProduct}${cleanPath}`, language, request);
+  }
+  
   return NextResponse.next();
 }
 

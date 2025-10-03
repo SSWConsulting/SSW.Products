@@ -27,6 +27,7 @@ import ArticleMetadata from "./ArticleMetadata";
 import CategoryLabel from "./CategoryLabel";
 import GridBackground from "./GridBackground";
 import ReadMore from "./ReadMore";
+import { useContextualLink } from "@utils/contextualLink";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 
@@ -72,6 +73,7 @@ const FeaturedArticle = ({
   ...props
 }: RemoveTinaMetadata<FeaturedBlog>) => {
   const { searchTerm } = useBlogSearch();
+  const contextualHref = useContextualLink();
   return (
     <>
       {featuredBlog && !searchTerm && (
@@ -114,7 +116,7 @@ const FeaturedArticle = ({
                       {featuredBlog.category}
                     </CategoryLabel>
                   )}
-                  <Link href={`/blog/${featuredBlog._sys.filename}`}>
+                  <Link href={contextualHref(`/blog/${featuredBlog._sys.filename}`)}>
                     <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
                       {featuredBlog?.title}
                     </h3>

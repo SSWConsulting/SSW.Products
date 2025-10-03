@@ -1,14 +1,14 @@
 ---
 seo:
-  title: Installation - Azure Managed Application
-  description: Learn how to install EagleEye using Azure Managed Applications.
+  title: Installation
+  description: Learn how to install EagleEye from Azure Marketplace.
 title: Installation
 date: '2025-07-15T13:00:00.000Z'
 ---
 
 ## Overview
 
-SSW EagleEye is an AI-powered email management solution that helps organizations categorize and process emails automatically using Azure OpenAI. This guide will walk you through the installation process using Azure Managed Applications.
+SSW EagleEye is an AI-powered email management solution that helps organizations categorize and process emails automatically using Azure OpenAI. This guide will walk you through the installation process from Azure Marketplace.
 
 ## Prerequisites
 
@@ -20,50 +20,44 @@ Before starting the installation, ensure you have:
 * **Power BI** workspace (optional, for reporting)
 * **Custom domain** and DNS zone in Azure (optional)
 
-## Deployment Types
-
-### Current Deployment Method: Service Catalog
-
-SSW EagleEye is currently deployed via Azure Service Catalog for internal testing and validation.
-
-### Future Deployment Method: Azure Marketplace
-
-Azure Marketplace deployment will be available soon, providing:
-
-* Public availability to all Azure customers
-* Streamlined deployment process
-* Production-ready managed application
-
-*Note: This guide currently covers Service Catalog deployment. It will be updated when Azure Marketplace deployment becomes available.*
-
 ## Installation Process
 
-### Phase 1: Deploy Managed Application
+### Phase 1: Deploy from Azure Marketplace
 
-#### Step 1: Access the Managed Application
+#### Step 1: Access Azure Marketplace
 
-1. Go to **Azure Portal** > **All services** > **Service Catalog Managed Applications**
-2. Find **SSW EagleEye** in the catalog
-3. Click **Create**
-
-> **Note**: Azure Marketplace deployment will be available in the future and will provide a streamlined experience through the Azure Marketplace.
+1. Go to [Azure Marketplace](https://azuremarketplace.microsoft.com)
+2. Search for **"SSW EagleEye"**
+3. Click on **SSW EagleEye** in the search results
+4. Click **Get It Now**
 
 #### Step 2: Configure Application Settings
 
 Follow the deployment wizard with these configuration steps:
 
-##### 2.1 Application Configuration
+##### 2.1 Basics
 
-* **Project Name**: Enter a unique prefix (3-15 characters, lowercase letters and numbers)
+* **Resource Group**: Select an existing resource group or create a new one
+* **Region**: Choose your preferred Azure region
+* **Application Name**: Enter a unique name for your application
+
+![Basics](/EagleEye/basics.png)
+
+##### 2.2 Application Configuration
+
+* **Project Name**: Unique prefix for all resources
 * **Environment**: Select `production` or `staging`
-* **Location**: Choose your preferred Azure region
 
-##### 2.2 Azure AD Configuration
+![Application Configuration](/EagleEye/application-configuration.png)
+
+##### 2.3 Azure AD Configuration
 
 * **Azure Tenant ID**: Your Azure AD tenant ID
 * **Azure Group Name**: Enter the Azure AD group name for email processing
 
-##### 2.3 App Registration Configuration
+![Azure AD Configuration](/EagleEye/azure-ad-configuration.png)
+
+##### 2.4 App Registration Configuration
 
 You can select existing app registrations or create new ones during this step:
 
@@ -72,9 +66,11 @@ You can select existing app registrations or create new ones during this step:
 * **API Scope URL**: Enter the full scope URL from the API app registration
 * **SSW\.EagleEye.Portal App Registration**: Select the Portal app registration and enter the client secret
 
-**Note**: If you don't have existing app registrations, you can create them during deployment or refer to the **App Registration Creation Guide** section below for detailed instructions.
+**Note**: If you don't have existing app registrations, you can create them during deployment. Refer to the **App Registration Creation Guide** section below.
 
-##### 2.4 Database Configuration
+![App Registration Configuration](/EagleEye/app-registration-configuration.png)
+
+##### 2.5 Database Configuration
 
 * **Database Pricing Tier**: Select appropriate tier (Basic, S0, S1, S2)
 * **Database Users**: Configure three database users:
@@ -82,21 +78,15 @@ You can select existing app registrations or create new ones during this step:
   * ReadWrite user (read/write access)
   * ReadOnly user (read-only access)
 
-##### 2.5 Azure OpenAI Configuration
+![Database Configuration](/EagleEye/database-configuration.png)
+
+##### 2.6 Azure OpenAI Configuration
 
 * **Location**: Select Azure region (currently East US)
 * **Model**: Choose GPT-4.1 Mini or GPT-4o Mini
 * **Capacity**: Set tokens per minute (verify your quota first)
 
-##### 2.6 Power BI Configuration (Optional)
-
-* **Power BI Embed URL**: Enter embed URL for reports
-* **Power BI Report URL**: Enter direct report URL
-
-##### 2.7 Domain Configuration (Optional)
-
-* **Custom Domain**: Enter your custom domain
-* **DNS Resource Group**: Specify where your DNS zone is located
+![Azure OpenAI Configuration](/EagleEye/azure-openai-configuration.png)
 
 #### Step 3: Review and Deploy
 
@@ -147,7 +137,7 @@ After successful deployment:
 
 ## App Registration Creation Guide
 
-You need the following 3 app registrations for the managed application:
+You need the following 3 app registrations for EagleEye:
 
 ### Engine App Registration (SSW\.EagleEye)
 
@@ -174,7 +164,7 @@ This app registration is used by the Engine CLI and Portal API to access Microso
 2. Add description: `EagleEye Engine and API Secret`
 3. Select expiration period
 4. Click **Add**
-5. **Save the secret value** - you'll need this during creation of the managed application
+5. **Save the secret value** - you'll need this during deployment
 
 ### Portal Backend App Registration (SSW\.EagleEye.Api)
 
@@ -188,7 +178,7 @@ This app registration exposes an API that the Portal frontend will call.
    * **Admin consent display name**: `Access SSW EagleEye as user`
    * **Admin consent description**: `Allow the application to access SSW EagleEye on behalf of the signed-in user`
 5. Click **Add scope**
-6. **Save the full scope URL** (e.g., `api://xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/access_as_user`) - you'll need this during creation of the managed application
+6. **Save the full scope URL** (e.g., `api://xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/access_as_user`) - you'll need this during deployment
 
 **Create Client Secret:**
 
@@ -196,7 +186,7 @@ This app registration exposes an API that the Portal frontend will call.
 2. Add description: `EagleEye API Secret`
 3. Select expiration period
 4. Click **Add**
-5. **Save the secret value** - you'll need this during creation of the managed application
+5. **Save the secret value** - you'll need this during deployment
 
 ### Portal Frontend App Registration (SSW\.EagleEye.Portal)
 
@@ -215,8 +205,8 @@ This app registration is used by the Portal web application for user authenticat
 2. Add description: `EagleEye Portal Secret`
 3. Select expiration period
 4. Click **Add**
-5. **Save the secret value** - you'll need this during creation of the managed application
+5. **Save the secret value** - you'll need this during deployment
 
 ## References
 
-* [Azure Managed Applications overview](https://learn.microsoft.com/en-us/azure/managed-applications/overview)
+* [Azure Marketplace overview](https://learn.microsoft.com/en-us/marketplace/azure-marketplace-overview)
