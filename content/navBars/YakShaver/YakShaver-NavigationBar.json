@@ -1,8 +1,8 @@
 {
   "Logo": "/YakShaver/YakShaver Darkmode.png",
   "imgSrc": "/yakshaver-logo.png",
-  "imgWidth": 591,
-  "imgHeight": 90,
+  "imgWidth": 536,
+  "imgHeight": 100,
   "leftNavItem": [
     {
       "label": "Pricing",
@@ -63,6 +63,12 @@
       "icon": "/YakShaver/yakshaver-black.svg",
       "iconPosition": "left",
       "variant": "white",
+      "_template": "buttonLink"
+    },
+    {
+      "label": "Log in",
+      "href": "https://portal.yakshaver.ai/",
+      "variant": "outline",
       "_template": "buttonLink"
     }
   ]
