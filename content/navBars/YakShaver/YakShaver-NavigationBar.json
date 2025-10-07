@@ -58,10 +58,14 @@
   ],
   "buttons": [
     {
-      "label": "Sign Up for Free",
+      "label": "Log in",
       "href": "https://portal.yakshaver.ai/",
-      "icon": "/YakShaver/yakshaver-black.svg",
-      "iconPosition": "left",
+      "variant": "outline",
+      "_template": "buttonLink"
+    },
+    {
+      "label": "Sign up",
+      "href": "https://portal.yakshaver.ai/",
       "variant": "white",
       "_template": "buttonLink"
     }
