@@ -34,6 +34,12 @@
   ],
   "buttons": [
     {
+      "label": "Portal",
+      "href": "https://portal.ssweagleeye.com",
+      "variant": "outline",
+      "_template": "buttonLink"
+    },
+    {
       "Title": "TALK TO US",
       "JotFormId": "233468468973070",
       "variants": "outlinedWhite",
