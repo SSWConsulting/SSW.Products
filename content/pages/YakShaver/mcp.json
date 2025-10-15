@@ -19,6 +19,7 @@
           "title": "1. Download",
           "description": "Download the YakShaver Beta below\n",
           "button": {
+            // TODO
             "enableButton": true,
             "label": "📥 Download\n",
             "link": "TODO"
@@ -28,6 +29,7 @@
           "title": "2. Install",
           "description": "Once the download is complete, run the installer and follow the prompts to install YakShaver.\n",
           "image": {
+            // TODO
             "imgSrc": "/Mcp/TODO.png",
             "imgWidth": 480,
             "imgHeight": 336
@@ -37,6 +39,7 @@
           "title": "3. Start Recording",
           "description": "Once installed, you can start shaving Yaks! For a detailed rundown, watch the video below.\n",
           "button": {
+            // TODO
             "enableButton": true,
             "label": "🎥 Watch Video\n",
             "link": "TODO"
@@ -46,11 +49,8 @@
       "bottomLinks": [
         {
           "label": "![](/TryItNow/question.svg)Learn More\n",
+          // TODO
           "url": "/docs/TODO"
-        },
-        {
-          "label": "![](/TryItNow/camera.svg)Watch Video\n",
-          "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         }
       ],
       "_template": "tryItNow"
