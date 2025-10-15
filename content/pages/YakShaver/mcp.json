@@ -1,15 +1,13 @@
 {
   "seo": {
     "title": "Try the Beta for YakShaver with MCP",
-    "description": "Try the beta version of YakShaver with Model Context Protocol (MCP) integration",
-    "openGraphTitle": "Try the Beta for YakShaver with MCP",
-    "openGraphDescription": "Try the beta version of YakShaver with Model Context Protocol (MCP) integration"
+    "description": "Try the beta version of YakShaver with Model Context Protocol (MCP) integration"
   },
   "title": "Try the Beta for YakShaver with MCP",
   "pageBlocks": [
     {
       "topImage": {
-        "imgSrc": "/YakShaver/YakShaver Darkmode.png",
+        "imgSrc": "/YakShaver/yakshaver-logo.png",
         "imgWidth": 514,
         "imgHeight": 104
       },
