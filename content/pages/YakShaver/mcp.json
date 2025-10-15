@@ -1,45 +1,36 @@
 {
-  "seo": {
-    "title": "Try the Beta for YakShaver with MCP",
-    "description": "Try the beta version of YakShaver with Model Context Protocol (MCP) integration"
-  },
-  "title": "Try the Beta for YakShaver with MCP",
+  "title": "Try the YakShaver MCP Beta!",
   "pageBlocks": [
     {
-      "topImage": {
-        "imgSrc": "/YakShaver/yakshaver-logo.png",
-        "imgWidth": 514,
-        "imgHeight": 104
-      },
-      "tryItNowTitle": "Start recording with the YakShaver browser extension in 3 steps!",
+      "tryItNowTitle": "Try the YakShaver MCP Beta",
       "tryItNowCards": [
         {
           "title": "1. Download",
           "description": "Download the YakShaver Beta below\n",
-          "_comment": "TODO: Add download button"
+          "button": {
+            "enableButton": true,
+            "label": "Download\n"
+          }
         },
         {
           "title": "2. Install",
-          "description": "Once the download is complete, run the installer and follow the prompts to install YakShaver.\n",
-          "_comment": "TODO: Add download image"
+          "description": "Once the download is complete, run the installer and follow the instructions to install YakShaver.\n"
         },
         {
-          "title": "3. Start Recording",
-          "description": "Once installed, you can start shaving Yaks! For a detailed rundown, watch the video below.\n",
-          "_comment": "TODO: Add watch video button"
+          "title": "3. Shave",
+          "description": "Once installed, you can start shaving Yaks! For a detailed rundown, watch the video below\n",
+          "button": {
+            "enableButton": true,
+            "label": "Watch Video\n"
+          }
         }
       ],
       "bottomLinks": [
         {
-          "label": "![](/TryItNow/question.svg)Learn More\n",
-          "url": "/docs/TODO"
+          "label": "![](/TryItNow/question.svg)Learn More\n"
         }
       ],
       "_template": "tryItNow"
     }
-  ],
-  "pageFormatting": {
-    "backgroundColor": "black",
-    "bottomPadding": "small"
-  }
+  ]
 }
