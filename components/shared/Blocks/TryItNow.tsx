@@ -146,7 +146,7 @@ const Card = ({ card, key }: CardProps) => {
     <div
       key={key}
       className={cn(
-        "bg-ssw-charcoal flex gap-4 flex-col rounded-2xl pt-8 px-8",
+        "bg-ssw-charcoal flex gap-4 flex-col rounded-2xl py-8 px-8",
         !card.image?.imgSrc && "pb-8"
       )}
     >
@@ -168,11 +168,9 @@ const Card = ({ card, key }: CardProps) => {
         </section>
       )}
 
-      {card.button?.enableButton && <CardButton {...card.button} />}
-
       {card.image?.imgSrc && card.image?.imgWidth && card.image?.imgHeight && (
         <div
-          className="w-full mt-auto relative"
+          className="w-full my-auto relative"
           style={{
             aspectRatio: `${card.image.imgWidth}/${card.image.imgHeight}`,
           }}
@@ -193,6 +191,12 @@ const Card = ({ card, key }: CardProps) => {
             )}
         </div>
       )}
+
+      {card.button?.enableButton && 
+        <div className="mt-auto">
+          <CardButton {...card.button} />
+        </div>
+      }
     </div>
   );
 };

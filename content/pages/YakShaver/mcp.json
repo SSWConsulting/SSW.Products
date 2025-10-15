@@ -1,0 +1,63 @@
+{
+  "seo": {
+    "title": "Try the Beta for YakShaver with MCP",
+    "description": "Try the beta version of YakShaver with Model Context Protocol (MCP) integration",
+    "openGraphTitle": "Try the Beta for YakShaver with MCP",
+    "openGraphDescription": "Try the beta version of YakShaver with Model Context Protocol (MCP) integration"
+  },
+  "title": "Try the Beta for YakShaver with MCP",
+  "pageBlocks": [
+    {
+      "topImage": {
+        "imgSrc": "/YakShaver/YakShaver Darkmode.png",
+        "imgWidth": 514,
+        "imgHeight": 104
+      },
+      "tryItNowTitle": "Start recording with the YakShaver browser extension in 3 steps!",
+      "tryItNowCards": [
+        {
+          "title": "1. Download",
+          "description": "Download the YakShaver Beta below\n",
+          "button": {
+            "enableButton": true,
+            "label": "📥 Download\n",
+            "link": "TODO"
+          }
+        },
+        {
+          "title": "2. Install",
+          "description": "Once the download is complete, run the installer and follow the prompts to install YakShaver.\n",
+          "image": {
+            "imgSrc": "/Mcp/TODO.png",
+            "imgWidth": 480,
+            "imgHeight": 336
+          }
+        },
+        {
+          "title": "3. Start Recording",
+          "description": "Once installed, you can start shaving Yaks! For a detailed rundown, watch the video below.\n",
+          "button": {
+            "enableButton": true,
+            "label": "🎥 Watch Video\n",
+            "link": "TODO"
+          }
+        }
+      ],
+      "bottomLinks": [
+        {
+          "label": "![](/TryItNow/question.svg)Learn More\n",
+          "url": "/docs/TODO"
+        },
+        {
+          "label": "![](/TryItNow/camera.svg)Watch Video\n",
+          "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        }
+      ],
+      "_template": "tryItNow"
+    }
+  ],
+  "pageFormatting": {
+    "backgroundColor": "black",
+    "bottomPadding": "small"
+  }
+}
