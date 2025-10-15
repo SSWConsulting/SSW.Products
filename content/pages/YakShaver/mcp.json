@@ -18,7 +18,7 @@
         },
         {
           "title": "3. Shave",
-          "description": "Once installed, you can start shaving Yaks! For a detailed rundown, watch the video below\n",
+          "description": "Once installed, you can start shaving Yaks! For a detailed rundown, watch the video below.\n",
           "button": {
             "enableButton": true,
             "label": "Watch Video\n"
