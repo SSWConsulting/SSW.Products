@@ -1,0 +1,36 @@
+{
+  "title": "试用 YakShaver MCP 测试版！",
+  "pageBlocks": [
+    {
+      "tryItNowTitle": "试用 YakShaver MCP 测试版",
+      "tryItNowCards": [
+        {
+          "title": "1. 下载",
+          "description": "在下面下载 YakShaver 测试版\n",
+          "button": {
+            "enableButton": true,
+            "label": "下载\n"
+          }
+        },
+        {
+          "title": "2. 安装",
+          "description": "下载完成后，运行安装程序并按照说明安装 YakShaver。\n"
+        },
+        {
+          "title": "3. 剃须",
+          "description": "安装完成后，您可以开始剃除牦牛毛了！详细步骤请观看下面的视频。\n",
+          "button": {
+            "enableButton": true,
+            "label": "观看视频\n"
+          }
+        }
+      ],
+      "bottomLinks": [
+        {
+          "label": "![](/TryItNow/question.svg)了解更多\n"
+        }
+      ],
+      "_template": "tryItNow"
+    }
+  ]
+}
