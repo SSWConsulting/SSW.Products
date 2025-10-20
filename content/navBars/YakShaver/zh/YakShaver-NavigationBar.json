@@ -1,8 +1,8 @@
 {
   "Logo": "/YakShaver/YakShaver Darkmode.png",
   "imgSrc": "/yakshaver-logo.png",
-  "imgWidth": 591,
-  "imgHeight": 90,
+  "imgWidth": 536,
+  "imgHeight": 100,
   "leftNavItem": [
     {
       "label": "定价",
@@ -58,7 +58,13 @@
   ],
   "buttons": [
     {
-      "label": "免费注册",
+      "label": "门户",
+      "href": "https://portal.yakshaver.ai/",
+      "variant": "outline",
+      "_template": "buttonLink"
+    },
+    {
+      "label": "注册",
       "href": "https://portal.yakshaver.ai/",
       "icon": "/YakShaver/yakshaver-black.svg",
       "iconPosition": "left",
