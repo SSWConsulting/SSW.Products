@@ -34,11 +34,11 @@ export default function RootLayout({
             src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
           />
         )}
-        {googleTagId && <GoogleTagManager gtmId={googleTagId} />}
       </head>
       <body
         className={`min-h-screen flex-col flex ${inter.className} relative bg-gray-light`}
-      >
+        >
+        {googleTagId && <GoogleTagManager gtmId={googleTagId} />}
         <main className="overflow-clip grow">
           <NavBarServer product={params.product} locale={locale} />
           {children}
