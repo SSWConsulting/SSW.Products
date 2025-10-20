@@ -5,7 +5,6 @@ import NavBarServer from "../../components/shared/NavBarServer";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import { getLocale } from "../../utils/i18n";
 import "../globals.css";
-import { GoogleTagManager } from "@next/third-parties/google";
 
 const inter = Inter({
   weight: ["400", "600", "700"],
@@ -38,7 +37,19 @@ export default function RootLayout({
       <body
         className={`min-h-screen flex-col flex ${inter.className} relative bg-gray-light`}
         >
-        {googleTagId && <GoogleTagManager gtmId={googleTagId} />}
+        <Script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${googleTagId}');
+          `}
+        </Script>
+
         <main className="overflow-clip grow">
           <NavBarServer product={params.product} locale={locale} />
           {children}
