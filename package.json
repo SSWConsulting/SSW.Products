@@ -17,7 +17,6 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tanstack/react-query": "^5.75.7",
     "@tanstack/react-query-devtools": "^5.76.1",
-    "@next/third-parties": "^15.5.4",
     "algoliasearch": "5.24.0",
     "axios": "^1.9.0",
     "class-variance-authority": "^0.7.1",
