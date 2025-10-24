@@ -10,10 +10,10 @@
       "heroButton": {
         "label": "DOWNLOAD BRAND GUIDE",
         "iconSrc": "/svg/file-download.svg",
-        "href": "/YakShaver/YakShaver-Brand-Guide-V3.pdf",
+        "href": "/YakShaver/YakShaver-Brand-Guide-V4.pdf",
         "target": "_blank"
       },
-      "dateText": "Last updated 10th Aug 2025",
+      "dateText": "Last updated 24th Oct 2025",
       "_template": "mediaHero"
     },
     {
