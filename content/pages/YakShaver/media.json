@@ -21,7 +21,7 @@
       "gridDescription": "Download the SVG and PNG logo kit\n",
       "images": [
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-1.svg",
+          "svgSrc": "",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-1.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.png",
@@ -30,7 +30,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-2.svg",
+          "svgSrc": "",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-2.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.png",
@@ -39,7 +39,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-3.svg",
+          "svgSrc": "",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-3.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.png",
@@ -48,7 +48,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-4.svg",
+          "svgSrc": "",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-4.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.png",
@@ -57,7 +57,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-5.svg",
+          "svgSrc": "",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-5.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color.png",
@@ -66,7 +66,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-6.svg",
+          "svgSrc": "",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-6.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.png",
@@ -129,7 +129,7 @@
       "gridDescription": "The official fonts used in YakShaver is [Inter](https://fonts.google.com/specimen/Inter), a modern and versatile sans-serif typeface. Inter’s clean lines and excellent readability make it well-suited for both digital and print media, ensuring clear communication across all platforms. \n",
       "images": [
         {
-          "svgSrc": "/YakShaver/font-yak.svg",
+          "svgSrc": "/font-yak-v2.jpg",
           "pngSrc": "",
           "enableDownload": false
         }
