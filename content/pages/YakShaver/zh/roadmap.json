@@ -6,7 +6,7 @@
   "pageBlocks": [
     {
       "titleBeforeRotate": "YakShaver 路线图",
-      "byLine": "欢迎来到 YakShaver 的公开路线图！这是一个实时文档，将定期更新\n",
+      "byLine": "欢迎来到 YakShaver 的公开路线图！此路线图会定期更新\n",
       "_template": "hero"
     },
     {
@@ -18,15 +18,15 @@
         },
         {
           "title": "基于 SSW 员工反馈的核心改进",
-          "description": "我们实施了 SSW 员工识别的关键改进，提升了性能并简化了平台上的常见工作流程任务。"
+          "description": "我们实施了 SSW 员工提出的关键改进，提升了性能并简化了平台上的常见工作流程任务。"
         },
         {
           "title": "更新的网站和定价结构",
-          "description": "我们刷新了网站和定价信息，以清晰传达不同客户群体可用的功能和选项"
+          "description": "我们刷新了网站和定价信息，以清晰传达不同客户群体可用的功能和选项。"
         },
         {
           "title": "简化的客户租户设置  \t",
-          "description": "新客户租户的设置现在更简单。管理门户已改进，以简化入职流程。"
+          "description": "新客户租户的设置变得更简单。管理门户已改进，以简化入职流程。"
         }
       ],
       "_template": "Timeline"
@@ -35,20 +35,20 @@
       "title": "进行中",
       "items": [
         {
-          "title": "立即试用功能",
-          "description": "我们正在为 NDC 墨尔本参会者开发“立即试用”体验。用户可以在完全设置前体验关键功能。"
-        },
-        {
           "title": "支持 Zendesk 和 Jira 集成",
           "description": "我们正在扩展集成能力，除了 GitHub 和 Azure DevOps，还包括 Zendesk 和 Jira，使团队能够保持现有工作流程。"
         },
         {
-          "title": "额外的转录来源连接",
-          "description": "我们正在添加对 Microsoft Teams 和 Snagit 之外的更多转录来源的支持，包括 CustomGPT、Loom 和 OBS 连接。"
+          "title": "更多转录源连接",
+          "description": "我们正在增加对 Microsoft Teams 和 Snagit 之外的更多转录源的支持，包括 CustomGPT、Loom 和 OBS 连接。"
         },
         {
-          "title": "生活质量改进 \t",
+          "title": "质量改进 \t",
           "description": "我们正在实施多项用户请求的增强功能，使软件更直观，减少完成常见操作所需的步骤。"
+        },
+        {
+          "title": "MCP - 重新设计的代理工作流",
+          "description": "我们将用一个新的代理系统替换当前工作流，实现更多自动化和更好的任务管理。"
         }
       ],
       "_template": "Timeline"
@@ -57,16 +57,12 @@
       "title": "即将推出",
       "items": [
         {
-          "title": "MCP - 重新设计的代理工作流",
-          "description": "我们将用一个新的代理系统替换当前工作流，实现更多自动化和更好的任务管理"
-        },
-        {
           "title": "更多数据源选项（Excel、Active Directory、Google Cloud 等）",
-          "description": "我们正在添加对 Dynamics 以外人员数据源的支持，包括 Excel、Active Directory 和 Google Cloud。"
+          "description": "我们正在增加对 Dynamics 以外人员数据源的支持，包括 Excel、Active Directory 和 Google Cloud。"
         },
         {
           "title": "更多项目数据源选项（Excel、Salesforce 等）",
-          "description": "项目数据集成支持正在扩展到包括 Excel 和 Salesforce，使跨平台项目管理更轻松。"
+          "description": "项目数据集成支持正在扩展，涵盖 Excel 和 Salesforce，使跨平台项目管理更便捷。"
         }
       ],
       "_template": "Timeline"
