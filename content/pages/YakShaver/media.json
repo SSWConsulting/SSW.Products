@@ -21,7 +21,7 @@
       "gridDescription": "Download the SVG and PNG logo kit\n",
       "images": [
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-1.svg",
+          "svgSrc": "",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-1.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.png",
