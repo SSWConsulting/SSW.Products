@@ -48,7 +48,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-4.svg",
+          "svgSrc": "",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-4.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.png",
