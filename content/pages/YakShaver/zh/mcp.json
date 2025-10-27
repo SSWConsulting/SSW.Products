@@ -1,0 +1,46 @@
+{
+  "seo": {
+    "title": "试用 YakShaver MCP 测试版！",
+    "description": "试用 YakShaver MCP 测试版！下载、安装，立即开始剃除牦牛。"
+  },
+  "title": "试用 YakShaver MCP 测试版！",
+  "pageBlocks": [
+    {
+      "tryItNowTitle": "试用 YakShaver MCP 测试版",
+      "tryItNowCards": [
+        {
+          "title": "1. 下载",
+          "description": "在下方下载 YakShaver 测试版\n- Windows - 安装 .exe\n- Mac (darwin) - 安装 .zip",
+          "button": {
+            "enableButton": true,
+            "label": "下载\n",
+            "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest"
+          }
+        },
+        {
+          "title": "2. 安装",
+          "description": "下载完成后，运行安装程序安装 YakShaver。\n（您可能需要将应用标记为“安全”）",
+          "image": {
+            "imgSrc": "/YakShaver/download-yakshaver-desktop.png",
+            "imgWidth": 480,
+            "imgHeight": 336
+          }
+        },
+        {
+          "title": "3. 剃除",
+          "description": "安装完成后，您可以开始剃除牦牛！有关详细说明，请观看下面的视频。\n",
+          "button": {
+            "enableButton": true,
+            "label": "观看视频\n"
+          }
+        }
+      ],
+      "bottomLinks": [
+        {
+          "label": "![](/TryItNow/question.svg)了解更多\n"
+        }
+      ],
+      "_template": "tryItNow"
+    }
+  ]
+}
