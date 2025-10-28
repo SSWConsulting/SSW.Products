@@ -1,10 +1,10 @@
 {
   "seo": {
-    "title": "首页 - 几秒钟内完成完美任务",
+    "title": "几秒钟内制作完美任务",
     "description": "探索 YakShaver 的创新 AI 解决方案和见解，提升您的业务效率和增长。",
     "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}"
   },
-  "title": "YakShaver - 记录问题并让 AI 即时分配给正确的团队",
+  "title": "YakShaver - 录制问题并让 AI 即时分配给正确团队",
   "pageBlocks": [
     {
       "backgroundImageEnabled": false,
@@ -16,7 +16,7 @@
         "工单",
         "邮件"
       ],
-      "byLine": "别再浪费时间写错误报告。\n\nYakShaver AI 代理分析录音，生成任务，并立即分配给正确的团队。\n\n使用 YakShaver 节省数小时的挫败感。\n",
+      "byLine": "别浪费时间写错误报告。\n\nYakShaver AI 代理分析录音，生成任务，并立即分配给正确的团队。\n\n使用 YakShaver 节省数小时的挫败感。\n",
       "ctaRight": {
         "title": "观看视频",
         "link": "https://www.youtube.com/shorts/0TPo98R1tnI"
@@ -27,12 +27,12 @@
           "issueReportName": "尤利西斯·麦克拉伦",
           "issueReportTime": "星期一 上午9:13",
           "issueReportText": [
-            "我刚在 {TinaCloud} 遇到一个问题。当我尝试上传大于5MB的文件时，{应用程序} 完全{崩溃}了。",
-            "我使用的是最新版本的 {Chrome}。这严重影响用户功能，我将其归类为{优先级1}。",
+            "我刚在 {TinaCloud} 遇到一个问题。当我尝试上传大于5MB的文件时，{application} 完全{崩溃}了。",
+            "我使用的是最新版本的 {Chrome}。这严重影响了用户功能，我将其归类为{优先级1}。",
             "我记得 {Matt 和 Adam} 之前有类似问题。能请 {Betty} 帮我检查一下吗？"
           ],
           "issueReportSummaryTitle": "报告问题",
-          "issueReportSummarySubtitle": "YakShaver 实时录制和转录视频，处理信息以便即时分析。"
+          "issueReportSummarySubtitle": "YakShaver 实时录制并转录视频，处理信息以便即时分析。"
         },
         "rightHandSide": {
           "issueReportSummaryTitle": "问题摘要",
@@ -83,7 +83,7 @@
         {
           "AboveHeaderText": "{解决}",
           "Header": "3 - 创建任务",
-          "Description": "**YakShaver 在您喜欢的系统（Azure DevOps、GitHub）中创建任务、错误报告或功能请求**。YakShaver 也可以发送邮件。\n\n它会包含一个优秀的标题、描述和任务，以及原始视频以提供更多上下文。\n",
+          "Description": "**YakShaver 在您喜欢的系统（Azure DevOps、GitHub）中创建任务、错误报告或功能请求**。YakShaver 也可以发送邮件。\n\n它会包含一个优秀的标题、描述和任务，以及原始视频以提供额外上下文。\n",
           "Badges": [
             {
               "showTickIcon": true,
@@ -112,11 +112,11 @@
       "_template": "CardAndImage"
     },
     {
-      "badge": "由 SSW 提供技术支持",
+      "badge": "由 SSW 提供支持",
       "badgeLink": "https://ssw.com.au",
       "title": "认识您的新助手，YakShaver",
       "topLeftBox": {
-        "title": "与您喜爱的开发和协作工具协作",
+        "title": "与您喜爱的软件开发和协作工具协作",
         "icons": [
           {
             "iconImage": "/svg/Microsoft Office Teams 2018.svg",
@@ -187,7 +187,7 @@
     },
     {
       "title": "简单透明的定价",
-      "desc": "共享剃除额度。一次付费，组织内任何人都可报告问题。无座位费用——尽情剃除！",
+      "desc": "共享剃除额度。一次付费，组织内任何人都可报告问题。无座位费——尽情剃除！",
       "tiers": [
         {
           "tier": "入门",
@@ -269,7 +269,7 @@
           "url": "/pricing"
         }
       },
-      "bottomBox": "\\* 平均小时费率包括薪资、福利和间接费用。\n\n\\*\\* 我们的价值回收计算：基于客户数据，YakShaver 将问题报告时间减少90%——从每周5小时缩短到仅30分钟。\n",
+      "bottomBox": "\\* 平均小时费率包括薪资、福利和管理费用。\n\n\\*\\* 我们的价值回收计算：基于客户数据，YakShaver 将问题报告时间减少90%——从每周5小时缩短至仅30分钟。\n",
       "bottomAction": {
         "label": "完整定价详情",
         "variant": "solidWhite",
@@ -292,19 +292,19 @@
       "questions": [
         {
           "question": "YakShaver 对非技术团队来说易用吗？",
-          "answer": "绝对易用。YakShaver 的直观设计使任何人，无论技术水平如何，都能轻松报告问题并高效分配任务。"
+          "answer": "绝对易用。YakShaver 的直观设计使任何人，无论技术水平如何，都能高效报告问题和委派任务。"
         },
         {
           "question": "YakShaver 能与我现有的系统配合使用吗？",
-          "answer": "YakShaver 可以从多个系统获取您的人员和项目数据，包括 Dynamics 365、Active Directory、Salesforce，甚至是 Excel 导入！在工作项创建方面，它支持 Exchange、GitHub、Azure DevOps、Jira、Zendesk 等集成！"
+          "answer": "YakShaver 可以从多个系统拉取人员和项目数据，包括 Dynamics 365、Active Directory、Salesforce，甚至是 Excel 导入！在工作项创建方面，它支持 Exchange、GitHub、Azure DevOps、Jira、Zendesk 等集成！"
         },
         {
           "question": "YakShaver 支持屏幕录制吗？",
-          "answer": "支持，YakShaver 内置 Microsoft Teams 屏幕录制，方便在报告问题时捕捉和使用视觉信息。它还可以与独立屏幕录制工具如 Snagit 集成。"
+          "answer": "支持，YakShaver 内置 Microsoft Teams 屏幕录制，方便捕捉和使用视觉信息报告问题。它也能与独立屏幕录制工具如 Snagit 集成。"
         },
         {
           "question": "我可以用 YakShaver 报告哪些类型的问题？",
-          "answer": "您可以报告任何类型的问题！YakShaver 设计用于处理各种任务、错误或功能请求，自动将它们打包成包含相关信息的工作项，并发送给相关人员。"
+          "answer": "您可以报告任何类型的问题！YakShaver 设计用于处理各种任务、错误或功能请求，自动打包成带有相关信息的工作项并发送给相关人员。"
         },
         {
           "question": "支持哪些文件格式？",
