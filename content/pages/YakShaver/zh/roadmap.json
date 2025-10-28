@@ -22,7 +22,7 @@
         },
         {
           "title": "更新的网站和定价结构",
-          "description": "我们刷新了网站和定价信息，清晰传达了不同客户群体可用的功能和选项。"
+          "description": "我们刷新了网站和定价信息，以清晰传达不同客户群体可用的功能和选项。"
         },
         {
           "title": "简化的客户租户设置  \t",
@@ -35,20 +35,20 @@
       "title": "进行中",
       "items": [
         {
-          "title": "立即试用功能",
-          "description": "我们正在为 NDC 墨尔本参会者开发“立即试用”体验。用户可以在完全设置前体验关键功能。"
-        },
-        {
           "title": "支持 Zendesk 和 Jira 集成",
           "description": "我们正在扩展集成能力，除了 GitHub 和 Azure DevOps，还将支持 Zendesk 和 Jira，使团队能够保持现有工作流程。"
         },
         {
           "title": "更多转录源连接",
-          "description": "我们正在添加对 Microsoft Teams 和 Snagit 之外的更多转录源的支持，包括 CustomGPT、Loom 和 OBS 连接。"
+          "description": "我们正在增加对 Microsoft Teams 和 Snagit 之外的更多转录源的支持，包括 CustomGPT、Loom 和 OBS 连接。"
         },
         {
-          "title": "提升用户体验改进 \t",
+          "title": "质量改进 \t",
           "description": "我们正在实施多项用户请求的增强功能，使软件更直观，减少完成常见操作所需的步骤。"
+        },
+        {
+          "title": "MCP - 重新设计的代理工作流",
+          "description": "我们将用一个新的代理系统替换当前工作流，实现更多自动化和更好的任务管理。"
         }
       ],
       "_template": "Timeline"
@@ -56,10 +56,6 @@
     {
       "title": "即将推出",
       "items": [
-        {
-          "title": "MCP - 重新设计的代理工作流",
-          "description": "我们将用一个新的代理系统替换当前工作流，实现更多自动化和更好的任务管理。"
-        },
         {
           "title": "更多数据源选项（Excel、Active Directory、Google Cloud 等）",
           "description": "我们正在增加对 Dynamics 以外人员数据源的支持，包括 Excel、Active Directory 和 Google Cloud。"
