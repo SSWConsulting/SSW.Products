@@ -10,18 +10,18 @@
       "heroButton": {
         "label": "下载品牌指南",
         "iconSrc": "/svg/file-download.svg",
-        "href": "/YakShaver/YakShaver-Brand-Guide-V3.pdf",
+        "href": "/YakShaver/YakShaver-Brand-Guide-V4.pdf",
         "target": "_blank"
       },
-      "dateText": "最后更新于 2025年8月10日",
+      "dateText": "最后更新于 2025年10月24日",
       "_template": "mediaHero"
     },
     {
       "title": "标志",
-      "gridDescription": "下载 SVG 和 PNG 标志包\n",
+      "gridDescription": "下载 SVG 和 PNG 标志套件\n",
       "images": [
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-1.svg",
+          "svgSrc": "/YakShaver-Horizontal-Color-Darkmode-V2.svg",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-1.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Horizontal-Color-Darkmode.png",
@@ -30,7 +30,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-2.svg",
+          "svgSrc": "/YakShaver-Vertical-Darkmode-V2.svg",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-2.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color-Darkmode.png",
@@ -39,7 +39,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-3.svg",
+          "svgSrc": "/YakShaver-Vertical-White-V2.svg",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-3.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-LogoIcon-White.png",
@@ -48,7 +48,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-4.svg",
+          "svgSrc": "/YakShaver-Horinzontal-V2.svg",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-4.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-horizontal-Color.png",
@@ -57,7 +57,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-5.svg",
+          "svgSrc": "/YakShaver-Vertical-V2.svg",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-5.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Color.png",
@@ -66,7 +66,7 @@
           "enableDownload": true
         },
         {
-          "svgSrc": "/YakShaver/Icon/yak-title-icon-6.svg",
+          "svgSrc": "/YakShaver-Vertical-Dark-V2.svg",
           "svgDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.svg",
           "pngSrc": "/YakShaver/Icon/yak-title-icon-6.png",
           "pngDownloadUrl": "https://raw.githubusercontent.com/SSWConsulting/SSW.Website/refs/heads/main/public/images/company-logos/downloads/YakShaver-Vertical-Black.png",
@@ -81,7 +81,7 @@
     },
     {
       "title": "标志",
-      "gridDescription": "下载 SVG 和 PNG 标志包\n",
+      "gridDescription": "下载 SVG 和 PNG 标志套件\n",
       "images": [
         {
           "svgSrc": "/YakShaver/Icon/yak-icon-1.svg",
@@ -121,15 +121,15 @@
       "showcaseImage": "/YakShaver/background.svg",
       "downloadFile": "/YakShaver/YakShaver-Background.zip",
       "showcaseTitle": "YakShaver 渐变背景",
-      "showcaseDescription": "为了确保我们的品牌形象有效融合且不压倒观众，在任何数字或印刷媒体中，其占屏幕的比例不应超过三分之一。此平衡允许其他重要内容清晰传达，同时保持我们品牌的存在感。",
+      "showcaseDescription": "为了确保我们的品牌形象有效融合且不至于让观众感到压迫，它在任何数字或印刷媒体中应占据屏幕不超过三分之一的面积。此平衡允许其他重要内容清晰传达，同时保持我们的品牌存在感。",
       "_template": "imageShowcase"
     },
     {
       "title": "字体",
-      "gridDescription": "YakShaver 使用的官方字体是 [Inter](https://fonts.google.com/specimen/Inter)，一种现代且多功能的无衬线字体。Inter 的简洁线条和出色的可读性使其非常适合数字和印刷媒体，确保所有平台上的清晰沟通。\n",
+      "gridDescription": "YakShaver 使用的官方字体是 [Inter](https://fonts.google.com/specimen/Inter)，这是一款现代且多功能的无衬线字体。Inter 的简洁线条和出色的可读性使其非常适合数字和印刷媒体，确保所有平台上的清晰沟通。\n",
       "images": [
         {
-          "svgSrc": "/YakShaver/font-yak.svg",
+          "svgSrc": "/font-yak-v2.jpg",
           "pngSrc": "",
           "enableDownload": false
         }
