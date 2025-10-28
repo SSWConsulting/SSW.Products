@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "Try the YakShaver MCP Beta!",
+    "description": "Try the YakShaver MCP Beta! Download, install, and start shaving Yaks today."
+  },
   "title": "Try the YakShaver MCP Beta!",
   "pageBlocks": [
     {
@@ -6,15 +10,21 @@
       "tryItNowCards": [
         {
           "title": "1. Download",
-          "description": "Download the YakShaver Beta below\n",
+          "description": "Download the YakShaver Beta below\n- Windows - install the .exe\n- Mac (darwin) - install the .zip",
           "button": {
             "enableButton": true,
-            "label": "Download\n"
+            "label": "Download\n",
+            "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest"
           }
         },
         {
           "title": "2. Install",
-          "description": "Once the download is complete, run the installer and follow the instructions to install YakShaver.\n"
+          "description": "Once the download is complete, run the installer to install YakShaver.\n (You may need to mark the app as \"safe\")",
+          "image": {
+            "imgSrc": "/YakShaver/download-yakshaver-desktop.png",
+            "imgWidth": 480,
+            "imgHeight": 336
+          }
         },
         {
           "title": "3. Shave",
