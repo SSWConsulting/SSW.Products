@@ -36,7 +36,7 @@
       "items": [
         {
           "title": "支持 Zendesk 和 Jira 集成",
-          "description": "我们正在扩展集成能力，除了 GitHub 和 Azure DevOps，还包括 Zendesk 和 Jira，使团队能够保持现有工作流程。"
+          "description": "我们正在扩展集成能力，除了 GitHub 和 Azure DevOps，还将支持 Zendesk 和 Jira，使团队能够保持现有工作流程。"
         },
         {
           "title": "更多转录源连接",
