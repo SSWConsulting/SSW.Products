@@ -6,7 +6,7 @@
   "pageBlocks": [
     {
       "titleBeforeRotate": "YakShaver Roadmap",
-      "byLine": "Welcome to YakShaver's public roadmap! This is a live document and will be updated regularly\n",
+      "byLine": "Welcome to YakShaver's public roadmap! This is updated regularly\n",
       "_template": "hero"
     },
     {
@@ -35,10 +35,6 @@
       "title": "In Progress",
       "items": [
         {
-          "title": "Try It Now Feature",
-          "description": "We’re developing a \"Try It Now\" experience for NDC Melbourne attendees. This will allow users to interact with key features before committing to a full setup."
-        },
-        {
           "title": "Support for Zendesk and Jira Integration",
           "description": "We are expanding integration capabilities beyond GitHub and Azure DevOps to include Zendesk and Jira, enabling teams to maintain their existing workflows. "
         },
@@ -49,6 +45,10 @@
         {
           "title": "Quality-of-Life Improvements \t",
           "description": "We are implementing several user-requested enhancements to make the software more intuitive and reduce steps needed for common actions. "
+        },
+        {
+          "title": "MCP - Redesigned Agentic Workflow",
+          "description": "We're replacing the current workflow with a new agentic system that allows for more automation and better task management"
         }
       ],
       "_template": "Timeline"
@@ -56,10 +56,6 @@
     {
       "title": "Coming Soon",
       "items": [
-        {
-          "title": "MCP - Redesigned Agentic Workflow",
-          "description": "We're replacing the current workflow with a new agentic system that allows for more automation and better task management"
-        },
         {
           "title": "More Data Source Options (Excel, Active Directory, Google Cloud, etc.)",
           "description": "We’re adding support for people data from sources beyond Dynamics, including Excel, Active Directory, and Google Cloud."

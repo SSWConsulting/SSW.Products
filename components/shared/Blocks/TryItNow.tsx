@@ -168,7 +168,9 @@ const Card = ({ card, key }: CardProps) => {
         </section>
       )}
 
-      {card.button?.enableButton && <CardButton {...card.button} />}
+      {card.button?.enableButton && <div className="mt-auto">
+        <CardButton {...card.button} />
+        </div>}
 
       {card.image?.imgSrc && card.image?.imgWidth && card.image?.imgHeight && (
         <div
@@ -193,6 +195,7 @@ const Card = ({ card, key }: CardProps) => {
             )}
         </div>
       )}
+
     </div>
   );
 };

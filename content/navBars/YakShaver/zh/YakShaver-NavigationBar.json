@@ -58,7 +58,7 @@
   ],
   "buttons": [
     {
-      "label": "门户",
+      "label": "登录",
       "href": "https://portal.yakshaver.ai/",
       "variant": "outline",
       "_template": "buttonLink"
