@@ -1,9 +1,9 @@
 {
   "seo": {
-    "title": "About - About Us",
-    "description": "Discover YakShaver: innovative AI solutions designed to enhance productivity and streamline workflows for businesses."
+    "title": "About YakShaver - AI issue routing and task automation for teams",
+    "description": "YakShaver uses AI to simplify team workflows: record an issue, instantly route it to the right person or backlog, avoid endless emails, and stay organized. Get a 30-min demo today."
   },
-  "title": "About YakShaver - Innovative AI Solutions for Your Needs",
+  "title": "About YakShaver - AI issue routing and task automation for teams",
   "pageBlocks": [
     {
       "featureItem": [
@@ -26,7 +26,7 @@
       "backgroundColour": "#000000",
       "textColour": "#FEFEFE",
       "headline": "Talk to a YakShaver Expert",
-      "text": "Evaluating YakShaver for your project? Book a 30-minute call with a YakShaver architect!",
+      "text": "Evaluating YakShaver for your project? Book a 30-minute call with a YakShaver architect and see a demo!",
       "buttons": [
         {
           "label": "SCHEDULE A CALL",
