@@ -2,7 +2,7 @@
   "Logo": "/EagleEye/Logo.svg",
   "rightNavItem": [
     {
-      "Title": "TALK TO US",
+      "Title": "CONTACT US",
       "JotFormId": "233468468973070",
       "_template": "BookingButton"
     }
@@ -40,7 +40,7 @@
       "_template": "buttonLink"
     },
     {
-      "Title": "TALK TO US",
+      "Title": "CONTACT US",
       "JotFormId": "233468468973070",
       "variants": "outlinedWhite",
       "_template": "BookingButton"
