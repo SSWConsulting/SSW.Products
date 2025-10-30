@@ -9,7 +9,6 @@
   "pageBlocks": [
     {
       "topImage": {
-        "imgSrc": "/YakShaver/YakShaver Darkmode.png",
         "imgWidth": 514,
         "imgHeight": 104
       },
@@ -44,9 +43,9 @@
           "title": "3. Start Recording",
           "description": "Click on the YakShaver Logo ![](/TryItNow/yakshaver.svg) at the top of  your browser window, then click Start Recording.\n",
           "image": {
-            "imgSrc": "/TryItNow/yakshaver-this-tab.png",
-            "imgWidth": 480,
-            "imgHeight": 336
+            "imgSrc": "/TryItNow/yakshaver-this-tab2.png",
+            "imgWidth": 960,
+            "imgHeight": 672
           },
           "button": {
             "label": ""
