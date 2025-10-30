@@ -43,8 +43,9 @@
           "title": "3. Start Recording",
           "description": "Click on the YakShaver Logo ![](/TryItNow/yakshaver.svg) at the top of  your browser window, then click Start Recording.\n",
           "image": {
-            "imgWidth": 480,
-            "imgHeight": 336
+            "imgSrc": "/TryItNow/yakshaver-this-tab2.png",
+            "imgWidth": 960,
+            "imgHeight": 672
           },
           "button": {
             "label": ""
