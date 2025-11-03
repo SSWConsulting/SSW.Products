@@ -63,6 +63,10 @@
         {
           "title": "More Project Data Source Options (Excel, Salesforce, etc.)",
           "description": "Support for project data integration is expanding to include Excel and Salesforce, making it easier to manage projects across different platforms."
+        },
+        {
+          "title": "More Identity Providers with IdentityServer",
+          "description": "We’re implementing IdentityServer to provide seamless and secure authentication using providers such as Apple, Google, and Microsoft."
         }
       ],
       "_template": "Timeline"
