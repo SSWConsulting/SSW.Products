@@ -57,6 +57,10 @@
       "title": "Coming Soon",
       "items": [
         {
+          "title": "More Identity Providers with IdentityServer",
+          "description": "We’re implementing IdentityServer to provide seamless and secure authentication using providers such as Apple, Google, and Microsoft."
+        },
+        {
           "title": "More Data Source Options (Excel, Active Directory, Google Cloud, etc.)",
           "description": "We’re adding support for people data from sources beyond Dynamics, including Excel, Active Directory, and Google Cloud."
         },
