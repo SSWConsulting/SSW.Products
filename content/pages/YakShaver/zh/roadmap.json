@@ -22,11 +22,11 @@
         },
         {
           "title": "更新的网站和定价结构",
-          "description": "我们刷新了网站和定价信息，以清晰传达不同客户群体可用的功能和选项。"
+          "description": "我们刷新了网站和定价信息，清晰传达了不同客户群体可用的功能和选项。"
         },
         {
-          "title": "简化的客户租户设置  \t",
-          "description": "新客户租户的设置变得更简单。管理门户已改进，以简化入职流程。"
+          "title": "简化的客户端租户设置  \t",
+          "description": "新客户端租户的设置变得更简单。管理门户已改进，以简化入职流程。"
         }
       ],
       "_template": "Timeline"
@@ -36,19 +36,19 @@
       "items": [
         {
           "title": "支持 Zendesk 和 Jira 集成",
-          "description": "我们正在扩展集成能力，除了 GitHub 和 Azure DevOps，还将支持 Zendesk 和 Jira，使团队能够保持现有工作流程。"
+          "description": "我们正在扩展集成能力，除了 GitHub 和 Azure DevOps，还将包括 Zendesk 和 Jira，使团队能够保持现有工作流程。"
         },
         {
           "title": "更多转录源连接",
-          "description": "我们正在增加对 Microsoft Teams 和 Snagit 之外的更多转录源的支持，包括 CustomGPT、Loom 和 OBS 连接。"
+          "description": "我们正在添加对 Microsoft Teams 和 Snagit 之外的更多转录源的支持，包括 CustomGPT、Loom 和 OBS 连接。"
         },
         {
           "title": "质量改进 \t",
-          "description": "我们正在实施多项用户请求的增强功能，使软件更直观，减少完成常见操作所需的步骤。"
+          "description": "我们正在实施多项用户请求的增强功能，使软件更直观，并减少完成常见操作所需的步骤。"
         },
         {
           "title": "MCP - 重新设计的代理工作流",
-          "description": "我们将用一个新的代理系统替换当前工作流，实现更多自动化和更好的任务管理。"
+          "description": "我们将用新的代理系统替换当前工作流，实现更多自动化和更好的任务管理。"
         }
       ],
       "_template": "Timeline"
@@ -57,8 +57,12 @@
       "title": "即将推出",
       "items": [
         {
+          "title": "更多身份提供者支持，使用 IdentityServer",
+          "description": "我们正在实施 IdentityServer，提供使用 Apple、Google 和 Microsoft 等提供者的无缝且安全的身份验证。"
+        },
+        {
           "title": "更多数据源选项（Excel、Active Directory、Google Cloud 等）",
-          "description": "我们正在增加对 Dynamics 以外人员数据源的支持，包括 Excel、Active Directory 和 Google Cloud。"
+          "description": "我们正在添加对 Dynamics 之外人员数据源的支持，包括 Excel、Active Directory 和 Google Cloud。"
         },
         {
           "title": "更多项目数据源选项（Excel、Salesforce 等）",
