@@ -186,24 +186,26 @@ const Card = ({ card, key }: CardProps) => {
             card.image.imgSrc &&
             card.image.imgWidth &&
             card.image.imgHeight && (
-              card.image.isVideo ? (
-                <YouTubeEmbed
-                  src={card.image.imgLink || ""}
-                  placeholder={card.image.imgSrc || ""}
-                />
-              ) : (
-                <ConditionalLink href={card.image.imgLink ?? undefined}>
-                  <Image
-                    data-tina-field={tinaField(card, "image")}
-                    className="w-full absolute object-contain"
-                    src={card.image.imgSrc}
-                    aria-hidden="true"
-                    width={card.image.imgWidth}
-                    height={card.image.imgHeight}
-                    alt=""
+              <div className="absolute bottom-8 w-full">
+                {card.image.isVideo ? (
+                  <YouTubeEmbed
+                    src={card.image.imgLink || ""}
+                    placeholder={card.image.imgSrc || ""}
                   />
-                </ConditionalLink>
-              )
+                ) : (
+                  <ConditionalLink href={card.image.imgLink ?? undefined}>
+                    <Image
+                      data-tina-field={tinaField(card, "image")}
+                      className="w-full object-contain"
+                      src={card.image.imgSrc}
+                      aria-hidden="true"
+                      width={card.image.imgWidth}
+                      height={card.image.imgHeight}
+                      alt=""
+                    />
+                  </ConditionalLink>
+                )}
+              </div>
             )}
         </div>
       )}
