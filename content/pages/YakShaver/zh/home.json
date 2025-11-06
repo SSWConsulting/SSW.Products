@@ -8,8 +8,8 @@
   "pageBlocks": [
     {
       "backgroundImageEnabled": false,
-      "titleBeforeRotate": "秒内制作完美的",
-      "titleAfterRotate": "",
+      "titleBeforeRotate": "快速制作完美的",
+      "titleAfterRotate": "仅需几秒",
       "rotatingWords": [
         "PBI",
         "任务",
@@ -32,7 +32,7 @@
             "我记得 {Matt 和 Adam} 之前遇到过类似问题。能请 {Betty} 帮我检查一下吗？"
           ],
           "issueReportSummaryTitle": "报告问题",
-          "issueReportSummarySubtitle": "YakShaver实时录制并转录视频，处理信息以便即时分析。"
+          "issueReportSummarySubtitle": "YakShaver 实时录制和转录视频，处理信息以便即时分析。"
         },
         "rightHandSide": {
           "issueReportSummaryTitle": "问题摘要",
@@ -42,7 +42,7 @@
       "_template": "hero"
     },
     {
-      "ParentContainerTitle": "YakShaver的工作原理",
+      "ParentContainerTitle": "YakShaver 的工作原理",
       "ParentContainerDescription": "",
       "CardAndImageItem": [
         {
@@ -75,15 +75,15 @@
         },
         {
           "AboveHeaderText": "{剃除}",
-          "Header": "2 - YakShaver接管",
-          "Description": "YakShaver观看您的视频，将您说的话转成文本，并理解发生了什么。\n",
+          "Header": "2 - YakShaver 接管",
+          "Description": "YakShaver 观看您的视频，将您说的话转成文本，并理解发生了什么。\n",
           "media": "/Browser2.png",
           "textOnLeft": true
         },
         {
           "AboveHeaderText": "{解决}",
           "Header": "3 - 创建任务",
-          "Description": "**YakShaver 在您喜欢的系统中创建任务、错误报告或功能请求**（Azure DevOps、GitHub）。YakShaver 还可以发送邮件。\n\n它会包含一个优秀的标题、描述和任务，以及原始视频以提供更多上下文。\n",
+          "Description": "**YakShaver 在您喜欢的系统中创建任务、错误报告或功能请求**（Azure DevOps、GitHub）。YakShaver 也可以发送邮件。\n\n它会包含一个优秀的标题、描述和任务，以及原始视频以提供更多上下文。\n",
           "Badges": [
             {
               "showTickIcon": true,
@@ -116,40 +116,40 @@
       "badgeLink": "https://ssw.com.au",
       "title": "认识您的新助手，YakShaver",
       "topLeftBox": {
-        "title": "与您喜爱的软件开发和协作工具协作",
+        "title": "与您喜爱的开发和协作工具无缝协作",
         "icons": [
           {
             "iconImage": "/svg/Microsoft Office Teams 2018.svg",
             "iconLink": "/docs/recording-work-item-teams",
-            "iconLinkTitle": "设置YakShaver与Microsoft Teams集成",
+            "iconLinkTitle": "设置 YakShaver 与 Microsoft Teams 集成",
             "iconToolTipText": "Microsoft Teams"
           },
           {
             "iconImage": "/SSW Product Sites.svg",
             "iconLink": "/docs/recording-work-item-snagit",
-            "iconLinkTitle": "设置YakShaver与Snagit集成",
+            "iconLinkTitle": "设置 YakShaver 与 Snagit 集成",
             "iconToolTipText": "Snagit"
           },
           {
             "iconImage": "/svg/devops.svg",
             "iconLink": "/docs/add-azure-devops-projects",
-            "iconLinkTitle": "设置YakShaver与Azure DevOps集成",
+            "iconLinkTitle": "设置 YakShaver 与 Azure DevOps 集成",
             "iconToolTipText": "Azure DevOps"
           },
           {
             "iconImage": "/svg/github-mark-white.svg",
             "iconLink": "/docs/connect-your-github-account",
-            "iconLinkTitle": "设置YakShaver与GitHub集成",
+            "iconLinkTitle": "设置 YakShaver 与 GitHub 集成",
             "iconToolTipText": "GitHub"
           }
         ]
       },
       "topRightBox": {
-        "title": "实时PBI",
-        "description": "当PBI被创建、分配或需要跟进时，立即保持更新"
+        "title": "实时 PBI",
+        "description": "当 PBI 被创建、分配或需要跟进时，立即保持更新"
       },
       "counterBox1": {
-        "title": "剃除的 Yaks 数",
+        "title": "剃除的 Yaks 数量",
         "counterMetric": "YakShaved"
       },
       "counterBox2": {
@@ -161,7 +161,7 @@
       },
       "bottomRightBox": {
         "title": "自动任务创建：从想法到行动",
-        "description": "利用生成式AI的自动化力量，无缝将视频、音频和屏幕共享转换为可执行的产品待办事项",
+        "description": "利用生成式 AI 的自动化力量，无缝将视频、音频和屏幕共享转换为可执行的产品待办事项",
         "inputItem": [
           {
             "name": "视频",
@@ -187,7 +187,7 @@
     },
     {
       "title": "简单透明的定价",
-      "desc": "共享剃除额度。一次付费，组织内任何人都可以报告问题。零按座位收费——尽情剃除！",
+      "desc": "共享剃除额度。一次付费，组织内任何人都可以报告问题。零按席位收费——尽情剃除！",
       "tiers": [
         {
           "tier": "入门",
@@ -269,7 +269,7 @@
           "url": "/pricing"
         }
       },
-      "bottomBox": "\\* 平均小时费率包括薪资、福利和间接费用。\n\n\\*\\* 我们的价值回收计算：基于客户数据，YakShaver 将问题报告时间减少了 90%——从每周 5 小时缩短到仅 30 分钟。\n",
+      "bottomBox": "\\* 平均小时费率包括薪资、福利和间接费用。\n\n\\** 我们的价值回收计算：基于客户数据，YakShaver 将问题报告时间减少了 90%——从每周 5 小时缩短到仅 30 分钟。\n",
       "bottomAction": {
         "label": "完整定价详情",
         "variant": "solidWhite",
@@ -279,7 +279,7 @@
       "_template": "calculator"
     },
     {
-      "altText": "制作完美的PBI | YakShaver",
+      "altText": "制作完美的 PBI | YakShaver",
       "title": "想了解更多？",
       "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
       "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
@@ -292,11 +292,11 @@
       "questions": [
         {
           "question": "YakShaver 对非技术团队来说易用吗？",
-          "answer": "绝对易用。YakShaver 的直观设计使任何人，无论技术水平如何，都能轻松报告问题并高效委派任务。"
+          "answer": "绝对易用。YakShaver 的直观设计使任何人，无论技术水平如何，都能高效报告问题和委派任务。"
         },
         {
           "question": "YakShaver 能与我现有的系统配合使用吗？",
-          "answer": "YakShaver 可以从多个系统中提取您的人员和项目数据，包括 Dynamics 365、Active Directory、Salesforce，甚至只是 Excel 导入！在工作项创建方面，它支持 Exchange、GitHub、Azure DevOps、Jira、Zendesk 等集成！"
+          "answer": "YakShaver 可以从多个系统中获取您的人员和项目数据，包括 Dynamics 365、Active Directory、Salesforce，甚至是 Excel 导入！在工作项创建方面，它支持 Exchange、GitHub、Azure DevOps、Jira、Zendesk 等集成！"
         },
         {
           "question": "YakShaver 支持屏幕录制吗？",
@@ -304,11 +304,11 @@
         },
         {
           "question": "我可以用 YakShaver 报告哪些类型的问题？",
-          "answer": "您可以报告任何类型的问题！YakShaver 设计用于处理各种任务、错误或功能请求，并自动将它们打包成带有相关信息的工作项，发送给相关人员。"
+          "answer": "您可以报告任何类型的问题！YakShaver 设计用于处理各种任务、错误或功能请求，并自动将它们打包成包含相关信息的工作项，发送给相关人员。"
         },
         {
           "question": "支持哪些文件格式？",
-          "answer": "目前，YakShaver支持.mp4和.mov视频文件格式。"
+          "answer": "目前，YakShaver 支持 MP4 和 MOV 视频文件。"
         }
       ],
       "_template": "faq"
