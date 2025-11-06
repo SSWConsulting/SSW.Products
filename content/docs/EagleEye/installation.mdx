@@ -1,0 +1,212 @@
+---
+seo:
+  title: Installation
+  description: Learn how to install EagleEye from Azure Marketplace.
+title: Installation
+date: '2025-07-15T13:00:00.000Z'
+---
+
+## Overview
+
+SSW EagleEye is an AI-powered email management solution that helps organizations categorize and process emails automatically using Azure OpenAI. This guide will walk you through the installation process from Azure Marketplace.
+
+## Prerequisites
+
+Before starting the installation, ensure you have:
+
+* **Azure Subscription** with Owner permissions
+* **Azure AD Tenant** with Global Administrator or Application Administrator privileges
+* **Azure OpenAI** quota available in your subscription
+* **Power BI** workspace (optional, for reporting)
+* **Custom domain** and DNS zone in Azure (optional)
+
+## Installation Process
+
+### Phase 1: Deploy from Azure Marketplace
+
+#### Step 1: Access Azure Marketplace
+
+1. Go to [Azure Marketplace](https://azuremarketplace.microsoft.com)
+2. Search for **"SSW EagleEye"**
+3. Click on **SSW EagleEye** in the search results
+4. Click **Get It Now**
+
+#### Step 2: Configure Application Settings
+
+Follow the deployment wizard with these configuration steps:
+
+##### 2.1 Basics
+
+* **Resource Group**: Select an existing resource group or create a new one
+* **Region**: Choose your preferred Azure region
+* **Application Name**: Enter a unique name for your application
+
+![Basics](/EagleEye/basics.png)
+
+##### 2.2 Application Configuration
+
+* **Project Name**: Unique prefix for all resources
+* **Environment**: Select `production` or `staging`
+
+![Application Configuration](/EagleEye/application-configuration.png)
+
+##### 2.3 Azure AD Configuration
+
+* **Azure Tenant ID**: Your Azure AD tenant ID
+* **Azure Group Name**: Enter the Azure AD group name for email processing
+
+![Azure AD Configuration](/EagleEye/azure-ad-configuration.png)
+
+##### 2.4 App Registration Configuration
+
+You can select existing app registrations or create new ones during this step:
+
+* **SSW\.EagleEye App Registration**: Select the Engine app registration and enter the client secret
+* **SSW\.EagleEye.Api App Registration**: Select the API app registration and enter the client secret
+* **API Scope URL**: Enter the full scope URL from the API app registration
+* **SSW\.EagleEye.Portal App Registration**: Select the Portal app registration and enter the client secret
+
+**Note**: If you don't have existing app registrations, you can create them during deployment. Refer to the **App Registration Creation Guide** section below.
+
+![App Registration Configuration](/EagleEye/app-registration-configuration.png)
+
+##### 2.5 Database Configuration
+
+* **Database Pricing Tier**: Select appropriate tier (Basic, S0, S1, S2)
+* **Database Users**: Configure three database users:
+  * Admin user (full access)
+  * ReadWrite user (read/write access)
+  * ReadOnly user (read-only access)
+
+![Database Configuration](/EagleEye/database-configuration.png)
+
+##### 2.6 Azure OpenAI Configuration
+
+* **Location**: Select Azure region (currently East US)
+* **Model**: Choose GPT-4.1 Mini or GPT-4o Mini
+* **Capacity**: Set tokens per minute (verify your quota first)
+
+![Azure OpenAI Configuration](/EagleEye/azure-openai-configuration.png)
+
+#### Step 3: Review and Deploy
+
+1. Review all configuration settings
+2. Click **Create** to start deployment
+3. Monitor deployment progress in the Azure Portal
+4. Deployment typically takes 15-30 minutes
+
+### Phase 2: Post-Deployment Configuration
+
+#### Step 4: Configure Portal Frontend Redirect URL
+
+After deployment completes, you need to configure the authentication redirect URL:
+
+1. Go to **Resource Groups** > **\[your-resource-group]** > **Container Apps**
+2. Find the Portal container app (e.g., `ca-nextjs-xxxxxx`)
+3. Copy the **Application URL** (e.g., `https://ca-nextjs-4d33i5xxemxsu.happyfield-d167da8e.australiaeast.azurecontainerapps.io`)
+4. Go to **Azure AD** > **App registrations** > **SSW\.EagleEye.Portal**
+5. Go to **Authentication** > **Add a platform** > **Web**
+6. Add redirect URI: `[Application URL]/api/auth/callback/azure-ad`
+   * Example: `https://ca-nextjs-4d33i5xxemxsu.happyfield-d167da8e.australiaeast.azurecontainerapps.io/api/auth/callback/azure-ad`
+7. Click **Save**
+
+#### Step 5: Verify Deployment
+
+1. **Access the Portal**: Navigate to the Portal container app URL
+2. **Test Authentication**: Sign in with your Azure AD credentials
+3. **Check API Connectivity**: Verify the Portal can communicate with the API
+4. **Test Email Processing**: Run a manual job to categorize emails
+
+## Architecture Overview
+
+The deployed solution includes:
+
+* **Container Apps Environment**: Hosting the API, CLI, and Portal
+* **Azure SQL Database**: Data storage with configured user access
+* **Azure OpenAI**: AI processing for email categorization
+* **Key Vault**: Secure storage of secrets and configurations
+* **Application Insights**: Monitoring and telemetry
+* **Container Registry**: Docker image storage
+
+## Next Steps
+
+After successful deployment:
+
+1. Configure Email Tags
+2. Set Up Power BI
+
+## App Registration Creation Guide
+
+You need the following 3 app registrations for EagleEye:
+
+### Engine App Registration (SSW\.EagleEye)
+
+This app registration is used by the Engine CLI and Portal API to access Microsoft Graph.
+
+1. Go to **Azure Portal** > **Azure Active Directory** > **App registrations**
+2. Click **New registration**
+3. Name: `SSW.EagleEye`
+4. Supported account types: **Accounts in this organizational directory only**
+5. Click **Register**
+
+**Configure API Permissions:**
+
+1. Go to **API permissions** > **Add a permission**
+2. Select **Microsoft Graph** > **Application permissions**
+3. Add the following permissions:
+   * `GroupMember.Read.All`
+   * `Mail.Read`
+4. Click **Grant admin consent**
+
+**Create Client Secret:**
+
+1. Go to **Certificates & secrets** > **New client secret**
+2. Add description: `EagleEye Engine and API Secret`
+3. Select expiration period
+4. Click **Add**
+5. **Save the secret value** - you'll need this during deployment
+
+### Portal Backend App Registration (SSW\.EagleEye.Api)
+
+This app registration exposes an API that the Portal frontend will call.
+
+1. Create new app registration named `SSW.EagleEye.Api`
+2. Go to **Expose an API** > **Add a scope**
+3. Accept the default Application ID URI or customize it
+4. Configure the scope:
+   * **Scope name**: `access_as_user`
+   * **Admin consent display name**: `Access SSW EagleEye as user`
+   * **Admin consent description**: `Allow the application to access SSW EagleEye on behalf of the signed-in user`
+5. Click **Add scope**
+6. **Save the full scope URL** (e.g., `api://xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/access_as_user`) - you'll need this during deployment
+
+**Create Client Secret:**
+
+1. Go to **Certificates & secrets** > **New client secret**
+2. Add description: `EagleEye API Secret`
+3. Select expiration period
+4. Click **Add**
+5. **Save the secret value** - you'll need this during deployment
+
+### Portal Frontend App Registration (SSW\.EagleEye.Portal)
+
+This app registration is used by the Portal web application for user authentication.
+
+1. Create new app registration named `SSW.EagleEye.Portal`
+2. Go to **API permissions** > **Add a permission**
+3. Select **My APIs** > **SSW\.EagleEye.Api**
+4. Select **Delegated permissions** > **access\_as\_user**
+5. Click **Add permissions**
+6. Click **Grant admin consent**
+
+**Create Client Secret:**
+
+1. Go to **Certificates & secrets** > **New client secret**
+2. Add description: `EagleEye Portal Secret`
+3. Select expiration period
+4. Click **Add**
+5. **Save the secret value** - you'll need this during deployment
+
+## References
+
+* [Azure Marketplace overview](https://learn.microsoft.com/en-us/marketplace/azure-marketplace-overview)

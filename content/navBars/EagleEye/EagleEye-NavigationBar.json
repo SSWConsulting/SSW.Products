@@ -1,14 +1,16 @@
 {
   "Logo": "/EagleEye/Logo.svg",
+  "rightNavItem": [
+    {
+      "Title": "CONTACT US",
+      "JotFormId": "233468468973070",
+      "_template": "BookingButton"
+    }
+  ],
   "imgSrc": "/EagleEye/Logo.svg",
   "imgWidth": 125,
   "imgHeight": 22,
   "leftNavItem": [
-    {
-      "label": "Blog",
-      "href": "/blog",
-      "_template": "stringItem"
-    },
     {
       "label": "Docs",
       "href": "/docs",
@@ -20,15 +22,27 @@
       "_template": "stringItem"
     },
     {
+      "label": "Pricing",
+      "href": "/pricing",
+      "_template": "stringItem"
+    },
+    {
       "label": "Videos",
       "href": "https://www.youtube.com/@SSWEagleEye",
       "_template": "stringItem"
     }
   ],
-  "rightNavItem": [
+  "buttons": [
     {
-      "Title": "TALK TO US",
+      "label": "Portal",
+      "href": "https://portal.ssweagleeye.com",
+      "variant": "outline",
+      "_template": "buttonLink"
+    },
+    {
+      "Title": "CONTACT US",
       "JotFormId": "233468468973070",
+      "variants": "outlinedWhite",
       "_template": "BookingButton"
     }
   ]

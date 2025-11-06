@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
 import { createContext, ReactNode, useContext } from "react";
 
 import { tinaField } from "tinacms/dist/react";
@@ -13,6 +13,8 @@ import {
 } from "../../../tina/__generated__/types";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
+import Link from "@tina/tinamarkdownStyles/Link";
+import { YouTubeEmbed } from "../YouTubeEmbed";
 
 export type TryItNowProps = RemoveTinaMetadata<PagesPageBlocksTryItNow>;
 
@@ -28,6 +30,7 @@ const components = {
       />
     </span>
   ),
+  a: (props: any) => Link(props),
 };
 
 export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
@@ -84,14 +87,14 @@ export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
               return (
                 <>
                   {link?.url ? (
-                    <Link
+                    <NextLink
                       target="_blank"
                       {...props}
                       className={cn(className, "hover:underline")}
                       href={link.url}
                     >
                       {children}
-                    </Link>
+                    </NextLink>
                   ) : (
                     <span {...props} className={className}>
                       {children}
@@ -166,7 +169,11 @@ const Card = ({ card, key }: CardProps) => {
         </section>
       )}
 
-      {card.button?.enableButton && <CardButton {...card.button} />}
+      {card.button?.enableButton &&
+        <div className="mt-auto">
+          <CardButton {...card.button} />
+        </div>
+      }
 
       {card.image?.imgSrc && card.image?.imgWidth && card.image?.imgHeight && (
         <div
@@ -179,19 +186,41 @@ const Card = ({ card, key }: CardProps) => {
             card.image.imgSrc &&
             card.image.imgWidth &&
             card.image.imgHeight && (
-              <Image
-                data-tina-field={tinaField(card, "image")}
-                className="bottom-0 w-full absolute object-contain"
-                src={card.image.imgSrc}
-                aria-hidden="true"
-                width={card.image.imgWidth}
-                height={card.image.imgHeight}
-                alt={""}
-              />
+              <div className="absolute bottom-8 w-full">
+                {card.image.isVideo ? (
+                  <YouTubeEmbed
+                    src={card.image.imgLink || ""}
+                    placeholder={card.image.imgSrc || ""}
+                  />
+                ) : (
+                  <ConditionalLink href={card.image.imgLink ?? undefined}>
+                    <Image
+                      data-tina-field={tinaField(card, "image")}
+                      className="w-full object-contain"
+                      src={card.image.imgSrc}
+                      aria-hidden="true"
+                      width={card.image.imgWidth}
+                      height={card.image.imgHeight}
+                      alt=""
+                    />
+                  </ConditionalLink>
+                )}
+              </div>
             )}
         </div>
       )}
+
     </div>
+  );
+};
+
+const ConditionalLink = ({ href, children }: { href?: string | null; children: React.ReactNode;}) => {
+  return href ? (
+    <NextLink href={href} target="_blank" rel="noopener noreferrer">
+      {children}
+    </NextLink>
+  ) : (
+    <>{children}</>
   );
 };
 
@@ -203,13 +232,7 @@ const CardButton = (button: CardButtonProps) => {
     children: ReactNode;
     button: CardButtonProps;
   }) => {
-    return button.link ? (
-      <Link target="_blank" href={button.link}>
-        {children}
-      </Link>
-    ) : (
-      <>{children}</>
-    );
+    return ConditionalLink({ href: button.link, children });
   };
   return (
     <WrapperComponent button={button}>

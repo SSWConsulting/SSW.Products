@@ -1,6 +1,6 @@
 {
   "seo": {
-    "title": "YakShaver developer certifications",
+    "title": "Developer Certifications",
     "description": "Earn a YakShaver Developer Credly Badge for LinkedIn. The badge shows that you're a YakShaver certified developer!"
   },
   "title": "Professional YakShaver Certification",
@@ -9,10 +9,10 @@
       "featureItem": [
         {
           "headline": "Become a Chief Yak Officer",
-          "text": "We recommend that each organization have one (or multiple!) certified Chief Yak Officers (CYO). Each time someone in your organization completes the below steps and receives a certification, your organization will receive 50 credits (valued at $25).\n",
+          "text": "We recommend that each organization have at least one certified Chief Yak Officer (CYO). Each time someone in your organization is certified, the organization will receive 50 credits (valued at $25 USD).\n",
           "media": [
             {
-              "image": "/YakShaver/YakShaver-Admin-Credly-Badge%20(1).png",
+              "image": "/YakShaver/YakShaver-Chief-Yak-Officer-Credly-Badge.png",
               "_template": "image"
             }
           ]
@@ -22,7 +22,7 @@
     },
     {
       "textAlign": "Left",
-      "body": "### You will need to set up YakShaver, understand the best practices, and do a test Shave in which you answer some questions to verify your understanding.\n\n1\\. Join [YakShaver's Discord channel](https://discord.gg/Jp9dyxKFjR) - Leave a message on the #introductions:\n\n* Hi, I am trying out YakShaver for {{ TYPE OF PROJECT }}\n\n2\\. In your [YakShaver portal](https://portal.yakshaver.ai/), add a project called 'Northwind' and set the backlog to this public GitHub repo: [https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n\n* Tip: Check out the Shaving [best practices](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions)\n\n3\\. Set up a [Windows or Mac screenshot tool](https://yakshaver.ai/docs/recording-work-item-snipping-tool) by following the docs.\\\nNote: This gives you access to keyboard shortcuts\n\n4. Use YakShaver - do a Shave into the 'Northwind' project. In your recording:\n\n* Show the project's location in the portal, and its backlog\n* Demonstrate how you have set up your screen capture tool, and where the videos will go after being recorded\n* Explain why you must verbally mention the destination project and why you can't just rely on the screen\n* Scenario: A user complains to you that after recording in Teams, they have received no notification from the Yakshaver bot. What is your course of action?\n* Scenario: A user reports that their Shave went into the wrong backlog. How do you fix this and educate them to avoid the same mistake in the future?\n* Feedback: What is your opinion on YakShaver and what feedback would you like to give the team?\n\n5. We will review your video, and if successful you will receive a badge from [Credly](https://info.credly.com/).\n",
+      "body": "### You will need to set up YakShaver, understand the best practices, and do a test Shave in which you answer some questions to verify your understanding.\n\n1\\. Follow the [docs](https://yakshaver.ai/docs/support) to join YakShaver's Discord channel.\n\n2\\. In your [YakShaver portal](https://portal.yakshaver.ai/), add a project called 'Northwind' and set the backlog to this GitHub repo: [https://github.com/SSWConsulting/SSW.YakShaver.Playground](https://github.com/SSWConsulting/SSW.YakShaver.Playground)\n\n3\\. Check out the Shaving [best practices](https://yakshaver.ai/docs/user-mention-guidelines-in-work-item-descriptions).\n\n4\\. Set up a [Windows or Mac screenshot tool](https://yakshaver.ai/docs/recording-work-item-snipping-tool) by following the docs.\\\nNote: This gives you access to keyboard shortcuts\n\n5\\. Do a normal Shave - go to [northwind365.com](https://northwind365.com/) and report that the size of the headings is too small.\n\n6\\. Do an unorthodox Shave into the 'Northwind' project. In your recording:\n\n* Show the project's location in the portal, and its backlog\n* Demonstrate how you have set up your screen capture tool, and where the videos will go after being recorded\n* Explain why you must verbally mention the project and why you can't just rely on the screen\n* Scenario A - Imagine a user complains to you that after recording in Teams, they have received no notification from the YakShaver bot. What is your course of action?\n* Scenario B - A user reports that their Shave went into the wrong backlog. How do you educate them to avoid the same mistake in the future?\n* Give a mark /10 for YakShaver\n* What feedback would you like to give the team?\n\n1. Forward your YakShaver notification email to [support@yakshaver.ai](mailto:support@yakshaver.com.au?cc=sswmarketing@ssw.com.au\\&subject=Chief%20Yak%20Officer%20-%20I%20haven't%20received%20my%20certification.\\&body=Hello%20YakShaver%20team%2C%0AIt%20has%20been%20%7B%7B%20NUMBER%20%7D%7D%20days%20since%20I%20completed%20the%20certification%20steps.%0A%0A1.%20Please%20investigate%20why%20I%20haven't%20received%20my%20certification%20yet.).\n\n7\\. We will review your video, and if successful you will receive a badge from [Credly](https://info.credly.com/).\n",
       "_template": "richText"
     },
     {

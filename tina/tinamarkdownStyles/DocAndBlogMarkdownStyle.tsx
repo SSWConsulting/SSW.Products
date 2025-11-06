@@ -3,18 +3,29 @@ import Image from "next/image";
 import { Components } from "tinacms/dist/rich-text";
 
 import Link from "./Link";
+import { ImageEmbed } from "@comps/shared/Blocks/ImageEmbed";
 export const DocAndBlogMarkdownStyle: Components<{
-  Youtube: { thumbnail?: string; externalVideoLink?: string };
+  Youtube: { thumbnail?: string; externalVideoLink?: string; size?: string };
+  imageEmbed: { src?: string; alt?: string; size?: string; showBorder?: boolean
+  };
+
 }> = {
-  Youtube: (props) => (
-    <div className="youtube-container">
-      <YouTubeEmbed
-        className="w-[560px] h-[315px]"
-        src={props.externalVideoLink}
-        placeholder={props.thumbnail}
-      />
-    </div>
-  ),
+  Youtube: (props) => {
+    let sizeClass = "w-full h-auto max-w-[560px]";
+    if (props.size === "large") {
+      sizeClass = "w-full h-auto max-w-[800px]";
+    }
+    return (
+      <div className="youtube-container mb-2">
+        <YouTubeEmbed
+          className={sizeClass}
+          src={props.externalVideoLink}
+          placeholder={props.thumbnail}
+        />
+      </div>
+    );
+  },
+  imageEmbed: (props) => <ImageEmbed data={props} />,
   p: (props) => <p className="text-base font-light mb-4">{props?.children}</p>,
 
   h1: (props) => (
@@ -31,6 +42,11 @@ export const DocAndBlogMarkdownStyle: Components<{
 
   h4: (props) => (
     <h4 className="text-lg font-semibold mb-3 mt-6">{props?.children}</h4>
+  ),
+  // @ts-ignore - TODO: remove tsignore after typescript definitions for blockquotes are fixed 
+  // https://github.com/tinacms/tinacms/pull/6083
+  blockquote: (props) => (
+    <blockquote className="p-4 my-4 border-s-4 border-white/20">{props?.children}</blockquote>
   ),
 
   ol: (props) => (

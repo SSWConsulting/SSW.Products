@@ -1,0 +1,55 @@
+---
+seo:
+  title: AI with mention tags
+title: AI with mentions tags
+date: '2025-07-15T22:00:00.000Z'
+---
+
+AI with Mentions tags are the most sophisticated type, combining AI analysis with the ability to identify and extract specific people mentioned in the email content.
+
+## How to create an AI with mentions tag
+
+1. **Basic information**
+   * Same as other tag types
+   * Tag Type: Select "🤖 AI @Mentions"
+2. **Rules configuration**
+   * Similar to other tag types
+   * Used as initial filters for the AI processing
+3. **Checking prompt**
+   * Required for initial validation
+   * Determines if the tag should be applied
+4. **Extracting prompt**
+   * Required for AI with Mentions tags
+   * Instructs the AI how to identify and extract people mentioned in the email
+   * Must specify the expected response format:
+
+```json
+{
+  "Result": ["Full Name1", "Full Name2", ...],
+    "ConfidencePercentage": XX
+}
+```
+
+5\. **Example prompt:**
+
+```
+ Identify who checked this email.
+ Look for phrases like "(Checked by XXX)" or similar patterns.
+  Return the full names of people who checked the email.
+```
+
+6\. **Extract names options**
+
+* "Extract names from everyone" option:
+  * When enabled: AI will look for names throughout the entire email
+  * When disabled: AI will only look for names in the recipients list
+
+## Example
+
+Here is an example of a prompt that we use to scan emails that were checked by someone else.
+
+Learn more on [Do you use 'Checked by xxx'?](https://www.ssw.com.au/rules/checked-by-xxx/)
+
+Explore [EagleEye Tags](https://portal.ssweagleeye.com/tags).
+
+![](/EagleEye/ai-mention-tag-example.png)**Figure: Example of an AI mentions prompt for the "Checked By" tag**

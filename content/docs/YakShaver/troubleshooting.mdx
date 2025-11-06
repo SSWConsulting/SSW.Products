@@ -1,0 +1,50 @@
+---
+seo:
+  title: Troubleshooting
+title: YakShaver Failed to Create a PBI
+date: '2025-07-17T14:00:00.000Z'
+---
+
+If a user has done a recording, but YakShaver remains silent - continue down these steps until the issue is resolved.
+
+## 1. Test if YakShaver is alive
+
+* A. Run the `help` command. This checks if the YakShaver bot is responding
+
+![yakshaver help response](/YakShaver/Docs/yakshaver-help.jpg)**Figure: this means YakShaver is responding 🟢**
+
+## 2. If YakShaver doesn't respond
+
+* A. Check [YakShaver's health](https://api.yakshaver.ai/health)
+* B. If YakShaver is not healthy, rest assured the team is already aware and it will be back online shortly. Feel free to email us to confirm.
+
+![](/YakShaver/Docs/yakshaver-healthy.jpg)
+
+Figure: YakShaver is ‘healthy’ 🟢
+
+## 3. If Yakshaver is healthy
+
+* A. Navigate to **[YakShaver Portal](https://portal.yakshaver.ai) | My Shaves**
+* B. Check the status of your recent shave and re-run (if available).
+  This can happen when the Shave is pending because the user has not answered a question from the bot (like which project backlog to use).
+* C. If your recent shave does not appear (or you cannot re-run it), continue to step 4
+
+## 4. If the above steps haven't worked
+
+#### If recorded through Teams
+
+* A. Find the recording file in the OneDrive folder, then duplicate the file in the same folder. This will trigger a new shave
+* B. If the recording file does not exist, record a new video in Teams (restart from the beginning). If the issue persists, try another recording tool or contact [YakShaver support](https://yakshaver.ai/docs/support)
+
+#### If recorded through a supported 3rd party tool
+
+* C. Find the recording file in the OneDrive folder
+* D. If the video does not exist, check the recording tool is configured properly. See: [https://yakshaver.ai/docs#Supported-Tools](https://yakshaver.ai/docs#Supported-Tools)
+* E. If the video exists, check if the OneDrive service is turned on. If so, go to step 4a above
+* F. If OneDrive is off, turn it on and YakShaver will pick up the new video
+
+![](/image%20\(17\).png)
+
+Figure: The blue icon and ‘Up to date’ indicate good news 🟢
+
+## 5. Seek out community support in [Discord](https://discord.gg/Jp9dyxKFjR) or contact [YakShaver support](https://yakshaver.ai/docs/support)

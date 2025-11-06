@@ -8,7 +8,8 @@ export const seoInformation = {
     {
       type: "string",
       label: "Meta - Title",
-      description: "Recommended limit of 70 characters",
+      description:
+        "Warning: This will always include the Product Name Prefixed. Recommended limit of 70 characters",
       name: "title",
       ui: {
         validate: (value: string) => {
@@ -56,11 +57,11 @@ export const seoInformation = {
       description: "Recommended size of 1200x630px",
     },
     {
-      name: 'googleStructuredData',
-      label: 'someJsonField',
-      type: 'string',
-      ui: { component: 'textarea'},
-      description: '⚠️ DO NOT TOUCH IF YOU DONT KNOW WHAT THIS IS'
+      name: "googleStructuredData",
+      label: "someJsonField",
+      type: "string",
+      ui: { component: "textarea" },
+      description: "⚠️ DO NOT TOUCH IF YOU DONT KNOW WHAT THIS IS",
     },
     // TODO: Reimplement when we know which type of Structured Data we want
     // {

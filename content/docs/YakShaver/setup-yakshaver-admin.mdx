@@ -1,0 +1,62 @@
+---
+seo:
+  title: Setting up YakShaver for your Organisation
+title: Setting up YakShaver for your Organisation
+date: '2025-08-11T14:00:00.000Z'
+---
+
+Getting YakShaver up and running for your organization is straightforward with our setup wizard! Check out the video below and review the required permissions to ensure a seamless setup process.
+
+<Youtube thumbnail="https://img.youtube.com/vi/dxZGcqpSXFQ/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/dxZGcqpSXFQ" size="medium" />
+
+## Connect YakShaver to Microsoft Entra ID (required)
+
+YakShaver connects to your Microsoft 365 tenant using Microsoft Entra ID. It’s a multi‑tenant cloud app that uses the admin‑consent flow to request Microsoft Graph application permissions (organisation‑wide, service‑to‑service access). Your tenant admin approves access once for your organisation. YakShaver does not create resources in your tenant.
+
+**Who is this for**
+
+* Tenant admins who can approve access: Global Administrator or Cloud Application Administrator
+* End users simply sign in to YakShaver after approval, but they don’t grant tenant‑wide access
+
+#### Required Permissions
+
+**Application permissions:**
+
+* User.Read.All - read all users' basic profiles across the directory (used to list/select users)
+* Channel.ReadBasic.All - read basic details of Teams channels across the tenant
+* Team.ReadBasic.All - read basic details of Teams across the tenant
+* Files.Read.All - read files across the organisation (used for accessing videos in OneDrive/SharePoint features)
+
+**Delegated permissions:**
+
+* profile, openid, email
+* User.Read
+
+## Connect YakShaver to Azure DevOps (optional)
+
+For Azure DevOps integration, assign YakShaver App a Basic License and Project Contributor role in your organization's user management. Learn more: [https://yakshaver.ai/docs/add-azure-devops-projects](https://yakshaver.ai/docs/add-azure-devops-projects)
+
+## Connect YakShaver to GitHub (optional)
+
+YakShaver can connect to your GitHub organization to create issues to your organization's repository automatically using the YakShaver GitHub App. Organization owners can approve access for the entire organization, or admins can authorize access to their personal repositories. YakShaver does not create resources in your GitHub account.
+
+**Who is this for**
+
+* Organization owners who can approve organization‑wide access to all repositories
+* Admins who can authorize access to their own repositories and public repositories
+
+#### Permissions and Scope
+
+**Repository permissions:**
+
+* Read access to metadata - read basic repository information, branches, and settings (used to get project information)
+* Read and write access to code, issues, organization projects, and repository projects - full access to repository content, issue tracking, and project boards (used to create and update work items in projects)
+
+**User permissions:**
+
+* Read access to email addresses - access your primary email address and public email information (used for user identification)
+
+**Installation scope:**
+
+* All repositories - applies to all current and future repositories owned by the resource owner, including public repositories (read‑only access to public repos)
+* Individual repository selection also available during installation

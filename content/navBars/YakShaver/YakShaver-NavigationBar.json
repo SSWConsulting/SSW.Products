@@ -1,8 +1,8 @@
 {
   "Logo": "/YakShaver/YakShaver Darkmode.png",
   "imgSrc": "/yakshaver-logo.png",
-  "imgWidth": 591,
-  "imgHeight": 90,
+  "imgWidth": 536,
+  "imgHeight": 100,
   "leftNavItem": [
     {
       "label": "Pricing",
@@ -40,6 +40,10 @@
           "href": "/certifications"
         },
         {
+          "label": "MEDIA",
+          "href": "/media"
+        },
+        {
           "label": "DISCORD",
           "href": "https://discord.gg/Jp9dyxKFjR"
         }
@@ -52,11 +56,20 @@
       "_template": "stringItem"
     }
   ],
-  "rightNavItem": [
+  "buttons": [
     {
-      "Title": "JOIN WAITLIST",
-      "JotFormId": "243009066097861",
-      "_template": "BookingButton"
+      "label": "Portal",
+      "href": "https://portal.yakshaver.ai/",
+      "variant": "outline",
+      "_template": "buttonLink"
+    },
+    {
+      "label": "Sign up",
+      "href": "https://portal.yakshaver.ai/",
+      "icon": "/YakShaver/yakshaver-black.svg",
+      "iconPosition": "left",
+      "variant": "white",
+      "_template": "buttonLink"
     }
   ]
 }

@@ -9,7 +9,6 @@
   "pageBlocks": [
     {
       "topImage": {
-        "imgSrc": "/YakShaver/YakShaver Darkmode.png",
         "imgWidth": 514,
         "imgHeight": 104
       },
@@ -17,7 +16,7 @@
       "tryItNowCards": [
         {
           "title": "1. Download",
-          "description": "Download  the YakShaver browser extension from the Google Chrome store by clicking the button below.\n",
+          "description": "Download the YakShaver browser extension from the Google Chrome store by clicking the button below.\n\nIf you can't access the Chrome Web Store, see the [docs on installing the extension manually](/docs/install-extension-manually).\n",
           "image": {
             "imgWidth": 480,
             "imgHeight": 336
@@ -44,9 +43,9 @@
           "title": "3. Start Recording",
           "description": "Click on the YakShaver Logo ![](/TryItNow/yakshaver.svg) at the top of  your browser window, then click Start Recording.\n",
           "image": {
-            "imgSrc": "/TryItNow/yakshaver-this-tab.png",
-            "imgWidth": 480,
-            "imgHeight": 336
+            "imgSrc": "/TryItNow/yakshaver-this-tab2.png",
+            "imgWidth": 960,
+            "imgHeight": 672
           },
           "button": {
             "label": ""

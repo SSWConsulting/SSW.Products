@@ -28,7 +28,31 @@
   --breakpoint-small: 43.75em;
   --breakpoint-medium: 75rem;
 
+  --animate-expand: expand 0.5s ease-in-out;
+  @keyframes expand {
+    0% {
+      opacity: 0;
+      max-height: 0;
+    }
+    100% {
+      opacity: 1;
+      max-height: 100vh;
+    }
+  }
+  --animate-collapse: collapse 0.5s ease-in-out;
+  @keyframes collapse {
+    0% {
+      max-height: 100vh;
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      max-height: 0;
+    }
+  }
+
   --animate-shine: shine 14s infinite linear;
+
   @keyframes shine {
     0% {
       background-position: 0% 0%;
@@ -66,6 +90,14 @@
     ),
     --value(--gradient- *);
   border: var(--border-gradient-width, 1px) solid transparent;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.writing-mode-horizontal {
+  writing-mode: horizontal-tb;
 }
 
 @layer base {

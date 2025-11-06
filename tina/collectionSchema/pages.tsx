@@ -18,6 +18,9 @@ import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImag
 import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
 import { RichTextTemplate } from "../../components/shared/Blocks/RichText.template";
 import TryItNowTemplate from "../../components/shared/Blocks/TryItNow.template";
+import { MediaHeroTemplate } from "../../components/shared/Blocks/MediaHero.template";
+import { ImageGridTemplate } from "../../components/shared/Blocks/ImageGrid.template";
+import { ImageShowcaseTemplate } from "../../components/shared/Blocks/ImageShowcase.template";
 import { seoInformation } from "../shared/SEOInformation";
 
 export const bottomPaddingOptions = {
@@ -65,7 +68,13 @@ export const PagesSchema: Collection = {
   format: "json",
   // This ui is needed because of the dynamic routing with [filename] -> tina is looking for a static path (i.e pages/TimePro, pages/YakShaver)
   ui: {
-    router: ({ document }) => {
+    router: ({ document, collection }) => {
+      const relativePath = document?._sys.relativePath;
+      if (relativePath) {
+        return `/${relativePath
+          .replace(`.${collection.format}`, '')
+          .split('/').slice(1).join('/')}`;
+      }
       return `/${document?._sys.filename}`;
     },
   },
@@ -87,6 +96,9 @@ export const PagesSchema: Collection = {
       },
       templates: [
         HeroTemplate,
+        MediaHeroTemplate,
+        ImageGridTemplate,
+        ImageShowcaseTemplate,
         FeaturesTemplate,
         FAQTemplate,
         CarouselFeatureTemplate,

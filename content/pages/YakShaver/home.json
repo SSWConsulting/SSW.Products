@@ -1,7 +1,7 @@
 {
   "seo": {
-    "title": "YakShaver - Record issues & let AI instantly assign them to the right team",
-    "description": "Explore YakShaver for innovative AI solutions and insights to enhance your business efficiency and growth.",
+    "title": "AI tool to quickly create perfect PBIs, tasks, and bug reports in GitHub, Azure DevOps, Jira and more",
+    "description": "Save hours writing PBIs and bug reports. YakShaver AI automatically turns your meetings into actionable backlog items — faster, clearer, and exceptionally accurate.",
     "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}"
   },
   "title": "YakShaver - Record issues & let AI instantly assign them to the right team",
@@ -16,16 +16,11 @@
         "ticket",
         "email"
       ],
-      "byLine": "Don't waste time writing bug reports. The YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly.\n\nSave hours of frustration with YakShaver.\n",
-      "ctaLeft": {
-        "title": "TRY THE DEMO",
-        "link": "/try-it-now"
-      },
+      "byLine": "Don't waste time writing bug reports.\n\nThe YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly.\n\nSave hours of frustration with YakShaver.\n",
       "ctaRight": {
         "title": "WATCH VIDEO",
         "link": "https://www.youtube.com/shorts/0TPo98R1tnI"
       },
-      "buttonSubtext": "No credit card required",
       "reportUIEnabled": true,
       "reportUI": {
         "leftHandSide": {
@@ -192,12 +187,12 @@
     },
     {
       "title": "Simple, Transparent Pricing",
-      "desc": "One shared credit pool. Pay once, and anyone in your organisation can report issues. Zero per seat fees - just use your credits.",
+      "desc": "One shared pool of shaves. Pay once, and anyone in your organisation can report issues. Zero per seat fees - just shave away!",
       "tiers": [
         {
           "tier": "Starter ",
           "description": [
-            "15 credits per month",
+            "15 shaves per month",
             "For individuals"
           ],
           "price": 0,
@@ -214,7 +209,7 @@
         {
           "tier": "Team",
           "description": [
-            "100 credits per month",
+            "100 shaves per month",
             "For growing teams"
           ],
           "price": 39,
@@ -231,7 +226,7 @@
         {
           "tier": "Growth",
           "description": [
-            "500 credits per month",
+            "500 shaves per month",
             "For larger organizations"
           ],
           "price": 189,
@@ -248,7 +243,7 @@
         {
           "tier": "Enterprise",
           "description": [
-            "Custom credit allocation",
+            "Custom shaves allocation",
             "For custom solutions"
           ],
           "price": 99999,
@@ -274,7 +269,7 @@
           "url": "/pricing"
         }
       },
-      "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\*\\* Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
+      "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\** Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
       "bottomAction": {
         "label": "Full Pricing Details",
         "variant": "solidWhite",
@@ -313,14 +308,14 @@
         },
         {
           "question": "What file formats do you support?",
-          "answer": "Currently, YakShaver supports .mp4 and .mov video file extensions."
+          "answer": "Currently, YakShaver supports MP4 and MOV video files."
         }
       ],
       "_template": "faq"
     },
     {
       "title": "Talk to a YakShaver Expert",
-      "ctaDescription": "Evaluating YakShaver for your team? Book a 30-minute call with a YakShaver architect",
+      "ctaDescription": "Evaluating YakShaver for your team? Book a 30-minute call with a YakShaver architect and see a demo!",
       "ctaButton": {
         "label": "SCHEDULE A CALL",
         "variant": "solidWhite",

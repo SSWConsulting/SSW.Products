@@ -1,0 +1,75 @@
+{
+  "Logo": "/YakShaver/YakShaver Darkmode.png",
+  "imgSrc": "/yakshaver-logo.png",
+  "imgWidth": 536,
+  "imgHeight": 100,
+  "leftNavItem": [
+    {
+      "label": "定价",
+      "href": "/pricing",
+      "_template": "stringItem"
+    },
+    {
+      "label": "关于",
+      "href": "/about",
+      "_template": "stringItem"
+    },
+    {
+      "label": "博客",
+      "href": "/blog",
+      "_template": "stringItem"
+    },
+    {
+      "label": "文档",
+      "href": "/docs",
+      "_template": "stringItem"
+    },
+    {
+      "label": "社区",
+      "items": [
+        {
+          "label": "支持",
+          "href": "/docs/support"
+        },
+        {
+          "label": "路线图",
+          "href": "/roadmap"
+        },
+        {
+          "label": "认证",
+          "href": "/certifications"
+        },
+        {
+          "label": "媒体",
+          "href": "/media"
+        },
+        {
+          "label": "Discord",
+          "href": "https://discord.gg/Jp9dyxKFjR"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "视频",
+      "href": "https://www.youtube.com/@SSWYakShaver",
+      "_template": "stringItem"
+    }
+  ],
+  "buttons": [
+    {
+      "label": "登录",
+      "href": "https://portal.yakshaver.ai/",
+      "variant": "outline",
+      "_template": "buttonLink"
+    },
+    {
+      "label": "注册",
+      "href": "https://portal.yakshaver.ai/",
+      "icon": "/YakShaver/yakshaver-black.svg",
+      "iconPosition": "left",
+      "variant": "white",
+      "_template": "buttonLink"
+    }
+  ]
+}

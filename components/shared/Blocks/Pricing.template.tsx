@@ -8,6 +8,7 @@ interface PlanItem {
   price?: string;
   subPriceText?: string;
   isRecommended?: boolean;
+  recommendation?: string;
   actions?: {
     label?: string;
   };
@@ -84,6 +85,11 @@ export const pricingTemplate: Template = {
           type: "boolean",
         },
         {
+          name: "recommendation",
+          label: "What is the recommendation text?",
+          type: "string",
+        },
+        {
           name: "listTitle",
           label: "List Title",
           type: "string",
@@ -94,7 +100,6 @@ export const pricingTemplate: Template = {
           type: "string",
           list: true,
         },
-
         {
           name: "buttons",
           label: "Buttons",

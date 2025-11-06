@@ -11,6 +11,7 @@ import { ShineBorder } from "@/components/magicui/shine-border";
 import { BsCheck } from "react-icons/bs";
 import { BookingButton } from "./BookingButton";
 import { ButtonVariant } from "./buttonEnum";
+import { cn } from "@/lib/utils";
 
 interface PlanAction {
   label: string;
@@ -23,6 +24,7 @@ interface PlanAction {
 interface JotFormAction {
   Title: string;
   JotFormId: string;
+  className?: string;
   __typename: string;
 }
 
@@ -45,15 +47,16 @@ interface Plan {
   timeSaved: string;
   listTitle: string;
   listItems: string[];
+  recommendation?: string;
 }
 
-interface PricingData {
+type PricingData = {
   title?: string;
   description?: TinaMarkdownContent;
 
   plans?: Plan[];
   addOns: AddOn;
-}
+};
 
 interface PricingProps {
   data: PricingData;
@@ -61,6 +64,18 @@ interface PricingProps {
 
 const Pricing = ({ data }: PricingProps) => {
   const { title, description, plans, addOns } = data;
+
+  const getGridClasses = (planCount: number) => {
+    if (planCount === 1) {
+      return "grid grid-cols-1 gap-4 lg:gap-8 xl:grid-cols-3 lg:justify-items-center px-4 lg:px-12";
+    } else if (planCount === 2) {
+      return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 px-4 lg:px-12";
+    } else if (planCount === 3) {
+      return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 xl:grid-cols-3 px-4 lg:px-12";
+    } else {
+      return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 xl:grid-cols-4 px-4 lg:px-12";
+    }
+  };
 
   return (
     <div className="pricing-component first:pt-20 container mx-auto px-4 mb-14 lg:mb-4 md:mt-0 lg:pb-20">
@@ -82,13 +97,19 @@ const Pricing = ({ data }: PricingProps) => {
         </div>
       )}
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-4 px-12 lg:px-12">
+      <div className={getGridClasses(plans?.length || 0)}>
         {plans &&
           plans.length > 0 &&
           plans.map((plan, index) => (
-            <div className="flex flex-col h-full" key={index}>
+            <div
+              className={cn(
+                "flex flex-col h-full",
+                plans.length === 1 ? "first:xl:col-start-2" : ""
+              )}
+              key={index}
+            >
               {plan.isRecommended ? (
-                <div className="relative h-full flex flex-col mt-9">
+                <div className="relative h-full flex flex-col">
                   <ShineBorder
                     borderWidth={2}
                     duration={20}
@@ -104,7 +125,7 @@ const Pricing = ({ data }: PricingProps) => {
                   />
                 </div>
               ) : (
-                <div className="mt-9 h-full">
+                <div className="h-full">
                   <PlanCard
                     plan={plan}
                     index={index}
@@ -116,16 +137,18 @@ const Pricing = ({ data }: PricingProps) => {
             </div>
           ))}
       </div>
-      {addOns && <AddOns addOns={addOns} />}
+      <div className="px-4 lg:px-12">
+        {addOns && <AddOns addOns={addOns} />}
+      </div>
     </div>
   );
 };
 
 const AddOns = ({ addOns }: { addOns: AddOn }) => {
   return (
-    <div className="flex max-w-3xl mx-auto p-10 my-10 flex-col w-full bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
-      <div className="flex gap-10">
-        <div className="flex flex-col w-1/2">
+    <div className="flex max-w-3xl mx-auto p-10 my-4 lg:my-8 flex-col w-full bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
+      <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20">
+        <div className="flex flex-col">
           <h3 className="text-3xl font-bold text-white mb-2">
             {curlyBracketFormatter(addOns?.title)}
           </h3>
@@ -137,12 +160,11 @@ const AddOns = ({ addOns }: { addOns: AddOn }) => {
             <span className="text-white/50">{addOns?.subPriceText}</span>
           </div>
         </div>
-        <div className="flex flex-col justify-center text-center w-1/2">
+        <div className="flex flex-col">
           {addOns?.actionButton && (
             <Actions
               //@ts-expect-error investigate after
               actions={[addOns?.actionButton]}
-              className="w-3/4"
             />
           )}
         </div>
@@ -186,7 +208,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
 
         {isRecommended && (
           <div className="text-white text-center text-xs bg-linear-to-br from-red-400 to-red-700 rounded-full h-auto px-4 py-1 -mt-1">
-            Most Popular
+            {plan.recommendation || "Most Popular"}
           </div>
         )}
       </div>
@@ -211,7 +233,6 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
                   <Actions
                     //@ts-expect-error investigate after
                     actions={[plan.buttons[0]]}
-                    className="w-full"
                   />
                 );
               case "PagesPageBlocksPricingPlansButtonsBookingButton":
@@ -225,6 +246,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
                           ? ButtonVariant.SolidRed
                           : ButtonVariant.OutlinedWhite
                       }
+                      className={plan.buttons[0].className}
                     />
                   );
                 }
