@@ -41,7 +41,7 @@ export const DocAndBlogMarkdownStyle: Components<{
   ),
 
   h4: (props) => (
-    <h4 className="text-lg font-semibold mb-3 mt-6">{props?.children}</h4>
+    <h4 className="text-lg font-semibold mb-3 mt-6 flex items-center gap-2">{props?.children}</h4>
   ),
   // @ts-ignore - TODO: remove tsignore after typescript definitions for blockquotes are fixed 
   // https://github.com/tinacms/tinacms/pull/6083
@@ -63,20 +63,37 @@ export const DocAndBlogMarkdownStyle: Components<{
 
   a: (props) => Link(props),
 
-  img: (props) => (
-    <>
-      <Image
-        src={props?.url || ""}
-        alt={props?.caption || "Image"}
-        width={800}
-        height={600}
-        className="max-w-full h-auto rounded mt-4 mb-2 shadow-lg p-1 bg-gray-300"
-      />
-      {props?.caption && (
-        <p className="text-sm text-gray-600 mb-2 text-center">
-          {props?.caption}
-        </p>
-      )}
-    </>
-  ),
+  img: (props) => {
+    const isSmallIcon = props?.alt?.toLowerCase().includes("icon");
+  
+    if (isSmallIcon) {
+      return (
+        <span className="inline-flex items-center align-middle">
+          <img
+            src={props?.url || ""}
+            alt={props?.caption || props?.alt}
+            loading="lazy"
+            className="inline-block align-middle opacity-80"
+          />
+        </span>
+      );
+    }
+  
+    return (
+      <>
+        <Image
+          src={props?.url || ""}
+          alt={props?.caption || props?.alt || "Image"}
+          width={800}
+          height={600}
+          className="max-w-full h-auto rounded mt-4 mb-2 shadow-lg p-1 bg-gray-300"
+        />
+        {props?.caption && (
+          <p className="text-sm text-gray-600 mb-2 text-center">
+            {props?.caption}
+          </p>
+        )}
+      </>
+    );
+  },
 };
