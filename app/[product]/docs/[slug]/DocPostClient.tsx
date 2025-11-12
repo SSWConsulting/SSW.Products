@@ -8,6 +8,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import TableOfContentsClient from "./TableOfContentsClient";
+import Collapsible from "@comps/Collapsible";
 
 interface DocPostClientProps {
   query: string;
@@ -48,6 +49,11 @@ export default function DocPostClient({
 
   const { title, date, body } = data.docs;
 
+  const components = {
+    ...DocAndBlogMarkdownStyle,
+    Collapsible: (props: any) => <Collapsible {...props} />,
+  };
+
   // Ensure the date is valid before formatting
   const parsedDate = date ? new Date(date) : null;
   const formattedDate =
@@ -74,7 +80,7 @@ export default function DocPostClient({
       </h2>
       <div className="text-base font-light mb-12 lg:prose-xl">
         {body && (
-          <TinaMarkdown content={body} components={DocAndBlogMarkdownStyle} />
+          <TinaMarkdown content={body} components={components} />
         )}
       </div>
       <div className="text-sm font-light text-gray-300 uppercase mb-4 mt-12">

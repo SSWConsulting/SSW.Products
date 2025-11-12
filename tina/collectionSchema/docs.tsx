@@ -48,6 +48,41 @@ export const docsCollection: Collection = {
           fields: [...optimizedYoutubeFields],
         },
         imageEmbedTemplate,
+        {
+          name: "Collapsible",
+          label: "Collapsible Section",
+          fields: [
+            { name: "title", label: "Title", type: "string", required: true },
+            { name: "defaultOpen", label: "Default Open", type: "boolean" },
+            {
+              name: "level",
+              label: "Heading Level (h2–h6)",
+              type: "string",
+              ui: { component: "select" },
+              options: [
+                { label: "h2", value: "2" },
+                { label: "h3", value: "3" },
+                { label: "h4", value: "4" },
+                { label: "h5", value: "5" },
+                { label: "h6", value: "6" },
+              ],
+            },
+            { name: "icon", label: "Icon", type: "image", required: false },
+            {
+              name: "content",
+              label: "Content",
+              type: "rich-text",
+              templates: [
+                imageEmbedTemplate,
+                {
+                  name: "Youtube",
+                  label: "Youtube Embed",
+                  fields: [...optimizedYoutubeFields],
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],
