@@ -17,6 +17,11 @@ const nextConfig = {
         destination: "/docs/recording-work-item-and-tips",
         permanent: true,
       },
+      {
+        source: "/docs/recording-work-item-smartphone",
+        destination: "/docs/recording-on-mobile",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
