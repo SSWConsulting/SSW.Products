@@ -49,18 +49,6 @@ export default function DocPostClient({
 
   const { title, date, body } = data.docs;
 
-  // Ensure the date is valid before formatting
-  const parsedDate = date ? new Date(date) : null;
-  const formattedDate =
-    parsedDate && !isNaN(parsedDate.getTime())
-      ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", {
-          month: "long",
-        })} ${parsedDate.getFullYear()}`
-      : "Unknown Date";
-
-    
-    console.log('docs data', data.docs)
-
   return (
     <div className="mx-auto text-white">
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
@@ -75,10 +63,6 @@ export default function DocPostClient({
       <div className="flex flex-col gap-2 mb-8">
         <BreadCrumbs title={title} />
         <h2 className="text-3xl font-semibold text-ssw-red">{title}</h2>
-
-        {/* <span className="text-sm font-light text-gray-300 uppercase">
-          Last updated: {formattedDate}
-        </span> */}
         <GitHubMetadata path={data.docs.id} className="text-sm font-light text-gray-300" />
       </div>
       <div className="text-base font-light mb-12 lg:prose-xl">
