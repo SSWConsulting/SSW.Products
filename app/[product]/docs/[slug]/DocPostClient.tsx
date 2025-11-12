@@ -47,7 +47,7 @@ export default function DocPostClient({
     return <p className="text-center text-white">No content available.</p>;
   }
 
-  const { title, date, body } = data.docs;
+  const { title, body } = data.docs;
 
   return (
     <div className="mx-auto text-white">
