@@ -8,6 +8,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import TableOfContentsClient from "./TableOfContentsClient";
+import Collapsible, { CollapsibleProps } from "@comps/Collapsible";
 import GitHubMetadata from "@utils/githubMetadata";
 
 interface DocPostClientProps {
@@ -49,6 +50,11 @@ export default function DocPostClient({
 
   const { title, body } = data.docs;
 
+  const components = {
+    ...DocAndBlogMarkdownStyle,
+    Collapsible: (props: CollapsibleProps) => <Collapsible {...props} />,
+  };
+
   return (
     <div className="mx-auto text-white">
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
@@ -67,7 +73,7 @@ export default function DocPostClient({
       </div>
       <div className="text-base font-light mb-12 lg:prose-xl">
         {body && (
-          <TinaMarkdown content={body} components={DocAndBlogMarkdownStyle} />
+          <TinaMarkdown content={body} components={components} />
         )}
       </div>
     </div>
