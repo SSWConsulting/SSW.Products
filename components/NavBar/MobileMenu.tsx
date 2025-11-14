@@ -1,7 +1,7 @@
+import GrowingLink from "@comps/GrowingLink";
 import useIsScrolled from "@comps/hooks/useIsScrolled";
 import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
-import Link from "next/link";
 import React, { useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -36,17 +36,18 @@ const MobileMenuItem = ({ href, label }: { href: string; label: string }) => {
   const { setIsOpen } = useMenuContext();
   return (
     <li className="flex items-center py-1 mb-0">
-      <Link
-        onClick={() => setIsOpen(false)}
-        href={href}
-        className="underline decoration-transparent transition-colors uppercase mb-0 underline-offset-4 hover:decoration-[#CC4141] text-md flex items-center gap-1"
-      >
-        {label}
-        {href &&
-          (href.startsWith("http://") || href.startsWith("https://")) && (
-            <FaExternalLinkAlt className="text-xs text-ssw-red opacity-50" />
-          )}
-      </Link>
+      <GrowingLink 
+        onClick={()=> setIsOpen(false)}
+        href={href} 
+        underlineColor="red"
+        className="transition-colors uppercase mb-0 underline-offset-4 text-md flex items-center gap-1"
+        >
+          {label}
+          {href &&
+            (href.startsWith("http://") || href.startsWith("https://")) && (
+              <FaExternalLinkAlt className="text-xs text-ssw-red opacity-50" />
+            )}
+      </GrowingLink>
     </li>
   );
 };
