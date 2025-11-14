@@ -65,12 +65,12 @@ Follow the deployment wizard with these configuration steps:
 
 You can select existing app registrations or create new ones during this step:
 
-* **SSW\.EagleEye App Registration**: Select the Engine app registration and enter the client secret
-* **SSW\.EagleEye.Api App Registration**: Select the API app registration and enter the client secret
+* **SSW.EagleEye.Engine App Registration**: Select the Engine app registration and enter the client secret
+* **SSW.EagleEye.Api App Registration**: Select the API app registration and enter the client secret
 * **API Scope URL**: Enter the full scope URL from the API app registration
-* **SSW\.EagleEye.Portal App Registration**: Select the Portal app registration and enter the client secret
+* **SSW.EagleEye.Portal App Registration**: Select the Portal app registration and enter the client secret
 
-**Note**: If you don't have existing app registrations, you can create them during deployment. Refer to the **App Registration Creation Guide** section below.
+**Note**: If you don't have existing app registrations, you can create them during deployment. Refer to the [App Registration Creation Guide](#app-registration-creation-guide) section below.
 
 ![App Registration Configuration](/EagleEye/app-registration-configuration.png)
 
@@ -143,9 +143,9 @@ After successful deployment:
 
 You need the following 3 app registrations for EagleEye:
 
-### Engine App Registration (SSW\.EagleEye)
+### Engine App Registration (SSW\.EagleEye.Engine)
 
-This app registration is used by the Engine CLI and Portal API to access Microsoft Graph.
+This app registration is used by the Engine CLI and API to access Microsoft Graph.
 
 1. Go to **Azure Portal** > **Azure Active Directory** > **App registrations**
 2. Click **New registration**
@@ -155,22 +155,24 @@ This app registration is used by the Engine CLI and Portal API to access Microso
 
 **Configure API Permissions:**
 
-1. Go to **API permissions** > **Add a permission**
+1. Go to **Manage** > **API permissions** > **Add a permission**
 2. Select **Microsoft Graph** > **Application permissions**
 3. Add the following permissions:
    * `GroupMember.Read.All`
    * `Mail.Read`
-4. Click **Grant admin consent**
+4. Click **Add Permissions**
+5. Click **Grant admin consent...**
+   ![App Api Permissions](/EagleEye/App-Api-permissions.png)
 
 **Create Client Secret:**
 
 1. Go to **Certificates & secrets** > **New client secret**
-2. Add description: `EagleEye Engine and API Secret`
+2. Add description: `EagleEye Engine Secret`
 3. Select expiration period
 4. Click **Add**
-5. **Save the secret value** - you'll need this during deployment
+5. **Important**: Copy and store the secret value immediately - it will only be shown once. You'll need this during deployment
 
-### Portal Backend App Registration (SSW\.EagleEye.Api)
+### EagleEye API (`SSW.EagleEye.Api`)
 
 This app registration exposes an API that the Portal frontend will call.
 
@@ -190,9 +192,9 @@ This app registration exposes an API that the Portal frontend will call.
 2. Add description: `EagleEye API Secret`
 3. Select expiration period
 4. Click **Add**
-5. **Save the secret value** - you'll need this during deployment
+5. **Important**: Copy and store the secret value immediately - it will only be shown once. You'll need this during deployment
 
-### Portal Frontend App Registration (SSW\.EagleEye.Portal)
+### EagleEye Portal (`SSW.EagleEye.Portal`)
 
 This app registration is used by the Portal web application for user authentication.
 
@@ -209,7 +211,7 @@ This app registration is used by the Portal web application for user authenticat
 2. Add description: `EagleEye Portal Secret`
 3. Select expiration period
 4. Click **Add**
-5. **Save the secret value** - you'll need this during deployment
+5. **Important**: Copy and store the secret value immediately - it will only be shown once. You'll need this during deployment
 
 ## References
 
