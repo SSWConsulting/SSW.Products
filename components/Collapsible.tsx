@@ -4,28 +4,15 @@ import { useId, useState } from "react";
 import {
   TinaMarkdown,
   type TinaMarkdownContent,
-  type Components,
 } from "tinacms/dist/rich-text";
 
-type CollapsibleProps = {
+export type CollapsibleProps = {
   title: string;
   defaultOpen?: boolean;
-  level?: string | number;
+  level?: number;
   content?: TinaMarkdownContent | TinaMarkdownContent[];
-  components?: Components<any>;
   icon?: string | null;
 };
-
-function normalizeContent(
-  c: CollapsibleProps["content"] | any
-): TinaMarkdownContent | TinaMarkdownContent[] | null {
-  if (!c) return null;
-  if (Array.isArray(c)) return c as TinaMarkdownContent[];
-  if (typeof c === "object" && c?.type === "root" && Array.isArray(c.children)) {
-    return c.children as TinaMarkdownContent[];
-  }
-  return c as TinaMarkdownContent;
-}
 
 export default function Collapsible({
   title,
@@ -37,10 +24,9 @@ export default function Collapsible({
   const [open, setOpen] = useState(!!defaultOpen);
   const panelId = useId();
 
-  const h = Math.min(6, Math.max(2, parseInt(String(level || 4), 10) || 4));
-  const HeadingTag = (`h${h}` as unknown) as keyof JSX.IntrinsicElements;
-
-  const normalized = normalizeContent(content);
+  const h = Math.min(6, Math.max(2, level));
+  type Heading = `h2` | `h3` | `h4` | `h5` | `h6`;
+  const HeadingTag = `h${h}` as Heading;
 
   return (
     <section className="my-4">
@@ -77,7 +63,7 @@ export default function Collapsible({
       </div>
 
       <div id={panelId} hidden={!open} className="mt-3 space-y-4">
-        {normalized ? <TinaMarkdown content={normalized} components={DocAndBlogMarkdownStyle} /> : null}
+        {content && <TinaMarkdown content={content} components={DocAndBlogMarkdownStyle} />}  
       </div>
     </section>
   );

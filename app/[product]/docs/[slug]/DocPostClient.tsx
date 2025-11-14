@@ -8,7 +8,7 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import TableOfContentsClient from "./TableOfContentsClient";
-import Collapsible from "@comps/Collapsible";
+import Collapsible, { CollapsibleProps } from "@comps/Collapsible";
 
 interface DocPostClientProps {
   query: string;
@@ -51,7 +51,7 @@ export default function DocPostClient({
 
   const components = {
     ...DocAndBlogMarkdownStyle,
-    Collapsible: (props: any) => <Collapsible {...props} />,
+    Collapsible: (props: CollapsibleProps) => <Collapsible {...props} />,
   };
 
   // Ensure the date is valid before formatting
