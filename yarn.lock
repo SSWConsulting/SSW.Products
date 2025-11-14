@@ -3186,10 +3186,10 @@
   dependencies:
     postcss-selector-parser "6.0.10"
 
-"@tanstack/query-core@5.75.7":
-  version "5.75.7"
-  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.75.7.tgz#8de9de6de4ae33e532f1fc99a8633e3461f30db9"
-  integrity sha512-4BHu0qnxUHOSnTn3ow9fIoBKTelh0GY08yn1IO9cxjBTsGvnxz1ut42CHZqUE3Vl/8FAjcHsj8RNJMoXvjgHEA==
+"@tanstack/query-core@5.90.8":
+  version "5.90.8"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.90.8.tgz#4a2600a5acf403494e4d5a3fcfac038ed84c5db7"
+  integrity sha512-4E0RP/0GJCxSNiRF2kAqE/LQkTJVlL/QNU7gIJSptaseV9HP6kOuA+N11y4bZKZxa3QopK3ZuewwutHx6DqDXQ==
 
 "@tanstack/query-devtools@5.90.1":
   version "5.90.1"
@@ -3203,12 +3203,12 @@
   dependencies:
     "@tanstack/query-devtools" "5.90.1"
 
-"@tanstack/react-query@^5.75.7":
-  version "5.75.7"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.75.7.tgz#5984900369365614edb4a0ed16c1cb521d9fb5ee"
-  integrity sha512-JYcH1g5pNjKXNQcvvnCU/PueaYg05uKBDHlWIyApspv7r5C0BM12n6ysa2QF2T+1tlPnNXOob8vr8o96Nx0GxQ==
+"@tanstack/react-query@^5.90.8":
+  version "5.90.8"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.90.8.tgz#c9b8bdbffd2df4b023094c3da144324a9daa5cef"
+  integrity sha512-/3b9QGzkf4rE5/miL6tyhldQRlLXzMHcySOm/2Tm2OLEFE9P1ImkH0+OviDBSvyAvtAOJocar5xhd7vxdLi3aQ==
   dependencies:
-    "@tanstack/query-core" "5.75.7"
+    "@tanstack/query-core" "5.90.8"
 
 "@tanstack/react-virtual@^3.8.1":
   version "3.13.12"
