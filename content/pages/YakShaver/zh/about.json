@@ -1,15 +1,15 @@
 {
   "seo": {
-    "title": "关于 - 关于我们",
-    "description": "发现 YakShaver：创新的 AI 解决方案，旨在提升生产力并简化企业工作流程。"
+    "title": "关于 YakShaver - 团队的 AI 问题路由和任务自动化",
+    "description": "YakShaver 利用 AI 简化团队工作流程：记录问题，立即将其路由到合适的人或待办事项，避免无休止的邮件，保持有序。立即获取 30 分钟演示。"
   },
-  "title": "关于 YakShaver - 满足您需求的创新 AI 解决方案",
+  "title": "关于 YakShaver - 团队的 AI 问题路由和任务自动化",
   "pageBlocks": [
     {
       "featureItem": [
         {
           "headline": "关于我们",
-          "text": "听说过“剃牦牛毛”吗？那种简单任务演变成一系列无休止、浪费时间的琐事的熟悉感觉。我们都经历过，所以我们创建了 YakShaver——一个帮助您剔除繁琐、直击重点的 AI 代理。\n\n有了 YakShaver，您不需要当侦探，去找出谁是合适的人选。只需记录问题，我们智能直观的系统会处理剩下的事情，利用 AI 立即将其路由到合适的人或待办事项。再也不用在无尽的邮件链中追逐尾巴或找错对象。这就是我们创建它的原因——让您的生活更轻松，更有条理，少些烦恼。\n",
+          "text": "听说过“剃牦牛毛”吗？那种简单任务演变成一系列无休止、浪费时间的琐事的熟悉感觉。我们都经历过，所以我们创建了 YakShaver——一个 AI 代理，帮助你剔除繁琐，直奔主题。\n\n有了 YakShaver，你不需要当侦探，去弄清谁是合适的人选。只需记录问题，我们智能、直观的系统会处理剩下的事情，利用 AI 立即将其路由到合适的人或待办事项。再也不用在无休止的邮件链中追逐自己的尾巴，或是找错了方向。这就是我们创建它的原因——让你的生活更轻松，更有条理，少些烦恼。\n",
           "media": [
             {
               "externalVideoLink": "https://www.youtube.com/embed/8fnfeuoh4s8",
@@ -26,10 +26,10 @@
       "backgroundColour": "#000000",
       "textColour": "#FEFEFE",
       "headline": "与 YakShaver 专家交流",
-      "text": "正在评估 YakShaver 用于您的项目？预约与 YakShaver 架构师进行 30 分钟通话！",
+      "text": "正在评估 YakShaver 以用于您的项目？预约与 YakShaver 架构师的 30 分钟通话并观看演示！",
       "buttons": [
         {
-          "label": "安排通话",
+          "label": "预约通话",
           "variant": "solidRed",
           "size": "medium",
           "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",

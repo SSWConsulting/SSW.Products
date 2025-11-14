@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "试用 YakShaver MCP 测试版！",
-    "description": "试用 YakShaver MCP 测试版！下载、安装，立即开始剃除牦牛。"
+    "description": "试用 YakShaver MCP 测试版！下载、安装，今天就开始剃除牦牛毛。"
   },
   "title": "试用 YakShaver MCP 测试版！",
   "pageBlocks": [
@@ -10,7 +10,7 @@
       "tryItNowCards": [
         {
           "title": "1. 下载",
-          "description": "在下方下载 YakShaver 测试版\n- Windows - 安装 .exe\n- Mac (darwin) - 安装 .zip",
+          "description": "在下方下载 YakShaver 测试版\n- Windows：安装 .exe 文件\n- Mac (darwin)：安装 .zip 文件",
           "button": {
             "enableButton": true,
             "label": "下载\n",
@@ -19,7 +19,7 @@
         },
         {
           "title": "2. 安装",
-          "description": "下载完成后，运行安装程序安装 YakShaver。\n（您可能需要将应用标记为“安全”）",
+          "description": "下载完成后，运行安装程序安装 YakShaver。\n- Windows：您可能需要将应用标记为“安全”\n- Mac (darwin)：您可能需要通过在终端运行 `xattr -dr com.apple.quarantine /path/to/YakShaver.app` 来允许该应用",
           "image": {
             "imgSrc": "/YakShaver/download-yakshaver-desktop.png",
             "imgWidth": 480,
@@ -28,10 +28,13 @@
         },
         {
           "title": "3. 剃除",
-          "description": "安装完成后，您可以开始剃除牦牛！有关详细说明，请观看下面的视频。\n",
-          "button": {
-            "enableButton": true,
-            "label": "观看视频\n"
+          "description": "安装完成后，您就可以开始剃除牦牛毛了！有关详细说明，请观看下面的视频。\n",
+          "image": {
+            "imgSrc": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
+            "imgLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+            "isVideo": true,
+            "imgWidth": 480,
+            "imgHeight": 336
           }
         }
       ],

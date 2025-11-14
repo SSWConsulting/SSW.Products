@@ -4,6 +4,7 @@ import client from "../../../../tina/__generated__/client";
 import { DocsTableOfContents } from "../../../../tina/__generated__/types";
 import { getLocale } from "../../../../utils/i18n";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
+import QueryProvider from "@comps/providers/QueryProvider";
 import DocPostClient from "./DocPostClient";
 import PaginationLinksClient from "./PaginationLinksClient";
 
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: DocPostMetadataProps) {
   const { product, slug } = params;
   const locale = getLocale();
   const docs = await getDocPost(product, slug, locale);
-  const metadata = setPageMetadata(docs?.docs?.seo, product, 'Docs');
+  const metadata = setPageMetadata(docs?.docs?.seo, product, "Docs");
   return metadata;
 }
 
@@ -49,7 +50,10 @@ export default async function DocPost({ params, locale }: DocPostProps) {
   const { slug, product } = params;
   const currentLocale = locale || getLocale();
   const documentData = await getDocPost(product, slug, currentLocale);
-  const tableOfContentsData = await getDocsTableOfContents(product, currentLocale);
+  const tableOfContentsData = await getDocsTableOfContents(
+    product,
+    currentLocale
+  );
 
   const paginationData = getPaginationData(
     tableOfContentsData as DocsTableOfContents,
@@ -60,7 +64,7 @@ export default async function DocPost({ params, locale }: DocPostProps) {
     return notFound();
   }
   return (
-    <>
+    <QueryProvider>
       {documentData?.docs?.seo?.googleStructuredData && (
         <script
           type="application/ld+json"
@@ -82,13 +86,12 @@ export default async function DocPost({ params, locale }: DocPostProps) {
         prev={paginationData.prev}
         next={paginationData.next}
       />
-    </>
+    </QueryProvider>
   );
 }
 
 // Add revalidation - page wouldn't update although GraphQL was updated. TODO: remove this once @wicksipedia created the global revalidation route.
 export const revalidate = 600;
-
 
 const getPaginationData = (
   tableOfContentsData: DocsTableOfContents,
