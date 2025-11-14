@@ -196,9 +196,7 @@ const ButtonMap = ({ item, className, contextualHref }: {
             className
           )}
           href={item.href}
-          variant={
-            (item?.variant ? "white" : item.variant) as "outline" | "white"
-          }
+          variant={(item?.variant ?? "white") as "outline" | "white"}
           key={item.label}
         >
           <Link href={contextualHref(item.href || "")}>

@@ -13,7 +13,7 @@
           "text": "Discover patterns, enhance productivity & drive decisions with EagleEye\n",
           "buttons": [
             {
-              "label": "BOOK A DEMO",
+              "label": "SCHEDULE A CALL",
               "variant": "solidRed",
               "size": "large",
               "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
@@ -91,10 +91,10 @@
       "backgroundColour": "#080808",
       "textColour": "#FFFFFF",
       "headline": "Talk to an EagleEye Expert",
-      "text": "Evaluating EagleEye for your project? Book a 30-minute call with an EagleEye architect",
+      "text": "Evaluating EagleEye for your project? Book a 30-minute call with an EagleEye architect and see a demo",
       "buttons": [
         {
-          "label": "SCHEDULE CALL",
+          "label": "SCHEDULE A CALL",
           "variant": "solidRed",
           "size": "medium",
           "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
