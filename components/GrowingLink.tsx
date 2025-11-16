@@ -5,12 +5,12 @@ import Link, { LinkProps } from "next/link";
 import React from "react";
 
 const growingLinkClasses = cva(
-  "w-fit after:border-b relative text-nowrap after:duration-200 after:inset-x-0 hover:after:scale-x-100 after:transition-transform after:ease-in-out after:absolute after:inset-y-0.5 hover:after:origin-left after:origin-right after:scale-x-0",
+  "w-fit after:h-0.25 after:bottom-0.5 after:left-0 after:w-full relative text-nowrap after:duration-200 hover:after:scale-x-100 after:transition-transform after:ease-in-out after:absolute hover:after:origin-left after:origin-right after:scale-x-0",
   {
     variants: {
       underlineColor: {
-        red: "after:border-ssw-red",
-        white: "after:border-white",
+        red: "after:bg-ssw-red",
+        white: "bg:bg-white",
       },
     },
     defaultVariants: {
@@ -29,7 +29,7 @@ type GrowingLinkProps = Modify<
 const GrowingLink = ({className, underlineColor,  ...props}: GrowingLinkProps) => {
     return (
         <Link 
-            className={cn(growingLinkClasses({underlineColor}), className)} 
+            className={cn(growingLinkClasses({underlineColor}), className, "after:h-1px]")} 
             {...props} />
     )
 }
