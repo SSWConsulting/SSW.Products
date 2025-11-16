@@ -46,6 +46,16 @@ const TryItNowTemplate: Template = {
               },
             },
             {
+              type: "string",
+              label: "Image Link",
+              name: "imgLink",
+            },
+            {
+              type: "boolean",
+              label: "Is Video?",
+              name: "isVideo",
+            },
+            {
               type: "number",
               name: "imgWidth",
               ui: {

@@ -9,15 +9,14 @@
   "pageBlocks": [
     {
       "topImage": {
-        "imgSrc": "/YakShaver/YakShaver Darkmode.png",
         "imgWidth": 514,
         "imgHeight": 104
       },
-      "tryItNowTitle": "通过 YakShaver 浏览器扩展，3 步开始录制！",
+      "tryItNowTitle": "使用 YakShaver 浏览器扩展，3 步开始录制！",
       "tryItNowCards": [
         {
           "title": "1. 下载",
-          "description": "点击下面的按钮，从 Google Chrome 商店下载 YakShaver 浏览器扩展。\n\n如果您无法访问 Chrome 网上应用店，请参阅[手动安装扩展的文档](/docs/install-extension-manually)。\n",
+          "description": "通过点击下面的按钮，从 Google Chrome 商店下载 YakShaver 浏览器扩展。\n\n如果您无法访问 Chrome 网上应用店，请参阅[手动安装扩展的文档](/docs/install-extension-manually)。\n",
           "image": {
             "imgWidth": 480,
             "imgHeight": 336
@@ -44,9 +43,9 @@
           "title": "3. 开始录制",
           "description": "点击浏览器窗口顶部的 YakShaver 标志 ![](/TryItNow/yakshaver.svg)，然后点击开始录制。\n",
           "image": {
-            "imgSrc": "/TryItNow/yakshaver-this-tab.png",
-            "imgWidth": 480,
-            "imgHeight": 336
+            "imgSrc": "/TryItNow/yakshaver-this-tab2.png",
+            "imgWidth": 960,
+            "imgHeight": 672
           },
           "button": {
             "label": ""
