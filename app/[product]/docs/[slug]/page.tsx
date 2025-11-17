@@ -25,7 +25,7 @@ interface DocPostMetadataProps {
 
 export async function generateMetadata({ params }: DocPostMetadataProps) {
   const { product, slug } = params;
-  const locale = getLocale();
+  const locale = await getLocale();
   const docs = await getDocPost(product, slug, locale);
   const metadata = setPageMetadata(docs?.docs?.seo, product, "Docs");
   return metadata;
@@ -48,7 +48,8 @@ interface PaginationLink {
 
 export default async function DocPost({ params, locale }: DocPostProps) {
   const { slug, product } = params;
-  const currentLocale = locale || getLocale();
+
+  const currentLocale = locale || await getLocale();
   const documentData = await getDocPost(product, slug, currentLocale);
   const tableOfContentsData = await getDocsTableOfContents(
     product,

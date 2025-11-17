@@ -10,15 +10,15 @@ import { setPageMetadata } from "@utils/setPageMetaData";
 import { getLocale, getBlogWithFallback } from "@utils/i18n";
 
 interface BlogPostProps {
-  params: {
+  params: Promise<{
     slug: string;
     product: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: BlogPostProps) {
-  const { slug, product } = params;
-  const locale = getLocale();
+  const { slug, product } = await params;
+  const locale = await getLocale();
 
   try {
     const res = await getBlogWithFallback(product, slug, locale);
@@ -49,8 +49,8 @@ let nextBlog: Blog | undefined = undefined;
 let previousBlog: Blog | undefined = undefined;
 
 export default async function BlogPost({ params }: BlogPostProps) {
-  const { slug, product } = params;
-  const locale = getLocale();
+  const { slug, product } = await params;
+  const locale = await getLocale();
 
   const documentData = await getBlogPost(product, slug);
 
@@ -129,7 +129,7 @@ export default async function BlogPost({ params }: BlogPostProps) {
 }
 
 async function getBlogPost(product: string, slug: string) {
-  const locale = getLocale();
+  const locale = await getLocale();
   const res = await getBlogWithFallback(product, slug, locale);
   
   if (!res?.data?.blogs) {
