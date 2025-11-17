@@ -1,6 +1,6 @@
 "use client";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
-import { useEffect, useId, useRef, useState } from "react";
+import { useId, useRef, useState } from "react";
 import {
   TinaMarkdown,
   type TinaMarkdownContent,
