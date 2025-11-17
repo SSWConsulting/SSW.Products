@@ -17,14 +17,14 @@ Before starting the installation, ensure you have:
 * **Azure Subscription** with Owner permissions
 * **Azure AD Tenant** with Global Administrator or Application Administrator privileges
 * **Azure OpenAI** quota available in your subscription
-* **Power BI** workspace (optional, for reporting)
-* **Custom domain** and DNS zone in Azure (optional)
+* \***Power BI** workspace (optional, for reporting)
+* \***Custom domain** and DNS zone in Azure (optional)
 
 ## Installation Process
 
 ### Phase 1: Deploy from Azure Marketplace
 
-#### Step 0 - Get Tenant ID
+#### Step 1 - Get Tenant ID
 You will need your Azure Tenant ID:
    1. Sign in to the [Azure Portal](https://portal.azure.com)
    2. In the search bar, type "Microsoft Entra ID" and select it from the results
@@ -36,7 +36,7 @@ You will need your Azure Tenant ID:
    > **Note:**  If you have multiple tenants, ensure you select the correct one for EagleEye deployment.
 
 
-#### Step 1: Get SSW EagleEye in Marketplace on Azure Portal
+#### Step 2: Get SSW EagleEye in Marketplace on Azure Portal
 
 1. Go to your Azure portal
 2. In the search bar at the top, type **Marketplace** and select **Marketplace** from the results
@@ -47,7 +47,7 @@ You will need your Azure Tenant ID:
    ![EagleEye App](/EagleEye/EagleEye-Subscription.png)
 
    
-#### Step 2: Configure Application Settings
+#### Step 3: Configure Application Settings
 
 Follow the deployment wizard with these configuration steps:
 
@@ -104,7 +104,7 @@ You can select existing app registrations or create new ones during this step:
 
 ![Azure OpenAI Configuration](/EagleEye/azure-openai-configuration.png)
 
-#### Step 3: Review and Deploy
+#### Step 4: Review and Deploy
 
 1. Review all configuration settings
 2. Click **Create** to start deployment
@@ -113,7 +113,7 @@ You can select existing app registrations or create new ones during this step:
 
 ### Phase 2: Post-Deployment Configuration
 
-#### Step 4: Configure Portal Frontend Redirect URL
+#### Step 5: Configure Portal Frontend Redirect URL
 
 After deployment completes, you need to configure the authentication redirect URL:
 
@@ -126,7 +126,7 @@ After deployment completes, you need to configure the authentication redirect UR
    * Example: `https://ca-nextjs-4d33i5xxemxsu.happyfield-d167da8e.australiaeast.azurecontainerapps.io/api/auth/callback/azure-ad`
 7. Click **Save**
 
-#### Step 5: Verify Deployment
+#### Step 6: Verify Deployment
 
 1. **Access the Portal**: Navigate to the Portal container app URL
 2. **Test Authentication**: Sign in with your Azure AD credentials
