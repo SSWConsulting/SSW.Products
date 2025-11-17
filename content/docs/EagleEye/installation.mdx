@@ -24,7 +24,7 @@ Before starting the installation, ensure you have:
 
 ### Phase 1: Deploy from Azure Marketplace
 
-#### Step 0: Get your details ready
+#### Step 0 - Get Tenant ID
 You will need your Azure Tenant ID:
    1. Sign in to the [Azure Portal](https://portal.azure.com)
    2. In the search bar, type "Microsoft Entra ID" and select it from the results
@@ -33,7 +33,7 @@ You will need your Azure Tenant ID:
    ![Tenant ID](/EagleEye/manage-tenants.png)
    ![Tenant Object ID](/EagleEye/tenant-id.png)
 
-   > **Note:**  If you have multiple tenants, ensure you select the correct one for SSW EagleEye deployment.
+   > **Note:**  If you have multiple tenants, ensure you select the correct one for EagleEye deployment.
 
 
 #### Step 1: Get SSW EagleEye in Marketplace on Azure Portal
@@ -82,7 +82,7 @@ You can select existing app registrations or create new ones during this step:
 * **API Scope URL**: Enter the full scope URL from the API app registration
 * **SSW.EagleEye.Portal App Registration**: Select the Portal app registration and enter the client secret
 
-**Note**: If you don't have existing app registrations, you can create them during deployment. Refer to the App Registration Creation Guide section below.
+   > **Note:**  If you don't have existing app registrations, you can create them during deployment. Refer to the App Registration Creation Guide section below.
 
 ![App Registration Configuration](/EagleEye/app-registration-configuration.png)
 
@@ -228,7 +228,7 @@ This exposes the API so the Portal can call it.
    ![Expose a scope](/EagleEye/Expose-scope.png)
 4. Configure the scope:
    - **Scope name:** `access_as_user`
-   - **Who can consent?**: *Admins and users*
+   - **Who Can Consent:** *Admins and users*
    - **Admin consent display name:** `Access SSW EagleEye as user`
    - **Admin consent description:** `Allow the application to access SSW EagleEye on behalf of the signed-in user`
 5. Click **Add scope**  
