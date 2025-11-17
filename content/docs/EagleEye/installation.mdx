@@ -27,13 +27,13 @@ Before starting the installation, ensure you have:
 #### Step 0: Get your details ready
 You will need your Azure Tenant ID:
    1. Sign in to the [Azure Portal](https://portal.azure.com)
-   2. Search Entra -> Select Microsoft Entra ID
+   2. In the search bar, type "Microsoft Entra ID" and select it from the results
    ![Manage Tenants](/EagleEye/entra.png)
-   3. Manage Tenants -> Select Organization Id of your Tenant
+   3. Manage Tenants -> Copy the Tenant ID (Organization ID)
    ![Tenant ID](/EagleEye/manage-tenants.png)
    ![Tenant Object ID](/EagleEye/tenant-id.png)
 
-   > Note: If you have multiple tenants, ensure you select the correct one for SSW EagleEye deployment.
+   > **Note:**  If you have multiple tenants, ensure you select the correct one for SSW EagleEye deployment.
 
 
 #### Step 1: Get SSW EagleEye in Marketplace on Azure Portal
@@ -191,7 +191,7 @@ Repeat these steps for **each** app:
    👉 It will never be shown again  
    ![Copy Client Secret](/EagleEye/Copy-secret-value.png)
 
-⚠️ After deployment, **remove the secret value from any temporary notes (clipboard, notepad, etc.)**  
+> **Warning:** After deployment, **remove the secret value from any temporary notes (clipboard, notepad, etc.)**  
 Do **not** delete the secret from Azure.
 
 Now repeat **Steps 1 & 2** for the next app.
