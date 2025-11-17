@@ -2,13 +2,12 @@ import { notFound } from "next/navigation";
 import client from "../../../tina/__generated__/client";
 import { getLocale } from "../../../utils/i18n";
 import DocPost from "./[slug]/page";
-
 interface DocsIndex {
-  params: { product: string };
+  params: Promise<{ product: string }>;
 }
 
 export async function generateMetadata({ params }: DocsIndex) {
-  const { product } = params;
+  const { product } = await params;
   return {
     title: `${product} Docs`,
     description: `Find out more about ${product}, guides and documentation`,
@@ -30,9 +29,9 @@ export async function generateStaticParams() {
 }
 
 export default async function DocsIndex({ params }: DocsIndex) {
-  const { product } = params;
+  const { product } = await params;
   const defaultSlug = "introduction";
-  const locale = getLocale();
+  const locale = await getLocale();
 
   try {
     return <DocPost params={{ product, slug: defaultSlug }} locale={locale} />;

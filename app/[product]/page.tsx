@@ -4,13 +4,13 @@ import { setPageMetadata } from "../../utils/setPageMetaData";
 import { getLocale, getPageWithFallback, getRelativePath } from "../../utils/i18n";
 
 interface ProductPageProps {
-  params: { product: string };
+  params: Promise<{ product: string }>;
 }
 
 
 export async function generateMetadata({ params }: ProductPageProps) {
-  const { product } = params;
-  const locale = getLocale();
+  const { product } = await params;
+  const locale = await getLocale();
   const productData = await getPageWithFallback(product, 'home', locale);
   const metadata = setPageMetadata(productData.data?.pages?.seo, product);
   return metadata;
@@ -26,8 +26,8 @@ export async function generateStaticParams() {
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const product = params.product;
-  const locale = getLocale();
+  const {product} = await params;
+  const locale = await getLocale();
 
   const productData = await getPageWithFallback(product, 'home', locale);
   const relativePath = getRelativePath(product, 'home', locale);

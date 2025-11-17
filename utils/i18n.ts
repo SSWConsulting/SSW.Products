@@ -2,8 +2,8 @@ import { headers } from 'next/headers';
 import { notFound } from "next/navigation";
 import client from "../tina/__generated__/client";
 
-export function getLocale(): string {
-  const headersList = headers();
+export async function getLocale(): Promise<string> {
+  const headersList = await headers();
   return headersList.get('x-language') || 'en';
 }
 
