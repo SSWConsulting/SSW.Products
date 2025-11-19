@@ -22,7 +22,7 @@ Before starting the installation, ensure you have:
 You will need your Azure Tenant ID for configuration:
 
 1. Sign in to the [Azure Portal](https://portal.azure.com)
-2. In the search bar, type "Microsoft Entra ID" and select it from the results
+2. In the search bar, type "Microsoft Entra ID"
    ![Manage Tenants](/EagleEye/entra.png)
 3. Go to **Manage Tenants** and copy the **Tenant ID (Organization ID)**
    ![Tenant ID](/EagleEye/manage-tenants.png)
@@ -32,7 +32,7 @@ You will need your Azure Tenant ID for configuration:
 
 ## App Registration Guide
 
-You need **three Azure App Registrations** for EagleEye:
+You need **3 Azure App Registrations** for EagleEye:
 
 1. **Engine App** - `SSW.EagleEye.Engine`
 2. **API App** - `SSW.EagleEye.Api`
@@ -44,7 +44,7 @@ You need **three Azure App Registrations** for EagleEye:
 
 ### Step 1: Create Each App Registration
 
-For each of the three apps:
+For each of the 3 apps:
 
 1. Go to **Azure Portal** → **App registrations** → **New registration**
    ![App Registration Search](/EagleEye/App-Registration-search.png)
@@ -70,7 +70,7 @@ Repeat these steps for each app:
 > Do not delete the secret from Azure
 
 
-> Remember to repeat **Steps 1 & 2** for 3 apps registrations
+> Remember to repeat **Steps 1 & 2** for all 3 app registrations
 
 
 ## App-Specific Configuration
@@ -86,9 +86,8 @@ These are the only extra settings required for each app registration.
 2. Go to **Manage** → **API permissions** → **Add a permission**
 3. Select **Microsoft Graph** → **Application permissions**
 4. Add:
-
-* `GroupMember.Read.All`
-  * `Mail.Read`
+   * `GroupMember.Read.All`
+   * `Mail.Read`
 
 1. Click **Add permissions**
 2. Click **Grant admin consent**
