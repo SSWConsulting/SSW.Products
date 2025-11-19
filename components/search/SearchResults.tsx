@@ -6,8 +6,8 @@ const SearchResults = () => {
   const { results } = useInstantSearch();
   return (
     <>
-      {results.nbHits === 0 && !results.__isArtificial ? (
-        <p className="text-gray-light max-w-full truncate text-nowrap wrap gap-2 flex pt-2 px-4">
+      {results.nbHits === 0 && results.query !== "" ? (
+        <p className="text-[#797979] items-center max-w-full truncate text-nowrap wrap gap-2 flex pt-2 px-4">
           <PackageOpen />
           No results...
         </p>
