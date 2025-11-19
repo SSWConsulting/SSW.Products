@@ -25,13 +25,10 @@ export default function Collapsible({
   const panelId = useId();
   const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const h = Math.min(6, Math.max(2, level));
-  
   const headingKey = `h${Math.min(4, Math.max(2, level))}` as "h2" | "h3" | "h4";
   const HeadingComponent = (DocAndBlogMarkdownStyle as any)[headingKey];
 
   const toggle = () => setOpen((v) => !v);
-  
 
   return (
     <section className="my-4">
@@ -55,12 +52,31 @@ export default function Collapsible({
 
       {!open && (
         <button
-          type="button"
-          onClick={toggle}
-          className="mt-1 text-sm text-white underline-offset-2 underline"
+        type="button"
+        onClick={toggle}
+        aria-expanded={open}
+        aria-controls={panelId}
+        className="
+          mt-1 inline-flex items-center gap-1
+          rounded-full border border-white/30
+          bg-white/5 px-3 py-1
+          text-xs  hover:border-white
+          cursor-pointer
+        "
+      >
+        <span>Show</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-3 h-3"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+          aria-hidden="true"
         >
-          Show &gt;
-        </button>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
       )}
 
       <div
@@ -83,10 +99,30 @@ export default function Collapsible({
             <button
               type="button"
               onClick={toggle}
-              className="mt-2 text-sm text-white underline-offset-2 underline"
+              aria-expanded={open}
+              aria-controls={panelId}
+              className="
+                mt-1 inline-flex items-center gap-1
+                rounded-full border border-white/30
+                bg-white/5 px-3 py-1
+                text-xs  hover:border-white
+                cursor-pointer
+              "
             >
-              &lt; Hide
+              <span>Hide</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-3 h-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+                aria-hidden="true"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+              </svg>
             </button>
+          
           )}
         </div>
       </div>
