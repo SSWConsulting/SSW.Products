@@ -84,14 +84,15 @@ These are the only extra settings required for each app registration.
 1. Go to **App registrations** → **All applications** → search for `SSW.EagleEye.Engine`
    ![Search Existing App](/EagleEye/Search-existing-app.png)
 2. Go to **Manage** → **API permissions** → **Add a permission**
-3. Select **Microsoft Graph** → **Application permissions**
+3. Select **Microsoft Graph** → **Application permissions** (Important: select Application permissions - not Delegated).
 4. Add:
    * `GroupMember.Read.All`
    * `Mail.Read`
+   * `User.Read.All`
 
 5. Click **Add permissions**
 6. Click **Grant admin consent**
-   ![App Api Permissions](/EagleEye/App-Api-permissions.png)
+   ![App Api Permissions](/EagleEye/Engine-Api-Permissions.png)
 
 ### API App - Expose a Scope
 
