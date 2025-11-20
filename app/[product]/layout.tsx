@@ -35,6 +35,20 @@ export default async function RootLayout({
             src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
           />
         )}
+        {product === "EagleEye" && (
+          <>
+            <Script
+              async
+              src="https://plausible.io/js/pa-mLKH9kmb_Ab1FoQjBIRMA.js"
+            />
+            <Script id="plausible-init">
+              {`
+                window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+                plausible.init()
+              `}
+            </Script>
+          </>
+        )}
       </head>
       <body
         className={`min-h-screen flex-col flex ${inter.className} relative bg-gray-light`}
