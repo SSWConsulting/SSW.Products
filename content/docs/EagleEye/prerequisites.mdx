@@ -17,6 +17,31 @@ Before starting the installation, ensure you have:
 * **Azure OpenAI** quota available in your subscription
 * \***Custom domain** and DNS zone in Azure (optional)
 
+
+
+### Register Azure resource providers
+
+
+Before deploying EagleEye, make sure the following Azure resource providers are registered in your subscription:
+
+   - Microsoft.Storage
+   - Microsoft.ManagedIdentity
+   - Microsoft.App
+   - Microsoft.CognitiveServices
+   - Microsoft.KeyVault
+   - Microsoft.ContainerRegistry
+   - Microsoft.Network
+   - Microsoft.OperationalInsights
+   - Microsoft.Insights
+   - Microsoft.Sql
+   - Microsoft.Authorization
+   - Microsoft.Web
+   - Microsoft.ContainerInstance
+
+To check and register, follow the official Microsoft guide:
+[Register resource providers in Azure Portal](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal)
+
+
 ## Get Your Azure Tenant ID
 
 You will need your Azure Tenant ID for configuration:
