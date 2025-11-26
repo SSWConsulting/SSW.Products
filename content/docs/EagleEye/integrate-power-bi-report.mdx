@@ -13,17 +13,24 @@ Follow these simple steps to connect your EagleEye database to the Power BI temp
 1. Go to the [SSW EagleEye - Power BI](https://marketplace.microsoft.com/en-us/product/power-bi/ssw1700450141896.ssweagleeye-power-bi) page on the Microsoft Marketplace
 2. Click Get it now and make sure you're signed in with the same Microsoft account used to deploy EagleEye on Azure
 3. Click Install
-4. Click the SSW EagleEye Template in your installed apps
-5. Click Connect your data
-6. Enter your details (from Azure Portal):
+![Power BI Install](/EagleEye/eagleeye-power-bi-install.png)
+4. Open the app → Connect your data
+![Power BI Connect Data](/EagleEye/connect-your-data.png) !
+6. Enter your Database details and click Next:
    * Year (e.g., 2025)
    * SQL Server URL (e.g., sql-shared-xxx.database.windows.net)
    * Database Name (e.g., db-shared-xxx)
-7. Click Next
-8. Enter the Database credentials (read-only username and password)
-9. Click Sign in and connect. Power BI will load your data
-10. Go to File → Embed report → Website or portal and copy the embed link.
-11. Open your EagleEye Portal → Settings, and paste the link into the Power BI report embed URL field.
-12. Click Save.
+![Azure Database Details](/EagleEye/azure-database-details.png) ![Power BI Database Details](/EagleEye/power-bi-database-details.png)
+7. Enter the Database credentials (read-only username and password created during the EagleEye deployment)
+8. Click Sign in and connect. Power BI will load your data
+9. Go to File → Embed report → Website or portal.
+![File Embed Report](/EagleEye/file-embed-report.png) 
+10. Copy embed link
+![Copy Embed Link](/EagleEye/copy-embed-link.png)
+10. Open your EagleEye Portal → Settings, and paste the link into the Power BI report embed URL field.
+![Paste Embed Link](/EagleEye/portal-embed-link.png)
+11. Click Save.
+
 
 🎉 Your Power BI report should now be visible inside your EagleEye Portal
+![Power BI Report in Portal](/EagleEye/embedded-report.png)
