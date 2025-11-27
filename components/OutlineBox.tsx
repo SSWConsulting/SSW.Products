@@ -9,7 +9,7 @@ export type OutlineBoxProps = {
 
 export default function OutlineBox({ content }: OutlineBoxProps) {
   return (
-    <section className="my-6 rounded-md border border-zinc-600 bg-zinc-900/40 p-4 md:p-6">
+    <section className="my-6 rounded-md border border-white/20 px-4 py-5">
       <div>
         {content && (
           <TinaMarkdown
