@@ -83,6 +83,20 @@ export const docsCollection: Collection = {
             },
           ],
         },
+        {
+          name: "OutlineBox",
+          label: "Outline Box",
+          fields: [
+            {
+              type: "rich-text",
+              name: "content",
+              label: "Content",
+              templates: [
+                imageEmbedTemplate
+              ],
+            },
+          ],
+        },
       ],
     },
   ],
