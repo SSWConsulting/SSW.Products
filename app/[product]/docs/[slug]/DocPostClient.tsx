@@ -10,6 +10,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import TableOfContentsClient from "./TableOfContentsClient";
 import Collapsible, { CollapsibleProps } from "@comps/Collapsible";
 import GitHubMetadata from "@utils/githubMetadata";
+import OutlineBox from "@comps/OutlineBox";
 
 interface DocPostClientProps {
   query: string;
@@ -52,6 +53,7 @@ export default function DocPostClient({
 
   const components = {
     ...DocAndBlogMarkdownStyle,
+    OutlineBox,
     Collapsible: (props: CollapsibleProps) => <Collapsible {...props} />,
   };
 
