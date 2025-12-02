@@ -45,7 +45,8 @@
         },
         {
           "label": "Discord",
-          "href": "https://discord.gg/Jp9dyxKFjR"
+          "href": "https://discord.gg/Jp9dyxKFjR",
+          "openInNewTab": true
         }
       ],
       "_template": "groupOfStringItems"
@@ -53,12 +54,13 @@
     {
       "label": "视频",
       "href": "https://www.youtube.com/@SSWYakShaver",
+      "openInNewTab": true,
       "_template": "stringItem"
     }
   ],
   "buttons": [
     {
-      "label": "登录",
+      "label": "门户",
       "href": "https://portal.yakshaver.ai/",
       "variant": "outline",
       "_template": "buttonLink"
