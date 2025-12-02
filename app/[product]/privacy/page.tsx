@@ -5,15 +5,16 @@ import { getLocale, getPrivacyWithFallback } from "../../../utils/i18n";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
 
 interface PrivacyPolicyProps {
-  params: {
+  params: Promise<{
     product: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({
-  params: { product },
+  params,
 }: PrivacyPolicyProps): Promise<Metadata> {
-  const locale = getLocale();
+  const { product } = await params;
+  const locale = await getLocale();
   const res = await getPrivacyWithFallback(product, locale);
 
   const privacy = res.data.privacy;
@@ -23,8 +24,8 @@ export async function generateMetadata({
 }
 
 export default async function PrivacyPolicy({ params }: PrivacyPolicyProps) {
-  const { product } = params;
-  const locale = getLocale();
+  const { product } = await params;
+  const locale = await getLocale();
   const res = await getPrivacyWithFallback(product, locale);
 
   return (

@@ -5,13 +5,14 @@ import { setPageMetadata } from "../../../utils/setPageMetaData";
 import { getLocale, getPageWithFallback, getRelativePath } from "../../../utils/i18n";
 
 interface FilePageProps {
-  params: { product: string; filename: string };
+  params: Promise<{ product: string; filename: string }>;
 }
 
 
 export async function generateMetadata({ params }: FilePageProps) {
-  const { product, filename } = params;
-  const locale = getLocale();
+  
+  const { product, filename } = await params;
+  const locale = await getLocale();
   const fileData = await getPageWithFallback(product, filename, locale, {
     fetchOptions: {
       next: {
@@ -34,8 +35,8 @@ export async function generateStaticParams() {
 }
 
 export default async function FilePage({ params }: FilePageProps) {
-  const { product, filename } = params;
-  const locale = getLocale();
+  const { product, filename } = await params;
+  const locale = await getLocale();
 
   const fileData = await getPageWithFallback(product, filename, locale, {
     fetchOptions: {

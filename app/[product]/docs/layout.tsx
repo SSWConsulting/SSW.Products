@@ -9,12 +9,14 @@ const RootLayout = async ({
   params,
 }: {
   children: React.ReactNode;
-  params: {
+  params: Promise<{
     product: string;
-  };
+  }>;
 }) => {
-  const locale = getLocale();
-  const tableOfContentsData = await getDocsTableOfContents(params.product, locale);
+
+  const { product } = await params;
+  const locale = await getLocale();
+  const tableOfContentsData = await getDocsTableOfContents(product, locale);
   return (
     <>
       <SearchBox.Root index={tableOfContentsData?.algoliaSearchIndex || ""}>

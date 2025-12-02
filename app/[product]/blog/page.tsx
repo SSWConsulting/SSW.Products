@@ -10,11 +10,11 @@ import client from "../../../tina/__generated__/client";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
 import { getLocale, getBlogIndexWithFallback } from "../../../utils/i18n";
 interface BlogIndex {
-  params: { product: string };
+  params: Promise<{ product: string }>;
 }
 
 export async function generateMetadata({ params }: BlogIndex) {
-  const { product } = params;
+  const { product } = await params;
   return {
     title: `${product} Blogs`,
     description: `Find out more about ${product}, the latest news and updates posted on our blog.`,
@@ -52,8 +52,8 @@ const getCategories = async (product: string) => {
 };
 
 export default async function BlogIndex({ params }: BlogIndex) {
-  const product = params.product;
-  const locale = getLocale();
+  const {product} = await params;
+  const locale = await getLocale();
   
   const categories = await getCategories(product);
   const tinaData = await getBlogIndexWithFallback(product, locale);

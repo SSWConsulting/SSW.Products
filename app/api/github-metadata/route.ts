@@ -2,7 +2,6 @@ import type { GitHubCommit } from '@utils/githubMetadata';
 import { NextResponse } from 'next/server';
 
 const CACHE_TTL = 300; // 5 minutes in seconds
-export const revalidate = CACHE_TTL;
 
 async function fetchGitHub<T>(
   url: string,

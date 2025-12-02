@@ -11,27 +11,43 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { product: string };
+  params: Promise<{ product: string }>;
 }) {
-  const googleTagId = getGoogleTagId(params.product);
-  const locale = getLocale();
+  
+  const { product } = await params;
+  const googleTagId = getGoogleTagId(product);
+  const locale = await getLocale();
   const htmlLang = locale === "zh" ? "zh-CN" : "en";
 
   return (
     <html lang={htmlLang}>
       <head>
-        <link rel="icon" href={`/favicons/${params.product}.ico`} />
+        <link rel="icon" href={`/favicons/${product}.ico`} />
 
-        {params?.product === "YakShaver" && (
+        {product === "YakShaver" && (
           <Script
             data-domain="yakshaver.ai"
             src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
           />
+        )}
+        {product === "EagleEye" && (
+          <>
+            <Script
+              async
+              src="https://plausible.io/js/pa-mLKH9kmb_Ab1FoQjBIRMA.js"
+            />
+            <Script id="plausible-init">
+              {`
+                window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+                plausible.init()
+              `}
+            </Script>
+          </>
         )}
       </head>
       <body
@@ -51,10 +67,10 @@ export default function RootLayout({
         </Script>
 
         <main className="overflow-clip grow">
-          <NavBarServer product={params.product} locale={locale} />
+          <NavBarServer product={product} locale={locale} />
           {children}
         </main>
-        <FooterServer product={params.product} locale={locale} />
+        <FooterServer product={product} locale={locale} />
       </body>
     </html>
   );
