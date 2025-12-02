@@ -40,7 +40,7 @@ const MobileMenuItem = ({ href, label }: { href: string; label: string }) => {
         onClick={()=> setIsOpen(false)}
         href={href} 
         underlineColor="red"
-        className="transition-colors uppercase mb-0 underline-offset-4 text-md flex items-center gap-1"
+        className="uppercase mb-0 underline-offset-4 text-md flex items-center gap-1"
         >
           {label}
           {href &&
