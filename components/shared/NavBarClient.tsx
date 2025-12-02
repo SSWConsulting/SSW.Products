@@ -64,6 +64,7 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                     {item.items.map((subItem, subIndex) => (
                       <li key={subIndex}>
                         <GrowingLink 
+                          {...(subItem.openInNewTab ? { target: "_blank"} : {})}
                           underlineColor="red"
                           href={contextualHref(subItem.href)}
                           className="flex items-center gap-1 w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
@@ -90,6 +91,7 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                 >
                   <GrowingLink
                     href={contextualHref(item.href)}
+                    {...(item.openInNewTab ? { target: "_blank"} : {})}
                     className="mx-3 text-base flex flex-row gap-1 items-center h-fit rounded uppercase whitespace-nowrap writing-mode-horizontal"
                     underlineColor="red"
                   >
@@ -131,6 +133,7 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                     return item.items.map((subItem, subIndex) => {
                       return (
                         <MobileMenuItem
+                          openInNewTab={Boolean(subItem.openInNewTab)}
                           key={subIndex}
                           href={contextualHref(subItem.href)}
                           label={subItem.label}
@@ -145,6 +148,7 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                     return (
                       <MobileMenuItem
                         label={item.label}
+                        openInNewTab={Boolean(item.openInNewTab)}
                         href={contextualHref(item.href)}
                         key={index}
                       />

@@ -32,11 +32,12 @@ const MobileMenuRoot = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const MobileMenuItem = ({ href, label }: { href: string; label: string }) => {
+const MobileMenuItem = ({ href, label, openInNewTab = false }: { href: string; label: string, openInNewTab: boolean }) => {
   const { setIsOpen } = useMenuContext();
   return (
     <li className="flex items-center py-1 mb-0">
       <GrowingLink 
+        {...(openInNewTab ? { target: "_blank"} : {})}
         onClick={()=> setIsOpen(false)}
         href={href} 
         underlineColor="red"
