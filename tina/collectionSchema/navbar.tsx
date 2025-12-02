@@ -16,6 +16,11 @@ const linkFields: TinaField[] = [
     type: "string",
   },
   {
+    name: "openInNewTab",
+    label: "Open in New Tab",
+    type: "boolean",
+  },
+  {
     name: "title",
     label: "Title",
     type: "string",

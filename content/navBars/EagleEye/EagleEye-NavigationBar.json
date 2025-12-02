@@ -29,6 +29,7 @@
     {
       "label": "Videos",
       "href": "https://www.youtube.com/@SSWEagleEye",
+      "openInNewTab": true,
       "_template": "stringItem"
     }
   ],

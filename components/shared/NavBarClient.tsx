@@ -29,6 +29,7 @@ import clsx from "clsx";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { BookingButton } from "./Blocks/BookingButton";
 import LanguageToggle from "./LanguageToggle";
+import GrowingLink from "@comps/GrowingLink";
 
 interface NavBarClientProps {
   buttons: NavigationBarButtons[];
@@ -62,9 +63,11 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                   <SubGroupContent>
                     {item.items.map((subItem, subIndex) => (
                       <li key={subIndex}>
-                        <Link
-                          href={contextualHref(subItem!.href)}
-                          className="flex items-center gap-1 hover:text-white hover:underline underline-offset-4 decoration-[#CC4141] transition-colors whitespace-nowrap writing-mode-horizontal"
+                        <GrowingLink 
+                          {...(subItem.openInNewTab ? { target: "_blank"} : {})}
+                          underlineColor="red"
+                          href={contextualHref(subItem.href)}
+                          className="flex items-center gap-1 w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
                         >
                           {subItem!.label}
                           {subItem!.href &&
@@ -72,7 +75,7 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                               subItem!.href.startsWith("https://")) && (
                               <FaExternalLinkAlt className="text-xs text-ssw-red" />
                             )}
-                        </Link>
+                            </GrowingLink>
                       </li>
                     ))}
                   </SubGroupContent>
@@ -86,12 +89,15 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                   className="my-auto hidden xl:block"
                   key={index}
                 >
-                  <Link
+                  <GrowingLink
                     href={contextualHref(item.href)}
-                    className="px-3 hover:decoration-ssw-red decoration-transparent underline-offset-3 underline text-base block h-fit rounded transition-colors uppercase whitespace-nowrap writing-mode-horizontal"
+                    {...(item.openInNewTab ? { target: "_blank"} : {})}
+                    className="mx-3 text-base flex flex-row gap-1 items-center h-fit rounded uppercase whitespace-nowrap writing-mode-horizontal"
+                    underlineColor="red"
                   >
                     {item.label}
-                  </Link>
+                    {item.href.startsWith("http://") || item.href.startsWith("https://") && <FaExternalLinkAlt className="text-ssw-red text-xs"/> }
+                  </GrowingLink>
                 </NavigationMenuItem>
               );
             }
@@ -127,6 +133,7 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                     return item.items.map((subItem, subIndex) => {
                       return (
                         <MobileMenuItem
+                          openInNewTab={Boolean(subItem.openInNewTab)}
                           key={subIndex}
                           href={contextualHref(subItem.href)}
                           label={subItem.label}
@@ -141,6 +148,7 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                     return (
                       <MobileMenuItem
                         label={item.label}
+                        openInNewTab={Boolean(item.openInNewTab)}
                         href={contextualHref(item.href)}
                         key={index}
                       />
