@@ -90,10 +90,11 @@ export default function NavBarClient({ buttons, items, currentLocale, bannerImag
                 >
                   <GrowingLink
                     href={contextualHref(item.href)}
-                    className="mx-3 text-base block h-fit rounded uppercase whitespace-nowrap writing-mode-horizontal"
+                    className="mx-3 text-base flex flex-row gap-1 items-center h-fit rounded uppercase whitespace-nowrap writing-mode-horizontal"
                     underlineColor="red"
                   >
                     {item.label}
+                    {item.href.startsWith("http://") || item.href.startsWith("https://") && <FaExternalLinkAlt className="text-ssw-red text-xs"/> }
                   </GrowingLink>
                 </NavigationMenuItem>
               );
