@@ -31,13 +31,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Setup
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          yarn install --frozen-lockfile
+          pnpm install --frozen-lockfile
           npm install --no-save minimatch@3.1.2 openai@4.75.0 axios@1.9.0
 
       - name: Detect Changes
@@ -72,10 +72,10 @@ jobs:
       - name: Verify TinaCMS Schema
         if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
         run: |
-          yarn install
+          pnpm install
           
           # TinaCMS schema verification with adequate time
-          yarn dev &
+          pnpm dev &
           sleep 60
           kill $! 2>/dev/null || true
           
