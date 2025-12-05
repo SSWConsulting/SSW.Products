@@ -72,8 +72,8 @@ const MobileMenuContent = ({ children }: { children: React.ReactNode }) => {
     <Popover.Content
       asChild
       className={clsx(
-        scrolled ? "bg-stone-700 " : "bg-opacity-90 bg-gray-light/90",
-        "min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
+        
+        "bg-black min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
       )}
     >
       <ul>{children}</ul>

@@ -17,6 +17,7 @@ import {
   MobileMenuItem,
   MobileMenuRoot,
   MobileMenuTrigger,
+  useMenuContext,
 } from "@comps/NavBar/MobileMenu";
 import {
   NavigationMenuBadge,
@@ -43,143 +44,176 @@ interface NavBarClientProps {
   };
 }
 
-export default function NavBarClient({ buttons, items, currentLocale, bannerImage }: NavBarClientProps) {
+export default function NavBarClient({
+  buttons,
+  items,
+  currentLocale,
+  bannerImage,
+}: NavBarClientProps) {
   const contextualHref = useContextualLink();
   return (
     <MobileMenuRoot>
-      <MobileAnchor asChild>
-        <NavigationMenuRoot>
-          {bannerImage && <NavigationMenuBadge {...bannerImage} currentLocale={currentLocale} />}
-          {items.map((item, index) => {
-            if (
-              item.__typename === "NavigationBarLeftNavItemGroupOfStringItems"
-            ) {
-              return (
-                <NavigationMenuItem
-                  className="my-auto hidden xl:block"
-                  key={index}
-                >
-                  <SubGroupTrigger label={item.label} />
-                  <SubGroupContent>
-                    {item.items.map((subItem, subIndex) => (
-                      <li key={subIndex}>
-                        <GrowingLink 
-                          {...(subItem.openInNewTab ? { target: "_blank"} : {})}
-                          underlineColor="red"
-                          href={contextualHref(subItem.href)}
-                          className="flex items-center gap-1 w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
-                        >
-                          {subItem!.label}
-                          {subItem!.href &&
-                            (subItem!.href.startsWith("http://") ||
-                              subItem!.href.startsWith("https://")) && (
-                              <FaExternalLinkAlt className="text-xs text-ssw-red" />
-                            )}
-                            </GrowingLink>
-                      </li>
-                    ))}
-                  </SubGroupContent>
-                </NavigationMenuItem>
-              );
-            } else if (
-              item.__typename === "NavigationBarLeftNavItemStringItem"
-            ) {
-              return (
-                <NavigationMenuItem
-                  className="my-auto hidden xl:block"
-                  key={index}
-                >
-                  <GrowingLink
-                    href={contextualHref(item.href)}
-                    {...(item.openInNewTab ? { target: "_blank"} : {})}
-                    className="mx-3 text-base flex flex-row gap-1 items-center h-fit rounded uppercase whitespace-nowrap writing-mode-horizontal"
-                    underlineColor="red"
-                  >
-                    {item.label}
-                    {item.href.startsWith("http://") || item.href.startsWith("https://") && <FaExternalLinkAlt className="text-ssw-red text-xs"/> }
-                  </GrowingLink>
-                </NavigationMenuItem>
-              );
-            }
-            return null;
-          })}
-          {/* Desktop Buttons */}
-          {buttons.map((button, index) => {
-            return (
-              <NavigationMenuItem
-                className={`hidden sm:block ${
-                  index === buttons.length - 1 ? "pl-5" : "pl-12"
-                }`}
-                key={index}
-              >
-                <ButtonMap item={button} contextualHref={contextualHref} />
-              </NavigationMenuItem>
-            );
-          })}
-          <NavigationMenuItem className="hidden sm:block pl-5 flex items-center">
-            <LanguageToggle currentLocale={currentLocale} />
-          </NavigationMenuItem>
-          <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
-            <MobileMenuTrigger />
-            <MobileMenuContent>
-              <>
-                {items.map((item, index) => {
-                  if (
-                    item.__typename ===
-                    "NavigationBarLeftNavItemGroupOfStringItems"
-                  ) {
-                    if (!item.items) return <></>;
-
-                    return item.items.map((subItem, subIndex) => {
-                      return (
-                        <MobileMenuItem
-                          openInNewTab={Boolean(subItem.openInNewTab)}
-                          key={subIndex}
-                          href={contextualHref(subItem.href)}
-                          label={subItem.label}
-                        />
-                      );
-                    });
-                  }
-
-                  if (
-                    item.__typename === "NavigationBarLeftNavItemStringItem"
-                  ) {
-                    return (
-                      <MobileMenuItem
-                        label={item.label}
-                        openInNewTab={Boolean(item.openInNewTab)}
-                        href={contextualHref(item.href)}
-                        key={index}
-                      />
-                    );
-                  }
-                })}
-              </>
-            </MobileMenuContent>
-          </NavigationMenuItem>
-          {buttons.map((button, index) => {
-            return (
-              <NavigationMenuItem
-                className={clsx(
-                  "w-full col-span-1 block sm:hidden",
-                  index === buttons.length - 1 && index % 2 === 0
-                    ? "col-span-2"
-                    : "col-span-1"
-                )}
-                key={index}
-              >
-                <ButtonMap className="w-full" item={button} contextualHref={contextualHref} />
-              </NavigationMenuItem>
-            );
-          })}
-        </NavigationMenuRoot>
-      </MobileAnchor>
+      <NavBarClientContent
+        buttons={buttons}
+        items={items}
+        currentLocale={currentLocale}
+        bannerImage={bannerImage}
+        contextualHref={contextualHref}
+      />
     </MobileMenuRoot>
   );
 }
 
-const ButtonMap = ({ item, className, contextualHref }: {
+function NavBarClientContent({
+  buttons,
+  items,
+  currentLocale,
+  bannerImage,
+  contextualHref,
+}: NavBarClientProps & { contextualHref: (href: string) => string }) {
+  const { isOpen } = useMenuContext();
+  return (
+    <MobileAnchor asChild>
+      <NavigationMenuRoot mobileOpened={isOpen}>
+        {bannerImage && (
+          <NavigationMenuBadge {...bannerImage} currentLocale={currentLocale} />
+        )}
+        {items.map((item, index) => {
+          if (
+            item.__typename === "NavigationBarLeftNavItemGroupOfStringItems"
+          ) {
+            return (
+              <NavigationMenuItem
+                className="my-auto hidden xl:block"
+                key={index}
+              >
+                <SubGroupTrigger label={item.label} />
+                <SubGroupContent>
+                  {item.items.map((subItem, subIndex) => (
+                    <li key={subIndex}>
+                      <GrowingLink
+                        {...(subItem.openInNewTab ? { target: "_blank" } : {})}
+                        underlineColor="red"
+                        href={contextualHref(subItem.href)}
+                        className="flex items-center gap-1 w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
+                      >
+                        {subItem!.label}
+                        {subItem!.href &&
+                          (subItem!.href.startsWith("http://") ||
+                            subItem!.href.startsWith("https://")) && (
+                            <FaExternalLinkAlt className="text-xs text-ssw-red" />
+                          )}
+                      </GrowingLink>
+                    </li>
+                  ))}
+                </SubGroupContent>
+              </NavigationMenuItem>
+            );
+          } else if (item.__typename === "NavigationBarLeftNavItemStringItem") {
+            return (
+              <NavigationMenuItem
+                className="my-auto hidden xl:block"
+                key={index}
+              >
+                <GrowingLink
+                  href={contextualHref(item.href)}
+                  {...(item.openInNewTab ? { target: "_blank" } : {})}
+                  className="mx-3 text-base flex flex-row gap-1 items-center h-fit rounded uppercase whitespace-nowrap writing-mode-horizontal"
+                  underlineColor="red"
+                >
+                  {item.label}
+                  {item.href.startsWith("http://") ||
+                    (item.href.startsWith("https://") && (
+                      <FaExternalLinkAlt className="text-ssw-red text-xs" />
+                    ))}
+                </GrowingLink>
+              </NavigationMenuItem>
+            );
+          }
+          return null;
+        })}
+        {/* Desktop Buttons */}
+        {buttons.map((button, index) => {
+          return (
+            <NavigationMenuItem
+              className={`hidden sm:block ${
+                index === buttons.length - 1 ? "pl-5" : "pl-12"
+              }`}
+              key={index}
+            >
+              <ButtonMap item={button} contextualHref={contextualHref} />
+            </NavigationMenuItem>
+          );
+        })}
+        <NavigationMenuItem className="hidden sm:block pl-5 flex items-center">
+          <LanguageToggle currentLocale={currentLocale} />
+        </NavigationMenuItem>
+        <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
+          <MobileMenuTrigger />
+          <MobileMenuContent>
+            <>
+              {items.map((item, index) => {
+                if (
+                  item.__typename ===
+                  "NavigationBarLeftNavItemGroupOfStringItems"
+                ) {
+                  if (!item.items) return <></>;
+
+                  return item.items.map((subItem, subIndex) => {
+                    return (
+                      <MobileMenuItem
+                        openInNewTab={Boolean(subItem.openInNewTab)}
+                        key={subIndex}
+                        href={contextualHref(subItem.href)}
+                        label={subItem.label}
+                      />
+                    );
+                  });
+                }
+
+                if (item.__typename === "NavigationBarLeftNavItemStringItem") {
+                  return (
+                    <MobileMenuItem
+                      label={item.label}
+                      openInNewTab={Boolean(item.openInNewTab)}
+                      href={contextualHref(item.href)}
+                      key={index}
+                    />
+                  );
+                }
+              })}
+            </>
+          </MobileMenuContent>
+        </NavigationMenuItem>
+        {buttons.map((button, index) => {
+          return (
+            <NavigationMenuItem
+              className={clsx(
+                "w-full col-span-1 block sm:hidden",
+                index === buttons.length - 1 && index % 2 === 0
+                  ? "col-span-2"
+                  : "col-span-1"
+              )}
+              key={index}
+            >
+              <ButtonMap
+                className="w-full"
+                item={button}
+                contextualHref={contextualHref}
+              />
+            </NavigationMenuItem>
+          );
+        })}
+      </NavigationMenuRoot>
+    </MobileAnchor>
+  );
+}
+
+const ButtonMap = ({
+  item,
+  className,
+  contextualHref,
+}: {
   item: NavigationBarButtons;
   className?: string;
   contextualHref: (href: string) => string;
