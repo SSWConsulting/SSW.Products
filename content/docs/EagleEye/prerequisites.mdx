@@ -134,7 +134,7 @@ These are the only extra settings required for each app registration.
 
 5. Click **Add permissions**
 6. Click **Grant admin consent**
-   ![App Api Permissions](/EagleEye/engine-api-permissions.png)
+   ![App Api Permissions](/EagleEye/Engine-api-permissions.png)
 
 ### API App - Expose a Scope
 
@@ -173,6 +173,27 @@ This allows the Portal web app to call the API.
 6. Click **Grant admin consent**
    ![Grant Admin Consent](/EagleEye/grant-admin-consent.png)
 
+## Control Who Can Sign In to Your EagleEye Portal
+
+You can choose exactly which users or groups are allowed to access your EagleEye Portal.  
+By default, Azure lets *any* user in your tenant sign in - so it’s important to lock this down.
+
+### Secure the Portal App
+1. In the Azure Portal, search for **Enterprise applications**
+2. Select your **SSW.EagleEye.Portal** enterprise app
+3. In the left menu, go to **Manage → Properties**
+4. Set **Assignment required** to **Yes**
+   - This ensures **only the users or groups you assign** can sign in.  
+   - If this is set to **No**, *any* user in your tenant will be able to access your EagleEye portal.
+5. Click **Save**
+![Portal Enterprise app](/EagleEye/Portal-enterprise-app.png)
+
+### Assign Users/Groups to the Portal App
+1. In the same **SSW.EagleEye.Portal** enterprise app, go to **Manage → Users and groups**
+2. Click **Add user/group**
+3. Select the users or groups you want to give access to.
+4. Click **Assign**
+![Portal assign users](/EagleEye/Portal-assign-users.png)
 
 
 ## References
