@@ -1,0 +1,43 @@
+{
+  "seo": {
+    "title": "About YakShaver - AI issue routing and task automation for teams",
+    "description": "YakShaver uses AI to simplify team workflows: record an issue, instantly route it to the right person or backlog, avoid endless emails, and stay organized. Get a 30-min demo today."
+  },
+  "title": "About YakShaver - AI issue routing and task automation for teams",
+  "pageBlocks": [
+    {
+      "featureItem": [
+        {
+          "headline": "About us",
+          "text": "Ever heard of \"shaving the yak\"? It’s that all-too-familiar feeling when a simple task snowballs into a series of endless, time-wasting chores. We've all been there, so we created YakShaver – an AI agent to help you trim the fluff and get straight to the point.\n\nWith YakShaver, you don’t need to play detective, figuring out who’s the right person for the job. Just record the issue, and our smart, intuitive system takes care of the rest, using AI to instantly route it to the right person or backlog. No more chasing your tail in endless email chains or barking up the wrong tree. That’s why we built it – to make your life a little easier, a bit more organized, and a whole lot less hairy.\n",
+          "media": [
+            {
+              "externalVideoLink": "https://www.youtube.com/embed/8fnfeuoh4s8",
+              "thumbnail": "https://img.youtube.com/vi/8fnfeuoh4s8/hqdefault.jpg",
+              "_template": "externalVideo"
+            }
+          ],
+          "isReversed": true
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "backgroundColour": "#000000",
+      "textColour": "#FEFEFE",
+      "headline": "Talk to a YakShaver Expert",
+      "text": "Evaluating YakShaver for your project? Book a 30-minute call with a YakShaver architect and see a demo!",
+      "buttons": [
+        {
+          "label": "SCHEDULE A CALL",
+          "variant": "solidRed",
+          "size": "medium",
+          "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
+          "_template": "actions"
+        }
+      ],
+      "image": "/YakShaver/UlyPoint.png",
+      "_template": "Banner"
+    }
+  ]
+}
