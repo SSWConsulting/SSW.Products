@@ -106,3 +106,12 @@ strong {
     cursor: pointer;
   }
 }
+
+table {
+  width: 100%;
+}
+
+td {
+  padding: 0.5rem !important;
+
+}
