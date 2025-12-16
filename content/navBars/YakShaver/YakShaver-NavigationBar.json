@@ -60,18 +60,18 @@
   ],
   "buttons": [
     {
+      "Title": "CONTACT US",
+      "JotFormId": "233468468973070",
+      "variants": "outline",
+      "_template": "BookingButton"
+    },
+    {
       "label": "Portal",
       "href": "https://portal.yakshaver.ai/",
       "icon": "/YakShaver/yakshaver-black.svg",
       "iconPosition": "left",
       "variant": "white",
       "_template": "buttonLink"
-    },
-    {
-      "Title": "CONTACT US",
-      "JotFormId": "233468468973070",
-      "variants": "outline",
-      "_template": "BookingButton"
     }
   ]
 }
