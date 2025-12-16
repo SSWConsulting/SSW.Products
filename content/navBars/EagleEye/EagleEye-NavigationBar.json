@@ -31,7 +31,6 @@
       "href": "/roadmap",
       "_template": "stringItem"
     },
-    
     {
       "label": "Videos",
       "href": "https://www.youtube.com/@SSWEagleEye",
@@ -41,16 +40,16 @@
   ],
   "buttons": [
     {
-      "label": "Portal",
-      "href": "https://portal.ssweagleeye.com",
-      "variant": "white",
-      "_template": "buttonLink"
-    },
-    {
       "Title": "CONTACT US",
       "JotFormId": "233468468973070",
       "variants": "outline",
       "_template": "BookingButton"
+    },
+    {
+      "label": "Portal",
+      "href": "https://portal.ssweagleeye.com",
+      "variant": "white",
+      "_template": "buttonLink"
     }
   ]
 }
