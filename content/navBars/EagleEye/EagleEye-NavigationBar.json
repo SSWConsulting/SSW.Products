@@ -12,6 +12,16 @@
   "imgHeight": 22,
   "leftNavItem": [
     {
+      "label": "Pricing",
+      "href": "/pricing",
+      "_template": "stringItem"
+    },
+    {
+      "label": "About",
+      "href": "/about",
+      "_template": "stringItem"
+    },
+    {
       "label": "Docs",
       "href": "/docs",
       "_template": "stringItem"
@@ -19,11 +29,6 @@
     {
       "label": "Roadmap",
       "href": "/roadmap",
-      "_template": "stringItem"
-    },
-    {
-      "label": "Pricing",
-      "href": "/pricing",
       "_template": "stringItem"
     },
     {
@@ -35,16 +40,16 @@
   ],
   "buttons": [
     {
-      "label": "Portal",
-      "href": "https://portal.ssweagleeye.com",
-      "variant": "outline",
-      "_template": "buttonLink"
-    },
-    {
       "Title": "CONTACT US",
       "JotFormId": "233468468973070",
-      "variants": "outlinedWhite",
+      "variants": "outline",
       "_template": "BookingButton"
+    },
+    {
+      "label": "Portal",
+      "href": "https://portal.ssweagleeye.com",
+      "variant": "white",
+      "_template": "buttonLink"
     }
   ]
 }

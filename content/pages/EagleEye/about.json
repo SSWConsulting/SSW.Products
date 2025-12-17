@@ -1,0 +1,43 @@
+{
+  "seo": {
+    "title": "About SSW EagleEye - Transform Company Data into Epic Insights",
+    "description": "SSW EagleEye is an AI-powered insights platform that turns everyday team activities into clear, actionable intelligence. Get a 30-min demo today."
+  },
+  "title": "About SSW EagleEye - Transform Company Data into Epic Insights",
+  "pageBlocks": [
+    {
+      "featureItem": [
+        {
+          "headline": "About us",
+          "text": "SSW EagleEye is an AI-powered insights platform that turns everyday team activities into clear, actionable intelligence. By analyzing email and collaboration patterns, EagleEye highlights productivity trends, workload distribution, and communication bottlenecks, helping leaders understand how work really flows across their organization.\n\n Built with security and scalability in mind, EagleEye runs on Azure and keeps data under the customer’s control. With automated reporting, Power BI integration, and a growing roadmap of Microsoft 365 and developer-tool insights, it supports data-driven decisions without adding overhead to teams.\n",
+          "media": [
+            {
+              "externalVideoLink": "https://www.youtube.com/embed/-7c6uagBBBM",
+              "thumbnail": "https://img.youtube.com/vi/-7c6uagBBBM/hqdefault.jpg",
+              "_template": "externalVideo"
+            }
+          ],
+          "isReversed": true
+        }
+      ],
+      "_template": "features"
+    },
+    {
+      "backgroundColour": "#000000",
+      "textColour": "#FEFEFE",
+      "headline": "Talk to an EagleEye Expert",
+      "text": "Evaluating EagleEye for your company? Book a 30-minute call with a EagleEye specialist and see a demo!",
+      "buttons": [
+        {
+          "label": "SCHEDULE A CALL",
+          "variant": "solidRed",
+          "size": "medium",
+          "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
+          "_template": "actions"
+        }
+      ],
+      "image": "/YakShaver/UlyPoint.png",
+      "_template": "Banner"
+    }
+  ]
+}
