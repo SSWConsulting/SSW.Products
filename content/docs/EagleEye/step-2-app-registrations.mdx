@@ -1,0 +1,131 @@
+---
+title: Step 2 - App Registrations
+date: '2025-12-29T13:00:00.000Z'
+---
+
+<Youtube thumbnail="https://img.youtube.com/vi/xG_zjvTjR58/maxresdefault.jpg" size="medium" externalVideoLink="https://www.youtube.com/embed/xG_zjvTjR58?start=300" />
+
+> Tip: Jump to 5:00 for App Registrations
+
+  
+
+You need **3 Azure App Registrations** for EagleEye:
+
+1. **Engine App** - `SSW.EagleEye.Engine`
+2. **API App** - `SSW.EagleEye.Api`
+3. **Portal App** - `SSW.EagleEye.Portal`
+
+> **Tip:** Create one app and its client secret at a time to avoid confusion. \
+> \
+> By the end of this section, you should have 3 client secrets and 1 API scope URL ready for your EagleEye deployment.
+
+### Step 2.1 - Create Each App Registration
+
+For each of the 3 apps:
+
+1. Go to **Azure Portal** → **App registrations** → **New registration**
+   ![App Registration Search](/EagleEye/App-Registration-Search.png)
+2. Enter the app name (e.g., `SSW.EagleEye.Engine`)
+3. Set **Supported account types** to: **Accounts in this organizational directory only**
+4. Click **Register**
+   ![Engine App](/EagleEye/Engine-App.png)
+
+### Step 2.2 - Create a Client Secret
+
+Repeat these steps for each app:
+
+1. Go to **Certificates & secrets**
+2. Click **New client secret**
+3. Add a description (e.g., `Engine Secret`, `API Secret`, `Portal Secret`)
+4. Select an expiry period → **Add**
+   ![Create Client Secret](/EagleEye/Create-Client-Secret.png)
+5. **Copy the secret value immediately** (you will need this later; it will never be shown again)
+   ![Copy Client Secret](/EagleEye/Copy-secret-value.png)
+
+> **Warning:** After deployment, remove the secret value from any temporary notes (clipboard, notepad, etc.).
+> \
+> Do not delete the secret from Azure
+
+> Remember to repeat **Steps 2.1 & 2.2** for all 3 app registrations
+
+## Step 2.3 - App-Specific Configuration
+
+These are the only extra settings required for each app registration.
+
+### Step 2.3.1 - Engine App - Configure API Permissions
+
+**App:** `SSW.EagleEye.Engine`
+
+1. Go to **App registrations** → **All applications** → search for `SSW.EagleEye.Engine`
+   ![Search Existing App](/EagleEye/Search-existing-app.png)
+2. Go to **Manage** → **API permissions** → **Add a permission**
+3. Select **Microsoft Graph** → **Application permissions** (Important: select Application permissions - not Delegated).
+4. Add:
+   * `GroupMember.Read.All`
+   * `Mail.Read`
+   * `User.Read.All`
+   * `Domain.Read.All`
+5. Click **Add permissions**
+6. Click **Grant admin consent**
+   ![App Api Permissions](/EagleEye/Engine-Api-Permissions.png)
+
+### Step 2.3.2 - API App - Expose a Scope
+
+**App:** `SSW.EagleEye.Api`
+
+This exposes the API so the Portal can call it.
+
+1. Go to **App registrations** → **All applications** → search for `SSW.EagleEye.Api`
+2. Go to **Expose an API** → **Add a scope**
+3. Accept the default Application ID URI (or customise) → **Save and continue**
+   ![Expose a scope](/EagleEye/Expose-scope.png)
+4. Configure the scope:
+   * **Scope name:** `access_as_user`
+   * **Who Can Consent:** *Admins and users*
+   * **Admin consent display name:** `Access SSW EagleEye as user`
+   * **Admin consent description:** `Allow the application to access SSW EagleEye on behalf of the signed-in user`
+5. Click **Add scope**
+   ![Add Scope](/EagleEye/Add-scope.png)
+6. **Copy the full scope URL** (e.g., `api://xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/access_as_user`)
+
+You will need this during deployment.
+
+### Step 2.3.3 - Portal App - Configure API Permission
+
+**App:** `SSW.EagleEye.Portal`
+
+This allows the Portal web app to call the API.
+
+1. Go to **App registrations** → **All applications** → search for `SSW.EagleEye.Portal`
+2. Go to **API permissions** → **Add a permission**
+3. Select **APIs my organization uses** → choose **SSW\.EagleEye.Api**
+   ![Select My APIs](/EagleEye/Api-permission.png)
+4. Select **Delegated permissions** → `access_as_user`
+5. Click **Add permissions**
+   ![Add Permissions](/EagleEye/Request-permission.png)
+6. Click **Grant admin consent**
+   ![Grant Admin Consent](/EagleEye/grant-admin-consent.png)
+
+## Control Who Can Sign In to Your EagleEye Portal
+
+You can choose exactly which users or groups are allowed to access your EagleEye Portal.\
+By default, Azure lets *any* user in your tenant sign in - so it’s important to lock this down.
+
+### Step 2.4 - Secure the Portal App
+
+1. In the Azure Portal, search for **Enterprise applications**
+2. Select your **SSW\.EagleEye.Portal** enterprise app
+3. In the left menu, go to **Manage → Properties**
+4. Set **Assignment required** to **Yes**
+   * This ensures **only the users or groups you assign** can sign in.
+   * If this is set to **No**, *any* user in your tenant will be able to access your EagleEye portal.
+5. Click **Save**
+   ![Portal Enterprise app](/EagleEye/Portal-enterprise-app.png)
+
+### Step 2.5 - Assign Users/Groups to the Portal App
+
+1. In the same **SSW\.EagleEye.Portal** enterprise app, go to **Manage → Users and groups**
+2. Click **Add user/group**
+3. Select the users or groups you want to give access to.
+4. Click **Assign**
+   ![Portal assign users](/EagleEye/Portal-assign-users.png)
