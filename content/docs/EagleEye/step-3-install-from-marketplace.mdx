@@ -1,24 +1,19 @@
 ---
 seo:
-  title: Installation
-  description: Learn how to install EagleEye from Azure Marketplace.
-title: Installation
-date: '2025-07-15T13:00:00.000Z'
+   title: SSW EagleEye - Step 3 Install from Azure Marketplace
+   description: >-
+      Install SSW EagleEye from the Azure Marketplace and complete the
+      deployment wizard, configuring Azure resources, app registrations,
+      database, and Azure OpenAI settings for your environment.
+title: Step 3 - Install From Azure Marketplace
+date: '2025-12-29T13:00:00.000Z'
 ---
 
-## Overview
+<Youtube thumbnail="https://img.youtube.com/vi/xG_zjvTjR58/maxresdefault.jpg" size="medium" externalVideoLink="https://www.youtube.com/embed/xG_zjvTjR58?start=780" />
 
-SSW EagleEye is an AI-powered email management solution that helps organizations categorize and process emails automatically using Azure OpenAI. This guide will walk you through the installation process from Azure Marketplace.
+> Tip: Jump to 13:00 for Install from Azure Marketplace
 
-> 🚨 **Note:** Only proceed with the installation after completing all steps in the [Prerequisites](/docs/prerequisites) guide.
-
-## Installation Process
-
-<Youtube thumbnail="https://img.youtube.com/vi/xG_zjvTjR58/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/xG_zjvTjR58" size="medium" />
-
-### Phase 1: Deploy from Azure Marketplace
-
-#### Step 1: Get SSW EagleEye in Marketplace on Azure Portal
+### Step 3.1 - Get SSW EagleEye in Marketplace on Azure Portal
 
 1. Go to your [Azure Portal](https://portal.azure.com)
 2. Search for **Marketplace** in the search bar
@@ -28,11 +23,11 @@ SSW EagleEye is an AI-powered email management solution that helps organizations
 4. Select your subscription and click **Create**
    ![EagleEye App](/EagleEye/EagleEye-Subscription.png)
 
-#### Step 2: Configure Application Settings
+### Step 3.2 - Configure Application Settings
 
 Follow the deployment wizard with these configuration steps:
 
-##### 2.1 Basics
+#### Step 3.2.1 - Basics
 
 * **Resource Group**: Select an existing resource group or create a new one
 * **Region**: Choose your preferred Azure region
@@ -40,21 +35,21 @@ Follow the deployment wizard with these configuration steps:
 
 ![Basics](/EagleEye/basics.png)
 
-##### 2.2 Application Configuration
+#### Step 3.2.2 - Application Configuration
 
 * **Project Name**: Unique prefix for all resources
 * **Environment**: Select `production` or `staging`
 
 ![Application Configuration](/EagleEye/application-configuration.png)
 
-##### 2.3 Azure AD Configuration
+#### Step 3.2.3 - Azure AD Configuration
 
 * **Azure Tenant ID**: Your Azure AD tenant ID
 * **Azure Group Name**: Enter the Azure AD group name for email processing
 
 ![Azure AD Configuration](/EagleEye/azure-ad-configuration.png)
 
-##### 2.4 App Registration Configuration
+#### Step 3.2.4 - App Registration Configuration
 
 You need to provide details for the 3 app registrations created in the Prerequisites section:
 
@@ -65,7 +60,7 @@ You need to provide details for the 3 app registrations created in the Prerequis
 
 ![App Registration Configuration](/EagleEye/app-registration-configuration.png)
 
-##### 2.5 Database Configuration
+#### Step 3.2.5 - Database Configuration
 
 * **Database Pricing Tier**: Select appropriate tier (Basic, S0, S1, S2)
 * **Database Users**: Configure three database users:
@@ -75,7 +70,7 @@ You need to provide details for the 3 app registrations created in the Prerequis
 
 ![Database Configuration](/EagleEye/database-configuration.png)
 
-##### 2.6 Azure OpenAI Configuration
+#### Step 3.2.6 - Azure OpenAI Configuration
 
 * **Location**: Select Azure region (currently East US)
 * **Model**: Choose GPT-4.1 Mini or GPT-4o Mini
@@ -83,16 +78,16 @@ You need to provide details for the 3 app registrations created in the Prerequis
 
 ![Azure OpenAI Configuration](/EagleEye/azure-openai-configuration.png)
 
-#### Step 3: Review and Deploy
+#### Step 3.2.7 - Review and Deploy
 
 1. Review all configuration settings
 2. Click **Create** to start deployment
 3. Monitor deployment progress in the Azure Portal
 4. Deployment typically takes 15-30 minutes
 
-### Phase 2: Post-Deployment Configuration
+### Step 3.3 - Post-Deployment Configuration
 
-#### Step 4: Configure Portal Frontend Redirect URL
+#### Step 3.3.1 - Configure Portal Frontend Redirect URL
 
 After deployment completes, you need to configure the authentication redirect URL:
 
@@ -105,7 +100,7 @@ After deployment completes, you need to configure the authentication redirect UR
    * Example: `https://ca-nextjs-4d33i5xxemxsu.happyfield-d167da8e.australiaeast.azurecontainerapps.io/api/auth/callback/azure-ad`
 7. Click **Save**
 
-#### Step 5: Verify Deployment
+#### Step 3.3.2 - Verify Deployment
 
 1. **Access the Portal**: Navigate to the Portal container app URL
 2. **Test Authentication**: Sign in with your Azure AD credentials
@@ -122,14 +117,3 @@ The deployed solution includes:
 * **Key Vault**: Secure storage of secrets and configurations
 * **Application Insights**: Monitoring and telemetry
 * **Container Registry**: Docker image storage
-
-## Next Steps
-
-After successful deployment:
-
-1. Configure Email Tags
-2. [Integrate Power BI report](/docs/integrate-power-bi-report)
-
-## References
-
-* [Azure Marketplace overview](https://learn.microsoft.com/en-us/marketplace/azure-marketplace-overview)
