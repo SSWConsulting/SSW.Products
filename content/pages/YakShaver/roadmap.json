@@ -67,6 +67,10 @@
         {
           "title": "More Project Data Source Options (Excel, Salesforce, etc.)",
           "description": "Support for project data integration is expanding to include Excel and Salesforce, making it easier to manage projects across different platforms."
+        },
+        {
+          "title": "Chinafy - Local ecosystem integration",
+          "description": "Add support for China-based LLM providers and local infrastructure, so users can run Yakshaver smoothly within the Chinese ecosystem."
         }
       ],
       "_template": "Timeline"
