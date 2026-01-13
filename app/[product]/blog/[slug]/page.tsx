@@ -7,7 +7,10 @@ import { getLocale, getBlogWithFallback } from "@utils/i18n";
 import getBlogPageData from "@utils/pages/getBlogPageData";
 import ClientFallbackPage, { QueryKey } from "../../../client-fallback-page";
 import NotFoundError from "../../../../errors/not-found";
+import { BlogPageShared, BlogPageSharedProps } from "./blog-shared";
 
+
+export const dynamic = 'force-dynamic';
 interface BlogPostProps {
   params: Promise<{
     slug: string;
@@ -53,44 +56,24 @@ export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = await params;
   try{
     const data = await getBlogPageData(product, slug);    
+
     return (
       <BlogPageShared {...data} />
     );
   }
   catch (error){
     if(error instanceof NotFoundError){
-      return <ClientFallbackPage<BlogPageSharedProps> 
-        query={"getBlogPageData"} 
+          return <ClientFallbackPage<BlogPageSharedProps> 
+        product={product} 
         relativePath={slug} 
-        Component={BlogPageShared} />;
+        query={"getBlogPageData"}
+        Component={BlogPageShared}
+        />; 
     }
+    throw error;
   }
 }
 
-type BlogPageSharedProps = Awaited<ReturnType<typeof getBlogPageData>>
 
-const BlogPageShared = (data: BlogPageSharedProps) => {
-      return (
-      <div className="flex flex-col min-h-screen">
-        <div className="grow">
-          <BlogPostClient
-            nextBlog={data.nextBlog}
-            previousBlog={data.previousBlog}
-            recentBlogs={data.recentBlogs}
-            initialFormattedDate={data.initialFormattedDate}
-            query={data.query}
-            variables={data.variables}
-            pageData={{ blogs: data.blogs }}
-          />
-        </div>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(data.seo?.googleStructuredData ?? {}),
-          }}
-        />
-      </div>
-    )
-}
 
 

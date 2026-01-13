@@ -12,18 +12,21 @@ export type QueryKey = keyof typeof ApiClient.queries;
 
 
 type ClientFallbackPageProps<T> = {
-    query: QueryKey;
+    product: string;
     relativePath: string;
+    query:QueryKey;
     Component: React.FC<T>;
 };
 
 
-function ClientFallbackPage<T>({ query, relativePath, Component }: ClientFallbackPageProps<T>) {
+function ClientFallbackPage<T>(
+    { product, relativePath, query, Component }: ClientFallbackPageProps<T>
+) {
 
     const { data, error, isLoading} = useQuery({
-        queryKey:[query, relativePath], 
+        queryKey:[product, relativePath], 
         retry: false,
-        queryFn: ()=> ApiClient.queries[query](query,relativePath) as Promise<T>
+        queryFn: ()=> ApiClient.queries[query](product,relativePath) as Promise<T>
     });    
 
     useEffect(()=> {

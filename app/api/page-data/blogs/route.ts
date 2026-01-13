@@ -41,7 +41,7 @@ export async function POST(request: Request) {
         
         const data = await getBlogPageData(product, relativePath, branch);
 
-        return new Response(JSON.stringify({data}), {status: 200});
+        return new Response(JSON.stringify(data), {status: 200});
     }
     catch(error) {
         if(error instanceof BadRequestError){

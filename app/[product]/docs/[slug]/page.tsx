@@ -4,7 +4,6 @@ import client from "../../../../tina/__generated__/client";
 import { DocsTableOfContents } from "../../../../tina/__generated__/types";
 import { getLocale } from "../../../../utils/i18n";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
-import QueryProvider from "@comps/providers/QueryProvider";
 import DocPostClient from "./DocPostClient";
 import PaginationLinksClient from "./PaginationLinksClient";
 
@@ -65,7 +64,7 @@ export default async function DocPost({ params, locale }: DocPostProps) {
     return notFound();
   }
   return (
-    <QueryProvider>
+    <>
       {documentData?.docs?.seo?.googleStructuredData && (
         <script
           type="application/ld+json"
@@ -87,7 +86,7 @@ export default async function DocPost({ params, locale }: DocPostProps) {
         prev={paginationData.prev}
         next={paginationData.next}
       />
-    </QueryProvider>
+    </>
   );
 }
 

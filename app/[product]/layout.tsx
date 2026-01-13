@@ -5,6 +5,7 @@ import NavBarServer from "../../components/shared/NavBarServer";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import { getLocale } from "../../utils/i18n";
 import "../globals.css";
+import QueryProvider from "@comps/providers/QueryProvider";
 
 const inter = Inter({
   weight: ["400", "600", "700"],
@@ -28,7 +29,7 @@ export default async function RootLayout({
     <html lang={htmlLang}>
       <head>
         <link rel="icon" href={`/favicons/${product}.ico`} />
-
+        
         {product === "YakShaver" && (
           <Script
             data-domain="yakshaver.ai"
@@ -65,11 +66,12 @@ export default async function RootLayout({
             gtag('config', '${googleTagId}');
           `}
         </Script>
-
-        <main className="overflow-clip grow">
-          <NavBarServer product={product} locale={locale} />
-          {children}
-        </main>
+        <QueryProvider>
+          <main className="overflow-clip grow">
+            <NavBarServer product={product} locale={locale} />
+            {children}
+          </main>
+        </QueryProvider>
         <FooterServer product={product} locale={locale} />
       </body>
     </html>
