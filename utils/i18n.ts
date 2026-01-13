@@ -100,30 +100,37 @@ export async function getBlogIndexWithFallback(
   }
 }
 
-export async function getBlogWithFallback(
-  product: string,
+export async function getBlogWithFallback({product, slug, locale = 'en', revalidate, branch = "main"}:
+  {product: string,
   slug: string,
-  locale: string = 'en',
-  options?: {
-    fetchOptions?: {
-      next?: {
-        revalidate?: number;
-      };
-    };
+  locale?: string,
+  revalidate?: number,
+  branch?: string
+
   }
 ) {
   try {
     let relativePath: string;
-    
+
+
+    const revalidateOptions = revalidate? {next: { revalidate }} : {}
+
+    const options = {
+      fetchOptions: {
+        headers: {
+          "x-branch": branch,
+        },
+        ...revalidateOptions
+      }
+    }
+
+    // if(revalidate)
     if (locale === 'zh') {
       relativePath = `${product}/zh/${slug}.mdx`;
       
       try {
-        const res = await client.queries.blogs(
-          { relativePath },
-          options
-        );
-        
+        const res = await client.queries.blogs({ relativePath, },options);
+        console.log("res", res);
         if (res?.data?.blogs) {
           return res;
         }
@@ -133,6 +140,9 @@ export async function getBlogWithFallback(
     }
     
     relativePath = `${product}/${slug}.mdx`;
+    console.log("options", options);  
+
+    console.log("relativePath", relativePath);
     const res = await client.queries.blogs(
       { relativePath },
       options

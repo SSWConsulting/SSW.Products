@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 
-import { Blog } from "@/types/blog";
 import BlogPostClient from "@comps/shared/BlogPostClient";
 import client from "@tina/__generated__/client";
-import { Blogs } from "@tina/__generated__/types";
-import { getBlogsForProduct } from "@utils/fetchBlogs";
-import { formatDate } from "@utils/formatDate";
 import { setPageMetadata } from "@utils/setPageMetaData";
 import { getLocale, getBlogWithFallback } from "@utils/i18n";
+import getBlogPageData from "@utils/pages/getBlogPageData";
+import ClientFallbackPage, { QueryKey } from "../../../client-fallback-page";
+import NotFoundError from "../../../../errors/not-found";
 
 interface BlogPostProps {
   params: Promise<{
@@ -21,7 +20,7 @@ export async function generateMetadata({ params }: BlogPostProps) {
   const locale = await getLocale();
 
   try {
-    const res = await getBlogWithFallback(product, slug, locale);
+    const res = await getBlogWithFallback({product, slug, locale});
 
     if (!res?.data?.blogs) {
       return null;
@@ -45,100 +44,53 @@ export async function generateStaticParams() {
   );
 }
 
-let nextBlog: Blog | undefined = undefined;
-let previousBlog: Blog | undefined = undefined;
+
+// Consolidated data fetching for blog post
+
+
 
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = await params;
-  const locale = await getLocale();
-
-  const documentData = await getBlogPost(product, slug);
-
-  const allBlogs = await getBlogsForProduct({
-    product,
-    locale,
-  });
-
-  const flattenedBlogs =
-    allBlogs.blogs?.reduce<Blog[]>((acc, blog) => {
-      if (!blog?.node) return acc;
-      const {
-        author,
-        date,
-        title,
-        _sys,
-        category,
-        body,
-        bannerImage,
-        readLength,
-      } = blog.node;
-      return [
-        ...acc,
-        {
-          readLength,
-          author,
-          date,
-          title,
-          slug: _sys.filename,
-          category,
-          body,
-          bannerImage,
-        },
-      ];
-    }, []) || [];
-
-  const currentBlogIndex = flattenedBlogs.findIndex(
-    (blog) => blog.title === documentData?.blogs?.title
-  );
-
-  previousBlog = flattenedBlogs[currentBlogIndex + 1] || undefined;
-  nextBlog = flattenedBlogs[currentBlogIndex - 1] || undefined;
-
-  if (!documentData) {
-    return notFound();
+  try{
+    const data = await getBlogPageData(product, slug);    
+    return (
+      <BlogPageShared {...data} />
+    );
   }
+  catch (error){
+    if(error instanceof NotFoundError){
+      return <ClientFallbackPage<BlogPageSharedProps> 
+        query={"getBlogPageData"} 
+        relativePath={slug} 
+        Component={BlogPageShared} />;
+    }
+  }
+}
 
-  return (
-    <div className="flex flex-col min-h-screen">
-      <div className="grow">
-        <BlogPostClient
-          nextBlog={nextBlog}
-          previousBlog={previousBlog}
-          recentBlogs={flattenedBlogs
-            .filter((blog) => blog.title !== documentData.blogs.title)
-            .slice(-2)
-            .reverse()}
-          initialFormattedDate={
-            documentData.blogs.date && formatDate(documentData.blogs.date)
-          }
-          query={documentData.query}
-          variables={documentData.variables}
-          pageData={{ blogs: documentData.blogs }}
+type BlogPageSharedProps = Awaited<ReturnType<typeof getBlogPageData>>
+
+const BlogPageShared = (data: BlogPageSharedProps) => {
+      return (
+      <div className="flex flex-col min-h-screen">
+        <div className="grow">
+          <BlogPostClient
+            nextBlog={data.nextBlog}
+            previousBlog={data.previousBlog}
+            recentBlogs={data.recentBlogs}
+            initialFormattedDate={data.initialFormattedDate}
+            query={data.query}
+            variables={data.variables}
+            pageData={{ blogs: data.blogs }}
+          />
+        </div>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(data.seo?.googleStructuredData ?? {}),
+          }}
         />
       </div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            documentData?.blogs.seo?.googleStructuredData ?? {}
-          ),
-        }}
-      />
-    </div>
-  );
+    )
 }
 
-async function getBlogPost(product: string, slug: string) {
-  const locale = await getLocale();
-  const res = await getBlogWithFallback(product, slug, locale);
-  
-  if (!res?.data?.blogs) {
-    return null;
-  }
 
-  return {
-    query: res.query,
-    variables: res.variables,
-    blogs: res.data.blogs as Blogs,
-  };
-}

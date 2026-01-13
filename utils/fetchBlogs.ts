@@ -1,5 +1,6 @@
 import { cache } from "react";
 import client from "../tina/__generated__/client";
+import NotFoundError from "../errors/not-found";
 
 type GetBlogsForProductProps = {
   startCursor?: string;
@@ -10,6 +11,7 @@ type GetBlogsForProductProps = {
   category?: string;
   filteredBlogs?: string[];
   locale?: string;
+  branch?: string;  
 };
 
 // Workaround: graphql doesn't allow you to query by file name
@@ -45,8 +47,10 @@ export async function getBlogsForProduct({
   keyword,
   filteredBlogs,
   locale,
+  branch,
 }: GetBlogsForProductProps) {
   try {
+    // TODO: updated this to work acros branches
     let titles = await getTitlesInTenant(product, locale);
     if (filteredBlogs && filteredBlogs.length > 0) {
       titles = titles.filter((title) => !filteredBlogs.includes(title));
@@ -76,6 +80,12 @@ export async function getBlogsForProduct({
       last: limit * 2,
       before: startCursor,
       sort: "date",
+    },{
+      fetchOptions: {
+        headers: {
+          "x-branch": branch || "main",
+        },
+      }
     });
     if (
       !res.data ||
@@ -83,7 +93,7 @@ export async function getBlogsForProduct({
       !res.data.blogsConnection.edges ||
       !res.data.blogsConnection.edges.length
     ) {
-      throw new Error("No documents found");
+      throw new NotFoundError("No documents found");
     }
 
     const remainingPages = Math.max(
@@ -97,7 +107,8 @@ export async function getBlogsForProduct({
       blogs: croppedBlogResponse,
       remainingPages,
     };
-  } catch (error) {
+  }
+  catch (error) {
     console.error("Error fetching TinaCMS blog data:", error);
     throw error;
   }
