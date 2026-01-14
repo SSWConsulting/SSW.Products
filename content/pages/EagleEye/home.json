@@ -33,40 +33,9 @@
       "_template": "features"
     },
     {
-      "headline": "Secure and Compliant",
-      "carouselItems": [
-        {
-          "tabTitle": "AI-Driven Insights",
-          "title": "AI-Driven Insights",
-          "description": "Unlock comprehensive insights with EagleEye's AI-powered analytics, adept at parsing both email interactions and developer activities. Dive deep into your organizational data, from email content to pull-request metrics, pinpoint efficiencies and inconsistencies, and let data lead the way to a smarter workflow.",
-          "image": "/EagleEye/AI Driven Insights.png"
-        },
-        {
-          "tabTitle": "Power BI Integration",
-          "title": "Power BI Integration",
-          "description": "EagleEye seamlessly melds with PowerBI to turn complex email data into compelling visual stories. Discover patterns, compare trends, and make informed decisions with interactive reports that highlight the heartbeat of your business communication.",
-          "image": "/EagleEye/Power BI Report.png"
-        },
-        {
-          "tabTitle": "Customer Portal",
-          "title": "Customer Portal",
-          "description": "Our Customer Portal offers seamless integration with Power BI reports, providing real-time data insights at your fingertips. Easily manage tags, organize your workflow, and track ongoing and completed jobs. With features to sync historical data and view daily job reports, the portal simplifies operations and enhances decision-making in one convenient platform.\n\n",
-          "image": "/EagleEye/Customer Portal.png"
-        },
-        {
-          "tabTitle": "Enhanced Productivity",
-          "title": "Enhanced Productivity",
-          "description": "Revolutionize your team's productivity with EagleEye's streamlined analysis. By providing a clear overview of communication flows, EagleEye identifies opportunities to balance workloads and encourages collaborative efforts, ensuring that every team member can perform at their peak.",
-          "image": "/EagleEye/Enhanced Productivity.png"
-        },
-        {
-          "tabTitle": "Data-Driven Decisions",
-          "title": "Data-Driven Decisions",
-          "description": "With EagleEye, dive deep into the digital dialogue of your enterprise. Harness the power of data-driven decisions as you uncover hidden trends and gain insights into team performance and engagement, fostering a culture of continuous improvement.",
-          "image": "/EagleEye/Data Driven Decisions.png"
-        }
-      ],
-      "_template": "featureCarousel"
+      "ParentContainerTitle": "Tools That Feel Like Superpowers",
+      "ParentContainerDescription": "The only platform you'll ever need for email intelligence",
+      "_template": "CardAndImage"
     },
     {
       "headline": "Frequently Asked Questions",
