@@ -35,24 +35,29 @@
     {
       "ParentContainerTitle": "Tools That Feel Like Superpowers",
       "ParentContainerDescription": "The only platform you'll ever need for email intelligence",
+      "borderColor": "eagleeye",
       "CardAndImageItem": [
         {
           "AboveHeaderText": "",
           "Header": "AI Driven Insights",
           "Description": "EagleEye's Al analytics helps you to derive meaningful insights from the chaotic world of emails.\n",
+          "media": "/EagleEye/Container Design (1).svg",
           "textOnLeft": false
         },
         {
           "Header": "Power BI Integration",
-          "Description": "EagleEye works with Power Bl to transform your email data into clear visual reports so you can both see and understand your data.\n"
+          "Description": "EagleEye works with Power Bl to transform your email data into clear visual reports so you can both see and understand your data.\n",
+          "media": "/EagleEye/PowerBI-Integration.svg"
         },
         {
           "Header": "Customer Portal",
-          "Description": "A customizable dashboard for you to manage tags, organize workflows, and track any ongoing or completed scan jobs.\n"
+          "Description": "A customizable dashboard for you to manage tags, organize workflows, and track any ongoing or completed scan jobs.\n",
+          "media": "/customer-portal.svg"
         },
         {
           "Header": "Integrations ",
-          "Description": "EagleEye supports Microsoft Exchange and GitHub repositories, with more integrations on the way.\n"
+          "Description": "EagleEye supports Microsoft Exchange and GitHub repositories, with more integrations on the way.\n",
+          "media": "/EagleEye/integrations.svg"
         }
       ],
       "_template": "CardAndImage"

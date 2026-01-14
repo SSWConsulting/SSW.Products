@@ -24,6 +24,7 @@ const cardAndImageMarkdownRenderer: Components<object> = {
 const NO_OPENED_ITEMS = -1;
 
 export default function CardAndImageParent({
+  borderColor,
   ParentContainerDescription,
   ParentContainerTitle,
   CardAndImageItem,
@@ -48,69 +49,75 @@ export default function CardAndImageParent({
     : null;
 
   return (
-    <>
-      <div className="flex flex-col">
-        <Container size="small">
-          {ParentContainerTitle && (
-            <h2 className="text-3xl text-white flex justify-center font-bold pb-3">
-              {curlyBracketFormatter(ParentContainerTitle)}
-            </h2>
+    <div className="flex flex-col">
+      <Container size="small">
+        {ParentContainerTitle && (
+          <h2 className="text-3xl text-white flex justify-center font-bold pb-3">
+            {curlyBracketFormatter(ParentContainerTitle)}
+          </h2>
+        )}
+        <div className="flex justify-center mx-auto pb-9">
+          {ParentContainerDescription && (
+            <span className="text-white/75 text-center">
+              {curlyBracketFormatter(ParentContainerDescription)}
+            </span>
           )}
-          <div className="flex justify-center mx-auto pb-9">
-            {ParentContainerDescription && (
-              <span className="text-white/75 text-center">
-                {curlyBracketFormatter(ParentContainerDescription)}
-              </span>
-            )}
-          </div>
-        </Container>
-        <Container className="flex flex-col md:flex-row gap-6">
-          <div className="flex gap-4 justify-center flex-col w-full">
-            {CardAndImageItem?.map((item, index) => (
-              <>
-                {item && (
-                  <CardItem
-                    key={index}
-                    data={item}
-                    uniqueId={index}
-                    idOfOpen={idOfOpen}
-                    setIdOfOpen={handleIdChange}
-                  />
-                )}
-              </>
-            ))}
-          </div>
-          {CardAndImageItem?.length && (
-            <div className="w-full flex items-center justify-center">
-              {imgSrc && altText && (
-                <Image
-                  src={imgSrc}
-                  alt={altText}
-                  width={500}
-                  height={500}
-                  className="object-cover w-full"
+        </div>
+      </Container>
+      <Container className="flex flex-col md:flex-row gap-6">
+        <div className="flex gap-4 justify-center flex-col w-full">
+          {CardAndImageItem?.map((item, index) => (
+            <>
+              {item && (
+                <CardItem
+                  key={index}
+                  data={item}
+                  borderColor={borderColor ?? "yakshaver"}
+                  uniqueId={index}
+                  idOfOpen={idOfOpen}
+                  setIdOfOpen={handleIdChange}
                 />
               )}
-            </div>
-          )}
-        </Container>
-      </div>
-    </>
+            </>
+          ))}
+        </div>
+        {CardAndImageItem?.length && (
+          <div className="w-full flex items-center justify-center">
+            {imgSrc && altText && (
+              <Image
+                src={imgSrc}
+                alt={altText}
+                width={500}
+                height={500}
+                className="object-cover w-full"
+              />
+            )}
+          </div>
+        )}
+      </Container>
+    </div>
   );
 }
 
 function CardItem({
   data,
+  borderColor,
   uniqueId,
   idOfOpen,
   setIdOfOpen,
 }: {
   data: Card;
+  borderColor: string;
   uniqueId: number;
   idOfOpen: number;
   setIdOfOpen: (id: number) => void;
 }) {
   const isOpen = idOfOpen === uniqueId;
+
+  const borders: Record<string, string> = {
+    yakshaver: "border-gradient-pink",
+    eagleeye: "border-gradient-eagleeye",
+  };
 
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentHeight, setContentHeight] = useState<number>(0);
@@ -125,7 +132,9 @@ function CardItem({
   return (
     <div
       className={cn(
-        isOpen ? "border-gradient-pink" : "border-gradient-transparent",
+        isOpen
+          ? borders[borderColor ?? "eagleeye"]
+          : "border-gradient-transparent",
         "group cursor-pointer w-full hover:[--border-gradient-foreground:var(--gradient-gray)] [--border-gradient-foreground:var(--gradient-black)] rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
       )}
       onClick={() => {
