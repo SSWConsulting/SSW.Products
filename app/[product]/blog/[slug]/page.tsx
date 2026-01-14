@@ -6,7 +6,7 @@ import { setPageMetadata } from "@utils/setPageMetaData";
 import { getLocale, getBlogWithFallback } from "@utils/i18n";
 import getBlogPageData from "@utils/pages/getBlogPageData";
 import ClientFallbackPage, { QueryKey } from "../../../client-fallback-page";
-import NotFoundError from "../../../../errors/not-found";
+import NotFoundError from "@/errors/not-found";
 import { BlogPageShared, BlogPageSharedProps } from "./blog-shared";
 
 

@@ -3,7 +3,7 @@ import { Blogs } from "@tina/__generated__/types";
 import { getBlogsForProduct } from "@utils/fetchBlogs";
 import { formatDate } from "@utils/formatDate";
 import { getBlogWithFallback, getLocale } from "@utils/i18n";
-import NotFoundError from "../../errors/not-found";
+import NotFoundError from "../../src/errors/not-found";
 
 async function getBlogPageData(product: string, slug: string, branch: string = "main") {
   const locale = await getLocale();

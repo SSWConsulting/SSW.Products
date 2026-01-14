@@ -1,7 +1,7 @@
 import {
   PagesPageBlocksHeroReportUiLeftHandSide as LeftHandSide,
   PagesPageBlocksHeroReportUiRightHandSide as RightHandSide,
-} from "../../../tina/__generated__/types";
+} from "@tina/__generated__/types";
 
 export type TypewriterTextProps = {
   onTypingComplete?: () => void;

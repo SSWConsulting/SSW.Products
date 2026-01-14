@@ -1,6 +1,6 @@
 import { cache } from "react";
 import client from "../tina/__generated__/client";
-import NotFoundError from "../errors/not-found";
+import NotFoundError from "../src/errors/not-found";
 
 type GetBlogsForProductProps = {
   startCursor?: string;

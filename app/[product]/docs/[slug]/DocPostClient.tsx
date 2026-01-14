@@ -11,12 +11,14 @@ import TableOfContentsClient from "./TableOfContentsClient";
 import Collapsible, { CollapsibleProps } from "@comps/Collapsible";
 import GitHubMetadata from "@utils/githubMetadata";
 import OutlineBox from "@comps/OutlineBox";
+import PaginationLinksClient, { PaginationLinksClientProps } from "./PaginationLinksClient";
 
 interface DocPostClientProps {
   query: string;
   variables: object;
   pageData: { docs: Docs };
   tableOfContentsData: DocsTableOfContents;
+  paginationData: PaginationLinksClientProps;
 }
 
 const BreadCrumbs = ({ title }: { title: string }) => {
@@ -38,6 +40,7 @@ export default function DocPostClient({
   variables,
   pageData,
   tableOfContentsData,
+  paginationData
 }: DocPostClientProps) {
   const { data } = useTina<{ docs: Docs }>({
     query,
@@ -58,6 +61,17 @@ export default function DocPostClient({
   };
 
   return (
+  <>
+  {data?.docs?.seo?.googleStructuredData && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(
+                  data?.docs?.seo?.googleStructuredData ?? {}
+                ),
+              }}
+            />
+  )}
     <div className="mx-auto text-white">
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
         <SearchBox.Trigger className="w-full" />
@@ -79,5 +93,11 @@ export default function DocPostClient({
         )}
       </div>
     </div>
+
+      <PaginationLinksClient
+        prev={paginationData.prev}
+        next={paginationData.next}
+      />
+    </>
   );
 }

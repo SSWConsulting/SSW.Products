@@ -5,7 +5,7 @@ import { LoaderCircle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { notFound } from "next/navigation";
 import ApiClient from "./tina-api.client";
-import NotFoundError from "../errors/not-found";
+import NotFoundError from "../src/errors/not-found";
 
 export type QueryKey = keyof typeof ApiClient.queries;
 
@@ -34,7 +34,8 @@ function ClientFallbackPage<T>(
             notFound();
         }
     }, [error]);
-
+    
+    console.log({data, error, isLoading});
     if(isLoading){    
         return <LoadingFallback />;
     }

@@ -1,28 +1,19 @@
-import { cookies } from "next/headers";
-import BadRequestError from "../../../../src/errors/bad-request";
-import NotFoundError from "../../../../src/errors/bad-request";
-
-import getBlogPageData from "@utils/pages/getBlogPageData";
 import { PageDataRequest } from "@/types/api/page-data";
+import BadRequestError from "../../../../src/errors/bad-request";
+import getDocPageData from "@utils/pages/getDocPageData";
+import { cookies } from "next/headers";
+import NotFoundError from "@/errors/not-found";
 
-
-
-
-export async function POST(request: Request) {
-
-
-    try{
-        const body = await request.json() as PageDataRequest;
+const POST = async (request: Request) => { 
+    const {product, relativePath} = await request.json() as PageDataRequest;
+    try {
         const cookieStore = await cookies();
         const branch = cookieStore.get("x-branch")?.value;
 
         if(!branch){
-            throw new BadRequestError("Missing branch cookie");   
+            console.error("branch cookie is missing");
+            throw new BadRequestError("Missing branch cookie");
         }
-
-        const product = body.product;
-        const relativePath = body.relativePath;
-
         if(!product)
         {
             throw new BadRequestError("Missing product parameter");
@@ -31,10 +22,11 @@ export async function POST(request: Request) {
         {
             throw new BadRequestError("Missing relativePath parameter");
         }
-        
-        const data = await getBlogPageData(product, relativePath, branch);
+
+        const data = await getDocPageData({product, slug: relativePath, branch});
 
         return new Response(JSON.stringify(data), {status: 200});
+
     }
     catch(error) {
         if(error instanceof BadRequestError){
@@ -45,5 +37,6 @@ export async function POST(request: Request) {
         }
         return new Response(JSON.stringify({error: 'Internal Server Error'}), {status: 500});
     }
-
 }
+
+export { POST };
