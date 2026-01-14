@@ -49,6 +49,10 @@
         {
           "Header": "Customer Portal",
           "Description": "A customizable dashboard for you to manage tags, organize workflows, and track any ongoing or completed scan jobs.\n"
+        },
+        {
+          "Header": "Integrations ",
+          "Description": "EagleEye supports Microsoft Exchange and GitHub repositories, with more integrations on the way.\n"
         }
       ],
       "_template": "CardAndImage"
