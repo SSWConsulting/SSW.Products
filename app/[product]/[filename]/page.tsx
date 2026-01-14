@@ -3,6 +3,7 @@ import HomePageClient from "../../../components/shared/HomePageClient";
 import client from "../../../tina/__generated__/client";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
 import { getLocale, getPageWithFallback, getRelativePath } from "../../../utils/i18n";
+import getPageData from "@utils/pages/getPageData";
 
 interface FilePageProps {
   params: Promise<{ product: string; filename: string }>;
@@ -33,38 +34,18 @@ export async function generateStaticParams() {
     })) || []
   );
 }
-
-export default async function FilePage({ params }: FilePageProps) {
+export default async function FilePage({ params }: FilePageProps) {  
   const { product, filename } = await params;
-  const locale = await getLocale();
-
-  const fileData = await getPageWithFallback(product, filename, locale, {
-    fetchOptions: {
-      next: {
-        revalidate: 10,
-      },
-    },
-  });
-  const relativePath = getRelativePath(product, filename, locale);
-
+  const {fileData, relativePath} = await getPageData(product, filename);
   return (
     <>
-      <CustomizeableBackground tinaData={fileData} />
+     
       <HomePageClient
         query={fileData.query}
         data={fileData.data}
         variables={{ relativePath }}
       />
-      {fileData.data?.pages?.seo?.googleStructuredData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              fileData.data?.pages?.seo?.googleStructuredData ?? {}
-            ),
-          }}
-        />
-      )}
+
     </>
   );
 }
