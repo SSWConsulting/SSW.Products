@@ -45,6 +45,10 @@
         {
           "Header": "Power BI Integration",
           "Description": "EagleEye works with Power Bl to transform your email data into clear visual reports so you can both see and understand your data.\n"
+        },
+        {
+          "Header": "Customer Portal",
+          "Description": "A customizable dashboard for you to manage tags, organize workflows, and track any ongoing or completed scan jobs.\n"
         }
       ],
       "_template": "CardAndImage"
