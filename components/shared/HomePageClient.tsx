@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useTina } from "tinacms/dist/react";
 import { bottomPaddingOptions } from "../../tina/collectionSchema/pages";
 import { blocksRenderer as BlocksRenderer } from "./blocksRenderer";
+import CustomizeableBackground from "./Background/CustomizeableBackground";
 
 interface HomePageClientProps {
   query: any;
@@ -24,6 +25,9 @@ export default function HomePageClient({
     data,
   });
   return (
+
+    <>
+     <CustomizeableBackground tinaData={{data, query, variables}} />
     <div
       className={cn(
         "flex flex-col gap-14 lg:gap-24 mx-auto w-full min-h-[95vh]",
@@ -37,5 +41,17 @@ export default function HomePageClient({
         data={{ pageBlocks: tinaData.data.pages.pageBlocks ?? null }}
       />
     </div>
+
+          {tinaData.data?.pages?.seo?.googleStructuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              tinaData.data?.pages?.seo?.googleStructuredData ?? {}
+            ),
+          }}
+        />
+      )}
+    </>
   );
 }

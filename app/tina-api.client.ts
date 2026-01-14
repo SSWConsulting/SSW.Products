@@ -2,6 +2,7 @@ import getBlogPageData from "@utils/pages/getBlogPageData";
 import axios, { AxiosResponse } from "axios";
 import NotFoundError from "../src/errors/not-found";
 import getDocPageData from "@utils/pages/getDocPageData";
+import getPageData from "@utils/pages/getPageData";
 
 type QueryFunction = (product: string, relativePath: string) => Promise<unknown>;
 
@@ -30,6 +31,14 @@ class ApiClient {
       });
       return this.handle(response);
     },
+
+    getPageData: async (product: string, relativePath: string)=> {
+      const response = await axios.post<Awaited<ReturnType<typeof getPageData>>>("/api/page-data", {
+        product,
+        relativePath,
+      });
+      return this.handle(response);
+    }
   };
 }
 

@@ -4,6 +4,8 @@ import client from "../../../tina/__generated__/client";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
 import { getLocale, getPageWithFallback, getRelativePath } from "../../../utils/i18n";
 import getPageData from "@utils/pages/getPageData";
+import NotFoundError from "@/errors/not-found";
+import ClientFallbackPage from "../../client-fallback-page";
 
 interface FilePageProps {
   params: Promise<{ product: string; filename: string }>;
@@ -36,18 +38,34 @@ export async function generateStaticParams() {
 }
 export default async function FilePage({ params }: FilePageProps) {  
   const { product, filename } = await params;
+
+
+
+  try {
+
+
+
+  
   const {fileData, relativePath} = await getPageData(product, filename);
   return (
-    <>
-     
       <HomePageClient
         query={fileData.query}
         data={fileData.data}
         variables={{ relativePath }}
       />
-
-    </>
+    
   );
+  }
+  catch(error) 
+  {
+    if(error instanceof NotFoundError){
+        return <ClientFallbackPage 
+          product={product} 
+          relativePath={filename}
+          query="getPageData"
+          Component={HomePageClient} />;
+    }
+  }
 }
 
 
