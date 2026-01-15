@@ -45,11 +45,6 @@ export async function generateStaticParams() {
   );
 }
 
-
-// Consolidated data fetching for blog post
-
-
-
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = await params;
 
