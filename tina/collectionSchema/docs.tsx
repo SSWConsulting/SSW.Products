@@ -9,6 +9,10 @@ export const docsCollection: Collection = {
   name: "docs",
   path: "content/docs/",
   ui: {
+
+    router: ({document}) => { 
+      return `/docs/${document._sys.filename}`;
+    },
     ...fileNameField
   },
   format: "mdx",
