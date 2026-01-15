@@ -5,6 +5,7 @@ import { getLocale, getPageWithFallback, getRelativePath } from "../../../utils/
 import getPageData from "@utils/pages/getPageData";
 import NotFoundError from "@/errors/not-found";
 import ClientFallbackPage from "../../client-fallback-page";
+import { notFound } from "next/navigation";
 
 export const dynamic = 'force-static';
 interface FilePageProps {
@@ -59,9 +60,8 @@ export default async function FilePage({ params }: FilePageProps) {
           query="getPageData"
           Component={HomePageClient} />;
     }
-    // notFound();
+    notFound();
   }
 }
-
 
 export const revalidate = 60;
