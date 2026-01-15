@@ -6,9 +6,6 @@ import DocPostClient from "./DocPostClient";
 import getDocPageData from "@utils/pages/getDocPageData";
 import ClientFallbackPage from "../../../client-fallback-page";
 import NotFoundError from "@/errors/not-found";
-import { notFound } from "next/navigation";
-
-export const dynamic = 'force-static';
 
 interface DocPostProps {
   params: {
