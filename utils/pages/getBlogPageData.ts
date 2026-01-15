@@ -7,7 +7,6 @@ import NotFoundError from "../../src/errors/not-found";
 
 async function getBlogPageData(product: string, slug: string, branch?: string) {
   const locale = await getLocale();
-  console.log("locale", locale);
   const res = await getBlogWithFallback({product, slug, locale, branch});
   if (!res?.data?.blogs)
   {
