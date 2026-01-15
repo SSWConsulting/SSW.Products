@@ -46,7 +46,7 @@ const NavigationMenuRoot = React.forwardRef<
   return (
     <NavigationMenu.Root
       className={clsx(
-        `text-white sticky transition-colors justify-center z-10  duration-200 xl:bg-black/60 ease-in-out`,
+        `text-white sticky transition-colors justify-center z-10  duration-200 ease-in-out`,
         scrolled
           ? `shadow-xs ${
               mobileOpened ? "bg-black" : "bg-transparent"
