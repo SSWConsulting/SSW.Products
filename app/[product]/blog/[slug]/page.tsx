@@ -1,16 +1,11 @@
-import { notFound } from "next/navigation";
-
-import BlogPostClient from "@comps/shared/BlogPostClient";
 import client from "@tina/__generated__/client";
 import { setPageMetadata } from "@utils/setPageMetaData";
 import { getLocale, getBlogWithFallback } from "@utils/i18n";
 import getBlogPageData from "@utils/pages/getBlogPageData";
-import ClientFallbackPage, { QueryKey } from "../../../client-fallback-page";
+import ClientFallbackPage from "../../../client-fallback-page";
 import NotFoundError from "@/errors/not-found";
 import { BlogPageShared, BlogPageSharedProps } from "./blog-shared";
 
-
-// export const dynamic = 'force-static';
 interface BlogPostProps {
   params: Promise<{
     slug: string;
