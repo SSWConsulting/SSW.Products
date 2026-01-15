@@ -10,7 +10,7 @@ import NotFoundError from "@/errors/not-found";
 import { BlogPageShared, BlogPageSharedProps } from "./blog-shared";
 
 
-export const dynamic = 'force-static';
+// export const dynamic = 'force-static';
 interface BlogPostProps {
   params: Promise<{
     slug: string;
