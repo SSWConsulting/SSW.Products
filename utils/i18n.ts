@@ -1,6 +1,7 @@
 import { headers } from 'next/headers';
 import { notFound } from "next/navigation";
 import client from "../tina/__generated__/client";
+import NotFoundError from '@/errors/not-found';
 
 export async function getLocale(): Promise<string> {
   const headersList = await headers();
@@ -14,28 +15,41 @@ export function getRelativePath(product: string, filename: string, locale: strin
   return locale === 'zh' ? `${product}/zh/${filename}.json` : `${product}/${filename}.json`;
 }
 
-export async function getPageWithFallback(
-  product: string, 
-  filename: string, 
-  locale: string = 'en',
-  options?: {
-    fetchOptions?: {
-      next?: {
-        revalidate?: number;
-      };
-    };
-  }
-) {
+export async function getPageWithFallback({
+  product, 
+  filename, 
+  locale = 'en',
+  revalidate,
+  branch = "main"
+}: { 
+  product: string,
+  filename: string,
+  locale?: string,
+  revalidate?: number,
+  branch?: string
+}) {
+        const revalidateOptions = revalidate? {next: { revalidate }} : {}
+      const options = {
+        fetchOptions: {
+          headers: {
+            "x-branch": branch,
+          },
+          ...revalidateOptions
+
+        }
+      }
   try {
     let relativePath: string;
     
     if (locale === 'zh') {
       relativePath = `${product}/zh/${filename}.json`;
-      
+
+
+
       try {
         const res = await client.queries.pages(
           { relativePath },
-          options
+          // options
         );
         return {
           query: res.query,
@@ -50,7 +64,7 @@ export async function getPageWithFallback(
     relativePath = `${product}/${filename}.json`;
     const res = await client.queries.pages(
       { relativePath },
-      options
+      // options
     );
     return {
       query: res.query,
@@ -58,8 +72,9 @@ export async function getPageWithFallback(
       variables: res.variables,
     };
   } catch (error) {
-    console.error("Error fetching TinaCMS data:", error);
-    notFound();
+    throw new NotFoundError("page not found ")
+    // console.error("Error fetching TinaCMS data:", error);
+    // notFound();
   }
 }
 
@@ -157,7 +172,8 @@ export async function getBlogWithFallback({product, slug, locale = 'en', revalid
     
     return res;
   } catch (error) {
-    console.error("Error fetching blog post:", error);
+    console.error("Error fetching blog post:", error)
+    console.log("returning null");
     return null;
   }
 }

@@ -1,4 +1,3 @@
-import CustomizeableBackground from "../../../components/shared/Background/CustomizeableBackground";
 import HomePageClient from "../../../components/shared/HomePageClient";
 import client from "../../../tina/__generated__/client";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
@@ -16,13 +15,7 @@ export async function generateMetadata({ params }: FilePageProps) {
   
   const { product, filename } = await params;
   const locale = await getLocale();
-  const fileData = await getPageWithFallback(product, filename, locale, {
-    fetchOptions: {
-      next: {
-        revalidate: 10,
-      },
-    },
-  });
+  const fileData = await getPageWithFallback({product, filename, locale, revalidate: 10, branch: "main"});
   const metadata = setPageMetadata(fileData.data?.pages?.seo, product);
   return metadata;
 }
@@ -38,23 +31,16 @@ export async function generateStaticParams() {
 }
 export default async function FilePage({ params }: FilePageProps) {  
   const { product, filename } = await params;
-
-
-
   try {
-
-
-
-  
-  const {fileData, relativePath} = await getPageData(product, filename);
+  throw new NotFoundError("Page not found");
+  const {data, query, relativePath} = await getPageData(product, filename);
   return (
       <HomePageClient
-        query={fileData.query}
-        data={fileData.data}
+        query={query}
+        data={data}
         variables={{ relativePath }}
       />
-    
-  );
+    );
   }
   catch(error) 
   {
@@ -66,6 +52,8 @@ export default async function FilePage({ params }: FilePageProps) {
           Component={HomePageClient} />;
     }
   }
+
+  return <h1>page segment</h1>
 }
 
 

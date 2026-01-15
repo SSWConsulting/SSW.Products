@@ -12,7 +12,6 @@ const POST = async (request: Request) => {
         const branch = cookieStore.get("x-branch")?.value;
         const product = body.product;
         const relativePath = body.relativePath;
-        
         if(!branch){
             throw new BadRequestError("Missing branch cookie");
         }
@@ -29,7 +28,7 @@ const POST = async (request: Request) => {
 
         const data = await getPageData(product, relativePath, branch);
 
-        return new Response(JSON.stringify(data), {status: 200});
+        return new Response(JSON.stringify({...data}), {status: 200});
     }
     catch(error) {
         if(error instanceof BadRequestError){

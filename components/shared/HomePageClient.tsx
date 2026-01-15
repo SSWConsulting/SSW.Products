@@ -7,6 +7,7 @@ import { useTina } from "tinacms/dist/react";
 import { bottomPaddingOptions } from "../../tina/collectionSchema/pages";
 import { blocksRenderer as BlocksRenderer } from "./blocksRenderer";
 import CustomizeableBackground from "./Background/CustomizeableBackground";
+import getPageData from "@utils/pages/getPageData";
 
 interface HomePageClientProps {
   query: any;

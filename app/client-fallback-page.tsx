@@ -22,7 +22,6 @@ type ClientFallbackPageProps<T> = {
 function ClientFallbackPage<T>(
     { product, relativePath, query, Component }: ClientFallbackPageProps<T>
 ) {
-
     const { data, error, isLoading} = useQuery({
         queryKey:[product, relativePath], 
         retry: false,
@@ -35,7 +34,6 @@ function ClientFallbackPage<T>(
         }
     }, [error]);
     
-    console.log({data, error, isLoading});
     if(isLoading){    
         return <LoadingFallback />;
     }
@@ -49,5 +47,11 @@ export default ClientFallbackPage;
 
 
 const LoadingFallback = ()=> {
-    return <div><LoaderCircle /></div>
+    return <div className="w-full h-full ">
+            <div className="top-1/2 -translate-x-1/2 left-1/2 absolute -translate-y-1/2 flex flex-col gap-3 items-center">
+            <LoaderCircle className="stroke-white animate-spin animation-duration-500 size-10" />
+            <span className="text-white text-lg">Loading</span>
+            </div>
+        </div>
+        
 };

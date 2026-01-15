@@ -11,7 +11,7 @@ interface ProductPageProps {
 export async function generateMetadata({ params }: ProductPageProps) {
   const { product } = await params;
   const locale = await getLocale();
-  const productData = await getPageWithFallback(product, 'home', locale);
+  const productData = await getPageWithFallback({product, filename: 'home', locale});
   const metadata = setPageMetadata(productData.data?.pages?.seo, product);
   return metadata;
 }
@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const {product} = await params;
   const locale = await getLocale();
 
-  const productData = await getPageWithFallback(product, 'home', locale);
+  const productData = await getPageWithFallback({product, filename: 'home', locale});
   const relativePath = getRelativePath(product, 'home', locale);
   
   return (
