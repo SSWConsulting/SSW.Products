@@ -8,9 +8,6 @@ export async function getLocale(): Promise<string> {
   return headersList.get('x-language') || 'en';
 }
 
-
-// TODO: check if internationalized pages still load after adding page previews
-
 export function getRelativePath(product: string, filename: string, locale: string): string {
   return locale === 'zh' ? `${product}/zh/${filename}.json` : `${product}/${filename}.json`;
 }

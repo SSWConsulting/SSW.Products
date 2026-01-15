@@ -64,7 +64,6 @@ export default async function BlogIndex({ params }: BlogIndex) {
   });
 
   const dehydratedState = dehydrate(queryClient, {});
-  // TODO: Figurwe out wht the blog index page is not returning search results in prod
   return (
     <div className="text-gray-100 flex flex-col">
         <div className="flex flex-col min-h-screen">
