@@ -16,6 +16,4 @@ type Edge =
   | null
   | undefined;
 
-type TinaQuery = (keyof typeof client.queries);
-
-export type { Edge, Edges, RemoveTinaMetadata, TinaQuery };
+export type { Edge, Edges, RemoveTinaMetadata };
