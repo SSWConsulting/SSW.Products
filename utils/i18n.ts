@@ -126,7 +126,6 @@ export async function getBlogWithFallback({product, slug, locale = 'en', revalid
   }
 ) {
   try {
-    console.log("blog try hit")
     let relativePath: string;
 
     const revalidateOptions = revalidate? {next: { revalidate }} : {}
