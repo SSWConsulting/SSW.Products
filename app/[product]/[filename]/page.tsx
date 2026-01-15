@@ -6,6 +6,7 @@ import getPageData from "@utils/pages/getPageData";
 import NotFoundError from "@/errors/not-found";
 import ClientFallbackPage from "../../client-fallback-page";
 
+export const dynamic = 'force-static';
 interface FilePageProps {
   params: Promise<{ product: string; filename: string }>;
 }
@@ -14,10 +15,18 @@ interface FilePageProps {
 export async function generateMetadata({ params }: FilePageProps) {
   
   const { product, filename } = await params;
+  try {
   const locale = await getLocale();
   const fileData = await getPageWithFallback({product, filename, locale, revalidate: 10, branch: "main"});
   const metadata = setPageMetadata(fileData.data?.pages?.seo, product);
   return metadata;
+  }
+  catch(error) {
+    if(error instanceof NotFoundError){
+      return {};
+    }
+    throw error;
+  }
 }
 
 export async function generateStaticParams() {
@@ -32,7 +41,6 @@ export async function generateStaticParams() {
 export default async function FilePage({ params }: FilePageProps) {  
   const { product, filename } = await params;
   try {
-  throw new NotFoundError("Page not found");
   const {data, query, relativePath} = await getPageData(product, filename);
   return (
       <HomePageClient
@@ -51,9 +59,8 @@ export default async function FilePage({ params }: FilePageProps) {
           query="getPageData"
           Component={HomePageClient} />;
     }
+    // notFound();
   }
-
-  return <h1>page segment</h1>
 }
 
 

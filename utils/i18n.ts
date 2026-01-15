@@ -49,7 +49,7 @@ export async function getPageWithFallback({
       try {
         const res = await client.queries.pages(
           { relativePath },
-          // options
+          options
         );
         return {
           query: res.query,
@@ -64,7 +64,7 @@ export async function getPageWithFallback({
     relativePath = `${product}/${filename}.json`;
     const res = await client.queries.pages(
       { relativePath },
-      // options
+      options
     );
     return {
       query: res.query,
@@ -73,8 +73,6 @@ export async function getPageWithFallback({
     };
   } catch (error) {
     throw new NotFoundError("page not found ")
-    // console.error("Error fetching TinaCMS data:", error);
-    // notFound();
   }
 }
 
@@ -118,7 +116,7 @@ export async function getBlogIndexWithFallback(
   }
 }
 
-export async function getBlogWithFallback({product, slug, locale = 'en', revalidate, branch = "main"}:
+export async function getBlogWithFallback({product, slug, locale = 'en', revalidate, branch}:
   {product: string,
   slug: string,
   locale?: string,
@@ -128,8 +126,8 @@ export async function getBlogWithFallback({product, slug, locale = 'en', revalid
   }
 ) {
   try {
+    console.log("blog try hit")
     let relativePath: string;
-
 
     const revalidateOptions = revalidate? {next: { revalidate }} : {}
 
@@ -148,7 +146,6 @@ export async function getBlogWithFallback({product, slug, locale = 'en', revalid
       
       try {
         const res = await client.queries.blogs({ relativePath, },options);
-        console.log("res", res);
         if (res?.data?.blogs) {
           return res;
         }
@@ -156,11 +153,9 @@ export async function getBlogWithFallback({product, slug, locale = 'en', revalid
         console.log(`Chinese blog post not found, falling back to English for ${product}/${slug}`);
       }
     }
+
     
     relativePath = `${product}/${slug}.mdx`;
-    console.log("options", options);  
-
-    console.log("relativePath", relativePath);
     const res = await client.queries.blogs(
       { relativePath },
       options
@@ -172,9 +167,8 @@ export async function getBlogWithFallback({product, slug, locale = 'en', revalid
     
     return res;
   } catch (error) {
-    console.error("Error fetching blog post:", error)
-    console.log("returning null");
-    return null;
+    console.log("throwing not found error")
+    throw new NotFoundError("Blog post not found ");
   }
 }
 

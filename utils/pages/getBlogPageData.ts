@@ -5,7 +5,7 @@ import { formatDate } from "@utils/formatDate";
 import { getBlogWithFallback, getLocale } from "@utils/i18n";
 import NotFoundError from "../../src/errors/not-found";
 
-async function getBlogPageData(product: string, slug: string, branch: string = "main") {
+async function getBlogPageData(product: string, slug: string, branch?: string) {
   const locale = await getLocale();
   const res = await getBlogWithFallback({product, slug, locale, branch});
   if (!res?.data?.blogs)

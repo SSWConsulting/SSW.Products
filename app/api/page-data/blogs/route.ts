@@ -1,13 +1,11 @@
 import { cookies } from "next/headers";
-import BadRequestError from "../../../../src/errors/bad-request";
-import NotFoundError from "../../../../src/errors/bad-request";
+import BadRequestError from "@/errors/bad-request";
+import NotFoundError from "@/errors/not-found";
 
 import getBlogPageData from "@utils/pages/getBlogPageData";
 import { PageDataRequest } from "@/types/api/page-data";
 
 export async function POST(request: Request) {
-
-
     try{
         const body = await request.json() as PageDataRequest;
         const cookieStore = await cookies();
@@ -30,7 +28,6 @@ export async function POST(request: Request) {
         }
         
         const data = await getBlogPageData(product, relativePath, branch);
-
         return new Response(JSON.stringify(data), {status: 200});
     }
     catch(error) {

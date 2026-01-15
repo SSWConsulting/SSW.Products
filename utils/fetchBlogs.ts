@@ -50,7 +50,15 @@ export async function getBlogsForProduct({
   branch,
 }: GetBlogsForProductProps) {
   try {
-    // TODO: updated this to work acros branches
+
+    const fetchOptions = branch? {
+      fetchOptions: {
+        headers: {
+          "x-branch": branch,
+        },
+      }
+    } : {}
+
     let titles = await getTitlesInTenant(product, locale);
     if (filteredBlogs && filteredBlogs.length > 0) {
       titles = titles.filter((title) => !filteredBlogs.includes(title));
@@ -80,13 +88,7 @@ export async function getBlogsForProduct({
       last: limit * 2,
       before: startCursor,
       sort: "date",
-    },{
-      fetchOptions: {
-        headers: {
-          "x-branch": branch || "main",
-        },
-      }
-    });
+      },{ ...fetchOptions});
     if (
       !res.data ||
       !res.data.blogsConnection ||

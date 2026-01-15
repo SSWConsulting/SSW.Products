@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { LoaderCircle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { notFound } from "next/navigation";
 import ApiClient from "./tina-api.client";
 import NotFoundError from "../src/errors/not-found";
+import { useIsAdminPage } from "@comps/hooks/useIsAdmin";
 
 export type QueryKey = keyof typeof ApiClient.queries;
-
-
 
 type ClientFallbackPageProps<T> = {
     product: string;
@@ -22,25 +21,19 @@ type ClientFallbackPageProps<T> = {
 function ClientFallbackPage<T>(
     { product, relativePath, query, Component }: ClientFallbackPageProps<T>
 ) {
+        const { isAdmin, isLoading: isAdminLoading } =  useIsAdminPage();
     const { data, error, isLoading} = useQuery({
         queryKey:[product, relativePath], 
         retry: false,
         queryFn: ()=> ApiClient.queries[query](product,relativePath) as Promise<T>
     });    
 
-    useEffect(()=> {
-        if(error instanceof NotFoundError){
-            notFound();
-        }
-    }, [error]);
-    
-    if(isLoading){    
-        return <LoadingFallback />;
-    }
-
-    if(data){
-        return <Component {...data} />;
-    }
+    return <>
+        {(!isAdminLoading && !isAdmin) && notFound()}
+        {(error && error instanceof NotFoundError) && notFound()}
+        {isLoading && <LoadingFallback />}
+        {data && <Component {...data} />}   
+    </>;
 }
 
 export default ClientFallbackPage;

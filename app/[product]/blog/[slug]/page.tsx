@@ -10,7 +10,7 @@ import NotFoundError from "@/errors/not-found";
 import { BlogPageShared, BlogPageSharedProps } from "./blog-shared";
 
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 interface BlogPostProps {
   params: Promise<{
     slug: string;
@@ -31,9 +31,11 @@ export async function generateMetadata({ params }: BlogPostProps) {
 
     const metadata = setPageMetadata(res?.data?.blogs?.seo, product, 'Blog');
     return metadata;
-  } catch (e) {
-    console.error(e);
-    notFound();
+  } 
+  catch (error) {
+    if(error instanceof NotFoundError) {
+      return {}
+    }
   }
 }
 

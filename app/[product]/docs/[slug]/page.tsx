@@ -6,6 +6,9 @@ import DocPostClient from "./DocPostClient";
 import getDocPageData from "@utils/pages/getDocPageData";
 import ClientFallbackPage from "../../../client-fallback-page";
 import NotFoundError from "@/errors/not-found";
+import { notFound } from "next/navigation";
+
+export const dynamic = 'force-static';
 
 interface DocPostProps {
   params: {
@@ -24,10 +27,18 @@ interface DocPostMetadataProps {
 
 export async function generateMetadata({ params }: DocPostMetadataProps) {
   const { product, slug } = params;
-  const locale = await getLocale();
-  const docs = await getDocPost({product, slug, locale});
-  const metadata = setPageMetadata(docs?.docs?.seo, product, "Docs");
-  return metadata;
+  try {
+    const locale = await getLocale();
+    const docs = await getDocPost({product, slug, locale});
+    const metadata = setPageMetadata(docs?.docs?.seo, product, "Docs");
+    return metadata;
+  }
+  catch(error) {
+    if(error instanceof NotFoundError){
+      return {};
+    }
+    throw error;
+  }
 }
 
 export async function generateStaticParams() {
