@@ -47,10 +47,6 @@ export async function generateStaticParams() {
 
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = await params;
-
-
-  const locale = getLocale();
-  console.log("locale in route handler", locale); 
   try{
     const data = await getBlogPageData(product, slug);    
 
