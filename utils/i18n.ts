@@ -155,7 +155,6 @@ export async function getBlogWithFallback({product, slug, locale = 'en', revalid
     
     return res;
   } catch (error) {
-    console.log("throwing not found error")
     throw new NotFoundError("Blog post not found ");
   }
 }
