@@ -1,0 +1,15 @@
+{
+  "seo": {
+    "title": "seo title",
+    "description": "seo description"
+  },
+  "title": "titledfsdfs",
+  "pageBlocks": [
+    {
+      "titleBeforeRotate": "Title before rotate",
+      "titleAfterRotate": "Title after rotate",
+      "byLine": "",
+      "_template": "hero"
+    }
+  ]
+}
