@@ -4,7 +4,6 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { BlogSearchProvider } from "../../../components/providers/BlogSearchProvider";
-import QueryProvider from "../../../components/providers/QueryProvider";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
 import client from "../../../tina/__generated__/client";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
@@ -65,10 +64,8 @@ export default async function BlogIndex({ params }: BlogIndex) {
   });
 
   const dehydratedState = dehydrate(queryClient, {});
-
   return (
     <div className="text-gray-100 flex flex-col">
-      <QueryProvider>
         <div className="flex flex-col min-h-screen">
           <HydrationBoundary state={dehydratedState}>
             <BlogSearchProvider categories={categories}>
@@ -76,7 +73,6 @@ export default async function BlogIndex({ params }: BlogIndex) {
             </BlogSearchProvider>
           </HydrationBoundary>
         </div>
-      </QueryProvider>
     </div>
   );
 }

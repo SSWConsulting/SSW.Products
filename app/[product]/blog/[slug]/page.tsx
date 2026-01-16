@@ -1,13 +1,10 @@
-import { notFound } from "next/navigation";
-
-import { Blog } from "@/types/blog";
-import BlogPostClient from "@comps/shared/BlogPostClient";
 import client from "@tina/__generated__/client";
-import { Blogs } from "@tina/__generated__/types";
-import { getBlogsForProduct } from "@utils/fetchBlogs";
-import { formatDate } from "@utils/formatDate";
 import { setPageMetadata } from "@utils/setPageMetaData";
 import { getLocale, getBlogWithFallback } from "@utils/i18n";
+import getBlogPageData from "@utils/pages/getBlogPageData";
+import ClientFallbackPage from "../../../client-fallback-page";
+import NotFoundError from "@/errors/not-found";
+import { BlogPageShared, BlogPageSharedProps } from "./blog-shared";
 
 interface BlogPostProps {
   params: Promise<{
@@ -17,11 +14,12 @@ interface BlogPostProps {
 }
 
 export async function generateMetadata({ params }: BlogPostProps) {
+  
   const { slug, product } = await params;
   const locale = await getLocale();
 
   try {
-    const res = await getBlogWithFallback(product, slug, locale);
+    const res = await getBlogWithFallback({product, slug, locale});
 
     if (!res?.data?.blogs) {
       return null;
@@ -29,9 +27,11 @@ export async function generateMetadata({ params }: BlogPostProps) {
 
     const metadata = setPageMetadata(res?.data?.blogs?.seo, product, 'Blog');
     return metadata;
-  } catch (e) {
-    console.error(e);
-    notFound();
+  } 
+  catch (error) {
+    if(error instanceof NotFoundError) {
+      return {}
+    }
   }
 }
 
@@ -45,100 +45,28 @@ export async function generateStaticParams() {
   );
 }
 
-let nextBlog: Blog | undefined = undefined;
-let previousBlog: Blog | undefined = undefined;
-
 export default async function BlogPost({ params }: BlogPostProps) {
   const { slug, product } = await params;
-  const locale = await getLocale();
+  try{
+    const data = await getBlogPageData(product, slug);    
 
-  const documentData = await getBlogPost(product, slug);
-
-  const allBlogs = await getBlogsForProduct({
-    product,
-    locale,
-  });
-
-  const flattenedBlogs =
-    allBlogs.blogs?.reduce<Blog[]>((acc, blog) => {
-      if (!blog?.node) return acc;
-      const {
-        author,
-        date,
-        title,
-        _sys,
-        category,
-        body,
-        bannerImage,
-        readLength,
-      } = blog.node;
-      return [
-        ...acc,
-        {
-          readLength,
-          author,
-          date,
-          title,
-          slug: _sys.filename,
-          category,
-          body,
-          bannerImage,
-        },
-      ];
-    }, []) || [];
-
-  const currentBlogIndex = flattenedBlogs.findIndex(
-    (blog) => blog.title === documentData?.blogs?.title
-  );
-
-  previousBlog = flattenedBlogs[currentBlogIndex + 1] || undefined;
-  nextBlog = flattenedBlogs[currentBlogIndex - 1] || undefined;
-
-  if (!documentData) {
-    return notFound();
+    return (
+      <BlogPageShared {...data} />
+    );
   }
-
-  return (
-    <div className="flex flex-col min-h-screen">
-      <div className="grow">
-        <BlogPostClient
-          nextBlog={nextBlog}
-          previousBlog={previousBlog}
-          recentBlogs={flattenedBlogs
-            .filter((blog) => blog.title !== documentData.blogs.title)
-            .slice(-2)
-            .reverse()}
-          initialFormattedDate={
-            documentData.blogs.date && formatDate(documentData.blogs.date)
-          }
-          query={documentData.query}
-          variables={documentData.variables}
-          pageData={{ blogs: documentData.blogs }}
-        />
-      </div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            documentData?.blogs.seo?.googleStructuredData ?? {}
-          ),
-        }}
-      />
-    </div>
-  );
+  catch (error){
+    if(error instanceof NotFoundError){
+          return <ClientFallbackPage<BlogPageSharedProps> 
+        product={product} 
+        relativePath={slug} 
+        query={"getBlogPageData"}
+        Component={BlogPageShared}
+        />; 
+    }
+    throw error;
+  }
 }
 
-async function getBlogPost(product: string, slug: string) {
-  const locale = await getLocale();
-  const res = await getBlogWithFallback(product, slug, locale);
-  
-  if (!res?.data?.blogs) {
-    return null;
-  }
 
-  return {
-    query: res.query,
-    variables: res.variables,
-    blogs: res.data.blogs as Blogs,
-  };
-}
+
+

@@ -29,7 +29,6 @@ const CustomizeableBackground = ({
         "absolute inset-0 -z-50"
       )}
     >
-      {/* {children} */}
     </div>
   );
 };

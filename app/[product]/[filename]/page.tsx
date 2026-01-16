@@ -1,9 +1,13 @@
-import CustomizeableBackground from "../../../components/shared/Background/CustomizeableBackground";
 import HomePageClient from "../../../components/shared/HomePageClient";
 import client from "../../../tina/__generated__/client";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
 import { getLocale, getPageWithFallback, getRelativePath } from "../../../utils/i18n";
+import getPageData from "@utils/pages/getPageData";
+import NotFoundError from "@/errors/not-found";
+import ClientFallbackPage from "../../client-fallback-page";
+import { notFound } from "next/navigation";
 
+export const dynamic = 'force-static';
 interface FilePageProps {
   params: Promise<{ product: string; filename: string }>;
 }
@@ -12,16 +16,18 @@ interface FilePageProps {
 export async function generateMetadata({ params }: FilePageProps) {
   
   const { product, filename } = await params;
+  try {
   const locale = await getLocale();
-  const fileData = await getPageWithFallback(product, filename, locale, {
-    fetchOptions: {
-      next: {
-        revalidate: 10,
-      },
-    },
-  });
+  const fileData = await getPageWithFallback({product, filename, locale, revalidate: 10, branch: "main"});
   const metadata = setPageMetadata(fileData.data?.pages?.seo, product);
   return metadata;
+  }
+  catch(error) {
+    if(error instanceof NotFoundError){
+      return {};
+    }
+    throw error;
+  }
 }
 
 export async function generateStaticParams() {
@@ -33,41 +39,29 @@ export async function generateStaticParams() {
     })) || []
   );
 }
-
-export default async function FilePage({ params }: FilePageProps) {
+export default async function FilePage({ params }: FilePageProps) {  
   const { product, filename } = await params;
-  const locale = await getLocale();
-
-  const fileData = await getPageWithFallback(product, filename, locale, {
-    fetchOptions: {
-      next: {
-        revalidate: 10,
-      },
-    },
-  });
-  const relativePath = getRelativePath(product, filename, locale);
-
+  try {
+  const {data, query, relativePath} = await getPageData(product, filename);
   return (
-    <>
-      <CustomizeableBackground tinaData={fileData} />
       <HomePageClient
-        query={fileData.query}
-        data={fileData.data}
+        query={query}
+        data={data}
         variables={{ relativePath }}
       />
-      {fileData.data?.pages?.seo?.googleStructuredData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              fileData.data?.pages?.seo?.googleStructuredData ?? {}
-            ),
-          }}
-        />
-      )}
-    </>
-  );
+    );
+  }
+  catch(error) 
+  {
+    if(error instanceof NotFoundError){
+        return <ClientFallbackPage 
+          product={product} 
+          relativePath={filename}
+          query="getPageData"
+          Component={HomePageClient} />;
+    }
+    notFound();
+  }
 }
-
 
 export const revalidate = 60;
