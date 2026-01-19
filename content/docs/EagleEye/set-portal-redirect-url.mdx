@@ -1,0 +1,29 @@
+---
+seo:
+  title: Set portal redirect URL - SSW EagleEye
+  description: >-
+    Learn how to configure the portal redirect URL for SSW EagleEye, add custom
+    domains, and resolve authentication errors.
+title: Set portal redirect URL
+date: '2026-01-18T13:00:00.000Z'
+---
+
+> By default, EagleEye will automatically set the portal redirect URL for you.
+
+Follow this guide if you need to do any of the following:
+- add your custom portal domain,
+- change the current redirect URL,
+- fix `AADSTS50011` error in EagleEye Portal login
+
+![Redirect URL Error](/EagleEye/Portal-Redirect-Error.png)
+
+### Steps to Set Portal Redirect URL
+1. On the Azure portal, go to your Managed Applications, select SSW EagleEye → the **Managed Resource Group** (e.g., `mrg-ssw-eagleeye-xxxxxx`)
+2. Find the Portal container app (e.g., `ca-nextjs-xxxxxx`)
+3. Copy the **Application URL** (e.g., `https://ca-nextjs-xxx.australiaeast.azurecontainerapps.io`)
+4. Go to  **App registrations** → **SSW.EagleEye.Portal**
+5. Go to **Authentication** → **Add Redirect URI** → **Web**
+6. Add redirect URI: `[Portal URL]/api/auth/callback/azure-ad`
+   * e.g. `https://ca-nextjs-xxx.australiaeast.azurecontainerapps.io/api/auth/callback/azure-ad`
+7. Click **Configure**
+ ![Set Redirect URL](/EagleEye/Portal-Redirect-Setup.png)

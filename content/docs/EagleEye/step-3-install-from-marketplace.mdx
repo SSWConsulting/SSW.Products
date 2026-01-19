@@ -71,7 +71,7 @@ You need to provide the details of Master App:
 
 * **Location**: Select Azure region (currently East US)
 * **Model**: Choose GPT-4.1 Mini or GPT-4o Mini
-* **Capacity**: Set tokens per minute. You can [view and requst quotas in Foundary portal](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/quota?view=foundry-classic#view-and-request-quotas-in-foundry-portal)
+* **Capacity**: Set tokens per minute. You can [view and request quotas in Foundary portal](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/quota?view=foundry-classic#view-and-request-quotas-in-foundry-portal)
 
 ![Azure OpenAI Configuration](/EagleEye/azure-openai-configuration.png)
 
@@ -82,27 +82,17 @@ You need to provide the details of Master App:
 3. Monitor deployment progress in the Azure Portal
 4. Deployment typically takes 15-30 minutes
 
-### Step 3.3 - Post-Deployment Configuration
-
-#### Step 3.3.1 - Configure Portal Frontend Redirect URL
-
-After deployment completes, you need to configure the authentication redirect URL:
-
-1. Go to **Resource Groups** > **\[your-resource-group]** > **Container Apps**
-2. Find the Portal container app (e.g., `ca-nextjs-xxxxxx`)
-3. Copy the **Application URL** (e.g., `https://ca-nextjs-4d33i5xxemxsu.happyfield-d167da8e.australiaeast.azurecontainerapps.io`)
-4. Go to **Azure AD** > **App registrations** > **SSW\.EagleEye.Portal**
-5. Go to **Authentication** > **Add a platform** > **Web**
-6. Add redirect URI: `[Application URL]/api/auth/callback/azure-ad`
-   * Example: `https://ca-nextjs-4d33i5xxemxsu.happyfield-d167da8e.australiaeast.azurecontainerapps.io/api/auth/callback/azure-ad`
-7. Click **Save**
-
-#### Step 3.3.2 - Verify Deployment
+### Step 3.3 - Verify Deployment
 
 1. **Access the Portal**: Navigate to the Portal container app URL
 2. **Test Authentication**: Sign in with your Azure AD credentials
 3. **Check API Connectivity**: Verify the Portal can communicate with the API
 4. **Test Email Processing**: Run a manual job to categorize emails
+
+#### Common issues can be resolved by visiting:
+
+* [Set portal redirect URL](./set-portal-redirect-url)
+* [Update Internal email domains](./update-internal-email-domains)
 
 ## Architecture Overview
 
