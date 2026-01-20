@@ -23,7 +23,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.2.3",
     "fast-glob": "^3.3.3",
     "gray-matter": "^4.0.3",
     "instantsearch.js": "^4.78.3",
