@@ -39,16 +39,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
         data={productData.data}
         variables={{ relativePath }}
       />
-      {productData?.data.pages.seo?.googleStructuredData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: `${
-              productData?.data.pages.seo?.googleStructuredData ?? {}
-            }`,
-          }}
-        />
-      )}
     </div>
   );
 }
