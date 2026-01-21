@@ -36,14 +36,18 @@
       "_template": "stringItem"
     },
     {
-      "label": "Blog",
-      "href": "http://sswtimepro.com/Blog",
-      "_template": "stringItem"
-    },
-    {
-      "label": "Videos",
-      "href": "http://www.youtube.com/@sswtimepro",
-      "_template": "stringItem"
+      "label": "ABOUT US",
+      "items": [
+        {
+          "label": "BLOG",
+          "href": "http://sswtimepro.com/Blog"
+        },
+        {
+          "label": "VIDEOS",
+          "href": "http://www.youtube.com/@sswtimepro"
+        }
+      ],
+      "_template": "groupOfStringItems"
     },
     {
       "label": "Contact Us",
