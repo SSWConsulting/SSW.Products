@@ -12,6 +12,7 @@ import Collapsible, { CollapsibleProps } from "@comps/Collapsible";
 import GitHubMetadata from "@utils/githubMetadata";
 import OutlineBox from "@comps/OutlineBox";
 import PaginationLinksClient, { PaginationLinksClientProps } from "./PaginationLinksClient";
+import GoogleStructuredDataScript from "@comps/GoogleStructuredDataScript";
 
 interface DocPostClientProps {
   query: string;
@@ -62,16 +63,7 @@ export default function DocPostClient({
 
   return (
   <>
-  {data?.docs?.seo?.googleStructuredData && (
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify(
-                  data?.docs?.seo?.googleStructuredData ?? {}
-                ),
-              }}
-            />
-  )}
+  <GoogleStructuredDataScript jsonString={data.docs.seo?.googleStructuredData} />
     <div className="mx-auto text-white">
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
         <SearchBox.Trigger className="w-full" />

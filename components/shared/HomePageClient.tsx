@@ -7,7 +7,7 @@ import { useTina } from "tinacms/dist/react";
 import { bottomPaddingOptions } from "../../tina/collectionSchema/pages";
 import { blocksRenderer as BlocksRenderer } from "./blocksRenderer";
 import CustomizeableBackground from "./Background/CustomizeableBackground";
-import getPageData from "@utils/pages/getPageData";
+import GoogleStructuredDataScript from "@comps/GoogleStructuredDataScript";
 
 interface HomePageClientProps {
   query: any;
@@ -26,8 +26,8 @@ export default function HomePageClient({
     data,
   });
   return (
-
     <>
+    <GoogleStructuredDataScript jsonString={tinaData.data?.pages?.seo?.googleStructuredData} />
      <CustomizeableBackground tinaData={{data, query, variables}} />
     <div
       className={cn(
@@ -42,17 +42,7 @@ export default function HomePageClient({
         data={{ pageBlocks: tinaData.data.pages.pageBlocks ?? null }}
       />
     </div>
-
-          {tinaData.data?.pages?.seo?.googleStructuredData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(
-              tinaData.data?.pages?.seo?.googleStructuredData ?? {}
-            ),
-          }}
-        />
-      )}
+      
     </>
   );
 }
