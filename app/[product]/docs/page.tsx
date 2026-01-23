@@ -9,11 +9,11 @@ interface DocsIndex {
 export async function generateMetadata({ params }: DocsIndex) {
   const { product } = await params;
   return {
-    title: `${product} Docs`,
-    description: `Find out more about ${product}, guides and documentation`,
+    title: `${product} - Docs - Guides, References, and Resources`,
+    description: `Find official documentation, guides, references, and resources to help you get the most out of ${product}.`,
     openGraph: {
-      title: `${product} Docs`,
-      description: `Find out more about ${product}, guides and documentation`,
+      title: `${product} - Docs - Guides, References, and Resources`,
+      description: `Find official documentation, guides, references, and resources to help you get the most out of ${product}.`,
       images: `./public/default-images/${product}-default.png`,
     },
   };
