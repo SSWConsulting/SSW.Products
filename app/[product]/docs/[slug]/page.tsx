@@ -51,6 +51,7 @@ export async function generateStaticParams() {
 }
 
 export default async function DocPost({ params, locale }: DocPostProps) {
+  locale = locale ||await getLocale();
   const { slug, product } = params;
   try {
     const documentData = await getDocPageData({product, slug, locale});
