@@ -7,6 +7,8 @@ import getDocPageData from "@utils/pages/getDocPageData";
 import ClientFallbackPage from "../../../client-fallback-page";
 import NotFoundError from "@/errors/not-found";
 
+export const dynamic = 'force-dynamic';
+
 interface DocPostProps {
   params: {
     slug: string;

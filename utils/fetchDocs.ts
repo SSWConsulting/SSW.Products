@@ -71,16 +71,17 @@ const getDocsTableOfContents = async (product: string, locale: string = 'en') =>
   }
 };
 
-const getDocPost = async ({product, slug, locale = 'en', branch= "main"}: {product: string, slug: string, locale?: string, branch?: string}) => {
+const getDocPost = async ({product, slug, locale = 'en', branch}: {product: string, slug: string, locale?: string, branch?: string}) => {
   const paths = locale === 'zh' 
     ? [`${product}/zh/${slug}.mdx`, `${product}/${slug}.mdx`]
     : [`${product}/${slug}.mdx`];
   for (const relativePath of paths) {
     try {
-      const res = await client.queries.docs({ relativePath }, { 
-        fetchOptions: { headers: { "x-branch": branch } }
-      });
-      
+      let fetchOptions = {};
+      if (branch) {
+        fetchOptions = { fetchOptions: { headers: { "x-branch": branch } } };
+      }
+      const res = await client.queries.docs({ relativePath }, fetchOptions);
       if (res?.data?.docs) {
         return {
           query: res.query,
@@ -97,7 +98,6 @@ const getDocPost = async ({product, slug, locale = 'en', branch= "main"}: {produ
       }
     }
   }
-  
   return null;
 };
 
