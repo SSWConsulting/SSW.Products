@@ -25,7 +25,7 @@ export async function getPageWithFallback({
   revalidate?: number,
   branch?: string
 }) {
-        const revalidateOptions = revalidate? {next: { revalidate }} : {}
+      const revalidateOptions = revalidate? {next: { revalidate }} : {}
       const options = {
         fetchOptions: {
           headers: {
@@ -40,9 +40,6 @@ export async function getPageWithFallback({
     
     if (locale === 'zh') {
       relativePath = `${product}/zh/${filename}.json`;
-
-
-
       try {
         const res = await client.queries.pages(
           { relativePath },

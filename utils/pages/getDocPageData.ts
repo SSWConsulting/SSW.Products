@@ -15,25 +15,27 @@ const getDocPageData = async (
   {product,
   slug,
   locale, 
-  branch = "main"}: {
+  branch}: {
     product: string;
     slug: string;
     locale?: string;
     branch?: string;
   }
 ) => {
-  const currentLocale = locale || await getLocale();
+  const currentLocale = locale;
   const documentData = await getDocPost({product, slug, locale: currentLocale, branch});
+
+  if(!documentData)
+  {
+    throw new NotFoundError(`Document not found '${slug}' for product '${product}'`);
+  }
 
   const tableOfContentsData = await getDocsTableOfContents(
     product,
     currentLocale
   );
 
-  if(!documentData)
-  {
-    throw new NotFoundError(`Document not found '${slug}' for product '${product}'`);
-  }
+  
 
   const paginationData = getPaginationData(
     tableOfContentsData as DocsTableOfContents,

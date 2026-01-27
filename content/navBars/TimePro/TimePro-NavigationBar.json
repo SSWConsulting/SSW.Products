@@ -1,9 +1,57 @@
 {
-  "Logo": "/TimePro/TimePro horizontal.png",
-  "navItem": [
+  "Logo": "/TimePro/Logo.svg",
+
+  "imgSrc": "/TimePro/Logo.svg",
+  "imgWidth": 180,
+  "imgHeight": 108,
+  "leftNavItem": [
     {
-      "label": "test-timepro",
-      "href": "/timepro",
+      "label": "Intro",
+      "href": "http://sswtimepro.com/#Intro",
+      "_template": "stringItem"
+    },
+    {
+      "label": "Features",
+      "href": "http://sswtimepro.com/#Features",
+      "_template": "stringItem"
+    },
+    {
+      "label": "Screenshots",
+      "href": "http://sswtimepro.com/#Screenshots",
+      "_template": "stringItem"
+    },
+    {
+      "label": "Pricing",
+      "href": "http://sswtimepro.com/#Pricing",
+      "_template": "stringItem"
+    },
+    {
+      "label": "Docs",
+      "href": "http://sswtimepro.com/Docs",
+      "_template": "stringItem"
+    },
+    {
+      "label": "Roadmap",
+      "href": "http://sswtimepro.com/Roadmap",
+      "_template": "stringItem"
+    },
+    {
+      "label": "ABOUT US",
+      "items": [
+        {
+          "label": "BLOG",
+          "href": "http://sswtimepro.com/Blog"
+        },
+        {
+          "label": "VIDEOS",
+          "href": "http://www.youtube.com/@sswtimepro"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
+      "label": "Contact Us",
+      "href": "mailto:info@ssw.com.au",
       "_template": "stringItem"
     }
   ]

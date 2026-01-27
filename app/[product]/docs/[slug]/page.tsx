@@ -8,11 +8,10 @@ import ClientFallbackPage from "../../../client-fallback-page";
 import NotFoundError from "@/errors/not-found";
 
 interface DocPostProps {
-  params: {
+  params: Promise<{
     slug: string;
     product: string;
-  };
-  locale?: string;
+  }>;
 }
 
 interface DocPostMetadataProps {
@@ -48,8 +47,9 @@ export async function generateStaticParams() {
   );
 }
 
-export default async function DocPost({ params, locale }: DocPostProps) {
-  const { slug, product } = params;
+export default async function DocPost({ params }: DocPostProps) {
+  const { slug, product } = await params;
+  const locale = await getLocale();
   try {
     const documentData = await getDocPageData({product, slug, locale});
     return <DocPostClient {...documentData} />;
