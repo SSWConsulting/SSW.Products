@@ -8,6 +8,7 @@ on:
 env:
     ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
     ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+    NEXT_PUBLIC_TINA_CLIENT_ID: ${{ vars.NEXT_PUBLIC_TINA_CLIENT_ID }}
 
 jobs:
   rebuild-indices:
