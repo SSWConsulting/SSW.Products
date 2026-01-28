@@ -82,7 +82,9 @@ async function createIndices() {
 createIndices()
   .then(() => {
     console.log("Indices created successfully");
+    process.exit(0);
   })
   .catch((error) => {
     console.error("Error creating indices:", error);
+    process.exit(1);
   });
