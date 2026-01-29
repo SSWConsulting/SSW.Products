@@ -6,6 +6,7 @@ import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import stripMarkdown from "strip-markdown";
 import { unified } from "unified";
+import { Product } from "../src/types/product-list";
 
 const getDocFileNames = async (globPattern: string) => {
   const fileNames = await fg(globPattern);
@@ -52,37 +53,55 @@ const fetchDocData = async (globPattern: string) => {
 
 async function createIndices() {
   const appID = process.env.ALGOLIA_APP_ID;
-
   const apiKey = process.env.ALGOLIA_API_KEY;
+  const productListJson = process.env.NEXT_PUBLIC_PRODUCT_LIST;
 
   if (!appID || !apiKey) {
     throw new Error(
       "Algolia credentials are not set in the environment variables."
     );
   }
+
+  if (!productListJson) {
+    throw new Error(
+      "NEXT_PUBLIC_PRODUCT_LIST is not set in the environment variables."
+    );
+  }
+
+  const productList: Product[] = JSON.parse(productListJson);
   const client = algoliasearch(appID, apiKey);
-  const docData = await Promise.all([
-    fetchDocData("./content/docs/YakShaver/*.mdx"),
-    fetchDocData("./content/docs/EagleEye/*.mdx"),
-  ]);
 
-  const yakShaverDocs = docData[0];
-  const eagleEyeDocs = docData[1];
+  await Promise.all(
+    productList.map(async ({ product }: Product) => {
+      const globPattern = `./content/docs/${product}/*.mdx`;
+      const docData = await fetchDocData(globPattern);
+      const indexName = `${product.toLowerCase()}_docs`;
 
-  await client.replaceAllObjects({
-    indexName: "yakshaver_docs",
-    objects: yakShaverDocs,
-  });
-  await client.replaceAllObjects({
-    indexName: "eagleeye_docs",
-    objects: eagleEyeDocs,
-  });
+      console.log(`Rebuilding index: ${indexName} (${docData.length} documents)`);
+
+      await client.replaceAllObjects({
+        indexName,
+        objects: docData,
+      });
+
+      await client.setSettings({
+      indexName,
+      indexSettings: {
+          attributesToSnippet: ['body:10'],
+        },
+      });
+
+      console.log(`✅ Index ${indexName} rebuilt successfully`);
+    })
+  );
 }
 
 createIndices()
   .then(() => {
     console.log("Indices created successfully");
+    process.exit(0);
   })
   .catch((error) => {
     console.error("Error creating indices:", error);
+    process.exit(1);
   });
