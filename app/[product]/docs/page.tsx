@@ -31,10 +31,9 @@ export async function generateStaticParams() {
 export default async function DocsIndex({ params }: DocsIndex) {
   const { product } = await params;
   const defaultSlug = "introduction";
-  const locale = await getLocale();
 
   try {
-    return <DocPost params={{ product, slug: defaultSlug }} locale={locale} />;
+    return <DocPost params={Promise.resolve({ product, slug: defaultSlug })} />;
   } catch (error) {
     console.error("Error rendering doc post:", error);
     return notFound();
