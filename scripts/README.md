@@ -1,8 +1,10 @@
 # Rebuild Algolia Search Indices
 
-This script rebuilds the Algolia search indices for all product documentation defined in `NEXT_PUBLIC_PRODUCT_LIST`.
+This script rebuilds the Algolia search indices for the documentation pages of each product defined in the `NEXT_PUBLIC_PRODUCT_LIST` environment variable.
+
 
 ## What it does
+
 
 - Reads the product list from `NEXT_PUBLIC_PRODUCT_LIST` environment variable
 - For each product, reads all MDX documentation files from `content/docs/<product>/`
@@ -10,7 +12,22 @@ This script rebuilds the Algolia search indices for all product documentation de
 - Uploads the processed documentation to Algolia indices (e.g., `yakshaver_docs`, `timepro_docs`, `eagleeye_docs`)
 - Configures index settings to create 10-word snippets of the body content with search term highlighting
 
-All products are processed in parallel for better performance.
+Take The following example for instance:
+
+```
+content/
+  docs/
+    YakShaver/
+      *.mdx
+```
+
+In this case, the script will create an Algolia index named `yakshaver_docs` containing all the documentation files for the YakShaver product, provided that product is defined in the `NEXT_PUBLIC_PRODUCT_LIST` environment variable.
+
+## Documentation File Structure
+
+
+
+Each product in `NEXT_PUBLIC_PRODUCT_LIST` should have a corresponding folder under `content/docs/` containing its MDX documentation files. The script will automatically discover and index all `.mdx` files in each product's folder.
 
 ## Prerequisites
 
