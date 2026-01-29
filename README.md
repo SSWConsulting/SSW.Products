@@ -6,8 +6,11 @@ The purpose of this repository is to host the product pages for [SSW's](https://
 
 ## Deployed Sites
 
+**Note: Currently only the docs pages for TimePro are deployed. They are being proxied to the main app via [CloudFlare](https://github.com/SSWConsulting/SSW.Cloudflare).**
+
 - [YakShaver (yakshaver.ai)](https://yakshaver.ai)
 - [EagleEye (ssweagleeye.com)](https://ssweagleeye.com)
+- [TimePro (sswtimepro.com)](https://sswtimepro.com/docs)
 
 The `YakShaver` and `EagleEye` websites should be used as a guide for creating future product pages. 
 
