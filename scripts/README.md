@@ -74,19 +74,13 @@ Rebuilding index: eagleeye_docs (3 documents)
 Indices created successfully
 ```
 
-On error:
-```
-Error creating indices: [error details]
-```
-
-The script exits with code `0` on success and `1` on failure.
 
 ## GitHub Actions
 
 This script runs automatically via GitHub Actions in two ways:
 
 ### 1. Automatic (Push to branch)
-- Triggers on pushes to the `add-automation-rebuild-search-indices` branch
+- Triggers on pushes to the `main` branch
 - Automatically rebuilds all search indices with the latest documentation
 
 ### 2. Manual (Workflow Dispatch)
