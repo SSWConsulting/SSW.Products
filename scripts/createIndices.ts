@@ -6,6 +6,7 @@ import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import stripMarkdown from "strip-markdown";
 import { unified } from "unified";
+import { Product } from "../src/types/product-list";
 
 const getDocFileNames = async (globPattern: string) => {
   const fileNames = await fg(globPattern);
@@ -67,11 +68,11 @@ async function createIndices() {
     );
   }
 
-  const productList = JSON.parse(productListJson);
+  const productList: Product[] = JSON.parse(productListJson);
   const client = algoliasearch(appID, apiKey);
 
   await Promise.all(
-    productList.map(async ({ product }) => {
+    productList.map(async ({ product }: Product) => {
       const globPattern = `./content/docs/${product}/*.mdx`;
       const docData = await fetchDocData(globPattern);
       const indexName = `${product.toLowerCase()}_docs`;
