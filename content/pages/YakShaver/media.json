@@ -138,6 +138,14 @@
       "itemsPerRow": 1,
       "aspectRatio": 0.5,
       "_template": "imageGrid"
+    },
+    {
+      "title": "Jack the Yak",
+      "gridDescription": "",
+      "showcaseImage": "/YakShaver-The-Yak-Base-Character-Sheet-V1.png",
+      "downloadFile": "",
+      "showcaseTitle": "Character sheet",
+      "_template": "imageShowcase"
     }
   ]
 }
