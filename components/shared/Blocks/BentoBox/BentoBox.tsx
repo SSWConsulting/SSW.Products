@@ -29,7 +29,7 @@ function SmAndMdView({ data }: { data: any }) {
 
       {/* Photo Box */}
       <div className="col-span-1 md:col-span-2">
-        <PhotoBox photo={"/YakShaver/jack-the-yak-surrounded.jpg"} />
+        <PhotoBox photo={"/YakShaver/The-Yak.png"} />
       </div>
 
       {/* Large Box with Animated Content */}
@@ -117,10 +117,10 @@ function PhotoBox({ photo }: { photo: string }) {
   return (
     <div className={`${YakShaverGray} md:h-64 h-32 rounded-xl relative`}>
       <Image
-        src={photo || "/YakShaver/jack-the-yak-surrounded.jpg"}
+        src={photo || "/YakShaver/The-Yak.png"}
         alt="yak"
         layout="fill"
-        className="h-full w-full rounded-xl object-cover"
+        className="h-full w-full rounded-xl filter grayscale object-cover"
       />
     </div>
   );
