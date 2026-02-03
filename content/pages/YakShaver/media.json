@@ -141,10 +141,11 @@
     },
     {
       "title": "Jack the Yak",
-      "gridDescription": "",
-      "showcaseImage": "/YakShaver-The-Yak-Base-Character-Sheet-V1.png",
-      "downloadFile": "",
-      "showcaseTitle": "Character sheet",
+      "gridDescription": "Meet the YakShaver mascot and our favourite yak, Jack!\n",
+      "showcaseImage": "/YakShaver/YakShaver-Jack-the-Yak-Base-Character-Sheet-V1.png",
+      "downloadFile": "/YakShaver/YakShaver-Jack-the-Yak-Base-Character-Sheet-V1.png",
+      "showcaseTitle": "Jack the Yak character sheet",
+      "showcaseDescription": "This character sheet is used as a reference for generating new images and videos of Jack the Yak. Use a prompt like \"Use the provided character sheet as the exact character reference. Do not change colors, facial features, proportions, or style. Generate an image of Jack the Yak standing up and covering his eyes with his hooves.\"",
       "_template": "imageShowcase"
     }
   ]
