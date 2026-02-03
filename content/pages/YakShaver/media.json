@@ -127,17 +127,27 @@
     },
     {
       "title": "Fonts",
-      "gridDescription": "The official fonts used in YakShaver is [Inter](https://fonts.google.com/specimen/Inter), a modern and versatile sans-serif typeface. Inter’s clean lines and excellent readability make it well-suited for both digital and print media, ensuring clear communication across all platforms. \n",
+      "gridDescription": "The official font used in YakShaver is [Inter](https://fonts.google.com/specimen/Inter), a modern and versatile sans-serif typeface. Inter’s clean lines and excellent readability make it well-suited for both digital and print media, ensuring clear communication across all platforms. \n",
       "images": [
         {
-          "svgSrc": "/font-yak-v2.jpg",
-          "pngSrc": "",
+          "svgSrc": "/YakShaver/font-yak-v3.jpg",
+          "pngSrc": "/YakShaver/font-yak-v3.png",
+          "blockColor": "#0E0E0E",
           "enableDownload": false
         }
       ],
       "itemsPerRow": 1,
-      "aspectRatio": 0.5,
+      "aspectRatio": 0.5625,
       "_template": "imageGrid"
+    },
+    {
+      "title": "Jack the Yak",
+      "gridDescription": "Meet the YakShaver mascot and our favourite yak, Jack!\n",
+      "showcaseImage": "/YakShaver/YakShaver-Jack-the-Yak-Base-Character-Sheet-V1.png",
+      "downloadFile": "/YakShaver/YakShaver-Jack-the-Yak-Base-Character-Sheet-V1.png",
+      "showcaseTitle": "Jack the Yak character sheet",
+      "showcaseDescription": "This character sheet is used as a reference for generating new images and videos of Jack the Yak. Use a prompt like \"Use the provided character sheet as the exact character reference. Do not change colors, facial features, proportions, or style. Generate an image of Jack the Yak standing up and covering his eyes with his hooves.\"",
+      "_template": "imageShowcase"
     }
   ]
 }
