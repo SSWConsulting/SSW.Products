@@ -127,11 +127,12 @@
     },
     {
       "title": "Fonts",
-      "gridDescription": "The official fonts used in YakShaver is [Inter](https://fonts.google.com/specimen/Inter), a modern and versatile sans-serif typeface. Inter’s clean lines and excellent readability make it well-suited for both digital and print media, ensuring clear communication across all platforms. \n",
+      "gridDescription": "The official font used in YakShaver is [Inter](https://fonts.google.com/specimen/Inter), a modern and versatile sans-serif typeface. Inter’s clean lines and excellent readability make it well-suited for both digital and print media, ensuring clear communication across all platforms. \n",
       "images": [
         {
-          "svgSrc": "/font-yak-v2.jpg",
-          "pngSrc": "",
+          "svgSrc": "",
+          "pngSrc": "/YakShaver/font-yak-v3.jpg",
+          "blockColor": "#0E0E0E",
           "enableDownload": false
         }
       ],
