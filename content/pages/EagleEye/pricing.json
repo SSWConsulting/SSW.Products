@@ -3,7 +3,6 @@
     "title": "Pricing - Simple, Transparent Plans",
     "description": "Discover flexible pricing plans for EagleEye, tailored to meet your needs. Explore options and find the perfect fit for your project."
   },
-  
   "title": "EagleEye Pricing Plans and Options",
   "pageBlocks": [
     {
@@ -28,7 +27,7 @@
               "label": "Get Started",
               "variant": "solidRed",
               "size": "medium",
-              "url": "https://ssweagleeye.com/docs/installation",
+              "url": "https://ssweagleeye.com/docs/prerequisites",
               "_template": "actions"
             }
           ]
