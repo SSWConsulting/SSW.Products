@@ -9,21 +9,21 @@
       "tryItNowTitle": "Try the YakShaver MCP Beta",
       "tryItNowCards": [
         {
-          "title": "1. Download",
-          "description": "Download the YakShaver Beta below\n- Windows: install the .exe\n- Mac (darwin): install the .zip",
+          "title": "1. Windows Installer",
+          "description": "Run the installer and follow the on-screen prompts to set up YakShaver.\n",
           "button": {
             "enableButton": true,
-            "label": "Download\n",
-            "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest"
+            "label": "Download for Windows\n",
+            "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe"
           }
         },
         {
-          "title": "2. Install",
-          "description": "Once the download is complete, run the installer to install YakShaver.\n- Windows: You may need to mark the app as \"safe\"\n- Mac (darwin): You may need to allow the app by running `xattr -dr com.apple.quarantine /path/to/YakShaver.app` in Terminal",
-          "image": {
-            "imgSrc": "/YakShaver/download-yakshaver-desktop.png",
-            "imgWidth": 480,
-            "imgHeight": 336
+          "title": "2. Mac Installer",
+          "description": "Open the downloaded file, then drag the YakShaver app into your Applications folder to complete the installation.\n",
+          "button": {
+            "enableButton": true,
+            "label": "Download for Mac\n",
+            "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg"
           }
         },
         {
