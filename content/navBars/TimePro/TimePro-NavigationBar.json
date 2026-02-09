@@ -27,12 +27,12 @@
     },
     {
       "label": "Docs",
-      "href": "http://sswtimepro.com/Docs",
+      "href": "http://sswtimepro.com/docs",
       "_template": "stringItem"
     },
     {
       "label": "Roadmap",
-      "href": "http://sswtimepro.com/Roadmap",
+      "href": "http://sswtimepro.com/roadmap",
       "_template": "stringItem"
     },
     {
@@ -40,7 +40,7 @@
       "items": [
         {
           "label": "BLOG",
-          "href": "http://sswtimepro.com/Blog"
+          "href": "http://sswtimepro.com/blog"
         },
         {
           "label": "VIDEOS",
