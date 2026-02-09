@@ -1,11 +1,60 @@
 ---
 seo:
   title: Create a new tenant?
-  description: >-
-    Learn how to efficiently create, configure, and provision a new tenant environment for your organization with our comprehensive step-by-step guide.
+  description: 'Learn how to efficiently create, configure, and provision a new tenant environment for your organization with our comprehensive step-by-step guide.'
 title: Create a new tenant
 date: '2026-01-21T13:00:00.000Z'
 ---
 
-## How to create a new tenant
-TODO: Jeoffrey
+This guide walks you through the process of creating a new SSW TimePro tenant, from the marketing site through to your fully provisioned tenant URL.
+
+## Overview
+
+When you sign up for SSW TimePro, you create a \*\*tenant\*\* - your own dedicated instance of the application. Each tenant has its own database, URL (e.g. \`https\://yourcompany.sswtimepro.com\`), and data. This document explains the full flow from registration to completion.
+
+## Navigate to the SSW TimePro Website
+
+1. Go to [sswtimepro.com](https://sswtimepro.com) and click the "Register now" button. This takes you to the provisioning site where you can create your tenant.
+
+**Figure: [sswtimepro.com](https://sswtimepro.com) | Click the “Register now” button**
+
+## Fill Out the Provisioning Form
+
+Your First Name, Last Name, and Email are already pre-filled from your identity provider and cannot be edited.
+
+1. Company Name - Important: this becomes the subdomain of your tenant URL - e.g. yourcompany.sswtimepro.com. Rules: 3–50 characters, letters, numbers, and underscore (\_) only. Must be unique. As you type, the form shows a preview of your tenant URL and runs an availability check (✅ Available or ❌ Unavailable)
+2. Phone (optional) - Your phone number. Required only if you tick "Would you like a call to assist with setup?"
+3. Would you like a call to assist with setup? (optional) - If ticked, SSW will contact you to help with onboarding. Phone becomes required.
+4. Use sample data (optional) - If ticked, your tenant is created with full sample data: a demo employee, sample clients (e.g. Antonio Moreno Taquería, Bottom-Dollar Markets, Eastern Connection), sample projects, iterations, plus all essential categories. If unticked, you get only essential categories (timesheet categories, invoice categories, invoice templates, currencies, accounts) - no sample employees, clients, or projects. Ideal to tick if you want to explore TimePro with example data; leave unchecked to start with a clean slate.
+5. reCAPTCHA - This verifies you're human and must be done before submitting.
+6. Create Tenant - This will create your tenant and provide the URL to access it.
+
+
+
+Figure: Provisioning form - Create a tenant
+
+## Access your new tenant
+
+After submitting, you are redirected to the Creating your tenant... success page. This page shows the progress of three steps:
+
+1\. Creating your tenant
+
+2\. Setting up your database
+
+3\. Sending confirmation email
+
+The page polls for status every few seconds. Each step shows a spinner while in progress and a checkmark when complete. When provisioning is finished, the title updates to Your tenant is now ready!
+
+Your new tenant URL is displayed on the page - e.g. https\://yourcompany.sswtimepro.com. You will also receive a confirmation email containing the tenant URL.
+
+1. Click your tenant URL. This will open your tenant in the 
+
+If you chose Use sample data, your tenant will already contain sample clients, projects, employees, and categories so you can explore TimePro right away.
+
+Figure: Sample data in your new TimePro tenant
+
+## Troubleshooting
+
+* Company Name is Unavailable - The Company Name must be unique across all TimePro tenants. If you see ❌ Unavailable, try a different name (e.g. add your region or a number).
+* Invalid Company Name - Company Name must be 3–50 characters and contain only letters, numbers, and underscores. Spaces and special characters are not allowed.
+* Provisioning Error - If you see An error occurred while creating your tenant, the provisioning process failed. Contact the SSW TimePro support team for assistance.
