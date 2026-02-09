@@ -8,7 +8,7 @@ date: '2026-01-21T13:00:00.000Z'
 
 This guide walks you through connecting your TimePro tenant to Microsoft Dynamics 365. Once configured, TimePro can pull clients, projects, and users from Dynamics 365, and display your Dynamics 365 appointments in the weekly timesheet view.
 
-## Open Admin and Go to Dynamics 365
+## Open the Dynamics 365 sync page
 
 From your TimePro tenant - e.g. northwind.sswtimepro.com
 
@@ -27,17 +27,40 @@ The next fields will depend on the connection type you chose before:
 
 ### Active Directory (OnPrem)
 
-1. Dynamics 365 Url - Enter your Dynamics 365 URL - e.g. \`northwind.crm.dynamics.com\`
+1. Dynamics 365 URL - Enter your Dynamics 365 URL - e.g. \`northwind.crm.dynamics.com\`
 2. Dynamics 365 Login - 
 3. Dynamics 365 Password - 
 4. Domain - 
 
 ### Client Secret (Cloud)
 
-1. Dynamics 365 Url - Enter your Dynamics 365 URL - e.g. \`northwind.crm.dynamics.com\`
+1. Dynamics 365 URL - Enter your Dynamics 365 URL - e.g. \`northwind.crm.dynamics.com\`
 2. Dynamics 365 Client Id - 
 3. Dynamics 365 Client secret - 
 
 ### Note for Azure users
 
 Figure: Dynamics 365 configuration page
+
+## Test and Save the Connection
+
+1. Click Test connection to verify the connection works.
+2. Once the test succeeds, click Save. This will save your settings in your tenant database.
+
+## Run the sync
+
+1. Back on the Dynamics 365 page, click the Sync button.
+2. In the Sync with Dynamics 365 dialog, select a Sync Range - from Last 24 hours to Full sync.
+3. Click Start Sync.
+
+Figure: Sync completed - results with created and updated counts
+
+## View the Synced Clients
+
+Go to Admin and choose between Users, Clients or Projects. The synced data from Dynamics 365 now appears in each of these categories.
+
+Figure: Admin Clients list showing synced Dynamics 365 clients
+
+## What Gets Synced
+
+The sync imports Users, Clients, and Projects from Dynamics 365 into TimePro. The sync only adds or updates records - it does not delete records in either system. Any Dynamics 365 entities updated within the selected sync range will be imported.
