@@ -10,7 +10,7 @@
       "tryItNowCards": [
         {
           "title": "1. Download",
-          "description": "Download the YakShaver Beta below\n- Windows: install the .exe\n- Mac (darwin): install the .zip",
+          "description": "Download the YakShaver Beta below\n- Windows: download the .exe\n- Mac: download the .dmg",
           "button": {
             "enableButton": true,
             "label": "Download\n",
@@ -19,7 +19,7 @@
         },
         {
           "title": "2. Install",
-          "description": "Once the download is complete, run the installer to install YakShaver.\n- Windows: You may need to mark the app as \"safe\"\n- Mac (darwin): You may need to allow the app by running `xattr -dr com.apple.quarantine /path/to/YakShaver.app` in Terminal",
+          "description": "Once the download is complete, run the installer to install YakShaver.\n- Windows: You may need to mark the app as \"safe\"\n- Mac: Open YakShaver.dmg and drag the YakShaver app to your Applications folder.",
           "image": {
             "imgSrc": "/YakShaver/download-yakshaver-desktop.png",
             "imgWidth": 480,
