@@ -1,0 +1,33 @@
+---
+title: Manage PDF Templates
+date: '2026-02-09T16:00:00.000Z'
+---
+
+As a part of TimePro's invoicing service, you can generate a PDF version of the invoice you created. This guide walks you through how to set up PDF templates for your invoices.
+
+## Navigate to the Templates setting
+
+1. In the menu, go to Admin | Invoice Settings
+2. Scroll down and find the Templates section
+
+![](/TimePro/timepro-templates-setting.png) Figure: Where to find the Templates setting
+
+## Add a new PDF Template
+
+TimePro uses SQL Server Reporting Services to generate PDF from invoices. You are given a designated template folder to host all your .rdl files upon initializing your TimePro instance.
+
+To add a new template,
+
+1. Click the "+" icon next to the last template
+2. Fill in the corresponding .rdl file name in your template folder
+3. Choose a Category for the new template. e.g. “Invoice” if you're using this new template for invoice PDF.
+4. Click “Save” at the bottom
+
+![](/TimePro/timepro-add-template.png)Figure: Add a new template
+
+## Use PDF templates for invoicing
+
+Now you can use the new template for your invoices.
+
+1. Open an invoice from Invoices | Search Invoices
+2. On the lower right corner, click View | PDF Invoice | Choose Template
