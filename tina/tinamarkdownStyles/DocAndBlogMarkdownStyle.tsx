@@ -4,9 +4,11 @@ import { Components } from "tinacms/dist/rich-text";
 
 import Link from "./Link";
 import { ImageEmbed } from "@comps/shared/Blocks/ImageEmbed";
+import { CodeBlock } from "@comps/shared/CodeBlock";
 export const DocAndBlogMarkdownStyle: Components<{
   Youtube: { thumbnail?: string; externalVideoLink?: string; size?: string };
-  imageEmbed: { src?: string; alt?: string; size?: string; showBorder?: boolean
+  imageEmbed: {
+    src?: string; alt?: string; size?: string; showBorder?: boolean
   };
 
 }> = {
@@ -65,7 +67,7 @@ export const DocAndBlogMarkdownStyle: Components<{
 
   img: (props) => {
     const isSmallIcon = props?.alt?.toLowerCase().includes("icon");
-  
+
     if (isSmallIcon) {
       return (
         <span className="inline-flex items-center align-middle">
@@ -78,7 +80,7 @@ export const DocAndBlogMarkdownStyle: Components<{
         </span>
       );
     }
-  
+
     return (
       <>
         <Image
@@ -95,5 +97,27 @@ export const DocAndBlogMarkdownStyle: Components<{
         )}
       </>
     );
+  },
+  code_block: (props) => (
+    <CodeBlock language={props?.lang} value={props?.value || ""} />
+  ),
+  // @ts-ignore
+  pre: ({ children }: any) => (
+    <pre className="p-0 m-0 bg-transparent">{children}</pre>
+  ),
+  // @ts-ignore
+  code: (props: any) => {
+    const className = props.className || "";
+    const match = /language-(\w+)/.exec(className);
+    const language = match ? match[1] : "";
+    if (language) {
+      return (
+        <CodeBlock
+          language={language}
+          value={String(props.children).replace(/\n$/, "")}
+        />
+      );
+    }
+    return <code {...props} />;
   },
 };
