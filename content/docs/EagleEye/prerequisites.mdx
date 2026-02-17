@@ -15,17 +15,4 @@ Before starting the installation, ensure you have:
 * **Azure Subscription** with Owner permissions
 * **Azure AD Tenant** with Global Administrator or Application Administrator privileges
 * **Azure OpenAI** quota available in your subscription
-
-```bash
-SUB_ID="{{ Your Azure Subscription ID}}"
-```
-
-```bash
-az rest \
-  --method get \
-  --url "https://management.azure.com/subscriptions/$SUB_ID/providers/Microsoft.CognitiveServices/locations/eastus/usages?api-version=2023-05-01" \
-  --query "value[?starts_with(name.value, 'OpenAI')].{name:name.value,current:currentValue,limit:limit}" \
-  -o table
-```
-
 * \***Custom domain** and DNS zone in Azure (optional)
