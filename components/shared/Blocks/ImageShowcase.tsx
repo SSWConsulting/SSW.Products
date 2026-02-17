@@ -11,7 +11,7 @@ interface ImageShowcaseProps {
   gridDescription?: any;
   showcaseImage?: string | null;
   showcaseTitle?: string | null;
-  showcaseDescription?: string | null;
+  showcaseDescription?: any;
   downloadFile?: string | null;
 }
 
@@ -41,7 +41,11 @@ const ImageShowcase = ({
 
   const hasHeader = title || gridDescription;
   const hasShowcaseImage = showcaseImage?.trim();
-  const hasContent = hasHeader || hasShowcaseImage || showcaseTitle || showcaseDescription;
+  const hasShowcaseDescription =
+    typeof showcaseDescription === "string"
+      ? showcaseDescription.trim().length > 0
+      : Boolean(showcaseDescription);
+  const hasContent = hasHeader || hasShowcaseImage || showcaseTitle || hasShowcaseDescription;
 
   if (!hasContent) return null;
 
@@ -96,8 +100,14 @@ const ImageShowcase = ({
           <h2 className="text-white text-2xl font-bold mb-3">{showcaseTitle}</h2>
         )}
 
-        {showcaseDescription && (
-          <p className="text-gray-300 text-sm">{showcaseDescription}</p>
+        {hasShowcaseDescription && (
+          typeof showcaseDescription === "string" ? (
+            <p className="text-gray-300 text-sm">{showcaseDescription}</p>
+          ) : (
+            <div className="text-gray-300 text-sm">
+              <TinaMarkdown components={DocAndBlogMarkdownStyle} content={showcaseDescription} />
+            </div>
+          )
         )}
       </div>
     </div>

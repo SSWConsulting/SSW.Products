@@ -121,7 +121,20 @@
       "showcaseImage": "/YakShaver/background.svg",
       "downloadFile": "/YakShaver/YakShaver-Background.zip",
       "showcaseTitle": "YakShaver 渐变背景",
-      "showcaseDescription": "为了确保我们的品牌形象有效融合且不至于让观众感到压迫，它在任何数字或印刷媒体中应占据屏幕不超过三分之一的面积。此平衡允许其他重要内容清晰传达，同时保持我们的品牌存在感。",
+      "showcaseDescription": {
+        "type": "root",
+        "children": [
+          {
+            "type": "p",
+            "children": [
+              {
+                "type": "text",
+                "text": "为了确保我们的品牌形象有效融合且不至于让观众感到压迫，它在任何数字或印刷媒体中应占据屏幕不超过三分之一的面积。此平衡允许其他重要内容清晰传达，同时保持我们的品牌存在感。"
+              }
+            ]
+          }
+        ]
+      },
       "_template": "imageShowcase"
     },
     {
