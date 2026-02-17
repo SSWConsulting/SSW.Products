@@ -22,7 +22,7 @@ export const CodeBlock = ({ language = "text", value, className }: CodeBlockProp
     };
 
     return (
-        <div className={cn("relative group my-4 rounded-lg overflow-hidden border border-gray-700 bg-[#1e1e1e]", className)}>
+        <div className={cn("relative group my-4 rounded-lg overflow-hidden border border-gray-700 bg-[#1e1e1e] max-w-full", className)}>
             <div className="flex items-center justify-between px-4 py-2 bg-[#2d2d2d] border-b border-gray-700">
                 <span className="text-xs text-gray-400 font-mono uppercase">{language}</span>
                 <button
