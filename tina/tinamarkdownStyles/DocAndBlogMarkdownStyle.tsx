@@ -102,13 +102,25 @@ export const DocAndBlogMarkdownStyle: Components<{
     <CodeBlock language={props?.lang} value={props?.value || ""} />
   ),
   // @ts-ignore
-  pre: ({ children }: any) => (
-    <pre className="p-0 m-0 bg-transparent">{children}</pre>
-  ),
+  pre: ({ children }: any) => {
+    const child = Array.isArray(children) ? children[0] : children;
+    if (child && typeof child === "object" && "props" in child) {
+      const childProps: any = (child as any).props || {};
+      const className = childProps.className || "";
+      const match = /language-([\w-]+)/.exec(className);
+      const language = match ? match[1] : "";
+      if (language) {
+        const codeText = String(childProps.children ?? "").replace(/\n$/, "");
+        return <CodeBlock language={language} value={codeText} />;
+      }
+    }
+    return <pre className="p-0 m-0 bg-transparent">{children}</pre>;
+  },
   // @ts-ignore
   code: (props: any) => {
     const className = props.className || "";
-    const match = /language-(\w+)/.exec(className);
+    // Allow for proper language names including hyphens
+    const match = /language-([\w-]+)/.exec(className);
     const language = match ? match[1] : "";
     if (language) {
       return (
