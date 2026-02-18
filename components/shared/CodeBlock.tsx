@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Check, Copy } from "lucide-react";
-import { cn } from "@utils/cn";
+import { cn } from "@/lib/utils";
 
 interface CodeBlockProps {
     language?: string;
@@ -15,14 +15,19 @@ interface CodeBlockProps {
 export const CodeBlock = ({ language = "text", value, className }: CodeBlockProps) => {
     const [copied, setCopied] = useState(false);
 
-    const handleCopy = () => {
-        navigator.clipboard.writeText(value);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(value);
+            setCopied(true);
+            const timer = setTimeout(() => setCopied(false), 2000);
+            return () => clearTimeout(timer);
+        } catch (err) {
+            console.error("Failed to copy text: ", err);
+        }
     };
 
     // Map Bicep to TypeScript for better highlighting if Bicep isn't natively supported
-    const normalizedLanguage = language.toLowerCase();
+    const normalizedLanguage = language?.toLowerCase() || "text";
     const syntaxLanguage = normalizedLanguage === "bicep" ? "typescript" : normalizedLanguage;
 
     return (
