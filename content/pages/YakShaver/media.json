@@ -144,9 +144,9 @@
       "title": "Jack the Yak",
       "gridDescription": "Meet the YakShaver mascot and our favourite yak, Jack!\n",
       "showcaseImage": "/YakShaver/yakshaver-jack-character-sheet-v2.png",
-      "downloadFile": "/YakShaver/YakShaver-Jack-the-Yak-Base-Character-Sheet-V1.png",
+      "downloadFile": "/YakShaver/yakshaver-jack-character-sheet-v2.png",
       "showcaseTitle": "Jack the Yak character sheet",
-      "showcaseDescription": "This character sheet is used as a reference for generating new images and videos of Jack the Yak.\n\nTo get consistent results use a prompt like:\n\n> Use the provided character sheet as the exact character reference.\n> Do not change colors, facial features, proportions, or style.\n> Generate an image of Jack the Yak standing up and covering his eyes with his hooves\n\nas per the SSW Rule [do you generate consistent AI characters across images and videos?](https://www.ssw.com.au/rules/consistent-ai-generated-characters)\n",
+      "showcaseDescription": "This character sheet is used as a reference for generating new images and videos of Jack the Yak.\n\nTo get consistent results use a prompt like…\n\n> Use the provided character sheet as the exact character reference. \\\n> Do not change colors, facial features, proportions, or style. \\\n> Generate an image of Jack the Yak standing up and covering his eyes with his hooves.\n\nas per the SSW Rule [do you generate consistent AI characters across images and videos?](https://www.ssw.com.au/rules/consistent-ai-generated-characters)\n",
       "_template": "imageShowcase"
     }
   ]
