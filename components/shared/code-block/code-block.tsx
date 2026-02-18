@@ -66,9 +66,17 @@ export function CodeBlock({
     useEffect(() => {
         if (setIsTransitioning && html !== "") {
             // 200ms for smoother transitions, especially on slower devices
-            setTimeout(() => setIsTransitioning(false), 200);
+            const timer = setTimeout(() => setIsTransitioning(false), 200);
+            return () => clearTimeout(timer);
         }
     }, [html, setIsTransitioning]);
+
+    useEffect(() => {
+        if (isCopied) {
+            const timer = setTimeout(() => setIsCopied(false), 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [isCopied]);
 
     // Show skeleton while loading
     if (isLoading && showCopyButton) {
@@ -76,7 +84,7 @@ export function CodeBlock({
     }
 
     return (
-        <div className={`relative w-full my-2 bg-[#2d2d2d] border border-[#404040] shadow-sm ${showCopyButton ? " group" : ""} ${showCopyButton ? "rounded-lg" : "rounded-b-xl"}`}>
+        <div className={`relative w-full my-2 bg-[#2d2d2d] shadow-sm ${showBorder ? "border border-[#404040]" : ""} ${showCopyButton ? " group" : ""} ${showCopyButton ? "rounded-lg" : "rounded-b-xl"}`}>
             <div
                 className={`absolute top-0 right-0 z-10 px-4 py-1 text-xs font-mono text-gray-400 transition-opacity duration-200 opacity-100 group-hover:opacity-0 group-hover:pointer-events-none ${showCopyButton ? "" : "hidden"
                     }`}
@@ -89,10 +97,13 @@ export function CodeBlock({
             >
                 <button
                     type="button"
-                    onClick={() => {
-                        navigator.clipboard.writeText(value);
-                        setIsCopied(true);
-                        setTimeout(() => setIsCopied(false), 1000);
+                    onClick={async () => {
+                        try {
+                            await navigator.clipboard.writeText(value);
+                            setIsCopied(true);
+                        } catch (err) {
+                            console.error('Failed to copy code', err);
+                        }
                     }}
                     className="px-2 py-1 text-gray-400 rounded transition cursor-pointer flex items-center gap-1"
                 >

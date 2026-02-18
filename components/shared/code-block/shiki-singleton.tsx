@@ -45,9 +45,19 @@ class ShikiSingleton {
     if (!this.highlighter) {
       // Prevent multiple simultaneous initializations
       if (!this.initPromise) {
-        this.initPromise = this.initializeHighlighter(lang);
+        this.initPromise = this.initializeHighlighter(lang).catch((error) => {
+          this.initPromise = null;
+          throw error;
+        });
       }
-      await this.initPromise;
+      try {
+        await this.initPromise;
+      } catch {
+        // Fallback to text if initialization fails
+        if (!this.highlighter && lang !== "text") {
+          return this.getHighlighter("text");
+        }
+      }
     }
 
     // Ensure the required language is loaded
