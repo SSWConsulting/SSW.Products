@@ -1,6 +1,6 @@
 import React from "react";
 
-export const CodeBlockSkeleton = ({ hasTabs = false }) => {
+export const CodeBlockSkeleton = ({ hasTabs = false }: { hasTabs?: boolean }) => {
     // Use deterministic values to prevent hydration issues
     const skeletonLines = React.useMemo(() => {
         const lines: Array<{ width: string; delay: string }> = [];

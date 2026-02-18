@@ -21,7 +21,7 @@ class ShikiSingleton {
     this.supportedLangs.add(initialLang);
   }
 
-  private async ensureLanguageLoaded(lang: string): Promise<void> {
+  private async ensureLanguageLoaded(lang: string): Promise<string> {
     if (!this.highlighter) {
       throw new Error("Highlighter not initialized");
     }
@@ -30,14 +30,18 @@ class ShikiSingleton {
       try {
         await this.highlighter.loadLanguage(lang as any);
         this.supportedLangs.add(lang);
+        return lang;
       } catch {
         // Fallback to a default language if the requested one fails
         if (!this.supportedLangs.has("text")) {
           await this.highlighter.loadLanguage("text" as any);
           this.supportedLangs.add("text");
         }
+        return "text";
       }
     }
+
+    return lang;
   }
 
   async getHighlighter(lang: string): Promise<Highlighter> {
@@ -72,9 +76,10 @@ class ShikiSingleton {
 
   async codeToHtml(code: string, lang: string): Promise<string> {
     const highlighter = await this.getHighlighter(lang);
+    const loadedLang = await this.ensureLanguageLoaded(lang);
 
     return highlighter.codeToHtml(code, {
-      lang,
+      lang: loadedLang,
       theme: "dark-plus",
       transformers: [
         transformerNotationDiff({ matchAlgorithm: "v3" }),

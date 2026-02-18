@@ -47,10 +47,17 @@ export function CodeBlock({
                     setHtml(code);
                     setIsLoading(false);
                 }
-            } catch (error) {
+            } catch {
                 if (isMounted) {
                     // Fallback to plain text if highlighting fails
-                    setHtml(`<pre><code>${value}</code></pre>`);
+                    // Escape html special characters to prevent injection
+                    const escaped = value
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/"/g, "&quot;")
+                        .replace(/'/g, "&#039;");
+                    setHtml(`<pre><code>${escaped}</code></pre>`);
                     setIsLoading(false);
                 }
             }
