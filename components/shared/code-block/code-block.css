@@ -1,0 +1,69 @@
+/* Override Shiki's injected background so the outer wrapper colour shows through */
+pre.shiki,
+.shiki pre {
+  background-color: transparent !important;
+}
+
+/* Line number counter */
+pre.shiki {
+  counter-reset: line;
+}
+
+/* Diff: added lines */
+.shiki .diff.add {
+  background-color: rgba(22, 163, 77, 0.3);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+/* Diff: removed lines */
+.shiki .diff.remove {
+  background-color: rgba(220, 57, 38, 0.25);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+/* Diff symbols (night-owl dark) */
+.shiki .line.diff.add::before {
+  color: #6ff4b3;
+}
+
+.shiki .line.diff.remove::before {
+  color: #f43a3a;
+}
+
+/* Line numbers */
+.shiki .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 2em;
+  margin-right: 1em;
+  text-align: right;
+  color: #858585;
+  /* dark-plus line number color */
+}
+
+/* Highlighted lines */
+.shiki .line.highlighted {
+  background-color: rgb(100, 107, 139, 0.6);
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+/* Focus: dim non-focused lines */
+.shiki.has-focused .line:not(.focused) {
+  opacity: 0.4;
+  filter: grayscale(0.3);
+  transition: opacity 0.2s, filter 0.2s;
+}
+
+/* Ensure right margin on lines */
+.shiki span.line {
+  margin-right: 1rem;
+}
+
+/* Horizontal scroll */
+.shiki {
+  overflow-x: auto !important;
+}

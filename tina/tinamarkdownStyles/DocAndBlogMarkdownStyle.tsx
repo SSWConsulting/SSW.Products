@@ -4,11 +4,13 @@ import { Components } from "tinacms/dist/rich-text";
 
 import Link from "./Link";
 import { ImageEmbed } from "@comps/shared/Blocks/ImageEmbed";
+import { CodeBlock } from "@comps/shared/code-block/code-block";
+
 export const DocAndBlogMarkdownStyle: Components<{
   Youtube: { thumbnail?: string; externalVideoLink?: string; size?: string };
-  imageEmbed: { src?: string; alt?: string; size?: string; showBorder?: boolean
+  imageEmbed: {
+    src?: string; alt?: string; size?: string; showBorder?: boolean
   };
-
 }> = {
   Youtube: (props) => {
     let sizeClass = "w-full h-auto max-w-[560px]";
@@ -43,7 +45,7 @@ export const DocAndBlogMarkdownStyle: Components<{
   h4: (props) => (
     <h4 className="text-lg font-semibold mb-3 mt-6 flex items-center gap-2">{props?.children}</h4>
   ),
-  // @ts-ignore - TODO: remove tsignore after typescript definitions for blockquotes are fixed 
+  // @ts-ignore - TODO: remove tsignore after typescript definitions for blockquotes are fixed
   // https://github.com/tinacms/tinacms/pull/6083
   blockquote: (props) => (
     <blockquote className="p-4 my-4 border-s-4 border-white/20">{props?.children}</blockquote>
@@ -65,7 +67,7 @@ export const DocAndBlogMarkdownStyle: Components<{
 
   img: (props) => {
     const isSmallIcon = props?.alt?.toLowerCase().includes("icon");
-  
+
     if (isSmallIcon) {
       return (
         <span className="inline-flex items-center align-middle">
@@ -78,7 +80,7 @@ export const DocAndBlogMarkdownStyle: Components<{
         </span>
       );
     }
-  
+
     return (
       <>
         <Image
@@ -96,4 +98,7 @@ export const DocAndBlogMarkdownStyle: Components<{
       </>
     );
   },
+  code_block: (props) => (
+    <CodeBlock lang={props?.lang ?? "text"} value={props?.value ?? ""} />
+  ),
 };
