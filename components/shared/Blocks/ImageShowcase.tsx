@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import Image from "next/image";
 import { Download } from "lucide-react";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { TinaMarkdown, type TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 
 interface ImageShowcaseProps {
@@ -11,7 +11,7 @@ interface ImageShowcaseProps {
   gridDescription?: any;
   showcaseImage?: string | null;
   showcaseTitle?: string | null;
-  showcaseDescription?: any;
+  showcaseDescription?: TinaMarkdownContent;
   downloadFile?: string | null;
 }
 
@@ -41,11 +41,7 @@ const ImageShowcase = ({
 
   const hasHeader = title || gridDescription;
   const hasShowcaseImage = showcaseImage?.trim();
-  const hasShowcaseDescription =
-    typeof showcaseDescription === "string"
-      ? showcaseDescription.trim().length > 0
-      : Boolean(showcaseDescription);
-  const hasContent = hasHeader || hasShowcaseImage || showcaseTitle || hasShowcaseDescription;
+  const hasContent = hasHeader || hasShowcaseImage || showcaseTitle || showcaseDescription;
 
   if (!hasContent) return null;
 
@@ -100,14 +96,10 @@ const ImageShowcase = ({
           <h2 className="text-white text-2xl font-bold mb-3">{showcaseTitle}</h2>
         )}
 
-        {hasShowcaseDescription && (
-          typeof showcaseDescription === "string" ? (
-            <p className="text-gray-300 text-sm">{showcaseDescription}</p>
-          ) : (
-            <div className="text-gray-300 text-sm">
-              <TinaMarkdown components={DocAndBlogMarkdownStyle} content={showcaseDescription} />
-            </div>
-          )
+        {showcaseDescription && (
+          <div className="text-gray-300 text-sm">
+            <TinaMarkdown components={DocAndBlogMarkdownStyle} content={showcaseDescription} />
+          </div>
         )}
       </div>
     </div>
