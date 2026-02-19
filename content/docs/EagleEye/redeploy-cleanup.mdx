@@ -1,0 +1,57 @@
+---
+seo:
+  title: Cleanup before Redeployment - Clean up App Registrations
+  description: >-
+    Learn how to remove SSW.EagleEye App Registrations before a fresh deployment
+    while keeping the Master App intact.
+title: Cleanup before Redeployment
+---
+
+## ⚠️ When to use this guide
+
+If your EagleEye deployment fails or you need to delete the instance and deploy from scratch, you must manually clean up the App Registrations created as part of the deployment process.
+
+> **Important:**
+> This guide does **NOT** apply to standard updates of EagleEye. Only follow these steps if you are completely redeploying a new instance.\
+> \
+> Deleting the EagleEye Resource Group is **not enough**. The App Registrations exist in your Entra ID (formerly Azure AD) and must be removed separately to avoid conflicts.
+
+## 1. Locate the App Registrations
+
+1. Log in to the [Azure Portal](https://portal.azure.com).
+2. Search for **App registrations** in the top search bar and select it.
+3. Click on the **All applications** tab.
+4. In the search box, type `SSW.EagleEye`.
+
+> **Note:**
+> If you don't find these apps in **All applications**, it means your previous deployment failed before reaching their creation part in the deployment process or failed at their creation part. You may find only 1 app, 2 apps, all 3, or none at all. Ensure you delete any that exist.
+
+## 2. Delete the Specific Apps
+
+You may see 3 specific applications created by the EagleEye deployment:
+
+* **SSW\.EagleEye.Engine**
+* **SSW\.EagleEye.Portal**
+* **SSW\.EagleEye.Api**
+
+![3 App Registrations](/EagleEye/3-app-registrations.png)
+
+For **each** of these 3 applications:
+
+1. Click on the application name to open it.
+2. Click the **Delete** button in the top menu.
+3. Confirm the deletion when prompted.
+
+![Delete App Registration](/EagleEye/delete-engine-app-registration.png)
+
+> **Warning:**
+> Ensure you have deleted all the apps that were created: Engine, Portal, and Api.
+
+## 3. Keep the Master App
+
+**Do NOT delete the** [Master App](/docs/EagleEye/step-2-app-registrations) (created in Step 2 of the installation process).
+
+* You can reuse the existing **Client Secret** from the Master App for your new deployment if it has not expired.
+* If the Client Secret has expired, do **not** delete the Master App. Instead, simply delete the expired secret within the Master App and create a new client secret.
+
+Once these steps are complete, you are ready to proceed with a fresh deployment of EagleEye.
