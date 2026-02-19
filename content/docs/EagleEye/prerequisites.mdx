@@ -10,9 +10,66 @@ date: '2025-11-18T00:00:00.000Z'
 
 ## Prerequisites Checklist
 
-Before starting the installation, ensure you have:
+Before starting the installation, ensure you have the following:
 
-* **Azure Subscription** with Owner permissions
-* **Azure AD Tenant** with Global Administrator or Application Administrator privileges
-* **Azure OpenAI** quota available in your subscription
-* \***Custom domain** and DNS zone in Azure (optional)
+### Azure Subscription
+
+* An active [Azure Subscription](https://learn.microsoft.com/en-us/microsoft-365/enterprise/subscriptions-licenses-accounts-and-tenants-for-microsoft-cloud-offerings)
+
+### Microsoft Entra Tenant
+
+* An [Azure Entra Tenant](https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra) (Azure AD)
+
+### Azure OpenAI Quota
+
+* Sufficient quota for an Azure OpenAI model (e.g. GPT-4o Mini) in your subscription
+  * Check or request quota in the [Azure AI Foundry portal](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/quota?view=foundry-classic#view-and-request-quotas-in-foundry-portal)
+
+> **Tip:** The Foundry portal only shows quotas once you have an existing Azure OpenAI resource. If you don't have one yet, use [Azure Cloud Shell](https://portal.azure.com/#cloudshell/) to check your quota:
+
+1\. Set your subscription ID:
+
+```bash
+SUB_ID="{{ your azure subscription id }}"
+```
+
+2\. Run the quota check:
+
+```bash
+az rest \
+  --method get \
+  --url "https://management.azure.com/subscriptions/$SUB_ID/providers/Microsoft.CognitiveServices/locations/eastus/usages?api-version=2023-05-01" \
+  --query "value[?name.value == 'OpenAI.GlobalStandard.gpt-4o-mini' || name.value == 'OpenAI.GlobalStandard.gpt4.1-mini'].{Model:name.value,Current:currentValue,Limit:limit}" \
+  -o table
+```
+Output:
+```txt
+
+Model                              Current    Limit
+---------------------------------  ---------  -------
+OpenAI.GlobalStandard.gpt-4o-mini  0          2000
+OpenAI.GlobalStandard.gpt4.1-mini  100        5000
+```
+
+**Current** = tokens per minute already allocated. **Limit** = your maximum available.
+
+### Custom Domain (optional)
+
+* A [custom domain](https://learn.microsoft.com/en-us/entra/fundamentals/add-custom-domain) and [DNS zone](https://learn.microsoft.com/en-us/azure/dns/dns-zones-records) in Azure (needed if you want a custom URL to access EagleEye Portal)
+
+## Required Permissions
+
+> **Tip:** You don't need to hold these roles yourself. You just need access to someone who does (usually a SysAdmin or IT admin in your organisation). You can complete most steps yourself and only ask your SysAdmin to perform the specific actions that require elevated privileges, such as granting admin consent.
+
+### Azure Subscription
+
+* **[Owner](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged#owner)** role on the Azure subscription
+  * Required to deploy from the Marketplace and assign roles during deployment
+  * See [Assign a user as an administrator of an Azure subscription](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal-subscription-admin)
+
+### Microsoft Entra ID
+
+* **[Global Administrator](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference#global-administrator)** role in your Entra tenant
+  * Required to create an App Registration and **grant admin consent** for Microsoft Graph permissions in [Step 2 - App Registrations](./step-2-app-registrations)
+  * Note: Application Administrator is **not sufficient**. Granting admin consent for `AppRoleAssignment.ReadWrite.All` and `DelegatedPermissionGrant.ReadWrite.All` requires Global Administrator
+  * See [Assign Microsoft Entra roles](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/manage-roles-portal)
