@@ -41,7 +41,7 @@ const MobileMenuItem = ({ href, label, openInNewTab = false }: { href: string; l
         onClick={()=> setIsOpen(false)}
         href={href} 
         underlineColor="red"
-        className="uppercase mb-0 underline-offset-4 text-md flex items-center gap-1"
+        className="uppercase mb-0 underline-offset-4 text-md flex items-center gap-1 min-h-[36px] min-w-[36px]"
         >
           {label}
           {href &&
@@ -58,7 +58,7 @@ const MobileMenuTrigger = () => {
 
   return (
     <Popover.Trigger asChild>
-      <button aria-label="Toggle menu" className="text-3xl my-auto flex align-middle">
+      <button aria-label="Toggle menu" className="text-3xl my-auto flex align-middle min-h-[42px] min-w-[42px] items-center justify-center">
         {isOpen ? <CgClose /> : <HiOutlineBars3 />}
       </button>
     </Popover.Trigger>
@@ -73,7 +73,7 @@ const MobileMenuContent = ({ children }: { children: React.ReactNode }) => {
       asChild
       className={clsx(
         
-        "bg-black min-w-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full flex flex-col items-start space-y-2"
+        "bg-black min-w-screen min-h-screen duration-300 overflow-hidden z-50 py-5 px-7 xl:hidden data-[state=open]:animate-expand text-white transition  data-[state=closed]:animate-collapse top-full grid grid-cols-1 auto-rows-min content-start [@media(max-height:600px)]:grid-cols-2 gap-x-2 gap-y-2 items-start"
       )}
     >
       <ul>{children}</ul>
