@@ -1,8 +1,9 @@
 import GrowingLink from "@comps/GrowingLink";
 import useIsScrolled from "@comps/hooks/useIsScrolled";
+import useMatchMedia from "@comps/hooks/useMatchMedia";
 import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
@@ -22,6 +23,17 @@ const MobileAnchor = Popover.Anchor;
 
 const MobileMenuRoot = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useMatchMedia("(max-width: 1279px)");
+
+  useEffect(() => {
+    if (isOpen && isMobile) {
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, [isOpen, isMobile]);
+
   return (
     <MenuContextProvider value={{ setIsOpen, isOpen }}>
       <Popover.Root open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
