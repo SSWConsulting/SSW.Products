@@ -95,7 +95,7 @@ function NavBarClientContent({
                         {...(subItem.openInNewTab ? { target: "_blank" } : {})}
                         underlineColor="red"
                         href={contextualHref(subItem.href)}
-                        className="flex items-center gap-1 w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
+                        className="flex items-center gap-1 min-h-[36px] min-w-[36px] w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
                       >
                         {subItem!.label}
                         {subItem!.href &&
@@ -118,7 +118,7 @@ function NavBarClientContent({
                 <GrowingLink
                   href={contextualHref(item.href)}
                   {...(item.openInNewTab ? { target: "_blank" } : {})}
-                  className="mx-3 text-base flex flex-row gap-1 items-center h-fit rounded uppercase whitespace-nowrap writing-mode-horizontal"
+                  className="mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal"
                   underlineColor="red"
                 >
                   {item.label}
@@ -233,7 +233,7 @@ const ButtonMap = ({
         <Button
           asChild
           className={cn(
-            "flex gap-1",
+            "flex gap-1 min-h-[42px]",
             item.iconPosition === "left" ? "flex-row-reverse" : "flex-row",
             className
           )}
