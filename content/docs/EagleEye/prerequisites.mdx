@@ -22,12 +22,15 @@ Before starting the installation, ensure you have the following:
 
 ### Azure OpenAI Quota
 
-* Sufficient quota for an Azure OpenAI model (e.g. GPT-4o Mini) in your subscription
-  * Check or request quota in the [Azure AI Foundry portal](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/quota?view=foundry-classic#view-and-request-quotas-in-foundry-portal)
+* EagleEye uses a default model (`gpt-4.1-mini`)
+* More AI models will be available in future EagleEye releases and configurable directly from the EagleEye Portal
 
-> **Tip:** The Foundry portal only shows quotas once you have an existing Azure OpenAI resource. If you don't have one yet, use [Azure Cloud Shell](https://portal.azure.com/#cloudshell/) to check your quota:
+Ensure you have sufficient quota for this model in your Azure subscription.
+Check or request quota in the [Azure AI Foundry portal](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/quota?view=foundry-classic#view-and-request-quotas-in-foundry-portal).
 
-1\. Set your subscription ID:
+> **Tip:** The Foundry portal only shows quotas if you already have an Azure OpenAI resource. If you don't have one yet, use [Azure Cloud Shell](https://portal.azure.com/#cloudshell/) to check your quota:
+
+1\. In Azure Portal, go to **Subscriptions** and copy your **Subscription ID**.
 
 ```bash
 SUB_ID="{{ your azure subscription id }}"
@@ -39,7 +42,7 @@ SUB_ID="{{ your azure subscription id }}"
 az rest \
   --method get \
   --url "https://management.azure.com/subscriptions/$SUB_ID/providers/Microsoft.CognitiveServices/locations/eastus/usages?api-version=2023-05-01" \
-  --query "value[?name.value == 'OpenAI.GlobalStandard.gpt-4o-mini' || name.value == 'OpenAI.GlobalStandard.gpt4.1-mini'].{Model:name.value,Current:currentValue,Limit:limit}" \
+  --query "value[?name.value == 'OpenAI.GlobalStandard.gpt4.1-mini'].{Model:name.value,Current:currentValue,Limit:limit}" \
   -o table
 ```
 Output:
@@ -47,7 +50,6 @@ Output:
 
 Model                              Current    Limit
 ---------------------------------  ---------  -------
-OpenAI.GlobalStandard.gpt-4o-mini  0          2000
 OpenAI.GlobalStandard.gpt4.1-mini  100        5000
 ```
 
