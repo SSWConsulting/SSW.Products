@@ -6,7 +6,12 @@ title: Step 2 - App Registration
 date: '2025-12-29T13:00:00.000Z'
 ---
 
-You need an **Azure App Registration** for EagleEye deployment.
+You need a **Master Azure App Registration** for EagleEye deployment.
+
+This Master app act as an orchestrator to automate creating  and configures the app registrations used by EagleEye resources under the hood.
+
+Before creating the Master app, read [App Registrations](./app-registrations-reference) for a simple overview of what the Master app does.
+
 
 <Youtube thumbnail="https://img.youtube.com/vi/Daxg_iul1hc/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/Daxg_iul1hc" size="medium" />
 
@@ -34,6 +39,8 @@ You need an **Azure App Registration** for EagleEye deployment.
 > Do not delete the secret from Azure
 
 ### Step 2.3 - Configure API Permissions
+
+For a detailed explanation of why each permission is required, see [App Registrations](./app-registrations-reference).
 
 1. Go to `SSW.EagleEye.Master` app registration
 2. Go to **Manage** → **API permissions** → **Add a permission**
