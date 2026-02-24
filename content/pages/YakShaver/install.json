@@ -1,0 +1,50 @@
+{
+  "seo": {
+    "title": "Install",
+    "description": "Download, install, and start shaving Yaks today."
+  },
+  "title": "Install",
+  "pageBlocks": [
+    {
+      "tryItNowTitle": "Choose your platform",
+      "tryItNowCards": [
+        {
+          "title": "Desktop App - Windows\r\n\r\n⭐ Recommended",
+          "description": "✅ Free\r\n\r\n✅ Connect your favourite MCPs\n",
+          "button": {
+            "enableButton": true,
+            "label": "Download\n",
+            "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe"
+          }
+        },
+        {
+          "title": "Desktop App - Mac\r\n\r\n⭐ Recommended",
+          "description": "✅ Free\r\n\r\n✅ Connect your favourite MCPs\n",
+          "button": {
+            "enableButton": true,
+            "label": "Download\n",
+            "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg"
+          }
+        },
+        {
+          "title": "Teams App",
+          "description": "✅ Free\r\n\r\n✅ Shave any Teams recordings at ease\r\n\r\n✅ Shave with others in the same meeting\n",
+          "button": {
+            "enableButton": true,
+            "label": "Install\n",
+            "link": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479"
+          }
+        }
+      ],
+      "_template": "tryItNow"
+    },
+    {
+      "altText": "Making the Perfect PBI | YakShaver",
+      "title": "Want to Learn More? Watch this video!",
+      "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+      "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
+      "figureCaption": "Video: Making the Perfect PBI with YakShaver (6 min)",
+      "_template": "videoDisplay"
+    }
+  ]
+}
