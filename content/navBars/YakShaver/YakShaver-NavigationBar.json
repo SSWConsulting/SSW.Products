@@ -5,6 +5,12 @@
   "imgHeight": 100,
   "leftNavItem": [
     {
+      "label": "Install",
+      "href": "install",
+      "title": "Install",
+      "_template": "stringItem"
+    },
+    {
       "label": "Pricing",
       "href": "/pricing",
       "_template": "stringItem"
