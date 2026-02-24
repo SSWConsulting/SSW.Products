@@ -10,7 +10,7 @@
       "tryItNowCards": [
         {
           "title": "Desktop App - Windows\r\n\r\n⭐ Recommended",
-          "description": "✅ Free\r\n\r\n✅ Connect your favourite MCPs\n",
+          "description": "✅ Free\r\n\r\n✅ Connect your favourite MCPs\r\n\r\n✅ Choose your favourite AI provider\r\n\r\n✅ Secure local token storage with OS encryption\r\n\r\n✅ Native standalone app - no browser needed\r\n\r\n✅ Configure custom prompts",
           "button": {
             "enableButton": true,
             "label": "Download\n",
@@ -19,7 +19,7 @@
         },
         {
           "title": "Desktop App - Mac\r\n\r\n⭐ Recommended",
-          "description": "✅ Free\r\n\r\n✅ Connect your favourite MCPs\n",
+          "description": "✅ Free\r\n\r\n✅ Connect your favourite MCPs\r\n\r\n✅ Choose your favourite AI provider\r\n\r\n✅ Secure local token storage with OS encryption\r\n\r\n✅ Native standalone app - no browser needed\r\n\r\n✅ Configure custom prompts",
           "button": {
             "enableButton": true,
             "label": "Download\n",
@@ -28,7 +28,7 @@
         },
         {
           "title": "Teams App",
-          "description": "✅ Free\r\n\r\n✅ Shave any Teams recordings at ease\r\n\r\n✅ Shave with others in the same meeting\n",
+          "description": "✅ Free\r\n\r\n✅ Shave Teams recordings at ease\r\n\r\n✅ Shave with others in the same meeting\r\n\r\n✅ Auto-processes recordings from meetings\r\n\r\n✅ Built-in commands (on, off, ask, status)\r\n\r\n✅ Works with shared screens in calls\n",
           "button": {
             "enableButton": true,
             "label": "Install\n",
