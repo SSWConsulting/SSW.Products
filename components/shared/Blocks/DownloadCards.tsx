@@ -42,7 +42,7 @@ export const DownloadCards = (props: DownloadCardsProps) => {
           : "md:grid-cols-3";
 
   return (
-    <Container className="first:pt-20 relative">
+    <Container className="first:pt-20 relative container">
       {props.topImage?.imgSrc &&
         props.topImage.imgWidth &&
         props.topImage.imgHeight && (
@@ -56,7 +56,7 @@ export const DownloadCards = (props: DownloadCardsProps) => {
           />
         )}
       <div className="w-full z-0 h-fit relative">
-        <div className="text-white z-20 border-2 border-gray-lighter/40 relative w-full py-12 bg-gray-dark mx-auto rounded-3xl px-8">
+        <div className="text-white z-20 border-2 border-gray-lighter/40 relative w-full py-12 bg-gray-dark mx-auto rounded-lg px-8">
           {title && (
             <h2
               data-tina-field={tinaField(props, "title")}
@@ -75,7 +75,7 @@ export const DownloadCards = (props: DownloadCardsProps) => {
             ))}
           </div>
         </div>
-        <div className="absolute bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4" />
+        <div className="absolute bg-gray-dark/75 inset-y-4 rounded-lg inset-x-8 z-10 -bottom-4" />
       </div>
       {props.bottomLinks && (
         <div className="flex w-fit text-sm font-bold mx-auto text-white mt-32">
@@ -157,7 +157,7 @@ const DownloadCardItem = ({
   return (
     <div
       className={cn(
-        "bg-ssw-charcoal flex gap-4 flex-col items-center justify-between rounded-2xl pt-8 px-8 pb-8",
+        "bg-ssw-charcoal flex gap-4 flex-col items-center justify-between rounded-lg pt-8 px-8 pb-8",
         colSpanClass
       )}
     >
