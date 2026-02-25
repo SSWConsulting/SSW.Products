@@ -57,6 +57,12 @@ const DownloadCardsTemplate: Template = {
               label: "Link",
               type: "string",
             },
+            {
+              name: "variant",
+              label: "Variant",
+              type: "string",
+              options: ["primary", "secondary"],
+            },
           ],
         },
       ],

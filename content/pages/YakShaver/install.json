@@ -31,9 +31,10 @@
           "colSpan": 1,
           "buttons": [
             {
-              "icon": "/YakShaver/Docs/teams.svg",
+              "icon": "/svg/Microsoft Office Teams 2018.svg",
               "label": "Install for Teams",
-              "link": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479"
+              "link": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479",
+              "variant": "secondary"
             }
           ]
         }

@@ -12,6 +12,7 @@ export interface DownloadButton {
   icon?: string | null;
   label?: string | null;
   link?: string | null;
+  variant?: "primary" | "secondary" | null;
 }
 
 export interface DownloadCard {
@@ -187,7 +188,10 @@ const DownloadCardItem = ({
       {card.description && (
         <section
           data-tina-field={tinaField(card, "description")}
-          className="text-gray-300 text-sm w-fit mx-auto text-left"
+          className={cn(
+            "text-gray-300 text-sm w-fit mx-auto text-left",
+            card.colSpan && card.colSpan >= 2 && "columns-2 gap-x-8"
+          )}
         >
           <TinaMarkdown components={descriptionComponents} content={card.description} />
         </section>
@@ -210,8 +214,16 @@ const DownloadCardItem = ({
 };
 
 const DownloadButton = ({ button }: { button: DownloadButton }) => {
+  const isSecondary = button.variant === "secondary";
   const content = (
-    <div className="font-bold bg-ssw-red rounded-xl py-4 text-center flex items-center justify-center gap-2 w-full h-full">
+    <div
+      className={cn(
+        "font-bold rounded-xl py-4 text-center flex items-center justify-center gap-2 w-full h-full",
+        isSecondary
+          ? "bg-transparent border-2 border-white text-white"
+          : "bg-ssw-red"
+      )}
+    >
       {button.icon && (
         <span className="size-5 relative inline-block flex-shrink-0">
           <Image
