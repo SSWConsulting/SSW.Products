@@ -1,38 +1,19 @@
 import { cn } from "@/lib/utils";
+import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import NextLink from "next/link";
-import { ReactNode } from "react";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import {
+  type PagesPageBlocksDownloadCards,
+  type PagesPageBlocksDownloadCardsCards as DownloadCard,
+  type PagesPageBlocksDownloadCardsCardsButtons as DownloadButton,
+} from "../../../tina/__generated__/types";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
 import Link from "@tina/tinamarkdownStyles/Link";
 
-export interface DownloadButton {
-  icon?: string | null;
-  label?: string | null;
-  link?: string | null;
-  variant?: "primary" | "secondary" | null;
-}
-
-export interface DownloadCard {
-  title?: string | null;
-  description?: any;
-  colSpan?: number | null;
-  buttons?: (DownloadButton | null)[] | null;
-}
-
-export interface DownloadCardsProps {
-  title?: string | null;
-  topImage?: {
-    imgSrc?: string | null;
-    imgWidth?: number | null;
-    imgHeight?: number | null;
-  } | null;
-  cards?: (DownloadCard | null)[] | null;
-  bottomLinks?: ({ label?: any; url?: string | null } | null)[] | null;
-  [key: string]: any;
-}
+export type DownloadCardsProps = RemoveTinaMetadata<PagesPageBlocksDownloadCards>;
 
 const descriptionComponents = {
   img: (props?: { url: string }) => (
@@ -131,7 +112,7 @@ export const DownloadCards = (props: DownloadCardsProps) => {
               <BottomComponent
                 key={`bottom-link-${index}`}
                 data-tina-field={tinaField(link)}
-                className="my-[14px] mx-[21px]"
+                className="my-3.5 mx-[21px]"
               >
                 <TinaMarkdown
                   content={link.label}
@@ -190,14 +171,14 @@ const DownloadCardItem = ({
           data-tina-field={tinaField(card, "description")}
           className={cn(
             "text-gray-300 text-sm w-fit mx-auto text-left",
-            card.colSpan && card.colSpan >= 2 && "columns-2 gap-x-8"
+            card.colSpan && card.colSpan >= 2 && "md:columns-2 md:gap-x-8"
           )}
         >
           <TinaMarkdown components={descriptionComponents} content={card.description} />
         </section>
       )}
       {card.buttons && card.buttons.length > 0 && (
-        <div className="flex flex-row gap-3 w-full">
+        <div className="flex flex-col md:flex-row gap-3 w-full">
           {card.buttons.map((button, i) => {
             if (!button) return null;
             return (
@@ -214,7 +195,9 @@ const DownloadCardItem = ({
 };
 
 const DownloadButton = ({ button }: { button: DownloadButton }) => {
-  const isSecondary = button.variant === "secondary";
+  // variant is defined in the template but pending tina regeneration
+  const variant = (button as DownloadButton & { variant?: string | null }).variant;
+  const isSecondary = variant === "secondary";
   const content = (
     <div
       className={cn(
@@ -225,7 +208,7 @@ const DownloadButton = ({ button }: { button: DownloadButton }) => {
       )}
     >
       {button.icon && (
-        <span className="size-5 relative inline-block flex-shrink-0">
+        <span className="size-5 relative inline-block shrink-0">
           <Image
             src={button.icon}
             aria-hidden="true"
