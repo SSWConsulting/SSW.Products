@@ -10,7 +10,7 @@
       "tryItNowCards": [
         {
           "title": "Desktop App - Windows\r\n\r\n⭐ Recommended",
-          "description": "✅ Free\r\n\r\n✅ Connect your favourite MCPs\r\n\r\n✅ Choose your favourite AI provider\r\n\r\n✅ Secure local token storage with OS encryption\r\n\r\n✅ Native standalone app - no browser needed\r\n\r\n✅ Configure custom prompts",
+          "description": "✓ Free\r\n\r\n✓ Connect your favourite MCPs\r\n\r\n✓ BYO AI provider\r\n\r\n✓ Secure token storage\r\n\r\n✓ Native standalone app\r\n\r\n✓ Custom prompts",
           "button": {
             "enableButton": true,
             "label": "Download\n",
@@ -19,7 +19,7 @@
         },
         {
           "title": "Desktop App - Mac\r\n\r\n⭐ Recommended",
-          "description": "✅ Free\r\n\r\n✅ Connect your favourite MCPs\r\n\r\n✅ Choose your favourite AI provider\r\n\r\n✅ Secure local token storage with OS encryption\r\n\r\n✅ Native standalone app - no browser needed\r\n\r\n✅ Configure custom prompts",
+          "description": "✓ Free\r\n\r\n✓ Connect your favourite MCPs\r\n\r\n✓ BYO AI provider\r\n\r\n✓ Secure token storage\r\n\r\n✓ Native standalone app\r\n\r\n✓ Custom prompts",
           "button": {
             "enableButton": true,
             "label": "Download\n",
@@ -27,8 +27,8 @@
           }
         },
         {
-          "title": "Teams App",
-          "description": "✅ Free\r\n\r\n✅ Shave Teams recordings at ease\r\n\r\n✅ Shave with others in the same meeting\r\n\r\n✅ Auto-processes recordings from meetings\r\n\r\n✅ Built-in commands (on, off, ask, status)\r\n\r\n✅ Works with shared screens in calls\n",
+          "title": "Teams App Extension",
+          "description": "✓ Free\r\n\r\n✓ Shave Teams recordings\r\n\r\n✓ Collaborate in meetings\r\n\r\n✓ Auto-process recordings\r\n\r\n✓ Built-in commands",
           "button": {
             "enableButton": true,
             "label": "Install\n",
