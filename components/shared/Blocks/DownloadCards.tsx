@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
-import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
-import Link from "next/link";
+import NextLink from "next/link";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {
@@ -13,7 +12,7 @@ import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
 import Link from "@tina/tinamarkdownStyles/Link";
 
-export type DownloadCardsProps = RemoveTinaMetadata<PagesPageBlocksDownloadCards>;
+export type DownloadCardsProps = PagesPageBlocksDownloadCards;
 
 const descriptionComponents = {
   img: (props?: { url: string }) => (
@@ -31,9 +30,9 @@ const descriptionComponents = {
 
 export const DownloadCards = (props: DownloadCardsProps) => {
   const { title, cards = [] } = props;
-  const cardList = (cards ?? []).filter(Boolean) as DownloadCard[];
+  const cardList = cards?.filter(Boolean) as DownloadCard[];
 
-  const hasCustomSpan = cardList.some((c) => c.colSpan && c.colSpan > 1);
+  const hasCustomSpan = cardList.some((c) => Number(c.colSpan) > 1);
   const gridColsClass =
     cardList.length === 0
       ? ""
@@ -146,12 +145,13 @@ const DownloadCardItem = ({
   card: DownloadCard;
   useGridCols3: boolean;
 }) => {
+  const colSpan = Number(card.colSpan);
   let colSpanClass: string | undefined;
 
-  if (useGridCols3 && card.colSpan && card.colSpan > 1) {
-    if (card.colSpan === 2) {
+  if (useGridCols3 && colSpan > 1) {
+    if (colSpan === 2) {
       colSpanClass = "md:col-span-2";
-    } else if (card.colSpan === 3) {
+    } else if (colSpan === 3) {
       colSpanClass = "md:col-span-3";
     }
   }
@@ -175,7 +175,7 @@ const DownloadCardItem = ({
           data-tina-field={tinaField(card, "description")}
           className={cn(
             "text-gray-300 text-sm w-fit mx-auto text-left",
-            card.colSpan && card.colSpan >= 2 && "md:columns-2 md:gap-x-8"
+            card.colSpan && Number(card.colSpan) >= 2 && "md:columns-2 md:gap-x-8"
           )}
         >
           <TinaMarkdown components={descriptionComponents} content={card.description} />

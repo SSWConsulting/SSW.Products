@@ -11,7 +11,7 @@
         {
           "title": "Desktop App",
           "description": "✓ Free\r\n\r\n✓ Connect your favourite MCPs\r\n\r\n✓ BYO AI provider\r\n\r\n✓ Secure token storage\r\n\r\n✓ Native standalone app\r\n\r\n✓ Custom prompts",
-          "colSpan": 2,
+          "colSpan": "2",
           "buttons": [
             {
               "icon": "/svg/windows.svg",
@@ -28,7 +28,7 @@
         {
           "title": "Teams App Extension",
           "description": "✓ Free\r\n\r\n✓ Shave Teams recordings\r\n\r\n✓ Collaborate in meetings\r\n\r\n✓ Auto-process recordings\r\n\r\n✓ Built-in commands",
-          "colSpan": 1,
+          "colSpan": "1",
           "buttons": [
             {
               "icon": "/svg/Microsoft Office Teams 2018.svg",

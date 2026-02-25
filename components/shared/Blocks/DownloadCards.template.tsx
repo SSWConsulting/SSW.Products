@@ -32,8 +32,13 @@ const DownloadCardsTemplate: Template = {
           name: "colSpan",
           label: "Column Span",
           description:
-            "Width in a 3-column grid. Use 1 for normal (1/3), 2 for wide (2/3). Leave blank for auto layout.",
-          type: "number",
+            "Width in a 3-column grid. 1 = normal (1/3), 2 = wide (2/3).",
+          type: "string" as const,
+          options: [
+            { label: "1 — Normal (1/3)", value: "1" },
+            { label: "2 — Wide (2/3)", value: "2" },
+            { label: "3 — Full width", value: "3" },
+          ],
         },
         {
           name: "buttons",
