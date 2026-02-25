@@ -16,7 +16,7 @@
     },
     {
       "label": "Install",
-      "href": "install",
+      "href": "/install",
       "title": "Install",
       "_template": "stringItem"
     },
