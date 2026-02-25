@@ -18,6 +18,7 @@ import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImag
 import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
 import { RichTextTemplate } from "../../components/shared/Blocks/RichText.template";
 import TryItNowTemplate from "../../components/shared/Blocks/TryItNow.template";
+import DownloadCardsTemplate from "../../components/shared/Blocks/DownloadCards.template";
 import { MediaHeroTemplate } from "../../components/shared/Blocks/MediaHero.template";
 import { ImageGridTemplate } from "../../components/shared/Blocks/ImageGrid.template";
 import { ImageShowcaseTemplate } from "../../components/shared/Blocks/ImageShowcase.template";
@@ -115,6 +116,7 @@ export const PagesSchema: Collection = {
         ComparisonTable,
         CalculatorTemplate,
         TryItNowTemplate,
+        DownloadCardsTemplate,
       ],
     },
     {

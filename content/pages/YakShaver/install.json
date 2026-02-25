@@ -6,37 +6,39 @@
   "title": "Install",
   "pageBlocks": [
     {
-      "tryItNowTitle": "Choose your platform",
-      "tryItNowCards": [
+      "title": "Choose your platform",
+      "cards": [
         {
-          "title": "Desktop App - Windows\r\n\r\n⭐ Recommended",
+          "title": "Desktop App",
           "description": "✓ Free\r\n\r\n✓ Connect your favourite MCPs\r\n\r\n✓ BYO AI provider\r\n\r\n✓ Secure token storage\r\n\r\n✓ Native standalone app\r\n\r\n✓ Custom prompts",
-          "button": {
-            "enableButton": true,
-            "label": "Download\n",
-            "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe"
-          }
-        },
-        {
-          "title": "Desktop App - Mac\r\n\r\n⭐ Recommended",
-          "description": "✓ Free\r\n\r\n✓ Connect your favourite MCPs\r\n\r\n✓ BYO AI provider\r\n\r\n✓ Secure token storage\r\n\r\n✓ Native standalone app\r\n\r\n✓ Custom prompts",
-          "button": {
-            "enableButton": true,
-            "label": "Download\n",
-            "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg"
-          }
+          "colSpan": 2,
+          "buttons": [
+            {
+              "icon": "/svg/windows.svg",
+              "label": "Download for Windows",
+              "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe"
+            },
+            {
+              "icon": "/YakShaver/Docs/apple.svg",
+              "label": "Download for Mac",
+              "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg"
+            }
+          ]
         },
         {
           "title": "Teams App Extension",
           "description": "✓ Free\r\n\r\n✓ Shave Teams recordings\r\n\r\n✓ Collaborate in meetings\r\n\r\n✓ Auto-process recordings\r\n\r\n✓ Built-in commands",
-          "button": {
-            "enableButton": true,
-            "label": "Install\n",
-            "link": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479"
-          }
+          "colSpan": 1,
+          "buttons": [
+            {
+              "icon": "/YakShaver/Docs/teams.svg",
+              "label": "Install for Teams",
+              "link": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479"
+            }
+          ]
         }
       ],
-      "_template": "tryItNow"
+      "_template": "downloadCards"
     },
     {
       "altText": "Making the Perfect PBI | YakShaver",
