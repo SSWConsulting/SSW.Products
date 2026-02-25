@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
-import NextLink from "next/link";
+import Link from "next/link";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {
