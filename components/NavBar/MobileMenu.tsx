@@ -53,7 +53,7 @@ function HeaderHeightProvider({
 const MobileAnchor = Popover.Anchor;
 
 const MobileMenuRoot = ({ children }: { children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const isMobile = useMatchMedia("(max-width: 1279px)");
 
   useEffect(() => {
