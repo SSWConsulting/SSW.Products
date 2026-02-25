@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import NextLink from "next/link";
+import Link from "next/link";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {
@@ -10,7 +10,6 @@ import {
 } from "../../../tina/__generated__/types";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
-import Link from "@tina/tinamarkdownStyles/Link";
 
 export type DownloadCardsProps = PagesPageBlocksDownloadCards;
 
@@ -25,7 +24,7 @@ const descriptionComponents = {
       />
     </span>
   ),
-  a: (props: any) => Link(props),
+  a: (props: any) => <Link {...props} />,
 };
 
 export const DownloadCards = (props: DownloadCardsProps) => {
@@ -92,14 +91,14 @@ export const DownloadCards = (props: DownloadCardsProps) => {
             }) => (
               <>
                 {link?.url ? (
-                  <NextLink
+                  <Link
                     target="_blank"
                     {...rest}
                     className={cn(className, "hover:underline")}
                     href={link.url}
                   >
                     {children}
-                  </NextLink>
+                  </Link>
                 ) : (
                   <span {...rest} className={className}>
                     {children}
@@ -230,9 +229,9 @@ const DownloadButton = ({ button }: { button: DownloadButton }) => {
 
   if (button.link) {
     return (
-      <NextLink className="flex-1" href={button.link} target="_blank" rel="noopener noreferrer">
+      <Link className="flex-1" href={button.link} target="_blank" rel="noopener noreferrer">
         {content}
-      </NextLink>
+      </Link>
     );
   }
   return <div className="flex-1">{content}</div>;
