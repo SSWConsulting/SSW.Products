@@ -1,17 +1,18 @@
 ---
 seo:
   title: SSW EagleEye - Step 2 App Registration
-  description: 'Create and configure the Azure App Registration required for SSW EagleEye, including client secrets, Microsoft Graph permissions and admin consent.'
+  description: >-
+    Create and configure the Azure App Registration required for SSW EagleEye,
+    including client secrets, Microsoft Graph permissions and admin consent.
 title: Step 2 - App Registration
 date: '2025-12-29T13:00:00.000Z'
 ---
 
 You need a **Master Azure App Registration** for EagleEye deployment.
 
-This Master app act as an orchestrator to automate creating  and configures the app registrations used by EagleEye resources under the hood.
+The Master app acts as an orchestrator. It creates and configures the app registrations used by EagleEye during installation.
 
-Before creating the Master app, read [App Registrations](./app-registrations-reference) for a simple overview of what the Master app does.
-
+Before creating the Master app, read [App Registrations reference](./app-registrations-reference) for a simple overview of what the Master app does.
 
 <Youtube thumbnail="https://img.youtube.com/vi/Daxg_iul1hc/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/Daxg_iul1hc" size="medium" />
 
@@ -19,8 +20,8 @@ Before creating the Master app, read [App Registrations](./app-registrations-ref
 
 1. Go to **Azure Portal** → **App registrations** → **New registration**
    ![App Registration Search](/EagleEye/App-Registration-Search.png)
-2. Enter the app name: `SSW.EagleEye.Master`
-3. Set **Supported account types** to: **Accounts in this organizational directory only**
+2. Enter the app name: e.g., `Northwind.EagleEye.Master`
+3. Set **Supported account types** to: **Single tenant**
 4. Click **Register**
    ![Engine App](/EagleEye/Master-App.png)
 
@@ -40,17 +41,24 @@ Before creating the Master app, read [App Registrations](./app-registrations-ref
 
 ### Step 2.3 - Configure API Permissions
 
-For a detailed explanation of why each permission is required, see [App Registrations](./app-registrations-reference).
+For a detailed explanation of why each permission is required, see [App Registrations reference](./app-registrations-reference).
 
-1. Go to `SSW.EagleEye.Master` app registration
+1. Go to your Master app registration (for example, `Northwind.EagleEye.Master`)
 2. Go to **Manage** → **API permissions** → **Add a permission**
 3. Select **Microsoft Graph** → **Application permissions** (Important: select Application permissions - not Delegated).
 4. Add:
-   * `Application.ReadWrite.OwnedBy`
-   * `AppRoleAssignment.ReadWrite.All`
-   * `DelegatedPermissionGrant.ReadWrite.All`
-   * `Domain.Read.All`
-   * `Group.Read.All`
+   * [`Application.ReadWrite.OwnedBy`](https://learn.microsoft.com/en-us/graph/permissions-reference#applicationreadwriteownedby)
+   * [`AppRoleAssignment.ReadWrite.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#approleassignmentreadwriteall)
+   * [`DelegatedPermissionGrant.ReadWrite.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#delegatedpermissiongrantreadwriteall)
+   * [`Domain.Read.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#domainreadall)
+   * [`Group.Read.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#groupreadall)
 5. Click **Add permissions**
 6. Click **Grant admin consent** for your organization.
    ![Master API Permissions](/EagleEye/Master-Api-Permissions.png)
+
+
+## References
+
+* [App Registrations & Permissions reference](./app-registrations-reference)
+* [Register an app in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)
+* [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference)

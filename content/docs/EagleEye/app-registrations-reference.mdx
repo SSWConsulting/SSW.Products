@@ -1,8 +1,10 @@
 ---
 seo:
   title: SSW EagleEye - App Registrations Reference
-  description: 'What the Master app is, which EagleEye app registrations exist, and why each permission is required.'
-title: App Registrations
+  description: >-
+    What the Master app is, which EagleEye app registrations exist, and why each
+    permission is required.
+title: App Registrations & Permissions
 date: '2026-02-24T00:00:00.000Z'
 ---
 
@@ -14,17 +16,16 @@ This reference guide explains:
 
 ## Overview
 
-EagleEye uses one setup app to create and configure everything it needs.
+EagleEye uses one orchestrator [app registration](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) to create and configure everything it needs.
 
 We call this the **Master app**.
 
-You can name it anything, for example: `Northwind.EagleEye.Master`
-
+You can give it any name when creating it, for example: `Northwind.EagleEye.Master`
 
 ## What the Master app does during installation
 
 1. You create the Master app in [Step 2 - App Registration](./step-2-app-registrations) and grant the required Graph permissions to it.
-2. During deployment, the Master app creates these 3 new app registrations:
+2. During deployment, the Master app creates these three app registrations:
    * `Engine`
    * `Api`
    * `Portal`
@@ -34,21 +35,19 @@ You can name it anything, for example: `Northwind.EagleEye.Master`
    * Assigns the configured Entra group to `Portal`
    * Reads your tenant email domains (e.g. @northwind.com, @company.com) and stores them in the database
 
-
-
 ## Master App - Required Permissions
 
 When creating the Master app ([Step 2 - App Registration](./step-2-app-registrations)), we assign the following Microsoft Graph **Application** permissions.
 
 These must be Application permissions (not Delegated), because deployment is automated and non-interactive.
 
-| Permission | Why it is needed |
-| --- | --- |
-| `Application.ReadWrite.OwnedBy` | Create and update the Engine, API, and Portal app registrations |
-| `AppRoleAssignment.ReadWrite.All` | Grant application permissions to Engine app (e.g. Engine -> Microsoft Graph) |
-| `DelegatedPermissionGrant.ReadWrite.All` | Grant delegated API access to Portal app (Portal -> API) |
-| `Domain.Read.All` | Read tenant domains for EagleEye email settings and store them in the database |
-| `Group.Read.All` | Find and assign the configured Entra group to the Portal app |
+| Permission                               | Why it is needed                                                                                                    |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `Application.ReadWrite.OwnedBy`          | Create and update the Engine, API, and Portal app registrations                                                     |
+| `AppRoleAssignment.ReadWrite.All`        | Grant application permissions to the Engine app (for example, Engine -> Microsoft Graph)                            |
+| `DelegatedPermissionGrant.ReadWrite.All` | Grant delegated API access to Portal app (Portal -> API)                                                            |
+| `Domain.Read.All`                        | Read tenant domains for EagleEye email settings and store them in the database                                      |
+| `Group.Read.All`                         | Read groups and group memberships so deployment can find the configured Entra group and assign it to the Portal app |
 
 ## 3 App Registrations Created by Master App
 
@@ -83,7 +82,6 @@ Think of API as the backend glue that connects everything.
 
 Think of Portal as the frontend users interact with.
 
-
 ## One-line summary
 
 ```txt
@@ -91,4 +89,8 @@ Portal -> API -> Engine
 (UI)      (Backend)   (Email processing)
 ```
 
+## References
 
+* [Step 2 - App Registration](./step-2-app-registrations)
+* [Register an app in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)
+* [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference)
