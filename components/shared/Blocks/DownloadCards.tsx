@@ -146,11 +146,15 @@ const DownloadCardItem = ({
   card: DownloadCard;
   useGridCols3: boolean;
 }) => {
-  const colSpanClass =
-    useGridCols3 && card.colSpan && card.colSpan > 1
-      ? `md:col-span-${card.colSpan}`
-      : undefined;
+  let colSpanClass: string | undefined;
 
+  if (useGridCols3 && card.colSpan && card.colSpan > 1) {
+    if (card.colSpan === 2) {
+      colSpanClass = "md:col-span-2";
+    } else if (card.colSpan === 3) {
+      colSpanClass = "md:col-span-3";
+    }
+  }
   return (
     <div
       className={cn(
