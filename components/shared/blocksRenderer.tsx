@@ -16,7 +16,7 @@ import Pricing from "./Blocks/Pricing";
 import RichText from "./Blocks/RichText";
 import { Timeline } from "./Blocks/Timeline/Timeline";
 import { TryItNow } from "./Blocks/TryItNow";
-import { DownloadCards } from "./Blocks/DownloadCards";
+import { DownloadCards, type DownloadCardsProps } from "./Blocks/DownloadCards";
 import VideoDisplay from "./Blocks/VideoDisplay";
 
 interface Block {
@@ -103,7 +103,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksTryItNow":
         return <TryItNow {...block} />;
       case "PagesPageBlocksDownloadCards":
-        return <DownloadCards {...block} />;
+        return <DownloadCards {...(block as DownloadCardsProps)} />;
       case "PagesPageBlocksMediaHero":
         return <MediaHero key={index} {...block} />;
       case "PagesPageBlocksImageGrid":
