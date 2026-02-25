@@ -21,7 +21,7 @@ Before creating the Master app, read [App Registrations reference](./app-registr
 1. Go to **Azure Portal** → **App registrations** → **New registration**
    ![App Registration Search](/EagleEye/App-Registration-Search.png)
 2. Enter the app name: e.g., `Northwind.EagleEye.Master`
-3. Set **Supported account types** to: **Single tenant**
+3. Set **Supported account types** to: **Accounts in this organizational directory only (Single tenant)**
 4. Click **Register**
    ![Engine App](/EagleEye/Master-App.png)
 
@@ -47,11 +47,11 @@ For a detailed explanation of why each permission is required, see [App Registra
 2. Go to **Manage** → **API permissions** → **Add a permission**
 3. Select **Microsoft Graph** → **Application permissions** (Important: select Application permissions - not Delegated).
 4. Add:
-   * [`Application.ReadWrite.OwnedBy`](https://learn.microsoft.com/en-us/graph/permissions-reference#applicationreadwriteownedby)
-   * [`AppRoleAssignment.ReadWrite.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#approleassignmentreadwriteall)
-   * [`DelegatedPermissionGrant.ReadWrite.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#delegatedpermissiongrantreadwriteall)
-   * [`Domain.Read.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#domainreadall)
-   * [`Group.Read.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#groupreadall)
+   * [`Application.ReadWrite.OwnedBy`](https://learn.microsoft.com/en-us/graph/permissions-reference#applicationreadwriteownedby) - Create and update EagleEye app registrations (`Engine`, `Api`, `Portal`)
+   * [`AppRoleAssignment.ReadWrite.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#approleassignmentreadwriteall) - Grant application permissions (for example, `Engine` -> Microsoft Graph)
+   * [`DelegatedPermissionGrant.ReadWrite.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#delegatedpermissiongrantreadwriteall) - Grant delegated API access (`Portal` -> `Api`)
+   * [`Domain.Read.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#domainreadall) - Read tenant domains for EagleEye internal email settings
+   * [`Group.Read.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#groupreadall) - Read groups and memberships so deployment can find and assign the configured Entra group
 5. Click **Add permissions**
 6. Click **Grant admin consent** for your organization.
    ![Master API Permissions](/EagleEye/Master-Api-Permissions.png)
