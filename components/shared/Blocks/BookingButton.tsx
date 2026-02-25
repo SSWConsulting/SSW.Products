@@ -34,7 +34,7 @@ export const BookingButton = ({
         className={cn(
           variantMap[variant],
           className,
-          `px-5 py-2 font-semibold text-center transition-all items-center text-white rounded-lg whitespace-nowrap uppercase`
+          `px-5 py-2 min-h-[42px] font-semibold text-center transition-all items-center text-white rounded-lg whitespace-nowrap uppercase flex`
         )}
       >
         {title}

@@ -17,6 +17,7 @@ import {
   MobileMenuItem,
   MobileMenuRoot,
   MobileMenuTrigger,
+  HeaderHeightProvider,
   useMenuContext,
 } from "@comps/NavBar/MobileMenu";
 import {
@@ -27,6 +28,7 @@ import {
 import { SubGroupContent, SubGroupTrigger } from "@comps/NavBar/SubGroup";
 import { Button } from "@comps/ui/button";
 import clsx from "clsx";
+import { useRef } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { BookingButton } from "./Blocks/BookingButton";
 import LanguageToggle from "./LanguageToggle";
@@ -72,9 +74,12 @@ function NavBarClientContent({
   contextualHref,
 }: NavBarClientProps & { contextualHref: (href: string) => string }) {
   const { isOpen } = useMenuContext();
+  const headerRef = useRef<HTMLElement>(null);
+
   return (
-    <MobileAnchor asChild>
-      <NavigationMenuRoot mobileOpened={isOpen}>
+    <HeaderHeightProvider anchorRef={headerRef}>
+      <MobileAnchor asChild>
+        <NavigationMenuRoot ref={headerRef} mobileOpened={isOpen}>
         {bannerImage && (
           <NavigationMenuBadge {...bannerImage} currentLocale={currentLocale} />
         )}
@@ -95,7 +100,7 @@ function NavBarClientContent({
                         {...(subItem.openInNewTab ? { target: "_blank" } : {})}
                         underlineColor="red"
                         href={contextualHref(subItem.href)}
-                        className="flex items-center gap-1 w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
+                        className="flex items-center gap-1 min-h-[36px] min-w-[36px] w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
                       >
                         {subItem!.label}
                         {subItem!.href &&
@@ -118,7 +123,7 @@ function NavBarClientContent({
                 <GrowingLink
                   href={contextualHref(item.href)}
                   {...(item.openInNewTab ? { target: "_blank" } : {})}
-                  className="mx-3 text-base flex flex-row gap-1 items-center h-fit rounded uppercase whitespace-nowrap writing-mode-horizontal"
+                  className="mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal"
                   underlineColor="red"
                 >
                   {item.label}
@@ -204,8 +209,9 @@ function NavBarClientContent({
             </NavigationMenuItem>
           );
         })}
-      </NavigationMenuRoot>
-    </MobileAnchor>
+        </NavigationMenuRoot>
+      </MobileAnchor>
+    </HeaderHeightProvider>
   );
 }
 
@@ -233,7 +239,7 @@ const ButtonMap = ({
         <Button
           asChild
           className={cn(
-            "flex gap-1",
+            "flex gap-1 min-h-[42px]",
             item.iconPosition === "left" ? "flex-row-reverse" : "flex-row",
             className
           )}
