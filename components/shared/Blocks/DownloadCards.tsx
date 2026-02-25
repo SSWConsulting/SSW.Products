@@ -204,7 +204,7 @@ const DownloadButton = ({ button }: { button: DownloadButton }) => {
   const content = (
     <div
       className={cn(
-        "font-bold rounded-xl py-4 text-center flex items-center justify-center gap-2 w-full h-full",
+        "font-bold rounded-lg py-4 text-center flex items-center justify-center gap-2 w-full h-full",
         isSecondary
           ? "bg-transparent border-2 border-white text-white"
           : "bg-ssw-red"
