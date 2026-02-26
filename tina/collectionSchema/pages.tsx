@@ -23,6 +23,7 @@ import { ImageGridTemplate } from "../../components/shared/Blocks/ImageGrid.temp
 import { ImageShowcaseTemplate } from "../../components/shared/Blocks/ImageShowcase.template";
 import { seoInformation } from "../shared/SEOInformation";
 import { fileNameField } from "@tina/shared/FileName";
+import DownloadCardsTemplate from "@comps/shared/Blocks/DownloadCards.template";
 
 export const bottomPaddingOptions = {
   none: undefined,
@@ -115,6 +116,7 @@ export const PagesSchema: Collection = {
         ComparisonTable,
         CalculatorTemplate,
         TryItNowTemplate,
+        DownloadCardsTemplate,
       ],
     },
     {
