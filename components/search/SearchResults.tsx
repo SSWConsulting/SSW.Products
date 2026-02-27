@@ -6,10 +6,9 @@ const SearchResults = () => {
   const { results } = useInstantSearch();
   return (
     <>
-      {results.nbHits === 0 && !results.__isArtificial ? (
-        <p className="text-gray-light max-w-full truncate text-nowrap wrap gap-2 flex pt-2 px-4">
-          <PackageOpen />
-          No results...
+      {results.nbHits === 0 && results.query !== "" ? (
+        <p className="text-[#797979] items-center justify-center max-w-full truncate text-nowrap wrap gap-2 flex pt-6 px-4">
+          No results found for "{results.query}"
         </p>
       ) : (
         <Hits
