@@ -1,7 +1,7 @@
 import GrowingLink from "@comps/GrowingLink";
 import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { HiOutlineBars3 } from "react-icons/hi2";
@@ -19,9 +19,36 @@ const MenuContextProvider = MenuContext.Provider;
 
 const HeaderHeightContext = React.createContext<number>(0);
 
-export const useHeaderHeight = () => React.useContext(HeaderHeightContext);   
+export const useHeaderHeight = () => React.useContext(HeaderHeightContext);
 
-const HeaderHeightProvider = HeaderHeightContext.Provider;
+const HeaderHeightProvider = ({
+  anchorRef,
+  children,
+}: {
+  anchorRef: React.RefObject<HTMLElement | null>;
+  children: React.ReactNode;
+}) => {
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (anchorRef.current) {
+        setHeaderHeight(anchorRef.current.offsetHeight);
+      }
+    };
+
+    updateHeight();
+
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, [anchorRef]);
+
+  return (
+    <HeaderHeightContext.Provider value={headerHeight}>
+      {children}
+    </HeaderHeightContext.Provider>
+  );
+};
 
 const MobileAnchor = Popover.Anchor;
 
@@ -108,4 +135,4 @@ const MobileMenuContent = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export { MobileAnchor, MobileMenuContent, MobileMenuItem, MobileMenuRoot, MobileMenuTrigger, useMenuContext };
+export { HeaderHeightProvider, MobileAnchor, MobileMenuContent, MobileMenuItem, MobileMenuRoot, MobileMenuTrigger, useMenuContext };

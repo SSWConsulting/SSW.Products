@@ -12,6 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import { NavGroup } from "@/types/nav-group";
 import {
+  HeaderHeightProvider,
   MobileAnchor,
   MobileMenuContent,
   MobileMenuItem,
