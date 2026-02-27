@@ -17,39 +17,6 @@ const useMenuContext = () => React.useContext(MenuContext);
 
 const MenuContextProvider = MenuContext.Provider;
 
-const HeaderHeightContext = React.createContext<number>(0);
-
-export const useHeaderHeight = () => React.useContext(HeaderHeightContext);
-
-const HeaderHeightProvider = ({
-  anchorRef,
-  children,
-}: {
-  anchorRef: React.RefObject<HTMLElement | null>;
-  children: React.ReactNode;
-}) => {
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  useEffect(() => {
-    const updateHeight = () => {
-      if (anchorRef.current) {
-        setHeaderHeight(anchorRef.current.offsetHeight);
-      }
-    };
-
-    updateHeight();
-
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
-  }, [anchorRef]);
-
-  return (
-    <HeaderHeightContext.Provider value={headerHeight}>
-      {children}
-    </HeaderHeightContext.Provider>
-  );
-};
-
 const MobileAnchor = Popover.Anchor;
 
 const MobileMenuRoot = ({ children }: { children: React.ReactNode }) => {
@@ -108,8 +75,7 @@ const MobileMenuTrigger = () => {
 };
 
 
-const MobileMenuContent = ({ children }: { children: React.ReactNode }) => {
-  const headerHeight = useHeaderHeight();
+const MobileMenuContent = ({ children, headerHeight }: { children: React.ReactNode; headerHeight: number }) => {
   const contentHeight = `calc(100svh - ${headerHeight}px)`;
  return (
 <Popover.Content
@@ -135,4 +101,4 @@ const MobileMenuContent = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export { HeaderHeightProvider, MobileAnchor, MobileMenuContent, MobileMenuItem, MobileMenuRoot, MobileMenuTrigger, useMenuContext };
+export { MobileAnchor, MobileMenuContent, MobileMenuItem, MobileMenuRoot, MobileMenuTrigger, useMenuContext };
