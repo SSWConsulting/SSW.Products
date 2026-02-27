@@ -1,5 +1,4 @@
 import GrowingLink from "@comps/GrowingLink";
-import useMatchMedia from "@comps/hooks/useMatchMedia";
 import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
 import React, { useEffect, useRef, useState } from "react";
@@ -18,52 +17,25 @@ const useMenuContext = () => React.useContext(MenuContext);
 
 const MenuContextProvider = MenuContext.Provider;
 
-const HeaderHeightContext = React.createContext<number | null>(null);
+const HeaderHeightContext = React.createContext<number>(0);
 
-const useHeaderHeight = () => React.useContext(HeaderHeightContext);
+export const useHeaderHeight = () => React.useContext(HeaderHeightContext);   
 
-function HeaderHeightProvider({
-  anchorRef,
-  children,
-}: {
-  anchorRef: React.RefObject<HTMLElement | null>;
-  children: React.ReactNode;
-}) {
-  const [height, setHeight] = useState<number | null>(null);
-
-  useEffect(() => {
-    const el = anchorRef.current;
-    if (!el) return;
-
-    const update = () => setHeight(el.getBoundingClientRect().height);
-
-    update();
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [anchorRef]);
-
-  return (
-    <HeaderHeightContext.Provider value={height}>
-      {children}
-    </HeaderHeightContext.Provider>
-  );
-}
+const HeaderHeightProvider = HeaderHeightContext.Provider;
 
 const MobileAnchor = Popover.Anchor;
 
 const MobileMenuRoot = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const isMobile = useMatchMedia("(max-width: 1279px)");
 
   useEffect(() => {
-    if (isOpen && isMobile) {
+    if (isOpen) {
       document.body.style.overflow = "hidden";
       return () => {
         document.body.style.overflow = "";
       };
     }
-  }, [isOpen, isMobile]);
+  }, [isOpen]);
 
   return (
     <MenuContextProvider value={{ setIsOpen, isOpen }}>
@@ -111,12 +83,9 @@ const MobileMenuTrigger = () => {
 
 const MobileMenuContent = ({ children }: { children: React.ReactNode }) => {
   const headerHeight = useHeaderHeight();
-  const contentHeight =
-    headerHeight != null
-      ? `calc(100vh - ${headerHeight}px)`
-      : "100vh";
-  return (
-    <Popover.Content
+  const contentHeight = `calc(100svh - ${headerHeight}px)`;
+ return (
+<Popover.Content
       asChild
       className={clsx(
         "bg-black min-w-screen duration-300 overflow-hidden z-50 py-7 px-7 xl:hidden data-[state=open]:animate-expand text-white transition data-[state=closed]:animate-collapse top-full min-h-0"
@@ -139,13 +108,4 @@ const MobileMenuContent = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export {
-  MobileAnchor,
-  MobileMenuContent,
-  MobileMenuItem,
-  MobileMenuRoot,
-  MobileMenuTrigger,
-  HeaderHeightProvider,
-  useMenuContext,
-  useHeaderHeight,
-};
+export { MobileAnchor, MobileMenuContent, MobileMenuItem, MobileMenuRoot, MobileMenuTrigger, useMenuContext };

@@ -17,7 +17,6 @@ import {
   MobileMenuItem,
   MobileMenuRoot,
   MobileMenuTrigger,
-  HeaderHeightProvider,
   useMenuContext,
 } from "@comps/NavBar/MobileMenu";
 import {
