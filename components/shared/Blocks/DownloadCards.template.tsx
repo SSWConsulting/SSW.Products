@@ -1,5 +1,6 @@
 import { optimizedImageField } from "@tina/shared/OptimizedImage";
 import { Template } from "tinacms";
+import { actionsButtonTemplate } from "./ActionsButton.template";
 
 const DownloadCardsTemplate: Template = {
   label: "Download Cards",
@@ -42,33 +43,10 @@ const DownloadCardsTemplate: Template = {
         },
         {
           name: "buttons",
-          label: "Download Buttons",
-          type: "object",
+          label: "Buttons",
           list: true,
-          fields: [
-            {
-              name: "icon",
-              label: "Button Icon",
-              description: "Optional icon shown before the button label",
-              type: "image",
-            },
-            {
-              name: "label",
-              label: "Button Label",
-              type: "string",
-            },
-            {
-              name: "link",
-              label: "Link",
-              type: "string",
-            },
-            {
-              name: "variant",
-              label: "Variant",
-              type: "string",
-              options: ["primary", "secondary"],
-            },
-          ],
+          type: "object",
+          templates: [actionsButtonTemplate],
         },
       ],
     },

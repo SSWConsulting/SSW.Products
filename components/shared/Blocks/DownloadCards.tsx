@@ -6,10 +6,11 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import {
   type PagesPageBlocksDownloadCards,
   type PagesPageBlocksDownloadCardsCards as DownloadCard,
-  type PagesPageBlocksDownloadCardsCardsButtons as DownloadButton,
 } from "../../../tina/__generated__/types";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
+import { ActionButton } from "./ActionsButton";
+import { ButtonSize, ButtonVariant } from "./buttonEnum";
 
 export type DownloadCardsProps = PagesPageBlocksDownloadCards;
 
@@ -60,7 +61,7 @@ export const DownloadCards = (props: DownloadCardsProps) => {
           {title && (
             <h2
               data-tina-field={tinaField(props, "title")}
-              className="text-[1.75rem] font-semibold text-center mb-7"
+              className="text-2xl font-semibold text-center mb-7"
             >
               {title}
             </h2>
@@ -184,12 +185,11 @@ const DownloadCardItem = ({
         <div className="flex flex-col md:flex-row gap-3 w-full">
           {card.buttons.map((button, i) => {
             if (!button) return null;
-            return (
-              <DownloadButton
-                key={`btn-${i}`}
-                button={button}
-              />
-            );
+            return <ActionButton
+              key={`card-btn-${i}`}
+              action={button as { label: string; url: string; variant: ButtonVariant; size: ButtonSize }}
+              className="flex-1 justify-center"
+            />;
           })}
         </div>
       )}
@@ -197,42 +197,3 @@ const DownloadCardItem = ({
   );
 };
 
-const DownloadButton = ({ button }: { button: DownloadButton }) => {
-  // variant is defined in the template but pending tina regeneration
-  const variant = (button as DownloadButton & { variant?: string | null }).variant;
-  const isSecondary = variant === "secondary";
-  const content = (
-    <div
-      className={cn(
-        "font-bold rounded-lg py-4 text-center flex items-center justify-center gap-2 w-full h-full",
-        isSecondary
-          ? "bg-transparent border-2 border-white text-white"
-          : "bg-ssw-red"
-      )}
-    >
-      {button.icon && (
-        <span className="size-5 relative inline-block shrink-0">
-          <Image
-            src={button.icon}
-            aria-hidden="true"
-            alt=""
-            fill={true}
-            className="object-contain"
-          />
-        </span>
-      )}
-      {button.label && (
-        <span data-tina-field={tinaField(button, "label")}>{button.label}</span>
-      )}
-    </div>
-  );
-
-  if (button.link) {
-    return (
-      <Link className="flex-1" href={button.link} target="_blank" rel="noopener noreferrer">
-        {content}
-      </Link>
-    );
-  }
-  return <div className="flex-1">{content}</div>;
-};

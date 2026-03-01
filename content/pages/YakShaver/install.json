@@ -14,14 +14,18 @@
           "colSpan": "2",
           "buttons": [
             {
-              "icon": "/svg/windows.svg",
+              "_template": "actions",
               "label": "Download for Windows",
-              "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe"
+              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe",
+              "variant": "solidRed",
+              "size": "medium"
             },
             {
-              "icon": "/YakShaver/Docs/apple.svg",
+              "_template": "actions",
               "label": "Download for Mac",
-              "link": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg"
+              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg",
+              "variant": "solidRed",
+              "size": "medium"
             }
           ]
         },
@@ -31,10 +35,11 @@
           "colSpan": "1",
           "buttons": [
             {
-              "icon": "/svg/Microsoft Office Teams 2018.svg",
+              "_template": "actions",
               "label": "Install for Teams",
-              "link": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479",
-              "variant": "secondary"
+              "url": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479",
+              "variant": "outlinedWhite",
+              "size": "medium"
             }
           ]
         }
