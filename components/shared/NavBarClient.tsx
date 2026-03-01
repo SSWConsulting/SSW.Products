@@ -17,7 +17,6 @@ import {
   MobileMenuItem,
   MobileMenuRoot,
   MobileMenuTrigger,
-  HeaderHeightProvider,
   useMenuContext,
 } from "@comps/NavBar/MobileMenu";
 import {
@@ -28,7 +27,7 @@ import {
 import { SubGroupContent, SubGroupTrigger } from "@comps/NavBar/SubGroup";
 import { Button } from "@comps/ui/button";
 import clsx from "clsx";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { BookingButton } from "./Blocks/BookingButton";
 import LanguageToggle from "./LanguageToggle";
@@ -75,10 +74,22 @@ function NavBarClientContent({
 }: NavBarClientProps & { contextualHref: (href: string) => string }) {
   const { isOpen } = useMenuContext();
   const headerRef = useRef<HTMLElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (headerRef.current) {
+        setHeaderHeight(headerRef.current.offsetHeight);
+      }
+    };
+
+    updateHeight();
+    window.addEventListener("resize", updateHeight);
+    return () => window.removeEventListener("resize", updateHeight);
+  }, []);
 
   return (
-    <HeaderHeightProvider anchorRef={headerRef}>
-      <MobileAnchor asChild>
+    <MobileAnchor asChild>
         <NavigationMenuRoot ref={headerRef} mobileOpened={isOpen}>
         {bannerImage && (
           <NavigationMenuBadge {...bannerImage} currentLocale={currentLocale} />
@@ -155,7 +166,7 @@ function NavBarClientContent({
         </NavigationMenuItem>
         <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
           <MobileMenuTrigger />
-          <MobileMenuContent>
+          <MobileMenuContent headerHeight={headerHeight}>
             <>
               {items.map((item, index) => {
                 if (
@@ -211,7 +222,6 @@ function NavBarClientContent({
         })}
         </NavigationMenuRoot>
       </MobileAnchor>
-    </HeaderHeightProvider>
   );
 }
 
