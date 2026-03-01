@@ -90,7 +90,7 @@ const MobileMenuContent = ({ children, headerHeight }: { children: React.ReactNo
           style={{ height: contentHeight, maxHeight: contentHeight }}
         >
           <ul
-            className="flex flex-col flex-wrap content-start gap-x-16 gap-y-4 items-start min-h-0 h-full overflow-hidden pb-8"
+            className="flex flex-col flex-wrap content-start gap-x-8 gap-y-4 items-start min-h-0 h-full overflow-hidden pb-8"
             style={{ height: contentHeight, maxHeight: contentHeight }}
           >
             {children}
