@@ -183,8 +183,7 @@ const DownloadCardItem = ({
       )}
       {card.buttons && card.buttons.length > 0 && (
         <div className="flex flex-col md:flex-row gap-3 w-full">
-          {card.buttons.map((button, i) => {
-            if (!button) return null;
+          {card.buttons && card.buttons.map((button, i) => {
             return <ActionButton
               key={`card-btn-${i}`}
               action={button as { label: string; url: string; variant: ButtonVariant; size: ButtonSize }}
