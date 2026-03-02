@@ -17,8 +17,7 @@ import CallToAction from "./Blocks/CallToAction";
 
 import { RemoveTinaMetadata } from "@/types/tina";
 import { BlogCard, SkeletonCard } from "@comps/BlogCard";
-import client from "../../tina/__generated__/client";
-import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
+import { BlogsIndexBlocks, BlogsIndexQuery, BlogsIndexQueryVariables, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
@@ -29,7 +28,7 @@ import GridBackground from "./GridBackground";
 import ReadMore from "./ReadMore";
 import { useContextualLink } from "@utils/contextualLink";
 
-type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
+type BlogTinaProps = { data: BlogsIndexQuery; variables: BlogsIndexQueryVariables; query: string };
 
 type Block = Maybe<RemoveTinaMetadata<BlogsIndexBlocks>>;
 
