@@ -6,13 +6,22 @@ import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
-import { ActionButton } from "./ActionsButton";
+import { variantMap } from "./BookingButton";
+import { useContextualLink } from "@utils/contextualLink";
+
+type ButtonLink = {
+  label?: string | null;
+  href?: string | null;
+  icon?: string | null;
+  iconPosition?: string | null;
+  variant?: string | null;
+};
 
 type DownloadCard = {
   title?: string | null;
   description?: TinaMarkdownContent;
   colSpan?: string | null;
-  buttons?: ActionButton[] | null;
+  buttons?: ButtonLink[] | null;
 };
 
 const descriptionComponents = {
@@ -92,6 +101,7 @@ const DownloadCardItem = ({
   card: DownloadCard;
   useGridCols3: boolean;
 })=> {
+  const contextualHref = useContextualLink();
   const colSpan = Number(card.colSpan);
   let colSpanClass: string | undefined;
 
@@ -130,13 +140,28 @@ const DownloadCardItem = ({
       )}
       {card.buttons && card.buttons.length > 0 && (
         <div className="flex flex-col md:flex-row gap-3 w-full">
-          {card.buttons.map((button, i) => (
-            <ActionButton
-              key={`btn-${i}`}
-              action={button}
-              className="flex-1 justify-center"
-            />
-          ))}
+          {card.buttons.map((button, i) => {
+            if (!button?.href) return null;
+            return (
+              <Link
+                key={`btn-${i}`}
+                href={contextualHref(button.href)}
+                target="_blank"
+                className={cn(
+                  variantMap[button.variant as keyof typeof variantMap] ?? variantMap.solidRed,
+                  "flex-1 justify-center gap-2 whitespace-nowrap inline-flex items-center rounded-lg transition-all duration-200 font-semibold uppercase py-2 px-4 text-base",
+                  button.iconPosition === "left" ? "flex-row-reverse" : "flex-row"
+                )}
+              >
+                {button.label}
+                {button.icon && (
+                  <div className="relative size-5">
+                    <Image fill src={button.icon} alt={button.label || "Icon"} />
+                  </div>
+                )}
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>

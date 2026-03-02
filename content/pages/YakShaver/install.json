@@ -10,36 +10,39 @@
       "cards": [
         {
           "title": "Desktop App",
-          "description": "✓ Free\r\n\r\n✓ Connect your favourite MCPs\r\n\r\n✓ BYO AI provider\r\n\r\n✓ Secure token storage\r\n\r\n✓ Native standalone app\r\n\r\n✓ Custom prompts",
+          "description": "✓ Free\n\n✓ Connect your favourite MCPs\n\n✓ BYO AI provider\n\n✓ Secure token storage\n\n✓ Native standalone app\n\n✓ Custom prompts\n",
           "colSpan": "2",
           "buttons": [
             {
-              "_template": "actions",
               "label": "Download for Windows",
-              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe",
+              "href": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe",
+              "icon": "/svg/windows.svg",
+              "iconPosition": "left",
               "variant": "solidRed",
-              "size": "medium"
+              "_template": "buttonLink"
             },
             {
-              "_template": "actions",
               "label": "Download for Mac",
-              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg",
+              "href": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg",
+              "icon": "/YakShaver/Docs/apple.svg",
+              "iconPosition": "left",
               "variant": "solidRed",
-              "size": "medium"
+              "_template": "buttonLink"
             }
           ]
         },
         {
           "title": "Teams App Extension",
-          "description": "✓ Free\r\n\r\n✓ Shave Teams recordings\r\n\r\n✓ Collaborate in meetings\r\n\r\n✓ Auto-process recordings\r\n\r\n✓ Built-in commands",
+          "description": "✓ Free\n\n✓ Shave Teams recordings\n\n✓ Collaborate in meetings\n\n✓ Auto-process recordings\n\n✓ Built-in commands\n",
           "colSpan": "1",
           "buttons": [
             {
-              "_template": "actions",
               "label": "Install for Teams",
-              "url": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479",
+              "href": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479",
+              "icon": "/svg/Microsoft Office Teams 2018.svg",
+              "iconPosition": "left",
               "variant": "outlinedWhite",
-              "size": "medium"
+              "_template": "buttonLink"
             }
           ]
         }
