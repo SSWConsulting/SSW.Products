@@ -5,6 +5,12 @@ import { actionsButtonTemplate } from "./ActionsButton.template";
 const DownloadCardsTemplate: Template = {
   label: "Download Cards",
   name: "downloadCards",
+  ui: {
+    defaultItem: () => ({
+      title: "Downloads",
+      cards: [],
+    }),
+  },
   fields: [
     {
       name: "topImage",
@@ -35,6 +41,11 @@ const DownloadCardsTemplate: Template = {
       ui: {
         itemProps: (item: { title?: string }) => ({
           label: item?.title || "Default Card",
+        }),
+        defaultItem: () => ({
+          title: "Card Title",
+          colSpan: "1",
+          buttons: [],
         }),
       },
       fields: [
