@@ -3,12 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { tinaField } from "tinacms/dist/react";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { type PagesPageBlocksDownloadCardsCards as DownloadCard } from "../../../tina/__generated__/types";
+import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
 import { ActionButton } from "./ActionsButton";
-import { ButtonSize, ButtonVariant } from "./buttonEnum";
+
+type DownloadCard = {
+  title?: string | null;
+  description?: TinaMarkdownContent;
+  colSpan?: string | null;
+  buttons?: ActionButton[] | null;
+};
 
 const descriptionComponents = {
   img: (props?: { url: string }) => (
@@ -86,7 +91,7 @@ const DownloadCardItem = ({
 }: {
   card: DownloadCard;
   useGridCols3: boolean;
-}) => {
+})=> {
   const colSpan = Number(card.colSpan);
   let colSpanClass: string | undefined;
 
@@ -127,16 +132,10 @@ const DownloadCardItem = ({
         <div className="flex flex-col md:flex-row gap-3 w-full">
           {card.buttons.map((button, i) => {
             if (!button) return null;
-            const action = {
-              label: button.label,
-              url: button.url ?? "",
-              variant: button.variant ?? ButtonVariant.SolidRed,
-              size: button.size ?? ButtonSize.Medium,
-            };
             return (
               <ActionButton
                 key={`btn-${i}`}
-                action={action}
+                action={button}
                 className="flex-1 justify-center"
               />
             );
