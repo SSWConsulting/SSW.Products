@@ -1,18 +1,14 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import {
-  type PagesPageBlocksDownloadCards,
-  type PagesPageBlocksDownloadCardsCards as DownloadCard,
-} from "../../../tina/__generated__/types";
+import { type PagesPageBlocksDownloadCardsCards as DownloadCard } from "../../../tina/__generated__/types";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
 import { ActionButton } from "./ActionsButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
-
-export type DownloadCardsProps = PagesPageBlocksDownloadCards;
 
 const descriptionComponents = {
   img: (props?: { url: string }) => (
@@ -28,8 +24,9 @@ const descriptionComponents = {
   a: (props: any) => <Link {...props} />,
 };
 
-export const DownloadCards = (props: DownloadCardsProps) => {
-  const { title, cards = [] } = props;
+
+export const DownloadCards = ({ data }: { data: any }) => {
+  const { title, cards = [] } = data;
   const cardList = cards?.filter(Boolean) as DownloadCard[];
 
   const hasCustomSpan = cardList.some((c) => Number(c.colSpan) > 1);
@@ -44,23 +41,23 @@ export const DownloadCards = (props: DownloadCardsProps) => {
 
   return (
     <Container className="first:pt-20 relative container">
-      {props.topImage?.imgSrc &&
-        props.topImage.imgWidth &&
-        props.topImage.imgHeight && (
+      {data.topImage?.imgSrc &&
+        data.topImage.imgWidth &&
+        data.topImage.imgHeight && (
           <Image
             className="w-72 mx-auto mb-16"
-            data-tina-field={tinaField(props, "topImage")}
-            src={props.topImage.imgSrc}
-            width={props.topImage.imgWidth}
-            height={props.topImage.imgHeight}
-            alt=""
+            data-tina-field={tinaField(data, "topImage")}
+            src={data.topImage.imgSrc}
+            width={data.topImage.imgWidth}
+            height={data.topImage.imgHeight}
+            alt={data.topImage.imgAlt ?? ""}
           />
         )}
       <div className="w-full z-0 h-fit relative">
         <div className="text-white z-20 border-2 border-gray-lighter/40 relative w-full py-12 bg-gray-dark mx-auto rounded-lg px-8">
           {title && (
             <h2
-              data-tina-field={tinaField(props, "title")}
+              data-tina-field={tinaField(data, "title")}
               className="text-2xl font-semibold text-center mb-7"
             >
               {title}
@@ -78,61 +75,6 @@ export const DownloadCards = (props: DownloadCardsProps) => {
         </div>
         <div className="absolute bg-gray-dark/75 inset-y-4 rounded-lg inset-x-8 z-10 -bottom-4" />
       </div>
-      {props.bottomLinks && (
-        <div className="flex w-fit text-sm font-bold mx-auto text-white mt-32">
-          {props.bottomLinks.map((link, index) => {
-            if (!link) return null;
-            const BottomComponent = ({
-              children,
-              className,
-              ...rest
-            }: {
-              children: React.ReactNode;
-              className?: string;
-            }) => (
-              <>
-                {link?.url ? (
-                  <Link
-                    target="_blank"
-                    {...rest}
-                    className={cn(className, "hover:underline")}
-                    href={link.url}
-                  >
-                    {children}
-                  </Link>
-                ) : (
-                  <span {...rest} className={className}>
-                    {children}
-                  </span>
-                )}
-              </>
-            );
-            return (
-              <BottomComponent
-                key={`bottom-link-${index}`}
-                data-tina-field={tinaField(link)}
-                className="my-3.5 mx-[21px]"
-              >
-                <TinaMarkdown
-                  content={link.label}
-                  components={{
-                    img: (props?: { url: string }) => (
-                      <span className="size-5 mx-1.5 relative align-middle inline-block">
-                        <Image
-                          src={props?.url || ""}
-                          aria-hidden="true"
-                          alt=""
-                          fill={true}
-                        />
-                      </span>
-                    ),
-                  }}
-                />
-              </BottomComponent>
-            );
-          })}
-        </div>
-      )}
       <PurpleSunBackground />
     </Container>
   );
@@ -183,12 +125,21 @@ const DownloadCardItem = ({
       )}
       {card.buttons && card.buttons.length > 0 && (
         <div className="flex flex-col md:flex-row gap-3 w-full">
-          {card.buttons && card.buttons.map((button, i) => {
-            return <ActionButton
-              key={`card-btn-${i}`}
-              action={button as { label: string; url: string; variant: ButtonVariant; size: ButtonSize }}
-              className="flex-1 justify-center"
-            />;
+          {card.buttons.map((button, i) => {
+            if (!button) return null;
+            const action = {
+              label: button.label,
+              url: button.url ?? "",
+              variant: button.variant ?? ButtonVariant.SolidRed,
+              size: button.size ?? ButtonSize.Medium,
+            };
+            return (
+              <ActionButton
+                key={`btn-${i}`}
+                action={action}
+                className="flex-1 justify-center"
+              />
+            );
           })}
         </div>
       )}
