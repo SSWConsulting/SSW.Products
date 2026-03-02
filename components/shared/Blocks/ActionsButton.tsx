@@ -4,7 +4,7 @@ import { useContextualLink } from "@utils/contextualLink";
 import { variantMap } from "./BookingButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
 
-type ActionButton = {
+export type ActionButton = {
   label: string;
   url: string;
   variant: ButtonVariant;

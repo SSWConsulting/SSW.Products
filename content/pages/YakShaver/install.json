@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "title": "Install",
+    "description": "Download, install, and start shaving Yaks today."
+  },
+  "title": "Install",
+  "pageBlocks": [
+    {
+      "title": "Choose your platform",
+      "cards": [
+        {
+          "title": "Desktop App",
+          "description": "✓ Free\r\n\r\n✓ Connect your favourite MCPs\r\n\r\n✓ BYO AI provider\r\n\r\n✓ Secure token storage\r\n\r\n✓ Native standalone app\r\n\r\n✓ Custom prompts",
+          "colSpan": "2",
+          "buttons": [
+            {
+              "_template": "actions",
+              "label": "Download for Windows",
+              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe",
+              "variant": "solidRed",
+              "size": "medium"
+            },
+            {
+              "_template": "actions",
+              "label": "Download for Mac",
+              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg",
+              "variant": "solidRed",
+              "size": "medium"
+            }
+          ]
+        },
+        {
+          "title": "Teams App Extension",
+          "description": "✓ Free\r\n\r\n✓ Shave Teams recordings\r\n\r\n✓ Collaborate in meetings\r\n\r\n✓ Auto-process recordings\r\n\r\n✓ Built-in commands",
+          "colSpan": "1",
+          "buttons": [
+            {
+              "_template": "actions",
+              "label": "Install for Teams",
+              "url": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479",
+              "variant": "outlinedWhite",
+              "size": "medium"
+            }
+          ]
+        }
+      ],
+      "_template": "downloadCards"
+    },
+    {
+      "altText": "Making the Perfect PBI | YakShaver",
+      "title": "Want to Learn More? Watch this video!",
+      "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+      "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
+      "figureCaption": "Video: Making the Perfect PBI with YakShaver (6 min)",
+      "_template": "videoDisplay"
+    }
+  ]
+}
