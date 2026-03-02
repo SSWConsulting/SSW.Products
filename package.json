@@ -19,6 +19,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tanstack/react-query": "^5.90.8",
     "@tanstack/react-query-devtools": "^5.90.2",
+    "add": "^2.0.6",
     "algoliasearch": "5.24.0",
     "axios": "^1.9.0",
     "class-variance-authority": "^0.7.1",
@@ -31,6 +32,7 @@
     "lucide-react": "^0.475.0",
     "motion": "^12.10.5",
     "next": "15.5.9",
+    "pnpm": "^10.30.3",
     "radix-ui": "^1.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -47,7 +49,7 @@
     "strip-markdown": "^6.0.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
-    "tinacms": "0.0.0-45f2792-20260302013638",
+    "tinacms": "0.0.0-607dc01-20260302031758",
     "unified": "^11.0.5"
   },
   "devDependencies": {
