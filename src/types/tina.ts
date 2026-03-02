@@ -1,4 +1,3 @@
-import client from "@tina/__generated__/client";
 import { SystemInfo } from "@tina/__generated__/types";
 
 type RemoveTinaMetadata<T> = Omit<T, "__typename" | "_values" | "_sys"> & {

@@ -1,7 +1,7 @@
 "use client";
 import type { Author } from "@/types/author";
 import Container from "@comps/Container";
-import { useInfiniteQuery } from "@tanstack/react-query";
+// import { useInfiniteQuery } from "@tanstack/react-query"; // TODO: Re-enable
 import { LoaderCircle, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -173,13 +173,14 @@ const Blocks = ({ blocks, product, locale }: BlocksProps) => {
 };
 
 const RecentArticles = ({
-  product,
-  locale,
+  product: _product,
+  locale: _locale,
   ...props
 }: RemoveTinaMetadata<ArticleListProps> & { product: string; locale?: string }) => {
-  const { searchTerm, selectedCategory } = useBlogSearch();
+  const { searchTerm, selectedCategory: _selectedCategory } = useBlogSearch();
   // TODO: Re-enable after fixing tinacms node:path issue
-  const data = undefined;
+  void _product; void _locale; void _selectedCategory; // suppress unused warnings
+  const _data = undefined;
   const fetchNextPage = () => {};
   const isFetchingNextPage = false;
   const isLoading = false;
@@ -204,10 +205,10 @@ const RecentArticles = ({
   //       return lastEntry?.cursor || undefined;
   //     },
   //   });
-  const totalPages = data?.pages.length || 0;
-  const lastPage = data?.pages[totalPages - 1];
-  const remainingPages = lastPage?.remainingPages || 0;
-  const hasMoreBlogs = remainingPages > 0;
+  // TODO: Re-enable after fixing tinacms node:path issue
+  const totalPages = 0;
+  const remainingPages = 0;
+  const hasMoreBlogs = false;
 
   return (
     <Container className="w-full">
@@ -219,12 +220,13 @@ const RecentArticles = ({
           {props.title}
         </h2>
       )}
-      {!data?.pages.length && !isFetchingNextPage && !isLoading ? (
-        <span className="mx-auto block w-fit">No results found</span>
+      {/* TODO: Re-enable after fixing tinacms node:path issue */}
+      {true ? (
+        <span className="mx-auto block w-fit">Blog loading temporarily disabled</span>
       ) : (
         <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
-          {data?.pages.map((page) =>
-            page?.blogs?.map((edge, index) => {
+          {([] as any[]).map((page) =>
+            page?.blogs?.map((edge: any, index: number) => {
               const post = edge?.node;
               return (
                 post && (
