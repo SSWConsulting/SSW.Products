@@ -19,7 +19,8 @@ import { RemoveTinaMetadata } from "@/types/tina";
 import { BlogCard, SkeletonCard } from "@comps/BlogCard";
 import { BlogsIndexBlocks, BlogsIndexQuery, BlogsIndexQueryVariables, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
-import { getBlogsForProduct } from "../../utils/fetchBlogs";
+// TODO: Re-enable after fixing tinacms node:path issue
+// import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import { Button } from "../ui/button";
 import ArticleMetadata from "./ArticleMetadata";
@@ -177,26 +178,32 @@ const RecentArticles = ({
   ...props
 }: RemoveTinaMetadata<ArticleListProps> & { product: string; locale?: string }) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
-  const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
-    useInfiniteQuery({
-      queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
-      queryFn: ({ pageParam }) => {
-        return getBlogsForProduct({
-          product,
-          startCursor: pageParam,
-          keyword: searchTerm,
-          category:
-            selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
-          locale,
-        });
-      },
-      initialPageParam: "",
-      getNextPageParam: (lastPage) => {
-        const lastEntry =
-          lastPage.blogs && lastPage.blogs[lastPage.blogs.length - 1];
-        return lastEntry?.cursor || undefined;
-      },
-    });
+  // TODO: Re-enable after fixing tinacms node:path issue
+  const data = undefined;
+  const fetchNextPage = () => {};
+  const isFetchingNextPage = false;
+  const isLoading = false;
+  const isFetching = false;
+  // const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
+  //   useInfiniteQuery({
+  //     queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
+  //     queryFn: ({ pageParam }) => {
+  //       return getBlogsForProduct({
+  //         product,
+  //         startCursor: pageParam,
+  //         keyword: searchTerm,
+  //         category:
+  //           selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
+  //         locale,
+  //       });
+  //     },
+  //     initialPageParam: "",
+  //     getNextPageParam: (lastPage) => {
+  //       const lastEntry =
+  //         lastPage.blogs && lastPage.blogs[lastPage.blogs.length - 1];
+  //       return lastEntry?.cursor || undefined;
+  //     },
+  //   });
   const totalPages = data?.pages.length || 0;
   const lastPage = data?.pages[totalPages - 1];
   const remainingPages = lastPage?.remainingPages || 0;
