@@ -19,7 +19,8 @@ type ButtonLink = {
 
 type DownloadCard = {
   title?: string | null;
-  description?: TinaMarkdownContent;
+  descriptionLhs?: TinaMarkdownContent;
+  descriptionRhs?: TinaMarkdownContent;
   colSpan?: string | null;
   buttons?: ButtonLink[] | null;
 };
@@ -127,17 +128,26 @@ const DownloadCardItem = ({
           {card.title}
         </h3>
       )}
-      {card.description && (
-        <section
-          data-tina-field={tinaField(card, "description")}
-          className={cn(
-            "text-gray-300 text-sm w-fit mx-auto text-left",
-            card.colSpan && Number(card.colSpan) >= 2 && "md:columns-2 md:gap-x-8"
-          )}
-        >
-          <TinaMarkdown components={descriptionComponents} content={card.description} />
-        </section>
-      )}
+      <div className="flex flex-1 gap-2 w-full">
+        {card.descriptionLhs && (
+          <section
+            data-tina-field={tinaField(card, "descriptionLhs")}
+            className={cn("text-gray-300 text-sm flex-1 flex", Number(card.colSpan) > 1 ? "justify-end" : "justify-center")}
+            >
+            <div>
+              <TinaMarkdown components={descriptionComponents} content={card.descriptionLhs} />
+            </div>
+          </section>
+        )}
+        {card.descriptionRhs && Number(card.colSpan) > 1 && (
+          <section
+            data-tina-field={tinaField(card, "descriptionRhs")}
+            className="text-gray-300 text-sm flex-1"
+          >
+            <TinaMarkdown components={descriptionComponents} content={card.descriptionRhs} />
+          </section>
+        )}
+      </div>
       {card.buttons && card.buttons.length > 0 && (
         <div className="flex flex-col md:flex-row gap-3 w-full">
           {card.buttons.map((button, i) => {

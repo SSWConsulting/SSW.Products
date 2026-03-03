@@ -10,7 +10,8 @@
       "cards": [
         {
           "title": "Desktop App",
-          "description": "✓ Free\n\n✓ Connect your favourite MCPs\n\n✓ BYO AI provider\n\n✓ Secure token storage\n\n✓ Native standalone app\n\n✓ Custom prompts\n",
+          "descriptionLhs": "✓ Free\n\n✓ Connect your favourite MCPs\n\n✓ BYO AI provider\n",
+          "descriptionRhs": "✓ Secure token storage\n\n✓ Native standalone app\n\n✓ Custom prompts\n",
           "colSpan": "2",
           "buttons": [
             {
@@ -33,7 +34,8 @@
         },
         {
           "title": "Teams App Extension",
-          "description": "✓ Free\n\n✓ Shave Teams recordings\n\n✓ Collaborate in meetings\n\n✓ Auto-process recordings\n\n✓ Built-in commands\n",
+          "descriptionLhs": "✓ Free\n\n✓ Shave Teams recordings\n\n✓ Collaborate in meetings\n\n✓ Auto-process recordings\n\n✓ Built-in commands\n",
+          "descriptionRhs": "",
           "colSpan": "1",
           "buttons": [
             {

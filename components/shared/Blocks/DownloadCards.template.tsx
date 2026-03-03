@@ -51,8 +51,13 @@ const DownloadCardsTemplate: Template = {
       fields: [
         { name: "title", label: "Title", type: "string" },
         {
-          name: "description",
-          label: "Description",
+          name: "descriptionLhs",
+          label: "Description (Left Hand Side)",
+          type: "rich-text",
+        },
+        {
+          name: "descriptionRhs",
+          label: "Description (Right Hand Side) - Only appears if Column Span is 2 or more",
           type: "rich-text",
         },
         {
