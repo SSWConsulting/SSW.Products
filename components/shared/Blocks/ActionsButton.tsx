@@ -16,7 +16,7 @@ type ActionsProps = {
   className?: string;
 };
 
-const sizeMap = {
+export const sizeMap = {
   small: "py-1 px-2 text-sm",
   medium: "py-2 px-4 text-base",
   large: "py-3 text-lg px-6 text-lg",

@@ -1,3 +1,5 @@
+import { actionsButtonTemplate } from "./ActionsButton.template";
+
 export const buttonLinkTemplate = {
   name: "buttonLink",
   label: "Button Link",
@@ -12,18 +14,7 @@ export const buttonLinkTemplate = {
     }),
   },
   fields: [
-    {
-      required: true,
-      name: "label",
-      label: "Label",
-      type: "string" as const,
-    },
-    {
-      required: true,
-      name: "href",
-      label: "URL",
-      type: "string" as const,
-    },
+    ...actionsButtonTemplate.fields,
     {
       name: "icon",
       label: "Icon",
@@ -38,16 +29,6 @@ export const buttonLinkTemplate = {
         { label: "Left", value: "left" },
         { label: "Right", value: "right" },
       ],
-    },
-    {
-      name: "variant",
-      label: "Variant",
-      type: "string" as const,
-      options: [
-        { value: "solidRed", label: "Solid Red" },
-        { value: "solidWhite", label: "Solid White" },
-        { value: "outlinedWhite", label: "Outlined White" },
-      ],
-    },
+    }
   ],
 };
