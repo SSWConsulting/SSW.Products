@@ -1,6 +1,6 @@
 import { optimizedImageField } from "@tina/shared/OptimizedImage";
 import { Template } from "tinacms";
-import { buttonLinkTemplate } from "./ButtonLink.template";
+import { iconButtonTemplate } from "./IconButton.template";
 
 const DownloadCardsTemplate: Template = {
   label: "Download Cards",
@@ -77,7 +77,7 @@ const DownloadCardsTemplate: Template = {
           label: "Buttons",
           list: true,
           type: "object",
-          templates: [buttonLinkTemplate],
+          templates: [iconButtonTemplate],
         },
       ],
     },

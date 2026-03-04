@@ -1,16 +1,17 @@
 import { actionsButtonTemplate } from "./ActionsButton.template";
 
-export const buttonLinkTemplate = {
-  name: "buttonLink",
-  label: "Button Link",
+export const iconButtonTemplate = {
+  name: "iconButton",
+  label: "Icon Button",
   ui: {
     itemProps: (item: { label?: string }) => ({
       label: `🔗 ${item?.label || "Unlabelled"}`,
     }),
     defaultItem: () => ({
       label: "Default Label",
-      href: "/",
+      url: "/",
       variant: "solidRed",
+      size: "medium",
     }),
   },
   fields: [
@@ -29,6 +30,6 @@ export const buttonLinkTemplate = {
         { label: "Left", value: "left" },
         { label: "Right", value: "right" },
       ],
-    }
+    },
   ],
 };

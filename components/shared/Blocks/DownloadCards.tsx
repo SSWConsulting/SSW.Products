@@ -6,30 +6,24 @@ import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
-import { ButtonLink, ButtonLinks } from "./ButtonLink";
+import { IconButton, IconButtons } from "./IconButton";
 
 type DownloadCard = {
   title?: string | null;
   descriptionLhs?: TinaMarkdownContent;
   descriptionRhs?: TinaMarkdownContent;
   colSpan?: string | null;
-  buttons?: ButtonLink[] | null;
+  buttons?: IconButton[] | null;
 };
 
 const descriptionComponents = {
   img: (props?: { url: string }) => (
     <span className="size-4 relative align-text-top inline-block">
-      <Image
-        src={props?.url || ""}
-        aria-hidden="true"
-        alt=""
-        fill={true}
-      />
+      <Image src={props?.url || ""} aria-hidden="true" alt="" fill={true} />
     </span>
   ),
   a: (props: any) => <Link {...props} />,
 };
-
 
 export const DownloadCards = ({ data }: { data: any }) => {
   const { title, cards = [] } = data;
@@ -40,10 +34,10 @@ export const DownloadCards = ({ data }: { data: any }) => {
     cardList.length === 0
       ? ""
       : cardList.length === 1
-        ? "md:grid-cols-1"
-        : cardList.length === 2 && !hasCustomSpan
-          ? "md:grid-cols-2"
-          : "md:grid-cols-3";
+      ? "md:grid-cols-1"
+      : cardList.length === 2 && !hasCustomSpan
+      ? "md:grid-cols-2"
+      : "md:grid-cols-3";
 
   return (
     <Container className="first:pt-20 relative container">
@@ -69,7 +63,12 @@ export const DownloadCards = ({ data }: { data: any }) => {
               {title}
             </h2>
           )}
-          <div className={cn("grid relative z-10 grid-cols-1 gap-4", gridColsClass)}>
+          <div
+            className={cn(
+              "grid relative z-10 grid-cols-1 gap-4",
+              gridColsClass
+            )}
+          >
             {cardList.map((card, index) => (
               <DownloadCardItem
                 card={card}
@@ -92,7 +91,7 @@ const DownloadCardItem = ({
 }: {
   card: DownloadCard;
   useGridCols3: boolean;
-})=> {
+}) => {
   const colSpan = Number(card.colSpan);
   let colSpanClass: string | undefined;
 
@@ -122,10 +121,16 @@ const DownloadCardItem = ({
         {card.descriptionLhs && (
           <section
             data-tina-field={tinaField(card, "descriptionLhs")}
-            className={cn("text-gray-300 text-sm flex-1 flex", Number(card.colSpan) > 1 ? "justify-end" : "justify-center")}
-            >
+            className={cn(
+              "text-gray-300 text-sm flex-1 flex",
+              Number(card.colSpan) > 1 ? "justify-end" : "justify-center"
+            )}
+          >
             <div>
-              <TinaMarkdown components={descriptionComponents} content={card.descriptionLhs} />
+              <TinaMarkdown
+                components={descriptionComponents}
+                content={card.descriptionLhs}
+              />
             </div>
           </section>
         )}
@@ -134,14 +139,16 @@ const DownloadCardItem = ({
             data-tina-field={tinaField(card, "descriptionRhs")}
             className="text-gray-300 text-sm flex-1"
           >
-            <TinaMarkdown components={descriptionComponents} content={card.descriptionRhs} />
+            <TinaMarkdown
+              components={descriptionComponents}
+              content={card.descriptionRhs}
+            />
           </section>
         )}
       </div>
       {card.buttons && card.buttons.length > 0 && (
-        <ButtonLinks buttons={card.buttons} />
+        <IconButtons buttons={card.buttons} />
       )}
     </div>
-  ); 
+  );
 };
-

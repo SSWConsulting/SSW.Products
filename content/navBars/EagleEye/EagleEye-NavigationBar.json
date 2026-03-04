@@ -47,9 +47,10 @@
     },
     {
       "label": "Portal",
-      "href": "https://portal.ssweagleeye.com",
-      "variant": "white",
-      "_template": "buttonLink"
+      "variant": "solidWhite",
+      "_template": "iconButton",
+      "url": "https://portal.ssweagleeye.com",
+      "size": "medium"
     }
   ]
 }

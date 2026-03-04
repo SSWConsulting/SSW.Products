@@ -6,26 +6,31 @@ import { cn } from "@/lib/utils";
 import { variantMap } from "./BookingButton";
 import { sizeMap } from "./ActionsButton";
 
-export type ButtonLink = {
+export type IconButton = {
   label: string;
   url: string;
   icon?: string | null;
   iconPosition?: string | null;
-variant: ButtonVariant;
-    size: ButtonSize;
+  variant: ButtonVariant;
+  size: ButtonSize;
 };
 
-export type ButtonLinksProps = {
-  buttons: ButtonLink[];
+export type IconButtonProps = {
+  buttons: IconButton[];
   className?: string;
 };
 
-export const ButtonLink = ({ button, className }: { button: ButtonLink, className?: string }) => {
+export const IconButton = ({
+  button,
+  className,
+}: {
+  button: IconButton;
+  className?: string;
+}) => {
+  const contextualHref = useContextualLink();
 
-    const contextualHref = useContextualLink();
-  
   if (!button.url) return null;
-  
+
   return (
     <Link
       href={contextualHref(button.url)}
@@ -38,27 +43,28 @@ export const ButtonLink = ({ button, className }: { button: ButtonLink, classNam
       )}
       target="_blank"
     >
-        {button.label}
-        {button.icon && (
-            <div className="relative size-5">
-            <Image fill src={button.icon} alt={button.label || "Icon"} />
-            </div>
-        )}
+      {button.label}
+      {button.icon && (
+        <div className="relative size-5">
+          <Image fill src={button.icon} alt={button.label || "Icon"} />
+        </div>
+      )}
     </Link>
   );
-}
+};
 
-export const ButtonLinks = ({ buttons, className }: ButtonLinksProps) => {
+export const IconButtons = ({ buttons, className }: IconButtonProps) => {
   return (
     <div className="flex flex-col md:flex-row gap-3 w-full">
-        {buttons && buttons.map((button, i) => {
-        return (
-            <ButtonLink
-                key={i}
-                button={button}
-                className={cn("flex-1 justify-center", className)}
+      {buttons &&
+        buttons.map((button, i) => {
+          return (
+            <IconButton
+              key={i}
+              button={button}
+              className={cn("flex-1 justify-center", className)}
             />
-        );
+          );
         })}
     </div>
   );
