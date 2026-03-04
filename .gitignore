@@ -44,4 +44,3 @@ next-env.d.ts
 
 node_modules
 .env
-issue-context.md
