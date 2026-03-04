@@ -1,5 +1,5 @@
 import FooterServer from "@comps/shared/FooterServer";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
@@ -7,9 +7,18 @@ import { getLocale } from "../../utils/i18n";
 import "../globals.css";
 import QueryProvider from "@comps/providers/QueryProvider";
 
-const inter = Inter({
-  weight: ["400", "600", "700"],
-  subsets: ["latin"],
+const inter = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Inter-VariableFont_opsz,wght.ttf",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Inter-Italic-VariableFont_opsz,wght.ttf",
+      style: "italic",
+    },
+  ],
+  display: "swap",
 });
 
 export default async function RootLayout({

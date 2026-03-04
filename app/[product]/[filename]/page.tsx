@@ -31,13 +31,17 @@ export async function generateMetadata({ params }: FilePageProps) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.pagesConnection({});
-  return (
-    sitePosts.data.pagesConnection?.edges?.map((post) => ({
-      filename: post?.node?._sys.filename,
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
-  );
+  try {
+    const sitePosts = await client.queries.pagesConnection({});
+    return (
+      sitePosts.data.pagesConnection?.edges?.map((post) => ({
+        filename: post?.node?._sys.filename,
+        product: post?.node?._sys.breadcrumbs[0],
+      })) || []
+    );
+  } catch {
+    return [];
+  }
 }
 export default async function FilePage({ params }: FilePageProps) {  
   const { product, filename } = await params;

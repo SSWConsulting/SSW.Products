@@ -1,4 +1,5 @@
 import GrowingLink from "@comps/GrowingLink";
+import { cn } from "@/lib/utils";
 import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
@@ -41,7 +42,7 @@ const MobileMenuRoot = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const MobileMenuItem = ({ href, label, openInNewTab = false }: { href: string; label: string, openInNewTab: boolean }) => {
+const MobileMenuItem = ({ href, label, openInNewTab = false, isActive = false }: { href: string; label: string; openInNewTab: boolean; isActive?: boolean }) => {
   const { setIsOpen } = useMenuContext();
   return (
     <li className="flex items-center py-1 mb-0">
@@ -50,7 +51,10 @@ const MobileMenuItem = ({ href, label, openInNewTab = false }: { href: string; l
         onClick={()=> setIsOpen(false)}
         href={href} 
         underlineColor="red"
-        className="uppercase mb-0 underline-offset-4 text-md flex items-center gap-1 min-h-9 min-w-9"
+        className={cn(
+          "uppercase mb-0 underline-offset-4 text-md flex items-center gap-1 min-h-9 min-w-9",
+          isActive && "after:scale-x-100 after:origin-left text-white"
+        )}
         >
           {label}
           {href &&

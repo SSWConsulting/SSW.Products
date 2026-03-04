@@ -7,22 +7,32 @@ interface ProductPageProps {
   params: Promise<{ product: string }>;
 }
 
+export const dynamic = "force-dynamic";
+
 
 export async function generateMetadata({ params }: ProductPageProps) {
-  const { product } = await params;
-  const locale = await getLocale();
-  const productData = await getPageWithFallback({product, filename: 'home', locale});
-  const metadata = setPageMetadata(productData.data?.pages?.seo, product);
-  return metadata;
+  try {
+    const { product } = await params;
+    const locale = await getLocale();
+    const productData = await getPageWithFallback({product, filename: 'home', locale});
+    const metadata = setPageMetadata(productData.data?.pages?.seo, product);
+    return metadata;
+  } catch {
+    return {};
+  }
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.pagesConnection({});
-  return (
-    sitePosts.data.pagesConnection?.edges?.map((post) => ({
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
-  );
+  try {
+    const sitePosts = await client.queries.pagesConnection({});
+    return (
+      sitePosts.data.pagesConnection?.edges?.map((post) => ({
+        product: post?.node?._sys.breadcrumbs[0],
+      })) || []
+    );
+  } catch {
+    return [];
+  }
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
