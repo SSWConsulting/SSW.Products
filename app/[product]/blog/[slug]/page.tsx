@@ -36,13 +36,17 @@ export async function generateMetadata({ params }: BlogPostProps) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.blogsConnection({});
-  return (
-    sitePosts.data.blogsConnection?.edges?.map((post) => ({
-      slug: post?.node?._sys.filename,
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
-  );
+  try {
+    const sitePosts = await client.queries.blogsConnection({});
+    return (
+      sitePosts.data.blogsConnection?.edges?.map((post) => ({
+        slug: post?.node?._sys.filename,
+        product: post?.node?._sys.breadcrumbs[0],
+      })) || []
+    );
+  } catch {
+    return [];
+  }
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {

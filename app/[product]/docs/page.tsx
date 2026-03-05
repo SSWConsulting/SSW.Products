@@ -20,12 +20,16 @@ export async function generateMetadata({ params }: DocsIndex) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.docsConnection({});
-  return (
-    sitePosts.data.docsConnection?.edges?.map((post) => ({
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
-  );
+  try {
+    const sitePosts = await client.queries.docsConnection({});
+    return (
+      sitePosts.data.docsConnection?.edges?.map((post) => ({
+        product: post?.node?._sys.breadcrumbs[0],
+      })) || []
+    );
+  } catch {
+    return [];
+  }
 }
 
 export default async function DocsIndex({ params }: DocsIndex) {

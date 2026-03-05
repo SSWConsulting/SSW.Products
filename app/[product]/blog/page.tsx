@@ -26,28 +26,36 @@ export async function generateMetadata({ params }: BlogIndex) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.blogsConnection({});
-  return (
-    sitePosts.data.blogsConnection?.edges?.map((post) => ({
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
-  );
+  try {
+    const sitePosts = await client.queries.blogsConnection({});
+    return (
+      sitePosts.data.blogsConnection?.edges?.map((post) => ({
+        product: post?.node?._sys.breadcrumbs[0],
+      })) || []
+    );
+  } catch {
+    return [];
+  }
 }
 
 const getCategories = async (product: string) => {
-  const posts = await client.queries.blogsConnection();
-  const filteredPosts = posts.data.blogsConnection.edges?.filter((blog) => {
-    return blog?.node?._sys?.path.includes(product);
-  });
-  let categories: string[] = [];
-  if (filteredPosts) {
-    categories = filteredPosts.reduce<string[]>((acc, curr) => {
-      const category = curr?.node?.category;
-      if (category && !acc.includes(category)) return [...acc, category];
-      return acc;
-    }, []);
+  try {
+    const posts = await client.queries.blogsConnection();
+    const filteredPosts = posts.data.blogsConnection.edges?.filter((blog) => {
+      return blog?.node?._sys?.path.includes(product);
+    });
+    let categories: string[] = [];
+    if (filteredPosts) {
+      categories = filteredPosts.reduce<string[]>((acc, curr) => {
+        const category = curr?.node?.category;
+        if (category && !acc.includes(category)) return [...acc, category];
+        return acc;
+      }, []);
+    }
+    return categories;
+  } catch {
+    return [];
   }
-  return categories;
 };
 
 export default async function BlogIndex({ params }: BlogIndex) {
@@ -57,11 +65,15 @@ export default async function BlogIndex({ params }: BlogIndex) {
   const categories = await getCategories(product);
   const tinaData = await getBlogIndexWithFallback(product, locale);
   const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: [`blogs${locale || 'en'}`],
-    queryFn: () => getBlogsForProduct({ product, locale }),
-    initialPageParam: undefined,
-  });
+  try {
+    await queryClient.prefetchInfiniteQuery({
+      queryKey: [`blogs${locale || 'en'}`],
+      queryFn: () => getBlogsForProduct({ product, locale }),
+      initialPageParam: undefined,
+    });
+  } catch {
+    // Continue rendering with empty dehydrated cache when blogs are unavailable.
+  }
 
   const dehydratedState = dehydrate(queryClient, {});
   return (

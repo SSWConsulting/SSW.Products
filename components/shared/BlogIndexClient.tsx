@@ -17,10 +17,8 @@ import CallToAction from "./Blocks/CallToAction";
 
 import { RemoveTinaMetadata } from "@/types/tina";
 import { BlogCard, SkeletonCard } from "@comps/BlogCard";
-import client from "../../tina/__generated__/client";
 import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
-import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import { Button } from "../ui/button";
 import ArticleMetadata from "./ArticleMetadata";
@@ -29,7 +27,15 @@ import GridBackground from "./GridBackground";
 import ReadMore from "./ReadMore";
 import { useContextualLink } from "@utils/contextualLink";
 
-type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
+type BlogTinaProps = {
+  data: {
+    blogsIndex: {
+      blocks?: unknown;
+    };
+  };
+  query: string;
+  variables: Record<string, unknown>;
+};
 
 type Block = Maybe<RemoveTinaMetadata<BlogsIndexBlocks>>;
 
@@ -41,6 +47,52 @@ interface BlogIndexClientProps {
   product: string;
   locale?: string;
 }
+
+type BlogListResponse = {
+  blogs?: Array<{
+    cursor?: string;
+    node?: {
+      _sys: { filename: string };
+      category?: string;
+      body?: any;
+      bannerImage?: string;
+      date?: string;
+      readLength?: number;
+      title?: string;
+      author?: string;
+      authorImage?: string;
+      sswPeopleLink?: string;
+    };
+  }>;
+  remainingPages?: number;
+};
+
+const fetchBlogsForProduct = async ({
+  product,
+  startCursor,
+  keyword,
+  category,
+  locale,
+}: {
+  product: string;
+  startCursor?: string;
+  keyword?: string;
+  category?: string;
+  locale?: string;
+}): Promise<BlogListResponse> => {
+  const params = new URLSearchParams({ product });
+  if (startCursor) params.set("startCursor", startCursor);
+  if (keyword) params.set("keyword", keyword);
+  if (category) params.set("category", category);
+  if (locale) params.set("locale", locale);
+
+  const response = await fetch(`/api/blogs?${params.toString()}`);
+  if (!response.ok) {
+    throw new Error("Failed to fetch blogs");
+  }
+
+  return response.json();
+};
 
 export default function BlogIndexClient({
   data: pageData,
@@ -56,12 +108,18 @@ export default function BlogIndexClient({
   });
 
   const blogsIndex = blogData.data.blogsIndex;
+  const blogBlocks =
+    blogsIndex.blocks as Maybe<RemoveTinaMetadata<Block>>[] | null | undefined;
 
   return (
     <>
       <div className="grow flex flex-col pb-12 gap-14 lg:gap-24 ">
-        {blogsIndex.blocks && (
-          <Blocks product={product} locale={locale} blocks={blogsIndex.blocks} />
+        {blogBlocks && (
+          <Blocks
+            product={product}
+            locale={locale}
+            blocks={blogBlocks}
+          />
         )}
       </div>
     </>
@@ -182,7 +240,7 @@ const RecentArticles = ({
     useInfiniteQuery({
       queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
       queryFn: ({ pageParam }) => {
-        return getBlogsForProduct({
+        return fetchBlogsForProduct({
           product,
           startCursor: pageParam,
           keyword: searchTerm,
@@ -224,13 +282,13 @@ const RecentArticles = ({
                 post && (
                   <BlogCard
                     key={`blog-${index}`}
-                    category={post.category}
-                    body={post.body}
-                    bannerImage={post.bannerImage}
-                    date={post.date}
+                    category={post.category || ""}
+                    body={post.body || { type: "root", children: [] }}
+                    bannerImage={post.bannerImage || ""}
+                    date={post.date || ""}
                     groupHover={false}
-                    readLength={post.readLength}
-                    title={post.title}
+                    readLength={String(post.readLength ?? "")}
+                    title={post.title || ""}
                     author={{
                       author: post.author,
                       authorImage: post.authorImage,

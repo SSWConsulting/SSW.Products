@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useContextualLink } from "@utils/contextualLink";
 
 import {
@@ -52,6 +53,7 @@ export default function NavBarClient({
   bannerImage,
 }: NavBarClientProps) {
   const contextualHref = useContextualLink();
+  const pathname = usePathname();
   return (
     <MobileMenuRoot>
       <NavBarClientContent
@@ -60,6 +62,7 @@ export default function NavBarClient({
         currentLocale={currentLocale}
         bannerImage={bannerImage}
         contextualHref={contextualHref}
+        pathname={pathname}
       />
     </MobileMenuRoot>
   );
@@ -71,8 +74,27 @@ function NavBarClientContent({
   currentLocale,
   bannerImage,
   contextualHref,
-}: NavBarClientProps & { contextualHref: (href: string) => string }) {
+  pathname,
+}: NavBarClientProps & { contextualHref: (href: string) => string; pathname: string }) {
   const { isOpen } = useMenuContext();
+
+  const isActiveLink = (href: string) => {
+    if (!href || href.startsWith("http")) return false;
+    // Normalize: strip trailing slashes for comparison
+    const normalizedPath = pathname.replace(/\/$/, "") || "/";
+    // Strip product prefix from pathname to get the local path
+    // e.g. /EagleEye/about -> /about, /EagleEye -> /
+    const segments = normalizedPath.split("/").filter(Boolean);
+    // The first segment is the product name in local dev (e.g. "EagleEye")
+    const localPath = segments.length > 1 ? "/" + segments.slice(1).join("/") : "/";
+    const normalizedHref = href.replace(/\/$/, "") || "/";
+    // Exact match for root
+    if (normalizedHref === "/") {
+      return localPath === "/";
+    }
+    // Exact or prefix match (e.g. /docs matches /docs/introduction)
+    return localPath === normalizedHref || localPath.startsWith(normalizedHref + "/");
+  };
   const headerRef = useRef<HTMLElement>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
 
@@ -111,7 +133,10 @@ function NavBarClientContent({
                         {...(subItem.openInNewTab ? { target: "_blank" } : {})}
                         underlineColor="red"
                         href={contextualHref(subItem.href)}
-                        className="flex items-center gap-1 min-h-[36px] min-w-[36px] w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
+                        className={cn(
+                          "flex items-center gap-1 min-h-[36px] min-w-[36px] w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal",
+                          isActiveLink(subItem.href) && "after:scale-x-100 after:origin-left text-white"
+                        )}
                       >
                         {subItem!.label}
                         {subItem!.href &&
@@ -134,7 +159,10 @@ function NavBarClientContent({
                 <GrowingLink
                   href={contextualHref(item.href)}
                   {...(item.openInNewTab ? { target: "_blank" } : {})}
-                  className="mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal"
+                  className={cn(
+                    "mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal",
+                    isActiveLink(item.href) && "after:scale-x-100 after:origin-left text-white"
+                  )}
                   underlineColor="red"
                 >
                   {item.label}
@@ -182,6 +210,7 @@ function NavBarClientContent({
                         key={subIndex}
                         href={contextualHref(subItem.href)}
                         label={subItem.label}
+                        isActive={isActiveLink(subItem.href)}
                       />
                     );
                   });
@@ -193,6 +222,7 @@ function NavBarClientContent({
                       label={item.label}
                       openInNewTab={Boolean(item.openInNewTab)}
                       href={contextualHref(item.href)}
+                      isActive={isActiveLink(item.href)}
                       key={index}
                     />
                   );
