@@ -34,10 +34,10 @@ export const DownloadCards = ({ data }: { data: any }) => {
     cardList.length === 0
       ? ""
       : cardList.length === 1
-      ? "md:grid-cols-1"
+      ? "lg:grid-cols-1"
       : cardList.length === 2 && !hasCustomSpan
-      ? "md:grid-cols-2"
-      : "md:grid-cols-3";
+      ? "lg:grid-cols-2"
+      : "lg:grid-cols-3";
 
   return (
     <Container className="first:pt-20 relative container">
@@ -97,9 +97,9 @@ const DownloadCardItem = ({
 
   if (useGridCols3 && colSpan > 1) {
     if (colSpan === 2) {
-      colSpanClass = "md:col-span-2";
+      colSpanClass = "lg:col-span-2";
     } else if (colSpan === 3) {
-      colSpanClass = "md:col-span-3";
+      colSpanClass = "lg:col-span-3";
     }
   }
   return (
