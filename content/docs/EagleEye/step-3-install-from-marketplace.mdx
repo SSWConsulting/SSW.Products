@@ -55,12 +55,15 @@ You need to provide the details of Master App:
 #### Step 3.2.5 - Database Configuration
 
 * **Database Pricing Tier**: Select appropriate tier (Basic, S0, S1, S2)
-* **Database Users**: Configure three database users:
-  * Admin user (full access)
-  * ReadWrite user (read/write access)
-  * ReadOnly user (read-only access)
+* **Database Users**:
+  * ReadOnly user (read-only access): provide the username and password
+  * Admin and ReadWrite users are generated automatically during deployment
 
 ![Database Configuration](/EagleEye/database-configuration.png)
+
+> **Where to find database credentials later:** See [Manage Database Credentials](./manage-database-credentials).
+
+> **Update behavior:** During EagleEye updates, Admin and ReadWrite database credentials are read directly from Key Vault.
 
 #### Step 3.2.6 - Azure OpenAI Configuration
 
@@ -88,6 +91,7 @@ You need to provide the details of Master App:
 
 * [Set portal redirect URL](./set-portal-redirect-url)
 * [Update Internal email domains](./update-internal-email-domains)
+* [Manage Database Credentials](./manage-database-credentials)
 * [Secret Management for App Registrations](./secret-management-app-registrations)
 
 ## Architecture Overview
