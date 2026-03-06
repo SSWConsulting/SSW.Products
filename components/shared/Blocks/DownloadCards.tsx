@@ -7,13 +7,14 @@ import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
 import { IconButton, IconButtons } from "./IconButton";
+import type { PagesPageBlocksDownloadCards } from "@tina/__generated__/types";
 
 type DownloadCard = {
-  title?: string | null;
+  title?: string;
   descriptionLhs?: TinaMarkdownContent;
   descriptionRhs?: TinaMarkdownContent;
-  colSpan?: string | null;
-  buttons?: IconButton[] | null;
+  colSpan?: string;
+  buttons?: IconButton[];
 };
 
 const descriptionComponents = {
@@ -25,9 +26,13 @@ const descriptionComponents = {
   a: (props: any) => <Link {...props} />,
 };
 
-export const DownloadCards = ({ data }: { data: any }) => {
+export const DownloadCards = ({
+  data,
+}: {
+  data: PagesPageBlocksDownloadCards;
+}) => {
   const { title, cards = [] } = data;
-  const cardList = cards?.filter(Boolean) as DownloadCard[];
+  const cardList = cards as DownloadCard[];
 
   const hasCustomSpan = cardList.some((c) => Number(c.colSpan) > 1);
   const gridColsClass =
@@ -93,7 +98,7 @@ const DownloadCardItem = ({
   useGridCols3: boolean;
 }) => {
   const colSpan = Number(card.colSpan);
-  let colSpanClass: string | undefined;
+  let colSpanClass;
 
   if (useGridCols3 && colSpan > 1) {
     if (colSpan === 2) {

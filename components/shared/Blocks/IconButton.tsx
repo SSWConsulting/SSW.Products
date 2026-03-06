@@ -9,8 +9,8 @@ import { sizeMap } from "./ActionsButton";
 export type IconButton = {
   label: string;
   url: string;
-  icon?: string | null;
-  iconPosition?: string | null;
+  icon?: string;
+  iconPosition?: string;
   variant: ButtonVariant;
   size: ButtonSize;
 };
