@@ -41,7 +41,7 @@
           "AboveHeaderText": "",
           "Header": "AI Driven Insights",
           "Description": "EagleEye's Al analytics helps you to derive meaningful insights from the chaotic world of emails.\n",
-          "media": "/EagleEye/Container Design (1).svg",
+          "media": "/EagleEye/AI-Driven-Insights.svg",
           "textOnLeft": false
         },
         {
@@ -52,12 +52,12 @@
         {
           "Header": "Customer Portal",
           "Description": "A customizable dashboard for you to manage tags, organize workflows, and track any ongoing or completed scan jobs.\n",
-          "media": "/customer-portal.svg"
+          "media": "/EagleEye/Customer-Portal.svg"
         },
         {
           "Header": "Integrations ",
           "Description": "EagleEye supports Microsoft Exchange and GitHub repositories, with more integrations on the way.\n",
-          "media": "/EagleEye/integrations.svg"
+          "media": "/EagleEye/Integrations.svg"
         }
       ],
       "_template": "CardAndImage"

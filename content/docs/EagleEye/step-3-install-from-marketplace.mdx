@@ -15,11 +15,11 @@ date: '2025-12-29T13:00:00.000Z'
 
 1. Go to your [Azure Portal](https://portal.azure.com)
 2. Search for **Marketplace** in the search bar
-   ![Marketplace](/EagleEye/Marketplace-azure.png)
+   ![Marketplace](/EagleEye/Installation/Marketplace-Azure.png)
 3. In the Marketplace, search for **SSW EagleEye**
-   ![EagleEye Marketplace](/EagleEye/EagleEye-Marketplace-search.png)
+   ![EagleEye Marketplace](/EagleEye/Installation/EagleEye-Marketplace-Search.png)
 4. Select your subscription and click **Create**
-   ![EagleEye App](/EagleEye/EagleEye-Subscription.png)
+   ![EagleEye App](/EagleEye/Installation/EagleEye-Subscription.png)
 
 ### Step 3.2 - Configure Application Settings
 
@@ -31,21 +31,21 @@ Follow the deployment wizard with these configuration steps:
 * **Region**: Choose your preferred Azure region
 * **Application Name**: Enter a unique name for your application
 
-![Basics](/EagleEye/basics.png)
+![Basics](/EagleEye/Installation/Basics.png)
 
 #### Step 3.2.2 - Application Configuration
 
 * **Project Name**: Unique prefix for all resources
 * **Environment**: Select `production` or `staging`
 
-![Application Configuration](/EagleEye/application-configuration.png)
+![Application Configuration](/EagleEye/Installation/Application-Configuration.png)
 
 #### Step 3.2.3 - Azure AD Configuration
 
 * **Azure Tenant ID**: Your Azure AD tenant ID
 * **Azure Group Name**: Enter the Azure AD group name for email processing
 
-![Azure AD Configuration](/EagleEye/azure-ad-configuration.png)
+![Azure AD Configuration](/EagleEye/Installation/Azure-AD-Configuration.png)
 
 #### Step 3.2.4 - App Registration
 
@@ -53,17 +53,20 @@ You need to provide the details of Master App:
 
 * Select Existing → Make Selection (e.g. SSW\.EagleEye.Master) and enter the client secret.
 
-![App Registration Configuration](/EagleEye/Step-App-Registration.png)
+![App Registration Configuration](/EagleEye/Installation/Step-App-Registration.png)
 
 #### Step 3.2.5 - Database Configuration
 
 * **Database Pricing Tier**: Select appropriate tier (Basic, S0, S1, S2)
-* **Database Users**: Configure three database users:
-  * Admin user (full access)
-  * ReadWrite user (read/write access)
-  * ReadOnly user (read-only access)
+* **Database Users**:
+  * ReadOnly user (read-only access): provide the username and password
+  * Admin and ReadWrite users are generated automatically during deployment
 
-![Database Configuration](/EagleEye/database-configuration.png)
+![Database Configuration](/EagleEye/Installation/Database-Configuration.png)
+
+> **Where to find database credentials later:** See [Manage Credentials for Database](./manage-database-credentials).
+
+> **Update behavior:** During EagleEye updates, Admin and ReadWrite database credentials are read directly from Key Vault.
 
 #### Step 3.2.6 - Azure OpenAI Configuration
 
@@ -71,7 +74,7 @@ You need to provide the details of Master App:
 
 > **Note:** During Marketplace installation, you only need to provide model capacity (TPM). In future releases, additional AI models and their capacity will be configurable directly in the EagleEye Portal.
 
-![Azure OpenAI Configuration](/EagleEye/model-capacity.png)
+![Azure OpenAI Configuration](/EagleEye/Installation/Model-Capacity.png)
 
 #### Step 3.2.7 - Review and Deploy
 
@@ -91,6 +94,7 @@ You need to provide the details of Master App:
 
 * [Set portal redirect URL](./set-portal-redirect-url)
 * [Update Internal email domains](./update-internal-email-domains)
+* [Manage Credentials for Database](./manage-database-credentials)
 * [Secret Management for App Registrations](./secret-management-app-registrations)
 
 #### Post-deployment cleanup
