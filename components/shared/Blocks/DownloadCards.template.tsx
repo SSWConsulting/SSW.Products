@@ -1,6 +1,6 @@
 import { optimizedImageField } from "@tina/shared/OptimizedImage";
 import { Template } from "tinacms";
-import { iconButtonTemplate } from "./IconButton.template";
+import { actionsButtonTemplate } from "./ActionsButton.template";
 
 const DownloadCardsTemplate: Template = {
   label: "Download Cards",
@@ -57,7 +57,8 @@ const DownloadCardsTemplate: Template = {
         },
         {
           name: "descriptionRhs",
-          label: "Description (Right Hand Side) - Only appears if Column Span is 2 or more",
+          label:
+            "Description (Right Hand Side) - Only appears if Column Span is 2 or more",
           type: "rich-text",
         },
         {
@@ -77,7 +78,7 @@ const DownloadCardsTemplate: Template = {
           label: "Buttons",
           list: true,
           type: "object",
-          templates: [iconButtonTemplate],
+          templates: [actionsButtonTemplate],
         },
       ],
     },

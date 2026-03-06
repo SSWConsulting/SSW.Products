@@ -6,15 +6,15 @@ import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Container from "../../Container";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
-import { IconButton, IconButtons } from "./IconButton";
 import type { PagesPageBlocksDownloadCards } from "@tina/__generated__/types";
+import Actions, { ActionButton } from "./ActionsButton";
 
 type DownloadCard = {
   title?: string;
   descriptionLhs?: TinaMarkdownContent;
   descriptionRhs?: TinaMarkdownContent;
   colSpan?: string;
-  buttons?: IconButton[];
+  buttons?: ActionButton[];
 };
 
 const descriptionComponents = {
@@ -152,7 +152,7 @@ const DownloadCardItem = ({
         )}
       </div>
       {card.buttons && card.buttons.length > 0 && (
-        <IconButtons buttons={card.buttons} />
+        <Actions actions={card.buttons} />
       )}
     </div>
   );

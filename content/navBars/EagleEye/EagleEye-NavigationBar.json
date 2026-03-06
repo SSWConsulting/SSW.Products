@@ -48,7 +48,7 @@
     {
       "label": "Portal",
       "variant": "solidWhite",
-      "_template": "iconButton",
+      "_template": "actions",
       "url": "https://portal.ssweagleeye.com",
       "size": "medium"
     }

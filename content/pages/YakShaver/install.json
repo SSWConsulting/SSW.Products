@@ -21,7 +21,7 @@
               "iconPosition": "left",
               "variant": "solidRed",
               "size": "medium",
-              "_template": "iconButton"
+              "_template": "actions"
             },
             {
               "label": "Download for Mac",
@@ -30,7 +30,7 @@
               "iconPosition": "left",
               "variant": "solidRed",
               "size": "medium",
-              "_template": "iconButton"
+              "_template": "actions"
             }
           ]
         },
@@ -47,7 +47,7 @@
               "iconPosition": "left",
               "variant": "outlinedWhite",
               "size": "medium",
-              "_template": "iconButton"
+              "_template": "actions"
             }
           ]
         }

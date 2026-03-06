@@ -1,5 +1,5 @@
+import { actionsButtonTemplate } from "@comps/shared/Blocks/ActionsButton.template";
 import { jotFormBookingButtonSchema } from "@comps/shared/Blocks/BookingButton.template";
-import { iconButtonTemplate } from "@comps/shared/Blocks/IconButton.template";
 import { optimizedImageField } from "@tina/shared/OptimizedImage";
 import { Collection, TinaField } from "tinacms";
 
@@ -88,10 +88,7 @@ export const navigationBarCollection: Collection = {
       label: "Buttons",
       list: true,
       type: "object",
-      templates: [
-        jotFormBookingButtonSchema,
-        iconButtonTemplate,
-      ],
+      templates: [jotFormBookingButtonSchema, actionsButtonTemplate],
     },
   ],
 };

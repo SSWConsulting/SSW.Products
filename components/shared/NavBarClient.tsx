@@ -245,7 +245,7 @@ const ButtonMap = ({
           jotFormId={item.JotFormId}
         />
       );
-    case "NavigationBarButtonsIconButton": {
+    case "NavigationBarButtonsActions": {
       const shadcnVariant =
         variantMap[item.variant as ButtonVariant] ??
         variantMap[ButtonVariant.SolidWhite];
