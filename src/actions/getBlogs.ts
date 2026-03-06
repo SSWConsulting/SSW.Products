@@ -1,6 +1,6 @@
 "use server";
 
-import { getBlogsForProduct } from "@/utils/fetchBlogs";
+import { getBlogsForProduct } from "@utils/fetchBlogs";
 
 type GetBlogsForProductProps = {
   startCursor?: string;
