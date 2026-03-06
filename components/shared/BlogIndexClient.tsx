@@ -12,15 +12,16 @@ import {
   BlogsIndexBlocksArticleList,
   BlogsIndexBlocksHeroSearch,
   BlogsIndexBlocksFeaturedBlog as FeaturedBlog,
+  BlogsIndexBlocks,
+  Maybe,
 } from "../../tina/__generated__/types";
+import type { BlogsIndexQuery, BlogsIndexQueryVariables } from "../../tina/__generated__/types";
 import CallToAction from "./Blocks/CallToAction";
 
+import { getBlogsForProductAction } from "@/actions/getBlogs";
 import { RemoveTinaMetadata } from "@/types/tina";
 import { BlogCard, SkeletonCard } from "@comps/BlogCard";
-import client from "../../tina/__generated__/client";
-import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
-import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import { Button } from "../ui/button";
 import ArticleMetadata from "./ArticleMetadata";
@@ -29,7 +30,11 @@ import GridBackground from "./GridBackground";
 import ReadMore from "./ReadMore";
 import { useContextualLink } from "@utils/contextualLink";
 
-type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
+type BlogTinaProps = {
+  data: BlogsIndexQuery;
+  query: string;
+  variables: BlogsIndexQueryVariables;
+};
 
 type Block = Maybe<RemoveTinaMetadata<BlogsIndexBlocks>>;
 
@@ -182,7 +187,7 @@ const RecentArticles = ({
     useInfiniteQuery({
       queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
       queryFn: ({ pageParam }) => {
-        return getBlogsForProduct({
+        return getBlogsForProductAction({
           product,
           startCursor: pageParam,
           keyword: searchTerm,
