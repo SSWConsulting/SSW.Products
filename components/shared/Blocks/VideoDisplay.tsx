@@ -23,7 +23,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
           {title}
         </h2>
         <YouTubeEmbed
-          className="w-full  mx-auto"
+          className="w-full mx-auto"
           src={externalVideoLink || ""}
           placeholder={data.thumbnail || ""}
         />
