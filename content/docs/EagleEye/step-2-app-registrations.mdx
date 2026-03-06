@@ -19,11 +19,11 @@ Before creating the Master app, read [App Registrations reference](./app-registr
 ### Step 2.1 - Create the App Registration
 
 1. Go to **Azure Portal** → **App registrations** → **New registration**
-   ![App Registration Search](/EagleEye/App-Registration-Search.png)
+   ![App Registration Search](/EagleEye/Installation/App-Registration-Search.png)
 2. Enter the app name: e.g., `Northwind.EagleEye.Master`
 3. Set **Supported account types** to: **Accounts in this organizational directory only (Single tenant)**
 4. Click **Register**
-   ![Engine App](/EagleEye/Master-App.png)
+   ![Engine App](/EagleEye/Installation/Master-App.png)
 
 ### Step 2.2 - Create a Client Secret
 
@@ -31,9 +31,9 @@ Before creating the Master app, read [App Registrations reference](./app-registr
 2. Click **New client secret**
 3. Add a description (e.g., `Master Secret`)
 4. Select an expiry period → **Add**
-   ![Create Client Secret](/EagleEye/Create-Client-Secret.png)
+   ![Create Client Secret](/EagleEye/Installation/Create-Client-Secret.png)
 5. **Copy the secret value immediately** (you will need this later; it will never be shown again)
-   ![Copy Client Secret](/EagleEye/Copy-Secret-Value.png)
+   ![Copy Client Secret](/EagleEye/Installation/Copy-Secret-Value.png)
 
 > **Warning:** After deployment, remove the secret value from any temporary notes (clipboard, notepad, etc.).
 > \
@@ -54,7 +54,7 @@ For a detailed explanation of why each permission is required, see [App Registra
    * [`Group.Read.All`](https://learn.microsoft.com/en-us/graph/permissions-reference#groupreadall) - Read groups and memberships so deployment can find and assign the configured Entra group
 5. Click **Add permissions**
 6. Click **Grant admin consent** for your organization.
-   ![Master API Permissions](/EagleEye/Master-Api-Permissions.png)
+   ![Master API Permissions](/EagleEye/Installation/Master-Api-Permissions.png)
 
 
 ## References
