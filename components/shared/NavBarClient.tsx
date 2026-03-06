@@ -29,9 +29,10 @@ import { Button } from "@comps/ui/button";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import { BookingButton } from "./Blocks/BookingButton";
+import { BookingButton, variantMap } from "./Blocks/BookingButton";
 import LanguageToggle from "./LanguageToggle";
 import GrowingLink from "@comps/GrowingLink";
+import { ButtonVariant } from "./Blocks/buttonEnum";
 
 interface NavBarClientProps {
   buttons: NavigationBarButtons[];
@@ -90,7 +91,7 @@ function NavBarClientContent({
 
   return (
     <MobileAnchor asChild>
-        <NavigationMenuRoot ref={headerRef} mobileOpened={isOpen}>
+      <NavigationMenuRoot ref={headerRef} mobileOpened={isOpen}>
         {bannerImage && (
           <NavigationMenuBadge {...bannerImage} currentLocale={currentLocale} />
         )}
@@ -220,8 +221,8 @@ function NavBarClientContent({
             </NavigationMenuItem>
           );
         })}
-        </NavigationMenuRoot>
-      </MobileAnchor>
+      </NavigationMenuRoot>
+    </MobileAnchor>
   );
 }
 
@@ -244,20 +245,23 @@ const ButtonMap = ({
           jotFormId={item.JotFormId}
         />
       );
-    case "NavigationBarButtonsButtonLink":
+    case "NavigationBarButtonsActions": {
+      const shadcnVariant =
+        variantMap[item.variant as ButtonVariant] ??
+        variantMap[ButtonVariant.SolidWhite];
       return (
         <Button
           asChild
           className={cn(
             "flex gap-1 min-h-[42px]",
             item.iconPosition === "left" ? "flex-row-reverse" : "flex-row",
-            className
+            className,
+            shadcnVariant
           )}
-          href={item.href}
-          variant={(item?.variant ?? "white") as "outline" | "white"}
+          href={item.url || ""}
           key={item.label}
         >
-          <Link href={contextualHref(item.href || "")}>
+          <Link href={contextualHref(item.url || "")}>
             {item.label}
 
             {item.icon && (
@@ -273,5 +277,6 @@ const ButtonMap = ({
           </Link>
         </Button>
       );
+    }
   }
 };

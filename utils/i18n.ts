@@ -12,13 +12,19 @@ export function getRelativePath(product: string, filename: string, locale: strin
   return locale === 'zh' ? `${product}/zh/${filename}.json` : `${product}/${filename}.json`;
 }
 
+const defaultBranch =
+  process.env.GITHUB_BRANCH ||
+  process.env.VERCEL_GIT_COMMIT_REF ||
+  process.env.HEAD ||
+  "main";
+
 export async function getPageWithFallback({
-  product, 
-  filename, 
+  product,
+  filename,
   locale = 'en',
   revalidate,
-  branch = "main"
-}: { 
+  branch = defaultBranch
+}: {
   product: string,
   filename: string,
   locale?: string,

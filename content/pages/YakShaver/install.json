@@ -1,0 +1,66 @@
+{
+  "seo": {
+    "title": "Install",
+    "description": "Download, install, and start shaving Yaks today."
+  },
+  "title": "Install",
+  "pageBlocks": [
+    {
+      "title": "Choose your platform",
+      "cards": [
+        {
+          "title": "Desktop App",
+          "descriptionLhs": "✓ Free\n\n✓ Connect your favourite MCPs\n\n✓ BYO AI provider\n",
+          "descriptionRhs": "✓ Secure token storage\n\n✓ Native standalone app\n\n✓ Custom prompts\n",
+          "colSpan": "2",
+          "buttons": [
+            {
+              "label": "Download for Windows",
+              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe",
+              "icon": "/svg/windows.svg",
+              "iconPosition": "left",
+              "variant": "solidRed",
+              "size": "medium",
+              "_template": "actions"
+            },
+            {
+              "label": "Download for Mac",
+              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg",
+              "icon": "/YakShaver/Docs/apple.svg",
+              "iconPosition": "left",
+              "variant": "solidRed",
+              "size": "medium",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "title": "Teams App Extension",
+          "descriptionLhs": "✓ Free\n\n✓ Shave Teams recordings\n\n✓ Collaborate in meetings\n\n✓ Auto-process recordings\n\n✓ Built-in commands\n",
+          "descriptionRhs": "",
+          "colSpan": "1",
+          "buttons": [
+            {
+              "label": "Install for Teams",
+              "url": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479",
+              "icon": "/svg/Microsoft Office Teams 2018.svg",
+              "iconPosition": "left",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "_template": "actions"
+            }
+          ]
+        }
+      ],
+      "_template": "downloadCards"
+    },
+    {
+      "altText": "Making the Perfect PBI | YakShaver",
+      "title": "Want to Learn More? Watch this video!",
+      "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+      "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
+      "figureCaption": "Video: Making the Perfect PBI with YakShaver (6 min)",
+      "_template": "videoDisplay"
+    }
+  ]
+}
