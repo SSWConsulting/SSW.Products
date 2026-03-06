@@ -10,9 +10,9 @@ date: '2025-12-29T13:00:00.000Z'
 
 You need a **Master Azure App Registration** for EagleEye deployment.
 
-The Master app acts as an orchestrator. It creates and configures the app registrations used by EagleEye during installation.
+The Master app acts as an orchestrator. It creates and configures the app registrations used by EagleEye during installation. It is required **only during installation** and can be safely deleted once installation succeeds. See [Delete the Master App](./delete-master-app).
 
-Before creating the Master app, read [App Registrations reference](./app-registrations-reference) for a simple overview of what the Master app does.
+Before creating the Master app, read [App Registrations reference](./app-registrations-reference) for a simple overview of what the Master app does and what permissions it holds.
 
 <Youtube thumbnail="https://img.youtube.com/vi/Daxg_iul1hc/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/Daxg_iul1hc" size="medium" />
 
@@ -60,6 +60,7 @@ For a detailed explanation of why each permission is required, see [App Registra
 ## References
 
 * [App Registrations & Permissions reference](./app-registrations-reference)
+* [Delete the Master App](./delete-master-app)
 * [Secret Management for App Registrations](./secret-management-app-registrations)
 * [Register an app in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)
 * [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference)
