@@ -103,6 +103,7 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksTryItNow":
         return <TryItNow {...block} />;
       case "PagesPageBlocksDownloadCards":
+        // @ts-expect-error typing issue with data
         return <DownloadCards key={index} data={block} />;
       case "PagesPageBlocksMediaHero":
         return <MediaHero key={index} {...block} />;
