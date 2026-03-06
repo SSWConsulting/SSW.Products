@@ -2,6 +2,7 @@ import { genericButtonTemplateFields } from './genericButtonTemplateFields';
 
 interface ActionButtonItem {
   label?: string; 
+  icon?: string;
 }
 
 export const actionsButtonTemplate = {
@@ -23,5 +24,6 @@ export const actionsButtonTemplate = {
   fields: [
     ...genericButtonTemplateFields.fields,
     { name: 'url', label: 'URL', type: 'string' as const },
+    { name: 'icon', label: 'Icon', type: 'image'},
   ],
 };

@@ -3,12 +3,14 @@ import Link from "next/link";
 import { useContextualLink } from "@utils/contextualLink";
 import { variantMap } from "./BookingButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
+import Image from "next/image";
 
 export type ActionButton = {
   label: string;
   url: string;
   variant: ButtonVariant;
   size: ButtonSize;
+  icon?: string;
 };
 
 type ActionsProps = {
@@ -44,6 +46,11 @@ export const ActionButton = ({
       )}
       target="_blank"
     >
+      {action.icon && (
+        <div className="relative size-5 mr-2">
+          <Image src={action.icon} alt={action.label} fill />
+        </div>
+      )}
       {action.label}
     </Link>
   );
