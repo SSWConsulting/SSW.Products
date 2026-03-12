@@ -79,6 +79,22 @@ function NavBarClientContent({
   const [headerHeight, setHeaderHeight] = useState(0);
   const pathname = usePathname();
 
+  // Collect all group sub-item hrefs so regular items don't falsely activate
+  const groupSubHrefs = items
+    .filter((i) => i.__typename === "NavigationBarLeftNavItemGroupOfStringItems")
+    .flatMap((i) => ("items" in i ? i.items.map((s) => contextualHref(s.href)) : []));
+
+  const isLinkActive = (href: string, excludeGroupOverlap = false) => {
+    if (href.startsWith("http") || href.startsWith("#")) return false;
+    const resolved = contextualHref(href);
+    if (pathname === resolved) return true;
+    if (pathname.startsWith(resolved + "/")) {
+      return !excludeGroupOverlap ||
+        !groupSubHrefs.some((h) => h !== resolved && pathname.startsWith(h));
+    }
+    return false;
+  };
+
   useEffect(() => {
     const updateHeight = () => {
       if (headerRef.current) {
@@ -98,20 +114,11 @@ function NavBarClientContent({
           <NavigationMenuBadge {...bannerImage} currentLocale={currentLocale} />
         )}
         {items.map((item, index) => {
-          // Collect all group sub-item hrefs so regular items don't falsely activate
-          const groupSubHrefs = items
-            .filter((i) => i.__typename === "NavigationBarLeftNavItemGroupOfStringItems")
-            .flatMap((i) => ("items" in i ? i.items.map((s) => contextualHref(s.href)) : []));
-
           if (
             item.__typename === "NavigationBarLeftNavItemGroupOfStringItems"
           ) {
             const isGroupActive = item.items.some(
-              (subItem) =>
-                !subItem.href.startsWith("http") &&
-                !subItem.href.startsWith("#") &&
-                (pathname === contextualHref(subItem.href) ||
-                  pathname.includes(contextualHref(subItem.href) + "/"))
+              (subItem) => isLinkActive(subItem.href)
             );
             return (
               <NavigationMenuItem
@@ -121,11 +128,7 @@ function NavBarClientContent({
                 <SubGroupTrigger label={item.label} isActive={isGroupActive} />
                 <SubGroupContent>
                   {item.items.map((subItem, subIndex) => {
-                    const isSubActive =
-                      !subItem.href.startsWith("http") &&
-                      !subItem.href.startsWith("#") &&
-                      (pathname === contextualHref(subItem.href) ||
-                        pathname.includes(contextualHref(subItem.href) + "/"));
+                    const isSubActive = isLinkActive(subItem.href);
                     return (
                     <li key={subIndex}>
                       <GrowingLink
@@ -148,13 +151,7 @@ function NavBarClientContent({
               </NavigationMenuItem>
             );
           } else if (item.__typename === "NavigationBarLeftNavItemStringItem") {
-            const itemHref = contextualHref(item.href);
-            const isActive =
-              !item.href.startsWith("http") &&
-              !item.href.startsWith("#") &&
-              (pathname === itemHref ||
-                (pathname.startsWith(itemHref + "/") &&
-                  !groupSubHrefs.some((h) => h !== itemHref && pathname.startsWith(h))));
+            const isActive = isLinkActive(item.href, true);
             return (
               <NavigationMenuItem
                 className="my-auto hidden xl:block"
@@ -205,11 +202,7 @@ function NavBarClientContent({
                   if (!item.items) return <></>;
 
                   return item.items.map((subItem, subIndex) => {
-                    const isSubActive =
-                      !subItem.href.startsWith("http") &&
-                      !subItem.href.startsWith("#") &&
-                      (pathname === contextualHref(subItem.href) ||
-                        pathname.includes(contextualHref(subItem.href) + "/"));
+                    const isSubActive = isLinkActive(subItem.href);
                     return (
                       <MobileMenuItem
                         openInNewTab={Boolean(subItem.openInNewTab)}
@@ -223,11 +216,7 @@ function NavBarClientContent({
                 }
 
                 if (item.__typename === "NavigationBarLeftNavItemStringItem") {
-                  const isActive =
-                    !item.href.startsWith("http") &&
-                    !item.href.startsWith("#") &&
-                    (pathname === contextualHref(item.href) ||
-                      pathname.includes(contextualHref(item.href) + "/"));
+                  const isActive = isLinkActive(item.href, true);
                   return (
                     <MobileMenuItem
                       label={item.label}
