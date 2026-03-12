@@ -11,7 +11,7 @@ const SubGroupContent = ({ children }: { children: React.ReactNode }) => {
 
 const SubGroupTrigger = ({ label, isActive = false }: { label: string; isActive?: boolean }) => {
   return (
-    <NavigationMenu.Trigger className={clsx("outline-none text-base min-h-[42px] flex items-center w-full gap-2 px-3 rounded transition-colors whitespace-nowrap writing-mode-horizontal relative after:absolute after:bottom-0.5 after:inset-x-3 after:h-0.25 after:bg-ssw-red after:transition-transform after:duration-200 after:ease-in-out after:origin-right after:scale-x-0", isActive && "after:scale-x-100 after:origin-left")}>
+    <NavigationMenu.Trigger className={clsx("outline-none text-base min-h-[42px] flex items-center w-full gap-2 px-3 rounded transition-colors whitespace-nowrap writing-mode-horizontal relative after:absolute after:bottom-0.5 after:inset-x-3 after:h-0.25 after:bg-ssw-red after:transition-transform after:duration-200 after:ease-in-out after:scale-x-0", isActive ? "after:scale-x-100 after:origin-left" : "after:origin-right")}>
       {label}
 
       <FaChevronRight className="text-ssw-red text-sm rotate-90 transition-all duration-300" />
