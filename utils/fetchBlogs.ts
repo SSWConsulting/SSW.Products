@@ -115,3 +115,5 @@ export async function getBlogsForProduct({
     throw error;
   }
 }
+
+export type BlogsResponse = Awaited<ReturnType<typeof getBlogsForProduct>>;
