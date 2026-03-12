@@ -17,11 +17,11 @@ import CallToAction from "./Blocks/CallToAction";
 
 import { RemoveTinaMetadata } from "@/types/tina";
 import { BlogCard, SkeletonCard } from "@comps/BlogCard";
-import client from "../../tina/__generated__/client";
+import type client from "../../tina/__generated__/client";
 import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
-import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
+import type { BlogsResponse } from "../../utils/fetchBlogs";
 import { Button } from "../ui/button";
 import ArticleMetadata from "./ArticleMetadata";
 import CategoryLabel from "./CategoryLabel";
@@ -181,15 +181,21 @@ const RecentArticles = ({
   const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
     useInfiniteQuery({
       queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
-      queryFn: ({ pageParam }) => {
-        return getBlogsForProduct({
-          product,
-          startCursor: pageParam,
-          keyword: searchTerm,
-          category:
-            selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
-          locale,
+      queryFn: async ({ pageParam }) => {
+        const res = await fetch("/api/blogs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            product,
+            startCursor: pageParam || undefined,
+            keyword: searchTerm || undefined,
+            category:
+              selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
+            locale,
+          }),
         });
+        if (!res.ok) throw new Error("Failed to fetch blogs");
+        return res.json() as Promise<BlogsResponse>;
       },
       initialPageParam: "",
       getNextPageParam: (lastPage) => {
