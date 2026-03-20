@@ -28,6 +28,7 @@ import { SubGroupContent, SubGroupTrigger } from "@comps/NavBar/SubGroup";
 import { Button } from "@comps/ui/button";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { BookingButton, variantMap } from "./Blocks/BookingButton";
 import LanguageToggle from "./LanguageToggle";
@@ -76,6 +77,23 @@ function NavBarClientContent({
   const { isOpen } = useMenuContext();
   const headerRef = useRef<HTMLElement>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
+  const pathname = usePathname();
+
+  // Collect all group sub-item hrefs so regular items don't falsely activate
+  const groupSubHrefs = items
+    .filter((i) => i.__typename === "NavigationBarLeftNavItemGroupOfStringItems")
+    .flatMap((i) => ("items" in i ? i.items.map((s) => contextualHref(s.href)) : []));
+
+  const isLinkActive = (href: string, excludeGroupOverlap = false) => {
+    if (href.startsWith("http") || href.startsWith("#")) return false;
+    const resolved = contextualHref(href);
+    if (pathname === resolved) return true;
+    if (pathname.startsWith(resolved + "/")) {
+      return !excludeGroupOverlap ||
+        !groupSubHrefs.some((h) => h !== resolved && pathname.startsWith(h));
+    }
+    return false;
+  };
 
   useEffect(() => {
     const updateHeight = () => {
@@ -99,20 +117,25 @@ function NavBarClientContent({
           if (
             item.__typename === "NavigationBarLeftNavItemGroupOfStringItems"
           ) {
+            const isGroupActive = item.items.some(
+              (subItem) => isLinkActive(subItem.href)
+            );
             return (
               <NavigationMenuItem
                 className="my-auto hidden xl:block"
                 key={index}
               >
-                <SubGroupTrigger label={item.label} />
+                <SubGroupTrigger label={item.label} isActive={isGroupActive} />
                 <SubGroupContent>
-                  {item.items.map((subItem, subIndex) => (
+                  {item.items.map((subItem, subIndex) => {
+                    const isSubActive = isLinkActive(subItem.href);
+                    return (
                     <li key={subIndex}>
                       <GrowingLink
                         {...(subItem.openInNewTab ? { target: "_blank" } : {})}
                         underlineColor="red"
                         href={contextualHref(subItem.href)}
-                        className="flex items-center gap-1 min-h-[36px] min-w-[36px] w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal"
+                        className={cn("flex items-center gap-1 min-h-[36px] min-w-[36px] w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal", isSubActive && "after:scale-x-100 after:origin-left text-white")}
                       >
                         {subItem!.label}
                         {subItem!.href &&
@@ -122,11 +145,13 @@ function NavBarClientContent({
                           )}
                       </GrowingLink>
                     </li>
-                  ))}
+                    );
+                  })}
                 </SubGroupContent>
               </NavigationMenuItem>
             );
           } else if (item.__typename === "NavigationBarLeftNavItemStringItem") {
+            const isActive = isLinkActive(item.href, true);
             return (
               <NavigationMenuItem
                 className="my-auto hidden xl:block"
@@ -135,7 +160,7 @@ function NavBarClientContent({
                 <GrowingLink
                   href={contextualHref(item.href)}
                   {...(item.openInNewTab ? { target: "_blank" } : {})}
-                  className="mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal"
+                  className={cn("mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal", isActive && "after:scale-x-100 after:origin-left")}
                   underlineColor="red"
                 >
                   {item.label}
@@ -177,23 +202,27 @@ function NavBarClientContent({
                   if (!item.items) return <></>;
 
                   return item.items.map((subItem, subIndex) => {
+                    const isSubActive = isLinkActive(subItem.href);
                     return (
                       <MobileMenuItem
                         openInNewTab={Boolean(subItem.openInNewTab)}
                         key={subIndex}
                         href={contextualHref(subItem.href)}
                         label={subItem.label}
+                        isActive={isSubActive}
                       />
                     );
                   });
                 }
 
                 if (item.__typename === "NavigationBarLeftNavItemStringItem") {
+                  const isActive = isLinkActive(item.href, true);
                   return (
                     <MobileMenuItem
                       label={item.label}
                       openInNewTab={Boolean(item.openInNewTab)}
                       href={contextualHref(item.href)}
+                      isActive={isActive}
                       key={index}
                     />
                   );

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { inputClasses } from "../../../tina/collectionSchema/pages";
 
 import { useTina } from "tinacms/dist/react";
-import client from "../../../tina/__generated__/client";
+import type client from "../../../tina/__generated__/client";
 
 type TinaData = Awaited<ReturnType<typeof client.queries.pages>>;
 

@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@comps/ui/button";
-import client from "@tina/__generated__/client";
+import type client from "@tina/__generated__/client";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
