@@ -74,9 +74,7 @@ export const PagesSchema: Collection = {
     router: ({ document, collection }) => {
       const relativePath = document?._sys.relativePath;
       if (relativePath) {
-        return `/${relativePath
-          .replace(`.${collection.format}`, '')
-          .split('/').slice(1).join('/')}`;
+        return `/${relativePath.replace(`.${collection.format}`, '')}`;
       }
       return `/${document?._sys.filename}`;
     },
