@@ -75,7 +75,7 @@ export const PagesSchema: Collection = {
       const relativePath = document?._sys.relativePath;
       if (relativePath) {
         const normalizedPath = relativePath.replace(`.${collection.format}`, '');
-        const [product, maybeLocale, ...rest] = normalizedPath.split('/');
+        const [maybeLocale, ...rest] = normalizedPath.split('/');
 
         if (maybeLocale === 'zh' && rest.length > 0) {
           return `/zh/${rest.join('/')}`;
