@@ -74,9 +74,14 @@ export const PagesSchema: Collection = {
     router: ({ document, collection }) => {
       const relativePath = document?._sys.relativePath;
       if (relativePath) {
-        return `/${relativePath
-          .replace(`.${collection.format}`, '')
-          .split('/').slice(1).join('/')}`;
+        const normalizedPath = relativePath.replace(`.${collection.format}`, '');
+        const [maybeLocale, ...rest] = normalizedPath.split('/');
+
+        if (maybeLocale === 'zh' && rest.length > 0) {
+          return `/zh/${rest.join('/')}`;
+        }
+
+        return `/${normalizedPath}`;
       }
       return `/${document?._sys.filename}`;
     },

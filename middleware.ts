@@ -98,6 +98,15 @@ function handleProductionRequest(
   
   if (targetProduct) {
     const cleanPath = cleanPathFromLanguage(pathname);
+    const pathSegments = parsePathSegments(cleanPath);
+    const pathAlreadyHasProduct = productList.some(
+      (product: any) => product.product === pathSegments[0]
+    );
+
+    if (pathAlreadyHasProduct) {
+      return createRewriteResponse(`/${pathSegments.join("/")}`, language, request);
+    }
+
     return createRewriteResponse(`/${targetProduct}${cleanPath}`, language, request);
   }
   
