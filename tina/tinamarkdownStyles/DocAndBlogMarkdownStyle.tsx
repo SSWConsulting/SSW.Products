@@ -27,7 +27,7 @@ export const DocAndBlogMarkdownStyle: Components<{
           placeholder={props.thumbnail}
         />
         {props.caption && (
-          <figcaption className="text-left text-sm font-light text-gray-500">
+          <figcaption className="text-left text-sm font-semibold leading-relaxed text-white/80">
             Video: {props.caption}
           </figcaption>
         )}
