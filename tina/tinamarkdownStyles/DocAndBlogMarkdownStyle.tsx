@@ -7,7 +7,9 @@ import { ImageEmbed } from "@comps/shared/Blocks/ImageEmbed";
 import { CodeBlock } from "@comps/shared/code-block/code-block";
 
 export const DocAndBlogMarkdownStyle: Components<{
-  Youtube: { thumbnail?: string; externalVideoLink?: string; size?: string };
+  Youtube: {
+    thumbnail?: string; externalVideoLink?: string; size?: string; caption?: string
+  };
   imageEmbed: {
     src?: string; alt?: string; size?: string; showBorder?: boolean
   };
@@ -18,13 +20,18 @@ export const DocAndBlogMarkdownStyle: Components<{
       sizeClass = "w-full h-auto max-w-[800px]";
     }
     return (
-      <div className="youtube-container mb-2">
+      <figure className="youtube-container my-6 flex flex-col gap-2">
         <YouTubeEmbed
           className={sizeClass}
           src={props.externalVideoLink}
           placeholder={props.thumbnail}
         />
-      </div>
+        {props.caption && (
+          <figcaption className="text-left text-sm font-light text-gray-500">
+            Video: {props.caption}
+          </figcaption>
+        )}
+      </figure>
     );
   },
   imageEmbed: (props) => <ImageEmbed data={props} />,
