@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh pr view:*)",
+      "WebFetch(domain:ssw-products-disern8l1-tinacms.vercel.app)",
+      "Bash(gh api:*)",
+      "Bash(findstr:*)",
+      "Bash(where node:*)",
+      "Bash(where npm:*)",
+      "Bash(npm --version)",
+      "Bash(where pnpm:*)",
+      "Bash(pnpm --version)",
+      "Bash(cd:*)"
+    ]
+  }
+}
