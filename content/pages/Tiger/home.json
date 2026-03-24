@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "title": "Automatically Analyse Meeting Transcripts with AI",
+    "description": "SSW Tiger automatically analyses meeting transcripts once recording finishes, extracting the instructions and action items you need.",
+    "googleStructuredData": "{\n\"name\": \"SSW Tiger\",\n\"Description\": \"Automatically analyse meeting transcripts with AI to extract instructions and action items\"\n}"
+  },
+  "title": "SSW Tiger - AI-Powered Meeting Transcript Analysis",
+  "pageBlocks": [
+    {
+      "heroTitle": " From Meetings to Insight in Minutes",
+      "heroDescription": "SSW Tiger uses AI to turn your meeting transcripts into actionable insights — automatically, every time.",
+      "heroButton": {
+        "label": "VIEW DOCS",
+        "href": "/docs",
+        "target": "_self"
+      },
+      "_template": "mediaHero"
+    },
+    {
+      "textAlign": "Center",
+      "body": "## How SSW Tiger Works\n\n### 1. Record Your Meeting\n\nUse Microsoft Teams, Zoom, or any recording tool. Once your meeting finishes, the transcript is ready for Tiger.\n\n### 2. Tiger Analyses the Transcript\n\nTiger's AI reads through the full transcript, understanding context, identifying who said what, and extracting key decisions and instructions.\n\n### 3. Get Your Insights\n\nReceive a clear summary of action items, decisions made, and follow-ups needed. No more rewatching recordings or scrolling through notes.\n",
+      "_template": "richText"
+    },
+    {
+      "headline": "Frequently Asked Questions",
+      "text": "",
+      "questions": [
+        {
+          "question": "What meeting platforms does Tiger support?",
+          "answer": " Tiger's fully automated pipeline currently integrates with Microsoft Teams. If you have a transcript file from another platform, you can also process it manually through the CLI."
+        },
+        {
+          "question": "Can I customise what Tiger extracts?",
+          "answer": "Yes! You can modify the AI prompt to tailor what Tiger looks for in your transcripts. Check out our documentation on how to modify prompts to suit your needs."
+        },
+        {
+          "question": "Can I use my own transcript files?",
+          "answer": "Absolutely. Tiger supports uploading your own transcript files for analysis. See our documentation for details on supported formats and how to get started."
+        }
+      ],
+      "_template": "faq"
+    },
+    {
+      "title": "Talk to an SSW Tiger Expert",
+      "ctaDescription": "Want to see SSW Tiger in action? Book a 30-minute call with an expert and see a demo!",
+      "ctaButton": {
+        "label": "SCHEDULE A CALL",
+        "variant": "solidWhite",
+        "size": "large",
+        "buttonLink": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6%40ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous="
+      },
+      "_template": "callToAction"
+    }
+  ],
+  "pageFormatting": {
+    "bottomPadding": "small"
+  }
+}
