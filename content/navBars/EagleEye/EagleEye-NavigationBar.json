@@ -44,13 +44,6 @@
       "JotFormId": "233468468973070",
       "variants": "outline",
       "_template": "BookingButton"
-    },
-    {
-      "label": "Portal",
-      "variant": "solidWhite",
-      "_template": "actions",
-      "url": "https://portal.ssweagleeye.com",
-      "size": "medium"
     }
   ]
 }
