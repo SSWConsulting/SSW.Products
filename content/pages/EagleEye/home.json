@@ -8,15 +8,15 @@
     {
       "featureItem": [
         {
-          "headline": "Transform Company Data into Epic Insights",
+          "headline": "Transform company emails into data insights",
           "headlineAfter": "",
-          "text": "Discover patterns, enhance productivity & drive decisions with EagleEye\n",
+          "text": "Scan, Tag, and Report\n",
           "buttons": [
             {
-              "label": "SCHEDULE A CALL",
+              "label": "GET STARTED",
               "variant": "solidRed",
               "size": "large",
-              "url": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6@ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous&ep=mlink",
+              "url": "/docs/step-3-install-from-marketplace",
               "_template": "actions"
             }
           ],
