@@ -16,7 +16,7 @@
               "label": "GET STARTED",
               "variant": "solidRed",
               "size": "large",
-              "url": "/docs/step-3-install-from-marketplace",
+              "url": "/docs/prerequisites",
               "_template": "actions"
             }
           ],
