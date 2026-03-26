@@ -7,14 +7,40 @@
   "title": "SSW Tiger - AI-Powered Meeting Transcript Analysis",
   "pageBlocks": [
     {
-      "heroTitle": " From Meetings to Insight in Minutes",
-      "heroDescription": "SSW Tiger uses AI to turn your meeting transcripts into actionable insights — automatically, every time.",
+      "heroTitle": " From Meetings to Insight",
+      "heroDescription": "SSW Tiger uses AI to turn your meeting transcripts into actionable insights.",
       "_template": "mediaHero"
     },
     {
-      "textAlign": "Center",
-      "body": "## How SSW Tiger Works\n\n### 1. Have Your Meeting on Microsoft Teams\n\nTiger's fully automated pipeline currently integrates with Microsoft Teams. Once your meeting finishes, the transcript is automatically picked up by Tiger.\n\n### 2. Tiger Analyses the Transcript\n\nTiger's AI reads through the full transcript, understanding context, identifying who said what, and extracting key decisions and instructions.\n\n### 3. Get Your Insights\n\nReceive a clear summary of action items, decisions made, and follow-ups needed. No more rewatching recordings or scrolling through notes.\n",
-      "_template": "richText"
+      "ParentContainerTitle": "How SSW Tiger Works",
+      "ParentContainerDescription": "",
+      "CardAndImageItem": [
+        {
+          "Header": "1 - Have Your Meeting on Microsoft Teams",
+          "Description": "Tiger's fully automated pipeline currently integrates with Microsoft Teams. Once your meeting finishes, the transcript is automatically picked up by Tiger.\n",
+          "Badges": [
+            {
+              "showTickIcon": true,
+              "Badge": "Microsoft Teams"
+            }
+          ],
+          "media": "/Tiger/tiger-homepage.svg",
+          "textOnLeft": true
+        },
+        {
+          "Header": "2 - Tiger Analyses the Transcript",
+          "Description": "Tiger's AI reads through the full transcript, understanding context, identifying who said what, and extracting key decisions and instructions.\n",
+          "media": "/Tiger/tiger-homepage.svg",
+          "textOnLeft": true
+        },
+        {
+          "Header": "3 - Get Your Insights",
+          "Description": "Receive a clear summary of action items, decisions made, and follow-ups needed. No more rewatching recordings or scrolling through notes.\n",
+          "media": "/Tiger/tiger-homepage.svg",
+          "textOnLeft": true
+        }
+      ],
+      "_template": "CardAndImage"
     },
     {
       "headline": "Frequently Asked Questions",
@@ -36,7 +62,7 @@
       "_template": "faq"
     },
     {
-      "title": "Talk to an SSW Tiger Expert",
+      "title": "Talk to a SSW Tiger Expert",
       "ctaDescription": "Want to see SSW Tiger in action? Book a 30-minute call with an expert and see a demo!",
       "ctaButton": {
         "label": "SCHEDULE A CALL",

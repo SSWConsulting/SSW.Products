@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { tinaField } from "tinacms/dist/react";
 import Container from "../../Container";
@@ -28,12 +28,12 @@ const FAQ = ({ data }: { data: FAQData }) => {
       </p>
       <hr className="border-white" />
       {data.questions.map((item: FAQItem, index: number) => (
-        <>
-          <Question key={index} item={item} data-tina-field={tinaField(item)} />
+        <Fragment key={index}>
+          <Question item={item} data-tina-field={tinaField(item)} />
           {index !== data.questions.length - 1 && (
             <hr className="border-white" />
           )}
-        </>
+        </Fragment>
       ))}
     </Container>
   );

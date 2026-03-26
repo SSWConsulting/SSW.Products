@@ -3,7 +3,7 @@ import { RemoveTinaMetadata } from "@/types/tina";
 import Link from "@tina/tinamarkdownStyles/Link";
 import { CircleCheckBig } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
 import {
@@ -66,20 +66,20 @@ export default function CardAndImageParent({
       </Container>
       <Container className="flex flex-col md:flex-row gap-6">
         <div className="flex gap-4 justify-center flex-col w-full">
-          {CardAndImageItem?.map((item, index) => (
-            <>
-              {item && (
-                <CardItem
-                  key={index}
-                  data={item}
-                  borderColor={borderColor ?? "yakshaver"}
-                  uniqueId={index}
-                  idOfOpen={idOfOpen}
-                  setIdOfOpen={handleIdChange}
-                />
-              )}
-            </>
-          ))}
+          {CardAndImageItem?.map((item, index) => {
+            if (!item) return null;
+
+            return (
+              <CardItem
+                key={index}
+                data={item}
+                borderColor={borderColor ?? "yakshaver"}
+                uniqueId={index}
+                idOfOpen={idOfOpen}
+                setIdOfOpen={handleIdChange}
+              />
+            );
+          })}
         </div>
         {CardAndImageItem?.length && (
           <div className="w-full flex items-center justify-center">
@@ -182,20 +182,16 @@ function CardItem({
             )}
           >
             {data.Badges?.map((badge, index) => {
-              return (
-                <>
-                  {badge?.Badge && (
-                    <>
-                      {index !== 0 && delimeter}
-                      <Badge
-                        index={index}
-                        title={badge?.Badge}
-                        icon={badge?.showTickIcon ?? false}
-                      />
-                    </>
-                  )}
-                </>
-              );
+              return badge?.Badge ? (
+                <Fragment key={index}>
+                  {index !== 0 && delimeter}
+                  <Badge
+                    index={index}
+                    title={badge?.Badge}
+                    icon={badge?.showTickIcon ?? false}
+                  />
+                </Fragment>
+              ) : null;
             })}
           </div>
         </div>
