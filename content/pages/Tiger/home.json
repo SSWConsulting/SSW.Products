@@ -9,16 +9,11 @@
     {
       "heroTitle": " From Meetings to Insight in Minutes",
       "heroDescription": "SSW Tiger uses AI to turn your meeting transcripts into actionable insights — automatically, every time.",
-      "heroButton": {
-        "label": "VIEW DOCS",
-        "href": "/docs",
-        "target": "_self"
-      },
       "_template": "mediaHero"
     },
     {
       "textAlign": "Center",
-      "body": "## How SSW Tiger Works\n\n### 1. Record Your Meeting\n\nUse Microsoft Teams, Zoom, or any recording tool. Once your meeting finishes, the transcript is ready for Tiger.\n\n### 2. Tiger Analyses the Transcript\n\nTiger's AI reads through the full transcript, understanding context, identifying who said what, and extracting key decisions and instructions.\n\n### 3. Get Your Insights\n\nReceive a clear summary of action items, decisions made, and follow-ups needed. No more rewatching recordings or scrolling through notes.\n",
+      "body": "## How SSW Tiger Works\n\n### 1. Have Your Meeting on Microsoft Teams\n\nTiger's fully automated pipeline currently integrates with Microsoft Teams. Once your meeting finishes, the transcript is automatically picked up by Tiger.\n\n### 2. Tiger Analyses the Transcript\n\nTiger's AI reads through the full transcript, understanding context, identifying who said what, and extracting key decisions and instructions.\n\n### 3. Get Your Insights\n\nReceive a clear summary of action items, decisions made, and follow-ups needed. No more rewatching recordings or scrolling through notes.\n",
       "_template": "richText"
     },
     {
