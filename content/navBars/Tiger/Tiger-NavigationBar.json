@@ -16,11 +16,6 @@
       "href": "/",
       "_template": "stringItem"
     },
-    {
-      "label": "Docs",
-      "href": "/docs",
-      "_template": "stringItem"
-    }
   ],
   "buttons": [
     {
