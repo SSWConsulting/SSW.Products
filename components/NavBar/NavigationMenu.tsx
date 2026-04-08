@@ -20,7 +20,7 @@ const NavigationMenuBadge = ({
   imgHeight,
   currentLocale = "en",
 }: NavigationMenuBadgeProps) => (
-  <NavigationMenu.Item className="gap-8 mx-auto flex items-center w-full">
+  <NavigationMenu.Item className="gap-8 flex items-center w-full md:flex-1 md:w-auto">
     <Link className="mb-2 shrink-0" href={getLocalizedPath("/", currentLocale)}>
       <Image
         src={imgSrc}
@@ -56,7 +56,7 @@ const NavigationMenuRoot = React.forwardRef<
       )}
       ref={ref}
     >
-      <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4 sm:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
+      <NavigationMenu.List className="md:flex gap-x-5 md:gap-y-0 gap-y-4 md:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center md:justify-start">
         {children}
       </NavigationMenu.List>
     </NavigationMenu.Root>
