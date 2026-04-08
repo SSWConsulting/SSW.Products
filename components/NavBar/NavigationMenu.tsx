@@ -20,7 +20,7 @@ const NavigationMenuBadge = ({
   imgHeight,
   currentLocale = "en",
 }: NavigationMenuBadgeProps) => (
-  <NavigationMenu.Item className="gap-8 mx-auto flex items-center w-full">
+  <NavigationMenu.Item className="gap-8 flex items-center w-full sm:w-auto shrink-0">
     <Link className="mb-2 shrink-0" href={getLocalizedPath("/", currentLocale)}>
       <Image
         src={imgSrc}

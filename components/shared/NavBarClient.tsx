@@ -187,10 +187,13 @@ function NavBarClientContent({
             </NavigationMenuItem>
           );
         })}
-        <NavigationMenuItem className="hidden sm:block pl-5 flex items-center">
+        <NavigationMenuItem className="hidden sm:flex pl-5 items-center">
           <LanguageToggle currentLocale={currentLocale} />
         </NavigationMenuItem>
-        <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
+        <NavigationMenuItem className="flex xl:hidden justify-end pl-5 items-center gap-3">
+          <span className="sm:hidden">
+            <LanguageToggle currentLocale={currentLocale} />
+          </span>
           <MobileMenuTrigger />
           <MobileMenuContent headerHeight={headerHeight}>
             <>
