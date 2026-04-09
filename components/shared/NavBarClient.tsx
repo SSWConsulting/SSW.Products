@@ -178,8 +178,8 @@ function NavBarClientContent({
         {buttons.map((button, index) => {
           return (
             <NavigationMenuItem
-              className={`hidden sm:block ${
-                index === buttons.length - 1 ? "pl-5" : "pl-12"
+              className={`hidden md:block ${
+                index === buttons.length - 1 ? "pl-5" : "pl-5 xl:pl-12"
               }`}
               key={index}
             >
@@ -187,7 +187,7 @@ function NavBarClientContent({
             </NavigationMenuItem>
           );
         })}
-        <NavigationMenuItem className="hidden sm:block pl-5 flex items-center">
+        <NavigationMenuItem className="hidden md:flex pl-5 items-center">
           <LanguageToggle currentLocale={currentLocale} />
         </NavigationMenuItem>
         <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
@@ -228,6 +228,9 @@ function NavBarClientContent({
                   );
                 }
               })}
+              <li className="flex items-center py-1 mb-0 mt-4">
+                <LanguageToggle currentLocale={currentLocale} />
+              </li>
             </>
           </MobileMenuContent>
         </NavigationMenuItem>
@@ -235,10 +238,10 @@ function NavBarClientContent({
           return (
             <NavigationMenuItem
               className={clsx(
-                "w-full col-span-1 block sm:hidden",
+                "w-full block md:hidden",
                 index === buttons.length - 1 && index % 2 === 0
                   ? "col-span-2"
-                  : "col-span-1"
+                  : "col-span-2 min-[390px]:col-span-1"
               )}
               key={index}
             >
