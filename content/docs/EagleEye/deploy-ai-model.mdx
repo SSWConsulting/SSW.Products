@@ -43,7 +43,23 @@ At the moment, EagleEye supports **chat models only**, so make sure you choose a
 
 You have two options. Pick the one that best fits your workflow.
 
-### Option A - Deploy via AI agent
+### Option A - Deploy via Azure AI Foundry portal
+
+1. Go to your EagleEye resource group used during Step 3 installation (e.g., `Northwind.EagleEye.RG).`
+2. Find your `openai-shared-xxx` resource and open it.
+3. Click **Go to Azure AI Foundry portal**.![](/EagleEye/Guides/Foundry-Portal-Link.png)
+4. In Foundry, click **Deploy model** → **Deploy base model**.
+5. Pick a compatible chat model.
+6. On the deployment screen, set:
+   * **Deployment name** to exactly `eagleeye`
+   * **Deployment type** to `Global Standard` if available. If not, choose another compatible deployment type with available quota.
+   * **Tokens per Minute Rate Limit** to at least `100`
+7. Click **Deploy** and wait for the deployment to become active.
+
+> **Important:**
+> The deployment name must be exactly `eagleeye`. If you use a different name, EagleEye will fail to find the model at runtime.
+
+### Option B - Deploy via AI agent
 
 If you have an AI coding agent connected to Azure MCP, or you have `az` CLI installed and signed in with the same account you used to deploy EagleEye, paste this prompt into the agent:
 
@@ -64,22 +80,6 @@ The agent should:
 
 > **Tip:**
 > Review the commands your agent proposes before approving them. AI agents can still make mistakes.
-
-### Option B - Deploy via Azure AI Foundry portal
-
-1. Go to your EagleEye resource group used during Step 3 installation (e.g., `Northwind.EagleEye.RG).`
-2. Find your `openai-shared-xxx` resource and open it.
-3. Click **Go to Azure AI Foundry portal**.
-4. In Foundry, click **Deploy model** → **Deploy base model**.
-5. Pick a compatible chat model.
-6. On the deployment screen, set:
-   * **Deployment name** to exactly `eagleeye`
-   * **Deployment type** to `Global Standard` if available. If not, choose another compatible deployment type with available quota.
-   * **Tokens per Minute Rate Limit** to at least `100`
-7. Click **Deploy** and wait for the deployment to become active.
-
-> **Important:**
-> The deployment name must be exactly `eagleeye`. If you use a different name, EagleEye will fail to find the model at runtime.
 
 ## Step 2 - Verify AI email analysis works
 
