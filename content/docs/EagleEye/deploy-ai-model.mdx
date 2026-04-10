@@ -1,0 +1,123 @@
+---
+seo:
+  title: Deploy AI Model
+  description: >-
+    Deploy a compatible Azure OpenAI chat model for SSW EagleEye after
+    Marketplace installation so AI Tags and AI with mentions tags can analyse
+    emails.
+title: Deploy AI Model
+date: '2026-04-10T00:00:00.000Z'
+---
+
+## Overview
+
+EagleEye's Marketplace deployment automatically provisions an Azure OpenAI resource, but it does **not** deploy a chat model inside it.
+
+This is intentional. Azure OpenAI model availability depends on the quotas available in each customer's subscription. So marketplace deployment is independent of model quotas.
+
+This extra step is only required if you want to use:
+
+* **[AI Tags](./tags-ai)**
+* **[AI with mentions tags](./tags-ai-mention)**
+
+If you plan to use **Non-AI Tags** only, you can skip this guide.
+
+At the moment, EagleEye supports **chat models only**, so make sure you choose a compatible chat model.
+
+**EagleEye supported models include:**
+
+* `gpt-4.1-mini`
+* `gpt-4o-mini`
+* `gpt-4.1-nano`
+* `gpt-5-chat`, `gpt-5.1-chat`, `gpt-5.2-chat`
+* `gpt-4.1`, `gpt-4o`
+* `gpt-3.5-turbo`
+
+**Do not use:**
+
+* Reasoning models such as `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-pro`, `gpt-5-codex`, `gpt-5.4-mini`, `o1`, `o1-mini`, `o3-mini`, `o4-mini`
+* Non-OpenAI Foundry catalog models such as Llama, Mistral, Grok, DeepSeek, Cohere, Kimi, `gpt-oss-*`, and Phi
+* Non-chat models such as embeddings, image models, audio models, speech models, and legacy completion models
+
+## Step 1 - Deploy an AI chat model in Azure AI Foundry
+
+You have two options. Pick the one that best fits your workflow.
+
+### Option A - Deploy via AI agent
+
+If you have an AI coding agent connected to Azure MCP, or you have `az` CLI installed and signed in with the same account you used to deploy EagleEye, paste this prompt into the agent:
+
+```text
+Deploy a chat model for my SSW EagleEye install.
+Ask me for the resource group name, then find the `openai-shared-*` resource in it.
+List which non-reasoning OpenAI chat models have available quota (show me the per-SKU numbers - Standard, GlobalStandard, DataZoneStandard), then ask me which model and capacity to deploy (EagleEye minimum is 100, 1 unit = 1K TPM).
+Create the deployment with the name exactly `eagleeye`.
+```
+
+The agent should:
+
+1. Ask for the resource group you used during Step 3 installation (e.g., `Northwind.EagleEye.RG).`
+2. Find the `openai-shared-xxx` Azure OpenAI resource in that resource group.
+3. Show which compatible non-reasoning chat models have available quota.
+4. Ask which model and capacity you want to deploy.
+5. Create the deployment with the exact name `eagleeye`.
+
+> **Tip:**
+> Review the commands your agent proposes before approving them. AI agents can still make mistakes.
+
+### Option B - Deploy via Azure AI Foundry portal
+
+1. Go to your EagleEye resource group used during Step 3 installation (e.g., `Northwind.EagleEye.RG).`
+2. Find your `openai-shared-xxx` resource and open it.
+3. Click **Go to Azure AI Foundry portal**.
+4. In Foundry, click **Deploy model** → **Deploy base model**.
+5. Pick a compatible chat model.
+6. On the deployment screen, set:
+   * **Deployment name** to exactly `eagleeye`
+   * **Deployment type** to `Global Standard` if available. If not, choose another compatible deployment type with available quota.
+   * **Tokens per Minute Rate Limit** to at least `100`
+7. Click **Deploy** and wait for the deployment to become active.
+
+> **Important:**
+> The deployment name must be exactly `eagleeye`. If you use a different name, EagleEye will fail to find the model at runtime.
+
+## Step 2 - Verify AI email analysis works
+
+Use EagleEye's built-in test flow to verify the model deployment without sending any real emails:
+
+1\. Open your EagleEye Portal.
+
+2\. Go to **Tags** → **New Tag**, or edit an existing tag.
+
+3\. Set the tag type to **AI** or **AI with Mentions**.
+
+4\. In the **AI decision prompt** field, enter a simple test prompt such as:
+
+```text
+Check if the email has been checked by someone by looking for keywords like "Checked by xx", "Checked by xx & xx", or similar variations.
+```
+
+5\. Click **Test** under the AI decision prompt.
+
+6\. Paste sample email content such as:
+
+```plain
+(Checked by Adam)
+
+Hi team, I just checked the invoice from Acme Corp and everything looks good.
+Regards,
+Hark
+```
+
+7\. Click **Test**.
+
+**Expected result:** the response box shows valid JSON such as `{"Result": true}` or `{"Result": false}`.
+
+If the model is not deployed, EagleEye will show an error banner instead of a JSON result.
+
+## References
+
+* [Step 3 - Install from Azure Marketplace](./step-3-install-from-marketplace)
+* [Adding a new Tag](./how-to-add-a-new-tag)
+* [AI Tags](./tags-ai)
+* [AI with mentions tags](./tags-ai-mention)
