@@ -26,7 +26,7 @@ At the moment, EagleEye supports **chat models only**, so make sure you choose a
 
 **EagleEye supported models include:**
 
-* `gpt-4.1-mini`
+* `gpt-4.1-mini (recommended)`
 * `gpt-4o-mini`
 * `gpt-4.1-nano`
 * `gpt-5-chat`, `gpt-5.1-chat`, `gpt-5.2-chat`
@@ -47,13 +47,18 @@ You have two options. Pick the one that best fits your workflow.
 
 1. Go to your EagleEye resource group used during Step 3 installation (e.g., `Northwind.EagleEye.RG).`
 2. Find your `openai-shared-xxx` resource and open it.
-3. Click **Go to Azure AI Foundry portal**.![](/EagleEye/Guides/Foundry-Portal-Link.png)
-4. In Foundry, click **Deploy model** → **Deploy base model**.
-5. Pick a compatible chat model.
+   ![](/EagleEye/Guides/OpenAI-Shared.png)
+3. Click **Go to Azure AI Foundry portal**.
+   ![](/EagleEye/Guides/Foundry-Portal-Link.png)
+4. In Foundry portal, click \*\*Model catalog.
+   \*\*![](/EagleEye/Guides/Model-Catalog.png)
+5. Pick a compatible chat model > Use this model
+   ![](/EagleEye/Guides/GPT-4.1-Mini.png)
 6. On the deployment screen, set:
    * **Deployment name** to exactly `eagleeye`
    * **Deployment type** to `Global Standard` if available. If not, choose another compatible deployment type with available quota.
-   * **Tokens per Minute Rate Limit** to at least `100`
+   * **Tokens per Minute Rate Limit** to at least `100
+     `![](/EagleEye/Guides/Model-Config.png)
 7. Click **Deploy** and wait for the deployment to become active.
 
 > **Important:**
@@ -88,8 +93,10 @@ Use EagleEye's built-in test flow to verify the model deployment without sending
 1\. Open your EagleEye Portal.
 
 2\. Go to **Tags** → **New Tag**, or edit an existing tag.
+![](/EagleEye/Guides/New-Tag.png)
 
 3\. Set the tag type to **AI** or **AI with Mentions**.
+![](/EagleEye/Guides/AI-Tag-Mentions.png)
 
 4\. In the **AI decision prompt** field, enter a simple test prompt such as:
 
@@ -97,9 +104,7 @@ Use EagleEye's built-in test flow to verify the model deployment without sending
 Check if the email has been checked by someone by looking for keywords like "Checked by xx", "Checked by xx & xx", or similar variations.
 ```
 
-5\. Click **Test** under the AI decision prompt.
-
-6\. Paste sample email content such as:
+5\. Paste sample email content such as:
 
 ```plain
 (Checked by Adam)
@@ -109,11 +114,19 @@ Regards,
 Hark
 ```
 
-7\. Click **Test**.
+6\. Click **Test**.
 
 **Expected result:** the response box shows valid JSON such as `{"Result": true}` or `{"Result": false}`.
 
-If the model is not deployed, EagleEye will show an error banner instead of a JSON result.
+| ![](/EagleEye/Guides/True-Result.png) | ![](/EagleEye/Guides/False-Result.png) |
+| ------------------------------------- | -------------------------------------- |
+| “Checked by” present = True           | “Checked by” not present = False       |
+
+<OutlineBox
+  content={<>
+    ⚠️ If the model is not deployed, EagleEye will show an error banner instead of a JSON result.
+  </>}
+/>
 
 ## References
 
