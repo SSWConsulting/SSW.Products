@@ -1,7 +1,10 @@
 ---
 seo:
   title: SSW EagleEye - Step 1 Azure Setup
-  description: 'Configure your Azure subscription, register required resource providers, and gather tenant and group details needed before installing SSW EagleEye from the Azure Marketplace.'
+  description: >-
+    Configure your Azure subscription, register required resource providers, and
+    gather tenant and group details needed before installing SSW EagleEye from
+    the Azure Marketplace.
 title: Step 1 - Azure Setup
 date: '2025-12-29T13:00:00.000Z'
 ---
@@ -16,19 +19,19 @@ date: '2025-12-29T13:00:00.000Z'
 
 Before deploying EagleEye, make sure the following Azure resource providers are registered in your subscription:
 
-* Microsoft.Storage
-* Microsoft.ManagedIdentity
 * Microsoft.App
+* Microsoft.Authorization
 * Microsoft.CognitiveServices
-* Microsoft.KeyVault
+* Microsoft.ContainerInstance
 * Microsoft.ContainerRegistry
+* Microsoft.Insights
+* Microsoft.KeyVault
+* Microsoft.ManagedIdentity
 * Microsoft.Network
 * Microsoft.OperationalInsights
-* Microsoft.Insights
 * Microsoft.Sql
-* Microsoft.Authorization
+* Microsoft.Storage
 * Microsoft.Web
-* Microsoft.ContainerInstance
 
 To check and register, follow the official Microsoft guide:
 [Register resource providers in Azure Portal](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal)

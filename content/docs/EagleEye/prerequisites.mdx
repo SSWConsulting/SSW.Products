@@ -22,43 +22,6 @@ Before starting the installation, ensure you have the following:
 
 * An [Microsoft Entra tenant](https://learn.microsoft.com/en-us/entra/fundamentals/what-is-entra) (Azure AD)
 
-### Azure OpenAI Quota
-
-* EagleEye uses a default model (`gpt-4.1-mini`)
-* More AI models will be available in future EagleEye releases and configurable directly from the EagleEye Portal
-
-Ensure you have sufficient quota for this model in your Azure subscription.
-Check or request quota in the [Azure AI Foundry portal](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/quota?view=foundry-classic#view-and-request-quotas-in-foundry-portal).
-
-> **Tip:** The Foundry portal only shows quotas if you already have an Azure OpenAI resource. If you don't have one yet, use [Azure Cloud Shell](https://portal.azure.com/#cloudshell/) to check your quota:
-
-1\. In Azure Portal, go to **Subscriptions** and copy your **Subscription ID**.
-
-```bash
-SUB_ID="{{ your azure subscription id }}"
-```
-
-2\. Run the quota check:
-
-```bash
-az rest \
-  --method get \
-  --url "https://management.azure.com/subscriptions/$SUB_ID/providers/Microsoft.CognitiveServices/locations/eastus/usages?api-version=2023-05-01" \
-  --query "value[?name.value == 'OpenAI.GlobalStandard.gpt4.1-mini'].{Model:name.value,Current:currentValue,Limit:limit}" \
-  -o table
-```
-
-Output:
-
-```txt
-
-Model                              Current    Limit
----------------------------------  ---------  -------
-OpenAI.GlobalStandard.gpt4.1-mini  100        5000
-```
-
-**Current** = tokens per minute already allocated. **Limit** = your maximum available.
-
 ### Custom Domain (optional)
 
 * A [custom domain](https://learn.microsoft.com/en-us/entra/fundamentals/add-custom-domain) and [DNS zone](https://learn.microsoft.com/en-us/azure/dns/dns-zones-records) in Azure (needed if you want a custom URL to access EagleEye Portal)

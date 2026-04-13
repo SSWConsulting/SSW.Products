@@ -3,8 +3,8 @@ seo:
   title: SSW EagleEye - Step 3 Install from Azure Marketplace
   description: >-
     Install SSW EagleEye from the Azure Marketplace and complete the deployment
-    wizard, configuring Azure resources, app registrations, database, and Azure
-    OpenAI settings for your environment.
+    wizard, configuring Azure resources, app registrations, and database
+    settings for your environment.
 title: Step 3 - Install From Azure Marketplace
 date: '2025-12-29T13:00:00.000Z'
 ---
@@ -66,15 +66,7 @@ You need to provide the details of Master App:
 
 > **Where to find database credentials later:** See [Manage Credentials for Database](./manage-database-credentials).
 
-#### Step 3.2.6 - Azure OpenAI Configuration
-
-* **Model Capacity (Tokens Per Minute)**: Set tokens per minute. You can [view and request quotas in the prerequisites guide](./prerequisites).
-
-> **Note:** During Marketplace installation, you only need to provide model capacity (TPM). In future releases, additional AI models and their capacity will be configurable directly in the EagleEye Portal.
-
-![Azure OpenAI Configuration](/EagleEye/Installation/Model-Capacity.png)
-
-#### Step 3.2.7 - Review and Deploy
+#### Step 3.2.6 - Review and Deploy
 
 1. Review all configuration settings
 2. Click **Create** to start deployment
@@ -83,10 +75,15 @@ You need to provide the details of Master App:
 
 ### Step 3.3 - Verify Deployment
 
-1. **Access the Portal**: Navigate to the Portal container app URL
-2. **Test Authentication**: Sign in with your Azure AD credentials
-3. **Check API Connectivity**: Verify the Portal can communicate with the API
-4. **Test Email Processing**: Run a manual job to categorize emails
+1. **Access the Portal**:
+   * Open your EagleEye resource group in Azure Portal (e.g., `Northwind.EagleEye.RG`).
+   * Open the Portal container app (e.g., `ca-nextjs-xxx`).
+     ![](/EagleEye/Installation/CA-Portal.png)
+   * Click the **Application URL** and open it in your browser.
+     ![](/EagleEye/Installation/Portal-URL.png)
+2. **Test Authentication**: Sign in with a Microsoft account that belongs to the EagleEye group you configured. Only members of that group can access the portal.
+3. **Verify internal domains**: In the EagleEye portal, go to **Settings** and confirm your internal email domains are listed for the tenant.
+   ![](/EagleEye/Installation/Tenant-Domains.png)
 
 #### Common issues can be resolved by visiting:
 
@@ -95,19 +92,20 @@ You need to provide the details of Master App:
 * [Manage Credentials for Database](./manage-database-credentials)
 * [Secret Management for App Registrations](./secret-management-app-registrations)
 
-#### Post-deployment cleanup
+#### Post-deployment steps
 
-Once EagleEye is fully operational, you can safely delete the Master app registration from your tenant. It is only needed during installation.
+After installation:
 
-* [Delete the Master App](./delete-master-app)
+* If you plan to use **[Non-AI Tags](./tags-non-ai)** only, no further AI setup is required. EagleEye is ready to analyse emails with non-AI tags.
+* If you plan to use **[AI Tags](./tags-ai)** or **[AI with mentions tags](./tags-ai-mention)**, follow [Deploy AI Model](./deploy-ai-model) to enable Azure OpenAI processing.
+* You can safely [Delete the Master App](./delete-master-app) after this step. It is no longer required.
 
 ## Architecture Overview
 
 The deployed solution includes:
 
-* **Container Apps Environment**: Hosting the API, CLI, and Portal
-* **Azure SQL Database**: Data storage with configured user access
-* **Azure OpenAI**: AI processing for email categorization
-* **Key Vault**: Secure storage of secrets and configurations
-* **Application Insights**: Monitoring and telemetry
-* **Container Registry**: Docker image storage
+* **Container Apps Environment**: Hosts the API (`ca-api-xxx`), Portal (`ca-nextjs-xxx`), and email analysis jobs (`cj-manual-xxx`, `cj-cli-xxx`)
+* **Azure SQL Database**: Shared database with configured user access (`db-shared-xxx`)
+* **Azure OpenAI**: Auto-provisioned Cognitive Services account in East US (`openai-shared-xxx`). If you want to use AI-based tagging, deploy a chat model named `eagleeye` after installation using the AI model guide.
+* **Key Vault**: Secure storage of shared secrets and configuration (`kv-shared-xxx`)
+* **Application Insights**: Monitoring and telemetry (`ai-shared-xxx`)
