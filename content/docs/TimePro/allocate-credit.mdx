@@ -6,7 +6,7 @@ title: Allocating credit to an invoice
 date: '2026-04-14T12:00:00.000Z'
 ---
 
-When you need to reduce what a client owes on an invoice (for example adjustments, returns, or goodwill), TimePro supports several approaches. The **Add invoice item** dialog allows **Qty** and **Sell** to be negative so line amounts can reduce the invoice total.
+When you need to reduce what a client owes on an invoice (for example adjustments, returns, or goodwill), TimePro supports several approaches. The **Add invoice item** dialog allows **Qty** (the field name in the form for quantity) and **Sell** to be negative so line amounts can reduce the invoice total.
 
 ## Options
 
@@ -17,12 +17,12 @@ When you need to reduce what a client owes on an invoice (for example adjustment
 
 **Figure: Credit-note line added using the credit product category**
 
-2. **Invoice item with negative Qty**  
+2. **Invoice item with negative quantity**  
    Add a product line and enter a **negative quantity**. The extended amount reflects quantity × unit sell, so a negative quantity reduces the invoice balance. Use this when you are reversing or reducing units of a charge while keeping a positive unit **Sell** price.
 
 ![](/TimePro/add-invoice-item.png)
 
-**Figure: Add invoice item - negative Qty reduces the line amount when Sell stays positive**
+**Figure: Add invoice item - negative quantity reduces the line amount when Sell stays positive**
 
 3. **Invoice item with negative Sell**  
    Add a product line and enter a **negative sell** (unit sell amount). Use this when quantity stays positive but you need a negative line amount—for example a fixed dollar credit expressed per unit.
@@ -30,7 +30,7 @@ When you need to reduce what a client owes on an invoice (for example adjustment
 ## Choosing an approach
 
 - Prefer **credit note** when your organisation’s process or reporting expects credit lines to be created through the credit-note path.
-- Use **negative Qty** or **negative Sell** when you are adjusting an invoice with a manual line and the maths is clearer one way or the other (units vs dollars per unit). Both are valid; pick the representation that matches how you explain the adjustment to the client.
+- Use **negative quantity** or **negative Sell** when you are adjusting an invoice with a manual line and the maths is clearer one way or the other (units vs dollars per unit). Both are valid; pick the representation that matches how you explain the adjustment to the client.
 
 ## Related
 
