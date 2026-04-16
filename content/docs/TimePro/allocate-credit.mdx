@@ -2,7 +2,7 @@
 seo:
   title: Allocating credit to an invoice
   description: 'Reduce what a client owes using credit notes, negative quantity, or negative sell on invoice lines in TimePro.'
-title: Allocating credit to an invoice
+title: Allocate credit
 date: '2026-04-14T12:00:00.000Z'
 ---
 
@@ -33,7 +33,7 @@ The purpose of this option is to separate the original invoice lines from the cr
 On an invoice, when you click “Add Invoice Item”, you can then choose between:
 
 * **Use a negative quantity (Qty)**\
-  Add a product line and enter a **negative quantity**. The extended amount reflects quantity × unit sell, so a negative quantity reduces the invoice balance. Use this when you are reversing or reducing units of a charge while keeping a positive unit **Sell** price.
+  Add a product line and enter a **negative quantity**. The extended amount reflects **Quantity × Unit Sell**, so a negative quantity reduces the invoice balance. Use this when you are reversing or reducing units of a charge while keeping a positive unit **Sell** price.
 
 ![](/TimePro/add-invoice-item.png)
 
@@ -42,7 +42,6 @@ On an invoice, when you click “Add Invoice Item”, you can then choose betwee
 * **Use a negative sell amount (Sell)**\
   Add a product line and enter a **negative sell** (unit sell amount). Use this when quantity stays positive but you need a negative line amount i.e. a fixed dollar credit expressed per unit.
 
-## Choosing an approach
+## Locked off periods
 
-* Prefer **Add credit note (Option A)** when dealing with **past (locked) invoices**, or when your organisation’s process or reporting requires credit lines to be created through the credit-note workflow.
-* Use **Add Invoice Item (Option B)** for **active invoices**, where changes need to update the invoice directly. This method immediately adjusts the invoice total using negative quantity or negative sell values.
+Once a period has been locked off, then your only option is to use a** credit note (Option A). **This is because invoices in locked periods cannot be edited, helping preserve the integrity of historical financial data and ensuring previously reported figures remain unchanged.
