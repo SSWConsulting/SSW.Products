@@ -89,7 +89,7 @@ const Pricing = ({ data }: PricingProps) => {
 
       {description && (
         <div
-          className="text-white text-base text-center px-4 mb-8 [&_a]:text-[#CC4141] [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-red-400"
+          className="text-white text-base text-center px-4 mb-8 [&_a]:text-[#CC4141] [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-red-400"
           data-tina-field={tinaField(data, "description")}
         >
           <TinaMarkdown content={description} />
