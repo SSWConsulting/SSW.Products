@@ -7,20 +7,23 @@
   "pageBlocks": [
     {
       "title": "{Simple, Transparent Pricing}",
-      "description": "🎉 **Great news!** EagleEye is currently **completely free** to use through the Azure Marketplace! 🚀\n",
+      "description": "🎉 EagleEye is **free during our public beta until 1 July 2027**. Final pricing will be announced before the beta ends — join the waitlist to be notified.\n",
       "plans": [
         {
-          "planTier": "Free",
-          "planDescription": "For small team",
+          "planTier": "Free Beta",
+          "planDescription": "Available now",
           "price": "$0",
-          "subPriceText": "1 - 5 units",
-          "priceDescription": "* Units are calculated based on the number of mailboxes",
+          "subPriceText": "All features included",
+          "priceDescription": "",
           "isRecommended": true,
-          "recommendation": "3 Months Free Trial",
+          "recommendation": "Available Now",
           "listTitle": "Get started with",
           "listItems": [
-            "Basic Tag features",
-            "Full webhook support"
+            "Unlimited mailboxes",
+            "Reports and analytics",
+            "Rule-based tags",
+            "AI tags",
+            "Workflows"
           ],
           "buttons": [
             {
@@ -34,17 +37,15 @@
         },
         {
           "planTier": "Pro",
-          "planDescription": "For large team",
-          "price": "$1 / unit / month",
-          "subPriceText": "5+ units",
-          "priceDescription": "* Units are calculated based on the number of mailboxes",
+          "planDescription": "Post-beta pricing",
+          "price": "Coming soon",
+          "subPriceText": "Final pricing to be announced",
+          "priceDescription": "",
           "isRecommended": false,
-          "listTitle": "Get started with",
+          "listTitle": "Everything in Free Beta, plus",
           "listItems": [
-            "{Everything in Free, plus}",
-            "Advanced AI-powerd Tag features",
-            "Unlimited team size",
-            "Unlimited mailboxes for email analysis"
+            "Continued access after the beta period",
+            "Priority support"
           ],
           "buttons": [
             {
