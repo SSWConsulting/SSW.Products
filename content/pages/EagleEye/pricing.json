@@ -7,16 +7,16 @@
   "pageBlocks": [
     {
       "title": "{Simple, Transparent Pricing}",
-      "description": "🎉 EagleEye is **free during our public beta until 1 July 2027**. Final pricing will be announced before the beta ends — join the waitlist to be notified.\n",
+      "description": "🎉 EagleEye is **free during our public beta until 1 July 2027**. Final pricing will be announced before the beta ends — [join the waitlist](https://form.jotform.com/233468468973070) to be notified.\n",
       "plans": [
         {
-          "planTier": "Free Beta",
+          "planTier": "Free",
           "planDescription": "Available now",
           "price": "$0",
           "subPriceText": "All features included",
           "priceDescription": "",
           "isRecommended": true,
-          "recommendation": "Available Now",
+          "recommendation": "Public Beta",
           "listTitle": "Get started with",
           "listItems": [
             "Unlimited mailboxes",
@@ -32,26 +32,6 @@
               "size": "medium",
               "url": "https://ssweagleeye.com/docs/prerequisites",
               "_template": "actions"
-            }
-          ]
-        },
-        {
-          "planTier": "Pro",
-          "planDescription": "Post-beta pricing",
-          "price": "Coming soon",
-          "subPriceText": "Final pricing to be announced",
-          "priceDescription": "",
-          "isRecommended": false,
-          "listTitle": "Everything in Free Beta, plus",
-          "listItems": [
-            "Continued access after the beta period",
-            "Priority support"
-          ],
-          "buttons": [
-            {
-              "Title": "Join Waitlist",
-              "JotFormId": "233468468973070",
-              "_template": "BookingButton"
             }
           ]
         }

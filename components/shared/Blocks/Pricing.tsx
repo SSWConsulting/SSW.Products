@@ -11,7 +11,6 @@ import { ShineBorder } from "@/components/magicui/shine-border";
 import { BsCheck } from "react-icons/bs";
 import { BookingButton } from "./BookingButton";
 import { ButtonVariant } from "./buttonEnum";
-import { cn } from "@/lib/utils";
 
 interface PlanAction {
   label: string;
@@ -67,7 +66,7 @@ const Pricing = ({ data }: PricingProps) => {
 
   const getGridClasses = (planCount: number) => {
     if (planCount === 1) {
-      return "grid grid-cols-1 gap-4 lg:gap-8 xl:grid-cols-3 lg:justify-items-center px-4 lg:px-12";
+      return "grid grid-cols-1 gap-4 lg:gap-8 max-w-xl mx-auto px-4 lg:px-12";
     } else if (planCount === 2) {
       return "grid grid-cols-1 gap-4 lg:gap-8 lg:grid-cols-2 px-4 lg:px-12";
     } else if (planCount === 3) {
@@ -90,7 +89,7 @@ const Pricing = ({ data }: PricingProps) => {
 
       {description && (
         <div
-          className="text-white text-base text-center px-4 mb-8"
+          className="text-white text-base text-center px-4 mb-8 [&_a]:text-[#CC4141] [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-red-400"
           data-tina-field={tinaField(data, "description")}
         >
           <TinaMarkdown content={description} />
@@ -102,10 +101,7 @@ const Pricing = ({ data }: PricingProps) => {
           plans.length > 0 &&
           plans.map((plan, index) => (
             <div
-              className={cn(
-                "flex flex-col h-full",
-                plans.length === 1 ? "first:xl:col-start-2" : ""
-              )}
+              className="flex flex-col h-full"
               key={index}
             >
               {plan.isRecommended ? (
