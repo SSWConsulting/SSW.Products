@@ -8,7 +8,9 @@ date: '2026-04-14T12:00:00.000Z'
 
 When you need to reduce what a client owes on an invoice (for example adjustments, returns, or goodwill), TimePro supports several approaches.
 
-## Option A: Add Credit Note
+## Option A: Add a Credit Note
+
+Use this option when you need to formally reduce what a client owes, either against a specific invoice or at the client level for later allocation. Credit notes are the only available method for invoices in locked periods.
 
 You can create a credit note in two ways:
 
@@ -35,11 +37,13 @@ On an invoice, when you click “Add Invoice Item”, you can then choose betwee
 * **Discount (%)**
   Use a discount (%) to reduce the line item price by a percentage. Enter the discount directly on the product line - TimePro will calculate the reduced amount automatically.
 
+![](/TimePro/add-discount.png)
+
 **Figure: Use a Discount**
 
 * **Negative quantity **or **sell amount**\
   Add a product line and enter a negative quantity (Qty) or sell amount (Sell). The extended amount reflects **Quantity × Unit Sell**, so a negative quantity reduces the invoice balance. Use this when you need to partially or fully reverse a charge - for example, when correcting a billing error or issuing a goodwill reduction - and want the adjustment to appear as a separate line on the invoice.
 
-![](/TimePro/add-invoice-item.png)
+![](/TimePro/add-invoice-item.png)**Figure: Use a negative quantity or sell amount**
 
-**Figure: Use a negative quantity or sell amount**
+> ⚠️ Important: This option is only available on invoices in unlocked periods. If the period has been locked off, use Option A (Credit Note) instead.
