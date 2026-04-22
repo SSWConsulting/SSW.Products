@@ -2,47 +2,30 @@
 seo:
   title: Allocating credit to an invoice
   description: 'Reduce what a client owes using credit notes, negative quantity, or negative sell on invoice lines in TimePro.'
-title: Allocating credit to an invoice
+title: Allocate credit
 date: '2026-04-14T12:00:00.000Z'
 ---
 
-When you need to reduce what a client owes on an invoice (for example adjustments, returns, or goodwill), TimePro supports several approaches.
+When you need to reduce what a client owes on an invoice (for example adjustments, returns, or goodwill), TimePro allows you to **Add a Credit Note**.
 
-## Option A: Add Credit Note
+Use this option when you need to formally reduce what a client owes, either against a specific invoice or at the client level for later allocation. 
+
+> **Note:** Credit notes are the only available method for invoices in **locked periods**.
 
 You can create a credit note in two ways:
 
-* **From an invoice**\
-  Use the "Add Credit Note" button when you want to apply a credit directly against that invoice.
+## Option A: At the Invoice level
+
+On an invoice, use the "Add Credit Note" button when you want to apply a credit directly against that invoice.
 
 ![](/TimePro/add-credit-note-invoice.png)
 
 **Figure: Invoice - Use “add credit note”**
 
-* **From a client**\
-  Create a credit note outside of a specific invoice when you want the credit recorded at the client level first, then allocated later if required.
+## Option B: At the Client level
+
+On a client's page, use the “Create credit note” button to create a credit note outside of a specific invoice, when you want the credit recorded at the client level first, then allocated later if required.
 
 ![](/TimePro/add-credit-note-client.png)
 
 **Figure: Client - Use “add credit note”**
-
-## Option B: Add Invoice Item
-
-The purpose of this option is to separate the original invoice lines from the credit lines.
-
-On an invoice, when you click “Add Invoice Item”, you can then choose between:
-
-* **Use a negative quantity (Qty)**\
-  Add a product line and enter a **negative quantity**. The extended amount reflects quantity × unit sell, so a negative quantity reduces the invoice balance. Use this when you are reversing or reducing units of a charge while keeping a positive unit **Sell** price.
-
-![](/TimePro/add-invoice-item.png)
-
-**Figure: Click “Add Invoice Item” and add a negative quantity**
-
-* **Use a negative sell amount (Sell)**\
-  Add a product line and enter a **negative sell** (unit sell amount). Use this when quantity stays positive but you need a negative line amount i.e. a fixed dollar credit expressed per unit.
-
-## Choosing an approach
-
-* Prefer **Add credit note (Option A)** when dealing with **past (locked) invoices**, or when your organisation’s process or reporting requires credit lines to be created through the credit-note workflow.
-* Use **Add Invoice Item (Option B)** for **active invoices**, where changes need to update the invoice directly. This method immediately adjusts the invoice total using negative quantity or negative sell values.
