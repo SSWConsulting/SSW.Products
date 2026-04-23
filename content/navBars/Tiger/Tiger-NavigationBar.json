@@ -1,5 +1,5 @@
 {
-  "Logo": "",
+  "Logo": "/Tiger/Logo.svg",
   "rightNavItem": [
     {
       "Title": "CONTACT US",
@@ -7,16 +7,10 @@
       "_template": "BookingButton"
     }
   ],
-  "imgSrc": "",
-  "imgWidth": 0,
-  "imgHeight": 0,
-  "leftNavItem": [
-    {
-      "label": "SSW Tiger",
-      "href": "/",
-      "_template": "stringItem"
-    }
-  ],
+  "imgSrc": "/Tiger/Logo.svg",
+  "imgWidth": 125,
+  "imgHeight": 22,
+  "leftNavItem": [],
   "buttons": [
     {
       "Title": "CONTACT US",
