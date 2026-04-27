@@ -127,7 +127,6 @@ function CardItem({
   const borders: Record<string, string> = {
     yakshaver: "border-gradient-pink",
     eagleeye: "border-gradient-eagleeye",
-    red: "border-gradient-red",
   };
 
   const contentRef = useRef<HTMLDivElement>(null);

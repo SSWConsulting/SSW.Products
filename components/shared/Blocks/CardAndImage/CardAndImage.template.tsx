@@ -24,7 +24,6 @@ export const CardAndImageTemplate: Template = {
       options: [
         { value: "yakshaver", label: "Yakshaver" },
         { value: "eagleeye", label: "Eagleeye" },
-        { value: "red", label: "Red" },
       ],
     },
     {
