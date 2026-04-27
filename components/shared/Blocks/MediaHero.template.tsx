@@ -56,5 +56,15 @@ export const MediaHeroTemplate: Template = {
       name: "dateText",
       description: "Small text displayed below the button",
     },
+    {
+      type: "string",
+      label: "Background Variant",
+      name: "backgroundVariant",
+      description: "Choose the hero background style",
+      options: [
+        { value: "gradient", label: "Gradient (default)" },
+        { value: "tiger", label: "Tiger stripe" },
+      ],
+    },
   ],
 };

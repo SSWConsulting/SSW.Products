@@ -19,19 +19,27 @@ const NavigationMenuBadge = ({
   imgWidth,
   imgHeight,
   currentLocale = "en",
-}: NavigationMenuBadgeProps) => (
-  <NavigationMenu.Item className="gap-8 flex items-center w-full md:flex-1 md:w-auto">
-    <Link className="mb-2 shrink-0" href={getLocalizedPath("/", currentLocale)}>
-      <Image
-        src={imgSrc}
-        className="h-8 w-auto"
-        width={imgWidth}
-        height={imgHeight}
-        alt="Logo"
-      />
-    </Link>
-  </NavigationMenu.Item>
-);
+}: NavigationMenuBadgeProps) => {
+  const aspectRatio = imgHeight > 0 ? imgWidth / imgHeight : 5;
+  const heightClass = aspectRatio < 5 ? "h-12" : "h-8";
+
+  return (
+    <NavigationMenu.Item className="gap-8 flex items-center w-full md:flex-1 md:w-auto">
+      <Link
+        className="mb-2 shrink-0"
+        href={getLocalizedPath("/", currentLocale)}
+      >
+        <Image
+          src={imgSrc}
+          className={`${heightClass} w-auto`}
+          width={imgWidth}
+          height={imgHeight}
+          alt="Logo"
+        />
+      </Link>
+    </NavigationMenu.Item>
+  );
+};
 
 interface NavigationMenuRootProps
   extends React.ComponentPropsWithoutRef<typeof NavigationMenu.Root> {

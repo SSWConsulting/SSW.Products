@@ -2,6 +2,7 @@ import FooterServer from "@comps/shared/FooterServer";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
+import { TigerBackground } from "../../components/shared/Blocks/Hero/TigerBackground";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import { getLocale } from "../../utils/i18n";
 import "../globals.css";
@@ -54,6 +55,7 @@ export default async function RootLayout({
       <body
         className={`min-h-screen flex-col flex ${inter.className} relative bg-gray-light`}
         >
+        {product === "Tiger" && <TigerBackground />}
         <Script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
