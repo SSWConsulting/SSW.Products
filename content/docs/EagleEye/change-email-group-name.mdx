@@ -1,0 +1,101 @@
+---
+title: Changing Email Groups
+date: '2026-04-27T14:00:00.000Z'
+---
+
+After deploying Eagle Eye, you may want to change which email group is being scanned. This guide walks you through finding the correct place in Azure, updating the environment variable, and verifying everything works.
+
+If you haven’t set this up before, refer to the initial setup guide:
+
+\[Step 1 - Azure Setup (Scroll to 1.3)]\(/[step-1-azure-setup](https://ssweagleeye.com/docs/step-1-azure-setup))
+
+## Prerequisites
+
+* Access to the Azure Portal
+* Permissions to modify the deployed Eagle Eye resources
+* A valid email group name to switch to
+
+### Step 1: Open the Top-Level Resource Group
+
+Navigate to the Azure Portal and locate the resource group used for your Eagle Eye deployment.
+
+![](/EagleEye/Guides/Portal-Default-Install-View.png)
+
+Figure: Azure | EagleEye Resource Group
+
+### Step 2: Open the API Container
+
+Inside the resource group:
+
+1. Locate the Eagle Eye API container (usually named something like api or similar)
+2. Click into it
+
+![](/EagleEye/Guides/API-Container-Containers.png)Figure: Azure | API Container
+
+### Step 3: Open the Container Configuration
+
+Inside the API container:
+
+1. Navigate to Settings
+2. Open Environment Variables (or Configuration, depending on UI)
+
+![](/EagleEye/Guides/Inside-API-Container.png)Figure: Azure | API Container | Containers
+
+### Step 4: Update the Email Group Environment Variable
+
+Find the environment variable that controls the email group.
+
+* This will typically look like:
+
+```bash
+GROUP_NAME
+```
+
+or something similar depending on your setup.
+
+1. Update the value to the new group name
+2. Save the changes
+
+![](/EagleEye/Guides/Azure-GroupName-API-Container-Environment-Variable.png)Figure: Azure | API Container | Containers | Azure\_GroupName Environment Variable
+
+### Step 5: Find Available Group Names (If Needed)
+
+If you’re unsure what value to use:
+
+* Check your Azure AD / Entra ID groups
+* Or refer back to the initial setup guide
+* Or query via Microsoft Graph / CLI if you’re doing this programmatically
+
+Make sure:
+
+\* The group exists
+
+\* Eagle Eye has permission to read it
+
+### Step 6: Restart the API
+
+After updating the environment variable:
+
+1. Go back to the API container overview
+2. Restart the container
+
+This ensures the new configuration is picked up.
+
+### Step 7: Verify It’s Working
+
+Test the change:
+
+* Trigger a scan (if manual trigger exists)
+* Check logs for:
+  * Successful group resolution
+  * Emails being processed
+* Confirm expected emails are being scanned
+
+## Common Pitfalls
+
+* Wrong group name
+  * Double-check spelling and casing
+* Permissions missing
+  * Ensure the app registration has access to the group
+* Forgot to restart container
+  * Changes won’t apply until restart
