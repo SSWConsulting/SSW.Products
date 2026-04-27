@@ -7,14 +7,16 @@
   "title": "SSW Tiger - AI-Powered Meeting Transcript Analysis",
   "pageBlocks": [
     {
-      "heroTitle": " From Meetings to Insight",
-      "heroDescription": "Go beyond what was said.\n\nSSW Tiger surfaces the signals hidden inside your meetings.\n\nyou can understand, decide, and move forward with confidence.",
-      "backgroundVariant": "tiger",
+      "heroTitle": "From Meetings to Insight",
+      "heroDescription": "Go beyond what was said.\n\nSSW Tiger surfaces the signals hidden inside your meetings.\n\nYou can understand, decide, and move forward with confidence.",
+      "hideGradientBackground": true,
       "_template": "mediaHero"
     },
     {
       "ParentContainerTitle": "How SSW Tiger Works",
       "ParentContainerDescription": "",
+      "borderColor": "red",
+      "backgroundColor": "charcoal",
       "CardAndImageItem": [
         {
           "Header": "1 - Have Your Meeting on Microsoft Teams",

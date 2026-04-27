@@ -57,14 +57,10 @@ export const MediaHeroTemplate: Template = {
       description: "Small text displayed below the button",
     },
     {
-      type: "string",
-      label: "Background Variant",
-      name: "backgroundVariant",
-      description: "Choose the hero background style",
-      options: [
-        { value: "gradient", label: "Gradient (default)" },
-        { value: "tiger", label: "Tiger stripe" },
-      ],
+      type: "boolean",
+      label: "Hide Gradient Background",
+      name: "hideGradientBackground",
+      description: "Hide the default gradient backdrop (use when the page provides its own background)",
     },
   ],
 };

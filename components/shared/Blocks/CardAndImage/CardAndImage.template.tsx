@@ -24,6 +24,17 @@ export const CardAndImageTemplate: Template = {
       options: [
         { value: "yakshaver", label: "Yakshaver" },
         { value: "eagleeye", label: "Eagleeye" },
+        { value: "red", label: "Red" },
+      ],
+    },
+    {
+      name: "backgroundColor",
+      label: "Card Background Color",
+      description: "Background of non-selected cards.",
+      type: "string",
+      options: [
+        { value: "default", label: "Default" },
+        { value: "charcoal", label: "Charcoal" },
       ],
     },
     {

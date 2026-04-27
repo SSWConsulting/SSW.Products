@@ -14,7 +14,7 @@ interface MediaHeroProps {
   heroDescription?: string;
   heroButton?: MediaHeroButtonProps;
   dateText?: string;
-  backgroundVariant?: "gradient" | "tiger";
+  hideGradientBackground?: boolean;
 }
 
 const MediaHero = ({
@@ -22,11 +22,11 @@ const MediaHero = ({
   heroDescription,
   heroButton,
   dateText,
-  backgroundVariant,
+  hideGradientBackground,
 }: MediaHeroProps) => {
   return (
     <div className="relative max-w-7xl mx-auto">
-      {backgroundVariant !== "tiger" && (
+      {!hideGradientBackground && (
         /* Ignore this weird code — no idea why the background is tied to the Hero component. I have to adjust the position manually for Ken. */
         <div className="relative" style={{ top: '310px', left: '30px' }}>
           <GradientBackground />

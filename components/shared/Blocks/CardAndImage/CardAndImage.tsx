@@ -23,8 +23,15 @@ const cardAndImageMarkdownRenderer: Components<object> = {
 
 const NO_OPENED_ITEMS = -1;
 
+// Background overrides for the non-selected card state. When unset (or set to
+// "default"), the component falls back to the default `--gradient-black`.
+const cardBackgrounds: Record<string, string> = {
+  charcoal: "[--border-gradient-foreground:var(--gradient-charcoal)]",
+};
+
 export default function CardAndImageParent({
   borderColor,
+  backgroundColor,
   ParentContainerDescription,
   ParentContainerTitle,
   CardAndImageItem,
@@ -74,6 +81,7 @@ export default function CardAndImageParent({
                 key={index}
                 data={item}
                 borderColor={borderColor ?? "yakshaver"}
+                backgroundColor={backgroundColor}
                 uniqueId={index}
                 idOfOpen={idOfOpen}
                 setIdOfOpen={handleIdChange}
@@ -102,12 +110,14 @@ export default function CardAndImageParent({
 function CardItem({
   data,
   borderColor,
+  backgroundColor,
   uniqueId,
   idOfOpen,
   setIdOfOpen,
 }: {
   data: Card;
   borderColor: string;
+  backgroundColor?: string | null;
   uniqueId: number;
   idOfOpen: number;
   setIdOfOpen: (id: number) => void;
@@ -117,6 +127,7 @@ function CardItem({
   const borders: Record<string, string> = {
     yakshaver: "border-gradient-pink",
     eagleeye: "border-gradient-eagleeye",
+    red: "border-gradient-red",
   };
 
   const contentRef = useRef<HTMLDivElement>(null);
@@ -132,10 +143,13 @@ function CardItem({
   return (
     <div
       className={cn(
+        "group cursor-pointer w-full hover:[--border-gradient-foreground:var(--gradient-gray)] [--border-gradient-foreground:var(--gradient-black)] rounded-xl p-6 shadow-2xl text-white transition-all duration-300",
         isOpen
           ? borders[borderColor ?? "eagleeye"]
-          : "border-gradient-transparent",
-        "group cursor-pointer w-full hover:[--border-gradient-foreground:var(--gradient-gray)] [--border-gradient-foreground:var(--gradient-black)] rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
+          : cn(
+              "border-gradient-transparent",
+              backgroundColor && cardBackgrounds[backgroundColor]
+            )
       )}
       onClick={() => {
         if (!isOpen) {

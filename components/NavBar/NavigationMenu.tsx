@@ -14,14 +14,20 @@ interface NavigationMenuBadgeProps {
   currentLocale?: string;
 }
 
+// Logos with aspect ratio below this threshold are rendered taller (h-12)
+// so their visible content width roughly matches "wide" logos (h-8).
+const COMPACT_LOGO_RATIO_THRESHOLD = 5;
+
 const NavigationMenuBadge = ({
   imgSrc,
   imgWidth,
   imgHeight,
   currentLocale = "en",
 }: NavigationMenuBadgeProps) => {
-  const aspectRatio = imgHeight > 0 ? imgWidth / imgHeight : 5;
-  const heightClass = aspectRatio < 5 ? "h-12" : "h-8";
+  const aspectRatio =
+    imgHeight > 0 ? imgWidth / imgHeight : COMPACT_LOGO_RATIO_THRESHOLD;
+  const heightClass =
+    aspectRatio < COMPACT_LOGO_RATIO_THRESHOLD ? "h-12" : "h-8";
 
   return (
     <NavigationMenu.Item className="gap-8 flex items-center w-full md:flex-1 md:w-auto">
