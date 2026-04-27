@@ -110,12 +110,8 @@ function NavBarClientContent({
   return (
     <MobileAnchor asChild>
       <NavigationMenuRoot ref={headerRef} mobileOpened={isOpen}>
-        {bannerImage ? (
+        {bannerImage && (
           <NavigationMenuBadge {...bannerImage} currentLocale={currentLocale} />
-        ) : (
-          <NavigationMenuItem className="mx-auto flex items-center w-full">
-            <div className="h-8 w-[125px] shrink-0" />
-          </NavigationMenuItem>
         )}
         {items.map((item, index) => {
           if (
