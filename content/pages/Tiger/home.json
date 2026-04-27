@@ -75,6 +75,7 @@
     }
   ],
   "pageFormatting": {
+    "backgroundColor": "near-black",
     "bottomPadding": "small"
   }
 }
