@@ -1,6 +1,6 @@
 export function TigerBackground() {
   const mask =
-    "radial-gradient(ellipse 50vw 100vh at 0% 0%, black 70%, transparent 100%)";
+    "radial-gradient(ellipse 50vw 100vh at 0% 10%, black 70%, transparent 100%)";
 
   return (
     <div
