@@ -3,7 +3,7 @@ title: Changing Email Groups
 date: '2026-04-27T14:00:00.000Z'
 ---
 
-After deploying Eagle Eye, you may want to change which email group is being scanned. This guide walks you through finding the correct place in Azure, updating the environment variable, and verifying everything works.
+After deploying EagleEye, you may want to change which email group is being scanned. This guide walks you through finding the correct place in Azure, updating the environment variable, and verifying everything works.
 
 If you haven’t set this up before, refer to the initial setup guide:
 
@@ -12,12 +12,12 @@ If you haven’t set this up before, refer to the initial setup guide:
 ## Prerequisites
 
 * Access to the Azure Portal
-* Permissions to modify the deployed Eagle Eye resources
+* Permissions to modify the deployed EagleEye resources
 * A valid email group name to switch to
 
 ### Step 1: Open the Top-Level Resource Group
 
-Navigate to the Azure Portal and locate the resource group used for your Eagle Eye deployment.
+Navigate to the Azure Portal and locate the resource group used for your EagleEye deployment.
 
 ![](/EagleEye/Guides/Portal-Default-Install-View.png)
 
@@ -27,7 +27,7 @@ Figure: Azure | EagleEye Resource Group
 
 Inside the resource group:
 
-1. Locate the Eagle Eye API container (usually named something like api or similar)
+1. Locate the EagleEye API container (usually named something like api or similar)
 2. Click into it
 
 ![](/EagleEye/Guides/API-Container-Containers.png)Figure: Azure | API Container
@@ -70,7 +70,7 @@ Make sure:
 
 \* The group exists
 
-\* Eagle Eye has permission to read it
+\* EagleEye has permission to read it
 
 ### Step 6: Restart the API
 
