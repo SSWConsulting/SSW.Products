@@ -18,6 +18,7 @@
   --gradient-black: linear-gradient(to right, #0e0e0e, #131313, #141414);
   --gradient-transparent: linear-gradient(transparent, transparent);
   --gradient-eagleeye: linear-gradient(#cc4141, #cc4141);
+  --gradient-charcoal: linear-gradient(to right, #2e2e2e, #333333, #383838);
   --mask-to-right: linear-gradient(to right, black, black, transparent);
   --mask-to-bottom: linear-gradient(to bottom, black, black, transparent);
   --color-ssw-red: #cc4141;

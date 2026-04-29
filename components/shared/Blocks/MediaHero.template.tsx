@@ -56,5 +56,11 @@ export const MediaHeroTemplate: Template = {
       name: "dateText",
       description: "Small text displayed below the button",
     },
+    {
+      type: "boolean",
+      label: "Hide Gradient Background",
+      name: "hideGradientBackground",
+      description: "Hide the default gradient backdrop (use when the page provides its own background)",
+    },
   ],
 };

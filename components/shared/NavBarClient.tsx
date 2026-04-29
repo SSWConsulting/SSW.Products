@@ -178,7 +178,7 @@ function NavBarClientContent({
         {buttons.map((button, index) => {
           return (
             <NavigationMenuItem
-              className={`hidden md:block ${
+              className={`hidden md:flex items-center ${
                 index === buttons.length - 1 ? "pl-5" : "pl-5 xl:pl-12"
               }`}
               key={index}

@@ -1,0 +1,22 @@
+{
+  "Logo": "/Tiger/Logo.svg",
+  "rightNavItem": [
+    {
+      "Title": "CONTACT US",
+      "JotFormId": "233468468973070",
+      "_template": "BookingButton"
+    }
+  ],
+  "imgSrc": "/Tiger/Logo.svg",
+  "imgWidth": 221,
+  "imgHeight": 52,
+  "leftNavItem": [],
+  "buttons": [
+    {
+      "Title": "CONTACT US",
+      "JotFormId": "233468468973070",
+      "variants": "outline",
+      "_template": "BookingButton"
+    }
+  ]
+}
