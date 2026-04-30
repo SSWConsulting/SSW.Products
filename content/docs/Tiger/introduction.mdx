@@ -1,26 +1,27 @@
 ---
 seo:
-  title: How to Use Your Own Transcript
+  title: How to Process Your Own Transcripts Locally
   description: >-
     Learn how to process your own transcript files with SSW Tiger.
-title: How to Use Your Own Transcript
+title: How to Process Your Own Transcripts Locally
 date: '2026-04-29T00:00:00.000Z'
 ---
 
-SSW Tiger turns meeting transcripts into beautiful, multi-tab dashboards — with summaries, action items, participant insights, and more. This guide walks you through generating your first dashboard from your own transcript.
+SSW Tiger turns meeting transcripts into dashboards with summaries, action items, participant insights, and more. This guide walks you through generating your first dashboard from your own transcript.
 
-> **Who is this guide for?**
-> This guide is for users running SSW Tiger **manually on their own machine** — for example, when you have a transcript file from any meeting tool and want to generate a dashboard yourself.
+**Who is this guide for?**
+
+This guide is for users running SSW Tiger **manually on their own machine**. For example, use this when you have a transcript file from any meeting tool and want to generate a dashboard yourself.
 
 ## Before You Start
 
 You'll need:
 
-- **A Claude account** — either a Claude Pro/Max subscription, or a pay-as-you-go API key from [console.anthropic.com](https://console.anthropic.com/settings/keys)
-- **Claude Code CLI installed** — Anthropic's agentic coding tool that runs in your terminal ([install here](https://code.claude.com/docs/en/quickstart))
-- **A meeting transcript** — `.vtt` is recommended (it includes speaker tags and timestamps, which makes the analysis much richer)
+- **A Claude account**: either a Claude Pro/Max subscription, or an API key from [console.anthropic.com](https://console.anthropic.com/settings/keys)
+- **Claude Code CLI installed**: Anthropic's agentic coding tool that runs in your terminal ([install here](https://code.claude.com/docs/en/quickstart))
+- **A meeting transcript**: `.vtt` is recommended because it includes speaker tags and timestamps, which makes the analysis much richer
 
-## Step 1 - Clone the Project
+## Step 1: Clone the Project
 
 Open a terminal and run:
 
@@ -29,7 +30,7 @@ git clone https://github.com/SSWConsulting/SSW.Tiger.git
 cd SSW.Tiger
 ```
 
-## Step 2 - Add Your Transcript
+## Step 2: Add Your Transcript
 
 We recommend organising your transcripts inside a `Projects` folder within the SSW.Tiger directory. It keeps everything tidy and makes it easy to find the dashboards later.
 
@@ -43,9 +44,9 @@ SSW.Tiger/
             └── transcript.vtt
 ```
 
-Create a folder for your project, then a date-named subfolder, and drop your transcript inside. This is optional — you can put your transcript anywhere — but it's the cleanest way to manage multiple meetings.
+Create a folder for your project, then a subfolder named after the meeting date, and drop your transcript inside. This is optional. You can put your transcript anywhere, but this structure keeps multiple meetings easier to manage.
 
-## Step 3 - Generate the Dashboard
+## Step 3: Generate the Dashboard
 
 In the `SSW.Tiger` folder, start Claude Code:
 
@@ -65,9 +66,9 @@ Claude will:
 2. Consolidate the results to keep names consistent across tabs
 3. Generate a polished HTML dashboard
 
-**Pro Tip**: You can drag-and-drop the transcript file straight into the Claude Code terminal — it pastes the path for you.
+**Pro Tip**: You can drag the transcript file straight into the Claude Code terminal. It pastes the path for you.
 
-## Step 4 - View Your Dashboard
+## Step 4: View Your Dashboard
 
 The dashboard is saved alongside your transcript:
 
@@ -80,13 +81,10 @@ Open it in your browser:
 - **Windows**: `start Projects\test-project\2026-04-29\dashboard\index.html`
 - **macOS / Linux**: `open Projects/test-project/2026-04-29/dashboard/index.html`
 
-You're done — that's your dashboard.
+You're done. That's your dashboard.
 
 
-## Additional Resources
-
-**Pro Tips**:
+## Additional Tips
 
 - Start with a transcript you know well, so you can spot what the dashboard gets right (and what to tweak)
-- Run a few sample meetings before customizing — defaults work well for most teams
 - The more meetings you process for the same project, the richer the **Trends** tab becomes

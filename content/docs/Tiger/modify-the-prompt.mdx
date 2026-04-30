@@ -1,180 +1,123 @@
 ---
 seo:
-  title: How to Modify the Prompt - Tailor Your Dashboard
+  title: How to Modify Prompts to Tailor Your Dashboard locally
   description: >-
     Learn how to modify SSW Tiger's AI prompt to tailor what gets extracted
     from your meeting transcripts and shown on your dashboard.
-title: How to Modify the Prompt - Tailor Your Dashboard
+title: How to Modify Prompts to Tailor Your Dashboard locally
 date: '2026-04-29T00:00:00.000Z'
 ---
 
-SSW Tiger comes with sensible defaults, but every team is different. This guide shows you how to change what the dashboard looks like, what it analyses, and the tone it uses — without writing any code.
+SSW Tiger comes with sensible defaults, but every team is different. This guide shows you how to change what the dashboard looks like, what it analyses, and the tone it uses without writing any code.
 
 **Who is this guide for?**
 
 This guide is for users running SSW Tiger **locally on their own machine**. The edits below change what your local copy produces.
 
-The "prompt" is just a few plain-English text files. Edit them, run against a transcript, see the new result. That's the whole loop.
+The prompt is just a few text files written in plain English. Edit them, run against a transcript, then check the result. That's the whole loop.
 
-## The 3 Files You'll Edit
+## The Easiest Way: Just Ask Claude
+
+You don't need to hunt through files or write any code. Open Claude Code in the `SSW.Tiger` folder and **describe the change in plain English**. Claude already knows where the prompt lives and can edit it for you.
+
+```bash
+claude
+```
+
+Then say things like:
+
+- "Make the dashboard tone a bit softer. Use fewer hard truths and focus more on areas to improve."
+- "Remove the Trends tab. We only have one meeting so far."
+- "Add a Customer Quotes section to the Overview tab. Max 3 bullets."
+- "Replace SSW branding with Acme Corp. Our brand red is #1A73E8."
+- "Anonymise all participant names. Use Person 1, Person 2, etc."
+
+Claude will figure out which files to edit (`CLAUDE.md`, the agent files, or the template) and make the changes. Then run a sample transcript again to see the result.
+
+## Customisation Ideas
+
+Here are the most common things teams change. Try any of these as a Claude prompt, and rephrase them to match what you need.
+
+### Tone & Style
+
+- "Make the analysis less harsh and more constructive."
+- "Be sharper. Name names, quote the exact sentence, and avoid hedging language."
+- "Use British English everywhere."
+
+### Branding
+
+- "Rebrand the dashboard for [Your Company]. Primary colour is [#hex]. Replace the SSW logo motif."
+- "Use our team's profile photos from [URL pattern] instead of SSW People."
+
+### Structure
+
+- "Rename the Trends tab to History."
+- "Remove the Analytics tab. We don't need cost calculations."
+- "Add a Risks section to the Overview tab. Highlight anything blocking the next sprint."
+
+### Content Length
+
+- "Shorten everything. Max 3 bullets per section, max 1 sentence per bullet."
+- "Make insights longer. Give more context and examples for each one."
+
+### Privacy
+
+- "Anonymise participant names. Keep the same mapping across all tabs."
+- "Don't show client names anywhere. Replace them with Client A, Client B, etc."
+
+### Analysis Focus
+
+- "Stop calling out elephants in the room. Keep insights neutral."
+- "Add a metric for time spent off topic. Track how many minutes were spent on tangents."
+- "Track question response time. Show how quickly each person answered when asked something."
+
+## Tips for Better Results
+
+- **Be specific.** "Be more concise" is vague. "Max 2 sentences per insight, no adjectives" works.
+- **Show, don't just tell.** If you want a specific format, paste an example into the chat.
+- **Change one thing at a time.** If the output gets weird after five changes, you won't know which one caused it.
+- **Test after each change.** Run a transcript you know well, so you can spot what shifted.
+
+## What NOT to Change
+
+Even if you ask Claude, it should leave these alone. They are important parts of the system:
+
+- The **Consolidation** step: this stops Tab 1 saying "Alice" while Tab 3 says "Product Owner"
+- The **Participant Resolution** rules: they prevent Claude from inventing people who weren't in the meeting
+- The **Tailwind and Chart.js CDN links** in the template: without them, styling breaks
+
+If a change touches any of these, Claude will (and should) push back. Trust that.
+
+## Going Deeper
+
+If you'd rather peek under the hood, the customisation lives in three files:
 
 ### `CLAUDE.md`
 
-Controls the dashboard structure — tabs, sections, and rules.
+Controls the dashboard structure, including tabs, sections, and rules.
 
 ### `.claude/agents/*.md`
 
-Controls how each AI analyst thinks — tone, depth, and what to look for.
+Controls how each AI analyst thinks, including tone, depth, and what to look for.
 
 ### `templates/dashboard.html`
 
-Controls the visual look — fonts, colors, and layout.
+Controls the visual look, including fonts, colours, and layout.
 
-## How a Dashboard Gets Built
-
-1. **Transcript** — your `.vtt` file is the source material
-2. **Specialist agents** — the files in `.claude/agents/` analyse different parts of the meeting
-3. **Consolidator** — merges the agent outputs and keeps names consistent
-4. **Dashboard rules** — `CLAUDE.md` defines the tabs, sections, and output rules
-5. **Final HTML** — `templates/dashboard.html` shapes the finished dashboard
-
-So if you want to change…
-
-- **What gets analysed** → edit one of the agent files
-- **How it's presented** → edit `CLAUDE.md`
-- **How it looks** → edit `templates/dashboard.html`
-
-## Quick Wins - 5-Minute Customisations
-
-### 1. Rebrand to Your Company
-
-Open `templates/dashboard.html` and find-and-replace:
-
-- `SSW` → your company name
-- `#CC4141` → your brand's primary color
-
-### 2. Make the Tone Softer
-
-By default, the analysis is direct — it talks about "hard truths" and "elephants in the room". To soften:
-
-Open `.claude/agents/insights-generator.md` and rewrite phrases like these:
-
-- Change **"Find what's NOT being said"** to **"Surface things worth discussing next time"**
-- Change **"Deliver uncomfortable truths"** to **"Offer constructive observations"**
-- Change **"Expose dysfunction"** to **"Highlight areas for improvement"**
-
-The same idea works for `people-analyzer.md` — change the feedback tone there.
-
-### 3. Make the Tone Sharper
-
-Want more bite, not less? Add lines like this to any agent file:
-
-```
-Be specific. Name names. Quote the exact sentence that proves your point.
-Avoid hedging language ("might", "could", "perhaps").
-```
-
-### 4. Rename or Remove a Tab
-
-In `CLAUDE.md`, find the **Dashboard Requirements** section. The default 5 tabs are **Overview**, **Timeline**, **People**, **Insights**, and **Trends**.
-
-**To remove a tab** (for example, "Trends" if you don't have meeting history yet):
-
-1. Delete the **Tab 5: Trends** section in `CLAUDE.md`
-2. Open `templates/dashboard.html`, search for `Trends`, and remove the tab button and panel
-
-**To rename a tab**:
-
-1. Change the heading in `CLAUDE.md` (e.g. "Trends" → "History")
-2. Update the matching label in `templates/dashboard.html`
-
-### 5. Add Your Own Section
-
-Say you want a **Customer Quotes** section in the Overview tab.
-
-In `CLAUDE.md`, under **Tab 1: Overview**, add:
-
-```
-- Customer Quotes — direct quotes about customers/users, max 3 bullets,
-  attributed by canonical name
-```
-
-In `templates/dashboard.html`, drop in a placeholder where you want it to render:
-
-```
-<h3>Customer Quotes</h3>
-<ul>CUSTOMER_QUOTES</ul>
-```
-
-Claude will populate it on the next run.
-
-
-## Common Customisations by Goal
-
-### "I want shorter dashboards"
-
-In `CLAUDE.md`:
-
-- Reduce the "max bullets" rules (e.g. "max 5" → "max 3")
-- Remove the Trends or Analytics tab entirely
-
-### "I want anonymised dashboards"
-
-In `CLAUDE.md`, find the **Privacy rules** block. Clients are already anonymised by default. To anonymise staff too, add:
-
-```text
-- Staff anonymization: Replace participant names with "Person 1",
-  "Person 2", etc. Keep the same mapping across all tabs.
-```
-
-### "I want my own team's people, not SSW's"
-
-Profile photos default to the SSW People directory. To use your own:
-
-1. Open `CLAUDE.md` and search for `SSW.People.Profiles`
-2. Replace the URL pattern with your own (your intranet, Slack avatars, or just remove it to fall back to initials)
-
-### "I want different metrics"
-
-Open `.claude/agents/analytics-generator.md`. Add or remove rules like these:
-
-- Add **"Count off-topic detours"**
-- Add **"Track question response time"**
-- Remove **"Calculate Gini coefficient"**
-- Remove **"Calculate meeting cost in dollars"**
-
-### "I don't want 'elephants in the room'"
-
-Open `.claude/agents/insights-generator.md` and remove the elephants requirement. Then in `CLAUDE.md`, remove the matching sub-section under **Tab 4: Insights**.
+You can open these directly and edit by hand. They're plain English, not code. For most teams, asking Claude is faster and safer.
 
 ## Testing Your Changes
 
-The cycle is fast — usually under a minute per try.
+The cycle is fast and usually takes under a minute per try.
 
-1. Edit `CLAUDE.md` or an agent file
-2. just ask Claude Code: "Re-process the test-project transcript with the new instructions."
+1. Make one change.
+2. Ask Claude Code: "Process the test project transcript again with the new instructions."
+3. Open the dashboard and compare it with your sample meeting.
 
 **Pro Tip**: Keep one sample `.vtt` you know really well. You'll spot what changed faster.
 
-## Tips for Editing the Prompt
+## Additional Tips
 
-- **Change one thing at a time**. If you edit five things and the output gets weird, you won't know which change caused it.
-- **Be specific**. "Be more concise" is vague. "Max 2 sentences per insight, no adjectives" works.
-- **Show, don't just tell**. If you want a specific format, paste a tiny example into the file.
-- **Keep agents focused**. Don't pile new responsibilities onto one agent — split them up.
-- **Read the existing rules first**. `CLAUDE.md` already has rules like "no markdown files, only HTML" and "use canonical names". Conflicts cause messy output.
-
-## What NOT to Edit
-
-Unless you know what you're doing, leave these alone:
-
-- The **Consolidation** step in `CLAUDE.md` — it's what stops Tab 1 saying "Alice" while Tab 3 says "Product Owner"
-- The **Participant Resolution** rules — they prevent Claude from inventing people who weren't in the meeting
-- The Tailwind and Chart.js CDN links in `templates/dashboard.html` — without them, styling breaks
-
-## Additional Resources
-
-**Pro Tips**:
-
-- Start by tweaking tone before changing structure — most teams just want the analysis to "sound right"
+- Start by tweaking tone before changing structure. Most teams just want the analysis to "sound right"
 - Save a copy of `CLAUDE.md` before big edits, so you can always roll back
+- Read the existing rules first. `CLAUDE.md` already has rules like "no markdown files, only HTML" and "use canonical names". Conflicts cause messy output.
