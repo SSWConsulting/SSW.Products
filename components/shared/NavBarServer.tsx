@@ -47,7 +47,8 @@ export default async function NavBarServer({ product, locale }: NavBarServerProp
 
   const buttons =
     data.navigationBar.buttons?.filter((button) => button !== null) || [];
-  const { imgSrc, imgHeight, imgWidth } = data.navigationBar || {};
+  const { imgSrc, imgHeight, imgWidth, showLanguageToggle } =
+    data.navigationBar || {};
   const bannerImage =
     imgSrc && imgHeight && imgWidth
       ? { imgHeight, imgSrc, imgWidth }
@@ -58,7 +59,7 @@ export default async function NavBarServer({ product, locale }: NavBarServerProp
       buttons={buttons}
       items={items}
       currentLocale={locale || 'en'}
-      product={product}
+      showLanguageToggle={showLanguageToggle ?? false}
     />
   );
 }

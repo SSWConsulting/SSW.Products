@@ -36,6 +36,13 @@ export const navigationBarCollection: Collection = {
   fields: [
     ...optimizedImageField,
     {
+      name: "showLanguageToggle",
+      label: "Show Language Toggle",
+      type: "boolean",
+      description:
+        "Show the English/Chinese language switcher in the navigation bar. Turn on only for products that have a Chinese version.",
+    },
+    {
       name: "leftNavItem",
       label: "Menu Items",
       list: true,

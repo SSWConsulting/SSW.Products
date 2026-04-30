@@ -39,7 +39,7 @@ interface NavBarClientProps {
   buttons: NavigationBarButtons[];
   items: (NavItem | NavGroup)[];
   currentLocale: string;
-  product: string;
+  showLanguageToggle: boolean;
 
   bannerImage?: {
     imgSrc: string;
@@ -48,14 +48,12 @@ interface NavBarClientProps {
   };
 }
 
-const PRODUCTS_WITH_TRANSLATIONS = new Set(["YakShaver"]);
-
 export default function NavBarClient({
   buttons,
   items,
   currentLocale,
   bannerImage,
-  product,
+  showLanguageToggle,
 }: NavBarClientProps) {
   const contextualHref = useContextualLink();
   return (
@@ -65,7 +63,7 @@ export default function NavBarClient({
         items={items}
         currentLocale={currentLocale}
         bannerImage={bannerImage}
-        product={product}
+        showLanguageToggle={showLanguageToggle}
         contextualHref={contextualHref}
       />
     </MobileMenuRoot>
@@ -77,10 +75,9 @@ function NavBarClientContent({
   items,
   currentLocale,
   bannerImage,
-  product,
+  showLanguageToggle,
   contextualHref,
 }: NavBarClientProps & { contextualHref: (href: string) => string }) {
-  const showLanguageToggle = PRODUCTS_WITH_TRANSLATIONS.has(product);
   const { isOpen } = useMenuContext();
   const headerRef = useRef<HTMLElement>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
