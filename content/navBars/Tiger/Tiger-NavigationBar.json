@@ -10,7 +10,13 @@
   "imgSrc": "/Tiger/Logo.svg",
   "imgWidth": 221,
   "imgHeight": 52,
-  "leftNavItem": [],
+  "leftNavItem": [
+    {
+      "label": "Docs",
+      "href": "/docs",
+      "_template": "stringItem"
+    }
+  ],
   "buttons": [
     {
       "Title": "CONTACT US",

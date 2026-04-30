@@ -1,0 +1,92 @@
+---
+seo:
+  title: How to Use Your Own Transcript
+  description: >-
+    Learn how to process your own transcript files with SSW Tiger.
+title: How to Use Your Own Transcript
+date: '2026-04-29T00:00:00.000Z'
+---
+
+SSW Tiger turns meeting transcripts into beautiful, multi-tab dashboards — with summaries, action items, participant insights, and more. This guide walks you through generating your first dashboard from your own transcript.
+
+> **Who is this guide for?**
+> This guide is for users running SSW Tiger **manually on their own machine** — for example, when you have a transcript file from any meeting tool and want to generate a dashboard yourself.
+
+## Before You Start
+
+You'll need:
+
+- **A Claude account** — either a Claude Pro/Max subscription, or a pay-as-you-go API key from [console.anthropic.com](https://console.anthropic.com/settings/keys)
+- **Claude Code** — the AI tool that does the analysis ([install here](https://docs.anthropic.com/claude/docs/claude-code))
+- **A meeting transcript** — `.vtt` is recommended (it includes speaker tags and timestamps, which makes the analysis much richer)
+
+## Step 1 - Clone the Project
+
+Open a terminal and run:
+
+```bash
+git clone https://github.com/SSWConsulting/SSW.Tiger.git
+cd SSW.Tiger
+```
+
+## Step 2 - Add Your Transcript
+
+We recommend organising your transcripts inside a `Projects` folder within the SSW.Tiger directory. It keeps everything tidy and makes it easy to find the dashboards later.
+
+Suggested structure:
+
+```
+SSW.Tiger/
+└── Projects/
+    └── test-project/
+        └── 2026-04-29/
+            └── transcript.vtt
+```
+
+Create a folder for your project, then a date-named subfolder, and drop your transcript inside. This is optional — you can put your transcript anywhere — but it's the cleanest way to manage multiple meetings.
+
+## Step 3 - Generate the Dashboard
+
+In the `SSW.Tiger` folder, start Claude Code:
+
+```bash
+claude
+```
+
+If it's your first time, log in when prompted. Then just tell Claude what you want, for example:
+
+```
+Process the transcript of test-project on 2026-04-29
+```
+
+Claude will:
+
+1. Run 5 specialised analysis agents in parallel
+2. Consolidate the results to keep names consistent across tabs
+3. Generate a polished HTML dashboard
+
+**Pro Tip**: You can drag-and-drop the transcript file straight into the Claude Code terminal — it pastes the path for you.
+
+## Step 4 - View Your Dashboard
+
+The dashboard is saved alongside your transcript:
+
+```
+Projects/test-project/2026-04-29/dashboard/index.html
+```
+
+Open it in your browser:
+
+- **Windows**: `start Projects\test-project\2026-04-29\dashboard\index.html`
+- **macOS / Linux**: `open Projects/test-project/2026-04-29/dashboard/index.html`
+
+You're done — that's your dashboard.
+
+
+## Additional Resources
+
+**Pro Tips**:
+
+- Start with a transcript you know well, so you can spot what the dashboard gets right (and what to tweak)
+- Run a few sample meetings before customising — defaults work well for most teams
+- The more meetings you process for the same project, the richer the **Trends** tab becomes

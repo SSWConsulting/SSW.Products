@@ -39,6 +39,7 @@ interface NavBarClientProps {
   buttons: NavigationBarButtons[];
   items: (NavItem | NavGroup)[];
   currentLocale: string;
+  product: string;
 
   bannerImage?: {
     imgSrc: string;
@@ -47,11 +48,14 @@ interface NavBarClientProps {
   };
 }
 
+const PRODUCTS_WITH_TRANSLATIONS = new Set(["YakShaver"]);
+
 export default function NavBarClient({
   buttons,
   items,
   currentLocale,
   bannerImage,
+  product,
 }: NavBarClientProps) {
   const contextualHref = useContextualLink();
   return (
@@ -61,6 +65,7 @@ export default function NavBarClient({
         items={items}
         currentLocale={currentLocale}
         bannerImage={bannerImage}
+        product={product}
         contextualHref={contextualHref}
       />
     </MobileMenuRoot>
@@ -72,8 +77,10 @@ function NavBarClientContent({
   items,
   currentLocale,
   bannerImage,
+  product,
   contextualHref,
 }: NavBarClientProps & { contextualHref: (href: string) => string }) {
+  const showLanguageToggle = PRODUCTS_WITH_TRANSLATIONS.has(product);
   const { isOpen } = useMenuContext();
   const headerRef = useRef<HTMLElement>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -187,9 +194,11 @@ function NavBarClientContent({
             </NavigationMenuItem>
           );
         })}
-        <NavigationMenuItem className="hidden md:flex pl-5 items-center">
-          <LanguageToggle currentLocale={currentLocale} />
-        </NavigationMenuItem>
+        {showLanguageToggle && (
+          <NavigationMenuItem className="hidden md:flex pl-5 items-center">
+            <LanguageToggle currentLocale={currentLocale} />
+          </NavigationMenuItem>
+        )}
         <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
           <MobileMenuTrigger />
           <MobileMenuContent headerHeight={headerHeight}>
@@ -228,9 +237,11 @@ function NavBarClientContent({
                   );
                 }
               })}
-              <li className="flex items-center py-1 mb-0 mt-4">
-                <LanguageToggle currentLocale={currentLocale} />
-              </li>
+              {showLanguageToggle && (
+                <li className="flex items-center py-1 mb-0 mt-4">
+                  <LanguageToggle currentLocale={currentLocale} />
+                </li>
+              )}
             </>
           </MobileMenuContent>
         </NavigationMenuItem>
