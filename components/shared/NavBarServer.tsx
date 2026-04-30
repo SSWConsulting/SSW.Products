@@ -47,17 +47,19 @@ export default async function NavBarServer({ product, locale }: NavBarServerProp
 
   const buttons =
     data.navigationBar.buttons?.filter((button) => button !== null) || [];
-  const { imgSrc, imgHeight, imgWidth } = data.navigationBar || {};
+  const { imgSrc, imgHeight, imgWidth, showLanguageToggle } =
+    data.navigationBar || {};
   const bannerImage =
     imgSrc && imgHeight && imgWidth
       ? { imgHeight, imgSrc, imgWidth }
       : undefined;
   return (
-    <NavBarClient 
-      bannerImage={bannerImage} 
-      buttons={buttons} 
-      items={items} 
+    <NavBarClient
+      bannerImage={bannerImage}
+      buttons={buttons}
+      items={items}
       currentLocale={locale || 'en'}
+      showLanguageToggle={showLanguageToggle ?? false}
     />
   );
 }
