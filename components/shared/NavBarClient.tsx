@@ -39,6 +39,7 @@ interface NavBarClientProps {
   buttons: NavigationBarButtons[];
   items: (NavItem | NavGroup)[];
   currentLocale: string;
+  showLanguageToggle: boolean;
 
   bannerImage?: {
     imgSrc: string;
@@ -52,6 +53,7 @@ export default function NavBarClient({
   items,
   currentLocale,
   bannerImage,
+  showLanguageToggle,
 }: NavBarClientProps) {
   const contextualHref = useContextualLink();
   return (
@@ -61,6 +63,7 @@ export default function NavBarClient({
         items={items}
         currentLocale={currentLocale}
         bannerImage={bannerImage}
+        showLanguageToggle={showLanguageToggle}
         contextualHref={contextualHref}
       />
     </MobileMenuRoot>
@@ -72,6 +75,7 @@ function NavBarClientContent({
   items,
   currentLocale,
   bannerImage,
+  showLanguageToggle,
   contextualHref,
 }: NavBarClientProps & { contextualHref: (href: string) => string }) {
   const { isOpen } = useMenuContext();
@@ -187,9 +191,11 @@ function NavBarClientContent({
             </NavigationMenuItem>
           );
         })}
-        <NavigationMenuItem className="hidden md:flex pl-5 items-center">
-          <LanguageToggle currentLocale={currentLocale} />
-        </NavigationMenuItem>
+        {showLanguageToggle && (
+          <NavigationMenuItem className="hidden md:flex pl-5 items-center">
+            <LanguageToggle currentLocale={currentLocale} />
+          </NavigationMenuItem>
+        )}
         <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
           <MobileMenuTrigger />
           <MobileMenuContent headerHeight={headerHeight}>
@@ -228,9 +234,11 @@ function NavBarClientContent({
                   );
                 }
               })}
-              <li className="flex items-center py-1 mb-0 mt-4">
-                <LanguageToggle currentLocale={currentLocale} />
-              </li>
+              {showLanguageToggle && (
+                <li className="flex items-center py-1 mb-0 mt-4">
+                  <LanguageToggle currentLocale={currentLocale} />
+                </li>
+              )}
             </>
           </MobileMenuContent>
         </NavigationMenuItem>
