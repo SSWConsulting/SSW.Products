@@ -53,7 +53,7 @@ const fetchDocData = async (globPattern: string) => {
 
 async function createIndices() {
   const appID = process.env.ALGOLIA_APP_ID;
-  const apiKey = process.env.ALGOLIA_API_KEY;
+  const apiKey = process.env.ALGOLIA_WRITE_API_KEY;
   const productListJson = process.env.NEXT_PUBLIC_PRODUCT_LIST;
 
   if (!appID || !apiKey) {
