@@ -6,8 +6,12 @@ The purpose of this repository is to host the product pages for [SSW's](https://
 
 ## Deployed Sites
 
+**Note: Currently only the docs pages for TimePro are deployed. They are being proxied to the main app via [CloudFlare](https://github.com/SSWConsulting/SSW.Cloudflare).**
+
 - [YakShaver (yakshaver.ai)](https://yakshaver.ai)
 - [EagleEye (ssweagleeye.com)](https://ssweagleeye.com)
+- [TimePro (sswtimepro.com)](https://sswtimepro.com/docs)
+- [SSW Tiger (sswtiger.com)](https://sswtiger.com)
 
 The `YakShaver` and `EagleEye` websites should be used as a guide for creating future product pages. 
 
@@ -29,17 +33,15 @@ This is enabled by default, and can be configured in the respective `{product}-f
 
 ```bash
 
-yarn install
+pnpm install
 
 ```
-
-**Note for Windows**: Remove `TINA_PUBLIC_IS_LOCAL=true` from `package.json`, only keeping the `tinacms` command.
 
 3. Run the development server:
 
 ```bash
 
-yarn dev
+pnpm dev
 
 ```
 
@@ -86,15 +88,16 @@ This also means we have to set up the file structure for where we store our cont
 
 Note in this instance Product1 and Product2 are just the product names such like [YakShaver](www.YakShaver.ai) or TimePro
 
-## Updating the docs pages
+## Algolia Search Indices
 
-Because we are using Algolia for our search functionality you'll need to rebuild the search indices when changes are made to the docs.
-In order to do this complete the following steps:
 
-1. Get your changes to the docs pages merged into `main`
-2. Pull the `main` branch on your local machine
-3. Ensure that you have the Algolia environment variables in your env file you retrieved in the previous section (i.e. **Running this project locally**)
-4. After ensuring that you've installed the node version in the `.nvmrc` file in the project root, Run the following command `yarn run rebuild-search-indices`
+The search indices for the docs pages (e.g. `yakshaver.ai/docs`) are powered by Algolia, mearning that when changes are made to the docs, the search indices need to be rebuilt to reflect those changes.
+
+This re-indexing is triggered automatically via GitHub Actions on pushes to `main` or manually via workflow dispatch.
+
+For detailed instructions on how to rebuild the Algolia search indices, see [scripts/README.md](scripts/README.md).
+
+
 
 ## Wanting to use the Middleware for your own site?
 

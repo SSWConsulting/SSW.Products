@@ -17,12 +17,35 @@ export const CardAndImageTemplate: Template = {
         component: "textarea",
       },
     },
-
+    {
+      name: "borderColor",
+      label: "Border Color",
+      type: "string",
+      options: [
+        { value: "yakshaver", label: "Yakshaver" },
+        { value: "eagleeye", label: "Eagleeye" },
+      ],
+    },
+    {
+      name: "backgroundColor",
+      label: "Card Background Color",
+      description: "Background of non-selected cards.",
+      type: "string",
+      options: [
+        { value: "default", label: "Default" },
+        { value: "charcoal", label: "Charcoal" },
+      ],
+    },
     {
       name: "CardAndImageItem",
       label: "Card and Image Child Item",
       list: true,
       type: "object",
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.Header || "Untitled Card" };
+        },
+      },
       fields: [
         {
           name: "AboveHeaderText",

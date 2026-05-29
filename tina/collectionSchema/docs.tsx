@@ -2,11 +2,19 @@ import { optimizedYoutubeFields } from "@comps/shared/Blocks/VideoDisplay.templa
 import { Collection, TinaField } from "tinacms";
 import { seoInformation } from "../shared/SEOInformation";
 import { imageEmbedTemplate } from "@comps/shared/Blocks/ImageEmbed";
+import { fileNameField } from "@tina/shared/FileName";
 
 export const docsCollection: Collection = {
   label: "Docs",
   name: "docs",
   path: "content/docs/",
+  ui: {
+
+    router: ({document}) => { 
+      return `/docs/${document._sys.filename}`;
+    },
+    ...fileNameField
+  },
   format: "mdx",
   fields: [
     seoInformation as TinaField,
@@ -79,6 +87,20 @@ export const docsCollection: Collection = {
                   label: "Youtube Embed",
                   fields: [...optimizedYoutubeFields],
                 },
+              ],
+            },
+          ],
+        },
+        {
+          name: "OutlineBox",
+          label: "Outline Box",
+          fields: [
+            {
+              type: "rich-text",
+              name: "content",
+              label: "Content",
+              templates: [
+                imageEmbedTemplate
               ],
             },
           ],

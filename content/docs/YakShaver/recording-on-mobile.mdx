@@ -5,44 +5,56 @@ title: Recording Shaves with Your Mobile Phone
 date: '2025-09-16T22:00:00.000Z'
 ---
 
-Need to YakShave from your phone? You’ve got two easy options:
+Need to YakShave from your phone? You’ve got 3 easy options:
 
-## Option 1: Recording with your mobile phone
+* **Option 1:** Record with your mobile phone camera
+* **Option 2:** Record your mobile screen (Android / iOS)
+* **Option 3:** Use Microsoft Teams mobile app
 
-You can record either with the **camera app** or by **recording your screen**. In both cases, upload the video to **OneDrive → Recordings**, and YakShaver will automatically process it.
-
-##### Prerequisites
-
-* OneDrive App installed, signed in to the account you want the YakShave to be picked up from
-
-[![App Store icon](/YakShaver/Docs/App-Store.svg)](https://apps.apple.com/au/app/microsoft-onedrive/id477537958)  [![Google Play icon](/YakShaver/Docs/Google-Play-App.svg)](https://play.google.com/store/apps/details?id=com.microsoft.skydrive\&hl=en_AU\&gl=US)
-
-* Ensure that [YakShaver is “**ask**“ or ”**on**"](/docs/introduction)
-
-###
-
-### 1-A: Record with the Camera App
-
-1. Open the Camera app → switch to Video mode.
-2. Tap Record and capture your YakShave.
-3. Your video will be saved in your phone’s Photos/Gallery app.
-4. Open the saved video → Share/Upload to OneDrive → Recordings.
-5. YakShaver will automatically pick up the video and update you on Teams.
+<OutlineBox
+  content={<>
+    **Prerequisites**
+    
+    * OneDrive App installed, signed in to the account you want the YakShave to be picked up from
+    
+    [![App Store icon](/YakShaver/Docs/App-Store.svg)](https://apps.apple.com/au/app/microsoft-onedrive/id477537958)  [![Google Play icon](/YakShaver/Docs/Google-Play-App.svg)](https://play.google.com/store/apps/details?id=com.microsoft.skydrive\&hl=en_AU\&gl=US)
+    
+    * Ensure that [YakShaver is “**ask**“ or ”**on**"](/docs/introduction)
+  </>}
+/>
 
 <Collapsible
   content={<>
-
-1. Swipe down from the top of the screen to reveal the Quick Settings and click on the Screen Record button. If you can't find it, you may have to [add it there](https://support.google.com/android/answer/9075928).
-    <imageEmbed alt="Image" size="small" showBorder={true} src="/YakShaver/Docs/Android-screen-recorder.png" />
-2. Before starting the recording, be sure to select Record this screen and tick Record audio and Show touches on screen.
-    <imageEmbed alt="Image" size="small" showBorder={true} src="/YakShaver/Docs/Android-screen-recorder-setup.png" />
-3. Record your YakShave.  
+    You can record either with the **camera app** or by **recording your screen**. In both cases, upload the video to **OneDrive → Recordings**, and YakShaver will automatically process it.
     
-4. Upload it to your OneDrive Recordings folder. YakShaver will pick it up automatically.  
+    1. Open the Camera app → switch to Video mode.
+    2. Tap Record and capture your YakShave.
+    3. Your video will be saved in your phone’s Photos/Gallery app.
+    4. Open the saved video → Share/Upload to OneDrive → Recordings.
+    5. YakShaver will automatically pick up the video and update you on Teams.
+  </>}
+  title="Option 1: Recording with your mobile phone camera"
+  defaultOpen={true}
+  level="2"
+/>
 
+## Option 2: Record your mobile screen
+
+<Collapsible
+  content={<>
+1. Swipe down from the top of the screen to reveal the Quick Settings and click on the Screen Record button. If you can't find it, you may have to [add it there](https://support.google.com/android/answer/9075928).
+    
+    <imageEmbed alt="Image" size="small" showBorder={true} src="/YakShaver/Docs/Android-screen-recorder.png" />
+    
+2. Before starting the recording, be sure to select Record this screen and tick Record audio and Show touches on screen.
+    
+    <imageEmbed alt="Image" size="small" showBorder={true} src="/YakShaver/Docs/Android-screen-recorder-setup.png" />
+    
+3. Record your YakShave.
+4. Upload it to your OneDrive Recordings folder. YakShaver will pick it up automatically.
 5. Then your Shave will be created…
   </>}
-  title="1-B: Record Your Screen with Android"
+  title="2A: Screen recording on Android"
   defaultOpen={false}
   level="3"
   icon="/YakShaver/Docs/android.svg"
@@ -51,17 +63,18 @@ You can record either with the **camera app** or by **recording your screen**. I
 <Collapsible
   content={<>
 1. Swipe down from the top-right corner to open the Control Center and click on the Start Screen Recording button. If you can't find it, you may have to [add it there](https://support.apple.com/en-il/guide/iphone/iph52f6e1987/26/ios/26).
+    
     <imageEmbed alt="Image" size="small" showBorder={true} src="/YakShaver/Docs/IOS-screen-recorder.jpg" />
+    
 2. Turn on Microphone Audio by long-pressing the record button in the control center
-    <imageEmbed alt="Image" size="small" showBorder={true} src="/YakShaver/Docs/IOS-screen-recorder-setup.jpg" />    
 
+    <imageEmbed alt="Image" size="small" showBorder={true} src="/YakShaver/Docs/IOS-screen-recorder-setup.jpg" />
+    
 3. Record your YakShave.
-
-4. Upload it to your OneDrive Recordings folder. YakShaver will pick it up automatically.   
-
+4. Upload it to your OneDrive Recordings folder. YakShaver will pick it up automatically.
 5. Then your Shave will be created…
   </>}
-  title="1-C: Record Your Screen with iOS"
+  title="2B: Screen recording on iOS"
   icon="/YakShaver/Docs/apple.svg"
   level="3"
   defaultOpen={false}
@@ -70,25 +83,24 @@ You can record either with the **camera app** or by **recording your screen**. I
 <Collapsible
   content={<>
     Provided that you have already set up [Microsoft Teams](/docs/recording-work-item-teams), you can use the mobile Teams app to record a YakShave
-1. Open Teams on your mobile phone  
     
+1. Open Teams on your mobile phone
 2. Go to YakShaver, type “**on**” to allow YakShaver to pick up recorded videos
-    
 3. Go to the Calendar tab and click on the meeting icon on the top-right corner
+    
     <imageEmbed alt="Image" size="small" showBorder={true} src="/YakShaver/Docs/Teams-start-meeting.png" />
     
 4. Start a meeting and share your screen
-    
 5. Record your YakShave
-    
 6. Upload it to your OneDrive Recordings folder. YakShaver will pick it up automatically
-    
 7. Then your Shave will be created…
   </>}
   level="2"
-  title="Option 2: Use Microsoft Teams mobile app"
+  title="Option 3: Use Microsoft Teams mobile app"
   icon="/YakShaver/Docs/teams.svg"
 />
+
+## **Watch a quick example in action**
 
 <Youtube thumbnail="https://img.youtube.com/vi/AxBS6JYcLIQ/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/AxBS6JYcLIQ?si=_onllfJmKWgzI86J" size="medium" />
 
