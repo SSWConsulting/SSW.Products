@@ -8,7 +8,7 @@ const SearchResults = () => {
     <>
       {results.nbHits === 0 && results.query !== "" ? (
         <p className="text-[#797979] items-center justify-center max-w-full truncate text-nowrap wrap gap-2 flex pt-6 px-4">
-          No results found for "{results.query}"
+          No results found for &#34;{results.query}&#34;
         </p>
       ) : (
         <Hits
