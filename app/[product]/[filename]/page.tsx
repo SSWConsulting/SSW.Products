@@ -66,5 +66,5 @@ export default async function FilePage({ params }: FilePageProps) {
 
 // Content publishes via TinaCMS git commits that trigger a redeploy (which
 // rebuilds these pages anyway), so sub-minute freshness was redundant. 1h TTL
-// cuts time-based regenerations ~60x. TODO: move to on-demand revalidation.
+// cuts time-based regenerations ~60x.
 export const revalidate = 3600;
