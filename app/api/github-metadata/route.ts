@@ -74,13 +74,22 @@ export async function GET(request: Request) {
     const latestCommit = latestCommits[0];
     const firstCommit = allCommits.length ? allCommits.at(-1)! : null;
 
-    return NextResponse.json({
-      latestCommit,
-      firstCommit,
-      historyUrl: path
-        ? `https://github.com/${owner}/${repo}/commits/main/${path}`
-        : `https://github.com/${owner}/${repo}/commits/main`,
-    });
+    return NextResponse.json(
+      {
+        latestCommit,
+        firstCommit,
+        historyUrl: path
+          ? `https://github.com/${owner}/${repo}/commits/main/${path}`
+          : `https://github.com/${owner}/${repo}/commits/main`,
+      },
+      {
+        headers: {
+          // Serve repeat requests from the CDN instead of re-invoking the
+          // function. Matches the upstream GitHub fetch TTL above.
+          'Cache-Control': `public, s-maxage=${CACHE_TTL}, stale-while-revalidate=3600`,
+        },
+      },
+    );
   } catch (error) {
     console.error('Error fetching GitHub metadata:', error);
     return NextResponse.json(

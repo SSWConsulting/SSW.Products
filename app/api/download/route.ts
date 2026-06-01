@@ -23,6 +23,10 @@ export async function GET(request: NextRequest) {
         'Content-Disposition': `attachment; filename="${filename}"`,
         'Content-Type': response.headers.get('Content-Type') || 'application/octet-stream',
         'Content-Length': buffer.byteLength.toString(),
+        // Downloads point at static release artifacts. Cache successful proxies
+        // at the CDN (keyed on the ?url param) so we don't re-stream the file
+        // through the function on every request.
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
       }
     });
   } catch {
