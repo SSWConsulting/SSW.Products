@@ -26,11 +26,7 @@ export function middleware(request: NextRequest) {
   }
 
   const rewriteUrl = new URL(resolved.internalPath, request.url);
-  const response = NextResponse.rewrite(rewriteUrl);
-  // Kept for backwards-compat while pages migrate from getLocale() to params.
-  // Removed in a later cleanup task once nothing reads it.
-  response.headers.set("x-language", resolved.locale);
-  return response;
+  return NextResponse.rewrite(rewriteUrl);
 }
 
 export const config = {
