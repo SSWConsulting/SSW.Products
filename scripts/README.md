@@ -38,7 +38,7 @@ In this case, the script will create Algolia indices (`yakshaver_docs`, `timepro
 
    ```env
    ALGOLIA_APP_ID=***
-   ALGOLIA_API_KEY=***
+   ALGOLIA_WRITE_API_KEY=***
    NEXT_PUBLIC_PRODUCT_LIST=***
    ```
 
@@ -72,6 +72,6 @@ This script runs automatically via GitHub Actions in two ways:
 - Workflow file: `.github/workflows/rebuild-search-indices.yml`
 - Required GitHub Secrets:
   - `ALGOLIA_APP_ID`
-  - `ALGOLIA_API_KEY`
+  - `ALGOLIA_WRITE_API_KEY`
 - Required GitHub Variables:
   - `NEXT_PUBLIC_PRODUCT_LIST`
