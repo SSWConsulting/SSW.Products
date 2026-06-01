@@ -17,7 +17,7 @@ interface FilePageProps {
 export async function generateMetadata({ params }: FilePageProps) {
   const { locale, product, filename } = await params;
   try {
-    const fileData = await getPageWithFallback({ product, filename, locale, revalidate: 10, branch: "main" });
+    const fileData = await getPageWithFallback({ product, filename, locale, revalidate: 3600, branch: "main" });
     return setPageMetadata(fileData.data?.pages?.seo, product);
   } catch (error) {
     if (error instanceof NotFoundError) return {};
