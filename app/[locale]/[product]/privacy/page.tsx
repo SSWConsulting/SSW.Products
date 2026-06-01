@@ -1,33 +1,22 @@
 import { Metadata } from "next";
 import InteractiveBackground from "@comps/shared/Background/InteractiveBackground";
 import PrivacyPolicyClient from "@comps/shared/PrivacyPolicyClient";
-import { getLocale, getPrivacyWithFallback } from "@utils/i18n";
+import { getPrivacyWithFallback } from "@utils/i18n";
 import { setPageMetadata } from "@utils/setPageMetaData";
 
 interface PrivacyPolicyProps {
-  params: Promise<{
-    product: string;
-  }>;
+  params: Promise<{ locale: string; product: string }>;
 }
 
-export async function generateMetadata({
-  params,
-}: PrivacyPolicyProps): Promise<Metadata> {
-  const { product } = await params;
-  const locale = await getLocale();
+export async function generateMetadata({ params }: PrivacyPolicyProps): Promise<Metadata> {
+  const { locale, product } = await params;
   const res = await getPrivacyWithFallback(product, locale);
-
-  const privacy = res.data.privacy;
-  const metadata = setPageMetadata(privacy.seo, product);
-
-  return metadata;
+  return setPageMetadata(res.data.privacy.seo, product);
 }
 
 export default async function PrivacyPolicy({ params }: PrivacyPolicyProps) {
-  const { product } = await params;
-  const locale = await getLocale();
+  const { locale, product } = await params;
   const res = await getPrivacyWithFallback(product, locale);
-
   return (
     <div className="flex flex-col min-h-screen">
       <InteractiveBackground />

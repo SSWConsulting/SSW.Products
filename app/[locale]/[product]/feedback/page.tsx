@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 
 interface Feedback {
-  params: Promise<{ product: string }>;
+  params: Promise<{ locale: string; product: string }>;
 }
 
 export async function generateMetadata() : Promise<Metadata> {
