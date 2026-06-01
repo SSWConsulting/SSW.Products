@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: BlogPostProps) {
     return setPageMetadata(res?.data?.blogs?.seo, product, "Blog");
   } catch (error) {
     if (error instanceof NotFoundError) return {};
+    throw error;
   }
 }
 

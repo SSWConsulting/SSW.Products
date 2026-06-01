@@ -26,7 +26,8 @@ const POST = async (request: Request) => {
             throw new BadRequestError("Missing relativePath parameter");
         }
 
-        const data = await getPageData(product, relativePath, branch);
+        // English-only preview/fallback route; branch is the 4th positional arg.
+        const data = await getPageData(product, relativePath, "en", branch);
 
         return new Response(JSON.stringify({...data}), {status: 200});
     }
