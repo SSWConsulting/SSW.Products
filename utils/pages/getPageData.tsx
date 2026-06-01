@@ -9,7 +9,9 @@ const getPageData = async (
   locale = "en",
   branch = defaultBranch,
 ) => {
-  const fileData = await getPageWithFallback({ product, filename, locale, revalidate: 10, branch });
+  // 1h so the [filename] route's `revalidate = 3600` isn't capped by a shorter
+  // fetch-level revalidate (Next uses the lowest revalidate across the route).
+  const fileData = await getPageWithFallback({ product, filename, locale, revalidate: 3600, branch });
   const relativePath = getRelativePath(product, filename, locale);
 
   const filteredBlocks = fileData.data.pages.pageBlocks?.filter(
