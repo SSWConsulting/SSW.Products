@@ -18,10 +18,9 @@ describe("resolveRequestRoute", () => {
     ).toEqual({ locale: "zh", product: "YakShaver", internalPath: "/zh/YakShaver/features" });
   });
   it("production www Chinese domain → zh", () => {
-    expect(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      resolveRequestRoute({ hostname: "www.yakshaver.com.cn", pathname: "/", productList, env })!.locale
-    ).toBe("zh");
+    const zhResult = resolveRequestRoute({ hostname: "www.yakshaver.com.cn", pathname: "/", productList, env });
+    expect(zhResult).not.toBeNull();
+    expect(zhResult?.locale).toBe("zh");
   });
   it("root path on en domain → /en/<product>", () => {
     expect(
@@ -44,10 +43,9 @@ describe("resolveRequestRoute", () => {
     ).toEqual({ locale: "en", product: "SSW", internalPath: "/en/SSW/about" });
   });
   it("staging (vercel.app) behaves like local", () => {
-    expect(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      resolveRequestRoute({ hostname: "ssw-products.vercel.app", pathname: "/", productList, env })!.product
-    ).toBe("YakShaver");
+    const stagingResult = resolveRequestRoute({ hostname: "ssw-products.vercel.app", pathname: "/", productList, env });
+    expect(stagingResult).not.toBeNull();
+    expect(stagingResult?.product).toBe("YakShaver");
   });
   it("unknown production host → null", () => {
     expect(

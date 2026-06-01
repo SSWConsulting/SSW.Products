@@ -10,7 +10,12 @@ export interface ResolveInput {
 export interface ResolvedRoute { locale: Locale; product: string; internalPath: string; }
 
 function isChineseDomain(hostname: string): boolean {
-  return hostname.endsWith("yakshaver.cn") || hostname.endsWith("yakshaver.com.cn");
+  return (
+    hostname === "yakshaver.cn" ||
+    hostname.endsWith(".yakshaver.cn") ||
+    hostname === "yakshaver.com.cn" ||
+    hostname.endsWith(".yakshaver.com.cn")
+  );
 }
 function splitLocaleFromPath(pathname: string): { locale: Locale; rest: string } {
   if (pathname === "/zh" || pathname.startsWith("/zh/")) {
@@ -22,6 +27,9 @@ function segments(path: string): string[] {
   return path.split("/").filter((s) => s.length > 0);
 }
 
+// `internalPath` targets the app/[locale]/[product]/... route tree introduced
+// in the same change set; middleware.ts rewrites to it. Public URLs are
+// unchanged (rewrite, not redirect) — locale is invisible to clients.
 export function resolveRequestRoute(input: ResolveInput): ResolvedRoute | null {
   const { hostname, pathname, productList, env } = input;
   if (!hostname) return null;
