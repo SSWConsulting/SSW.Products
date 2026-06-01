@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import InteractiveBackground from "../../../components/shared/Background/InteractiveBackground";
-import PrivacyPolicyClient from "../../../components/shared/PrivacyPolicyClient";
-import { getLocale, getPrivacyWithFallback } from "../../../utils/i18n";
-import { setPageMetadata } from "../../../utils/setPageMetaData";
+import InteractiveBackground from "@comps/shared/Background/InteractiveBackground";
+import PrivacyPolicyClient from "@comps/shared/PrivacyPolicyClient";
+import { getLocale, getPrivacyWithFallback } from "@utils/i18n";
+import { setPageMetadata } from "@utils/setPageMetaData";
 
 interface PrivacyPolicyProps {
   params: Promise<{

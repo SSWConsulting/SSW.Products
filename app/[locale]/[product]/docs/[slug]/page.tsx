@@ -1,10 +1,10 @@
 import { getDocPost } from "@utils/fetchDocs";
-import client from "../../../../tina/__generated__/client";
-import { getLocale } from "../../../../utils/i18n";
-import { setPageMetadata } from "../../../../utils/setPageMetaData";
+import client from "@tina/__generated__/client";
+import { getLocale } from "@utils/i18n";
+import { setPageMetadata } from "@utils/setPageMetaData";
 import DocPostClient from "./DocPostClient";
 import getDocPageData from "@utils/pages/getDocPageData";
-import ClientFallbackPage from "../../../client-fallback-page";
+import ClientFallbackPage from "@app/client-fallback-page";
 import NotFoundError from "@/errors/not-found";
 
 interface DocPostProps {

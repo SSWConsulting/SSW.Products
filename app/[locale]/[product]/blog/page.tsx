@@ -3,11 +3,11 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { BlogSearchProvider } from "../../../components/providers/BlogSearchProvider";
-import BlogIndexClient from "../../../components/shared/BlogIndexClient";
-import client from "../../../tina/__generated__/client";
-import { getBlogsForProduct } from "../../../utils/fetchBlogs";
-import { getLocale, getBlogIndexWithFallback } from "../../../utils/i18n";
+import { BlogSearchProvider } from "@comps/providers/BlogSearchProvider";
+import BlogIndexClient from "@comps/shared/BlogIndexClient";
+import client from "@tina/__generated__/client";
+import { getBlogsForProduct } from "@utils/fetchBlogs";
+import { getLocale, getBlogIndexWithFallback } from "@utils/i18n";
 interface BlogIndex {
   params: Promise<{ product: string }>;
 }

@@ -1,10 +1,10 @@
-import HomePageClient from "../../../components/shared/HomePageClient";
-import client from "../../../tina/__generated__/client";
-import { setPageMetadata } from "../../../utils/setPageMetaData";
-import { getLocale, getPageWithFallback, getRelativePath } from "../../../utils/i18n";
+import HomePageClient from "@comps/shared/HomePageClient";
+import client from "@tina/__generated__/client";
+import { setPageMetadata } from "@utils/setPageMetaData";
+import { getLocale, getPageWithFallback, getRelativePath } from "@utils/i18n";
 import getPageData from "@utils/pages/getPageData";
 import NotFoundError from "@/errors/not-found";
-import ClientFallbackPage from "../../client-fallback-page";
+import ClientFallbackPage from "@app/client-fallback-page";
 import { notFound } from "next/navigation";
 
 export const dynamic = 'force-static';

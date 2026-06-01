@@ -1,8 +1,8 @@
-import HomePageClient from "../../components/shared/HomePageClient";
-import ProductBackground from "../../components/shared/ProductBackground";
-import client from "../../tina/__generated__/client";
-import { setPageMetadata } from "../../utils/setPageMetaData";
-import { getLocale, getPageWithFallback, getRelativePath } from "../../utils/i18n";
+import HomePageClient from "@comps/shared/HomePageClient";
+import ProductBackground from "@comps/shared/ProductBackground";
+import client from "@tina/__generated__/client";
+import { setPageMetadata } from "@utils/setPageMetaData";
+import { getLocale, getPageWithFallback, getRelativePath } from "@utils/i18n";
 
 interface ProductPageProps {
   params: Promise<{ product: string }>;
