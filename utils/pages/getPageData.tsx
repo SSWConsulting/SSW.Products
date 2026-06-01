@@ -8,7 +8,9 @@ const defaultBranch =
 
 const getPageData = async (product: string, filename: string, branch=defaultBranch) => {
   const locale = await getLocale();
-  const fileData = await getPageWithFallback({product, filename, locale, revalidate: 10, branch});
+  // 1h so the [filename] route's `revalidate = 3600` isn't capped by a shorter
+  // fetch-level revalidate (Next uses the lowest revalidate across the route).
+  const fileData = await getPageWithFallback({product, filename, locale, revalidate: 3600, branch});
   const relativePath = getRelativePath(product, filename, locale);
 
 
