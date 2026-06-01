@@ -37,6 +37,9 @@
       ],
       "@images/*": [
         "./images/*"
+      ],
+      "@app/*": [
+        "./app/*"
       ]
     },
     "target": "ES2017"
