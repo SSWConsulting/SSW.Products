@@ -1,12 +1,6 @@
-import { headers } from 'next/headers';
 import { notFound } from "next/navigation";
 import client from "../tina/__generated__/client";
 import NotFoundError from '@/errors/not-found';
-
-export async function getLocale(): Promise<string> {
-  const headersList = await headers();
-  return headersList.get('x-language') || 'en';
-}
 
 export function getRelativePath(product: string, filename: string, locale: string): string {
   return locale === 'zh' ? `${product}/zh/${filename}.json` : `${product}/${filename}.json`;

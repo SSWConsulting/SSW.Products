@@ -2,17 +2,14 @@ import { Blog } from "@/types/blog";
 import { Blogs } from "@tina/__generated__/types";
 import { getBlogsForProduct } from "@utils/fetchBlogs";
 import { formatDate } from "@utils/formatDate";
-import { getBlogWithFallback, getLocale } from "@utils/i18n";
+import { getBlogWithFallback } from "@utils/i18n";
 import NotFoundError from "../../src/errors/not-found";
 
-async function getBlogPageData(product: string, slug: string, branch?: string) {
-  const locale = await getLocale();
-  const res = await getBlogWithFallback({product, slug, locale, branch});
-  if (!res?.data?.blogs)
-  {
+async function getBlogPageData(product: string, slug: string, locale = "en", branch?: string) {
+  const res = await getBlogWithFallback({ product, slug, locale, branch });
+  if (!res?.data?.blogs) {
     throw new NotFoundError("Blog post not found");
   }
-
   const allBlogs = await getBlogsForProduct({ product, locale, branch });
   const flattenedBlogs =
     allBlogs.blogs?.reduce<Blog[]>((acc, blog) => {

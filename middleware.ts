@@ -1,116 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
-
-function detectLanguage(pathname: string): string {
-  return pathname.startsWith('/zh') ? 'zh' : 'en';
-}
-
-function cleanPathFromLanguage(pathname: string): string {
-  return pathname.startsWith('/zh') ? pathname.substring(3) : pathname;
-}
-
-function parsePathSegments(pathname: string): string[] {
-  return pathname
-    .split("/")
-    .filter((segment) => segment.length > 0);
-}
-
-function createRewriteResponse(targetPath: string, language: string, request: NextRequest): NextResponse {
-  const rewriteUrl = new URL(targetPath, request.url);
-  const response = NextResponse.rewrite(rewriteUrl);
-  response.headers.set('x-language', language);
-  return response;
-}
+import { resolveRequestRoute, type ProductEntry } from "@utils/resolveRequestRoute";
 
 export function middleware(request: NextRequest) {
   const hostname = request.headers.get("x-original-host") || request.headers.get("host");
   const { pathname } = request.nextUrl;
 
-  const isLocal =
-    hostname?.includes("localhost") || hostname?.includes("127.0.0.1");
-  const isStaging = hostname?.includes("vercel.app");
-  const productList = process.env.NEXT_PUBLIC_PRODUCT_LIST
-    ? JSON.parse(process.env.NEXT_PUBLIC_PRODUCT_LIST)
-    : [];
-
-  // Allow .well-known paths without rewriting
-  if (pathname.startsWith("/.well-known")) {
-    return NextResponse.next(); // Bypass rewriting for these paths
-  }
-
-  // Allow TinaCMS admin paths
-  if (pathname.startsWith("/admin")) {
+  // Bypass rewriting for these paths.
+  if (pathname.startsWith("/.well-known") || pathname.startsWith("/admin")) {
     return NextResponse.next();
   }
 
-  const isChineseDomain = !!(hostname?.endsWith('yakshaver.cn') || hostname?.endsWith('yakshaver.com.cn'));
-  const language = isChineseDomain ? 'zh' : detectLanguage(pathname);
+  const productList: ProductEntry[] = process.env.NEXT_PUBLIC_PRODUCT_LIST
+    ? JSON.parse(process.env.NEXT_PUBLIC_PRODUCT_LIST)
+    : [];
 
-  if (isLocal || isStaging) {
-    return handleLocalRequest(pathname, productList, request, language);
-  } else {
-    return handleProductionRequest(hostname, productList, pathname, request, language, isChineseDomain);
+  const resolved = resolveRequestRoute({
+    hostname,
+    pathname,
+    productList,
+    env: { defaultProduct: process.env.DEFAULT_PRODUCT || "YakShaver" },
+  });
+
+  if (!resolved) {
+    return NextResponse.next();
   }
-}
 
-function handleLocalRequest(
-  pathname: string,
-  productList: any[],
-  request: NextRequest,
-  language: string
-) {
-  const pathSegments = parsePathSegments(pathname);
-  const isProduct = productList.some(
-    (product) => product.product === pathSegments[0]
-  );
-
-  if (isProduct) {
-    return createRewriteResponse(`/${pathSegments.join("/")}`, language, request);
-  } else {
-    const cleanPath = cleanPathFromLanguage(pathname);
-    return createRewriteResponse(
-      `/${process.env.DEFAULT_PRODUCT}${cleanPath}`,
-      language,
-      request
-    );
-  }
-}
-
-function handleProductionRequest(
-  hostname: string | null,
-  productList: any[],
-  pathname: string,
-  request: NextRequest,
-  language: string,
-  isChineseDomain: boolean
-) {
-  let targetProduct: string | null = null;
-  
-  if (isChineseDomain) {
-    targetProduct = 'YakShaver';
-  } else {
-    for (const product of productList) {
-      if (hostname === product.domain) {
-        targetProduct = product.product;
-        break;
-      }
-    }
-  }
-  
-  if (targetProduct) {
-    const cleanPath = cleanPathFromLanguage(pathname);
-    const pathSegments = parsePathSegments(cleanPath);
-    const pathAlreadyHasProduct = productList.some(
-      (product: any) => product.product === pathSegments[0]
-    );
-
-    if (pathAlreadyHasProduct) {
-      return createRewriteResponse(`/${pathSegments.join("/")}`, language, request);
-    }
-
-    return createRewriteResponse(`/${targetProduct}${cleanPath}`, language, request);
-  }
-  
-  return NextResponse.next();
+  const rewriteUrl = new URL(resolved.internalPath, request.url);
+  return NextResponse.rewrite(rewriteUrl);
 }
 
 export const config = {

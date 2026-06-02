@@ -1,7 +1,6 @@
 import * as SearchBox from "@comps/search/SearchBox";
 import { DocsTableOfContents } from "@tina/__generated__/types";
 import { getDocsTableOfContents } from "@utils/fetchDocs";
-import { getLocale } from "../../../utils/i18n";
 import TableOfContentsClient from "./[slug]/TableOfContentsClient";
 
 const RootLayout = async ({
@@ -9,13 +8,9 @@ const RootLayout = async ({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{
-    product: string;
-  }>;
+  params: Promise<{ locale: string; product: string }>;
 }) => {
-
-  const { product } = await params;
-  const locale = await getLocale();
+  const { locale, product } = await params;
   const tableOfContentsData = await getDocsTableOfContents(product, locale);
   return (
     <>

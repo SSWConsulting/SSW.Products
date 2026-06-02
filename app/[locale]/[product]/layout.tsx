@@ -1,10 +1,9 @@
 import FooterServer from "@comps/shared/FooterServer";
 import { Inter } from "next/font/google";
 import Script from "next/script";
-import NavBarServer from "../../components/shared/NavBarServer";
-import { getGoogleTagId } from "../../utils/getGoogleTagId";
-import { getLocale } from "../../utils/i18n";
-import "../globals.css";
+import NavBarServer from "@comps/shared/NavBarServer";
+import { getGoogleTagId } from "@utils/getGoogleTagId";
+import "@app/globals.css";
 import QueryProvider from "@comps/providers/QueryProvider";
 
 const inter = Inter({
@@ -17,12 +16,10 @@ export default async function RootLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ product: string }>;
+  params: Promise<{ locale: string; product: string }>;
 }) {
-  
-  const { product } = await params;
+  const { locale, product } = await params;
   const googleTagId = getGoogleTagId(product);
-  const locale = await getLocale();
   const htmlLang = locale === "zh" ? "zh-CN" : "en";
 
   return (

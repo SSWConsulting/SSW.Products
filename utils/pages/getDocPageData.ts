@@ -1,8 +1,6 @@
 import { DocsTableOfContents } from "@tina/__generated__/types";
 import { getDocPost, getDocsTableOfContents } from "@utils/fetchDocs";
-import { getLocale } from "@utils/i18n";
 import NotFoundError from "../../src/errors/not-found";
-import { locale } from "dayjs";
 
 
 interface PaginationLink {
