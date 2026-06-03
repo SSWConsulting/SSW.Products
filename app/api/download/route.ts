@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// This route proxies whatever `?url` is passed, so without a host allowlist it
-// is an open proxy — and with CDN caching that would let arbitrary external
-// content be pinned under our own domain. Restrict it to the GitHub asset hosts
-// our content actually links to (ImageGrid downloads use raw.githubusercontent.com).
+// Hosts we'll proxy — without this the route is an open proxy / CDN cache for any URL.
 const ALLOWED_HOSTS = new Set([
   'raw.githubusercontent.com',
   'github.com',
@@ -44,9 +41,6 @@ export async function GET(request: NextRequest) {
         'Content-Disposition': `attachment; filename="${filename}"`,
         'Content-Type': response.headers.get('Content-Type') || 'application/octet-stream',
         'Content-Length': buffer.byteLength.toString(),
-        // Downloads point at static release artifacts. Cache successful proxies
-        // at the CDN (keyed on the ?url param) so we don't re-stream the file
-        // through the function on every request.
         'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
       }
     });

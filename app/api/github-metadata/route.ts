@@ -84,8 +84,6 @@ export async function GET(request: Request) {
       },
       {
         headers: {
-          // Serve repeat requests from the CDN instead of re-invoking the
-          // function. Matches the upstream GitHub fetch TTL above.
           'Cache-Control': `public, s-maxage=${CACHE_TTL}, stale-while-revalidate=3600`,
         },
       },

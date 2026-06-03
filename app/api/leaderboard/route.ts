@@ -1,6 +1,4 @@
-// Leaderboard totals don't need per-request freshness. Cache the response at the
-// CDN so repeat hits (this route is fetched client-side on every homepage load)
-// are served without re-invoking the function or hitting the upstream API.
+// Cache at the CDN; the homepage fetches this on every load.
 const CACHE_CONTROL = 'public, s-maxage=300, stale-while-revalidate=3600';
 
 export async function GET() {
