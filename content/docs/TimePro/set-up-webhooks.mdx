@@ -6,3 +6,23 @@ title: Set up webhooks
 date: '2026-05-20T16:00:00.000Z'
 ---
 
+Webhooks allow TimePro to push real-time event notifications (e.g. timesheet or invoice changes) to an external endpoint using OAuth2-authenticated HTTP POST requests.
+
+## Prequisites
+
+Before you begin, ensure you have:
+
+* An external endpoint URL that can receive HTTP POST requests
+* A Microsoft Entra ID app registration
+
+## Navigate to the Webhook Admin Page
+
+From your TimePro tenant
+
+1. In the top navigation, go to Admin | Webhook
+
+![](/TimePro/webhook-navigation.png)Figure: Navigate to Webhook page
+
+## Open the Add Subsriber Form
+
+On the Webhooks page, you will see a table listing existing webhook subscribers (empty if none exist yet).
