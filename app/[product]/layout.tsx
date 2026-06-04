@@ -2,6 +2,7 @@ import FooterServer from "@comps/shared/FooterServer";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
+import { withAssetVersion } from "../../utils/assetVersion";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import { getLocale } from "../../utils/i18n";
 import "../globals.css";
@@ -28,7 +29,7 @@ export default async function RootLayout({
   return (
     <html lang={htmlLang}>
       <head>
-        <link rel="icon" href={`/favicons/${product}.ico?v=20260604`} />
+        <link rel="icon" href={withAssetVersion(`/favicons/${product}.ico`)} />
         
         {product === "YakShaver" && (
           <Script
