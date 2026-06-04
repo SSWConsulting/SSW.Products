@@ -1,5 +1,6 @@
 import { NavGroup } from "@/types/nav-group";
 import { NavigationBarLeftNavItemStringItem as NavItem } from "@tina/__generated__/types";
+import { withAssetVersion } from "@utils/assetVersion";
 import { getNavigationBarWithFallback } from "@utils/i18n";
 import NavBarClient from "./NavBarClient";
 
@@ -47,17 +48,38 @@ export default async function NavBarServer({ product, locale }: NavBarServerProp
 
   const buttons =
     data.navigationBar.buttons?.filter((button) => button !== null) || [];
-  const { imgSrc, imgHeight, imgWidth } = data.navigationBar || {};
+  const { imgSrc, imgHeight, imgWidth, showLanguageToggle } =
+    data.navigationBar || {};
+
+  const normalizedImgSrc = (() => {
+    if (product !== "YakShaver" || typeof imgSrc !== "string") {
+      return imgSrc;
+    }
+    if (!imgSrc.includes("assets.tina.io")) {
+      return imgSrc;
+    }
+    try {
+      const url = new URL(imgSrc);
+      if (url.pathname.includes("yakshaver-logo.png")) {
+        return "/yakshaver-logo.png";
+      }
+    } catch {
+      // Ignore URL parsing errors
+    }
+    return imgSrc;
+  })();
+
   const bannerImage =
-    imgSrc && imgHeight && imgWidth
-      ? { imgHeight, imgSrc, imgWidth }
+    normalizedImgSrc && imgHeight && imgWidth
+      ? { imgHeight, imgSrc: withAssetVersion(normalizedImgSrc), imgWidth }
       : undefined;
   return (
-    <NavBarClient 
-      bannerImage={bannerImage} 
-      buttons={buttons} 
-      items={items} 
+    <NavBarClient
+      bannerImage={bannerImage}
+      buttons={buttons}
+      items={items}
       currentLocale={locale || 'en'}
+      showLanguageToggle={showLanguageToggle ?? false}
     />
   );
 }

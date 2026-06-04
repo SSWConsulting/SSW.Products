@@ -27,6 +27,16 @@ export const CardAndImageTemplate: Template = {
       ],
     },
     {
+      name: "backgroundColor",
+      label: "Card Background Color",
+      description: "Background of non-selected cards.",
+      type: "string",
+      options: [
+        { value: "default", label: "Default" },
+        { value: "charcoal", label: "Charcoal" },
+      ],
+    },
+    {
       name: "CardAndImageItem",
       label: "Card and Image Child Item",
       list: true,

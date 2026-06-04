@@ -3,7 +3,7 @@ import { RemoveTinaMetadata } from "@/types/tina";
 import Link from "@tina/tinamarkdownStyles/Link";
 import { CircleCheckBig } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
 import {
@@ -23,8 +23,15 @@ const cardAndImageMarkdownRenderer: Components<object> = {
 
 const NO_OPENED_ITEMS = -1;
 
+// Background overrides for the non-selected card state. When unset (or set to
+// "default"), the component falls back to the default `--gradient-black`.
+const cardBackgrounds: Record<string, string> = {
+  charcoal: "[--border-gradient-foreground:var(--gradient-charcoal)]",
+};
+
 export default function CardAndImageParent({
   borderColor,
+  backgroundColor,
   ParentContainerDescription,
   ParentContainerTitle,
   CardAndImageItem,
@@ -66,20 +73,21 @@ export default function CardAndImageParent({
       </Container>
       <Container className="flex flex-col md:flex-row gap-6">
         <div className="flex gap-4 justify-center flex-col w-full">
-          {CardAndImageItem?.map((item, index) => (
-            <>
-              {item && (
-                <CardItem
-                  key={index}
-                  data={item}
-                  borderColor={borderColor ?? "yakshaver"}
-                  uniqueId={index}
-                  idOfOpen={idOfOpen}
-                  setIdOfOpen={handleIdChange}
-                />
-              )}
-            </>
-          ))}
+          {CardAndImageItem?.map((item, index) => {
+            if (!item) return null;
+
+            return (
+              <CardItem
+                key={index}
+                data={item}
+                borderColor={borderColor ?? "yakshaver"}
+                backgroundColor={backgroundColor}
+                uniqueId={index}
+                idOfOpen={idOfOpen}
+                setIdOfOpen={handleIdChange}
+              />
+            );
+          })}
         </div>
         {CardAndImageItem?.length && (
           <div className="w-full flex items-center justify-center">
@@ -102,12 +110,14 @@ export default function CardAndImageParent({
 function CardItem({
   data,
   borderColor,
+  backgroundColor,
   uniqueId,
   idOfOpen,
   setIdOfOpen,
 }: {
   data: Card;
   borderColor: string;
+  backgroundColor?: string | null;
   uniqueId: number;
   idOfOpen: number;
   setIdOfOpen: (id: number) => void;
@@ -132,10 +142,13 @@ function CardItem({
   return (
     <div
       className={cn(
+        "group cursor-pointer w-full hover:[--border-gradient-foreground:var(--gradient-gray)] [--border-gradient-foreground:var(--gradient-black)] rounded-xl p-6 shadow-2xl text-white transition-all duration-300",
         isOpen
           ? borders[borderColor ?? "eagleeye"]
-          : "border-gradient-transparent",
-        "group cursor-pointer w-full hover:[--border-gradient-foreground:var(--gradient-gray)] [--border-gradient-foreground:var(--gradient-black)] rounded-xl p-6 shadow-2xl text-white transition-all duration-300"
+          : cn(
+              "border-gradient-transparent",
+              backgroundColor && cardBackgrounds[backgroundColor]
+            )
       )}
       onClick={() => {
         if (!isOpen) {
@@ -182,20 +195,16 @@ function CardItem({
             )}
           >
             {data.Badges?.map((badge, index) => {
-              return (
-                <>
-                  {badge?.Badge && (
-                    <>
-                      {index !== 0 && delimeter}
-                      <Badge
-                        index={index}
-                        title={badge?.Badge}
-                        icon={badge?.showTickIcon ?? false}
-                      />
-                    </>
-                  )}
-                </>
-              );
+              return badge?.Badge ? (
+                <Fragment key={index}>
+                  {index !== 0 && delimeter}
+                  <Badge
+                    index={index}
+                    title={badge?.Badge}
+                    icon={badge?.showTickIcon ?? false}
+                  />
+                </Fragment>
+              ) : null;
             })}
           </div>
         </div>

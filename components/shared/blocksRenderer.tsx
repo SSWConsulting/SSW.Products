@@ -88,20 +88,20 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksRichText":
         return <RichText key={index} {...(block as RichTextProps)} />;
       case "PagesPageBlocksBentoBox":
-        return <BentoBox data={block} />;
+        return <BentoBox key={index} data={block} />;
       case "PagesPageBlocksTimeline":
-        return <Timeline data={block} />;
+        return <Timeline key={index} data={block} />;
       case "PagesPageBlocksCardAndImage":
         return <CardAndImageParent key={index} {...block} />;
       case "PagesPageBlocksComparisonTable":
-        return <ComparisonTable data={block} />;
+        return <ComparisonTable key={index} data={block} />;
       case "PagesPageBlocksCalculator":
-        return <CalculatorComponent data={block} />;
+        return <CalculatorComponent key={index} data={block} />;
       case "PagesPageBlocksCallToAction":
-        return <CallToAction className="w-full" {...block} />;
+        return <CallToAction key={index} className="w-full" {...block} />;
 
       case "PagesPageBlocksTryItNow":
-        return <TryItNow {...block} />;
+        return <TryItNow key={index} {...block} />;
       case "PagesPageBlocksDownloadCards":
         // @ts-expect-error typing issue with data
         return <DownloadCards key={index} data={block} />;

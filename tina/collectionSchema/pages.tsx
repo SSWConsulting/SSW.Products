@@ -34,6 +34,7 @@ export const bottomPaddingOptions = {
 export const inputClasses: Record<string, string> = {
   gray: "bg-[#222222]",
   black: "bg-black",
+  "near-black": "bg-[#010101]",
 };
 
 const ColorPickerInput = wrapFieldsWithMeta(({ input }: any) => {

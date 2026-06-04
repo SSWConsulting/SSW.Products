@@ -16,9 +16,9 @@
         "ticket",
         "email"
       ],
-      "byLine": "Don't waste time writing bug reports.\n\nThe YakShaver AI agent analyses recordings, generates the task, and allocates it to the correct team instantly.\n\nSave hours of frustration with YakShaver.\n",
+      "byLine": "Stop wasting time writing bug reports manually.\n\nYakShaver AI analyzes recordings, creates bug reports and tasks, and assigns them to the right team automatically.",
       "ctaRight": {
-        "title": "WATCH VIDEO",
+        "title": "Watch video",
         "link": "https://www.youtube.com/shorts/0TPo98R1tnI"
       },
       "reportUIEnabled": true,
@@ -31,23 +31,23 @@
             "I am on the latest version of {Chrome}. This impacts user function significantly, I would classify it as {Priority 1}.",
             "I recalled {Matt and Adam} had a similar issue before. Could you please get {Betty} to check this out for me?"
           ],
-          "issueReportSummaryTitle": "REPORT ISSUE",
+          "issueReportSummaryTitle": "Issue report",
           "issueReportSummarySubtitle": "YakShaver records and transcribes video in real-time, processing information for immediate analysis."
         },
         "rightHandSide": {
-          "issueReportSummaryTitle": "ISSUE SUMMARY",
+          "issueReportSummaryTitle": "Issue overview",
           "issueReportSummarySubtitle": "Work items are generated in real-time, allocated to the right project backlog, assigned, and relevant parties are informed."
         }
       },
       "_template": "hero"
     },
     {
-      "ParentContainerTitle": "How YakShaver Works",
+      "ParentContainerTitle": "How YakShaver works",
       "ParentContainerDescription": "",
       "CardAndImageItem": [
         {
           "AboveHeaderText": "{See it}",
-          "Header": "1 - Record a Video",
+          "Header": "1 - Record a video",
           "Description": "Found a bug or have an idea? Record your screen and voice with any app you like.\n",
           "Badges": [
             {
@@ -75,14 +75,14 @@
         },
         {
           "AboveHeaderText": "{Shave it}",
-          "Header": "2 - YakShaver Takes Over",
+          "Header": "2 - YakShaver takes over",
           "Description": "YakShaver watches your video, turns what you say into text, and figures out what's happening.\n",
           "media": "/Browser2.png",
           "textOnLeft": true
         },
         {
           "AboveHeaderText": "{Solve it}",
-          "Header": "3 - Tasks are Created",
+          "Header": "3 - Tasks are created",
           "Description": "**YakShaver creates a task, bug report, or feature request** in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
           "Badges": [
             {
@@ -145,15 +145,15 @@
         ]
       },
       "topRightBox": {
-        "title": "Real-Time PBIs",
+        "title": "Real-time PBIs",
         "description": "Stay updated instantly when PBIs have been created, assigned, or require follow-up"
       },
       "counterBox1": {
-        "title": "Yaks Shaved",
+        "title": "Yaks shaved",
         "counterMetric": "YakShaved"
       },
       "counterBox2": {
-        "title": "Users' Time Saved",
+        "title": "Users' time saved",
         "counterMetric": "MinutesSaved"
       },
       "bottomLeftBox": {
@@ -186,8 +186,8 @@
       "_template": "BentoBox"
     },
     {
-      "title": "Simple, Transparent Pricing",
-      "desc": "One shared pool of shaves. Pay once, and anyone in your organisation can report issues. Zero per seat fees - just shave away!",
+      "title": "Simple, transparent pricing",
+      "desc": "One shared pool of shaves. Pay once, and anyone in your organization can report issues. Zero per seat fees - just shave away!",
       "tiers": [
         {
           "tier": "Starter ",
@@ -263,7 +263,7 @@
         "price": "25",
         "subPriceText": "per 50 credits",
         "actionButton": {
-          "label": "Full Pricing Details",
+          "label": "Full pricing details",
           "variant": "outlinedWhite",
           "size": "medium",
           "url": "/pricing"
@@ -271,7 +271,7 @@
       },
       "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\*\\* Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
       "bottomAction": {
-        "label": "Full Pricing Details",
+        "label": "Full pricing details",
         "variant": "solidWhite",
         "size": "large",
         "url": "/pricing"
@@ -279,15 +279,15 @@
       "_template": "calculator"
     },
     {
-      "altText": "Making the Perfect PBI | YakShaver",
-      "title": "Want to Learn More? ",
+      "altText": "Making the perfect PBI | YakShaver",
+      "title": "Want to learn more?",
       "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
       "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
-      "figureCaption": "Video: Making the Perfect PBI with YakShaver (6 min)",
+      "figureCaption": "Video: Making the perfect PBI with YakShaver (6 min)",
       "_template": "videoDisplay"
     },
     {
-      "headline": "Frequently Asked Questions",
+      "headline": "Frequently asked questions",
       "text": "",
       "questions": [
         {
@@ -314,10 +314,10 @@
       "_template": "faq"
     },
     {
-      "title": "Talk to a YakShaver Expert",
+      "title": "Talk to a YakShaver expert",
       "ctaDescription": "Evaluating YakShaver for your team? Book a 30-minute call with a YakShaver architect and see a demo!",
       "ctaButton": {
-        "label": "SCHEDULE A CALL",
+        "label": "Schedule a call",
         "variant": "solidWhite",
         "size": "large",
         "buttonLink": "https://outlook.office.com/bookwithme/user/97ccb01d46744eed9ad7ff2c52c3ade6%40ssw.com.au/meetingtype/SVRwCe7HMUGxuT6WGxi68g2?anonymous="

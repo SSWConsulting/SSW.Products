@@ -11,6 +11,7 @@ The purpose of this repository is to host the product pages for [SSW's](https://
 - [YakShaver (yakshaver.ai)](https://yakshaver.ai)
 - [EagleEye (ssweagleeye.com)](https://ssweagleeye.com)
 - [TimePro (sswtimepro.com)](https://sswtimepro.com/docs)
+- [SSW Tiger (sswtiger.com)](https://sswtiger.com)
 
 The `YakShaver` and `EagleEye` websites should be used as a guide for creating future product pages. 
 
