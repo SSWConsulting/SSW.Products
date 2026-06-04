@@ -28,7 +28,7 @@ export default async function RootLayout({
   return (
     <html lang={htmlLang}>
       <head>
-        <link rel="icon" href={`/favicons/${product}.ico`} />
+        <link rel="icon" href={`/favicons/${product}.ico?v=20260604`} />
         
         {product === "YakShaver" && (
           <Script

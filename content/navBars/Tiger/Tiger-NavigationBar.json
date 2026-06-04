@@ -1,5 +1,5 @@
 {
-  "Logo": "/Tiger/Logo.svg",
+  "Logo": "/Tiger/Logo.svg?v=20260604",
   "rightNavItem": [
     {
       "Title": "CONTACT US",
@@ -7,7 +7,7 @@
       "_template": "BookingButton"
     }
   ],
-  "imgSrc": "/Tiger/Logo.svg",
+  "imgSrc": "/Tiger/Logo.svg?v=20260604",
   "imgWidth": 221,
   "imgHeight": 52,
   "leftNavItem": [
