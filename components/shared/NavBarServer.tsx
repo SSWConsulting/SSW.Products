@@ -1,5 +1,6 @@
 import { NavGroup } from "@/types/nav-group";
 import { NavigationBarLeftNavItemStringItem as NavItem } from "@tina/__generated__/types";
+import { withAssetVersion } from "@utils/assetVersion";
 import { getNavigationBarWithFallback } from "@utils/i18n";
 import NavBarClient from "./NavBarClient";
 
@@ -70,7 +71,7 @@ export default async function NavBarServer({ product, locale }: NavBarServerProp
 
   const bannerImage =
     normalizedImgSrc && imgHeight && imgWidth
-      ? { imgHeight, imgSrc: normalizedImgSrc, imgWidth }
+      ? { imgHeight, imgSrc: withAssetVersion(normalizedImgSrc), imgWidth }
       : undefined;
   return (
     <NavBarClient
