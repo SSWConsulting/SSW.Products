@@ -39,6 +39,7 @@ interface NavBarClientProps {
   buttons: NavigationBarButtons[];
   items: (NavItem | NavGroup)[];
   currentLocale: string;
+  showLanguageToggle: boolean;
 
   bannerImage?: {
     imgSrc: string;
@@ -52,6 +53,7 @@ export default function NavBarClient({
   items,
   currentLocale,
   bannerImage,
+  showLanguageToggle,
 }: NavBarClientProps) {
   const contextualHref = useContextualLink();
   return (
@@ -61,6 +63,7 @@ export default function NavBarClient({
         items={items}
         currentLocale={currentLocale}
         bannerImage={bannerImage}
+        showLanguageToggle={showLanguageToggle}
         contextualHref={contextualHref}
       />
     </MobileMenuRoot>
@@ -72,6 +75,7 @@ function NavBarClientContent({
   items,
   currentLocale,
   bannerImage,
+  showLanguageToggle,
   contextualHref,
 }: NavBarClientProps & { contextualHref: (href: string) => string }) {
   const { isOpen } = useMenuContext();
@@ -178,8 +182,8 @@ function NavBarClientContent({
         {buttons.map((button, index) => {
           return (
             <NavigationMenuItem
-              className={`hidden sm:block ${
-                index === buttons.length - 1 ? "pl-5" : "pl-12"
+              className={`hidden md:flex items-center ${
+                index === buttons.length - 1 ? "pl-5" : "pl-5 xl:pl-12"
               }`}
               key={index}
             >
@@ -187,9 +191,11 @@ function NavBarClientContent({
             </NavigationMenuItem>
           );
         })}
-        <NavigationMenuItem className="hidden sm:block pl-5 flex items-center">
-          <LanguageToggle currentLocale={currentLocale} />
-        </NavigationMenuItem>
+        {showLanguageToggle && (
+          <NavigationMenuItem className="hidden md:flex pl-5 items-center">
+            <LanguageToggle currentLocale={currentLocale} />
+          </NavigationMenuItem>
+        )}
         <NavigationMenuItem className="flex xl:hidden justify-end pl-5">
           <MobileMenuTrigger />
           <MobileMenuContent headerHeight={headerHeight}>
@@ -228,6 +234,11 @@ function NavBarClientContent({
                   );
                 }
               })}
+              {showLanguageToggle && (
+                <li className="flex items-center py-1 mb-0 mt-4">
+                  <LanguageToggle currentLocale={currentLocale} />
+                </li>
+              )}
             </>
           </MobileMenuContent>
         </NavigationMenuItem>
@@ -235,10 +246,10 @@ function NavBarClientContent({
           return (
             <NavigationMenuItem
               className={clsx(
-                "w-full col-span-1 block sm:hidden",
+                "w-full block md:hidden",
                 index === buttons.length - 1 && index % 2 === 0
                   ? "col-span-2"
-                  : "col-span-1"
+                  : "col-span-2 min-[390px]:col-span-1"
               )}
               key={index}
             >

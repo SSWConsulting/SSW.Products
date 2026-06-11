@@ -1,4 +1,5 @@
 import HomePageClient from "../../components/shared/HomePageClient";
+import ProductBackground from "../../components/shared/ProductBackground";
 import client from "../../tina/__generated__/client";
 import { setPageMetadata } from "../../utils/setPageMetaData";
 import { getLocale, getPageWithFallback, getRelativePath } from "../../utils/i18n";
@@ -34,6 +35,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   
   return (
     <div>
+      <ProductBackground product={product} />
       <HomePageClient
         query={productData.query}
         data={productData.data}

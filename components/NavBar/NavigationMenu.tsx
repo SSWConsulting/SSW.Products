@@ -14,24 +14,38 @@ interface NavigationMenuBadgeProps {
   currentLocale?: string;
 }
 
+// Logos with aspect ratio below this threshold are rendered taller (h-12)
+// so their visible content width roughly matches "wide" logos (h-8).
+const COMPACT_LOGO_RATIO_THRESHOLD = 5;
+
 const NavigationMenuBadge = ({
   imgSrc,
   imgWidth,
   imgHeight,
   currentLocale = "en",
-}: NavigationMenuBadgeProps) => (
-  <NavigationMenu.Item className="gap-8 mx-auto flex items-center w-full">
-    <Link className="mb-2 shrink-0" href={getLocalizedPath("/", currentLocale)}>
-      <Image
-        src={imgSrc}
-        className="h-8 w-auto"
-        width={imgWidth}
-        height={imgHeight}
-        alt="Logo"
-      />
-    </Link>
-  </NavigationMenu.Item>
-);
+}: NavigationMenuBadgeProps) => {
+  const aspectRatio =
+    imgHeight > 0 ? imgWidth / imgHeight : COMPACT_LOGO_RATIO_THRESHOLD;
+  const heightClass =
+    aspectRatio < COMPACT_LOGO_RATIO_THRESHOLD ? "h-12" : "h-8";
+
+  return (
+    <NavigationMenu.Item className="gap-8 flex items-center w-full md:flex-1 md:w-auto">
+      <Link
+        className="mb-2 shrink-0"
+        href={getLocalizedPath("/", currentLocale)}
+      >
+        <Image
+          src={imgSrc}
+          className={`${heightClass} w-auto`}
+          width={imgWidth}
+          height={imgHeight}
+          alt="Logo"
+        />
+      </Link>
+    </NavigationMenu.Item>
+  );
+};
 
 interface NavigationMenuRootProps
   extends React.ComponentPropsWithoutRef<typeof NavigationMenu.Root> {
@@ -56,7 +70,7 @@ const NavigationMenuRoot = React.forwardRef<
       )}
       ref={ref}
     >
-      <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4 sm:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
+      <NavigationMenu.List className="md:flex gap-x-5 md:gap-y-0 gap-y-4 md:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center md:justify-start">
         {children}
       </NavigationMenu.List>
     </NavigationMenu.Root>

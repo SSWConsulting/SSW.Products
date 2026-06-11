@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: FilePageProps) {
   const { product, filename } = await params;
   try {
   const locale = await getLocale();
-  const fileData = await getPageWithFallback({product, filename, locale, revalidate: 10, branch: "main"});
+  const fileData = await getPageWithFallback({product, filename, locale, revalidate: 3600, branch: "main"});
   const metadata = setPageMetadata(fileData.data?.pages?.seo, product);
   return metadata;
   }
@@ -64,4 +64,5 @@ export default async function FilePage({ params }: FilePageProps) {
   }
 }
 
-export const revalidate = 60;
+// 1h ISR; content redeploys on TinaCMS publish anyway.
+export const revalidate = 3600;

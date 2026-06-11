@@ -3,6 +3,7 @@
   "imgSrc": "/yakshaver-logo.png",
   "imgWidth": 536,
   "imgHeight": 100,
+  "showLanguageToggle": true,
   "leftNavItem": [
     {
       "label": "定价",

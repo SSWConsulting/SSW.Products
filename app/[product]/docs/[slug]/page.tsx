@@ -15,14 +15,14 @@ interface DocPostProps {
 }
 
 interface DocPostMetadataProps {
-  params: {
+  params: Promise<{
     slug: string;
     product: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: DocPostMetadataProps) {
-  const { product, slug } = params;
+  const { product, slug } = await params;
   try {
     const locale = await getLocale();
     const docs = await getDocPost({product, slug, locale});
