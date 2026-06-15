@@ -8,17 +8,23 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import TableOfContentsClient from "./TableOfContentsClient";
+import Collapsible, { CollapsibleProps } from "@comps/Collapsible";
+import GitHubMetadata from "@utils/githubMetadata";
+import OutlineBox from "@comps/OutlineBox";
+import PaginationLinksClient, { PaginationLinksClientProps } from "./PaginationLinksClient";
+import GoogleStructuredDataScript from "@comps/GoogleStructuredDataScript";
 
 interface DocPostClientProps {
   query: string;
   variables: object;
   pageData: { docs: Docs };
   tableOfContentsData: DocsTableOfContents;
+  paginationData: PaginationLinksClientProps;
 }
 
 const BreadCrumbs = ({ title }: { title: string }) => {
   return (
-    <div className="font-light mb-8 text-base inline-flex items-top">
+    <div className="font-light text-base inline-flex items-top mb-4">
       <Link className="underline cursor-pointer" href="/docs">
         DOCS
       </Link>
@@ -35,6 +41,7 @@ export default function DocPostClient({
   variables,
   pageData,
   tableOfContentsData,
+  paginationData
 }: DocPostClientProps) {
   const { data } = useTina<{ docs: Docs }>({
     query,
@@ -46,18 +53,17 @@ export default function DocPostClient({
     return <p className="text-center text-white">No content available.</p>;
   }
 
-  const { title, date, body } = data.docs;
+  const { title, body } = data.docs;
 
-  // Ensure the date is valid before formatting
-  const parsedDate = date ? new Date(date) : null;
-  const formattedDate =
-    parsedDate && !isNaN(parsedDate.getTime())
-      ? `${parsedDate.getDate()} ${parsedDate.toLocaleString("default", {
-          month: "long",
-        })} ${parsedDate.getFullYear()}`
-      : "Unknown Date";
+  const components = {
+    ...DocAndBlogMarkdownStyle,
+    OutlineBox,
+    Collapsible: (props: CollapsibleProps) => <Collapsible {...props} />,
+  };
 
   return (
+  <>
+  <GoogleStructuredDataScript jsonString={data.docs.seo?.googleStructuredData} />
     <div className="mx-auto text-white">
       <div className="md:hidden flex flex-col justify-center items-center py-4 relative">
         <SearchBox.Trigger className="w-full" />
@@ -68,20 +74,22 @@ export default function DocPostClient({
           </TableOfContents.Popover>
         </TableOfContents.Root>
       </div>
-      <BreadCrumbs title={title} />
-      <h2 className="text-3xl mb-8 font-semibold text-ssw-red">
-        {title}
-      </h2>
+      <div className="flex flex-col gap-2 mb-8">
+        <BreadCrumbs title={title} />
+        <h2 className="text-3xl font-semibold text-ssw-red">{title}</h2>
+        <GitHubMetadata path={data.docs.id} className="text-sm font-light text-gray-300" />
+      </div>
       <div className="text-base font-light mb-12 lg:prose-xl">
         {body && (
-          <TinaMarkdown content={body} components={DocAndBlogMarkdownStyle} />
+          <TinaMarkdown content={body} components={components} />
         )}
       </div>
-      <div className="text-sm font-light text-gray-300 uppercase mb-4 mt-12">
-        <div>
-          <span>Last updated: {formattedDate}</span>
-        </div>
-      </div>
     </div>
+
+      <PaginationLinksClient
+        prev={paginationData.prev}
+        next={paginationData.next}
+      />
+    </>
   );
 }

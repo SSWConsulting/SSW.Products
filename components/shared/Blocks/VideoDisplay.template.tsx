@@ -1,5 +1,4 @@
 import { getYouTubeVideoId } from "@utils/youtube";
-import axios from "axios";
 import React, { useEffect } from "react";
 import { FormApi, Template, TextField, TinaField } from "tinacms";
 
@@ -24,27 +23,26 @@ const VideoUrl = (props: {
 
   useEffect(() => {
     const leadingField = props.input.name.replace("externalVideoLink", "");
-
     const videoId = getYouTubeVideoId(props.input.value);
-
+  
     const urls = [
       `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
       `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
     ];
-    const traverseUrls = (urls: string[]) => {
-      axios
-        .get(urls[0])
-        .then(() => {
-          props.form?.change(`${leadingField}thumbnail`, urls[0]);
-        })
-        .catch(() => {
-          urls = urls.slice(1);
-          if (urls.length === 0) {
-            props.form?.change(`${leadingField}thumbnail`, null);
-            return;
-          }
-          traverseUrls(urls);
-        });
+    
+    const traverseUrls = async (urls: string[]) => {
+      const axios = (await import("axios")).default;
+      try {
+        await axios.get(urls[0]);
+        props.form?.change(`${leadingField}thumbnail`, urls[0]);
+      } catch {
+        urls = urls.slice(1);
+        if (urls.length === 0) {
+          props.form?.change(`${leadingField}thumbnail`, null);
+          return;
+        }
+        traverseUrls(urls);
+      }
     };
     traverseUrls(urls);
   }, [props.input.value, props.input.name, props.form]);
@@ -105,6 +103,12 @@ export const optimizedYoutubeFields: TinaField[] = [
       { value: "large", label: "Large (800x600)" },
     ],
     description: "Choose the size of the YouTube embed.",
+    required: false,
+  },
+  {
+    name: "caption",
+    label: "Figure Caption",
+    type: "string",
     required: false,
   },
 ];

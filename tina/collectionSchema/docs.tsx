@@ -2,11 +2,19 @@ import { optimizedYoutubeFields } from "@comps/shared/Blocks/VideoDisplay.templa
 import { Collection, TinaField } from "tinacms";
 import { seoInformation } from "../shared/SEOInformation";
 import { imageEmbedTemplate } from "@comps/shared/Blocks/ImageEmbed";
+import { fileNameField } from "@tina/shared/FileName";
 
 export const docsCollection: Collection = {
   label: "Docs",
   name: "docs",
   path: "content/docs/",
+  ui: {
+
+    router: ({document}) => { 
+      return `/docs/${document._sys.filename}`;
+    },
+    ...fileNameField
+  },
   format: "mdx",
   fields: [
     seoInformation as TinaField,
@@ -48,6 +56,55 @@ export const docsCollection: Collection = {
           fields: [...optimizedYoutubeFields],
         },
         imageEmbedTemplate,
+        {
+          name: "Collapsible",
+          label: "Collapsible Section",
+          fields: [
+            { name: "title", label: "Title", type: "string", required: true },
+            { name: "defaultOpen", label: "Default Open", type: "boolean" },
+            {
+              name: "level",
+              label: "Heading Level (h2–h6)",
+              type: "string",
+              ui: { component: "select" },
+              options: [
+                { label: "h2", value: "2" },
+                { label: "h3", value: "3" },
+                { label: "h4", value: "4" },
+                { label: "h5", value: "5" },
+                { label: "h6", value: "6" },
+              ],
+            },
+            { name: "icon", label: "Icon", type: "image", required: false },
+            {
+              name: "content",
+              label: "Content",
+              type: "rich-text",
+              templates: [
+                imageEmbedTemplate,
+                {
+                  name: "Youtube",
+                  label: "Youtube Embed",
+                  fields: [...optimizedYoutubeFields],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          name: "OutlineBox",
+          label: "Outline Box",
+          fields: [
+            {
+              type: "rich-text",
+              name: "content",
+              label: "Content",
+              templates: [
+                imageEmbedTemplate
+              ],
+            },
+          ],
+        },
       ],
     },
   ],

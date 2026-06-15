@@ -42,7 +42,7 @@ export default function BlogPostClient({
   nextBlog,
   initialFormattedDate,
 }: BlogPostClientProps) {
-  const { data } = useTina<{ blogs: Blogs }>({
+  const { data } = useTina({
     query,
     variables,
     data: pageData,
@@ -189,7 +189,7 @@ export default function BlogPostClient({
             <div
               className={cn(
                 "sticky flex flex-col pt-6 sm:pt-0 summary top-32 space-y-6",
-                titles.length && "sm:h-[calc(100vh_-_11rem)]"
+                titles.length && "sm:h-[calc(100vh-11rem)]"
               )}
             >
               {data.blogs.summaryCard && (
