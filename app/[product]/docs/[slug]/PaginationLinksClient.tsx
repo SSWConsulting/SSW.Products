@@ -9,13 +9,16 @@ interface PaginationLink {
   slug: string;
 }
 
+
+export interface PaginationLinksClientProps {
+  prev: PaginationLink | null;
+  next: PaginationLink | null;
+};
+
 export default function PaginationLinksClient({
   prev,
   next,
-}: {
-  prev: PaginationLink | null;
-  next: PaginationLink | null;
-}) {
+}: PaginationLinksClientProps) {
   const contextualHref = useContextualLink();
 
   return (

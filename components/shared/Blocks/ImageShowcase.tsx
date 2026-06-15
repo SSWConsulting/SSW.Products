@@ -3,7 +3,7 @@
 import { useState, useCallback } from "react";
 import Image from "next/image";
 import { Download } from "lucide-react";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { TinaMarkdown, type TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 
 interface ImageShowcaseProps {
@@ -11,7 +11,7 @@ interface ImageShowcaseProps {
   gridDescription?: any;
   showcaseImage?: string | null;
   showcaseTitle?: string | null;
-  showcaseDescription?: string | null;
+  showcaseDescription?: TinaMarkdownContent;
   downloadFile?: string | null;
 }
 
@@ -97,7 +97,9 @@ const ImageShowcase = ({
         )}
 
         {showcaseDescription && (
-          <p className="text-gray-300 text-sm">{showcaseDescription}</p>
+          <div className="text-gray-300 text-sm">
+            <TinaMarkdown components={DocAndBlogMarkdownStyle} content={showcaseDescription} />
+          </div>
         )}
       </div>
     </div>

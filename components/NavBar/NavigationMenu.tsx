@@ -14,42 +14,63 @@ interface NavigationMenuBadgeProps {
   currentLocale?: string;
 }
 
+// Logos with aspect ratio below this threshold are rendered taller (h-12)
+// so their visible content width roughly matches "wide" logos (h-8).
+const COMPACT_LOGO_RATIO_THRESHOLD = 5;
+
 const NavigationMenuBadge = ({
   imgSrc,
   imgWidth,
   imgHeight,
-  currentLocale = 'en',
-}: NavigationMenuBadgeProps) => (
-  <NavigationMenu.Item className="gap-8 mx-auto flex items-center w-full">
-    <Link className="mb-2 shrink-0" href={getLocalizedPath('/', currentLocale)}>
-      <Image
-        src={imgSrc}
-        className="h-8 w-auto"
-        width={imgWidth}
-        height={imgHeight}
-        alt="Logo"
-      />
-    </Link>
-  </NavigationMenu.Item>
-);
+  currentLocale = "en",
+}: NavigationMenuBadgeProps) => {
+  const aspectRatio =
+    imgHeight > 0 ? imgWidth / imgHeight : COMPACT_LOGO_RATIO_THRESHOLD;
+  const heightClass =
+    aspectRatio < COMPACT_LOGO_RATIO_THRESHOLD ? "h-12" : "h-8";
+
+  return (
+    <NavigationMenu.Item className="gap-8 flex items-center w-full md:flex-1 md:w-auto">
+      <Link
+        className="mb-2 shrink-0"
+        href={getLocalizedPath("/", currentLocale)}
+      >
+        <Image
+          src={imgSrc}
+          className={`${heightClass} w-auto`}
+          width={imgWidth}
+          height={imgHeight}
+          alt="Logo"
+        />
+      </Link>
+    </NavigationMenu.Item>
+  );
+};
+
+interface NavigationMenuRootProps
+  extends React.ComponentPropsWithoutRef<typeof NavigationMenu.Root> {
+  mobileOpened?: boolean;
+}
 
 const NavigationMenuRoot = React.forwardRef<
   React.ElementRef<typeof NavigationMenu.Root>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenu.Root>
->(({ children }, ref) => {
+  NavigationMenuRootProps
+>(({ children, mobileOpened = false }, ref) => {
   const { scrolled } = useIsScrolled();
   return (
     <NavigationMenu.Root
       className={clsx(
-        `text-white sticky transition-colors justify-center z-10  duration-300 ease-in-out`,
+        `text-white sticky transition-colors justify-center z-10  duration-200 ease-in-out`,
         scrolled
-          ? `shadow-xs bg-[#131313]/80 my-2 py-4 px-6 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
-          : "p-6",
+          ? `shadow-xs ${
+              mobileOpened ? "bg-black" : "bg-transparent"
+            } my-2 py-4 px-6 animate-slide animate-in slide-in-from-top-3 backdrop-blur-sm animate-slide-in top-0 `
+          : `p-6 ${mobileOpened ? "bg-black" : "bg-transparent"}`,
         `z-40 w-full`
       )}
       ref={ref}
     >
-      <NavigationMenu.List className="sm:flex gap-x-5 sm:gap-y-0 gap-y-4 sm:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center">
+      <NavigationMenu.List className="md:flex gap-x-5 md:gap-y-0 gap-y-4 md:gap-x-0 grid-cols-2 grid mx-4 xl:mx-auto max-w-7xl m-0 justify-center md:justify-start">
         {children}
       </NavigationMenu.List>
     </NavigationMenu.Root>
