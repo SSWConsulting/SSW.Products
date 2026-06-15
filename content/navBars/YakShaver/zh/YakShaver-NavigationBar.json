@@ -3,6 +3,7 @@
   "imgSrc": "/yakshaver-logo.png",
   "imgWidth": 536,
   "imgHeight": 100,
+  "showLanguageToggle": true,
   "leftNavItem": [
     {
       "label": "定价",
@@ -67,11 +68,12 @@
     },
     {
       "label": "注册",
-      "href": "https://portal.yakshaver.ai/",
       "icon": "/YakShaver/yakshaver-black.svg",
       "iconPosition": "left",
-      "variant": "white",
-      "_template": "buttonLink"
+      "variant": "solidWhite",
+      "_template": "actions",
+      "url": "https://portal.yakshaver.ai/",
+      "size": "medium"
     }
   ]
 }
