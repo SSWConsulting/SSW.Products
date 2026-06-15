@@ -7,7 +7,6 @@ import NotFoundError from "@/errors/not-found";
 import ClientFallbackPage from "../../client-fallback-page";
 import { notFound } from "next/navigation";
 
-export const dynamic = 'force-static';
 interface FilePageProps {
   params: Promise<{ product: string; filename: string }>;
 }

@@ -10,12 +10,7 @@
       "backgroundImageEnabled": false,
       "titleBeforeRotate": "快速制作完美的",
       "titleAfterRotate": "仅需几秒",
-      "rotatingWords": [
-        "PBI",
-        "任务",
-        "工单",
-        "邮件"
-      ],
+      "rotatingWords": ["PBI", "任务", "工单", "邮件"],
       "byLine": "别再浪费时间写错误报告了。\n\nYakShaver AI 代理分析录音，生成任务，并立即分配给正确的团队。\n\n使用 YakShaver 节省数小时的挫败感。\n",
       "ctaRight": {
         "title": "观看视频",
@@ -74,7 +69,7 @@
           "textOnLeft": true
         },
         {
-          "AboveHeaderText": "{剃除}",
+          "AboveHeaderText": "{Shave}",
           "Header": "2 - YakShaver 接管",
           "Description": "YakShaver 观看您的视频，将您说的话转成文本，并理解发生了什么。\n",
           "media": "/Browser2.png",
@@ -149,7 +144,7 @@
         "description": "当 PBI 被创建、分配或需要跟进时，立即保持更新"
       },
       "counterBox1": {
-        "title": "剃除的 Yaks 数量",
+        "title": "Shave的 Yaks 数量",
         "counterMetric": "YakShaved"
       },
       "counterBox2": {
@@ -187,14 +182,11 @@
     },
     {
       "title": "简单透明的定价",
-      "desc": "共享剃除额度。一次付费，组织内任何人都可以报告问题。零按席位收费——尽情剃除！",
+      "desc": "共享 Shave 额度。一次付费，组织内任何人都可以报告问题。不按人头收费——尽情 Shave！",
       "tiers": [
         {
           "tier": "入门",
-          "description": [
-            "每月 15 次剃除",
-            "适合个人"
-          ],
+          "description": ["每月 15 次 Shave", "适合个人"],
           "price": 0,
           "estimatedHoursSaved": 7.5,
           "itemsAbleToCreate": 15,
@@ -208,10 +200,7 @@
         },
         {
           "tier": "团队",
-          "description": [
-            "每月 100 次剃除",
-            "适合成长中的团队"
-          ],
+          "description": ["每月 100 次 Shave", "适合成长中的团队"],
           "price": 39,
           "estimatedHoursSaved": 50,
           "itemsAbleToCreate": 100,
@@ -225,10 +214,7 @@
         },
         {
           "tier": "成长",
-          "description": [
-            "每月 500 次剃除",
-            "适合大型组织"
-          ],
+          "description": ["每月 500 次 Shave", "适合大型组织"],
           "price": 189,
           "estimatedHoursSaved": 250,
           "itemsAbleToCreate": 500,
@@ -242,10 +228,7 @@
         },
         {
           "tier": "企业",
-          "description": [
-            "定制剃除额度",
-            "适合定制解决方案"
-          ],
+          "description": ["定制 Shave 额度", "适合定制解决方案"],
           "price": 99999,
           "estimatedHoursSaved": 0,
           "itemsAbleToCreate": 0,
