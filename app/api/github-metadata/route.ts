@@ -2,7 +2,6 @@ import type { GitHubCommit } from '@utils/githubMetadata';
 import { NextResponse } from 'next/server';
 
 const CACHE_TTL = 300; // 5 minutes in seconds
-export const revalidate = CACHE_TTL;
 
 async function fetchGitHub<T>(
   url: string,
@@ -75,13 +74,20 @@ export async function GET(request: Request) {
     const latestCommit = latestCommits[0];
     const firstCommit = allCommits.length ? allCommits.at(-1)! : null;
 
-    return NextResponse.json({
-      latestCommit,
-      firstCommit,
-      historyUrl: path
-        ? `https://github.com/${owner}/${repo}/commits/main/${path}`
-        : `https://github.com/${owner}/${repo}/commits/main`,
-    });
+    return NextResponse.json(
+      {
+        latestCommit,
+        firstCommit,
+        historyUrl: path
+          ? `https://github.com/${owner}/${repo}/commits/main/${path}`
+          : `https://github.com/${owner}/${repo}/commits/main`,
+      },
+      {
+        headers: {
+          'Cache-Control': `public, s-maxage=${CACHE_TTL}, stale-while-revalidate=3600`,
+        },
+      },
+    );
   } catch (error) {
     console.error('Error fetching GitHub metadata:', error);
     return NextResponse.json(

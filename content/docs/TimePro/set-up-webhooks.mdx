@@ -1,0 +1,45 @@
+---
+seo:
+  title: Set up webhooks
+  description: Learn how to set up a webhook in TimePro following our step-by-step-guide.
+title: Set up webhooks
+date: '2026-05-20T16:00:00.000Z'
+---
+
+Webhooks allow TimePro to push real-time event notifications (e.g. timesheet or invoice changes) to an external endpoint using OAuth2-authenticated HTTP POST requests.
+
+## Video Walk-through
+
+Watch the video for a full step-to-step guide on
+
+* How to set up webhooks in TimePro
+* How to test it out
+
+<Youtube thumbnail="https://img.youtube.com/vi/3t4v91RrDH0/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/3t4v91RrDH0?si=BmX6gd3vQIsITXrt" size="large" caption="SSW TimePro - How to set up webhooks (5 min)" />
+
+## Prequisites
+
+Before you begin, ensure you have:
+
+* An external endpoint URL that can receive HTTP POST requests
+* A Microsoft Entra ID app registration
+
+## Navigate to the Webhook Admin Page
+
+From your TimePro tenant
+
+1. In the top navigation, go to Admin | Webhook
+
+![](/TimePro/webhook-navigation.png)Figure: Navigate to Webhook page
+
+## Fill in the Add Subsriber Form
+
+On the Webhook page, you will see a table listing existing webhook subscribers (empty if none exist yet).
+
+1. Click **+ Add subscriber** button to open the **Add Subsriber** form
+2. Fill in four Entra ID fields with info from your Microsoft Entra ID app registration
+3. Fill in **Webhook endpoint URL** with endpoint that receives POST requests for your app
+4. Under the **Subscribed Events** section, tick TimePro events you want to be notified of
+5. Tick **Enable webhook** to activate the subcriber
+
+🎉 Now you can receive notification from TimePro whenever your subscribed event occurs.

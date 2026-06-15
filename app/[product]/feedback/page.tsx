@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Script from "next/script";
 
 interface Feedback {
-  params: { product: string };
+  params: Promise<{ product: string }>;
 }
 
 export async function generateMetadata() : Promise<Metadata> {
@@ -19,7 +19,8 @@ export async function generateMetadata() : Promise<Metadata> {
 }
 
 export default async function Feedback({ params }: Feedback) {
-    if(params.product !== "YakShaver")
+  const { product } = await params;
+    if(product !== "YakShaver")
         notFound();
 
   return <>
