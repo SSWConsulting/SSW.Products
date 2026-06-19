@@ -3,9 +3,28 @@ title: Using the TimePro MCP
 date: '2026-06-18T14:00:00.000Z'
 ---
 
-The **TimePro MCP** (Model Context Protocol) server allows you to manage timesheets, lookup clients/projects, handle leave requests, and more - all through natural language with your AI assistant.
+The TimePro MCP (Model Context Protocol) server allows you to manage timesheets, lookup clients/projects, handle leave requests, and more - all through natural language with your AI assistant.
 
 ## MCP Configuration
+
+### Prerequisites
+
+Before configuring the MCP server, install the TimePro CLI as a global tool:
+
+```bash
+git clone https://github.com/SSWConsulting/timepro.tools.git
+cd timepro.tools
+dotnet pack src/SSW.TimePro.Cli/ -c Release -o artifacts/nupkg
+dotnet tool install -g --add-source artifacts/nupkg SSW.TimePro.Cli
+```
+
+Then authenticate with your TimePro tenant:
+
+```bash
+tp login --tenant ssw
+```
+
+This makes the `tp` command available system-wide, which the MCP server needs to run.
 
 ### Setting Up in VS Code (Copilot)
 
@@ -23,8 +42,6 @@ Add to `.vscode/settings.json` or your user settings:
   }
 }
 ```
-
-TODO: Screenshot of VS Code settings with MCP configured
 
 ### Other AI Agents
 
@@ -84,24 +101,7 @@ The MCP server exposes several tool groups:
 * "Show my upcoming leave"
 * "Create a leave request for next Friday - Annual Leave"
 
-## Tools and Skills
-
-The TimePro CLI can generate agent skill files that give AI assistants context about your projects:
-
-```bash
-tp skills create .agents           # Local to current project
-tp skills create .claude --global  # Global (all projects)
-```
-
-The generated skill file includes:
-
-* Quick reference for all `tp` commands
-* Workflow for entering a full week of timesheets
-* `gh` commands pre-filled with your repo slug for issue/PR lookup
-* Description format guide with PR and issue number examples
-* Project context (client, project, GitHub repo) from your repo mapping
-
-This helps AI agents understand how to format timesheet descriptions with proper PR/issue references.
+For a complete list of available commands and capabilities, see the [TimePro CLI documentation](https://github.com/SSWConsulting/timepro.tools).
 
 ## YakShaver Integration
 
