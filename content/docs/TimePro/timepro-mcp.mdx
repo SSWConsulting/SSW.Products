@@ -5,9 +5,7 @@ date: '2026-06-18T14:00:00.000Z'
 
 The TimePro MCP (Model Context Protocol) server allows you to manage timesheets, lookup clients/projects, handle leave requests, and more - all through natural language with your AI assistant.
 
-## MCP Configuration
-
-### Prerequisites
+### MCP Configuration
 
 Before configuring the MCP server, install the TimePro CLI as a global tool:
 
@@ -49,23 +47,6 @@ The MCP server works with any MCP-compatible AI agent. See the [TimePro CLI READ
 
 * **Claude Code** - Add to `~/.claude/settings.json`
 * **Codex (OpenAI CLI)** - Add to your Codex MCP config
-
-### Multi-Tenant Support
-
-The MCP server uses your active tenant by default (`tp tenant set`). To pin a session to a specific tenant without changing your global setting, pass `--tenant NAME`:
-
-```json
-{
-  "mcp": {
-    "servers": {
-      "timepro": {
-        "command": "tp",
-        "args": ["mcp", "--tenant", "ssw"]
-      }
-    }
-  }
-}
-```
 
 ### Creating a Timesheet with MCP
 
