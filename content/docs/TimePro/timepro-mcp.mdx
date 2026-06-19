@@ -3,3 +3,106 @@ title: Using the TimePro MCP
 date: '2026-06-18T14:00:00.000Z'
 ---
 
+The **TimePro MCP** (Model Context Protocol) server allows you to manage timesheets, lookup clients/projects, handle leave requests, and more - all through natural language with your AI assistant.
+
+## MCP Configuration
+
+### Setting Up in VS Code (Copilot)
+
+Add to `.vscode/settings.json` or your user settings:
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "timepro": {
+        "command": "tp",
+        "args": ["mcp"]
+      }
+    }
+  }
+}
+```
+
+TODO: Screenshot of VS Code settings with MCP configured
+
+### Other AI Agents
+
+The MCP server works with any MCP-compatible AI agent. See the [TimePro CLI README](https://github.com/SSWConsulting/timepro.tools) for configuration examples for:
+
+* **Claude Code** - Add to `~/.claude/settings.json`
+* **Codex (OpenAI CLI)** - Add to your Codex MCP config
+
+### Multi-Tenant Support
+
+The MCP server uses your active tenant by default (`tp tenant set`). To pin a session to a specific tenant without changing your global setting, pass `--tenant NAME`:
+
+```json
+{
+  "mcp": {
+    "servers": {
+      "timepro": {
+        "command": "tp",
+        "args": ["mcp", "--tenant", "ssw"]
+      }
+    }
+  }
+}
+```
+
+### Creating a Timesheet with MCP
+
+Once configured, you can ask your AI agent to create timesheets using natural language:
+
+TODO: Screenshot of AI agent creating a timesheet
+
+**Example prompts:**
+
+* "Create a timesheet for today - I worked on the Northwind Traders app from 9am to 5pm with a 1 hour lunch break"
+* "Log 4 hours of billable work on Project X this morning"
+* "I worked from home today on internal tooling"
+
+The AI agent will use your repo mappings to auto-detect the client and project, check your billing rate, and apply your location defaults.
+
+### Other MCP Capabilities
+
+The MCP server exposes several tool groups:
+
+| Tool Group | What You Can Do                                                   |
+| ---------- | ----------------------------------------------------------------- |
+| Timesheet  | View, create, update, delete timesheets; accept suggestions       |
+| Lookup     | Search clients, list projects, check billing rates                |
+| Leave      | Create leave requests, list upcoming/past leave, cancel requests  |
+| Accounting | View invoices, receipts, credit notes, prepaid status (read-only) |
+| Prepaid    | Check prepaid drawdown totals and status                          |
+
+**Example prompts for other features:**
+
+* "What are my timesheets for this week?"
+* "Accept the suggested timesheet for Monday"
+* "What's my billing rate for Northwind?"
+* "Show my upcoming leave"
+* "Create a leave request for next Friday - Annual Leave"
+
+## Tools and Skills
+
+The TimePro CLI can generate agent skill files that give AI assistants context about your projects:
+
+```bash
+tp skills create .agents           # Local to current project
+tp skills create .claude --global  # Global (all projects)
+```
+
+The generated skill file includes:
+
+* Quick reference for all `tp` commands
+* Workflow for entering a full week of timesheets
+* `gh` commands pre-filled with your repo slug for issue/PR lookup
+* Description format guide with PR and issue number examples
+* Project context (client, project, GitHub repo) from your repo mapping
+
+This helps AI agents understand how to format timesheet descriptions with proper PR/issue references.
+
+## YakShaver Integration
+
+*Coming soon* - Integration with YakShaver for automated timesheet suggestions based on your development activity.
