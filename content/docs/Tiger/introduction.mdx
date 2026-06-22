@@ -1,8 +1,7 @@
 ---
 seo:
   title: How to Process Your Own Transcripts Locally
-  description: >-
-    Learn how to process your own transcript files with SSW Tiger.
+  description: Learn how to process your own transcript files with SSW Tiger.
 title: How to Process Your Own Transcripts Locally
 date: '2026-04-29T00:00:00.000Z'
 ---
@@ -17,9 +16,9 @@ This guide is for users running SSW Tiger **manually on their own machine**. For
 
 You'll need:
 
-- **A Claude account**: either a Claude Pro/Max subscription, or an API key from [console.anthropic.com](https://console.anthropic.com/settings/keys)
-- **Claude Code CLI installed**: Anthropic's agentic coding tool that runs in your terminal ([install here](https://code.claude.com/docs/en/quickstart))
-- **A meeting transcript**: `.vtt` is recommended because it includes speaker tags and timestamps, which makes the analysis much richer
+* **A Claude account**: either a Claude Pro/Max subscription, or an API key from [console.anthropic.com](https://console.anthropic.com/settings/keys)
+* **Claude Code CLI installed**: Anthropic's agentic coding tool that runs in your terminal ([install here](https://code.claude.com/docs/en/quickstart))
+* **A meeting transcript**: `.vtt` is recommended because it includes speaker tags and timestamps, which makes the analysis much richer
 
 ## Step 1: Clone the Project
 
@@ -30,9 +29,13 @@ git clone https://github.com/SSWConsulting/SSW.Tiger.git
 cd SSW.Tiger
 ```
 
-## Step 2: Add Your Transcript
+## Step 2: Open Tiger in your IDE of choice
 
-We recommend organising your transcripts inside a `Projects` folder within the SSW.Tiger directory. It keeps everything tidy and makes it easy to find the dashboards later.
+We recommend using VSCode
+
+## Step 3: Add Your Transcript
+
+We recommend organising your transcripts inside a `Projects` folder within the SSW\.Tiger directory. It keeps everything tidy and makes it easy to find the dashboards later.
 
 Suggested structure:
 
@@ -46,7 +49,7 @@ SSW.Tiger/
 
 Create a folder for your project, then a subfolder named after the meeting date, and drop your transcript inside. This is optional. You can put your transcript anywhere, but this structure keeps multiple meetings easier to manage.
 
-## Step 3: Generate the Dashboard
+## Step 4: Generate the Dashboard
 
 In the `SSW.Tiger` folder, start Claude Code:
 
@@ -68,7 +71,7 @@ Claude will:
 
 **Pro Tip**: You can drag the transcript file straight into the Claude Code terminal. It pastes the path for you.
 
-## Step 4: View Your Dashboard
+## Step 5: View Your Dashboard
 
 The dashboard is saved alongside your transcript:
 
@@ -78,13 +81,12 @@ Projects/test-project/2026-04-29/dashboard/index.html
 
 Open it in your browser:
 
-- **Windows**: `start Projects\test-project\2026-04-29\dashboard\index.html`
-- **macOS / Linux**: `open Projects/test-project/2026-04-29/dashboard/index.html`
+* **Windows**: `start Projects\test-project\2026-04-29\dashboard\index.html`
+* **macOS / Linux**: `open Projects/test-project/2026-04-29/dashboard/index.html`
 
 You're done. That's your dashboard.
 
-
 ## Additional Tips
 
-- Start with a transcript you know well, so you can spot what the dashboard gets right (and what to tweak)
-- The more meetings you process for the same project, the richer the **Trends** tab becomes
+* Start with a transcript you know well, so you can spot what the dashboard gets right (and what to tweak)
+* The more meetings you process for the same project, the richer the **Trends** tab becomes
