@@ -1,0 +1,66 @@
+{
+  "seo": {
+    "title": "安装",
+    "description": "立即下载、安装并开始剃须。"
+  },
+  "title": "安装",
+  "pageBlocks": [
+    {
+      "title": "选择您的平台",
+      "cards": [
+        {
+          "title": "桌面应用",
+          "descriptionLhs": "✓ 免费\n\n✓ 连接您喜爱的 MCP\n\n✓ 自带 AI 提供商\n",
+          "descriptionRhs": "✓ 安全的令牌存储\n\n✓ 原生独立应用\n\n✓ 自定义提示词\n",
+          "colSpan": "2",
+          "buttons": [
+            {
+              "label": "下载 Windows 版",
+              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-Setup.exe",
+              "icon": "/svg/windows.svg",
+              "iconPosition": "left",
+              "variant": "solidRed",
+              "size": "medium",
+              "_template": "actions"
+            },
+            {
+              "label": "下载 Mac 版",
+              "url": "https://github.com/SSWConsulting/SSW.YakShaver.Desktop/releases/latest/download/YakShaver-latest-arm64.dmg",
+              "icon": "/YakShaver/Docs/apple.svg",
+              "iconPosition": "left",
+              "variant": "solidRed",
+              "size": "medium",
+              "_template": "actions"
+            }
+          ]
+        },
+        {
+          "title": "Teams 应用扩展",
+          "descriptionLhs": "✓ 免费\n\n✓ Teams 录制\n\n✓ 在会议中协作\n\n✓ 自动处理录制\n\n✓ 内置命令\n",
+          "descriptionRhs": "",
+          "colSpan": "1",
+          "buttons": [
+            {
+              "label": "安装到 Teams",
+              "url": "https://teams.microsoft.com/l/app/f47ac10b-58cc-4372-a567-0e02b2c3d479",
+              "icon": "/svg/Microsoft Office Teams 2018.svg",
+              "iconPosition": "left",
+              "variant": "outlinedWhite",
+              "size": "medium",
+              "_template": "actions"
+            }
+          ]
+        }
+      ],
+      "_template": "downloadCards"
+    },
+    {
+      "altText": "制作完美的 PBI | YakShaver",
+      "title": "想了解更多？观看此视频！",
+      "externalVideoLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",
+      "thumbnail": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
+      "figureCaption": "视频：使用 YakShaver 制作完美的 PBI（6 分钟）",
+      "_template": "videoDisplay"
+    }
+  ]
+}
