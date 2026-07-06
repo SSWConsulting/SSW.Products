@@ -67,7 +67,7 @@ Before designing, look at 2–3 existing banners for calibration:
 
    (On Windows/Linux substitute the Chrome/Chromium binary path.)
 6. **Verify visually**: open the PNG with the Read tool and check —
-   - [ ] Exactly 1200×675 (`sips -g pixelWidth -g pixelHeight <file>.png`)
+   - [ ] Exactly 1200×675 (macOS: `sips -g pixelWidth -g pixelHeight <file>.png`; Windows: `Add-Type -AssemblyName System.Drawing; [System.Drawing.Image]::FromFile("<file>.png") | Select Width, Height`)
    - [ ] Nothing clipped: illustration fully inside its card, badges/chips visible
    - [ ] Headline fits in 2 lines; subtitle in 1 line
    - [ ] Side-by-side sanity check against an existing banner: same logo position, kicker
