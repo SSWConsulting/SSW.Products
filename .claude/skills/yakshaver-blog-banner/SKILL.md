@@ -11,7 +11,7 @@ saved to `public/YakShaver/Blogs/<blog-slug>.png`.
 
 Before designing, look at 2–3 existing banners for calibration:
 `public/YakShaver/Blogs/ROI.png`,
-`macos_update.png`, `yakshaver-anywhere.png` (view them with the Read tool).
+`macos_update.png`, `yakshaver-anywhere-banner.png` (view them with the Read tool).
 
 ## Design system (do not deviate)
 
