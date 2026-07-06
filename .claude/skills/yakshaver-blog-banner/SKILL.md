@@ -10,8 +10,8 @@ authored as a self-contained HTML file, rendered to PNG with headless Chrome, an
 saved to `public/YakShaver/Blogs/<blog-slug>.png`.
 
 Before designing, look at 2–3 existing banners for calibration:
-`public/YakShaver/Blogs/how-much-time-does-yakshaver-save.png`,
-`new-support-macos.png`, `yakshave-on-browser.png` (view them with the Read tool).
+`public/YakShaver/Blogs/ROI.png`,
+`macos_update.png`, `yakshaver-anywhere.png` (view them with the Read tool).
 
 ## Design system (do not deviate)
 
