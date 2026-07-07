@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>YakShaver blog banner</title>
+<style>
+  /* ============================================================
+     YakShaver blog banner template — 1200x675
+     Edit: the .copy text, and the contents of .illustration.
+     Do NOT change: canvas size, background, logo, copy styling.
+     ============================================================ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 675px; overflow: hidden; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background:
+      radial-gradient(ellipse 820px 560px at 78% 58%, rgba(160, 32, 32, 0.55), rgba(0,0,0,0) 70%),
+      radial-gradient(ellipse 900px 700px at 20% 110%, rgba(120, 24, 24, 0.25), rgba(0,0,0,0) 70%),
+      #161616;
+    position: relative;
+    color: #fff;
+  }
+
+  .logo { position: absolute; top: 44px; left: 56px; height: 46px; }
+
+  /* ---- Left copy column ---- */
+  .copy { position: absolute; left: 56px; top: 268px; width: 560px; }
+  .kicker {
+    color: #e5484d; font-size: 20px; font-weight: 700;
+    letter-spacing: 6px; text-transform: uppercase; margin-bottom: 18px;
+  }
+  h1 { font-size: 62px; line-height: 1.13; font-weight: 800; color: #ffffff; letter-spacing: -0.5px; }
+  .dash { width: 92px; height: 6px; background: #e5484d; border-radius: 3px; margin: 30px 0 26px; }
+  .sub { color: #9b9b9b; font-size: 26px; font-weight: 400; }
+
+  /* ---- Illustration zone (design per-post inside this box) ---- */
+  .illustration { position: absolute; right: 64px; top: 118px; width: 440px; height: 372px; }
+
+  /* ============================================================
+     Reusable illustration pieces — keep what you use, delete the rest
+     ============================================================ */
+
+  /* App/browser window card */
+  .window {
+    width: 100%; height: 100%;
+    background: #1c1c1c; border: 1px solid #333; border-radius: 14px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .titlebar {
+    background: #262626; border-bottom: 1px solid #333;
+    padding: 12px 14px; display: flex; align-items: center; gap: 10px;
+    color: #ddd; font-size: 13px;
+  }
+  .dots { display: flex; gap: 7px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.r { background: #ff5f57; } .dot.y { background: #febc2e; } .dot.g { background: #28c840; }
+  .viewport { position: relative; flex: 1; padding: 22px; }
+
+  /* Dashed capture region with corner handles */
+  .capture {
+    position: absolute; inset: 22px;
+    border: 2.5px dashed #e5484d; border-radius: 10px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+  }
+  .corner { position: absolute; width: 11px; height: 11px; background: #e5484d; border-radius: 2px; }
+  .c1 { top: -6px; left: -6px; } .c2 { top: -6px; right: -6px; }
+  .c3 { bottom: -6px; left: -6px; } .c4 { bottom: -6px; right: -6px; }
+
+  /* Glowing red record button */
+  .record-btn {
+    width: 66px; height: 66px; border-radius: 50%;
+    background: #e5484d; display: grid; place-items: center;
+    box-shadow: 0 0 0 10px rgba(229,72,77,0.18), 0 0 40px rgba(229,72,77,0.5);
+  }
+  .record-btn .inner { width: 24px; height: 24px; border-radius: 50%; background: #fff; }
+
+  /* Small uppercase label under a focal element */
+  .label { color: #eaeaea; font-size: 15px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+
+  /* Red outlined badge, e.g. "REC 00:05" */
+  .badge {
+    border: 1.5px solid #e5484d; color: #ff8a8e; background: rgba(229,72,77,0.08);
+    border-radius: 8px; padding: 6px 12px; font-size: 14px; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .badge .pulse { width: 9px; height: 9px; border-radius: 50%; background: #e5484d; }
+
+  /* Neutral pill chip, e.g. "No install · Any OS" */
+  .chip {
+    background: #232323; border: 1px solid #3a3a3a; color: #bdbdbd;
+    border-radius: 999px; padding: 6px 14px; font-size: 13.5px; font-weight: 600;
+    display: inline-block;
+  }
+  .chip b { color: #fff; }
+</style>
+</head>
+<body>
+  <!-- Replace {{LOGO_SRC}} with file:///<repo-root>/public/YakShaver/yakshaver-logo.png -->
+  <img class="logo" src="{{LOGO_SRC}}" alt="YakShaver">
+
+  <div class="copy">
+    <div class="kicker">Product Update</div>
+    <h1>Headline goes<br>right here</h1>
+    <div class="dash"></div>
+    <div class="sub">One-line benefit statement goes here</div>
+  </div>
+
+  <div class="illustration">
+    <!-- Example illustration: app window with capture region + record button.
+         Replace with a flat vector concept for your post. -->
+    <div class="window">
+      <div class="titlebar">
+        <span class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></span>
+        YakShaver
+      </div>
+      <div class="viewport">
+        <div class="capture">
+          <span class="corner c1"></span><span class="corner c2"></span>
+          <span class="corner c3"></span><span class="corner c4"></span>
+          <div class="record-btn"><div class="inner"></div></div>
+          <div class="label">Recording</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
