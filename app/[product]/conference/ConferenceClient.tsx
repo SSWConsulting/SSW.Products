@@ -24,7 +24,7 @@ const HeaderBanner = ({
   scrollToAgenda: () => void;
 }) => {
   return (
-    <div className="relative overflow-hidden rounded-none lg:rounded-3xl lg:mx-auto lg:max-w-6xl bg-linear-to-r from-[#0e0e0e] via-[#131313] to-[#141414] text-white">
+    <div className="relative isolate overflow-hidden rounded-none lg:rounded-3xl lg:mx-auto lg:max-w-6xl bg-linear-to-r from-[#0e0e0e] via-[#131313] to-[#141414] text-white">
       <div
         className="absolute w-full h-full blur-[150px] opacity-40 rounded-full -left-1/2 pointer-events-none"
         style={{
