@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 "use client";
 
+import type { ConferenceQuery } from "@tina/__generated__/types";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -14,13 +13,33 @@ import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
 import Container from "../../../components/Container";
 import { Button } from "../../../components/ui/button";
 
-const FALLBACK_SPEAKER_IMAGE = "/YakShaver/People/uly-avatar.png";
+const FALLBACK_SPEAKER_IMAGE = "/YakShaver/Icon/yak-icon-1.svg";
+
+type Conference = ConferenceQuery["conference"];
+type Banner = Conference["banner"];
+type KeyHighlight = NonNullable<
+  NonNullable<NonNullable<Conference["about"]>["keyHighlights"]>[number]
+>;
+type Speaker = NonNullable<NonNullable<Conference["speakers"]>[number]>;
+type ScheduleItem = NonNullable<
+  NonNullable<Conference["speakerSchedule"]>[number]
+>;
+
+interface Session {
+  talkSpeakerName: string | null;
+  talkSpeakerImage: string | null;
+  speechTitle: string;
+  speechDescription: string;
+  talkTimeStart: number;
+  talkTimeEnd?: number;
+  sessionType: "Talk" | "Workshop" | "Break";
+}
 
 const HeaderBanner = ({
   banner,
   scrollToAgenda,
 }: {
-  banner: any;
+  banner: Banner;
   scrollToAgenda: () => void;
 }) => {
   return (
@@ -89,24 +108,29 @@ const icons = {
   GoPeople: <GoPeople size={40} />,
 };
 
-const KeyHighlights = ({ highlights }: { highlights: any }) => {
-  if (!highlights) return null;
+const KeyHighlights = ({
+  highlights,
+}: {
+  highlights?: (KeyHighlight | null)[] | null;
+}) => {
+  const items = (highlights ?? []).filter(
+    (highlight): highlight is KeyHighlight => highlight !== null
+  );
+  if (items.length === 0) {
+    return null;
+  }
   return (
     <div className="flex flex-col md:flex-row py-12 gap-8 max-w-5xl text-lg">
-      {[
-        ["headerLeft", "descriptionLeft", "iconLeft"],
-        ["headerMiddle", "descriptionMiddle", "iconMiddle"],
-        ["headerRight", "descriptionRight", "iconRight"],
-      ].map(([header, description, icon]) => (
+      {items.map((item) => (
         <div
-          key={header}
-          className="flex flex-col gap-2 items-center w-full md:w-1/3 rounded-[20px] bg-linear-to-r from-[#0e0e0e] via-[#131313] to-[#141414] p-8"
+          key={item.header}
+          className="flex flex-col gap-2 items-center flex-1 rounded-[20px] bg-linear-to-r from-[#0e0e0e] via-[#131313] to-[#141414] p-8"
         >
           <div className="text-white bg-linear-to-br from-red-400 to-red-700 p-2 mb-4 rounded-full [&>svg]:p-1">
-            {icons[highlights[icon] as keyof typeof icons] ?? icons.FaRegStar}
+            {icons[item.icon as keyof typeof icons] ?? icons.FaRegStar}
           </div>
-          <h3 className="font-bold text-white">{highlights[header]}</h3>
-          <p className="text-gray-300 text-base">{highlights[description]}</p>
+          <h3 className="font-bold text-white">{item.header}</h3>
+          <p className="text-gray-300 text-base">{item.description}</p>
         </div>
       ))}
     </div>
@@ -125,23 +149,6 @@ const conferenceMarkdownComponents: Components<object> = {
   ),
 };
 
-interface Speaker {
-  name: string;
-  position: string;
-  image: string;
-  socialLink: string;
-}
-
-interface Session {
-  talkSpeakerName: string | null;
-  talkSpeakerImage: string | null;
-  speechTitle: string;
-  speechDescription: string;
-  talkTimeStart: number;
-  talkTimeEnd?: number;
-  sessionType: "Talk" | "Workshop" | "Break";
-}
-
 const ExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
   return (
     <div className="flex flex-col items-center text-center p-6 md:pt-16">
@@ -158,7 +165,7 @@ const ExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
               <div className="w-[150px] h-[150px] rounded-full overflow-hidden shadow-xl border-2 border-white/10 hover:border-[#CC4141] transition-colors">
                 <Image
                   src={speaker.image || FALLBACK_SPEAKER_IMAGE}
-                  alt={speaker.name}
+                  alt={speaker.name ?? "Speaker"}
                   width={150}
                   height={150}
                   className="w-full h-full object-cover"
@@ -409,8 +416,8 @@ export default function ConferenceClient({
   variables,
 }: {
   query: string;
-  data: any;
-  variables: any;
+  data: ConferenceQuery;
+  variables: { relativePath: string };
 }) {
   const tinaData = useTina({
     query,
@@ -420,21 +427,29 @@ export default function ConferenceClient({
 
   const conference = tinaData.data?.conference;
 
-  const sessions: Session[] = (conference?.speakerSchedule || []).map(
-    (session: any) => ({
-      speechTitle: session.speechTitle || "TBD",
-      speechDescription: session.speechDescription || "",
-      talkSpeakerName:
-        session.sessionType === "Break" ? null : session.talkSpeakerName,
-      talkSpeakerImage:
-        session.sessionType === "Break"
-          ? null
-          : session.talkSpeakerImage || FALLBACK_SPEAKER_IMAGE,
-      talkTimeStart: session.talkTimeStart || 0,
-      talkTimeEnd: session.talkTimeEnd ?? undefined,
-      sessionType: session.sessionType || "Break",
-    })
+  const speakers = (conference?.speakers ?? []).filter(
+    (speaker): speaker is Speaker => speaker !== null
   );
+
+  const sessions: Session[] = (conference?.speakerSchedule ?? [])
+    .filter((session): session is ScheduleItem => session !== null)
+    .map((session) => {
+      const sessionType =
+        (session.sessionType as Session["sessionType"]) || "Talk";
+      return {
+        speechTitle: session.speechTitle || "TBD",
+        speechDescription: session.speechDescription || "",
+        talkSpeakerName:
+          sessionType === "Break" ? null : (session.talkSpeakerName ?? null),
+        talkSpeakerImage:
+          sessionType === "Break"
+            ? null
+            : session.talkSpeakerImage || FALLBACK_SPEAKER_IMAGE,
+        talkTimeStart: session.talkTimeStart ?? 0,
+        talkTimeEnd: session.talkTimeEnd ?? undefined,
+        sessionType,
+      };
+    });
 
   const agendaRef = useRef<HTMLDivElement>(null);
   const scrollToAgenda = () => {
@@ -450,7 +465,10 @@ export default function ConferenceClient({
 
   return (
     <div className="pt-6 text-white">
-      <HeaderBanner banner={conference?.banner} scrollToAgenda={scrollToAgenda} />
+      <HeaderBanner
+        banner={conference?.banner}
+        scrollToAgenda={scrollToAgenda}
+      />
       <Container className="flex flex-col justify-center items-center text-center py-16">
         <h2 className="text-3xl font-bold pb-4 bg-linear-to-br from-red-400 to-red-700 bg-clip-text text-transparent">
           {conference?.about?.heading}
@@ -462,9 +480,7 @@ export default function ConferenceClient({
           />
         </div>
         <KeyHighlights highlights={conference?.about?.keyHighlights} />
-        {conference?.speakers?.length > 0 && (
-          <ExpertSpeakers speakers={conference.speakers} />
-        )}
+        {speakers.length > 0 && <ExpertSpeakers speakers={speakers} />}
         <Agenda sessions={sessions} agendaRef={agendaRef} />
       </Container>
     </div>

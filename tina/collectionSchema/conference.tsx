@@ -117,62 +117,30 @@ export const conferenceCollection: Collection = {
           type: "object",
           name: "keyHighlights",
           label: "Key Highlights",
+          list: true,
+          ui: {
+            itemProps: (item) => ({
+              label: item.header,
+            }),
+          },
           fields: [
             {
               type: "string",
-              name: "headerLeft",
-              label: "Header Left",
+              name: "header",
+              label: "Header",
             },
             {
               type: "string",
-              name: "descriptionLeft",
-              label: "Description Left",
+              name: "description",
+              label: "Description",
               ui: {
                 component: "textarea",
               },
             },
             {
               type: "string",
-              name: "iconLeft",
-              label: "Icon Left",
-              options: iconOptions,
-            },
-            {
-              type: "string",
-              name: "headerMiddle",
-              label: "Header Middle",
-            },
-            {
-              type: "string",
-              name: "descriptionMiddle",
-              label: "Description Middle",
-              ui: {
-                component: "textarea",
-              },
-            },
-            {
-              type: "string",
-              name: "iconMiddle",
-              label: "Icon Middle",
-              options: iconOptions,
-            },
-            {
-              type: "string",
-              name: "headerRight",
-              label: "Header Right",
-            },
-            {
-              type: "string",
-              name: "descriptionRight",
-              label: "Description Right",
-              ui: {
-                component: "textarea",
-              },
-            },
-            {
-              type: "string",
-              name: "iconRight",
-              label: "Icon Right",
+              name: "icon",
+              label: "Icon",
               options: iconOptions,
             },
           ],
@@ -231,6 +199,9 @@ export const conferenceCollection: Collection = {
             item.speechTitle ?? ""
           }`,
         }),
+        defaultItem: {
+          sessionType: "Talk",
+        },
       },
       fields: [
         {
@@ -273,6 +244,7 @@ export const conferenceCollection: Collection = {
           name: "sessionType",
           label: "Session Type",
           options: ["Talk", "Workshop", "Break"],
+          required: true,
         },
       ],
     },
