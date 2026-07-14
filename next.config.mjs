@@ -8,11 +8,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/download",
-        destination: "/install",
-        permanent: true,
-      },
-      {
         source: "/blog/recording-work-item-snagit",
         destination: "/docs/recording-work-item-snagit",
         permanent: true,

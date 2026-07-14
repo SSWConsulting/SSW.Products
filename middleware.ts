@@ -97,6 +97,10 @@ function handleProductionRequest(
   }
   
   if (targetProduct) {
+    if (targetProduct === "YakShaver" && pathname === "/download") {
+      return NextResponse.redirect(new URL("/install", request.url), 308);
+    }
+
     const cleanPath = cleanPathFromLanguage(pathname);
     const pathSegments = parsePathSegments(cleanPath);
     const pathAlreadyHasProduct = productList.some(
