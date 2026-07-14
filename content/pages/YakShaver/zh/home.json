@@ -41,7 +41,7 @@
       "ParentContainerDescription": "",
       "CardAndImageItem": [
         {
-          "AboveHeaderText": "{观看}",
+          "AboveHeaderText": "{发现问题}",
           "Header": "1 - 录制视频",
           "Description": "发现错误或有想法？使用您喜欢的任何应用录制屏幕和声音。\n",
           "Badges": [
@@ -69,14 +69,14 @@
           "textOnLeft": true
         },
         {
-          "AboveHeaderText": "{Shave}",
+          "AboveHeaderText": "{梳理问题}",
           "Header": "2 - YakShaver 接管",
           "Description": "YakShaver 观看您的视频，将您说的话转成文本，并理解发生了什么。\n",
           "media": "/Browser2.png",
           "textOnLeft": true
         },
         {
-          "AboveHeaderText": "{解决}",
+          "AboveHeaderText": "{解决问题}",
           "Header": "3 - 创建任务",
           "Description": "**YakShaver 在您喜欢的系统中创建任务、错误报告或功能请求**（Azure DevOps、GitHub）。YakShaver 也可以发送邮件。\n\n它会包含一个优秀的标题、描述和任务，以及原始视频以提供更多上下文。\n",
           "Badges": [
