@@ -1,10 +1,12 @@
 import FooterServer from "@comps/shared/FooterServer";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
 import { withAssetVersion } from "../../utils/assetVersion";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import { getLocale } from "../../utils/i18n";
+import { getDomainForTenant } from "../../utils/tenancy";
 import "../globals.css";
 import QueryProvider from "@comps/providers/QueryProvider";
 
@@ -12,6 +14,31 @@ const inter = Inter({
   weight: ["400", "600", "700"],
   subsets: ["latin"],
 });
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ product: string }>;
+}): Promise<Metadata> {
+  const { product } = await params;
+  const domain = getDomainForTenant(product);
+
+  return {
+    metadataBase: domain ? new URL(`https://${domain}`) : undefined,
+    title: {
+      default: product,
+      template: "%s",
+    },
+    openGraph: {
+      siteName: product,
+      type: "website",
+      images: [`/default-images/${product}-og.png`],
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
+}
 
 export default async function RootLayout({
   children,
