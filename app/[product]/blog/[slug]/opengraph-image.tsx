@@ -55,10 +55,14 @@ export default async function Image({
   const res = await getBlogWithFallback({ product, slug }).catch(() => null);
   const blog = res?.data?.blogs;
 
-  const background =
-    (blog?.bannerImage && (await loadImage(blog.bannerImage))) ||
-    (await loadImage(`default-images/${product}-og.png`));
   const devImage = await findDevImage(product, blog?.author);
+
+  // With an author photo the OG card is the branded default composited with
+  // the author; without one it is the post's original banner, untouched
+  const background = devImage
+    ? await loadImage(`default-images/${product}-og.png`)
+    : (blog?.bannerImage && (await loadImage(blog.bannerImage))) ||
+      (await loadImage(`default-images/${product}-og.png`));
 
   return new ImageResponse(
     (
