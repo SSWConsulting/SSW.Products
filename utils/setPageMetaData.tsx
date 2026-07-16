@@ -1,14 +1,26 @@
-export async function setPageMetadata(seo: any, product?: string, pageArea?: string) {
+import type { Metadata } from "next";
+
+export async function setPageMetadata(
+  seo: any,
+  product?: string,
+  pageArea?: string,
+  fallbackImage?: string
+): Promise<Metadata> {
   return {
     title: product ? `${product} ${pageArea ? ` ${pageArea}` : ''} - ${seo?.title}` : seo?.title,
     description: seo?.description,
     openGraph: {
+      siteName: product,
+      type: pageArea === "Blog" ? "article" : "website",
       title: seo?.openGraphTitle || seo?.title || "",
       description: seo?.openGraphDescription || seo?.description || "",
       images:
         seo?.openGraphImage ||
-        `./public/default-images/${product}-default.png` ||
-        "",
+        fallbackImage ||
+        `/default-images/${product}-og.png`,
+    },
+    twitter: {
+      card: "summary_large_image",
     },
   };
 }
