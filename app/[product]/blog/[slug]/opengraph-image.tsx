@@ -16,9 +16,19 @@ const mimeTypes: Record<string, string> = {
   ".svg": "image/svg+xml",
 };
 
-async function loadPublicImage(relativePath: string): Promise<string | null> {
+// Accepts either a public/ relative path (local dev) or a full URL —
+// TinaCloud rewrites media paths to assets.tina.io URLs in production
+async function loadImage(src: string): Promise<string | null> {
   try {
-    const filePath = path.join(process.cwd(), "public", relativePath);
+    if (src.startsWith("http://") || src.startsWith("https://")) {
+      const res = await fetch(src);
+      if (!res.ok) return null;
+      const mime = res.headers.get("content-type")?.split(";")[0] || "";
+      if (!mime.startsWith("image/")) return null;
+      const data = Buffer.from(await res.arrayBuffer());
+      return `data:${mime};base64,${data.toString("base64")}`;
+    }
+    const filePath = path.join(process.cwd(), "public", src);
     const mime = mimeTypes[path.extname(filePath).toLowerCase()];
     if (!mime) return null;
     const data = await fs.readFile(filePath);
@@ -32,7 +42,7 @@ async function loadPublicImage(relativePath: string): Promise<string | null> {
 async function findDevImage(product: string, author?: string | null) {
   if (!author) return null;
   const filename = `${author.trim().replace(/\s+/g, "-")}.png`;
-  return loadPublicImage(path.join(product, "Devs", filename));
+  return loadImage(path.join(product, "Devs", filename));
 }
 
 export default async function Image({
@@ -46,8 +56,8 @@ export default async function Image({
   const blog = res?.data?.blogs;
 
   const background =
-    (blog?.bannerImage && (await loadPublicImage(blog.bannerImage))) ||
-    (await loadPublicImage(`default-images/${product}-og.png`));
+    (blog?.bannerImage && (await loadImage(blog.bannerImage))) ||
+    (await loadImage(`default-images/${product}-og.png`));
   const devImage = await findDevImage(product, blog?.author);
 
   return new ImageResponse(
