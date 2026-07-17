@@ -57,12 +57,12 @@ export default async function Image({
 
   const devImage = await findDevImage(product, blog?.author);
 
-  // With an author photo the OG card is the branded default composited with
-  // the author; without one it is the post's original banner, untouched
-  const background = devImage
-    ? await loadImage(`default-images/${product}-og.png`)
-    : (blog?.bannerImage && (await loadImage(blog.bannerImage))) ||
-      (await loadImage(`default-images/${product}-og.png`));
+  // The post's banner is always the background; the author photo, when one
+  // exists, is overlaid on top. The branded card is only a last resort for
+  // posts with no banner at all
+  const background =
+    (blog?.bannerImage && (await loadImage(blog.bannerImage))) ||
+    (await loadImage(`default-images/${product}-og.png`));
 
   return new ImageResponse(
     (
