@@ -164,7 +164,7 @@ function NavBarClientContent({
                 <GrowingLink
                   href={contextualHref(item.href)}
                   {...(item.openInNewTab ? { target: "_blank" } : {})}
-                  className={cn("mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal", isActive && "after:scale-x-100 after:origin-left")}
+                  className={cn("mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal hover:text-white underline-offset-4 transition-colors", isActive && "after:scale-x-100 after:origin-left")}
                   underlineColor="red"
                 >
                   {item.label}
