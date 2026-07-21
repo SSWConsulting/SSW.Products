@@ -15,12 +15,22 @@ export function slugifyHeading(text: string): string {
 }
 
 // Plain text of a rendered rich-text heading (bold/links/spans inside).
-export function extractText(node: ReactNode): string {
+// Handles both React children and Tina rich-text AST: TinaMarkdown renders a
+// heading's text as a nested <TinaMarkdown content={ast}> element, so the text
+// lives in props.content ({type, text, children} nodes), not props.children.
+export function extractText(node: unknown): string {
   if (node == null || typeof node === "boolean") return "";
   if (typeof node === "string" || typeof node === "number") return String(node);
   if (Array.isArray(node)) return node.map(extractText).join("");
-  if (typeof node === "object" && "props" in node) {
-    return extractText((node.props as { children?: ReactNode }).children);
+  if (typeof node === "object") {
+    if ("props" in node) {
+      const props = node.props as { children?: ReactNode; content?: unknown };
+      return extractText(props.children ?? props.content);
+    }
+    if ("text" in node) return String((node as { text: unknown }).text ?? "");
+    if ("children" in node) {
+      return extractText((node as { children: unknown }).children);
+    }
   }
   return "";
 }

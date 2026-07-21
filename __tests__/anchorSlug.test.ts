@@ -50,4 +50,23 @@ describe("extractText", () => {
     expect(extractText(undefined)).toBe("");
     expect(extractText(true)).toBe("");
   });
+
+  it("reads tina rich-text AST via a content prop", () => {
+    const nested = createElement("div", {
+      content: [
+        { type: "text", text: "Connect " },
+        { type: "text", text: "GitHub", bold: true },
+      ],
+    } as Record<string, unknown>);
+    expect(extractText(nested)).toBe("Connect GitHub");
+  });
+
+  it("reads plain AST nodes with children", () => {
+    expect(
+      extractText({
+        type: "h2",
+        children: [{ type: "text", text: "Install" }],
+      }),
+    ).toBe("Install");
+  });
 });
