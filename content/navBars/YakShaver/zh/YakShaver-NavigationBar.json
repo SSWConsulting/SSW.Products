@@ -35,6 +35,10 @@
       "label": "社区",
       "items": [
         {
+          "label": "活动",
+          "href": "/conference"
+        },
+        {
           "label": "支持",
           "href": "/docs/support"
         },
