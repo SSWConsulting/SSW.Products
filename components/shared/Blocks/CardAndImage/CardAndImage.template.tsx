@@ -23,7 +23,7 @@ export const CardAndImageTemplate: Template = {
       type: "string",
       options: [
         { value: "yakshaver", label: "YakShaver" },
-        { value: "eagleeye", label: "Eagleeye" },
+        { value: "eagleeye", label: "EagleEye" },
       ],
     },
     {

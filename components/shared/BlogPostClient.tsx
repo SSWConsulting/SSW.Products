@@ -14,7 +14,7 @@ import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMark
 import { nodesToText, searchAstTree } from "@utils/astHelpers";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode, useMemo, useState } from "react";
+import { ReactNode, useMemo } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
@@ -48,7 +48,6 @@ export default function BlogPostClient({
     data: pageData,
   });
 
-  const [contentsOpen, setContentsOpen] = useState(false);
   const titles = useMemo(() => {
     const titleNodes = searchAstTree(data.blogs.body, [
       "h1",
@@ -134,12 +133,7 @@ export default function BlogPostClient({
       {titles.length > 0 && (
         <Container className="w-full relative block sm:hidden">
           <TableOfContents.Root>
-            <TableOfContents.Button
-              className="my-2"
-              onClick={() => {
-                setContentsOpen(!contentsOpen);
-              }}
-            />
+            <TableOfContents.Button className="my-2" />
             <TableOfContents.Popover className="my-2 mx-4">
               <Contents titles={titles} />
             </TableOfContents.Popover>

@@ -24,23 +24,6 @@ const Trigger = ({ className }: { className?: string }) => {
   );
 };
 
-const IconTrigger = ({ className }: { className?: string }) => {
-  return (
-    <DialogTrigger asChild>
-      <button
-        type="button"
-        aria-label="Search"
-        className={cn(
-          "flex shrink-0 items-center justify-center rounded-lg p-2 text-white/70 transition-colors hover:text-white",
-          className
-        )}
-      >
-        <Search className="h-5 w-5" />
-      </button>
-    </DialogTrigger>
-  );
-};
-
 type SearchFieldProps = {
   className?: string;
 };
@@ -107,4 +90,4 @@ const SearchField = ({ className }: SearchFieldProps) => {
   );
 };
 
-export { IconTrigger, Root, Trigger, useDialog };
+export { Root, Trigger, useDialog };

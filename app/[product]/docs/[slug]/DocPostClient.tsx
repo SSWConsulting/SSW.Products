@@ -23,9 +23,6 @@ interface DocPostClientProps {
   paginationData: PaginationLinksClientProps;
 }
 
-const toTitleCase = (str: string) =>
-  str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
-
 // Find the section (navigation group) that contains the current doc, and the
 // link to that section (its first item). Falls back to the docs index.
 const useDocSection = (tableOfContentsData: DocsTableOfContents) => {
@@ -62,7 +59,7 @@ const BreadCrumbs = ({
         {sectionTitle ?? "Docs"}
       </Link>
       <span className="mx-2">/</span>
-      <span className="truncate">{toTitleCase(title)}</span>
+      <span className="truncate">{title}</span>
     </div>
   );
 };
@@ -108,9 +105,7 @@ export default function DocPostClient({
         </TableOfContents.Root>
       </div>
       <div className="flex flex-col gap-2 mb-8">
-        <div>
-          <BreadCrumbs title={title} tableOfContentsData={tableOfContentsData} />
-        </div>
+        <BreadCrumbs title={title} tableOfContentsData={tableOfContentsData} />
         <h2 className="text-3xl font-semibold text-ssw-red">{title}</h2>
         <GitHubMetadata path={data.docs.id} className="text-sm font-light text-gray-300" />
       </div>

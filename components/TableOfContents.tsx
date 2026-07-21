@@ -54,9 +54,11 @@ const Root = ({ children }: { children: ReactNode }) => {
     };
   }, [open]);
 
-  // Lock background scroll while the drawer is open
+  // Lock background scroll while the drawer is open, and keep the closed
+  // (off-screen) drawer out of the tab order / a11y tree via `inert`.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (tocRef.current) tocRef.current.inert = !open;
     return () => {
       document.body.style.overflow = "";
     };
@@ -72,7 +74,6 @@ const Root = ({ children }: { children: ReactNode }) => {
 };
 
 type ButtonProps = {
-  onClick: () => void;
   className?: string;
 };
 
