@@ -5,6 +5,7 @@ import { Components } from "tinacms/dist/rich-text";
 import Link from "./Link";
 import { ImageEmbed } from "@comps/shared/Blocks/ImageEmbed";
 import { CodeBlock } from "@comps/shared/code-block/code-block";
+import LinkableHeading from "@comps/shared/LinkableHeading";
 
 export const DocAndBlogMarkdownStyle: Components<{
   Youtube: {
@@ -38,19 +39,30 @@ export const DocAndBlogMarkdownStyle: Components<{
   p: (props) => <p className="text-base font-light mb-4">{props?.children}</p>,
 
   h1: (props) => (
-    <h1 className="text-3xl font-bold mb-4 mt-4">{props?.children}</h1>
+    <LinkableHeading as="h1" className="text-3xl font-bold mb-4 mt-4">
+      {props?.children}
+    </LinkableHeading>
   ),
 
   h2: (props) => (
-    <h2 className="text-2xl font-semibold mb-4 mt-8">{props?.children}</h2>
+    <LinkableHeading as="h2" className="text-2xl font-semibold mb-4 mt-8">
+      {props?.children}
+    </LinkableHeading>
   ),
 
   h3: (props) => (
-    <h3 className="text-xl font-semibold mb-4 mt-8">{props?.children}</h3>
+    <LinkableHeading as="h3" className="text-xl font-semibold mb-4 mt-8">
+      {props?.children}
+    </LinkableHeading>
   ),
 
   h4: (props) => (
-    <h4 className="text-lg font-semibold mb-3 mt-6 flex items-center gap-2">{props?.children}</h4>
+    <LinkableHeading
+      as="h4"
+      className="text-lg font-semibold mb-3 mt-6 flex items-center gap-2"
+    >
+      {props?.children}
+    </LinkableHeading>
   ),
   // @ts-ignore - TODO: remove tsignore after typescript definitions for blockquotes are fixed
   // https://github.com/tinacms/tinacms/pull/6083
