@@ -64,6 +64,18 @@ export const DocAndBlogMarkdownStyle: Components<{
       {props?.children}
     </LinkableHeading>
   ),
+
+  h5: (props) => (
+    <LinkableHeading as="h5" className="text-base font-semibold mb-2 mt-6">
+      {props?.children}
+    </LinkableHeading>
+  ),
+
+  h6: (props) => (
+    <LinkableHeading as="h6" className="text-sm font-semibold mb-2 mt-6">
+      {props?.children}
+    </LinkableHeading>
+  ),
   // @ts-ignore - TODO: remove tsignore after typescript definitions for blockquotes are fixed
   // https://github.com/tinacms/tinacms/pull/6083
   blockquote: (props) => (

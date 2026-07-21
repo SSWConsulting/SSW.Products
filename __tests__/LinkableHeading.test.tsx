@@ -6,26 +6,24 @@ import "@testing-library/jest-dom";
 import LinkableHeading from "../components/shared/LinkableHeading";
 
 describe("LinkableHeading", () => {
-  it("renders an h2 by default with slug id and a sibling self-link", () => {
-    render(<LinkableHeading>Getting Started</LinkableHeading>);
+  it("renders the heading with a slug id and a sibling self-link", () => {
+    render(<LinkableHeading as="h2">Getting Started</LinkableHeading>);
     const heading = screen.getByRole("heading", { level: 2 });
     expect(heading).toHaveAttribute("id", "getting-started");
     expect(heading).toHaveTextContent("Getting Started");
     const link = screen.getByRole("link", { name: "Link to this section" });
     expect(link).toHaveAttribute("href", "#getting-started");
-    // the heading text is NOT inside the anchor
     expect(link).not.toHaveTextContent("Getting Started");
   });
 
   it("keeps a content link and the self-link as siblings, never nested", () => {
     render(
-      <LinkableHeading>
+      <LinkableHeading as="h2">
         See the <a href="https://example.com/docs">docs</a>
       </LinkableHeading>,
     );
     const links = screen.getAllByRole("link");
     expect(links).toHaveLength(2);
-    // neither anchor contains the other
     expect(links[0].contains(links[1])).toBe(false);
     expect(links[1].contains(links[0])).toBe(false);
   });
@@ -40,7 +38,7 @@ describe("LinkableHeading", () => {
 
   it("prefers the anchor prop over children text", () => {
     render(
-      <LinkableHeading anchor="Simple, {transparent} pricing">
+      <LinkableHeading as="h2" anchor="Simple, {transparent} pricing">
         <span>styled title</span>
       </LinkableHeading>,
     );
@@ -52,7 +50,11 @@ describe("LinkableHeading", () => {
 
   it("preserves className and passes through extra props", () => {
     render(
-      <LinkableHeading className="text-4xl" data-tina-field="pricing.title">
+      <LinkableHeading
+        as="h2"
+        className="text-4xl"
+        data-tina-field="pricing.title"
+      >
         Plans
       </LinkableHeading>,
     );
@@ -63,7 +65,7 @@ describe("LinkableHeading", () => {
   });
 
   it("renders a plain heading when no slug can be made", () => {
-    render(<LinkableHeading>{"!!!"}</LinkableHeading>);
+    render(<LinkableHeading as="h2">{"!!!"}</LinkableHeading>);
     const heading = screen.getByRole("heading", { level: 2 });
     expect(heading).not.toHaveAttribute("id");
     expect(screen.queryByRole("link")).not.toBeInTheDocument();

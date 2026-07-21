@@ -3,24 +3,16 @@ import { FaLink } from "react-icons/fa";
 import { extractText, slugifyHeading } from "@utils/anchorSlug";
 
 type LinkableHeadingProps = {
-  as?: "h1" | "h2" | "h3" | "h4";
+  as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   /** Raw title to slugify; falls back to the text content of children. */
   anchor?: string;
   children?: ReactNode;
 } & HTMLAttributes<HTMLHeadingElement>;
 
-// Heading with its own anchor target per
-// https://www.ssw.com.au/rules/heading-to-anchor-targets - a link icon that
-// fades in on hover/focus links to #slug.
-// The icon is a SIBLING anchor, not a wrapper around the heading text: heading
-// content routinely contains its own markdown links, and wrapping it would nest
-// <a> inside <a> (invalid HTML -> the browser unnests it -> React hydration
-// mismatch). Keeping children as direct descendants also preserves any flex
-// layout the consumer put on the heading (e.g. the h4's inline-icon spacing).
-// ponytail: no dedup for duplicate headings on one page; add a per-page
-// counter context if authors ever repeat a heading and need both anchors.
+// ponytail: no dedup for repeated headings on a page; the second wins a
+// duplicate id. Add a per-page counter if authors need both to anchor.
 export default function LinkableHeading({
-  as: Tag = "h2",
+  as: Tag,
   anchor,
   children,
   className,
@@ -43,6 +35,8 @@ export default function LinkableHeading({
       {...rest}
     >
       {children}
+      {/* sibling anchor, never wrapping children: heading text may contain its
+          own <a>, and nesting anchors is invalid HTML */}
       <a
         href={`#${slug}`}
         aria-label="Link to this section"

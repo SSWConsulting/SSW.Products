@@ -12,10 +12,8 @@ jest.mock("../components/shared/code-block/code-block", () => ({
 
 describe("DocAndBlogMarkdownStyle headings", () => {
   it("anchors headings receiving tina's nested rich-text children", () => {
-    // Regression: TinaMarkdown passes a heading's text as a nested
-    // <TinaMarkdown content={ast}> element (text under props.content), not as
-    // plain string children. tinacms itself is ESM-only so we replicate that
-    // exact children shape instead of importing the real renderer.
+    // Regression: tina passes heading text as a nested element (props.content),
+    // not a string. tinacms is ESM-only so we replicate that child shape here.
     const NestedMarkdown = () => null;
     const Heading = DocAndBlogMarkdownStyle.h2!;
     render(
@@ -42,12 +40,13 @@ describe("DocAndBlogMarkdownStyle headings", () => {
     ["h2", 2],
     ["h3", 3],
     ["h4", 4],
+    ["h5", 5],
+    ["h6", 6],
   ] as const)("%s renders an anchor-linked heading", (key, level) => {
     const Heading = DocAndBlogMarkdownStyle[key]!;
-    // tina types heading children as JSX.Element, so wrap the string in a
-    // fragment; extractText still reads it through props.children.
     render(
       <Heading>
+        {/* fragment satisfies tina's JSX.Element child typing */}
         <>{`Install Guide ${key}`}</>
       </Heading>,
     );

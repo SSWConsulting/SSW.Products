@@ -1,36 +1,28 @@
-import type { ReactNode } from "react";
-
-// Anchor format per https://www.ssw.com.au/rules/heading-to-anchor-targets:
-// lowercase, dash-separated, punctuation stripped. Unicode letters are kept so
-// zh headings still get a usable anchor.
+// Slug for a heading anchor, per https://www.ssw.com.au/rules/heading-to-anchor-targets
 export function slugifyHeading(text: string): string {
   return text
     .toLowerCase()
-    .normalize("NFKC")
-    .replace(/[^\p{L}\p{N}\s_-]/gu, "")
+    .normalize("NFKC") // fold width/compatibility forms (e.g. full-width CJK)
+    .replace(/[^\p{L}\p{N}\s_-]/gu, "") // drop punctuation; keep letters/numbers of any script
     .trim()
-    .replace(/[\s_]+/g, "-")
-    .replace(/-+/g, "-")
-    .replace(/^-|-$/g, "");
+    .replace(/[\s_]+/g, "-") // spaces and underscores become dashes
+    .replace(/-+/g, "-") // collapse repeated dashes
+    .replace(/^-|-$/g, ""); // trim leading/trailing dash
 }
 
-// Plain text of a rendered rich-text heading (bold/links/spans inside).
-// Handles both React children and Tina rich-text AST: TinaMarkdown renders a
-// heading's text as a nested <TinaMarkdown content={ast}> element, so the text
-// lives in props.content ({type, text, children} nodes), not props.children.
+// Plain text of a heading's children (string, React element, or Tina AST node).
 export function extractText(node: unknown): string {
-  if (node == null || typeof node === "boolean") return "";
   if (typeof node === "string" || typeof node === "number") return String(node);
   if (Array.isArray(node)) return node.map(extractText).join("");
-  if (typeof node === "object") {
-    if ("props" in node) {
-      const props = node.props as { children?: ReactNode; content?: unknown };
-      return extractText(props.children ?? props.content);
-    }
-    if ("text" in node) return String((node as { text: unknown }).text ?? "");
-    if ("children" in node) {
-      return extractText((node as { children: unknown }).children);
-    }
-  }
+  if (!node || typeof node !== "object") return "";
+
+  const n = node as {
+    props?: { children?: unknown; content?: unknown };
+    text?: unknown;
+    children?: unknown;
+  };
+  if (n.props) return extractText(n.props.children ?? n.props.content); // React element (Tina heading text lives in props.content)
+  if (n.text !== undefined) return extractText(n.text); // Tina AST leaf
+  if (n.children !== undefined) return extractText(n.children); // Tina AST branch
   return "";
 }
