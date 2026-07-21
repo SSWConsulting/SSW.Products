@@ -9,8 +9,9 @@ type LinkableHeadingProps = {
   children?: ReactNode;
 } & HTMLAttributes<HTMLHeadingElement>;
 
-// Repeated headings on one page produce duplicate ids, so the anchor resolves
-// to the first occurrence. A per-page counter would be needed to disambiguate.
+// NOTE: no dedup for repeated headings on a page; duplicates share an id, and
+// links resolve to the first in document order. Add a per-page counter if
+// authors need both to anchor.
 export default function LinkableHeading({
   as: Tag,
   anchor,
