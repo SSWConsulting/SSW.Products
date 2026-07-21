@@ -10,8 +10,13 @@ type LinkableHeadingProps = {
 } & HTMLAttributes<HTMLHeadingElement>;
 
 // Heading with its own anchor target per
-// https://www.ssw.com.au/rules/heading-to-anchor-targets - the heading links to
-// #slug and a link icon fades in on hover/focus.
+// https://www.ssw.com.au/rules/heading-to-anchor-targets - a link icon that
+// fades in on hover/focus links to #slug.
+// The icon is a SIBLING anchor, not a wrapper around the heading text: heading
+// content routinely contains its own markdown links, and wrapping it would nest
+// <a> inside <a> (invalid HTML -> the browser unnests it -> React hydration
+// mismatch). Keeping children as direct descendants also preserves any flex
+// layout the consumer put on the heading (e.g. the h4's inline-icon spacing).
 // ponytail: no dedup for duplicate headings on one page; add a per-page
 // counter context if authors ever repeat a heading and need both anchors.
 export default function LinkableHeading({
@@ -37,12 +42,13 @@ export default function LinkableHeading({
       className={`group scroll-mt-28 ${className ?? ""}`}
       {...rest}
     >
-      <a href={`#${slug}`} className="text-inherit no-underline">
-        {children}
-        <FaLink
-          aria-hidden="true"
-          className="ml-2 inline-block align-baseline text-[0.55em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
-        />
+      {children}
+      <a
+        href={`#${slug}`}
+        aria-label="Link to this section"
+        className="ml-2 inline-flex items-center align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100"
+      >
+        <FaLink aria-hidden="true" />
       </a>
     </Tag>
   );

@@ -53,8 +53,9 @@ describe("DocAndBlogMarkdownStyle headings", () => {
     );
     const heading = screen.getByRole("heading", { level });
     expect(heading).toHaveAttribute("id", `install-guide-${key}`);
+    expect(heading).toHaveTextContent(`Install Guide ${key}`);
     expect(
-      screen.getByRole("link", { name: `Install Guide ${key}` }),
+      screen.getByRole("link", { name: "Link to this section" }),
     ).toHaveAttribute("href", `#install-guide-${key}`);
   });
 });

@@ -6,12 +6,28 @@ import "@testing-library/jest-dom";
 import LinkableHeading from "../components/shared/LinkableHeading";
 
 describe("LinkableHeading", () => {
-  it("renders an h2 by default with slug id and self-link", () => {
+  it("renders an h2 by default with slug id and a sibling self-link", () => {
     render(<LinkableHeading>Getting Started</LinkableHeading>);
     const heading = screen.getByRole("heading", { level: 2 });
     expect(heading).toHaveAttribute("id", "getting-started");
-    const link = screen.getByRole("link", { name: "Getting Started" });
+    expect(heading).toHaveTextContent("Getting Started");
+    const link = screen.getByRole("link", { name: "Link to this section" });
     expect(link).toHaveAttribute("href", "#getting-started");
+    // the heading text is NOT inside the anchor
+    expect(link).not.toHaveTextContent("Getting Started");
+  });
+
+  it("keeps a content link and the self-link as siblings, never nested", () => {
+    render(
+      <LinkableHeading>
+        See the <a href="https://example.com/docs">docs</a>
+      </LinkableHeading>,
+    );
+    const links = screen.getAllByRole("link");
+    expect(links).toHaveLength(2);
+    // neither anchor contains the other
+    expect(links[0].contains(links[1])).toBe(false);
+    expect(links[1].contains(links[0])).toBe(false);
   });
 
   it("renders the requested tag", () => {
