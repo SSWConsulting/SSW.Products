@@ -57,12 +57,12 @@ const BreadCrumbs = ({
   const { sectionTitle, sectionHref } = useDocSection(tableOfContentsData);
 
   return (
-    <div className="font-light text-base inline-flex items-top mb-4">
-      <Link className="underline cursor-pointer" href={sectionHref}>
+    <div className="font-light text-base flex items-center mb-4 max-w-full">
+      <Link className="underline cursor-pointer whitespace-nowrap" href={sectionHref}>
         {sectionTitle ?? "Docs"}
       </Link>
       <span className="mx-2">/</span>
-      <span>{toTitleCase(title)}</span>
+      <span className="truncate">{toTitleCase(title)}</span>
     </div>
   );
 };
