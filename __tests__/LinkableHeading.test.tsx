@@ -64,6 +64,18 @@ describe("LinkableHeading", () => {
     expect(heading).toHaveAttribute("data-tina-field", "pricing.title");
   });
 
+  it("keeps the computed slug id even if a caller passes id", () => {
+    render(
+      <LinkableHeading as="h2" id="caller-supplied">
+        Getting Started
+      </LinkableHeading>,
+    );
+    expect(screen.getByRole("heading", { level: 2 })).toHaveAttribute(
+      "id",
+      "getting-started",
+    );
+  });
+
   it("renders a plain heading when no slug can be made", () => {
     render(<LinkableHeading as="h2">{"!!!"}</LinkableHeading>);
     const heading = screen.getByRole("heading", { level: 2 });

@@ -9,8 +9,8 @@ type LinkableHeadingProps = {
   children?: ReactNode;
 } & HTMLAttributes<HTMLHeadingElement>;
 
-// ponytail: no dedup for repeated headings on a page; the second wins a
-// duplicate id. Add a per-page counter if authors need both to anchor.
+// Repeated headings on one page produce duplicate ids, so the anchor resolves
+// to the first occurrence. A per-page counter would be needed to disambiguate.
 export default function LinkableHeading({
   as: Tag,
   anchor,
@@ -22,17 +22,19 @@ export default function LinkableHeading({
 
   if (!slug) {
     return (
-      <Tag className={className} {...rest}>
+      <Tag {...rest} className={className}>
         {children}
       </Tag>
     );
   }
 
+  // Spread rest first so the component always owns id and className: a
+  // caller-supplied id must not override the computed anchor slug.
   return (
     <Tag
+      {...rest}
       id={slug}
       className={`group scroll-mt-28 ${className ?? ""}`}
-      {...rest}
     >
       {children}
       {/* sibling anchor, never wrapping children: heading text may contain its
