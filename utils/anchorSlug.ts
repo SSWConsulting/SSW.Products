@@ -7,7 +7,7 @@ export function slugifyHeading(text: string): string {
   return text
     .toLowerCase()
     .normalize("NFKC")
-    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .replace(/[^\p{L}\p{N}\s_-]/gu, "")
     .trim()
     .replace(/[\s_]+/g, "-")
     .replace(/-+/g, "-")

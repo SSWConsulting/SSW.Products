@@ -44,7 +44,13 @@ describe("DocAndBlogMarkdownStyle headings", () => {
     ["h4", 4],
   ] as const)("%s renders an anchor-linked heading", (key, level) => {
     const Heading = DocAndBlogMarkdownStyle[key]!;
-    render(<Heading>{`Install Guide ${key}`}</Heading>);
+    // tina types heading children as JSX.Element, so wrap the string in a
+    // fragment; extractText still reads it through props.children.
+    render(
+      <Heading>
+        <>{`Install Guide ${key}`}</>
+      </Heading>,
+    );
     const heading = screen.getByRole("heading", { level });
     expect(heading).toHaveAttribute("id", `install-guide-${key}`);
     expect(

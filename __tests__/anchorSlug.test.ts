@@ -24,6 +24,10 @@ describe("slugifyHeading", () => {
     expect(slugifyHeading("  Multi   Space -- Here ")).toBe("multi-space-here");
   });
 
+  it("converts underscores to dashes", () => {
+    expect(slugifyHeading("hello_world")).toBe("hello-world");
+  });
+
   it("returns empty string when nothing sluggable remains", () => {
     expect(slugifyHeading("!!! ???")).toBe("");
   });
