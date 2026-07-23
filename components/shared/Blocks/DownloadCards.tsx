@@ -64,6 +64,7 @@ export const DownloadCards = ({
           {title && (
             <LinkableHeading
               as="h2"
+              wrap
               data-tina-field={tinaField(data, "title")}
               className="text-2xl font-semibold text-center mb-7"
             >

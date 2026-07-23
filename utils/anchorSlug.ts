@@ -1,6 +1,6 @@
 // Slug for a heading anchor, per https://www.ssw.com.au/rules/heading-to-anchor-targets
 export function slugifyHeading(text: string): string {
-  return text
+  const slug = text
     .toLowerCase()
     .normalize("NFKC") // fold width/compatibility forms (e.g. full-width CJK)
     .replace(/[^\p{L}\p{N}\s_-]/gu, "") // drop punctuation; keep letters/numbers of any script
@@ -8,6 +8,10 @@ export function slugifyHeading(text: string): string {
     .replace(/[\s_]+/g, "-") // spaces and underscores become dashes
     .replace(/-+/g, "-") // collapse repeated dashes
     .replace(/^-|-$/g, ""); // trim leading/trailing dash
+
+  // https://www.ssw.com.au/rules/efficient-anchor-names: anchor names begin with
+  // a letter, so "3 steps to ship" anchors as #section-3-steps-to-ship
+  return /^\p{N}/u.test(slug) ? `section-${slug}` : slug;
 }
 
 // Plain text of a heading's children (string, React element, or Tina AST node).

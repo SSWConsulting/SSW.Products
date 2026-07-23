@@ -21,6 +21,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
       <div className="items-center w-full h-auto ">
         <LinkableHeading
           as="h2"
+          wrap
           className="text-3xl text-white font-semibold pb-12 text-center"
         >
           {" "}

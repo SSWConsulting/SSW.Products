@@ -20,6 +20,7 @@ const FAQ = ({ data }: { data: FAQData }) => {
     <Container className="text-white w-full mx-auto" size="medium">
       <LinkableHeading
         as="h2"
+        wrap
         className="text-3xl font-semibold mb-12 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
       >

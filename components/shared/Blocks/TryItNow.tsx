@@ -55,6 +55,7 @@ export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
           {tryItNowTitle && (
             <LinkableHeading
               as="h2"
+              wrap
               data-tina-field={tinaField(props, "tryItNowTitle")}
               className="text-[1.75rem] font-semibold text-center mb-7"
             >

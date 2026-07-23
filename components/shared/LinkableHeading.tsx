@@ -6,6 +6,12 @@ type LinkableHeadingProps = {
   as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   /** Raw title to slugify; falls back to the text content of children. */
   anchor?: string;
+  /**
+   * Make the heading text itself the link, as the rule's good example does.
+   * Only safe when children can't contain their own <a> (plain Tina titles);
+   * markdown headings must leave this off, or the anchors nest illegally.
+   */
+  wrap?: boolean;
   children?: ReactNode;
 } & HTMLAttributes<HTMLHeadingElement>;
 
@@ -33,6 +39,7 @@ export function HeadingAnchorLink({ slug }: { slug: string }) {
 export default function LinkableHeading({
   as: Tag,
   anchor,
+  wrap,
   children,
   className,
   ...rest
@@ -55,10 +62,26 @@ export default function LinkableHeading({
       id={slug}
       className={`group scroll-mt-28 ${className ?? ""}`}
     >
-      {children}
-      {/* sibling anchor, never wrapping children: heading text may contain its
-          own <a>, and nesting anchors is invalid HTML */}
-      <HeadingAnchorLink slug={slug} />
+      {wrap ? (
+        // The link's accessible name is the heading text, so no aria-label here
+        <a
+          href={`#${slug}`}
+          className="text-inherit no-underline hover:no-underline"
+        >
+          {children}
+          <FaLink
+            aria-hidden="true"
+            className="ml-2 inline-block align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
+          />
+        </a>
+      ) : (
+        <>
+          {children}
+          {/* sibling anchor, never wrapping children: heading text may contain
+              its own <a>, and nesting anchors is invalid HTML */}
+          <HeadingAnchorLink slug={slug} />
+        </>
+      )}
     </Tag>
   );
 }

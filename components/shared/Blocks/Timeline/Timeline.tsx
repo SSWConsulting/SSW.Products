@@ -46,6 +46,7 @@ export function Timeline({ data }: { data: any }) {
     <section className="w-full flex flex-col gap-4 md:px-48 px-8 -mt-20 max-w-7xl mx-auto pb-40 md:pt-20">
       <LinkableHeading
         as="h3"
+        wrap
         className="inline-block text-3xl lg:text-4xl lg:leading-tight text-white font-bold mb-4"
       >
         {data.title}
