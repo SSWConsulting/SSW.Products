@@ -1,6 +1,7 @@
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 
 import { tinaField } from "tinacms/dist/react";
+import LinkableHeading from "../LinkableHeading";
 import Actions from "./ActionsButton";
 import {
   curlyBracketFormatter,
@@ -79,12 +80,14 @@ const Pricing = ({ data }: PricingProps) => {
   return (
     <div className="pricing-component first:pt-20 container mx-auto px-4 mb-14 lg:mb-4 md:mt-0 lg:pb-20">
       {title && (
-        <h1
+        <LinkableHeading
+          as="h1"
+          anchor={title}
           className="text-4xl text-center font-semibold text-white mb-4"
           data-tina-field={tinaField(data, "title")}
         >
           {curlyBracketFormatter(title)}
-        </h1>
+        </LinkableHeading>
       )}
 
       {description && (

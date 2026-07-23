@@ -2,6 +2,7 @@ import { Fragment, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { tinaField } from "tinacms/dist/react";
 import Container from "../../Container";
+import LinkableHeading from "../LinkableHeading";
 
 type FAQItem = {
   question: string;
@@ -17,12 +18,13 @@ type FAQData = {
 const FAQ = ({ data }: { data: FAQData }) => {
   return (
     <Container className="text-white w-full mx-auto" size="medium">
-      <h2
+      <LinkableHeading
+        as="h2"
         className="text-3xl font-semibold mb-12 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
       >
         {data.headline}
-      </h2>
+      </LinkableHeading>
       <p className="mb-8 text-base" data-tina-field={tinaField(data, "text")}>
         {data.text}
       </p>

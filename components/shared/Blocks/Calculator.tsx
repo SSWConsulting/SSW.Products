@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Container from "../../Container";
+import LinkableHeading from "../LinkableHeading";
 import Actions from "./ActionsButton";
 import { curlyBracketFormatter } from "./Hero/Hero";
 
@@ -118,10 +119,14 @@ export default function CalculatorComponent({ data }: { data: any }) {
 
   return (
     <Container>
-      <h2 className="text-3xl text-center font-semibold text-white mb-4">
+      <LinkableHeading
+        as="h2"
+        anchor={data?.title}
+        className="text-3xl text-center font-semibold text-white mb-4"
+      >
         {" "}
         {curlyBracketFormatter(data?.title)}
-      </h2>
+      </LinkableHeading>
       <p className="text-white text-base text-center px-4 mb-8">{data?.desc}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
         {data?.tiers?.map((tier: CalculatorTier, index: number) => (

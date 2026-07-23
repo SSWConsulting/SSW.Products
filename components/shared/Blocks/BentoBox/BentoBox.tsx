@@ -6,6 +6,7 @@ import React, { useRef } from "react";
 import { FaExpandAlt } from "react-icons/fa";
 import { FaMinus, FaXmark } from "react-icons/fa6";
 import Container from "../../../Container";
+import LinkableHeading from "../../LinkableHeading";
 import { ExampleYakShaverCard } from "../../../ui/MockYakShaverCards";
 import TimeSavedCounterBox from "../../../utilityComponents/TimeSavedCounter";
 import YaksShavedCounterBox from "../../../utilityComponents/YaksShavedCounter";
@@ -154,7 +155,11 @@ export function TitleFadeIn({ title }: { title: string }) {
 
   return (
     <>
-      <div className="text-white text text-center text-3xl font-semibold pb-12">
+      <LinkableHeading
+        as="h2"
+        anchor={title}
+        className="text-white text text-center text-3xl font-semibold pb-12"
+      >
         <span className="inline-block max-w-full break-words">
           {firstPart}
           {firstPart ? " " : ""}
@@ -178,7 +183,7 @@ export function TitleFadeIn({ title }: { title: string }) {
             ))}
           </span>
         </span>
-      </div>
+      </LinkableHeading>
     </>
   );
 }

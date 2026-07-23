@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Download } from "lucide-react";
 import { TinaMarkdown, type TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
+import LinkableHeading from "../LinkableHeading";
 
 interface ImageShowcaseProps {
   title?: string | null;
@@ -50,9 +51,12 @@ const ImageShowcase = ({
       {hasHeader && (
         <div className="text-center mb-12">
           {title && (
-            <h2 className="text-[32px] font-semibold text-white mb-1">
+            <LinkableHeading
+              as="h2"
+              className="text-[32px] font-semibold text-white mb-1"
+            >
               {title}
-            </h2>
+            </LinkableHeading>
           )}
           {gridDescription && (
             <div className="text-[14px] text-white font-medium leading-relaxed max-w-3xl mx-auto">

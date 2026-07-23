@@ -5,6 +5,7 @@ import React from "react";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Container from "../../Container";
+import LinkableHeading from "../LinkableHeading";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
 import type { PagesPageBlocksDownloadCards } from "@tina/__generated__/types";
 import Actions, { ActionButton } from "./ActionsButton";
@@ -61,12 +62,13 @@ export const DownloadCards = ({
       <div className="w-full z-0 h-fit relative">
         <div className="text-white z-20 border-2 border-gray-lighter/40 relative w-full py-12 bg-gray-dark mx-auto rounded-lg px-8">
           {title && (
-            <h2
+            <LinkableHeading
+              as="h2"
               data-tina-field={tinaField(data, "title")}
               className="text-2xl font-semibold text-center mb-7"
             >
               {title}
-            </h2>
+            </LinkableHeading>
           )}
           <div
             className={cn(

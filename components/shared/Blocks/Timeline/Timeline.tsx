@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LinkableHeading from "../../LinkableHeading";
 
 const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
   return (
@@ -43,9 +44,12 @@ const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
 export function Timeline({ data }: { data: any }) {
   return (
     <section className="w-full flex flex-col gap-4 md:px-48 px-8 -mt-20 max-w-7xl mx-auto pb-40 md:pt-20">
-      <h3 className="inline-block text-3xl lg:text-4xl lg:leading-tight text-white font-bold mb-4">
+      <LinkableHeading
+        as="h3"
+        className="inline-block text-3xl lg:text-4xl lg:leading-tight text-white font-bold mb-4"
+      >
         {data.title}
-      </h3>
+      </LinkableHeading>
       <div>
         {data.items &&
           data.items.map((itemData: any, index: number) => {

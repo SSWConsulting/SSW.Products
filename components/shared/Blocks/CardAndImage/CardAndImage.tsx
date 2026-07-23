@@ -11,6 +11,7 @@ import {
   PagesPageBlocksCardAndImage as CardAndImageProps,
 } from "../../../../tina/__generated__/types";
 import Container from "../../../Container";
+import LinkableHeading from "../../LinkableHeading";
 import { curlyBracketFormatter } from "../Hero/Hero";
 
 const cardAndImageMarkdownRenderer: Components<object> = {
@@ -59,9 +60,13 @@ export default function CardAndImageParent({
     <div className="flex flex-col">
       <Container size="small">
         {ParentContainerTitle && (
-          <h2 className="text-3xl text-white flex justify-center font-bold pb-3">
+          <LinkableHeading
+            as="h2"
+            anchor={ParentContainerTitle}
+            className="text-3xl text-white flex justify-center font-bold pb-3"
+          >
             {curlyBracketFormatter(ParentContainerTitle)}
-          </h2>
+          </LinkableHeading>
         )}
         <div className="flex justify-center mx-auto pb-9">
           {ParentContainerDescription && (

@@ -12,6 +12,7 @@ import {
   PagesPageBlocksTryItNow,
 } from "../../../tina/__generated__/types";
 import Container from "../../Container";
+import LinkableHeading from "../LinkableHeading";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
 import Link from "@tina/tinamarkdownStyles/Link";
 import { YouTubeEmbed } from "../YouTubeEmbed";
@@ -52,12 +53,13 @@ export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
       <div className="w-full z-0 h-fit relative">
         <div className=" text-white z-20 border-2 border-gray-lighter/40 relative w-full py-12 bg-gray-dark mx-auto rounded-3xl px-8">
           {tryItNowTitle && (
-            <h2
+            <LinkableHeading
+              as="h2"
               data-tina-field={tinaField(props, "tryItNowTitle")}
               className="text-[1.75rem] font-semibold text-center mb-7"
             >
               {tryItNowTitle}
-            </h2>
+            </LinkableHeading>
           )}
           {/* main box */}
           <div className="grid relative z-10 grid-cols-1 md:grid-cols-3 gap-4">

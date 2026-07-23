@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { tinaField } from "tinacms/dist/react";
 import Container from "../../Container";
+import LinkableHeading from "../LinkableHeading";
 import Actions from "./ActionsButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
 
@@ -34,12 +35,13 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
       <Container className="mx-auto flex flex-col md:flex-col lg:flex-row items-center text-left">
         {/* Left Column: Text and Buttons */}
         <div className="lg:w-2/5 w-full flex flex-col gap-2">
-          <h2
+          <LinkableHeading
+            as="h2"
             className="text-4xl font-semibold mb-4"
             data-tina-field={tinaField(data, "headline")}
           >
             {data.headline}
-          </h2>
+          </LinkableHeading>
           <p
             className="text-base mb-6"
             data-tina-field={tinaField(data, "text")}
