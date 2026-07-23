@@ -172,9 +172,14 @@ function CardItem({
 
       <div className="flex items-center justify-between">
         {data.Header && (
-          <h3 className="text-2xl font-bold">
+          // the card itself expands on click, so only the icon links out
+          <LinkableHeading
+            as="h3"
+            anchor={data.Header}
+            className="text-2xl font-bold"
+          >
             {curlyBracketFormatter(data.Header)}
-          </h3>
+          </LinkableHeading>
         )}
         <FaChevronDown
           className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${

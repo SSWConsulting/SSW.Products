@@ -18,9 +18,13 @@ const TimelineItem = ({ data, last = false }: { data: any; last: boolean }) => {
       </div>
       <div className="flex-1 pt-10 pb-4 flex flex-col items-start gap-4">
         {data.title && (
-          <h3 className="text-2xl lg:text-3xl lg:leading-tight text-white font-semibold">
+          <LinkableHeading
+            as="h3"
+            wrap
+            className="text-2xl lg:text-3xl lg:leading-tight text-white font-semibold"
+          >
             {data.title}
-          </h3>
+          </LinkableHeading>
         )}
         {data.description && (
           <p className="text-muted-foreground text-lg text-gray-200">{data.description}</p>

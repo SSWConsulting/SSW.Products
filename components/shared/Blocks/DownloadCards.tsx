@@ -118,12 +118,14 @@ const DownloadCardItem = ({
       )}
     >
       {card.title && (
-        <h3
+        <LinkableHeading
+          as="h3"
+          wrap
           data-tina-field={tinaField(card, "title")}
           className="text-2xl font-semibold text-center w-full"
         >
           {card.title}
-        </h3>
+        </LinkableHeading>
       )}
       <div className="flex flex-1 gap-2 w-full">
         {card.descriptionLhs && (

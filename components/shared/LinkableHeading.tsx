@@ -15,11 +15,38 @@ type LinkableHeadingProps = {
   children?: ReactNode;
 } & HTMLAttributes<HTMLHeadingElement>;
 
+const iconClasses =
+  "ml-2 inline-block align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100";
+
 /**
- * The self-link that sits beside a heading. Rendered by LinkableHeading, and
- * exported for blocks whose heading markup can't be a single element (e.g.
- * responsive variants of the same title) and so carry the id themselves.
- * Reveal it with `group scroll-mt-28` on the element holding the id.
+ * Heading text as the link, with the icon inside it. Used by LinkableHeading's
+ * `wrap` mode, and exported for blocks that render the same heading twice for
+ * responsive variants: those put the id on the shared wrapper (with `group
+ * scroll-mt-28`) so it stays unique, and link the text in each variant.
+ */
+export function HeadingSelfLink({
+  slug,
+  children,
+}: {
+  slug: string;
+  children: ReactNode;
+}) {
+  // No aria-label: the link's accessible name is the heading text it wraps
+  return (
+    <a
+      href={`#${slug}`}
+      className="text-inherit no-underline hover:no-underline"
+    >
+      {children}
+      <FaLink aria-hidden="true" className={iconClasses} />
+    </a>
+  );
+}
+
+/**
+ * The self-link that sits beside a heading, for headings whose text can't be
+ * wrapped (markdown headings may contain their own <a>). Reveal it with
+ * `group scroll-mt-28` on the element holding the id.
  */
 export function HeadingAnchorLink({ slug }: { slug: string }) {
   return (
@@ -63,17 +90,7 @@ export default function LinkableHeading({
       className={`group scroll-mt-28 ${className ?? ""}`}
     >
       {wrap ? (
-        // The link's accessible name is the heading text, so no aria-label here
-        <a
-          href={`#${slug}`}
-          className="text-inherit no-underline hover:no-underline"
-        >
-          {children}
-          <FaLink
-            aria-hidden="true"
-            className="ml-2 inline-block align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100"
-          />
-        </a>
+        <HeadingSelfLink slug={slug}>{children}</HeadingSelfLink>
       ) : (
         <>
           {children}

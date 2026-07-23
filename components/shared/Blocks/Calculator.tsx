@@ -187,7 +187,9 @@ const EstimatedSavingsContent = ({
 
   return (
     <div className="w-full flex flex-col space-y-3">
-      <h3 className="text-2xl text-white font-bold">YakShaver Usage ROI</h3>
+      <LinkableHeading as="h3" wrap className="text-2xl text-white font-bold">
+        YakShaver Usage ROI
+      </LinkableHeading>
       <div className="flex flex-col">
         <p className="text-white/50">Monthly Detailed Work Items</p>
         <p
@@ -267,9 +269,9 @@ const SliderBoxContent = ({
   return (
     <div className="w-full flex flex-col space-y-3">
       <div className="flex justify-between">
-        <h3 className="text-2xl text-white font-bold">
+        <LinkableHeading as="h3" wrap className="text-2xl text-white font-bold">
           Average Hourly Rate of Employee
-        </h3>
+        </LinkableHeading>
       </div>
 
       <p className="text-white/50 pb-3">
@@ -315,7 +317,10 @@ const CalculatorTierCard = ({
     >
       <div className="flex-col w-full">
         <div className="flex items-center gap-2">
-          <h3 className="text-base">{calculatorTier.tier}</h3>
+          {/* the card itself selects the tier, so only the icon links out */}
+          <LinkableHeading as="h3" className="text-base">
+            {calculatorTier.tier}
+          </LinkableHeading>
           {isRecommended && (
             <div className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
               Recommended

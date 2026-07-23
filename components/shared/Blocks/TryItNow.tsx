@@ -155,12 +155,14 @@ const Card = ({ card, key }: CardProps) => {
       )}
     >
       {card?.title && (
-        <h3
+        <LinkableHeading
+          as="h3"
+          wrap
           data-tina-field={tinaField(card, "title")}
           className="text-2xl font-semibold"
         >
           {card.title}
-        </h3>
+        </LinkableHeading>
       )}
 
       {card?.description && (

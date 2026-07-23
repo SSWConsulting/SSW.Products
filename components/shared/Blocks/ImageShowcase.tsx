@@ -98,7 +98,13 @@ const ImageShowcase = ({
         )}
 
         {showcaseTitle && (
-          <h2 className="text-white text-2xl font-bold mb-3">{showcaseTitle}</h2>
+          <LinkableHeading
+            as="h2"
+            wrap
+            className="text-white text-2xl font-bold mb-3"
+          >
+            {showcaseTitle}
+          </LinkableHeading>
         )}
 
         {showcaseDescription && (
