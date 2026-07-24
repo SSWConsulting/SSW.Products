@@ -54,7 +54,9 @@ export default async function RootLayout({
   const htmlLang = locale === "zh" ? "zh-CN" : "en";
 
   return (
-    <html lang={htmlLang}>
+    // data-scroll-behavior tells next's router to suppress the smooth scroll
+    // from globals.css while it navigates, so only in-page hash links animate
+    <html lang={htmlLang} data-scroll-behavior="smooth">
       <head>
         <link rel="icon" href={withAssetVersion(`/favicons/${product}.ico`)} />
         
