@@ -51,6 +51,20 @@ describe("FAQ question anchors", () => {
     expect(panelOf(other)).toHaveStyle({ maxHeight: "0", opacity: "0" });
   });
 
+  it("opens a question linked by a percent-encoded non-ascii hash", () => {
+    const zh = {
+      headline: "常见问题",
+      text: "",
+      questions: [{ question: "支持哪些格式？", answer: "大多数。" }],
+    };
+    // browsers store the fragment encoded; the id in the DOM is the raw slug
+    window.location.hash = `#${encodeURIComponent("支持哪些格式")}`;
+    const { container } = render(<FAQ data={zh} />);
+
+    const question = container.querySelector("#支持哪些格式") as HTMLElement;
+    expect(panelOf(question)).toHaveStyle({ maxHeight: "500px", opacity: "1" });
+  });
+
   it("opens a question when the hash changes on the page", () => {
     const { container } = render(<FAQ data={data} />);
     const question = container.querySelector(

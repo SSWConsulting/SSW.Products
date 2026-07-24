@@ -1,5 +1,6 @@
 // Slug for a heading anchor, per https://www.ssw.com.au/rules/heading-to-anchor-targets
-export function slugifyHeading(text: string): string {
+export function slugifyHeading(text?: string | null): string {
+  if (!text) return ""; // a heading may be blank while an author is still editing
   const slug = text
     .toLowerCase()
     .normalize("NFKC") // fold width/compatibility forms (e.g. full-width CJK)
@@ -12,6 +13,20 @@ export function slugifyHeading(text: string): string {
   // https://www.ssw.com.au/rules/efficient-anchor-names: anchor names begin with
   // a letter, so "3 steps to ship" anchors as #section-3-steps-to-ship
   return /^\p{N}/u.test(slug) ? `section-${slug}` : slug;
+}
+
+// True when the current page URL points at this slug. Browsers percent-encode
+// non-ASCII fragments (a Chinese heading becomes #yakshaver-%E5%AF%B9...), so
+// the raw hash never equals the plain slug; decode before comparing.
+export function hashTargetsSlug(slug: string): boolean {
+  if (!slug || typeof window === "undefined") return false;
+  let hash = window.location.hash;
+  try {
+    hash = decodeURIComponent(hash);
+  } catch {
+    // malformed percent-encoding: fall back to the raw hash
+  }
+  return hash === `#${slug}`;
 }
 
 // Plain text of a heading's children (string, React element, or Tina AST node).

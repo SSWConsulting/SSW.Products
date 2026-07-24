@@ -13,6 +13,7 @@ import {
 import Container from "../../../Container";
 import LinkableHeading from "../../LinkableHeading";
 import { curlyBracketFormatter } from "../Hero/Hero";
+import { hashTargetsSlug, slugifyHeading } from "@utils/anchorSlug";
 
 const cardAndImageMarkdownRenderer: Components<object> = {
   ul: (props: unknown) => {
@@ -142,6 +143,22 @@ function CardItem({
       setContentHeight(isOpen ? contentRef.current.scrollHeight : 0);
     }
   }, [isOpen, data]);
+
+  // Open this card when its own link is followed, so a shared #card-heading URL
+  // doesn't land on a collapsed card. Mirrors the FAQ block.
+  const slug = slugifyHeading(data.Header);
+  useEffect(() => {
+    if (!slug) return;
+    const openIfLinked = () => {
+      if (hashTargetsSlug(slug)) setIdOfOpen(uniqueId);
+    };
+    openIfLinked();
+    window.addEventListener("hashchange", openIfLinked);
+    return () => window.removeEventListener("hashchange", openIfLinked);
+    // setIdOfOpen and uniqueId are effectively stable; depending on the unstable
+    // parent callback would re-subscribe every render and fight manual opens
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slug]);
   const badgeCount = data.Badges?.length || 0;
   const delimeter =
     (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
@@ -156,7 +173,9 @@ function CardItem({
               backgroundColor && cardBackgrounds[backgroundColor]
             )
       )}
-      onClick={() => {
+      onClick={(e) => {
+        // let the heading's link icon work without toggling the card
+        if ((e.target as HTMLElement).closest("a")) return;
         if (!isOpen) {
           setIdOfOpen(uniqueId);
           return;

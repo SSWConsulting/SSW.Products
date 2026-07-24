@@ -317,10 +317,10 @@ const CalculatorTierCard = ({
     >
       <div className="flex-col w-full">
         <div className="flex items-center gap-2">
-          {/* the card itself selects the tier, so only the icon links out */}
-          <LinkableHeading as="h3" className="text-base">
-            {calculatorTier.tier}
-          </LinkableHeading>
+          {/* eslint-disable-next-line no-restricted-syntax -- heading sits inside
+              the tier-select <button>; a link can't be nested in a button, and a
+              tier name isn't a deep-link target */}
+          <h3 className="text-base">{calculatorTier.tier}</h3>
           {isRecommended && (
             <div className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
               Recommended

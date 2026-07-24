@@ -1,4 +1,11 @@
-import { extractText, slugifyHeading } from "../utils/anchorSlug";
+/**
+ * @jest-environment jsdom
+ */
+import {
+  extractText,
+  hashTargetsSlug,
+  slugifyHeading,
+} from "../utils/anchorSlug";
 import { createElement } from "react";
 
 describe("slugifyHeading", () => {
@@ -39,6 +46,36 @@ describe("slugifyHeading", () => {
 
   it("leaves slugs that already start with a letter alone", () => {
     expect(slugifyHeading("Ship in 3 steps")).toBe("ship-in-3-steps");
+  });
+
+  it("returns empty for a missing or blank heading", () => {
+    expect(slugifyHeading(undefined)).toBe("");
+    expect(slugifyHeading(null)).toBe("");
+    expect(slugifyHeading("")).toBe("");
+  });
+});
+
+describe("hashTargetsSlug", () => {
+  const setHash = (hash: string) => {
+    window.location.hash = hash;
+  };
+  afterEach(() => setHash(""));
+
+  it("matches a plain ascii hash", () => {
+    setHash("#getting-started");
+    expect(hashTargetsSlug("getting-started")).toBe(true);
+  });
+
+  it("matches a percent-encoded non-ascii hash against the plain slug", () => {
+    // browsers store the fragment encoded; the slug stays the raw characters
+    setHash(`#${encodeURIComponent("视频教程")}`);
+    expect(hashTargetsSlug("视频教程")).toBe(true);
+  });
+
+  it("is false for a different hash and an empty slug", () => {
+    setHash("#something-else");
+    expect(hashTargetsSlug("getting-started")).toBe(false);
+    expect(hashTargetsSlug("")).toBe(false);
   });
 });
 

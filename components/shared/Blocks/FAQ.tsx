@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { tinaField } from "tinacms/dist/react";
-import { slugifyHeading } from "@utils/anchorSlug";
+import { hashTargetsSlug, slugifyHeading } from "@utils/anchorSlug";
 import Container from "../../Container";
 import LinkableHeading, { HeadingAnchorLink } from "../LinkableHeading";
 
@@ -57,7 +57,7 @@ const Question = ({
   useEffect(() => {
     if (!slug) return;
     const openIfLinked = () => {
-      if (window.location.hash === `#${slug}`) setIsOpen(true);
+      if (hashTargetsSlug(slug)) setIsOpen(true);
     };
     openIfLinked();
     window.addEventListener("hashchange", openIfLinked);
