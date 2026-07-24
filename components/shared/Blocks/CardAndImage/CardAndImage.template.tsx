@@ -22,8 +22,8 @@ export const CardAndImageTemplate: Template = {
       label: "Border Color",
       type: "string",
       options: [
-        { value: "yakshaver", label: "Yakshaver" },
-        { value: "eagleeye", label: "Eagleeye" },
+        { value: "yakshaver", label: "YakShaver" },
+        { value: "eagleeye", label: "EagleEye" },
       ],
     },
     {
