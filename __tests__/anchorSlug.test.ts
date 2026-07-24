@@ -31,6 +31,15 @@ describe("slugifyHeading", () => {
   it("returns empty string when nothing sluggable remains", () => {
     expect(slugifyHeading("!!! ???")).toBe("");
   });
+
+  it("prefixes slugs that would start with a digit", () => {
+    expect(slugifyHeading("3 steps to ship")).toBe("section-3-steps-to-ship");
+    expect(slugifyHeading("2026 roadmap")).toBe("section-2026-roadmap");
+  });
+
+  it("leaves slugs that already start with a letter alone", () => {
+    expect(slugifyHeading("Ship in 3 steps")).toBe("ship-in-3-steps");
+  });
 });
 
 describe("extractText", () => {

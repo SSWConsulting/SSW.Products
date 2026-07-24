@@ -1,5 +1,6 @@
 import { RemoveTinaMetadata } from "@/types/tina";
 import Container from "@comps/Container";
+import LinkableHeading from "@comps/shared/LinkableHeading";
 import { tinaField } from "tinacms/dist/react";
 import { PagesPageBlocksCallToAction } from "../../../tina/__generated__/types";
 import { ActionButton } from "./ActionsButton";
@@ -15,12 +16,14 @@ const CallToAction = ({ className, ...props }: CallToActionProps) => {
         <div className="max-w-3xl mx-auto text-center ">
           <section className="p-10 sm:p-12 z-10 relative">
             {props.title && (
-              <h2
+              <LinkableHeading
+                as="h2"
+                wrap
                 data-tina-field={tinaField(props, "title")}
                 className="sm:text-3xl text-xl font-bold mb-4 uppercase"
               >
                 {props.title}
-              </h2>
+              </LinkableHeading>
             )}
             {props.ctaDescription && (
               <p

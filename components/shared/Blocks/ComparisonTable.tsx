@@ -1,5 +1,6 @@
 import React from "react";
 import { tinaField } from "tinacms/dist/react";
+import LinkableHeading from "../LinkableHeading";
 import { curlyBracketFormatter } from "./Hero/Hero";
 
 import { RxCross1 } from "react-icons/rx";
@@ -133,12 +134,15 @@ export default function ComparisonTable({ data }: { data: any }) {
   return (
     <div className="container max-w-7xl mx-auto px-4 md:p-4 mb-14 lg:mb-4 md:mt-0 lg:pb-40">
       {data.headline && (
-        <h1
+        <LinkableHeading
+          as="h1"
+          wrap
+          anchor={data.headline}
           className="text-2xl md:text-4xl text-center font-semibold text-white mb-4"
           data-tina-field={tinaField(data, "title")}
         >
           {curlyBracketFormatter(data.headline)}
-        </h1>
+        </LinkableHeading>
       )}
       {data.sectionDescription && (
         <div

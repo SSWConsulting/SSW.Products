@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import Container from "../../Container";
+import LinkableHeading from "../LinkableHeading";
 import Actions from "./ActionsButton";
 import { curlyBracketFormatter } from "./Hero/Hero";
 
@@ -118,10 +119,15 @@ export default function CalculatorComponent({ data }: { data: any }) {
 
   return (
     <Container>
-      <h2 className="text-3xl text-center font-semibold text-white mb-4">
+      <LinkableHeading
+        as="h2"
+        wrap
+        anchor={data?.title}
+        className="text-3xl text-center font-semibold text-white mb-4"
+      >
         {" "}
         {curlyBracketFormatter(data?.title)}
-      </h2>
+      </LinkableHeading>
       <p className="text-white text-base text-center px-4 mb-8">{data?.desc}</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
         {data?.tiers?.map((tier: CalculatorTier, index: number) => (
@@ -181,7 +187,9 @@ const EstimatedSavingsContent = ({
 
   return (
     <div className="w-full flex flex-col space-y-3">
-      <h3 className="text-2xl text-white font-bold">YakShaver Usage ROI</h3>
+      <LinkableHeading as="h3" wrap className="text-2xl text-white font-bold">
+        YakShaver Usage ROI
+      </LinkableHeading>
       <div className="flex flex-col">
         <p className="text-white/50">Monthly Detailed Work Items</p>
         <p
@@ -261,9 +269,9 @@ const SliderBoxContent = ({
   return (
     <div className="w-full flex flex-col space-y-3">
       <div className="flex justify-between">
-        <h3 className="text-2xl text-white font-bold">
+        <LinkableHeading as="h3" wrap className="text-2xl text-white font-bold">
           Average Hourly Rate of Employee
-        </h3>
+        </LinkableHeading>
       </div>
 
       <p className="text-white/50 pb-3">
@@ -309,7 +317,10 @@ const CalculatorTierCard = ({
     >
       <div className="flex-col w-full">
         <div className="flex items-center gap-2">
-          <h3 className="text-base">{calculatorTier.tier}</h3>
+          {/* the card itself selects the tier, so only the icon links out */}
+          <LinkableHeading as="h3" className="text-base">
+            {calculatorTier.tier}
+          </LinkableHeading>
           {isRecommended && (
             <div className="bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
               Recommended

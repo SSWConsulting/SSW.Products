@@ -90,12 +90,13 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
           </div>
         </div>
 
+        {/* labels inside the mock report card, not page headings */}
         <div className="flex  justify-center items-center gap-6 w-full pt-4 ">
           <div className="w-full">
-            <h2 className="text-white text-2xl pb-2 ">
+            <p className="text-white text-2xl pb-2 ">
               {" "}
               {data.leftHandSide?.issueReportSummaryTitle}{" "}
-            </h2>
+            </p>
             <span className="font-light text-sm">
               {" "}
               {data.leftHandSide?.issueReportSummarySubtitle}
@@ -119,10 +120,10 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
 
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">
-            <h2 className="text-white text-2xl pb-2 ">
+            <p className="text-white text-2xl pb-2 ">
               {" "}
               {data.rightHandSide?.issueReportSummaryTitle}{" "}
-            </h2>
+            </p>
             <span className="font-light text-sm">
               {" "}
               {data.rightHandSide?.issueReportSummarySubtitle}
@@ -203,7 +204,9 @@ export default function Hero({ data }: { data: any }) {
                 <h1>{data?.titleAfterRotate}</h1>
               </div>
             </div>
-            <h2 className="text-white flex flex-col gap-2 text-center text-base md:text-lg pt-6 lg:pt-12">
+            {/* the byline is body copy, not a heading: it was an h2 for the
+                type scale, which put marketing prose in the heading outline */}
+            <div className="text-white flex flex-col gap-2 text-center text-base md:text-lg pt-6 lg:pt-12">
               <TinaMarkdown
                 content={data?.byLine}
                 components={{
@@ -214,8 +217,7 @@ export default function Hero({ data }: { data: any }) {
                   ),
                 }}
               />
-              {/* {curlyBracketFormatter(data?.byLine)} */}
-            </h2>
+            </div>
 
             {/* Buttons */}
             <div className="flex items-center justify-center pt-12 gap-6">

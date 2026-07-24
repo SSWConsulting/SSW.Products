@@ -107,4 +107,13 @@ strong {
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
+  /* Heading anchors and any other in-page link ease to their target instead of
+     teleporting, so the reader keeps their bearings. Headings carry scroll-mt
+     to clear the sticky navbar. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
 }

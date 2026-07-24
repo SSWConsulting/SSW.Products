@@ -1,6 +1,7 @@
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 
 import { tinaField } from "tinacms/dist/react";
+import LinkableHeading from "../LinkableHeading";
 import Actions from "./ActionsButton";
 import {
   curlyBracketFormatter,
@@ -79,12 +80,15 @@ const Pricing = ({ data }: PricingProps) => {
   return (
     <div className="pricing-component first:pt-20 container mx-auto px-4 mb-14 lg:mb-4 md:mt-0 lg:pb-20">
       {title && (
-        <h1
+        <LinkableHeading
+          as="h1"
+          wrap
+          anchor={title}
           className="text-4xl text-center font-semibold text-white mb-4"
           data-tina-field={tinaField(data, "title")}
         >
           {curlyBracketFormatter(title)}
-        </h1>
+        </LinkableHeading>
       )}
 
       {description && (
@@ -145,14 +149,20 @@ const AddOns = ({ addOns }: { addOns: AddOn }) => {
     <div className="flex max-w-3xl mx-auto p-10 my-4 lg:my-8 flex-col w-full bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
       <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20">
         <div className="flex flex-col">
-          <h3 className="text-3xl font-bold text-white mb-2">
+          <LinkableHeading
+            as="h3"
+            wrap
+            anchor={addOns?.title}
+            className="text-3xl font-bold text-white mb-2"
+          >
             {curlyBracketFormatter(addOns?.title)}
-          </h3>
+          </LinkableHeading>
           <span className="text-white/50 mb-2">{addOns?.description}</span>
           <div className="flex flex-row text-baseline items-baseline gap-2">
-            <h3 className="text-3xl font-bold text-white mb-2">
+            {/* a price is not a heading: it was an h3 purely for the type scale */}
+            <span className="text-3xl font-bold text-white mb-2">
               {addOns?.price}
-            </h3>
+            </span>
             <span className="text-white/50">{addOns?.subPriceText}</span>
           </div>
         </div>
@@ -198,7 +208,9 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
       <div className="flex gap-2 items-center ">
         {plan.planTier && (
           <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-3xl font-bold">{plan.planTier}</h3>
+            <LinkableHeading as="h3" wrap className="text-3xl font-bold">
+              {plan.planTier}
+            </LinkableHeading>
           </div>
         )}
 
@@ -254,7 +266,9 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
       </div>
 
       <div className="flex-col pb-3 grow">
-        <h3 className="text-base text-white pb-1">{plan.listTitle}</h3>
+        <LinkableHeading as="h3" wrap className="text-base text-white pb-1">
+          {plan.listTitle}
+        </LinkableHeading>
         {plan.listItems?.map((item: string, index: number) => (
           <div key={index} className="flex items-start gap-2 py-1">
             <BsCheck

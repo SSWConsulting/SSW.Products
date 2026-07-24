@@ -6,5 +6,21 @@
   ],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "components/shared/Blocks/**/*.tsx"
+      ],
+      "rules": {
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "JSXOpeningElement[name.name=/^h[23]$/]",
+            "message": "Headings in page blocks must be anchor targets (https://www.ssw.com.au/rules/heading-to-anchor-targets). Use <LinkableHeading as=\"h2\" wrap> instead of a raw <h2>/<h3>, or disable this rule on the line with a comment explaining why the heading can't be linked."
+          }
+        ]
+      }
+    }
+  ]
 }

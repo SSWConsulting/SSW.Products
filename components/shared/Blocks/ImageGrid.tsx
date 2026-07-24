@@ -3,6 +3,7 @@ import { Download } from "lucide-react";
 import { useState } from "react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
+import LinkableHeading from "../LinkableHeading";
 
 interface ImageItem {
   id?: string;
@@ -87,9 +88,13 @@ const ImageGrid = ({
       {(title || gridDescription) && (
         <div className="text-center mb-12">
           {title && (
-            <h2 className="text-[32px] font-semibold text-white mb-1">
+            <LinkableHeading
+              as="h2"
+              wrap
+              className="text-[32px] font-semibold text-white mb-1"
+            >
               {title}
-            </h2>
+            </LinkableHeading>
           )}
           {gridDescription && (
             <div className="text-[14px] text-white font-medium leading-relaxed max-w-3xl mx-auto">
