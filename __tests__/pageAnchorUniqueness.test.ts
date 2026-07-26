@@ -15,7 +15,7 @@ const ANCHORED_FIELDS: Record<string, string[]> = {
   BentoBox: ["title", "topLeftBox.title", "topRightBox.title", "bottomRightBox.title"],
   CardAndImage: ["ParentContainerTitle", "CardAndImageItem[].Header"],
   Timeline: ["title", "items[].title"],
-  calculator: ["title", "tiers[].tier"],
+  calculator: ["title"],
   callToAction: ["title"],
   comparisonTable: ["headline"],
   downloadCards: ["title", "cards[].title"],
