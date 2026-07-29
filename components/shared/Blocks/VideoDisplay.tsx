@@ -1,4 +1,5 @@
 import Container from "../../Container";
+import LinkableHeading from "../LinkableHeading";
 import { YouTubeEmbed } from "../YouTubeEmbed";
 
 interface VideoDisplayProps {
@@ -18,10 +19,14 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
   return (
     <Container className="flex justify-center mx-auto container">
       <div className="items-center w-full h-auto ">
-        <h2 className="text-3xl text-white font-semibold pb-12 text-center">
+        <LinkableHeading
+          as="h2"
+          wrap
+          className="text-3xl text-white font-semibold pb-12 text-center"
+        >
           {" "}
           {title}
-        </h2>
+        </LinkableHeading>
         <YouTubeEmbed
           className="w-full mx-auto"
           src={externalVideoLink || ""}
