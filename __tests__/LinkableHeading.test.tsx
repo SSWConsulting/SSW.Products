@@ -76,6 +76,23 @@ describe("LinkableHeading", () => {
     );
   });
 
+  it("makes the heading text itself the link when wrap is set", () => {
+    render(
+      <LinkableHeading as="h2" wrap>
+        Simple, transparent pricing
+      </LinkableHeading>,
+    );
+    // the rule's good example: click the heading, or its icon, to get the URL
+    const link = screen.getByRole("link", {
+      name: "Simple, transparent pricing",
+    });
+    expect(link).toHaveAttribute("href", "#simple-transparent-pricing");
+    expect(screen.getByRole("heading", { level: 2 })).toContainElement(link);
+    expect(
+      screen.queryByRole("link", { name: "Link to this section" }),
+    ).not.toBeInTheDocument();
+  });
+
   it("renders a plain heading when no slug can be made", () => {
     render(<LinkableHeading as="h2">{"!!!"}</LinkableHeading>);
     const heading = screen.getByRole("heading", { level: 2 });
