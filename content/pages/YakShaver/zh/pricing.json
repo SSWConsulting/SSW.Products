@@ -128,7 +128,7 @@
           "label": "这里充值",
           "variant": "outlinedWhite",
           "size": "large",
-          "url": "https://portal.yakshaver.ai/settings/plan"
+          "url": "https://portal.yakshaver.ai/plan"
         }
       },
       "_template": "pricing"
