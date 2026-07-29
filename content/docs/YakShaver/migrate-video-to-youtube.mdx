@@ -16,7 +16,7 @@ When you [connect a YouTube channel to a project](/docs/connect-your-youtube-cha
 
 The **Migrate Video** action moves one of those older videos across to your project's video host, so the work item keeps a permanent link.
 
-### When to use this
+## When to use this
 
 Use **Migrate Video** when all of the following are true:
 
@@ -26,7 +26,7 @@ Use **Migrate Video** when all of the following are true:
 
 **Note:** This migrates **one video at a time** — there is no bulk or whole-project migration. While a migration is running, the action is unavailable on every other row. It is designed for topping up the occasional older video, not for moving a large backlog.
 
-### Prerequisites
+## Prerequisites
 
 * You must be the **owner of the shave, or a YakShaver admin**
 * The project must already have a [YouTube channel connected](/docs/connect-your-youtube-channel-to-a-project)
@@ -34,7 +34,7 @@ Use **Migrate Video** when all of the following are true:
 
 **⚠️ Warning:** This action cannot be undone. YouTube does not allow YakShaver to download a video back off the channel, so a video cannot be migrated back to OneDrive / SharePoint.
 
-**⚠️ Important:** Migration uses your YouTube upload quota — roughly 100 uploads per verified channel per day, shared with new recordings. Migrating during a busy recording day can delay new shaves once the quota runs out.
+**⚠️ Important:** Migration uses the same YouTube upload capacity as new recordings. If the upload limit is reached, uploads may be delayed.
 
 ## Step-by-Step Instructions
 
@@ -60,7 +60,7 @@ Use **Migrate Video** when all of the following are true:
 
 7. Wait for the migration to finish. A progress notification is shown while the video uploads, and the list refreshes automatically
 
-### What happens next?
+## What happens next?
 
 * The video is uploaded to your project's YouTube channel as an **unlisted** video
 * The work item is updated to point at the new YouTube link
@@ -74,7 +74,7 @@ To verify, open the work item and check that **"Watch the video"** now points at
 
 **Note:** If the issue description still shows the old link, the video has still migrated successfully — updating the description is a separate step that can fail on its own. Do not retry the migration; it will be blocked because the video is already on YouTube. [Contact support](/docs/support) instead.
 
-### Why is "Migrate Video" greyed out?
+## Why is "Migrate Video" greyed out?
 
 Hover over the action to see the reason:
 
