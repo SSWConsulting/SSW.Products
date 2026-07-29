@@ -13,7 +13,6 @@ import {
 import Container from "../../../Container";
 import LinkableHeading from "../../LinkableHeading";
 import { curlyBracketFormatter } from "../Hero/Hero";
-import { hashTargetsSlug, slugifyHeading } from "@utils/anchorSlug";
 
 const cardAndImageMarkdownRenderer: Components<object> = {
   ul: (props: unknown) => {
@@ -144,21 +143,6 @@ function CardItem({
     }
   }, [isOpen, data]);
 
-  // Open this card when its own link is followed, so a shared #card-heading URL
-  // doesn't land on a collapsed card. Mirrors the FAQ block.
-  const slug = slugifyHeading(data.Header);
-  useEffect(() => {
-    if (!slug) return;
-    const openIfLinked = () => {
-      if (hashTargetsSlug(slug)) setIdOfOpen(uniqueId);
-    };
-    openIfLinked();
-    window.addEventListener("hashchange", openIfLinked);
-    return () => window.removeEventListener("hashchange", openIfLinked);
-    // setIdOfOpen and uniqueId are effectively stable; depending on the unstable
-    // parent callback would re-subscribe every render and fight manual opens
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug]);
   const badgeCount = data.Badges?.length || 0;
   const delimeter =
     (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
@@ -174,7 +158,8 @@ function CardItem({
             )
       )}
       onClick={(e) => {
-        // let the heading's link icon work without toggling the card
+        // don't toggle the card when a link inside it (e.g. in the description)
+        // is clicked
         if ((e.target as HTMLElement).closest("a")) return;
         if (!isOpen) {
           setIdOfOpen(uniqueId);
@@ -184,21 +169,17 @@ function CardItem({
       }}
     >
       {data.AboveHeaderText && (
-        <h4 className="text-gray-300">
+        <span className="block text-gray-300">
           {curlyBracketFormatter(data.AboveHeaderText)}
-        </h4>
+        </span>
       )}
 
       <div className="flex items-center justify-between">
         {data.Header && (
-          // the card itself expands on click, so only the icon links out
-          <LinkableHeading
-            as="h3"
-            anchor={data.Header}
-            className="text-2xl font-bold"
-          >
+          // a card label, not a section heading, so a plain span (not anchored)
+          <span className="text-2xl font-bold">
             {curlyBracketFormatter(data.Header)}
-          </LinkableHeading>
+          </span>
         )}
         <FaChevronDown
           className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${

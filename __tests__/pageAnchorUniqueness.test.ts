@@ -12,9 +12,12 @@ import { slugifyHeading } from "../utils/anchorSlug";
 // components/shared/Blocks when a template gains or renames a heading.
 const ANCHORED_FIELDS: Record<string, string[]> = {
   Banner: ["headline"],
-  BentoBox: ["title", "topLeftBox.title", "topRightBox.title", "bottomRightBox.title"],
-  CardAndImage: ["ParentContainerTitle", "CardAndImageItem[].Header"],
+  // BentoBox box titles are plain labels (span/p), only the section title anchors
+  BentoBox: ["title"],
+  // card labels (AboveHeaderText/Header) are spans; only the section title anchors
+  CardAndImage: ["ParentContainerTitle"],
   Timeline: ["title", "items[].title"],
+  // tier names are spans, not anchors; only the section title anchors
   calculator: ["title"],
   callToAction: ["title"],
   comparisonTable: ["headline"],
@@ -22,7 +25,8 @@ const ANCHORED_FIELDS: Record<string, string[]> = {
   faq: ["headline", "questions[].question"],
   imageGrid: ["title"],
   imageShowcase: ["title", "showcaseTitle"],
-  pricing: ["title", "plans[].planTier", "plans[].listTitle", "addOns.title"],
+  // plan tiers and the add-on title are plain paragraphs; listTitle still anchors
+  pricing: ["title", "plans[].listTitle"],
   tryItNow: ["tryItNowTitle", "tryItNowCards[].title"],
   videoDisplay: ["title"],
 };

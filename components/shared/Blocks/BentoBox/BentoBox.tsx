@@ -5,9 +5,8 @@ import Link from "next/link";
 import React, { useRef } from "react";
 import { FaExpandAlt } from "react-icons/fa";
 import { FaMinus, FaXmark } from "react-icons/fa6";
-import { slugifyHeading } from "@utils/anchorSlug";
 import Container from "../../../Container";
-import LinkableHeading, { HeadingSelfLink } from "../../LinkableHeading";
+import LinkableHeading from "../../LinkableHeading";
 import { ExampleYakShaverCard } from "../../../ui/MockYakShaverCards";
 import TimeSavedCounterBox from "../../../utilityComponents/TimeSavedCounter";
 import YaksShavedCounterBox from "../../../utilityComponents/YaksShavedCounter";
@@ -18,10 +17,7 @@ import { IconBox as IconBoxProps } from "@/types/components/icon-box";
 
 const YakShaverGray = "bg-[#131313] shadow-2xl";
 
-// SmAndMdView and BeamBox are the same box at different widths, so they share
-// one anchor: the id lives on the wrapper that holds both, and each variant
-// links its own heading text at it.
-function SmAndMdView({ data, slug }: { data: any; slug: string }) {
+function SmAndMdView({ data }: { data: any }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {/* Counter Boxes */}
@@ -55,15 +51,7 @@ function SmAndMdView({ data, slug }: { data: any; slug: string }) {
         </div>
 
         <div className="pt-10 md:pt-6 lg:pt-20 flex flex-col justify-center p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
-          {/* eslint-disable-next-line no-restricted-syntax -- shares one
-              anchor with the lg variant; the id is on the wrapper */}
-          <h2 className="text-white text-xl font-semibold">
-            {slug ? (
-              <HeadingSelfLink slug={slug}>{data.title}</HeadingSelfLink>
-            ) : (
-              data.title
-            )}
-          </h2>
+          <p className="text-white text-xl font-semibold">{data.title}</p>
           <span className="text-[#797979] text-xs">{data.description}</span>
         </div>
       </div>
@@ -71,7 +59,7 @@ function SmAndMdView({ data, slug }: { data: any; slug: string }) {
   );
 }
 
-function LgView({ data, slug }: { data: any; slug: string }) {
+function LgView({ data }: { data: any }) {
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 pt-4 gap-4 h-96">
       {/* Left column (Sub-grid) */}
@@ -100,13 +88,13 @@ function LgView({ data, slug }: { data: any; slug: string }) {
         <PhotoBox photo={data?.bottomLeftBox?.media} />
       </div>
       {/* Right column (Full height box) */}
-      <BeamBox data={data?.bottomRightBox} slug={slug} />
+      <BeamBox data={data?.bottomRightBox} />
       {/* Large merged box */}
     </div>
   );
 }
 
-function BeamBox({ data, slug }: { data: any; slug: string }) {
+function BeamBox({ data }: { data: any }) {
   return (
     <div className={`${YakShaverGray} rounded-xl relative overflow-hidden`}>
       <Image
@@ -119,15 +107,7 @@ function BeamBox({ data, slug }: { data: any; slug: string }) {
         <AnimatedBeamMultipleOutput data={data} />
       </div>
       <div className="absolute bottom-0 w-full pb-4  px-6">
-        {/* eslint-disable-next-line no-restricted-syntax -- shares one
-            anchor with the sm/md variant; the id is on the wrapper */}
-        <h2 className="text-white text-xl font-semibold">
-          {slug ? (
-            <HeadingSelfLink slug={slug}>{data?.title}</HeadingSelfLink>
-          ) : (
-            data?.title
-          )}
-        </h2>
+        <p className="text-white text-xl font-semibold">{data?.title}</p>
         <span className="text-[#797979] text-sm">{data?.description}</span>
       </div>
     </div>
@@ -211,7 +191,6 @@ export function TitleFadeIn({ title }: { title: string }) {
 
 export default function BentoBox({ data }: { data: any }) {
   const { topLeftBox, topRightBox } = data;
-  const bottomRightSlug = slugifyHeading(data?.bottomRightBox?.title ?? "");
   return (
     <div className="flex flex-col">
       <Container size="small">
@@ -240,13 +219,9 @@ export default function BentoBox({ data }: { data: any }) {
                   </div>
                 </div>
                 <div className="w-full mt-6 mx-3">
-                  <LinkableHeading
-                    as="h2"
-                    wrap
-                    className="text-white md:text-2xl lg:text-4xl font-semibold text-center"
-                  >
+                  <p className="text-white md:text-2xl lg:text-4xl font-semibold text-center">
                     {topLeftBox.title}
-                  </LinkableHeading>
+                  </p>
                 </div>
                 <div className="md:mt-12 mt-4 flex items-center flex-row justify-center gap-4 md:gap-6">
                   {topLeftBox.icons &&
@@ -271,13 +246,9 @@ export default function BentoBox({ data }: { data: any }) {
                 className={`${YakShaverGray} relative rounded-xl w-full h-full`}
               >
                 <div className="p-6 pb-0 md:pb-6">
-                  <LinkableHeading
-                    as="h2"
-                    wrap
-                    className="text-white text-2xl font-semibold"
-                  >
+                  <p className="text-white text-2xl font-semibold">
                     {topRightBox.title}
-                  </LinkableHeading>
+                  </p>
                   <p className="text-[#797979] text-sm">
                     {topRightBox.description}
                   </p>
@@ -291,15 +262,12 @@ export default function BentoBox({ data }: { data: any }) {
         </div>
 
         {/* Row 2 (2 Rows) */}
-        <div
-          id={bottomRightSlug || undefined}
-          className="group scroll-mt-28 pt-4 lg:pt-0"
-        >
+        <div className="pt-4 lg:pt-0">
           <div className="hidden lg:block">
-            <LgView data={data} slug={bottomRightSlug} />
+            <LgView data={data} />
           </div>
           <div className="lg:hidden block">
-            <SmAndMdView data={data.bottomRightBox} slug={bottomRightSlug} />
+            <SmAndMdView data={data.bottomRightBox} />
           </div>
         </div>
         <div className="pt-10">

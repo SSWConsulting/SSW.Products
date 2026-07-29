@@ -149,14 +149,9 @@ const AddOns = ({ addOns }: { addOns: AddOn }) => {
     <div className="flex max-w-3xl mx-auto p-10 my-4 lg:my-8 flex-col w-full bg-gradient-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border-white/20 border-2 rounded-xl">
       <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-20">
         <div className="flex flex-col">
-          <LinkableHeading
-            as="h3"
-            wrap
-            anchor={addOns?.title}
-            className="text-3xl font-bold text-white mb-2"
-          >
+          <p className="text-3xl font-bold text-white mb-2">
             {curlyBracketFormatter(addOns?.title)}
-          </LinkableHeading>
+          </p>
           <span className="text-white/50 mb-2">{addOns?.description}</span>
           <div className="flex flex-row text-baseline items-baseline gap-2">
             {/* a price is not a heading: it was an h3 purely for the type scale */}
@@ -208,9 +203,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
       <div className="flex gap-2 items-center ">
         {plan.planTier && (
           <div className="mb-2 flex items-center justify-between">
-            <LinkableHeading as="h3" wrap className="text-3xl font-bold">
-              {plan.planTier}
-            </LinkableHeading>
+            <p className="text-3xl font-bold">{plan.planTier}</p>
           </div>
         )}
 
