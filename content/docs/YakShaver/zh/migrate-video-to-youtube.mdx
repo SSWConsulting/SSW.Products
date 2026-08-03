@@ -1,0 +1,83 @@
+---
+seo:
+  title: 将视频从 OneDrive 迁移到 YouTube
+  description: >-
+    将现有的 YakShaver 视频从 OneDrive / SharePoint 移动到您的项目 YouTube 频道，以确保链接永不过期。
+  openGraphTitle: 将视频从 OneDrive 迁移到 YouTube
+  openGraphDescription: >-
+    将现有的 YakShaver 视频从 OneDrive / SharePoint 移动到您的项目 YouTube 频道，以确保链接永不过期。
+title: 将视频从 OneDrive 迁移到 YouTube
+date: '2026-07-28T14:00:00.000Z'
+---
+
+当您[将 YouTube 频道连接到项目](/docs/connect-your-youtube-channel-to-a-project)时，只有**之后**录制的视频会上传到 YouTube。较旧的视频仍保留在 OneDrive / SharePoint 上，那里[共享链接会在 30 天后过期](/docs/make-uploads-permanent)。
+
+**迁移视频** 操作会将这些较旧的视频之一移动到您的项目视频托管平台，使工作项保持永久链接。
+
+## 何时使用此功能
+
+当满足以下所有条件时，使用 **迁移视频**：
+
+* 项目的视频托管已更改为 YouTube
+* 较旧的工作项仍指向 OneDrive / SharePoint 上的视频
+* 您希望该视频的链接不再过期
+
+**注意：** 此操作一次只迁移**一个视频** — 不支持批量或整个项目迁移。迁移进行时，其他所有行的此操作均不可用。此功能设计用于偶尔补充较旧视频，而非迁移大量积压内容。
+
+## 前提条件
+
+* 您必须是**剃须所有者或 YakShaver 管理员**
+* 项目必须已[连接 YouTube 频道](/docs/connect-your-youtube-channel-to-a-project)
+* 视频当前必须托管在**OneDrive / SharePoint** — 迁移仅支持此方向
+
+**⚠️ 警告：** 此操作不可撤销。YouTube 不允许 YakShaver 从频道下载视频，因此视频无法迁回 OneDrive / SharePoint。
+
+**⚠️ 重要：** 迁移使用与新录制相同的 YouTube 上传容量。如果达到上传限制，上传可能会延迟。
+
+## 逐步操作指南
+
+**注意：** 此操作仅在项目视图中可用。从**我的剃须**打开相同剃须时，**迁移视频**会显示为灰色不可用。
+
+1. 登录 [YakShaver 门户](https://portal.yakshaver.ai/)，并从[项目](https://portal.yakshaver.ai/projects)中打开项目
+2. 确认项目的**视频托管**设置为**YouTube**
+
+   ![](/YakShaver/Docs/migrate-video-host-setting.png)
+   **图示：迁移前，项目的视频托管必须设置为 YouTube**
+
+3. 选择 **剃须** 标签，找到视频仍托管在 OneDrive / SharePoint 的工作项 — 这些行的视频缩略图角落显示蓝色 **OneDrive 图标**
+4. 点击该行末尾的 **⋮**（更多操作）按钮
+5. 选择 **迁移视频**
+
+   ![](/YakShaver/Docs/migrate-video-more-actions.png)
+   **图示：仅在视频仍托管于 OneDrive / SharePoint 的行上显示“迁移视频”操作**
+
+6. 在弹窗中确认 — 弹窗会显示源和目标托管平台，并警告此操作不可撤销
+
+   ![](/YakShaver/Docs/migrate-video-confirm-dialog.png)
+   **图示：确认从 OneDrive / SharePoint 迁移到 YouTube**
+
+7. 等待迁移完成。视频上传时会显示进度通知，列表会自动刷新
+
+## 接下来会发生什么？
+
+* 视频作为**非公开**视频上传到您的项目 YouTube 频道
+* 工作项更新为指向新的 YouTube 链接
+* 原始问题描述更新，旧视频链接被新链接替换
+* 原始 OneDrive / SharePoint 副本**不会**被删除
+
+![](/YakShaver/Docs/migrate-video-after.png)
+**图示：迁移后，缩略图显示 YouTube 视频，且操作不再可用**
+
+验证方法：打开工作项，检查“观看视频”是否指向 `youtube.com` 链接。
+
+**注意：** 如果问题描述仍显示旧链接，视频迁移仍然成功 — 更新描述是单独步骤，可能会失败。请勿重试迁移；因视频已在 YouTube 上，迁移会被阻止。[请联系支持](/docs/support)。
+
+## 为什么“迁移视频”是灰色不可用？
+
+将鼠标悬停在操作上查看原因：
+
+* **“只有所有者或管理员可以迁移此剃须”** — 请所有者或管理员执行
+* **“请从项目视图打开以迁移”** — 从 **项目 → 剃须** 打开
+* **“项目已使用 SharePoint”** — 先[连接 YouTube 频道](/docs/connect-your-youtube-channel-to-a-project)
+* **“无法从 YouTube 迁移”** — 已迁移过
+* **“另一个迁移正在进行中”** — 等待完成
