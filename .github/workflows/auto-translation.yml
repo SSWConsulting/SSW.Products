@@ -48,8 +48,11 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # The scripts' deps (openai, minimatch, axios) are declared in
+          # package.json. Running `npm install` over a pnpm-installed tree
+          # fails on pnpm's symlink layout with "Cannot read properties of
+          # null (reading 'name')".
           pnpm install --frozen-lockfile
-          npm install --no-save minimatch@3.1.2 openai@4.75.0 axios@1.9.0
 
       - name: Detect Changes
         env:
