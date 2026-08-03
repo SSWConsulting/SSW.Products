@@ -95,14 +95,14 @@ async function handleFileOperations() {
     console.log(hasChanges ? 'File operations completed' : 'No operations needed');
     
   } catch (error) {
-    console.error(`Error: ${error.message}`);
-    try {
-      fs.appendFileSync(process.env.GITHUB_ENV, `HAS_FILE_OPERATIONS=false\n`);
-    } catch (writeError) {
-      console.error(`Failed to write environment variables: ${writeError.message}`);
-    }
+    // As in detect-files.js, no HAS_*=false fallback: rethrowing fails the
+    // step, and writing the flag first would disguise a sync failure as
+    // "nothing to sync" and let the run continue with stale zh/ files.
+    console.error(`::error::Failed to sync file operations: ${error.message}`);
     throw error;
   }
 }
 
-if (require.main === module) handleFileOperations();
+if (require.main === module) {
+  handleFileOperations().catch(() => process.exit(1));
+}
