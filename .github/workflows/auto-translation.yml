@@ -14,6 +14,13 @@ on:
 env:
   PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number || github.event.pull_request.number }}
 
+# Runs branch from and push to main, so overlapping runs can clobber each
+# other's translations. Queue them instead; never cancel, since a cancelled
+# run has already paid for its OpenAI calls.
+concurrency:
+  group: auto-translation
+  cancel-in-progress: false
+
 jobs:
   translate:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
@@ -76,12 +83,11 @@ jobs:
       - name: Verify TinaCMS Schema
         if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
         run: |
-          pnpm install
-
-          # Run the dev server just long enough for TinaCMS to generate its
-          # schema, then stop it. timeout kills the whole process group so no
-          # child outlives the step and hangs the job.
-          timeout --signal=INT --kill-after=10s 60s pnpm dev || true
+          # `pnpm dev` is `tinacms dev -c "next dev"`, which also starts a Next
+          # dev server this step never uses. Only the schema is needed, so build
+          # it directly: no background process to kill, and it runs to
+          # completion instead of racing a fixed sleep.
+          pnpm exec tinacms build --skip-cloud-checks
 
           if [ -f "tina/tina-lock.json" ]; then
             git add tina/tina-lock.json
@@ -93,13 +99,25 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
+
+          # Set by the Process Translation step; if that was skipped, pushing
+          # would target whatever branch is checked out. Fail loudly instead.
+          if [ -z "${BRANCH_NAME:-}" ]; then
+            echo "::error::BRANCH_NAME is not set - refusing to push"
+            exit 1
+          fi
+
           git add content/
           git add tina/tina-lock.json 2>/dev/null || true
           if ! git diff --staged --quiet; then
             git commit -m "🤖 Auto Translation: Chinese content for PR #${{ env.PR_NUMBER }}"
-            git push origin $BRANCH_NAME
-            
-            REPO=${{ github.repository }} SERVER_URL=${{ github.server_url }} BRANCH_NAME=$BRANCH_NAME node .github/scripts/create-pr.js
+            git push origin "$BRANCH_NAME"
+
+            REPO=${{ github.repository }} \
+            GITHUB_SERVER_URL=${{ github.server_url }} \
+            BRANCH_NAME="$BRANCH_NAME" \
+              node .github/scripts/create-pr.js
           else
             echo "No changes to commit"
           fi
