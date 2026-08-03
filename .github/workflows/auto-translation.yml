@@ -77,12 +77,12 @@ jobs:
         if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
         run: |
           pnpm install
-          
-          # TinaCMS schema verification with adequate time
-          pnpm dev &
-          sleep 60
-          kill $! 2>/dev/null || true
-          
+
+          # Run the dev server just long enough for TinaCMS to generate its
+          # schema, then stop it. timeout kills the whole process group so no
+          # child outlives the step and hangs the job.
+          timeout --signal=INT --kill-after=10s 60s pnpm dev || true
+
           if [ -f "tina/tina-lock.json" ]; then
             git add tina/tina-lock.json
             echo "Added tina-lock.json to staging"
