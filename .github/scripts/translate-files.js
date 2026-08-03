@@ -80,9 +80,11 @@ function stripCodeFence(text) {
   return fenced ? fenced[1].trim() : text;
 }
 
+const countFrontmatterDelimiters = (text) => ((text || '').match(/^---[ \t]*$/gm) || []).length;
+
 // Structural corruption is the failure mode that survives review unnoticed,
 // so verify the translation still parses as whatever the source claimed to be.
-function validateStructure(content, targetPath) {
+function validateStructure(content, targetPath, source) {
   if (targetPath.endsWith('.json')) {
     try {
       JSON.parse(content);
@@ -90,6 +92,59 @@ function validateStructure(content, targetPath) {
       throw new Error(`translation is not valid JSON: ${error.message}`);
     }
   }
+
+  if (targetPath.endsWith('.mdx')) {
+    // Frontmatter is the block between a pair of --- delimiters. Dropping
+    // either one leaves valid-looking text that Tina parses as a document
+    // with no fields at all, which is how the Chinese docs sidebar sat empty
+    // for six weeks.
+
+    // Position first: the count can match while the frontmatter is still
+    // unreachable, because a preface ahead of it ("Here is the translation:")
+    // means Tina no longer sees the file as starting with frontmatter. Models
+    // volunteer that kind of wrapper often enough that stripCodeFence exists
+    // for the same reason.
+    const startsWithFrontmatter = (text) => /^---[ \t]*\r?\n/.test(text || '');
+
+    if (startsWithFrontmatter(source) && !startsWithFrontmatter(content)) {
+      throw new Error(
+        'frontmatter no longer starts the file; the model likely added a preface'
+      );
+    }
+
+    // Then the count, which catches a delimiter dropped from either end.
+    // Compare against the source rather than assuming two: files with a ---
+    // rule in the body legitimately have more.
+    const expected = countFrontmatterDelimiters(source);
+    const actual = countFrontmatterDelimiters(content);
+
+    if (actual !== expected) {
+      throw new Error(
+        `frontmatter delimiters changed: source has ${expected}, translation has ${actual}`
+      );
+    }
+  }
+}
+
+// Content files reference each other by repo path (toc.mdx slugs, for
+// example). Those paths must be remapped to the translated tree, but models
+// tend to "translate" them back to the English original instead. The result
+// still parses, so nothing else catches it: the Chinese sidebar silently
+// links to English docs.
+function remapInternalPaths(content, translationMapping) {
+  let result = content;
+
+  for (const [englishPath, chinesePath] of Object.entries(translationMapping)) {
+    // Rewrite only references that kept the English path, so any the model
+    // already mapped correctly are left alone.
+    const stale = new RegExp(
+      `${englishPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?!${chinesePath.slice(englishPath.length)})`,
+      'g'
+    );
+    result = result.replace(stale, chinesePath);
+  }
+
+  return result;
 }
 
 async function processFile(filePath, config, client, deploymentName) {
@@ -104,9 +159,9 @@ async function processFile(filePath, config, client, deploymentName) {
     }
 
     const raw = await translateContent(content, translationPrompt, client, azure, deploymentName);
-    const translatedContent = stripCodeFence(raw);
+    const translatedContent = remapInternalPaths(stripCodeFence(raw), translationMapping);
 
-    validateStructure(translatedContent, targetPath);
+    validateStructure(translatedContent, targetPath, content);
 
     ensureDirectoryExists(targetPath);
     fs.writeFileSync(targetPath, translatedContent, 'utf8');
