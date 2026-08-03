@@ -92,6 +92,27 @@ function validateStructure(content, targetPath) {
   }
 }
 
+// Content files reference each other by repo path (toc.mdx slugs, for
+// example). Those paths must be remapped to the translated tree, but models
+// tend to "translate" them back to the English original instead. The result
+// still parses, so nothing else catches it: the Chinese sidebar silently
+// links to English docs.
+function remapInternalPaths(content, translationMapping) {
+  let result = content;
+
+  for (const [englishPath, chinesePath] of Object.entries(translationMapping)) {
+    // Rewrite only references that kept the English path, so any the model
+    // already mapped correctly are left alone.
+    const stale = new RegExp(
+      `${englishPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?!${chinesePath.slice(englishPath.length)})`,
+      'g'
+    );
+    result = result.replace(stale, chinesePath);
+  }
+
+  return result;
+}
+
 async function processFile(filePath, config, client, deploymentName) {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
@@ -104,7 +125,7 @@ async function processFile(filePath, config, client, deploymentName) {
     }
 
     const raw = await translateContent(content, translationPrompt, client, azure, deploymentName);
-    const translatedContent = stripCodeFence(raw);
+    const translatedContent = remapInternalPaths(stripCodeFence(raw), translationMapping);
 
     validateStructure(translatedContent, targetPath);
 
