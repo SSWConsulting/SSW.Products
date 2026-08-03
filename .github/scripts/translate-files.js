@@ -97,8 +97,24 @@ function validateStructure(content, targetPath, source) {
     // Frontmatter is the block between a pair of --- delimiters. Dropping
     // either one leaves valid-looking text that Tina parses as a document
     // with no fields at all, which is how the Chinese docs sidebar sat empty
-    // for six weeks. Compare against the source rather than assuming two:
-    // files with a --- rule in the body legitimately have more.
+    // for six weeks.
+
+    // Position first: the count can match while the frontmatter is still
+    // unreachable, because a preface ahead of it ("Here is the translation:")
+    // means Tina no longer sees the file as starting with frontmatter. Models
+    // volunteer that kind of wrapper often enough that stripCodeFence exists
+    // for the same reason.
+    const startsWithFrontmatter = (text) => /^---[ \t]*\r?\n/.test(text || '');
+
+    if (startsWithFrontmatter(source) && !startsWithFrontmatter(content)) {
+      throw new Error(
+        'frontmatter no longer starts the file; the model likely added a preface'
+      );
+    }
+
+    // Then the count, which catches a delimiter dropped from either end.
+    // Compare against the source rather than assuming two: files with a ---
+    // rule in the body legitimately have more.
     const expected = countFrontmatterDelimiters(source);
     const actual = countFrontmatterDelimiters(content);
 
