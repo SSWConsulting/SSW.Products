@@ -59,10 +59,16 @@ export default async function RootLayout({
         <link rel="icon" href={withAssetVersion(`/favicons/${product}.ico`)} />
         
         {product === "YakShaver" && (
-          <Script
-            data-domain="yakshaver.ai"
-            src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
-          />
+          <>
+            <Script
+              data-domain="yakshaver.ai"
+              src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
+            />
+            <Script
+              src="https://portal.yakshaver.ai/embed.js"
+              data-yak-key="yak_pub_4cf685906e20dda4a0d3c0dc784d95ca"
+            />
+          </>
         )}
         {product === "EagleEye" && (
           <>
