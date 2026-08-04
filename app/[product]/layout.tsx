@@ -66,7 +66,7 @@ export default async function RootLayout({
             />
             <Script
               src="https://portal.yakshaver.ai/embed.js"
-              data-yak-key="yak_pub_4cf685906e20dda4a0d3c0dc784d95ca"
+              data-yak-key="yak_pub_a4f4305e5b7ee946a5e8a43063c9bdd1"
             />
           </>
         )}
@@ -82,6 +82,10 @@ export default async function RootLayout({
                 plausible.init()
               `}
             </Script>
+            <Script
+              src="https://portal.yakshaver.ai/embed.js"
+              data-yak-key="yak_pub_f5b3775d89292d78f5e87c3efaa05faa"
+            />
           </>
         )}
       </head>
