@@ -68,7 +68,7 @@ export default async function RootLayout({
             />
             <Script
               src="https://portal.yakshaver.ai/embed.js"
-              data-yak-key="yak_pub_a4f4305e5b7ee946a5e8a43063c9bdd1"
+              data-yak-key="yyak_pub_eb2d73fc33ab8a3db7bf62d077bb2f38"
             />
           </>
         )}
