@@ -61,10 +61,16 @@ export default async function RootLayout({
         <link rel="icon" href={withAssetVersion(`/favicons/${product}.ico`)} />
         
         {product === "YakShaver" && (
-          <Script
-            data-domain="yakshaver.ai"
-            src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
-          />
+          <>
+            <Script
+              data-domain="yakshaver.ai"
+              src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
+            />
+            <Script
+              src="https://portal.yakshaver.ai/embed.js"
+              data-yak-key="yak_pub_a4f4305e5b7ee946a5e8a43063c9bdd1"
+            />
+          </>
         )}
         {product === "EagleEye" && (
           <>
@@ -78,6 +84,10 @@ export default async function RootLayout({
                 plausible.init()
               `}
             </Script>
+            <Script
+              src="https://portal.yakshaver.ai/embed.js"
+              data-yak-key="yak_pub_f5b3775d89292d78f5e87c3efaa05faa"
+            />
           </>
         )}
       </head>
