@@ -17,6 +17,7 @@ const FALLBACK_SPEAKER_IMAGE = "/YakShaver/Icon/yak-icon-1.svg";
 
 type Conference = ConferenceQuery["conference"];
 type Banner = Conference["banner"];
+type TicketButton = NonNullable<Banner>["rightButton"];
 type KeyHighlight = NonNullable<
   NonNullable<NonNullable<Conference["about"]>["keyHighlights"]>[number]
 >;
@@ -92,9 +93,11 @@ const HeaderBanner = ({
             </Button>
           )}
           {banner?.rightButton?.title && banner?.rightButton?.link && (
-            <Link href={banner.rightButton.link} target="_blank">
-              <Button>{banner.rightButton.title}</Button>
-            </Link>
+            <Button asChild>
+              <Link href={banner.rightButton.link} target="_blank">
+                {banner.rightButton.title}
+              </Link>
+            </Button>
           )}
         </div>
       </div>
@@ -195,9 +198,11 @@ function formatTime(time: number) {
 function Agenda({
   sessions,
   agendaRef,
+  ticketButton,
 }: {
   sessions: Session[];
   agendaRef: React.RefObject<HTMLDivElement>;
+  ticketButton?: TicketButton;
 }) {
   // Group sessions by start time
   const sessionsByTime = sessions.reduce(
@@ -245,7 +250,7 @@ function Agenda({
       </h2>
 
       {timeSlots.length === 0 ? (
-        <p className="text-lg text-gray-300 pb-16">
+        <p className="text-lg text-gray-300">
           The full agenda is coming soon.
         </p>
       ) : (
@@ -406,6 +411,14 @@ function Agenda({
           </div>
         </>
       )}
+
+      {ticketButton?.title && ticketButton?.link && (
+        <Button asChild size="lg" className="mt-8 mb-16">
+          <Link href={ticketButton.link} target="_blank">
+            {ticketButton.title}
+          </Link>
+        </Button>
+      )}
     </div>
   );
 }
@@ -481,7 +494,11 @@ export default function ConferenceClient({
         </div>
         <KeyHighlights highlights={conference?.about?.keyHighlights} />
         {speakers.length > 0 && <ExpertSpeakers speakers={speakers} />}
-        <Agenda sessions={sessions} agendaRef={agendaRef} />
+        <Agenda
+          sessions={sessions}
+          agendaRef={agendaRef}
+          ticketButton={conference?.banner?.rightButton}
+        />
       </Container>
     </div>
   );
