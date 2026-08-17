@@ -13,8 +13,15 @@ function validateEnvironment() {
   if (!prNumber) throw new Error('PR_NUMBER environment variable required');
 
   const githubToken = process.env.GITHUB_TOKEN;
+  if (!githubToken) throw new Error('GITHUB_TOKEN environment variable required');
+
   const repository = process.env.GITHUB_REPOSITORY;
+  if (!repository) throw new Error('GITHUB_REPOSITORY environment variable required');
+
   const [owner, repoName] = repository.split('/');
+  if (!owner || !repoName) {
+    throw new Error(`Invalid GITHUB_REPOSITORY format: ${repository}`);
+  }
 
   return { prNumber, githubToken, owner, repoName };
 }
@@ -135,15 +142,14 @@ async function detectChanges() {
     writeEnvironmentVariables(contentFiles, fileOperations);
     
   } catch (error) {
-    console.error(`Error: ${error.message}`);
-    try {
-      fs.appendFileSync(process.env.GITHUB_ENV, `HAS_CHANGED_FILES=false\n`);
-      fs.appendFileSync(process.env.GITHUB_ENV, `HAS_FILE_OPERATIONS=false\n`);
-    } catch (writeError) {
-      console.error(`Failed to write environment variables: ${writeError.message}`);
-    }
+    // Deliberately does not fall back to HAS_*=false. Rethrowing fails this
+    // step, which skips the gated steps anyway; writing the flags first would
+    // only make a detection failure look like "nothing to translate".
+    console.error(`::error::Failed to detect changed files: ${error.message}`);
     throw error;
   }
 }
 
-if (require.main === module) detectChanges();
+if (require.main === module) {
+  detectChanges().catch(() => process.exit(1));
+}

@@ -105,6 +105,12 @@ export const optimizedYoutubeFields: TinaField[] = [
     description: "Choose the size of the YouTube embed.",
     required: false,
   },
+  {
+    name: "caption",
+    label: "Figure Caption",
+    type: "string",
+    required: false,
+  },
 ];
 
 export const videoDisplayTemplate: Template = {

@@ -3,15 +3,16 @@
 import { useState, useCallback } from "react";
 import Image from "next/image";
 import { Download } from "lucide-react";
-import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { TinaMarkdown, type TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
+import LinkableHeading from "../LinkableHeading";
 
 interface ImageShowcaseProps {
   title?: string | null;
   gridDescription?: any;
   showcaseImage?: string | null;
   showcaseTitle?: string | null;
-  showcaseDescription?: string | null;
+  showcaseDescription?: TinaMarkdownContent;
   downloadFile?: string | null;
 }
 
@@ -50,9 +51,13 @@ const ImageShowcase = ({
       {hasHeader && (
         <div className="text-center mb-12">
           {title && (
-            <h2 className="text-[32px] font-semibold text-white mb-1">
+            <LinkableHeading
+              as="h2"
+              wrap
+              className="text-[32px] font-semibold text-white mb-1"
+            >
               {title}
-            </h2>
+            </LinkableHeading>
           )}
           {gridDescription && (
             <div className="text-[14px] text-white font-medium leading-relaxed max-w-3xl mx-auto">
@@ -93,11 +98,19 @@ const ImageShowcase = ({
         )}
 
         {showcaseTitle && (
-          <h2 className="text-white text-2xl font-bold mb-3">{showcaseTitle}</h2>
+          <LinkableHeading
+            as="h2"
+            wrap
+            className="text-white text-2xl font-bold mb-3"
+          >
+            {showcaseTitle}
+          </LinkableHeading>
         )}
 
         {showcaseDescription && (
-          <p className="text-gray-300 text-sm">{showcaseDescription}</p>
+          <div className="text-gray-300 text-sm">
+            <TinaMarkdown components={DocAndBlogMarkdownStyle} content={showcaseDescription} />
+          </div>
         )}
       </div>
     </div>

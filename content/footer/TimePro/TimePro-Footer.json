@@ -1,0 +1,40 @@
+{
+  "footerTitle": "SSW TimePro. All Rights Reserved",
+  "footerColor": "#000000",
+  "footer": [
+    {
+      "footerItemIcon": "FaYouTube",
+      "footerItemLink": "https://www.youtube.com/@sswtimepro"
+    },
+    {
+      "footerItemIcon": "FaLinkedIn",
+      "footerItemLink": "https://www.linkedin.com/company/ssw/"
+    },
+    {
+      "footerItemIcon": "FaFacebook",
+      "footerItemLink": "https://www.facebook.com/SSW.page/"
+    },
+    {
+      "footerItemIcon": "FaXTwitter",
+      "footerItemLink": "https://x.com/ssw_tv"
+    },
+    {
+      "footerItemIcon": "FaInstagram",
+      "footerItemLink": "https://www.instagram.com/ssw_tv"
+    },
+    {
+      "footerItemIcon": "FaTiktok",
+      "footerItemLink": "https://www.tiktok.com/@ssw_tv"
+    },
+    {
+      "footerItemIcon": "FaGithub",
+      "footerItemLink": "https://www.github.com/sswconsulting"
+    }
+  ],
+  "poweredByTinaBanner": {
+    "textColour": "#ffffff",
+    "text": "Powered by TinaCMS",
+    "image": "/tina-llama-orange.png",
+    "url": "https://tina.io"
+  }
+}

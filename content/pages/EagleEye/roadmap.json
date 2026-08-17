@@ -1,8 +1,9 @@
 {
   "seo": {
-    "title": "Roadmap"
+    "title": "Roadmap - Releases, Upcoming Features and Improvements",
+    "description": "View the EagleEye Roadmap to see upcoming features, planned improvements, and what we’re working on next."
   },
-  "title": "Roadmap",
+  "title": "Roadmap - Releases, Upcoming Features and Improvements",
   "pageBlocks": [
     {
       "titleBeforeRotate": "EagleEye Roadmap",

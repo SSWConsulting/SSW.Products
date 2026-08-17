@@ -2,7 +2,7 @@
 
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import client from "../../tina/__generated__/client";
+import type client from "../../tina/__generated__/client";
 import { DocAndBlogMarkdownStyle } from "../../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 
 type PrivacyPolicyClientProps = Awaited<

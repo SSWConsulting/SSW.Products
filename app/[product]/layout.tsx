@@ -1,15 +1,44 @@
 import FooterServer from "@comps/shared/FooterServer";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
+import { withAssetVersion } from "../../utils/assetVersion";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import { getLocale } from "../../utils/i18n";
+import { getDomainForTenant } from "../../utils/tenancy";
 import "../globals.css";
+import QueryProvider from "@comps/providers/QueryProvider";
 
 const inter = Inter({
   weight: ["400", "600", "700"],
   subsets: ["latin"],
 });
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ product: string }>;
+}): Promise<Metadata> {
+  const { product } = await params;
+  const domain = getDomainForTenant(product);
+
+  return {
+    metadataBase: domain ? new URL(`https://${domain}`) : undefined,
+    title: {
+      default: product,
+      template: "%s",
+    },
+    openGraph: {
+      siteName: product,
+      type: "website",
+      images: [`/default-images/${product}-og.png`],
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
+}
 
 export default async function RootLayout({
   children,
@@ -25,15 +54,23 @@ export default async function RootLayout({
   const htmlLang = locale === "zh" ? "zh-CN" : "en";
 
   return (
-    <html lang={htmlLang}>
+    // data-scroll-behavior tells next's router to suppress the smooth scroll
+    // from globals.css while it navigates, so only in-page hash links animate
+    <html lang={htmlLang} data-scroll-behavior="smooth">
       <head>
-        <link rel="icon" href={`/favicons/${product}.ico`} />
-
+        <link rel="icon" href={withAssetVersion(`/favicons/${product}.ico`)} />
+        
         {product === "YakShaver" && (
-          <Script
-            data-domain="yakshaver.ai"
-            src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
-          />
+          <>
+            <Script
+              data-domain="yakshaver.ai"
+              src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
+            />
+            <Script
+              src="https://portal.yakshaver.ai/embed.js"
+              data-yak-key="yak_pub_eb2d73fc33ab8a3db7bf62d077bb2f38"
+            />
+          </>
         )}
         {product === "EagleEye" && (
           <>
@@ -47,6 +84,10 @@ export default async function RootLayout({
                 plausible.init()
               `}
             </Script>
+            <Script
+              src="https://portal.yakshaver.ai/embed.js"
+              data-yak-key="yak_pub_eb2d73fc33ab8a3db7bf62d077bb2f38"
+            />
           </>
         )}
       </head>
@@ -65,11 +106,12 @@ export default async function RootLayout({
             gtag('config', '${googleTagId}');
           `}
         </Script>
-
-        <main className="overflow-clip grow">
-          <NavBarServer product={product} locale={locale} />
-          {children}
-        </main>
+        <QueryProvider>
+          <main className="overflow-clip grow">
+            <NavBarServer product={product} locale={locale} />
+            {children}
+          </main>
+        </QueryProvider>
         <FooterServer product={product} locale={locale} />
       </body>
     </html>

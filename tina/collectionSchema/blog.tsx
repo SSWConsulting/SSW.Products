@@ -4,12 +4,15 @@ import { Collection, Template, TinaField } from "tinacms";
 import { DEFAULT_CATEGORY } from "../../components/providers/BlogSearchProvider";
 import { callToActionTemplate } from "../../components/shared/Blocks/CallToAction.template";
 import { seoInformation } from "../shared/SEOInformation";
+import { fileNameField } from "@tina/shared/FileName";
 export const blogCollection: Collection = {
   label: "Blog Posts",
   name: "blogs",
   path: "content/blogs/",
   format: "mdx",
   ui: {
+
+    ...fileNameField,
     router: ({ document }) => {
       const relativePath = document?._sys.relativePath;
       if (relativePath?.includes('/zh/')) {

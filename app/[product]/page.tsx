@@ -1,4 +1,5 @@
 import HomePageClient from "../../components/shared/HomePageClient";
+import ProductBackground from "../../components/shared/ProductBackground";
 import client from "../../tina/__generated__/client";
 import { setPageMetadata } from "../../utils/setPageMetaData";
 import { getLocale, getPageWithFallback, getRelativePath } from "../../utils/i18n";
@@ -11,7 +12,7 @@ interface ProductPageProps {
 export async function generateMetadata({ params }: ProductPageProps) {
   const { product } = await params;
   const locale = await getLocale();
-  const productData = await getPageWithFallback(product, 'home', locale);
+  const productData = await getPageWithFallback({product, filename: 'home', locale});
   const metadata = setPageMetadata(productData.data?.pages?.seo, product);
   return metadata;
 }
@@ -29,26 +30,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const {product} = await params;
   const locale = await getLocale();
 
-  const productData = await getPageWithFallback(product, 'home', locale);
+  const productData = await getPageWithFallback({product, filename: 'home', locale});
   const relativePath = getRelativePath(product, 'home', locale);
   
   return (
     <div>
+      <ProductBackground product={product} />
       <HomePageClient
         query={productData.query}
         data={productData.data}
         variables={{ relativePath }}
       />
-      {productData?.data.pages.seo?.googleStructuredData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: `${
-              productData?.data.pages.seo?.googleStructuredData ?? {}
-            }`,
-          }}
-        />
-      )}
     </div>
   );
 }

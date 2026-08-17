@@ -9,47 +9,24 @@ title: Using YakShaver with Third-Party Recording Tools
 date: '2025-01-15T15:00:00.000Z'
 ---
 
-While [Microsoft Teams](recording-work-item-teams) and the [browser extension](recording-work-item-browser-extension) are the recommended ways to get started with YakShaver, we also support a variety of third-party recording tools. These tools offer additional flexibility and features like keyboard shortcuts for power users who want to optimize their workflow.
+YakShaver works best with [Microsoft Teams](recording-work-item-teams), but you can use any recording app you prefer.
 
-## How It Works
+## What to do:
 
-When configured correctly, YakShaver monitors specific folders in your OneDrive for new recordings. When it finds a new recording, it automatically processes it into a work item.
+1\. Open the recording software that you use
 
-## Setup with Snagit
+2\. If needed, search online for **how to change the save or output location** for that tool.
 
-[Snagit](https://www.techsmith.com/screen-capture.html) is a popular screen recording tool that works seamlessly with YakShaver. For detailed usage instructions after setup, see our [Recording with Snagit Guide](recording-work-item-snagit)
+1. Set the tool to save recordings somewhere inside this folder in OneDrive:
 
-## Windows Snipping Tool
+`OneDrive → Recordings → {{ ANY FOLDER NAME }}`
 
-The built-in Windows Snipping Tool can also be configured to work with YakShaver. For detailed usage instructions after setup, see our [Windows Snipping Tool Guide](recording-work-item-snipping-tool).
+1. Done! When saving a recording, YakShaver will now automatically detect the video when it is saved.
 
-### Initial Setup
+## Tips
 
-1. Open Windows Settings > System > Storage
-2. Under "Save locations", set Videos to your OneDrive folder:\
-   `OneDrive/Recordings/SnippingTool/`
-3. Open Snipping Tool settings and ensure recordings save to this location
-
-📖 For detailed recording instructions and best practices, see our [Windows Snipping Tool Guide](recording-work-item-snipping-tool)
-
-## Mac Screenshot App
-
-The built-in Mac Screenshot App provides an easy way for MacOS users to create work items. For detailed usage instructions after setup, see our [Mac Screenshot App Guide](recording-work-item-screenshot-app).
-
-### Initial Setup
-
-1. Create the recordings folder:\
-   `OneDrive/Recordings/ScreenshotApp/`
-2. Configure Screenshot App to save to this location
-3. Enable microphone access
-
-📖 For detailed recording instructions and best practices, see our [Mac Screenshot App Guide](recording-work-item-screenshot-app)
-
-## Other Recording Tools
-
-You can use almost any recording tool with YakShaver if it can save to a specific folder. Just configure your tool to save recordings to:
-
-`OneDrive/Recordings/[ToolName]/`
+* Tools with keyboard shortcuts can speed things up for power users
+* As long as the file ends up inside the Recordings folder, YakShaver will handle it automatically
 
 ## Troubleshooting
 
