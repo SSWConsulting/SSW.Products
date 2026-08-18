@@ -1,0 +1,52 @@
+---
+category: Uncategorized
+title: Service incident on 6 August – repeated "Video Process Failed"
+date: '2026-08-18T01:41:30.050Z'
+author: Tino Liu
+authorImage: /__staging/tina/media-upload-people-tino-liu-jpeg-jkzjtw/__file/people/Tino-Liu.jpeg
+sswPeopleLink: 'https://www.ssw.com.au/people/tino-liu/'
+labels:
+  - Reporting Incident
+bannerImage: /__staging/tina/media-upload-people-tino-liu-jpeg-jkzjtw/__file/YakShaver/sad-yak.png
+readLength: 3 min
+summaryCard: true
+summary: |
+  What happened: Between 11:00am and \~2:45pm AEST, some users got repeated "Video Process Failed" Teams messages. An expired internal Microsoft 365 credential broke video processing, and a flaw in error handling fired a notification for every retry instead of one alert.
+
+  Response: Engineers and SSW SysAdmins took affected services offline within minutes to stop the messages, replaced the credentials, and restored full service by 5:30pm the same day.
+
+  Impact: Not a security incident, no data accessed or lost. Recordings stayed in the customer's own M365 tenant and were processed automatically once service returned. Anything missing a work item can be re-run from the portal or raised with support.
+
+  Fixes: Credential renewal is now automated, and error notifications are rate-limited to a single alert per fault.
+---
+
+On Wednesday 6 August, between 11:00am and approx. 2:45pm AEST, YakShaver sent repeated Microsoft Teams messages "Video Process Failed" to some YakShaver users. We apologize for both the disruption and the volume of unnecessary messages. The YakShaver users that received the messages, previously has used OneDrive during that outage period.
+
+## What happened
+
+An internal credential that YakShaver uses to connect to Microsoft 365 expired. On its own, this would have caused a brief interruption to video processing. However, our error handling sent a separate failure notification for every processing attempt rather than a single alert, which turned a routine fault into repeated Teams messages.
+
+## Our response
+
+When reports came in, YakShaver engineers immediately engaged SSW SysAdmins and together made a plan of attack. They took the affected services offline within minutes to stop the messages, replaced the credentials, and restored full service by 5:30pm AEST the same day. The platform has operated normally since.
+
+## This was not a security incident nor was any data lost
+
+The fault prevented YakShaver's platform from connecting to Microsoft 365; at no point was your data accessed or lost. Your recordings remain in your own Microsoft 365 tenant.
+
+Recordings made during the outage were processed automatically once service was restored. If a shave from Wednesday afternoon has not produced a work item, it can be re-run from the portal, or contact us and we will resolve it for you.
+
+## Preventing a recurrence
+
+We have made 2 changes so this can't happen again.
+
+* Credential renewal has been automated, so an expiry cannot go unnoticed.
+* Error notifications are now rate-limited, so that a platform fault can only ever generate a single alert rather than a stream of them.
+
+We apologize again for the disruption.
+
+If you have any questions, please contact us through yakshaver.ai/docs/support
+
+Kind regards,
+
+YakShaver Team
