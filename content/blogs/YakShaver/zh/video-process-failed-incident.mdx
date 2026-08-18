@@ -1,0 +1,46 @@
+---
+category: Uncategorized
+title: 8月6日服务事件 – 重复出现“视频处理失败”
+date: '2026-08-18T01:41:30.050Z'
+author: Tino Liu
+authorImage: /__staging/tina/media-upload-people-tino-liu-jpeg-jkzjtw/__file/people/Tino-Liu.jpeg
+sswPeopleLink: 'https://www.ssw.com.au/people/tino-liu/'
+labels:
+  - Reporting Incident
+bannerImage: /__staging/tina/media-upload-people-tino-liu-jpeg-jkzjtw/__file/YakShaver/Blogs/service-incident-6-august.png
+readLength: 3 min
+summaryCard: true
+summary: |
+  2026年8月6日星期三（上午11:00至下午2:45 AEST），因微软365凭证过期导致YakShaver的视频处理中断，且错误处理不当使Teams重复发送“视频处理失败”消息，而非单次警报。服务在数分钟内下线，凭证更换，服务于下午5:30完全恢复。无数据被访问或丢失——录制内容保留在客户自有租户中，服务恢复后自动处理。凭证续期现已自动化，警报限流，防止此类事件再次发生。
+---
+
+2026年8月6日星期三，上午11:00至约下午2:45 AEST期间，YakShaver向部分用户重复发送了Microsoft Teams消息“视频处理失败”。我们对服务中断及大量不必要消息表示歉意。收到消息的YakShaver用户在该故障期间曾使用OneDrive。
+
+## 发生了什么
+
+YakShaver用于连接Microsoft 365的内部凭证过期。凭证过期本身会导致视频处理短暂中断，但我们的错误处理机制对每次处理尝试都发送了失败通知，而非单一警报，导致常规故障变成了重复的Teams消息。
+
+## 我们的响应
+
+收到报告后，YakShaver工程师立即联系SSW系统管理员，共同制定解决方案。他们在数分钟内将受影响服务下线以停止消息发送，更换凭证，并于当天下午5:30 AEST恢复全部服务。平台自此正常运行。
+
+## 这不是安全事件，且无数据丢失
+
+故障阻止了YakShaver平台连接Microsoft 365；您的数据在任何时刻均未被访问或丢失。您的录制内容仍保存在您自己的Microsoft 365租户中。
+
+故障期间录制的视频在服务恢复后自动处理。如果周三下午的剃须录制未生成工作项，您可以从门户重新运行，或联系我们协助解决。
+
+## 防止再次发生
+
+我们已采取两项措施防止此类事件再次发生。
+
+* 凭证续期已实现自动化，避免过期被忽视。
+* 错误通知现已限流，平台故障最多只会触发单一警报，而非大量消息。
+
+我们再次为此次中断致歉。
+
+如有任何疑问，请通过 yakshaver.ai/docs/support 联系我们。
+
+此致，
+
+YakShaver团队
