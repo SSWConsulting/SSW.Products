@@ -7,17 +7,11 @@ authorImage: /__staging/tina/media-upload-people-tino-liu-jpeg-jkzjtw/__file/peo
 sswPeopleLink: 'https://www.ssw.com.au/people/tino-liu/'
 labels:
   - Reporting Incident
-bannerImage: /__staging/tina/media-upload-people-tino-liu-jpeg-jkzjtw/__file/YakShaver/sad-yak.png
+bannerImage: /__staging/tina/media-upload-people-tino-liu-jpeg-jkzjtw/__file/YakShaver/Blogs/service-incident-6-august.png
 readLength: 3 min
 summaryCard: true
 summary: |
-  **What happened:** Between 11:00am and \~2:45pm AEST, some users got repeated "Video Process Failed" Teams messages. An expired internal Microsoft 365 credential broke video processing, and a flaw in error handling fired a notification for every retry instead of one alert.
-
-  **Response: **Engineers and SSW SysAdmins took affected services offline within minutes to stop the messages, replaced the credentials, and restored full service by 5:30pm the same day.
-
-  **Impact: **Not a security incident, no data accessed or lost. Recordings stayed in the customer's own M365 tenant and were processed automatically once service returned. Anything missing a work item can be re-run from the portal or raised with support.
-
-  **Fixes: **Credential renewal is now automated, and error notifications are rate-limited to a single alert per fault.
+  An expired Microsoft 365 credential broke YakShaver's video processing on Wed 6 Aug (11:00am–2:45pm AEST), and faulty error handling sent a Teams "Video Process Failed" message for every retry instead of one alert. Services were taken offline within minutes, credentials replaced, and full service restored by 5:30pm. No data was accessed or lost — recordings stayed in customers' own tenants and processed automatically once service returned. Credential renewal is now automated and alerts are rate-limited so it can't recur.
 ---
 
 On Wednesday 6 August, between 11:00am and approx. 2:45pm AEST, YakShaver sent repeated Microsoft Teams messages "Video Process Failed" to some YakShaver users. We apologize for both the disruption and the volume of unnecessary messages. The YakShaver users that received the messages, previously has used OneDrive during that outage period.
