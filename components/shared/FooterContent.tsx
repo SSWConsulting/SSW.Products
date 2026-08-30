@@ -99,8 +99,8 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
                 rel="noopener noreferrer"
                 aria-label={poweredByTinaBanner?.text || "TinaCMS"}
               >
-                <Image alt="TinaCMS logo" width={30} height={30} src={poweredByTinaBanner?.image || ""} />
-                <span className="ml-2 uppercase tracking-widest text-xs md:text-sm">{poweredByTinaBanner?.text}</span>
+                <Image alt="TinaCMS logo" width={24} height={24} src={poweredByTinaBanner?.image || ""} />
+                <span className="ml-3 uppercase tracking-widest text-xs">{poweredByTinaBanner?.text}</span>
               </a>
             </div>
           )}
