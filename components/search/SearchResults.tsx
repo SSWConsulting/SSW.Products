@@ -1,4 +1,3 @@
-import { PackageOpen } from "lucide-react";
 import { Hits, useInstantSearch } from "react-instantsearch";
 import SearchHighlight from "./SearchHighlight";
 

@@ -188,6 +188,9 @@ const RecentArticles = ({
           body: JSON.stringify({
             product,
             startCursor: pageParam || undefined,
+            // The first page stays small; "Load More Articles" brings in
+            // every remaining article at once
+            loadAll: Boolean(pageParam),
             keyword: searchTerm || undefined,
             category:
               selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
@@ -268,7 +271,7 @@ const RecentArticles = ({
                 Loading <LoaderCircle className="animate-spin animate size-4" />
               </>
             ) : (
-              <>Load More Articles</>
+              <>Load All Articles</>
             )}
           </Button>
         )}

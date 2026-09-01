@@ -1,7 +1,7 @@
 import HomePageClient from "../../../components/shared/HomePageClient";
 import client from "../../../tina/__generated__/client";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
-import { getLocale, getPageWithFallback, getRelativePath } from "../../../utils/i18n";
+import { getLocale, getPageWithFallback } from "../../../utils/i18n";
 import getPageData from "@utils/pages/getPageData";
 import NotFoundError from "@/errors/not-found";
 import ClientFallbackPage from "../../client-fallback-page";

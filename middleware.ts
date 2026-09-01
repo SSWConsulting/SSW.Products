@@ -21,6 +21,18 @@ function createRewriteResponse(targetPath: string, language: string, request: Ne
   return response;
 }
 
+function createYakShaverDownloadRedirect(
+  targetProduct: string | null | undefined,
+  pathname: string,
+  request: NextRequest
+): NextResponse | null {
+  if (targetProduct !== "YakShaver" || pathname !== "/download") {
+    return null;
+  }
+
+  return NextResponse.redirect(new URL("/install", request.url), 308);
+}
+
 export function middleware(request: NextRequest) {
   const hostname = request.headers.get("x-original-host") || request.headers.get("host");
   const { pathname } = request.nextUrl;
@@ -62,6 +74,18 @@ function handleLocalRequest(
   const isProduct = productList.some(
     (product) => product.product === pathSegments[0]
   );
+  const targetProduct = isProduct
+    ? pathSegments[0]
+    : process.env.DEFAULT_PRODUCT;
+  const downloadRedirect = createYakShaverDownloadRedirect(
+    targetProduct,
+    pathname,
+    request
+  );
+
+  if (downloadRedirect) {
+    return downloadRedirect;
+  }
 
   if (isProduct) {
     return createRewriteResponse(`/${pathSegments.join("/")}`, language, request);
@@ -97,6 +121,16 @@ function handleProductionRequest(
   }
   
   if (targetProduct) {
+    const downloadRedirect = createYakShaverDownloadRedirect(
+      targetProduct,
+      pathname,
+      request
+    );
+
+    if (downloadRedirect) {
+      return downloadRedirect;
+    }
+
     const cleanPath = cleanPathFromLanguage(pathname);
     const pathSegments = parsePathSegments(cleanPath);
     const pathAlreadyHasProduct = productList.some(

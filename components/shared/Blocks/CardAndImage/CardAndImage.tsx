@@ -11,6 +11,7 @@ import {
   PagesPageBlocksCardAndImage as CardAndImageProps,
 } from "../../../../tina/__generated__/types";
 import Container from "../../../Container";
+import LinkableHeading from "../../LinkableHeading";
 import { curlyBracketFormatter } from "../Hero/Hero";
 
 const cardAndImageMarkdownRenderer: Components<object> = {
@@ -59,9 +60,14 @@ export default function CardAndImageParent({
     <div className="flex flex-col">
       <Container size="small">
         {ParentContainerTitle && (
-          <h2 className="text-3xl text-white flex justify-center font-bold pb-3">
+          <LinkableHeading
+            as="h2"
+            wrap
+            anchor={ParentContainerTitle}
+            className="text-3xl text-white flex justify-center font-bold pb-3"
+          >
             {curlyBracketFormatter(ParentContainerTitle)}
-          </h2>
+          </LinkableHeading>
         )}
         <div className="flex justify-center mx-auto pb-9">
           {ParentContainerDescription && (
@@ -136,6 +142,7 @@ function CardItem({
       setContentHeight(isOpen ? contentRef.current.scrollHeight : 0);
     }
   }, [isOpen, data]);
+
   const badgeCount = data.Badges?.length || 0;
   const delimeter =
     (data?.delimiters?.enabled && data?.delimiters?.delimeter) || "";
@@ -150,7 +157,10 @@ function CardItem({
               backgroundColor && cardBackgrounds[backgroundColor]
             )
       )}
-      onClick={() => {
+      onClick={(e) => {
+        // don't toggle the card when a link inside it (e.g. in the description)
+        // is clicked
+        if ((e.target as HTMLElement).closest("a")) return;
         if (!isOpen) {
           setIdOfOpen(uniqueId);
           return;
@@ -159,16 +169,17 @@ function CardItem({
       }}
     >
       {data.AboveHeaderText && (
-        <h4 className="text-gray-300">
+        <span className="block text-gray-300">
           {curlyBracketFormatter(data.AboveHeaderText)}
-        </h4>
+        </span>
       )}
 
       <div className="flex items-center justify-between">
         {data.Header && (
-          <h3 className="text-2xl font-bold">
+          // a card label, not a section heading, so a plain span (not anchored)
+          <span className="text-2xl font-bold">
             {curlyBracketFormatter(data.Header)}
-          </h3>
+          </span>
         )}
         <FaChevronDown
           className={`text-white cursor-pointer relative -top-3 group-hover:text-red-500 transition-all duration-300 ${

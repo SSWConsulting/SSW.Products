@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import client from "../../../tina/__generated__/client";
-import { getLocale } from "../../../utils/i18n";
 import DocPost from "./[slug]/page";
 interface DocsIndex {
   params: Promise<{ product: string }>;
