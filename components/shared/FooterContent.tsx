@@ -69,7 +69,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
             &copy; {dynamicYear} {footerTitle || "Default Footer Title"} {hasPrivacyPolicy && (
               <>
                 {"| "}
-                <Link href={contextualHref("/privacy")} className="underline">
+                <Link href={contextualHref("/privacy")} className="underline transition-colors duration-300 hover:text-white/80">
                   Privacy Policy
                 </Link>
               </>
