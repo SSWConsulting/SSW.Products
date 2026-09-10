@@ -15,8 +15,10 @@ type LinkableHeadingProps = {
   children?: ReactNode;
 } & HTMLAttributes<HTMLHeadingElement>;
 
+// pointer-coarse: keeps the icon visible on touch, where group-hover never
+// fires (Tailwind wraps hover variants in @media (hover: hover)).
 const iconClasses =
-  "ml-2 inline-block align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100";
+  "ml-2 inline-block align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 pointer-coarse:opacity-100";
 
 /**
  * Heading text as the link, with the icon inside it. Used by LinkableHeading's
@@ -53,7 +55,9 @@ export function HeadingAnchorLink({ slug }: { slug: string }) {
     <a
       href={`#${slug}`}
       aria-label="Link to this section"
-      className="ml-2 inline-flex items-center align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100"
+      // pointer-coarse: always visible on touch, where this sibling icon is the
+      // only tap target and group-hover never fires
+      className="ml-2 inline-flex items-center align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100 pointer-coarse:opacity-100"
     >
       <FaLink aria-hidden="true" />
     </a>
