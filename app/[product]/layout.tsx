@@ -5,10 +5,11 @@ import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
 import { withAssetVersion } from "../../utils/assetVersion";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
-import { getLocale } from "../../utils/i18n";
+import { getHostname, getLocale } from "../../utils/i18n";
 import { getDomainForTenant } from "../../utils/tenancy";
 import "../globals.css";
 import QueryProvider from "@comps/providers/QueryProvider";
+import HostnameProvider from "@comps/providers/HostnameProvider";
 
 const inter = Inter({
   weight: ["400", "600", "700"],
@@ -52,6 +53,8 @@ export default async function RootLayout({
   const googleTagId = getGoogleTagId(product);
   const locale = await getLocale();
   const htmlLang = locale === "zh" ? "zh-CN" : "en";
+  // Strip any port so this matches window.location.hostname after hydration.
+  const hostname = (await getHostname()).split(":")[0];
 
   return (
     // data-scroll-behavior tells next's router to suppress the smooth scroll
@@ -106,13 +109,15 @@ export default async function RootLayout({
             gtag('config', '${googleTagId}');
           `}
         </Script>
-        <QueryProvider>
-          <main className="overflow-clip grow">
-            <NavBarServer product={product} locale={locale} />
-            {children}
-          </main>
-        </QueryProvider>
-        <FooterServer product={product} locale={locale} />
+        <HostnameProvider hostname={hostname}>
+          <QueryProvider>
+            <main className="overflow-clip grow">
+              <NavBarServer product={product} locale={locale} />
+              {children}
+            </main>
+          </QueryProvider>
+          <FooterServer product={product} locale={locale} />
+        </HostnameProvider>
       </body>
     </html>
   );

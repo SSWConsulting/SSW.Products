@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { useHostname } from '@comps/providers/HostnameProvider';
 
 const isExternalOrAnchor = (href: string) => href.startsWith('http') || href.startsWith('#');
 const isChineseDomain = (hostname: string) => hostname.endsWith('.cn');
@@ -19,17 +20,22 @@ export const getContextualHref = (href: string, currentPathname: string, hostnam
  * /zh-prefixed links in the server-rendered HTML. Reading `window` for the pathname made
  * this hook a no-op during SSR, which shipped English hrefs to every /zh/ page.
  *
- * The .cn domains take their locale from the host and serve unprefixed paths, so their
- * hrefs must be left untouched. Middleware *rewrites* rather than redirects, so a
- * /zh/... URL can still reach the app on a .cn host with the prefix intact. The hostname
- * is therefore the only way to tell those apart, and it is not observable during SSR --
- * pass `hostnameOverride` (from the server's own request headers) wherever that matters
- * to keep SSR and client markup identical.
+ * The hostname comes from HostnameProvider (resolved server-side from the request headers)
+ * because it is not observable during SSR. That matters on the .cn domains: they take their
+ * locale from the host and serve unprefixed paths, but middleware *rewrites* rather than
+ * redirects, so a /zh/... URL can still reach the app there with the prefix intact. Without
+ * the host, SSR would emit /zh links while the hydrated client emits bare ones.
+ *
+ * `hostnameOverride` exists for callers that already hold the hostname; it takes precedence
+ * over the context.
  */
 export const useContextualLink = (hostnameOverride?: string) => {
   const pathname = usePathname() ?? '';
+  const contextHostname = useHostname();
   const hostname =
-    hostnameOverride ?? (typeof window === 'undefined' ? '' : window.location.hostname);
+    hostnameOverride ??
+    contextHostname ??
+    (typeof window === 'undefined' ? '' : window.location.hostname);
 
   return (href: string) => getContextualHref(href, pathname, hostname);
 };
