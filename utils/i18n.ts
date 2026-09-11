@@ -8,6 +8,14 @@ export async function getLocale(): Promise<string> {
   return headersList.get('x-language') || 'en';
 }
 
+// Mirrors the header precedence used in middleware.ts so server components can resolve
+// the same hostname the rewrite logic saw. Needed because the .cn domains serve Chinese
+// content on unprefixed paths, which is only distinguishable by host.
+export async function getHostname(): Promise<string> {
+  const headersList = await headers();
+  return headersList.get('x-original-host') || headersList.get('host') || '';
+}
+
 export function getRelativePath(product: string, filename: string, locale: string): string {
   return locale === 'zh' ? `${product}/zh/${filename}.json` : `${product}/${filename}.json`;
 }
