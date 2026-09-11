@@ -5,6 +5,7 @@ import * as SearchBox from "@comps/search/SearchBox";
 import Link from "next/link";
 import { useState } from "react";
 import { useContextualLink } from "@utils/contextualLink";
+import { docSlugFromBreadcrumbs } from "@utils/docPath";
 import { FaChevronDown } from "react-icons/fa";
 
 import {
@@ -48,9 +49,10 @@ function NavigationGroup({ navigationGroup, activeItem }: {
         >
           <ul className="pt-1">
             {navigationGroup?.items?.map((item, index) => {
-              const isActive = activeItem === item?.slug?._sys?.filename;
+              const itemSlug = docSlugFromBreadcrumbs(item?.slug?._sys?.breadcrumbs);
+              const isActive = activeItem === itemSlug;
               return (
-                <div className="group" key={item?.slug?._sys?.filename}>
+                <div className="group" key={itemSlug}>
                   <li
                     key={`navigation-item-${index}`}
                     className={cn(
@@ -65,10 +67,10 @@ function NavigationGroup({ navigationGroup, activeItem }: {
                     ></div>
                     <div className="absolute h-full w-1 inset-x-0 border-l z-1 box-content border-white/20"></div>
                     <Link
-                      href={contextualHref(`/docs/${item?.slug?._sys?.filename}`)}
+                      href={contextualHref(`/docs/${itemSlug}`)}
                       className={cn(
                         `block transition-colors p-1.5 ml-6 `,
-                        activeItem === item?.slug?._sys?.filename
+                        isActive
                           ? "text-ssw-red"
                           : "text-white/60 group-hover:text-white"
                       )}
@@ -87,7 +89,9 @@ function NavigationGroup({ navigationGroup, activeItem }: {
 }
 
 function TableOfContentsClient({ tableOfContentsData }: TableOfContentsClientProps) {
-  const params = useParams<{ product: string; slug: string }>();
+  const params = useParams<{ product: string; slug?: string[] }>();
+  // Catch-all route: /docs/tenants/create-tenant arrives as ["tenants", "create-tenant"]
+  const activeSlug = params.slug?.join("/") ?? "";
 
   return (
     <>
@@ -99,10 +103,11 @@ function TableOfContentsClient({ tableOfContentsData }: TableOfContentsClientPro
             group && (
               <NavigationGroup
                 activeItem={
-                  params.slug ||
-                  tableOfContentsData?.parentNavigationGroup?.[0]?.items?.[0]
-                    ?.slug?._sys?.filename ||
-                  ""
+                  activeSlug ||
+                  docSlugFromBreadcrumbs(
+                    tableOfContentsData?.parentNavigationGroup?.[0]?.items?.[0]
+                      ?.slug?._sys?.breadcrumbs
+                  )
                 }
                 key={index}
                 navigationGroup={group}
