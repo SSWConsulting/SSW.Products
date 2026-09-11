@@ -39,6 +39,8 @@ interface NavBarClientProps {
   buttons: NavigationBarButtons[];
   items: (NavItem | NavGroup)[];
   currentLocale: string;
+  /** Resolved server-side so /zh links render identically during SSR and after hydration. */
+  hostname?: string;
   showLanguageToggle: boolean;
 
   bannerImage?: {
@@ -52,16 +54,18 @@ export default function NavBarClient({
   buttons,
   items,
   currentLocale,
+  hostname,
   bannerImage,
   showLanguageToggle,
 }: NavBarClientProps) {
-  const contextualHref = useContextualLink();
+  const contextualHref = useContextualLink(hostname);
   return (
     <MobileMenuRoot>
       <NavBarClientContent
         buttons={buttons}
         items={items}
         currentLocale={currentLocale}
+        hostname={hostname}
         bannerImage={bannerImage}
         showLanguageToggle={showLanguageToggle}
         contextualHref={contextualHref}
