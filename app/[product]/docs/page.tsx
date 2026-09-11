@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import client from "../../../tina/__generated__/client";
-import DocPost from "./[slug]/page";
+import DocPost from "./[...slug]/page";
 interface DocsIndex {
   params: Promise<{ product: string }>;
 }
@@ -29,7 +29,7 @@ export async function generateStaticParams() {
 
 export default async function DocsIndex({ params }: DocsIndex) {
   const { product } = await params;
-  const defaultSlug = "introduction";
+  const defaultSlug = ["introduction"];
 
   try {
     return <DocPost params={Promise.resolve({ product, slug: defaultSlug })} />;

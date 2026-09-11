@@ -9,7 +9,9 @@ import { unified } from "unified";
 import { Product } from "../src/types/product-list";
 
 const getDocFileNames = async (globPattern: string) => {
-  const fileNames = await fg(globPattern);
+  // Translations live in a zh/ folder beside the English docs and are indexed
+  // per-locale elsewhere, so they must not pollute the English index.
+  const fileNames = await fg(globPattern, { ignore: ["**/zh/**"] });
   return fileNames;
 };
 
@@ -22,12 +24,17 @@ const markdownToPlainText = async (body: string) => {
   return res.toString();
 };
 
-const getDocumentationData = async (fileName: string) => {
+const getDocumentationData = async (fileName: string, product: string) => {
   const mdContents = matter.read(fileName, {
     delimiters: ["---", "---"],
     language: "yaml",
   });
-  const slug = fileName.split("/").slice(-1)[0].replace(".mdx", "");
+  // `file` is what the search result links to, so it is the doc's path under
+  // content/docs/<product>/ - including any folder it has been filed into.
+  const slug = fileName
+    .split(`/docs/${product}/`)
+    .slice(-1)[0]
+    .replace(/\.mdx$/, "");
   const body = mdContents.content;
 
   const title = mdContents.data.title;
@@ -40,10 +47,10 @@ const getDocumentationData = async (fileName: string) => {
   };
 };
 
-const fetchDocData = async (globPattern: string) => {
+const fetchDocData = async (globPattern: string, product: string) => {
   const allFiles = await getDocFileNames(globPattern);
   const promises = allFiles.map(async (fileName) => {
-    const data = await getDocumentationData(fileName);
+    const data = await getDocumentationData(fileName, product);
     return data;
   });
 
@@ -73,8 +80,10 @@ async function createIndices() {
 
   await Promise.all(
     productList.map(async ({ product }: Product) => {
-      const globPattern = `./content/docs/${product}/*.mdx`;
-      const docData = await fetchDocData(globPattern);
+      // Docs live in folders, so recurse - but skip translations, which belong to
+      // their own locale rather than this index.
+      const globPattern = `./content/docs/${product}/**/*.mdx`;
+      const docData = await fetchDocData(globPattern, product);
       const indexName = `${product.toLowerCase()}_docs`;
 
       console.log(`Rebuilding index: ${indexName} (${docData.length} documents)`);

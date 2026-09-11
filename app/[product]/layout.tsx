@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
-import { withAssetVersion } from "../../utils/assetVersion";
+import { getFaviconHref } from "../../utils/favicon";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
 import { getHostname, getLocale } from "../../utils/i18n";
 import { getDomainForTenant } from "../../utils/tenancy";
@@ -61,7 +61,7 @@ export default async function RootLayout({
     // from globals.css while it navigates, so only in-page hash links animate
     <html lang={htmlLang} data-scroll-behavior="smooth">
       <head>
-        <link rel="icon" href={withAssetVersion(`/favicons/${product}.ico`)} />
+        <link rel="icon" href={getFaviconHref(product)} />
         
         {product === "YakShaver" && (
           <>
