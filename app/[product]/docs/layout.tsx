@@ -2,7 +2,7 @@ import * as SearchBox from "@comps/search/SearchBox";
 import { DocsTableOfContents } from "@tina/__generated__/types";
 import { getDocsTableOfContents } from "@utils/fetchDocs";
 import { getLocale } from "../../../utils/i18n";
-import TableOfContentsClient from "./[slug]/TableOfContentsClient";
+import TableOfContentsClient from "./[...slug]/TableOfContentsClient";
 
 const RootLayout = async ({
   children,

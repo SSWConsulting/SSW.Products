@@ -1,5 +1,6 @@
 import { Docs } from "@tina/__generated__/types";
 import client from "../tina/__generated__/client";
+import { docSlugFromBreadcrumbs, renamedDocSlug } from "./docPath";
 
 const getDocsForProduct = async (product: string, offset = 0, limit = 5) => {
   try {
@@ -101,4 +102,38 @@ const getDocPost = async ({product, slug, locale = 'en', branch}: {product: stri
   return null;
 };
 
-export { getDocPost, getDocsForProduct, getDocsTableOfContents };
+
+// Resolves the slug a doc has *now* from a slug it used to have, so links to a
+// doc from before it was filed into a folder keep working. Renames are looked up
+// explicitly; a doc that only moved is found by its filename, which is unchanged.
+// Returns null when nothing matches, or when more than one doc shares the
+// filename - guessing between them would send readers to the wrong page.
+const findMovedDocSlug = async (product: string, slug: string) => {
+  const renamed = renamedDocSlug(product, slug);
+  if (renamed) return renamed;
+
+  const filename = slug.split("/").pop();
+  if (!filename) return null;
+
+  const res = await client.queries.docsConnection();
+  const matches = (res.data.docsConnection.edges ?? [])
+    .map((edge) => edge?.node?._sys?.breadcrumbs)
+    .filter(
+      (breadcrumbs): breadcrumbs is string[] =>
+        !!breadcrumbs?.length &&
+        breadcrumbs[0] === product &&
+        breadcrumbs[1] !== "zh" &&
+        breadcrumbs[breadcrumbs.length - 1] === filename
+    )
+    .map(docSlugFromBreadcrumbs);
+
+  if (matches.length !== 1 || matches[0] === slug) return null;
+  return matches[0];
+};
+
+export {
+  findMovedDocSlug,
+  getDocPost,
+  getDocsForProduct,
+  getDocsTableOfContents,
+};

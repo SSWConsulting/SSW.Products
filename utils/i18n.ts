@@ -16,6 +16,15 @@ export async function getHostname(): Promise<string> {
   return headersList.get('x-original-host') || headersList.get('host') || '';
 }
 
+// Server-side counterpart of useContextualLink, for redirects issued before any
+// component renders. The .cn domains take their locale from the host and serve
+// Chinese content on unprefixed paths, so only the /zh routes need the prefix.
+export async function withLocalePrefix(href: string, locale: string): Promise<string> {
+  if (locale !== 'zh' || href.startsWith('/zh/')) return href;
+  const hostname = await getHostname();
+  return hostname.endsWith('.cn') ? href : `/zh${href}`;
+}
+
 export function getRelativePath(product: string, filename: string, locale: string): string {
   return locale === 'zh' ? `${product}/zh/${filename}.json` : `${product}/${filename}.json`;
 }
