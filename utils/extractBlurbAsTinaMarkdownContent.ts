@@ -23,7 +23,7 @@ const inlineText = (node: any): string => {
 const hasWord = (text: string): boolean => /[\p{L}\p{N}]/u.test(text);
 
 export const extractBlurbAsTinaMarkdownContent = (
-  body: TinaMarkdownContent,
+  body: TinaMarkdownContent | null | undefined,
   sentenceLimit = 3
 ): TinaMarkdownContent => {
   const blurb: TinaMarkdownContent = { type: "root", children: [] };
