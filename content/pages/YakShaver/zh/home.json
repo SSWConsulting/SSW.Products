@@ -16,6 +16,11 @@
         "title": "观看视频",
         "link": "https://www.youtube.com/shorts/0TPo98R1tnI"
       },
+      "demoQr": {
+        "enabled": true,
+        "title": "立即体验",
+        "caption": "扫码用手机体验 YakShaver"
+      },
       "reportUIEnabled": true,
       "reportUI": {
         "leftHandSide": {
