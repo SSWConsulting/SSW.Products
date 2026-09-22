@@ -10,15 +10,13 @@ describe("getContextualLocale", () => {
     expect(getContextualLocale("/zh/pricing", "yakshaver.ai")).toBe("zh");
   });
 
-  // The .cn domains take their locale from the host and serve Chinese on unprefixed
-  // paths, so a bare "/" is English on one domain and Chinese on the other.
+  // The .cn domains take their locale from the host, so a bare "/" differs by domain.
   it("reads Chinese from an unprefixed path on a .cn domain", () => {
     expect(getContextualLocale("/", "yakshaver.com.cn")).toBe("zh");
     expect(getContextualLocale("/pricing", "yakshaver.com.cn")).toBe("zh");
   });
 
-  // Middleware rewrites rather than redirects, so a /zh URL can still reach the app
-  // on a .cn host with the prefix intact.
+  // Middleware rewrites rather than redirects, so /zh can reach a .cn host intact.
   it("reads Chinese from a /zh path on a .cn domain", () => {
     expect(getContextualLocale("/zh/pricing", "yakshaver.com.cn")).toBe("zh");
   });

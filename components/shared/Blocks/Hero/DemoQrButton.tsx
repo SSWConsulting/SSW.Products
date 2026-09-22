@@ -4,14 +4,8 @@ import * as Popover from "@radix-ui/react-popover";
 import Image from "next/image";
 import { useState } from "react";
 
-/**
- * The QR images are pre-rendered PNGs rather than generated in the browser.
- *
- * They carry the YakShaver mark in a knockout at the centre, which is the same treatment the
- * portal's own QR component applies, and both have been checked to still decode with the mark
- * in place. Shipping them as assets keeps that treatment identical everywhere and costs the
- * page no client-side QR library.
- */
+/** Pre-rendered, not generated in the browser: the portal's knockout treatment stays
+ * identical everywhere and the page ships no QR library. */
 const QR_SOURCE = {
   en: "/YakShaver/QR/demo-qr-en.png",
   zh: "/YakShaver/QR/demo-qr-zh.png",
@@ -27,12 +21,10 @@ type DemoQrButtonProps = {
 };
 
 /**
- * Opens the demo QR code next to the hero's other calls to action.
+ * Opens the demo QR code beside the hero's other calls to action.
  *
- * Opening on hover *and* on click, rather than linking somewhere: the code is only useful to
- * someone holding a phone, so there is nothing to navigate to on the device doing the hovering.
- * Hover alone would strand touch users, who never hover — Radix's Popover gives the click and
- * keyboard path for free, and the hover handlers layer pointer convenience on top of it.
+ * No link: a code is only useful on a second device. Hover alone would strand touch users, so
+ * Radix's Popover supplies the click and keyboard path.
  */
 export function DemoQrButton({ label, caption, locale }: DemoQrButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,8 +34,7 @@ export function DemoQrButton({ label, caption, locale }: DemoQrButtonProps) {
       <Popover.Trigger asChild>
         <button
           type="button"
-          // Pointer events rather than CSS hover so the same open state serves hover, click and
-          // focus; onFocus/onBlur would fight the click toggle, so keyboard users get the click path.
+          // Pointer events, not CSS hover, so one open state serves hover and click.
           onPointerEnter={() => setIsOpen(true)}
           onPointerLeave={() => setIsOpen(false)}
           className="bg-white hover:bg-white/80 text-[#222222] px-5 py-2 font-bold rounded-lg transition-all ease-in-out duration-300 border border-white uppercase flex items-center text-center justify-center gap-2 min-h-11"
@@ -56,11 +47,10 @@ export function DemoQrButton({ label, caption, locale }: DemoQrButtonProps) {
         <Popover.Content
           side="bottom"
           sideOffset={12}
-          // The pointer has to cross the gap between trigger and card, so the card keeps itself
-          // open while the pointer is over it. Without this it would close in that gap.
+          // Keeps itself open while the pointer crosses the gap from the trigger.
           onPointerEnter={() => setIsOpen(true)}
           onPointerLeave={() => setIsOpen(false)}
-          // Hover-opened content must not steal focus, or the page jumps on mouse users.
+          // Hover-opened content must not steal focus, or the page jumps.
           onOpenAutoFocus={(event) => event.preventDefault()}
           className="z-50 rounded-2xl bg-white p-4 shadow-xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in-0 data-[state=closed]:fade-out-0 data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95"
         >
@@ -72,9 +62,8 @@ export function DemoQrButton({ label, caption, locale }: DemoQrButtonProps) {
             style={{ width: QR_DISPLAY_PX, height: QR_DISPLAY_PX }}
             className="rounded-lg"
             unoptimized
-            // The popover renders into a portal, where lazy loading's viewport check never
-            // resolves and leaves the code blank on first open. Nothing is deferred by loading
-            // it eagerly: the image only mounts once the popover is already open.
+            // Lazy loading never resolves inside the portal and leaves the code blank on first
+            // open; nothing is deferred anyway, as this mounts only once opened.
             loading="eager"
           />
           <p className="mt-3 max-w-44 text-center text-sm leading-snug text-neutral-500">

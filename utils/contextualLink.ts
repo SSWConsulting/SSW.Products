@@ -43,14 +43,13 @@ export const useContextualLink = (hostnameOverride?: string) => {
 /**
  * The locale the current page is being served in.
  *
- * Deliberately mirrors the rules getContextualHref uses rather than reading the pathname alone:
- * the .cn domains take their locale from the host and serve Chinese on unprefixed paths, so a
- * bare `/` is English on yakshaver.ai and Chinese on yakshaver.com.cn.
+ * Mirrors getContextualHref rather than reading the pathname alone: the .cn domains take their
+ * locale from the host, so a bare `/` is English on yakshaver.ai and Chinese on yakshaver.com.cn.
  */
 export const getContextualLocale = (currentPathname: string, hostname: string): 'en' | 'zh' =>
   isChineseDomain(hostname) || isChineseContext(currentPathname) ? 'zh' : 'en';
 
-/** Client-side counterpart of getContextualLocale, sourcing host and path the same way useContextualLink does. */
+/** Client-side counterpart, sourcing host and path the way useContextualLink does. */
 export const useContextualLocale = (hostnameOverride?: string): 'en' | 'zh' => {
   const pathname = usePathname() ?? '';
   const contextHostname = useHostname();
