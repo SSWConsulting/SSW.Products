@@ -10,7 +10,8 @@ import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 import { AnimatedComponent } from "@/types/components/animated";
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import { useContextualLink } from "@utils/contextualLink";
+import { useContextualLink, useContextualLocale } from "@utils/contextualLink";
+import { DemoQrButton } from "./DemoQrButton";
 import {
   ParagraphAnimations,
   TypewriterParagraphAnimation,
@@ -182,6 +183,7 @@ export const highlightCurlyBracketFormatter = (byLine: string) => {
 
 export default function Hero({ data }: { data: any }) {
   const contextualHref = useContextualLink();
+  const locale = useContextualLocale();
   
   return (
     <div className="relative max-w-7xl mx-auto">
@@ -236,6 +238,13 @@ export default function Hero({ data }: { data: any }) {
                 >
                   {data.ctaRight?.title} <FaChevronRight className="pb-0.5" />
                 </Link>
+              )}
+              {data?.demoQr?.enabled && data?.demoQr?.title && (
+                <DemoQrButton
+                  label={data.demoQr.title}
+                  caption={data.demoQr.caption ?? ""}
+                  locale={locale}
+                />
               )}
             </div>
             <span className="flex justify-center text-white text-center lg:text-sm text-xs pt-4">
