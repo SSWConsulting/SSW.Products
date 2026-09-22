@@ -49,14 +49,9 @@ export default function BlogPostClient({
   });
 
   const titles = useMemo(() => {
-    const titleNodes = searchAstTree(data.blogs.body, [
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "h5",
-      "h6",
-    ]);
+    const titleNodes = data.blogs.body
+      ? searchAstTree(data.blogs.body, ["h1", "h2", "h3", "h4", "h5", "h6"])
+      : [];
     const bodyTitles = nodesToText(titleNodes);
     return bodyTitles;
   }, [data.blogs.body]);
