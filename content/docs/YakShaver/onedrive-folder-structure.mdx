@@ -1,0 +1,54 @@
+---
+displayOrder: 0
+seo:
+  title: 'OneDrive Folder Structure for YakShaver'
+  description: >-
+    Learn how to organize your OneDrive recordings folder for YakShaver to automatically process your videos
+title: 'OneDrive Folder Structure for YakShaver'
+date: '2025-07-09T13:00:00.000Z'
+---
+
+## 📁 OneDrive Folder Structure
+
+YakShaver monitors your OneDrive `/Recordings` folder and will automatically process any video files it finds, regardless of how they're organized within that folder structure.
+
+### Supported Folder Structures
+
+YakShaver works with flexible folder organization:
+
+**Direct placement:**
+- OneDrive/Recordings/video.mp4
+
+
+**Tool-specific folders:**
+- OneDrive/Recordings/Teams/video.mp4
+- OneDrive/Recordings/Snagit/video.mp4
+- OneDrive/Recordings/SnippingTool/video.mp4
+
+**Project-based organization:**
+- OneDrive/Recordings/Projects/MyProject/video.mp4
+- OneDrive/Recordings/ClientWork/CompanyA/video.mp4
+
+**Date-based organization:**
+- OneDrive/Recordings/2025/January/video.mp4
+- OneDrive/Recordings/2025/Week03/video.mp4
+
+**Mixed organization:**
+- OneDrive/Recordings/Teams/2025/ProjectA/video.mp4
+- OneDrive/Recordings/Personal/Ideas/video.mp4
+
+### Key Points
+
+- **Automatic Detection:** YakShaver scans the entire `/Recordings` folder tree
+- **Flexible Structure:** Organize recordings in any subfolder structure that works for you
+- **No Naming Restrictions:** Folder names don't need to follow specific conventions
+- **Nested Folders:** You can create folders within folders as deep as needed
+
+### Best Practices
+
+- Create tool-specific folders (e.g., `Teams`, `Snagit`, `SnippingTool`) to keep recordings organized
+- Use project or client-based folders for work organization
+- Consider date-based folders for long-term archival
+- Avoid spaces in folder names to prevent potential issues with some tools
+
+💡 **Tip:** You can reorganize your folder structure at any time - YakShaver will continue to process videos regardless of where they're located under `/Recordings`.
