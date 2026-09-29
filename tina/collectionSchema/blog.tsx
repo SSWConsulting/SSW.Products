@@ -20,10 +20,16 @@ export const blogCollection: Collection = {
       }
       return `/blog/${document?._sys.filename}`;
     },
+    // Blog lists sort by date, so a post without one never shows up
+    beforeSubmit: async ({ values }) => ({
+      ...values,
+      date: values.date || new Date().toISOString(),
+    }),
   },
   defaultItem: () => {
     return {
       category: DEFAULT_CATEGORY,
+      date: new Date().toISOString(),
     };
   },
   fields: [
@@ -54,10 +60,12 @@ export const blogCollection: Collection = {
       },
     },
     {
-      // note: default to current date/time
       type: "string",
       name: "date",
       label: "Date Created",
+      required: true,
+      description:
+        "Blog lists sort by this date. A post with no date does not show in the list.",
       ui: {
         component: "date",
       },
