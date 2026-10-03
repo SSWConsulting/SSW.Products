@@ -1,0 +1,134 @@
+---
+seo:
+  title: SSW EagleEye - Restrict Which Mailboxes EagleEye Can Read
+  description: >-
+    Limit the EagleEye Engine app's Mail.Read permission to the mailboxes in your
+    scan group using Exchange Online role-based access control for applications.
+title: Restrict which mailboxes EagleEye can read
+date: '2026-10-03T00:00:00.000Z'
+---
+
+During installation, the EagleEye `Engine` app is granted the Microsoft Graph application permission `Mail.Read`. By default, an application permission applies to **every mailbox in your organization**. EagleEye only scans the members of the group you select, but that is a filter inside EagleEye, not a limit enforced by Microsoft 365.
+
+This guide limits `Engine` to the mailboxes you actually want scanned, so the boundary is enforced by Exchange Online itself. Security teams usually expect this step, and we recommend completing it **before the first scan**.
+
+## Prerequisites
+
+* An account that can assign Exchange Online application roles: a member of the **Organization Management** role group, and the **Exchange Administrator** role in Microsoft Entra ID ([source](https://learn.microsoft.com/en-us/exchange/permissions-exo/application-rbac#requirements))
+* The [Exchange Online PowerShell module](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell-v2) (`ExchangeOnlineManagement`)
+* The **Application (client) ID** and **Object ID** of the `Engine` app: **Microsoft Entra admin center** → **Enterprise applications** → search `SSW.EagleEye.Engine`. Use the values on the *Enterprise applications* page, not the *App registrations* page, because the two pages show different Object IDs.
+* A **mail-enabled security group** that contains the mailboxes to scan
+
+> **Tip:** Use the same group you select in EagleEye as the scan group, so the two always match. Do not use a group with only some of the mailboxes, because EagleEye can then see fewer mailboxes than it expects.
+
+### Which group types work
+
+Microsoft documents that **Microsoft 365 Groups, mail-enabled security groups and distribution lists** can be used as the scope. An ordinary Microsoft Entra security group that is **not mail-enabled** is not on that list, so it does not work. Only **direct members** count: members of a nested group are out of scope ([source](https://learn.microsoft.com/en-us/exchange/permissions-exo/application-rbac#how-to-migrate-from-application-access-policies-to-rbac-for-applications)).
+
+If your scan group is not mail-enabled, create a mail-enabled security group in the [Exchange admin center](https://admin.exchange.microsoft.com), add the mailboxes to it, and use it for both EagleEye and this guide.
+
+## Step 1 - Connect to Exchange Online
+
+```powershell
+Install-Module -Name ExchangeOnlineManagement
+Connect-ExchangeOnline -UserPrincipalName admin@northwind.com
+```
+
+Sources: [Install the module](https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell-v2), [Connect-ExchangeOnline](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/connect-exchangeonline).
+
+## Step 2 - Register the Engine app in Exchange Online
+
+Exchange keeps a reference to the Entra service principal. Create one for `Engine`:
+
+```powershell
+New-ServicePrincipal -AppId <Engine Application ID> -ObjectId <Engine Object ID> -DisplayName "SSW.EagleEye.Engine"
+```
+
+Source: [New-ServicePrincipal](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-serviceprincipal).
+
+## Step 3 - Create a scope for the scan group
+
+Find the group's distinguished name, then create a scope that matches only its members:
+
+```powershell
+Get-Group -Identity "EagleEye Scan Group" | Format-List Name, DistinguishedName
+
+New-ManagementScope -Name "EagleEye scan group" -RecipientRestrictionFilter "MemberOfGroup -eq '<DistinguishedName from the previous command>'"
+```
+
+Sources: [Get-Group](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/get-group), [New-ManagementScope](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-managementscope), [Role-based access control for applications](https://learn.microsoft.com/en-us/exchange/permissions-exo/application-rbac#how-to-migrate-from-application-access-policies-to-rbac-for-applications).
+
+## Step 4 - Give Engine read access to that scope only
+
+```powershell
+New-ManagementRoleAssignment -App <Engine Object ID> -Role "Application Mail.Read" -CustomResourceScope "EagleEye scan group"
+```
+
+Source: [New-ManagementRoleAssignment](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-managementroleassignment).
+
+## Step 5 - Remove the organization-wide Mail.Read
+
+Exchange permissions **add to** the permissions granted in Microsoft Entra ID. If `Engine` still has the unscoped `Mail.Read` from installation, it can still read every mailbox and the scope has no effect. Remove the `Mail.Read` application permission for Microsoft Graph from the `Engine` app in Microsoft Entra ID. Leave `User.Read.All` and `GroupMember.Read.All` in place.
+
+Source: [Role-based access control for applications - FAQ](https://learn.microsoft.com/en-us/exchange/permissions-exo/application-rbac#why-does-my-application-still-have-access-to-mailboxes-that-arent-granted-by-the-scope-i-used-in-exchange-online-application-rbac).
+
+> **Warning:** If you later redeploy EagleEye, the installation can grant `Mail.Read` to `Engine` again. Repeat this step after any redeployment.
+
+## Step 6 - Wait, then verify
+
+Changes can take between **30 minutes and 2 hours** to take effect, depending on how recently the app was used. The test command below ignores this delay, so you can check your configuration straight away.
+
+Run the test once for a mailbox inside the group and once for a mailbox outside it:
+
+```powershell
+Test-ServicePrincipalAuthorization -Identity <Engine Object ID> -Resource alex@northwind.com | Format-Table
+Test-ServicePrincipalAuthorization -Identity <Engine Object ID> -Resource outsider@northwind.com | Format-Table
+```
+
+Example output (the first mailbox is in the group, the second is not):
+
+```txt
+RoleName               GrantedPermissions  AllowedResourceScope  ScopeType             InScope
+--------               ------------------  --------------------  ---------             -------
+Application Mail.Read  Mail.Read           EagleEye scan group   CustomRecipientScope  True
+
+RoleName               GrantedPermissions  AllowedResourceScope  ScopeType             InScope
+--------               ------------------  --------------------  ---------             -------
+Application Mail.Read  Mail.Read           EagleEye scan group   CustomRecipientScope  False
+```
+
+`InScope` is `True` when `Engine` can read that mailbox and `False` when it cannot. Only the Exchange assignment is tested, so also confirm Step 5 is done.
+
+Source: [Test-ServicePrincipalAuthorization](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/test-serviceprincipalauthorization).
+
+## Mailboxes outside the group
+
+EagleEye cannot read mailboxes that are not in the scan group, so they are not scanned.
+
+## Change or remove the restriction
+
+* **Change which mailboxes are covered:** add or remove members of the mail-enabled security group. To point at a different group, update the scope:
+
+  ```powershell
+  Set-ManagementScope -Identity "EagleEye scan group" -RecipientRestrictionFilter "MemberOfGroup -eq '<DistinguishedName of the new group>'"
+  ```
+
+* **Remove the restriction:** remove the role assignment, then grant `Mail.Read` to `Engine` again in Microsoft Entra ID, otherwise EagleEye can no longer read any mail.
+
+  ```powershell
+  Get-ManagementRoleAssignment -App <Engine Object ID>
+  Remove-ManagementRoleAssignment -Identity "<Name of the assignment from the previous command>"
+  ```
+
+Sources: [Set-ManagementScope](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/set-managementscope), [Remove-ManagementRoleAssignment](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/remove-managementroleassignment).
+
+## Why this guide does not use application access policies
+
+Older Microsoft guidance restricted app mailbox access with an *application access policy* (`New-ApplicationAccessPolicy`). Microsoft now states that these policies are replaced by role-based access control for applications and says not to create new ones, because they will eventually need migrating ([New-ApplicationAccessPolicy](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-applicationaccesspolicy)). This guide therefore uses the replacement.
+
+## References
+
+* [App Registrations & Permissions reference](./app-registrations-reference)
+* [Step 2 - App Registration](./step-2-app-registrations)
+* [Role Based Access Control for Applications in Exchange Online](https://learn.microsoft.com/en-us/exchange/permissions-exo/application-rbac)
+* [New-ApplicationAccessPolicy (replaced)](https://learn.microsoft.com/en-us/powershell/module/exchangepowershell/new-applicationaccesspolicy)
