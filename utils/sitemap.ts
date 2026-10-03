@@ -51,7 +51,8 @@ const getAllUrls = async (product: string) => {
     ...blogLinks.map((blog) => `blog/${blog}`),
     ...pageLinks.map((page) => (page === "home" ? "" : page)),
     ...privacyPage,
-    "blog",
+    // A tenant with no posts has no blog index either, so listing it would 404.
+    ...(blogLinks.length > 0 ? ["blog"] : []),
     "docs",
   ];
 };

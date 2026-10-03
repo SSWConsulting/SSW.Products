@@ -40,6 +40,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
   }
 
   const footerItems = results?.footer?.footer;
+  const footerLinks = results?.footer?.links;
   const footerTitle = results?.footer?.footerTitle;
   const footerColor = results.footer.footerColor!;
   const dynamicYear = new Date().getFullYear();
@@ -73,6 +74,16 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
                   Privacy Policy
                 </Link>
               </>
+            )}
+            {footerLinks?.map((link) =>
+              link?.href && link.label ? (
+                <span key={link.href}>
+                  {" | "}
+                  <Link href={contextualHref(link.href)} className="underline">
+                    {link.label}
+                  </Link>
+                </span>
+              ) : null
             )}
             {icpFiling && (
               <div className="mt-1">
