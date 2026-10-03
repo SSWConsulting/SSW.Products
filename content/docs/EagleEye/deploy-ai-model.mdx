@@ -55,7 +55,7 @@ You have 2 options. Pick the one that best fits your workflow.
    ![](/EagleEye/Guides/GPT-4.1-Mini.png)
 6. On the deployment screen, set:
    * **Deployment name** to exactly `eagleeye`
-   * **Deployment type** to `Global Standard` if available. If not, choose another compatible deployment type with available quota
+   * **Deployment type** to `Standard` (regional) so email content is processed within the Azure geography of the region you chose during installation. Microsoft documents that `Global Standard` deployments [may process prompts in any Azure region](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types), while `Standard` deployments process them within the customer-specified geography. Choose `Global Standard` only if you do not need data to stay in-region and `Standard` quota is unavailable
    * **Tokens per Minute Rate Limit** to at least `100`
      ![](/EagleEye/Guides/Model-Config.png)
 7. Click **Deploy** and wait for the deployment to become active
@@ -134,6 +134,8 @@ Use EagleEye's built-in test flow to verify the model deployment without sending
 ## References
 
 * [Step 3 - Install from Azure Marketplace](./step-3-install-from-marketplace)
+* [Understanding deployment types in Microsoft Foundry Models](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/deployment-types)
+* [Region availability for Foundry Models sold by Azure](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability)
 * [Adding a new Tag](./how-to-add-a-new-tag)
 * [AI Tags](./tags-ai)
 * [AI with mentions tags](./tags-ai-mention)
