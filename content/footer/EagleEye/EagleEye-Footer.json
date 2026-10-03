@@ -1,6 +1,20 @@
 {
   "footerTitle": "SSW EagleEye. All Rights Reserved",
   "footerColor": "#000000",
+  "links": [
+    {
+      "label": "Security",
+      "href": "/security"
+    },
+    {
+      "label": "Terms",
+      "href": "/terms"
+    },
+    {
+      "label": "Support",
+      "href": "/support"
+    }
+  ],
   "footer": [
     {
       "footerItemIcon": "FaYouTube",
