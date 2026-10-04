@@ -31,12 +31,12 @@ When your organization installs and runs EagleEye, SSW receives:
 | What | When | What it contains | Why |
 | --- | --- | --- | --- |
 | Container image token requests | During install and when you apply an update | The requesting deployment's IP address and a fixed user agent | To let your subscription pull the EagleEye container images |
-| Version manifest requests | When a signed-in user opens the Portal (at most once a day per browser) and before each scan | Your installation's IP address and a user agent | To tell your Portal when an update is available and whether the installed release is still supported |
+| Version manifest requests | When a signed-in user opens the Portal (at most once a day per browser), and when someone checks for or starts an update | Your installation's IP address and a user agent | To tell your Portal when an update is available. Scans do not use it; each release carries its own support end date |
 | Azure Marketplace subscription details | When you deploy from Azure Marketplace | Whatever Microsoft Partner Center shares with publishers for the offer, which can include the subscribing organization's name, the Azure subscription ID and a contact name and email | To know who has installed EagleEye and to contact you about updates and the end of the public beta |
 
 The first 2 are ordinary web server logs held in SSW's Azure subscription. They contain no email content, no names of the people whose mail is scanned, and no tag or report data.
 
-Your EagleEye installation also loads Google Analytics and Plausible in the Portal. These see page URLs and browser details inside the Portal, not email content or report data. Google processes that data under its own privacy policy.
+Your EagleEye installation also loads Google Analytics and Plausible on every Portal page, including signed-in pages. They record page views, page URLs and browser details, and are not configured to collect email content or report data. A page URL can include report filters. Your organization can block both scripts in its browsers or on its network. Google processes that data under its own privacy policy.
 
 ## Information we receive from this website
 
