@@ -34,7 +34,7 @@ When your organization installs and runs EagleEye, SSW receives:
 | Version manifest requests | When a signed-in user opens the Portal (at most once a day per browser) and before each scan | Your installation's IP address and a user agent | To tell your Portal when an update is available and whether the installed release is still supported |
 | Azure Marketplace subscription details | When you deploy from Azure Marketplace | Whatever Microsoft Partner Center shares with publishers for the offer, which can include the subscribing organization's name, the Azure subscription ID and a contact name and email | To know who has installed EagleEye and to contact you about updates and the end of the public beta |
 
-The first two are ordinary web server logs held in SSW's Azure subscription. They contain no email content, no names of the people whose mail is scanned, and no tag or report data.
+The first 2 are ordinary web server logs held in SSW's Azure subscription. They contain no email content, no names of the people whose mail is scanned, and no tag or report data.
 
 Your EagleEye installation also loads Google Analytics and Plausible in the Portal. These see page URLs and browser details inside the Portal, not email content or report data. Google processes that data under its own privacy policy.
 
@@ -71,9 +71,9 @@ SSW's Azure resources are in Australia. Google Analytics and JotForm process dat
 
 ## How long we keep it
 
-* Web server logs for the two endpoints: 30 days.
+* Web server logs for the 2 endpoints: 30 days.
 * Website analytics: per Google Analytics and Plausible retention settings, currently 14 months and indefinitely in aggregate respectively.
-* Marketplace subscription details and support correspondence: while you are a customer and for seven years afterwards, as Australian record-keeping law requires for business records.
+* Marketplace subscription details and support correspondence: while you are a customer and for 7 years afterwards, as Australian record-keeping law requires for business records.
 
 ## The data your installation processes
 

@@ -69,7 +69,7 @@
       "questions": [
         {
           "question": "What kind of reports will I receive?",
-          "answer": "You will receive three key reports: Emails with Mentions, which uses AI to automatically extract people mentioned in the email body and tag them; Emails Sent, displaying all sent emails categorized by different tags; and Emails Received, which shows incoming emails with various tags for easy sorting and management. These reports offer detailed insights into your email communication, helping you track and monitor both outgoing and incoming messages effectively."
+          "answer": "You will receive 3 key reports: Emails with Mentions, which uses AI to automatically extract people mentioned in the email body and tag them; Emails Sent, displaying all sent emails categorized by different tags; and Emails Received, which shows incoming emails with various tags for easy sorting and management. These reports offer detailed insights into your email communication, helping you track and monitor both outgoing and incoming messages effectively."
         },
         {
           "question": "How often is my email data scanned?",
