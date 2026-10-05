@@ -1,0 +1,96 @@
+---
+seo:
+  title: EagleEye Privacy Policy
+  description: >-
+    What personal information SSW receives from EagleEye website visitors and
+    EagleEye installations, and what it never receives: your email content.
+  openGraphTitle: EagleEye | Privacy Policy
+title: EagleEye Privacy Policy
+---
+
+> **Draft for legal review.** This policy has not yet been reviewed by SSW's legal advisers. It describes how EagleEye handles personal information today, but it is a draft until that review is complete and this notice is removed.
+
+Last updated 3 October 2026.
+
+## The short version
+
+You install SSW EagleEye from Azure Marketplace into your own Azure subscription and Microsoft Entra tenant. It reads the mailboxes you choose, and optionally your GitHub organization, and writes what it finds to a database in your subscription.
+
+SSW does not receive, store or have access to the email content, directory data, GitHub data or reports that your EagleEye installation processes. That data never leaves your subscription for SSW. The [Security](/security) page lists every data flow in detail.
+
+This policy is about the personal information SSW *does* receive: from visitors to this website, from EagleEye installations that check for updates, and from people who contact us.
+
+## Who we are
+
+SSW (Superior Software for Windows Pty Ltd), Level 1, 81-91 Military Road, Neutral Bay NSW 2089, Australia. SSW handles personal information in accordance with the Privacy Act 1988 (Cth) and the Australian Privacy Principles. Where the General Data Protection Regulation applies to a person in the European Union, SSW intends to meet its requirements for the personal information described below.
+
+## Information we receive from EagleEye installations
+
+When your organization installs and runs EagleEye, SSW receives:
+
+| What | When | What it contains | Why |
+| --- | --- | --- | --- |
+| Container image token requests | During install and when you apply an update | The requesting deployment's IP address and a fixed user agent | To let your subscription pull the EagleEye container images |
+| Version manifest requests | When a signed-in user opens the Portal (at most once a day per browser), and when someone checks for or starts an update | Your installation's IP address and a user agent | To tell your Portal when an update is available. Scans do not use it; each release carries its own support end date |
+| Azure Marketplace subscription details | When you deploy from Azure Marketplace | Whatever Microsoft Partner Center shares with publishers for the offer, which can include the subscribing organization's name, the Azure subscription ID and a contact name and email | To know who has installed EagleEye and to contact you about updates and the end of the public beta |
+
+The first 2 are ordinary web server logs held in SSW's Azure subscription. They contain no email content, no names of the people whose mail is scanned, and no tag or report data.
+
+Your EagleEye installation also loads Google Analytics and Plausible on every Portal page, including signed-in pages. They record page views, page URLs and browser details, and are not configured to collect email content or report data. A page URL can include report filters. Your organization can block both scripts in its browsers or on its network. Google processes that data under its own privacy policy.
+
+## Information we receive from this website
+
+When you visit ssweagleeye.com, we collect the usual web analytics through Plausible and Google Analytics: pages viewed, referrer, browser and device type, country, and for Google Analytics a cookie identifier. We use it to understand which pages are useful.
+
+If you book a call, submit the contact form or email us, we receive what you give us: your name, work email, organization and your message. The booking form is provided by Microsoft Bookings and the contact form by JotForm; each processes your details under its own privacy policy before passing them to us.
+
+## Information you give us for support
+
+If you email support, we keep your message and our reply so we can help you and improve EagleEye. Please do not send us email content or report data from your installation; a screenshot of the error and the job name is enough. If a support case requires SSW to look inside your Azure subscription, we will ask you to grant access, we will use it only for that case, and you can revoke it at any time.
+
+## How we use personal information
+
+* To provide and improve EagleEye and this website.
+* To respond to support requests and security reports.
+* To tell customers about updates, security fixes, the end of the public beta and pricing.
+* To understand how the website is used.
+
+We do not sell personal information, and we do not use it for advertising to you. If we ever want to email you marketing about other SSW products, we will ask first and you can unsubscribe at any time.
+
+## Who we share it with
+
+* Microsoft: Azure hosts SSW's endpoints and logs, Azure Marketplace handles the install, Microsoft Bookings handles call bookings.
+* Google (Analytics), Plausible and JotForm, for the website functions named above.
+* SSW's professional advisers, and regulators or law enforcement where the law requires it.
+
+We do not share the Marketplace subscription details or support correspondence with anyone else.
+
+## Where it is held
+
+SSW's Azure resources are in Australia. Google Analytics and JotForm process data in the United States. Plausible processes data in the European Union.
+
+## How long we keep it
+
+* Web server logs for the 2 endpoints: 30 days.
+* Website analytics: per Google Analytics and Plausible retention settings, currently 14 months and indefinitely in aggregate respectively.
+* Marketplace subscription details and support correspondence: while you are a customer and for 7 years afterwards, as Australian record-keeping law requires for business records.
+
+## The data your installation processes
+
+For completeness: your EagleEye installation reads email metadata and bodies, directory names and addresses, and GitHub issue and pull request data, sends email and GitHub text to the Azure OpenAI account in your subscription when an AI tag asks for it, and stores subjects, participants, dates and tag matches in your database. Email bodies are not stored. Your organization is the controller of that data, decides whose mail is scanned, and is responsible for telling those people. SSW's role is limited to supplying the software. If you need help honouring an access or deletion request from one of your staff, support will walk you through it.
+
+## Your rights
+
+You can ask us what personal information we hold about you, ask us to correct it, or ask us to delete it, by emailing [info@ssw.com.au](mailto:info@ssw.com.au). We will respond within 30 days. If you are in the European Union you also have the rights to restrict or object to processing and to data portability, and you can complain to your local supervisory authority. In Australia you can complain to the Office of the Australian Information Commissioner at [oaic.gov.au](https://www.oaic.gov.au/privacy).
+
+## Data breaches
+
+If a breach of SSW's systems affects your personal information, we will tell you and, where required, the regulator, in line with the Notifiable Data Breaches scheme and, where it applies, the GDPR's 72-hour requirement. A breach of your own Azure subscription is yours to handle under your own policies; we will help if asked.
+
+## Changes
+
+We will post changes here with a new "last updated" date and will tell customers about material changes through the Portal or by email.
+
+## Contact
+
+Privacy Officer, SSW, Level 1, 81-91 Military Road, Neutral Bay NSW 2089, Australia. [info@ssw.com.au](mailto:info@ssw.com.au), +61 2 9953 3000.
