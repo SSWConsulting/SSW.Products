@@ -6,6 +6,7 @@ import {
 import { BlogSearchProvider } from "../../../components/providers/BlogSearchProvider";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
 import client from "../../../tina/__generated__/client";
+import { getAllConnectionEdges } from "@utils/tina";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
 import { getLocale, getBlogIndexWithFallback } from "../../../utils/i18n";
 interface BlogIndex {
@@ -31,17 +32,21 @@ export async function generateMetadata({ params }: BlogIndex) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.blogsConnection({});
-  return (
-    sitePosts.data.blogsConnection?.edges?.map((post) => ({
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.blogsConnection(vars),
+    "blogsConnection"
   );
+  return edges.map((post) => ({
+    product: post?.node?._sys.breadcrumbs[0],
+  }));
 }
 
 const getCategories = async (product: string) => {
-  const posts = await client.queries.blogsConnection();
-  const filteredPosts = posts.data.blogsConnection.edges?.filter((blog) => {
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.blogsConnection(vars),
+    "blogsConnection"
+  );
+  const filteredPosts = edges?.filter((blog) => {
     return blog?.node?._sys?.path.includes(product);
   });
   let categories: string[] = [];

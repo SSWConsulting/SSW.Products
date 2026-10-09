@@ -1,4 +1,5 @@
 import client from "@tina/__generated__/client";
+import { getAllConnectionEdges } from "@utils/tina";
 import { setPageMetadata } from "@utils/setPageMetaData";
 import { getLocale, getBlogWithFallback } from "@utils/i18n";
 import getBlogPageData from "@utils/pages/getBlogPageData";
@@ -42,13 +43,14 @@ export async function generateMetadata({ params }: BlogPostProps) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.blogsConnection({});
-  return (
-    sitePosts.data.blogsConnection?.edges?.map((post) => ({
-      slug: post?.node?._sys.filename,
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.blogsConnection(vars),
+    "blogsConnection"
   );
+  return edges.map((post) => ({
+    slug: post?.node?._sys.filename,
+    product: post?.node?._sys.breadcrumbs[0],
+  }));
 }
 
 export default async function BlogPost({ params }: BlogPostProps) {
