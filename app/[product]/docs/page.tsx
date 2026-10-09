@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import client from "../../../tina/__generated__/client";
+import { getAllConnectionEdges } from "@utils/tina";
 import DocPost from "./[...slug]/page";
 interface DocsIndex {
   params: Promise<{ product: string }>;
@@ -19,12 +20,13 @@ export async function generateMetadata({ params }: DocsIndex) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.docsConnection({});
-  return (
-    sitePosts.data.docsConnection?.edges?.map((post) => ({
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.docsConnection(vars),
+    "docsConnection"
   );
+  return edges.map((post) => ({
+    product: post?.node?._sys.breadcrumbs[0],
+  }));
 }
 
 export default async function DocsIndex({ params }: DocsIndex) {

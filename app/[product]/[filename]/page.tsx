@@ -1,5 +1,6 @@
 import HomePageClient from "../../../components/shared/HomePageClient";
 import client from "../../../tina/__generated__/client";
+import { getAllConnectionEdges } from "@utils/tina";
 import { setPageMetadata } from "../../../utils/setPageMetaData";
 import { getLocale, getPageWithFallback } from "../../../utils/i18n";
 import getPageData from "@utils/pages/getPageData";
@@ -30,13 +31,14 @@ export async function generateMetadata({ params }: FilePageProps) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.pagesConnection({});
-  return (
-    sitePosts.data.pagesConnection?.edges?.map((post) => ({
-      filename: post?.node?._sys.filename,
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.pagesConnection(vars),
+    "pagesConnection"
   );
+  return edges.map((post) => ({
+    filename: post?.node?._sys.filename,
+    product: post?.node?._sys.breadcrumbs[0],
+  }));
 }
 export default async function FilePage({ params }: FilePageProps) {  
   const { product, filename } = await params;
