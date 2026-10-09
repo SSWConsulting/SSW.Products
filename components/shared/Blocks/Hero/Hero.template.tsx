@@ -51,6 +51,18 @@ export const HeroTemplate: Template = {
       ],
     },
     {
+      name: "demoQr",
+      label: "<QR> Demo QR button",
+      description:
+        "Shows a button beside the CTAs that reveals the Try-it-now demo QR code. The code itself is chosen by the page's language.",
+      type: "object",
+      fields: [
+        { name: "enabled", label: "Enabled", type: "boolean" },
+        { name: "title", label: "Title", type: "string" },
+        { name: "caption", label: "Caption under the QR code", type: "string" },
+      ],
+    },
+    {
       name: "buttonSubtext",
       label: "Button Subtext",
       type: "string",

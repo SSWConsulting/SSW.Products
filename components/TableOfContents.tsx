@@ -9,7 +9,8 @@ import {
   useRef,
   useState,
 } from "react";
-import { MdClose, MdMenu } from "react-icons/md";
+import { MdClose } from "react-icons/md";
+import { TbLayoutSidebar } from "react-icons/tb";
 
 const TableOfContentsContext = createContext<{
   open: boolean;
@@ -53,6 +54,16 @@ const Root = ({ children }: { children: ReactNode }) => {
     };
   }, [open]);
 
+  // Lock background scroll while the drawer is open, and keep the closed
+  // (off-screen) drawer out of the tab order / a11y tree via `inert`.
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    if (tocRef.current) tocRef.current.inert = !open;
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <TableOfContentsContext.Provider
       value={{ buttonRef, tocRef, open, setOpen }}
@@ -63,7 +74,6 @@ const Root = ({ children }: { children: ReactNode }) => {
 };
 
 type ButtonProps = {
-  onClick: () => void;
   className?: string;
 };
 
@@ -73,23 +83,42 @@ const Popover = forwardRef<
 >(({ children, className }) => {
   const { open, tocRef, setOpen } = useTableOfContents();
   return (
-    <div
-      onClick={() => setOpen(false)}
-      ref={tocRef}
-      className={cn(
-        className,
-        open ? "block" : "hidden",
-        `absolute top-full left-0 right-0 z-30 bg-black/95 rounded-lg border border-white/10 shadow-xl overflow-y-auto`
-      )}
-    >
-      <div className="flex justify-between items-center p-3 border-b border-white/10">
-        <h2 className="text-lg font-medium text-white">Table of Contents</h2>
-        <button className="text-white/60 hover:text-white p-1">
-          <MdClose className="h-5 w-5" />
-        </button>
+    <>
+      {/* Dimmed backdrop */}
+      <div
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+        className={cn(
+          "fixed inset-0 z-40 bg-black/60 transition-opacity duration-300",
+          open ? "opacity-100" : "pointer-events-none opacity-0"
+        )}
+      />
+      {/* Left slide-in drawer (partial width) */}
+      <div
+        ref={tocRef}
+        className={cn(
+          className,
+          "fixed inset-y-0 left-0 z-50 w-[85%] max-w-sm overflow-y-auto border-r border-white/10 bg-black/95 shadow-xl transition-transform duration-300 ease-in-out",
+          open ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
+        <div className="flex justify-between items-center p-3 border-b border-white/10">
+          <h2 className="text-lg font-medium text-white">Table of Contents</h2>
+          <button
+            type="button"
+            aria-label="Close table of contents"
+            onClick={() => setOpen(false)}
+            className="text-white/60 hover:text-white p-1"
+          >
+            <MdClose className="h-5 w-5" />
+          </button>
+        </div>
+        {/* Close the drawer when a nav link inside is tapped */}
+        <div className="py-3 px-7" onClick={() => setOpen(false)}>
+          {children}
+        </div>
       </div>
-      <div className="py-3 px-7">{children}</div>
-    </div>
+    </>
   );
 });
 Popover.displayName = "TableOfContents.Popover";
@@ -99,14 +128,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(({ className }) => {
   return (
     <button
       ref={buttonRef}
+      type="button"
+      aria-label="Open table of contents"
       className={cn(
-        "flex justify-center items-center gap-2 w-full text-white/60 hover:text-white transition-all duration-300 bg-white/10 p-2 rounded-lg",
+        "flex shrink-0 items-center justify-center rounded-lg p-2 text-[#CC4141] transition-colors hover:text-white",
         className
       )}
       onClick={() => setOpen(!open)}
     >
-      <MdMenu className="text-[#CC4141]" />
-      <span className="font-light">Table of Contents</span>
+      <TbLayoutSidebar className="h-5 w-5" strokeWidth={2} />
     </button>
   );
 });

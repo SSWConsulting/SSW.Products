@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "试用 YakShaver MCP 测试版！",
-    "description": "试用 YakShaver MCP 测试版！下载、安装，今天就开始剃除牦牛毛。"
+    "description": "试用 YakShaver MCP 测试版！下载、安装，今天就开始 Shave。"
   },
   "title": "试用 YakShaver MCP 测试版！",
   "pageBlocks": [
@@ -27,8 +27,8 @@
           }
         },
         {
-          "title": "3. 剃除",
-          "description": "安装完成后，您就可以开始剃除牦牛毛了！有关详细说明，请观看下面的视频。\n",
+          "title": "3. Shave",
+          "description": "安装完成后，您就可以开始 Shave 了！有关详细说明，请观看下面的视频。\n",
           "image": {
             "imgSrc": "https://img.youtube.com/vi/CBes1SEvV54/maxresdefault.jpg",
             "imgLink": "https://www.youtube.com/embed/CBes1SEvV54?si=Y5_GrdtZpjZfu8qN",

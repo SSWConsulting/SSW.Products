@@ -1,5 +1,5 @@
 import getBlogPageData from "@utils/pages/getBlogPageData";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosError } from "axios";
 import NotFoundError from "../src/errors/not-found";
 import getDocPageData from "@utils/pages/getDocPageData";
 import getPageData from "@utils/pages/getPageData";
@@ -7,8 +7,6 @@ import getPageData from "@utils/pages/getPageData";
 type QueryFunction = (product: string, relativePath: string) => Promise<unknown>;
 
 class ApiClient {
-  private static handle(response: AxiosResponse) {
-  }
   static queries: Record<string, QueryFunction> = {
       getBlogPageData: async (product: string, relativePath: string)=> {
       try{

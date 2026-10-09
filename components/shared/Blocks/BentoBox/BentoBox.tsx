@@ -6,6 +6,7 @@ import React, { useRef } from "react";
 import { FaExpandAlt } from "react-icons/fa";
 import { FaMinus, FaXmark } from "react-icons/fa6";
 import Container from "../../../Container";
+import LinkableHeading from "../../LinkableHeading";
 import { ExampleYakShaverCard } from "../../../ui/MockYakShaverCards";
 import TimeSavedCounterBox from "../../../utilityComponents/TimeSavedCounter";
 import YaksShavedCounterBox from "../../../utilityComponents/YaksShavedCounter";
@@ -50,7 +51,7 @@ function SmAndMdView({ data }: { data: any }) {
         </div>
 
         <div className="pt-10 md:pt-6 lg:pt-20 flex flex-col justify-center p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
-          <h2 className="text-white text-xl font-semibold">{data.title}</h2>
+          <p className="text-white text-xl font-semibold">{data.title}</p>
           <span className="text-[#797979] text-xs">{data.description}</span>
         </div>
       </div>
@@ -106,7 +107,7 @@ function BeamBox({ data }: { data: any }) {
         <AnimatedBeamMultipleOutput data={data} />
       </div>
       <div className="absolute bottom-0 w-full pb-4  px-6">
-        <h2 className="text-white text-xl font-semibold">{data?.title}</h2>
+        <p className="text-white text-xl font-semibold">{data?.title}</p>
         <span className="text-[#797979] text-sm">{data?.description}</span>
       </div>
     </div>
@@ -154,7 +155,12 @@ export function TitleFadeIn({ title }: { title: string }) {
 
   return (
     <>
-      <div className="text-white text text-center text-3xl font-semibold pb-12">
+      <LinkableHeading
+        as="h2"
+        wrap
+        anchor={title}
+        className="text-white text text-center text-3xl font-semibold pb-12"
+      >
         <span className="inline-block max-w-full break-words">
           {firstPart}
           {firstPart ? " " : ""}
@@ -178,7 +184,7 @@ export function TitleFadeIn({ title }: { title: string }) {
             ))}
           </span>
         </span>
-      </div>
+      </LinkableHeading>
     </>
   );
 }
@@ -213,9 +219,9 @@ export default function BentoBox({ data }: { data: any }) {
                   </div>
                 </div>
                 <div className="w-full mt-6 mx-3">
-                  <h2 className="text-white md:text-2xl lg:text-4xl font-semibold text-center">
+                  <p className="text-white md:text-2xl lg:text-4xl font-semibold text-center">
                     {topLeftBox.title}
-                  </h2>
+                  </p>
                 </div>
                 <div className="md:mt-12 mt-4 flex items-center flex-row justify-center gap-4 md:gap-6">
                   {topLeftBox.icons &&
@@ -240,9 +246,9 @@ export default function BentoBox({ data }: { data: any }) {
                 className={`${YakShaverGray} relative rounded-xl w-full h-full`}
               >
                 <div className="p-6 pb-0 md:pb-6">
-                  <h2 className="text-white text-2xl font-semibold">
+                  <p className="text-white text-2xl font-semibold">
                     {topRightBox.title}
-                  </h2>
+                  </p>
                   <p className="text-[#797979] text-sm">
                     {topRightBox.description}
                   </p>

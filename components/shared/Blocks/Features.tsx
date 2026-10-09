@@ -8,6 +8,8 @@ import {
   TinaMarkdown,
   TinaMarkdownContent,
 } from "tinacms/dist/rich-text";
+import { slugifyHeading } from "@utils/anchorSlug";
+import { HeadingAnchorLink } from "../LinkableHeading";
 import { YouTubeEmbed } from "../YouTubeEmbed";
 import Actions from "./ActionsButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
@@ -49,6 +51,12 @@ export const featureComponents: Components<Record<string, unknown>> = {
   a: (props) => Link(props),
 };
 const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
+  // The headline is duplicated across responsive view modes, so the id lives on
+  // the block wrapper instead of on a heading that may be hidden at this width.
+  const slug = slugifyHeading(
+    [feature.headline, feature.headlineAfter].filter(Boolean).join(" ")
+  );
+
   const renderMedia = () => {
     if (feature.media && feature.media.length > 0) {
       const mediaItem = feature.media[0];
@@ -90,7 +98,8 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
 
   return (
     <div
-      className={`flex flex-col-reverse lg:flex-row w-full first:pt-20  items-center lg:gap-12 gap-8 px-8 ${
+      id={slug || undefined}
+      className={`group scroll-mt-28 flex flex-col-reverse lg:flex-row w-full first:pt-20  items-center lg:gap-12 gap-8 px-8 ${
         feature.isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
       }  pb-10 lg:pb-0 3xl:px-20`}
     >
@@ -144,6 +153,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
               </h1>
             </div>
           </div>
+          {slug && <HeadingAnchorLink slug={slug} />}
         </div>
 
         <div
