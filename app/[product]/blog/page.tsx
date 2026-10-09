@@ -18,9 +18,14 @@ export async function generateMetadata({ params }: BlogIndex) {
     title: `${product} - Blog - Product News, Updates & Announcements`,
     description: `Explore the latest news, updates, and insights from the ${product} team, including product releases and announcements.`,
     openGraph: {
+      siteName: product,
+      type: "website",
       title: `${product} - Blog - Product News, Updates & Announcements`,
       description: `Explore the latest news, updates, and insights from the ${product} team, including product releases and announcements.`,
-      images: `./public/default-images/${product}-default.png`,
+      images: `/default-images/${product}-og.png`,
+    },
+    twitter: {
+      card: "summary_large_image",
     },
   };
 }

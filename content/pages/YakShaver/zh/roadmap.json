@@ -1,6 +1,6 @@
 {
   "seo": {
-    "title": "路线图 ",
+    "title": "路线图 - 发布、即将推出的功能与改进",
     "description": "探索 YakShaver 的创新 AI 解决方案和未来发展的路线图。随时了解我们的旅程和里程碑。"
   },
   "pageBlocks": [
@@ -67,6 +67,10 @@
         {
           "title": "更多项目数据源选项（Excel、Salesforce 等）",
           "description": "项目数据集成支持正在扩展，涵盖 Excel 和 Salesforce，使跨平台项目管理更便捷。"
+        },
+        {
+          "title": "Chinafy - 本地生态系统集成",
+          "description": "增加对中国本土 LLM 提供商和本地基础设施的支持，使用户能够在中国生态系统中顺畅运行 YakShaver。"
         }
       ],
       "_template": "Timeline"

@@ -25,7 +25,13 @@ export async function generateMetadata({ params }: BlogPostProps) {
       return null;
     }
 
-    const metadata = setPageMetadata(res?.data?.blogs?.seo, product, 'Blog');
+    const metadata = await setPageMetadata(res?.data?.blogs?.seo, product, 'Blog');
+
+    // Without an explicit Open Graph image in the CMS, let the generated
+    // opengraph-image route (banner + author photo) take over
+    if (!res?.data?.blogs?.seo?.openGraphImage && metadata.openGraph) {
+      delete metadata.openGraph.images;
+    }
     return metadata;
   } 
   catch (error) {

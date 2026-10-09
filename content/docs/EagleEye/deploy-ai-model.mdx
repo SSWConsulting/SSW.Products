@@ -23,7 +23,7 @@ If you plan to use **Non-AI Tags** only, you can skip this guide.
 
 At the moment, EagleEye supports **chat models only**, so make sure you choose a compatible chat model.
 
-**EagleEye supported models include:**
+✅ **EagleEye supported models include:**
 
 * `gpt-4.1-mini (recommended)`
 * `gpt-4o-mini`
@@ -32,7 +32,7 @@ At the moment, EagleEye supports **chat models only**, so make sure you choose a
 * `gpt-4.1`, `gpt-4o`
 * `gpt-3.5-turbo`
 
-**Do not use:**
+⚠️ **Do not use:**
 
 * Reasoning models such as `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-pro`, `gpt-5-codex`, `gpt-5.4-mini`, `o1`, `o1-mini`, `o3-mini`, `o4-mini`
 * Non-OpenAI Foundry catalog models such as Llama, Mistral, Grok, DeepSeek, Cohere, Kimi, `gpt-oss-*`, and Phi
@@ -40,28 +40,31 @@ At the moment, EagleEye supports **chat models only**, so make sure you choose a
 
 ## Step 1 - Deploy an AI chat model in Azure AI Foundry
 
-You have two options. Pick the one that best fits your workflow.
+You have 2 options. Pick the one that best fits your workflow.
 
 ### Option A - Deploy via Azure AI Foundry portal
 
-1. Go to your EagleEye resource group used during Step 3 installation (e.g., `Northwind.EagleEye.RG`).
-2. Find your `openai-shared-xxx` resource and open it.
+1. Go to your EagleEye resource group used during Step 3 installation (e.g., `Northwind.EagleEye.RG`)
+2. Find your `openai-shared-xxx` resource and open it
    ![](/EagleEye/Guides/OpenAI-Shared.png)
-3. Click **Go to Azure AI Foundry portal**.
+3. Click **Go to Azure AI Foundry portal**
    ![](/EagleEye/Guides/Foundry-Portal-Link.png)
-4. In Foundry portal, click **Model catalog**.
+4. In Foundry portal, click **Model catalog**
    ![](/EagleEye/Guides/Model-Catalog.png)
 5. Pick a compatible chat model > Use this model
    ![](/EagleEye/Guides/GPT-4.1-Mini.png)
 6. On the deployment screen, set:
    * **Deployment name** to exactly `eagleeye`
-   * **Deployment type** to `Global Standard` if available. If not, choose another compatible deployment type with available quota.
+   * **Deployment type** to `Global Standard` if available. If not, choose another compatible deployment type with available quota
    * **Tokens per Minute Rate Limit** to at least `100`
      ![](/EagleEye/Guides/Model-Config.png)
-7. Click **Deploy** and wait for the deployment to become active.
+7. Click **Deploy** and wait for the deployment to become active
 
-> **Important:**
-> The deployment name must be exactly `eagleeye`. If you use a different name, EagleEye will fail to find the model at runtime.
+<OutlineBox
+  content={<>
+    ❗️ **Important:** The deployment name must be exactly `eagleeye`. If you use a different name, EagleEye will fail to find the model at runtime.
+  </>}
+/>
 
 ### Option B - Deploy via AI agent
 
@@ -76,14 +79,17 @@ Create the deployment with the name exactly `eagleeye`.
 
 The agent should:
 
-1. Ask for the resource group you used during Step 3 installation (e.g., `Northwind.EagleEye.RG`).
-2. Find the `openai-shared-xxx` Azure OpenAI resource in that resource group.
-3. Show which compatible non-reasoning chat models have available quota.
-4. Ask which model and capacity you want to deploy.
-5. Create the deployment with the exact name `eagleeye`.
+1. Ask for the resource group you used during Step 3 installation (e.g., `Northwind.EagleEye.RG`)
+2. Find the `openai-shared-xxx` Azure OpenAI resource in that resource group
+3. Show which compatible non-reasoning chat models have available quota
+4. Ask which model and capacity you want to deploy
+5. Create the deployment with the exact name `eagleeye`
 
-> **Tip:**
-> Review the commands your agent proposes before approving them. AI agents can still make mistakes.
+<OutlineBox
+  content={<>
+    💡 **Tip:** Review the commands your agent proposes before approving them. AI agents can still make mistakes.
+  </>}
+/>
 
 ## Step 2 - Verify AI email analysis works
 
@@ -99,19 +105,15 @@ Use EagleEye's built-in test flow to verify the model deployment without sending
 
 4\. In the **AI decision prompt** field, enter a simple test prompt such as:
 
-```text
-Check if the email has been checked by someone by looking for keywords like "Checked by xx", "Checked by xx & xx", or similar variations.
-```
+> Check if the email has been checked by someone by looking for keywords like "Checked by xx", "Checked by xx & xx", or similar variations.
 
 5\. Paste sample email content such as:
 
-```plain
-(Checked by Adam)
-
-Hi team, I just checked the invoice from Acme Corp and everything looks good.
-Regards,
-Hark
-```
+> (Checked by Adam)
+> 
+> Hi team, I just checked the invoice from Acme Corp and everything looks good.
+> Regards,
+> Hark
 
 6\. Click **Test**.
 
@@ -126,6 +128,8 @@ Hark
     ⚠️ If the model is not deployed, EagleEye will show an error banner instead of a JSON result.
   </>}
 />
+
+---
 
 ## References
 

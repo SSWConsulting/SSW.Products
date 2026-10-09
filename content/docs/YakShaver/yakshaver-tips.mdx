@@ -10,22 +10,51 @@ date: '2025-01-28T13:00:00.000Z'
 
 Here are some tips to creating the perfect Work Item:
 
+
 ## When recording
 
 ### 1. State your intent
 
 Begin the recording by clearly stating the purpose. Avoid being vague. Your goal or the options you’re proposing should be as clear as possible.
 
-> *“Send an email task to...”*
-> *“I have a new feature request for SugarLearning...”*
+> *“Send an email task to...”*  
+> *“I have a new feature request for the Northwind Project...”*
 
-### 2. Give context
+**✅ Good example:**
+>
+> “Create a new bug report for the login page in the Northwind project. The issue is users can’t reset their password. (...)”
+
+**❌ Bad example:**
+>
+> “This is broken.”
+
+Be as specific as possible so the AI knows what action to take and what project you are refering to. 
+
+
+**Pro Tip:** A good practice is to end your video by restating your intent and the project name. This reinforces your request and helps the AI generate an accurate Work Item.
+
+---
+
+## 2. Give context
 
 Refer to the area of the screen you are discussing. For example, mention the section heading when reviewing a specific section. Explain the user flow as well, such as where you came from and what you are trying to do.
 
-**Note:**  Have a look at these [best practices](/docs/giving-context)
+**Note:** Have a look at these [best practices](/docs/giving-context)
 
-### 3. Detail bug reports
+**Tip:** When reviewing someone's work, especially if it's a new project or you're not yet familiar with the person, **begin with a positive observation** before suggesting changes. This helps build trust, reinforces good work, and makes feedback easier to receive.
+
+**❌ Bad example:**
+>
+> “It’s not working here.”
+
+**✅ Good example:**
+>
+> “On the dashboard, under the ‘Reports’ section, the export button is missing.”
+
+
+---
+
+## 3. Detail bug reports
 
 For bugs, mention reproduction steps and expected behaviour.
 
@@ -33,7 +62,17 @@ For bugs, mention reproduction steps and expected behaviour.
 
 **Note:** Have a look at [drafting your bug with enough details](https://www.ssw.com.au/rules/report-bugs-and-suggestions/#tip-1-draft-your-bug-with-enough-details)
 
-### 4. Mention additional team members
+**❌ Bad example:**
+>
+> “Reset password doesn’t work.”
+
+**✅ Good example:**
+>
+> “Step 1: Go to the login page. Step 2: Enter your email and click ‘Forgot Password’. Step 3: No email is sent. I expect to receive a password reset email.”
+
+---
+
+## 4. Mention additional team members
 
 Say “CC” and their names so you include people who are not in the meeting.
 
@@ -41,7 +80,17 @@ Say “CC” and their names so you include people who are not in the meeting.
 
 **Note:** Creating a PBI or bug report will automatically CC the Product Owner and Tech Lead. [Why?](/docs/user-mention-guidelines-in-work-item-descriptions)
 
-### 5. Collaborative effort goes a long way
+**❌ Bad example:**
+>
+> “Let someone else know.”
+
+**✅ Good example:**
+>
+> “Please CC @adam and @uly on this item as they need to review the changes.”
+
+---
+
+## 5. Collaborative effort goes a long way
 
 Inviting a colleague to your YakShaver recording brings fresh perspectives and clearer explanations, and because you must walk them through the workflow beforehand, the recording itself becomes a [refined v2](https://www.ssw.com.au/rules/email-send-a-v2/) with a stronger final result.
 
@@ -51,22 +100,55 @@ If you're the one added to someone else’s yakshave, contribute meaningfully wi
 
 **Figure: YakShaves work best when more than one person is involved**
 
-## After recording
+**Tip:** If possible, have another team member present to clarify requirements or add missing details during the recording.
 
-### 1. Move PBIs (if needed)
+---
 
-If the PBI wasn’t created in the correct project, use the “Move PBI” option to relocate it to the right project.
 
-### 2. Review and like the Work Item
+## Common Mistakes to Avoid
 
-Check the PBI title and content. If everything looks good, [react with a 👍 to show you’ve reviewed it](https://www.ssw.com.au/rules/react-to-reviewed-pbis).
+Avoid these common pitfalls to ensure YakShaver produces the best results:
 
-**Note:** You should also do this after checking Work Items created by others.
+- **Being too vague:** Not stating what you want the AI to do.
+  - _example: “This needs fixing.” (What needs fixing? Where?)_
+- **Missing context:** Not mentioning which page, feature, or user role is affected.
+- **Skipping steps:** Not describing how to reproduce a bug or what the expected outcome is.
+- **Not mentioning key people:** Forgetting to CC or mention stakeholders who need to be involved.
+- **Recording in a noisy environment:** Background noise can make it hard for the AI to understand your intent.
 
-### 3. Loop in more people
+Take a moment to review your recording and make sure you’ve avoided these mistakes before submitting.
 
-If someone needs to join the conversation, add "(looping @username)" at the top of the Work Item description.
+---
 
-### 4. Make scope changes visible
+## Sample Video Script
 
-If the scope of a PBI changes after creation, such as adding new tasks or requirements, [make the change explicit by updating the Acceptance Criteria and leaving a comment explaining what changed](https://www.ssw.com.au/rules/scope-changes-to-pbis). This keeps everyone aligned and avoids confusion when new work was not visible in the original YakShaver recording.
+Here’s an example script for a YakShaver recording that follows best practices.
+
+This script clearly states the intent, provides context, details the bug, mentions key people, and demonstrates collaboration.
+
+```text
+Hi team, I’d like to create a new bug report for the login page on the project Northwind. 
+When users try to reset their password, no email is sent.  
+
+This is how it happened: I went to the login page and entered my email address. Then I clicked on ‘Forgot Password’ link
+
+After 5 minutes monitoring my email inbox I still haven't received my password reset email.  
+
+Please CC @adam and @uly as they need to review this.  
+```
+
+
+---
+
+## Quick Reference: Do’s and Don’ts
+
+Refer to this table before recording to maximize the quality of your YakShaver Work Items!
+
+| ✅ **Do's** | ❌ **Don’ts** |
+|-------------------------------|-------------------------------|
+| Clearly state your intent      | Be vague or ambiguous         |
+| Give specific context (page, feature, etc.) | Assume the AI knows what you mean |
+| List steps to reproduce bugs   | Skip important details        |
+| Mention/CC relevant team members | Forget to involve stakeholders |
+| Record in a quiet environment  | Record with lots of background noise |
+| Collaborate with others when possible | Work in isolation if clarity is needed |

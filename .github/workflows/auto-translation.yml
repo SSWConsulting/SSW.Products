@@ -14,6 +14,13 @@ on:
 env:
   PR_NUMBER: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.pr_number || github.event.pull_request.number }}
 
+# Runs branch from and push to main, so overlapping runs can clobber each
+# other's translations. Queue them instead; never cancel, since a cancelled
+# run has already paid for its OpenAI calls.
+concurrency:
+  group: auto-translation
+  cancel-in-progress: false
+
 jobs:
   translate:
     if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
@@ -28,17 +35,24 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9.6.0
+
       - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version-file: '.nvmrc'
           cache: 'pnpm'
 
       - name: Setup
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # The scripts' deps (openai, minimatch, axios) are declared in
+          # package.json. Running `npm install` over a pnpm-installed tree
+          # fails on pnpm's symlink layout with "Cannot read properties of
+          # null (reading 'name')".
           pnpm install --frozen-lockfile
-          npm install --no-save minimatch@3.1.2 openai@4.75.0 axios@1.9.0
 
       - name: Detect Changes
         env:
@@ -69,33 +83,29 @@ jobs:
             node .github/scripts/translate-files.js
           fi
 
-      - name: Verify TinaCMS Schema
-        if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
-        run: |
-          pnpm install
-          
-          # TinaCMS schema verification with adequate time
-          pnpm dev &
-          sleep 60
-          kill $! 2>/dev/null || true
-          
-          if [ -f "tina/tina-lock.json" ]; then
-            git add tina/tina-lock.json
-            echo "Added tina-lock.json to staging"
-          fi
-
       - name: Commit Changes
         if: env.HAS_CHANGED_FILES == 'true' || env.HAS_FILE_OPERATIONS == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
+
+          # Set by the Process Translation step; if that was skipped, pushing
+          # would target whatever branch is checked out. Fail loudly instead.
+          if [ -z "${BRANCH_NAME:-}" ]; then
+            echo "::error::BRANCH_NAME is not set - refusing to push"
+            exit 1
+          fi
+
           git add content/
-          git add tina/tina-lock.json 2>/dev/null || true
           if ! git diff --staged --quiet; then
             git commit -m "🤖 Auto Translation: Chinese content for PR #${{ env.PR_NUMBER }}"
-            git push origin $BRANCH_NAME
-            
-            REPO=${{ github.repository }} SERVER_URL=${{ github.server_url }} BRANCH_NAME=$BRANCH_NAME node .github/scripts/create-pr.js
+            git push origin "$BRANCH_NAME"
+
+            REPO=${{ github.repository }} \
+            GITHUB_SERVER_URL=${{ github.server_url }} \
+            BRANCH_NAME="$BRANCH_NAME" \
+              node .github/scripts/create-pr.js
           else
             echo "No changes to commit"
           fi

@@ -12,6 +12,7 @@ type GetBlogsForProductProps = {
   filteredBlogs?: string[];
   locale?: string;
   branch?: string;  
+  loadAll?: boolean;
 };
 
 // Workaround: graphql doesn't allow you to query by file name
@@ -48,6 +49,7 @@ export async function getBlogsForProduct({
   filteredBlogs,
   locale,
   branch,
+  loadAll,
 }: GetBlogsForProductProps) {
   try {
 
@@ -70,6 +72,10 @@ export async function getBlogsForProduct({
       );
     }
 
+    // "Load more" pulls in every remaining article in one go, so the page size
+    // becomes the candidate title count - the most documents the filter can match
+    const pageSize = loadAll ? Math.max(titles.length, limit) : limit;
+
     const categoryFilter = category
       ? {
           category: {
@@ -85,7 +91,7 @@ export async function getBlogsForProduct({
         ...categoryFilter,
       },
       ...beforeFilter,
-      last: limit * 2,
+      last: pageSize * 2,
       before: startCursor,
       sort: "date",
       },{ ...fetchOptions});
@@ -99,11 +105,11 @@ export async function getBlogsForProduct({
     }
 
     const remainingPages = Math.max(
-      res.data.blogsConnection.edges.length - limit,
+      res.data.blogsConnection.edges.length - pageSize,
       0
     );
 
-    const croppedBlogResponse = res.data.blogsConnection.edges?.slice(0, limit);
+    const croppedBlogResponse = res.data.blogsConnection.edges?.slice(0, pageSize);
 
     return {
       blogs: croppedBlogResponse,

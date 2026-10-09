@@ -1,3 +1,7 @@
+/* eslint-disable no-restricted-syntax -- the headings here follow the selected
+   tab, so an anchor would point at whatever the reader last clicked, and the
+   small-screen branch repeats every one of them. Anchoring needs a rethink of
+   this block, tracked separately. */
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { tinaField } from "tinacms/dist/react";

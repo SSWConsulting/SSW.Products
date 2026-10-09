@@ -1,5 +1,6 @@
 import { defineConfig } from "tinacms";
 import { blogCollection, blogIndexCollection } from "./collectionSchema/blog";
+import { conferenceCollection } from "./collectionSchema/conference";
 import { docsCollection } from "./collectionSchema/docs";
 import { docsTableOfContentsCollection } from "./collectionSchema/docsTableOfContents";
 import { footerCollection } from "./collectionSchema/footer";
@@ -40,6 +41,7 @@ export default defineConfig({
       blogIndexCollection,
       docsCollection,
       docsTableOfContentsCollection,
+      conferenceCollection,
     ],
   },
 });

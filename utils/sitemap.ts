@@ -3,6 +3,7 @@ import { SitemapStream, streamToPromise } from "sitemap";
 import { Readable } from "stream";
 import { tenantHasPrivacyPolicy } from "./privacy";
 import { filterEdgesByTenant, getSlugsFromCollections } from "./tina";
+import { docSlugFromBreadcrumbs } from "./docPath";
 
 const buildSitemap = async (hostname: string, paths: string[]) => {
   const links = paths.map((path) => ({
@@ -23,14 +24,23 @@ const getAllUrls = async (product: string) => {
     client.queries.blogsConnection(),
   ]);
 
-  const [docLinks, blogLinks, pageLinks] = [
-    allDocs.data.docsConnection.edges,
+  const [blogLinks, pageLinks] = [
     allBlogs.data.blogsConnection.edges,
     allPages.data.pagesConnection.edges,
   ].map((collection) => {
     const filteredCollection = filterEdgesByTenant(collection, product);
     return getSlugsFromCollections(filteredCollection);
   });
+
+  // Docs keep their folder in the URL, and a zh doc shares its English doc's URL,
+  // so they are mapped from the full breadcrumb trail and de-duplicated.
+  const docLinks = [
+    ...new Set(
+      filterEdgesByTenant(allDocs.data.docsConnection.edges, product)
+        .map((edge) => docSlugFromBreadcrumbs(edge?.node?._sys?.breadcrumbs))
+        .filter(Boolean)
+    ),
+  ];
 
   const privacyPage = (await tenantHasPrivacyPolicy(product))
     ? [`privacy`]

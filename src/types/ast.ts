@@ -1,6 +1,6 @@
 export type AstNode = {
   children: AstNode[];
-  value: string;
+  value?: string;
   type: string;
-  text: string;
+  text?: string;
 };

@@ -14,7 +14,7 @@ const getPageData = async (product: string, filename: string, branch=defaultBran
 
 
 
-  const filteredBlocks = fileData.data.pages.pageBlocks?.filter(block => block !== null && block !== undefined);
+  const filteredBlocks = fileData.data.pages.pageBlocks?.filter(block => block !== null && block !== undefined) ?? null;
   fileData.data.pages.pageBlocks = filteredBlocks;
   return {...fileData, relativePath};
 }

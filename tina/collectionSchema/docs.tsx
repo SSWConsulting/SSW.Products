@@ -3,6 +3,7 @@ import { Collection, TinaField } from "tinacms";
 import { seoInformation } from "../shared/SEOInformation";
 import { imageEmbedTemplate } from "@comps/shared/Blocks/ImageEmbed";
 import { fileNameField } from "@tina/shared/FileName";
+import { docSlugFromBreadcrumbs } from "@utils/docPath";
 
 export const docsCollection: Collection = {
   label: "Docs",
@@ -10,8 +11,8 @@ export const docsCollection: Collection = {
   path: "content/docs/",
   ui: {
 
-    router: ({document}) => { 
-      return `/docs/${document._sys.filename}`;
+    router: ({document}) => {
+      return `/docs/${docSlugFromBreadcrumbs(document._sys.breadcrumbs)}`;
     },
     ...fileNameField
   },

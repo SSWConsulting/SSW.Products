@@ -1,5 +1,6 @@
 import { DocsTableOfContents } from "@tina/__generated__/types";
 import { getDocPost, getDocsTableOfContents } from "@utils/fetchDocs";
+import { docSlugFromBreadcrumbs } from "@utils/docPath";
 import { getLocale } from "@utils/i18n";
 import NotFoundError from "../../src/errors/not-found";
 import { locale } from "dayjs";
@@ -66,10 +67,11 @@ const getPaginationData = (
     if (!group?.items) return;
 
     group.items.forEach((item: any) => {
-      if (item.slug && item.slug._sys && item.slug._sys.filename) {
+      const slug = docSlugFromBreadcrumbs(item?.slug?._sys?.breadcrumbs);
+      if (slug) {
         allDocs.push({
           title: item.title || "",
-          slug: item.slug._sys.filename,
+          slug,
         });
       }
     });
