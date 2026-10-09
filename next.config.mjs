@@ -32,6 +32,11 @@ const nextConfig = {
         destination: "/docs/recording-on-mobile",
         permanent: true,
       },
+      {
+        source: "/docs/setting-up-other-recording-tools",
+        destination: "/docs/third-party-tools-setup",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
