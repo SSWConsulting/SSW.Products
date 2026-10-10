@@ -1,8 +1,7 @@
 {
   "seo": {
     "title": "AI 工具，快速创建完美的 PBI、任务和错误报告，支持 GitHub、Azure DevOps、Jira 等",
-    "description": "节省数小时编写 PBI 和错误报告的时间。YakShaver AI 自动将您的会议转化为可执行的待办事项——更快、更清晰且极其准确。",
-    "googleStructuredData": "{\n\"name\": \"Rick\",\n\"type\": \"Developer\"\n}"
+    "description": "节省数小时编写 PBI 和错误报告的时间。YakShaver AI 自动将您的会议转化为可执行的待办事项——更快、更清晰且极其准确。"
   },
   "title": "YakShaver - 记录问题并让 AI 立即分配给正确的团队",
   "pageBlocks": [
