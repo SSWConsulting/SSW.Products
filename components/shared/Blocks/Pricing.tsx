@@ -84,7 +84,7 @@ const Pricing = ({ data }: PricingProps) => {
           as="h1"
           wrap
           anchor={title}
-          className="text-4xl text-center font-semibold text-white mb-4"
+          className="text-center mb-4"
           data-tina-field={tinaField(data, "title")}
         >
           {curlyBracketFormatter(title)}
