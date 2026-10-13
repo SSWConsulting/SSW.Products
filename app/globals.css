@@ -108,12 +108,10 @@ strong {
     cursor: pointer;
   }
 
-  /* Single source of truth for heading typography. Components render the right
-     level and inherit this - they should not repeat size/weight/colour classes.
-     Font is intentionally omitted so headings keep inheriting Inter from <body>
-     (Tailwind's `font-sans` is the system stack here, not Inter).
-     The doc/blog markdown renderer sets its own smaller prose scale, which wins
-     over these as a utility layer. */
+  /* One source of truth for heading sizes - blocks render the right level and
+     inherit this instead of repeating classes. No font here, so headings keep
+     Inter from <body>. The markdown renderer's own classes override this
+     (utilities beat base), keeping doc/blog prose on its smaller scale. */
   h1,
   h2,
   h3,
