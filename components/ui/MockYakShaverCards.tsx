@@ -6,25 +6,25 @@ import { TypingAnimation } from "../shared/Blocks/Hero/TypingAnimation";
 export function ExampleYakShaverCard() {
   return (
     <div className="bg-[#1E1E20] border-2  text-xs border-[#4D4D4E] shadow-2xl rounded-xl p-4  text-white ">
-      <h2 className=" font-semibold pb-2 px lg:whitespace-nowrap whitespace-nowrap md:whitespace-normal">
+      <h2 className="inherit-heading font-semibold pb-2 px lg:whitespace-nowrap whitespace-nowrap md:whitespace-normal">
         {" "}
         ✅ Done - ✨ A Work Item has been created by YakShaver.ai 🐂
       </h2>
-      <h3 className="pb-1">Project</h3>
+      <h3 className="pb-1 inherit-heading">Project</h3>
 
       <span className="h-[24px] items-center text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
         tina.io
       </span>
 
-      <h3 className="pb-1">Work Item #2818</h3>
+      <h3 className="pb-1 inherit-heading">Work Item #2818</h3>
       <span className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F] whitespace-nowrap overflow-hidden text-ellipsis">
         🐛 Fix event display issue on tina.io homepage
       </span>
-      <h3 className="pb-1">Assigned to</h3>
+      <h3 className="pb-1 inherit-heading">Assigned to</h3>
       <span className="items-center  h-[24px] text-xs font-normal mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
         Betty Bondoc
       </span>
-      <h3 className="pb-1">Mentioned Users</h3>
+      <h3 className="pb-1 inherit-heading">Mentioned Users</h3>
       <span className="items-center h-[24px] text-xs font-normal  mb-2 flex bg-[#4E4E4F] rounded-lg px-2 py-1 border-2 border-[#4E4E4F]">
         Adam Cogan, Matt Wicks
       </span>
@@ -62,14 +62,14 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
           ✨ A bug report has been created
         </span>
       </h2>
-      <h3>Project</h3>
+      <h3 className="inherit-heading">Project</h3>
       <div
         className={`h-9.25 items-center text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30`}
       >
         <span>TinaCloud</span>
       </div>
 
-      <h3>Work Item</h3>
+      <h3 className="inherit-heading">Work Item</h3>
       <div
         className={`gap-2 items-center h-9.25 text-xs font-normal mb-2 flex bg-white/5  rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30 lg:whitespace-nowrap overflow-hidden text-ellipsis`}
       >
