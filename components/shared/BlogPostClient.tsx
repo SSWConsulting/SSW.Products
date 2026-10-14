@@ -197,6 +197,27 @@ export default function BlogPostClient({
                             {props?.children}
                           </li>
                         ),
+                        // summary sub-points, not document headings
+                        h1: (props: { children: ReactNode } | undefined) => (
+                          <p className="font-semibold text-white">
+                            {props?.children}
+                          </p>
+                        ),
+                        h2: (props: { children: ReactNode } | undefined) => (
+                          <p className="font-semibold text-white">
+                            {props?.children}
+                          </p>
+                        ),
+                        h3: (props: { children: ReactNode } | undefined) => (
+                          <p className="font-semibold text-white">
+                            {props?.children}
+                          </p>
+                        ),
+                        h4: (props: { children: ReactNode } | undefined) => (
+                          <p className="font-semibold text-white">
+                            {props?.children}
+                          </p>
+                        ),
                       }}
                     />
                   </div>

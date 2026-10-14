@@ -7,6 +7,7 @@ import { Modify } from "@/types/modify";
 import Image from "next/image";
 import Link from "next/link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import type { ReactNode } from "react";
 import ArticleMetadata from "./shared/ArticleMetadata";
 import Author from "./shared/Author";
 import CategoryLabel from "./shared/CategoryLabel";
@@ -90,6 +91,26 @@ const BlogCard = ({
             content={body}
             components={{
               img: () => <></>,
+              // the excerpt is clamped body text, not a document outline, so
+              // render any markdown headings as inline text, not real headings
+              h1: (props: { children: ReactNode } | undefined) => (
+                <span>{props?.children}</span>
+              ),
+              h2: (props: { children: ReactNode } | undefined) => (
+                <span>{props?.children}</span>
+              ),
+              h3: (props: { children: ReactNode } | undefined) => (
+                <span>{props?.children}</span>
+              ),
+              h4: (props: { children: ReactNode } | undefined) => (
+                <span>{props?.children}</span>
+              ),
+              h5: (props: { children: ReactNode } | undefined) => (
+                <span>{props?.children}</span>
+              ),
+              h6: (props: { children: ReactNode } | undefined) => (
+                <span>{props?.children}</span>
+              ),
             }}
           />
         </section>
