@@ -82,7 +82,6 @@ const Pricing = ({ data }: PricingProps) => {
       {title && (
         <LinkableHeading
           as="h1"
-          wrap
           anchor={title}
           className="text-center mb-4"
           data-tina-field={tinaField(data, "title")}

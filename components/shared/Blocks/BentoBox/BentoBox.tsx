@@ -157,7 +157,6 @@ export function TitleFadeIn({ title }: { title: string }) {
     <>
       <LinkableHeading
         as="h2"
-        wrap
         anchor={title}
         className="text-center pb-12"
       >

@@ -87,7 +87,7 @@ const FeaturedArticle = ({
                 {props.title}
               </h2>
             )}
-            <div className="bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
+            <div className="group bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
               <div className="flex flex-col lg:flex-row">
                 <div className="relative w-full grow md:basis-4/12 aspect-video">
                   <div className="w-full h-full lg:mask-to-right mask-to-bottom">
@@ -117,7 +117,7 @@ const FeaturedArticle = ({
                     </CategoryLabel>
                   )}
                   <Link href={contextualHref(`/blog/${featuredBlog._sys.filename}`)}>
-                    <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
+                    <h3 className="sm:text-2xl text-xl font-bold group-hover:text-ssw-red transition-colors">
                       {featuredBlog?.title}
                     </h3>
                   </Link>
@@ -237,7 +237,7 @@ const RecentArticles = ({
                     body={post.body}
                     bannerImage={post.bannerImage}
                     date={post.date}
-                    groupHover={false}
+                    groupHover
                     readLength={post.readLength}
                     title={post.title}
                     author={{
