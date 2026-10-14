@@ -64,7 +64,6 @@ export const DownloadCards = ({
           {title && (
             <LinkableHeading
               as="h2"
-              wrap
               data-tina-field={tinaField(data, "title")}
               className="text-center mb-7"
             >
@@ -120,7 +119,6 @@ const DownloadCardItem = ({
       {card.title && (
         <LinkableHeading
           as="h3"
-          wrap
           data-tina-field={tinaField(card, "title")}
           className="text-center w-full"
         >

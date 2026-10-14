@@ -62,7 +62,6 @@ export default function CardAndImageParent({
         {ParentContainerTitle && (
           <LinkableHeading
             as="h2"
-            wrap
             anchor={ParentContainerTitle}
             className="flex justify-center pb-3"
           >
