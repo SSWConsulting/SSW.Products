@@ -1,5 +1,6 @@
 import { YouTubeEmbed } from "@comps/shared/YouTubeEmbed";
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { Components } from "tinacms/dist/rich-text";
 
 import Link from "./Link";
@@ -7,10 +8,22 @@ import { ImageEmbed } from "@comps/shared/Blocks/ImageEmbed";
 import { CodeBlock } from "@comps/shared/code-block/code-block";
 import LinkableHeading from "@comps/shared/LinkableHeading";
 
+type TableCellProps = { align?: string; children?: ReactNode };
+// Tina types `table` by its AST shape but calls it with the rendered rows as children.
+type TableProps = { align?: ("left" | "right" | "center")[]; children?: ReactNode };
+
+const tableAlignClass = (align?: string) => {
+  if (align === "center") return "text-center";
+  if (align === "right") return "text-right";
+  return "text-left";
+};
+
 export const DocAndBlogMarkdownStyle: Components<{
   Youtube: {
     thumbnail?: string; externalVideoLink?: string; size?: string; caption?: string
   };
+  th: TableCellProps;
+  td: TableCellProps;
   imageEmbed: {
     src?: string; alt?: string; size?: string; showBorder?: boolean
   };
@@ -131,5 +144,24 @@ export const DocAndBlogMarkdownStyle: Components<{
   },
   code_block: (props) => (
     <CodeBlock lang={props?.lang ?? "text"} value={props?.value ?? ""} />
+  ),
+  // TinaMarkdown renders a GFM table as table > thead/tbody > tr > th/td and hands each of
+  // these the cell's children plus the column alignment, so they only need styling.
+  table: (props?: TableProps) => (
+    <div className="my-6 overflow-x-auto">
+      <table className="w-full border-collapse text-sm [&_a]:underline [&_code]:break-all">
+        {props?.children}
+      </table>
+    </div>
+  ),
+  th: ({ align, children }: TableCellProps) => (
+    <th className={`border border-white/15 bg-white/5 p-3 align-top font-semibold ${tableAlignClass(align)}`}>
+      {children}
+    </th>
+  ),
+  td: ({ align, children }: TableCellProps) => (
+    <td className={`border border-white/15 p-3 align-top font-light ${tableAlignClass(align)}`}>
+      {children}
+    </td>
   ),
 };

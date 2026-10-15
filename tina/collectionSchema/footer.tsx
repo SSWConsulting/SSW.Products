@@ -57,6 +57,33 @@ export const footerCollection: Collection = {
       ],
     },
     {
+      name: "links",
+      label: "Text Links",
+      description:
+        "Shown after the copyright line, for example Security, Terms, Support. The Privacy Policy link is added automatically when the product has one.",
+      type: "object",
+      list: true,
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.label };
+        },
+      },
+      fields: [
+        {
+          name: "label",
+          label: "Label",
+          type: "string",
+          required: true,
+        },
+        {
+          name: "href",
+          label: "href",
+          type: "string",
+          required: true,
+        },
+      ],
+    },
+    {
       name: "poweredByTinaBanner",
       label: "Powered By Tina Banner",
       type: "object",

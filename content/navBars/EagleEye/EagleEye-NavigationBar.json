@@ -32,6 +32,28 @@
       "_template": "stringItem"
     },
     {
+      "label": "Trust",
+      "items": [
+        {
+          "label": "Security",
+          "href": "/security"
+        },
+        {
+          "label": "Privacy",
+          "href": "/privacy"
+        },
+        {
+          "label": "Terms",
+          "href": "/terms"
+        },
+        {
+          "label": "Support",
+          "href": "/support"
+        }
+      ],
+      "_template": "groupOfStringItems"
+    },
+    {
       "label": "Videos",
       "href": "https://www.youtube.com/@SSWEagleEye",
       "openInNewTab": true,
