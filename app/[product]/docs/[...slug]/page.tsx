@@ -3,6 +3,7 @@ import { permanentRedirect } from "next/navigation";
 import client from "../../../../tina/__generated__/client";
 import { getLocale, withLocalePrefix } from "../../../../utils/i18n";
 import { docSlugFromBreadcrumbs } from "../../../../utils/docPath";
+import { getAllConnectionEdges } from "@utils/tina";
 import { setPageMetadata } from "../../../../utils/setPageMetaData";
 import DocPostClient from "./DocPostClient";
 import getDocPageData from "@utils/pages/getDocPageData";
@@ -40,11 +41,14 @@ export async function generateMetadata({ params }: DocPostMetadataProps) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.docsConnection({});
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.docsConnection(vars),
+    "docsConnection"
+  );
   const params: { slug: string[]; product: string }[] = [];
   const seen = new Set<string>();
 
-  for (const post of sitePosts.data.docsConnection?.edges ?? []) {
+  for (const post of edges) {
     const breadcrumbs = post?.node?._sys.breadcrumbs;
     const slug = docSlugFromBreadcrumbs(breadcrumbs);
     if (!breadcrumbs?.length || !slug) continue;

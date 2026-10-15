@@ -30,4 +30,32 @@ const getSlugsFromCollections = <T extends Edges>(edges: T): string[] => {
   }, []);
 };
 
-export { filterEdgesByTenant, getSlugsFromCollections };
+// Tina connection queries return one page at a time (default ~10 edges), so a
+// single call silently truncates large collections. Follow the cursor to the
+// end and return every edge. Used by the sitemap and by the routes'
+// generateStaticParams, which otherwise only pre-render the first page.
+const getAllConnectionEdges = async (
+  runQuery: (vars: {
+    first: number;
+    after?: string;
+  }) => Promise<{ data: Record<string, any> }>,
+  field: string
+): Promise<any[]> => {
+  const edges: any[] = [];
+  let after: string | undefined;
+  // hard cap guards against a malformed pageInfo turning this into a loop
+  for (let page = 0; page < 50; page++) {
+    const res = await runQuery({ first: 100, after });
+    const connection = res.data[field];
+    for (const edge of connection?.edges ?? []) {
+      if (edge) edges.push(edge);
+    }
+    if (!connection?.pageInfo?.hasNextPage || !connection.pageInfo.endCursor) {
+      break;
+    }
+    after = connection.pageInfo.endCursor;
+  }
+  return edges;
+};
+
+export { filterEdgesByTenant, getSlugsFromCollections, getAllConnectionEdges };

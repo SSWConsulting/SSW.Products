@@ -1,6 +1,7 @@
 import HomePageClient from "../../components/shared/HomePageClient";
 import ProductBackground from "../../components/shared/ProductBackground";
 import client from "../../tina/__generated__/client";
+import { getAllConnectionEdges } from "@utils/tina";
 import { setPageMetadata } from "../../utils/setPageMetaData";
 import { getLocale, getPageWithFallback, getRelativePath } from "../../utils/i18n";
 
@@ -18,12 +19,13 @@ export async function generateMetadata({ params }: ProductPageProps) {
 }
 
 export async function generateStaticParams() {
-  const sitePosts = await client.queries.pagesConnection({});
-  return (
-    sitePosts.data.pagesConnection?.edges?.map((post) => ({
-      product: post?.node?._sys.breadcrumbs[0],
-    })) || []
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.pagesConnection(vars),
+    "pagesConnection"
   );
+  return edges.map((post) => ({
+    product: post?.node?._sys.breadcrumbs[0],
+  }));
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
