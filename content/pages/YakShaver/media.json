@@ -141,6 +141,11 @@
       "_template": "imageGrid"
     },
     {
+      "title": "Headings",
+      "description": "These are the six heading levels used across YakShaver. They render live from the site's base styles, so they always match what you see on the pages.\n",
+      "_template": "headingSpecimen"
+    },
+    {
       "title": "Jack the Yak",
       "gridDescription": "Meet the YakShaver mascot and our favourite yak, Jack!\n",
       "showcaseImage": "/YakShaver/yakshaver-jack-character-sheet-v2.png",

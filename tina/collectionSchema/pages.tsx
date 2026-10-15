@@ -22,6 +22,7 @@ import DownloadCardsTemplate from "../../components/shared/Blocks/DownloadCards.
 import { MediaHeroTemplate } from "../../components/shared/Blocks/MediaHero.template";
 import { ImageGridTemplate } from "../../components/shared/Blocks/ImageGrid.template";
 import { ImageShowcaseTemplate } from "../../components/shared/Blocks/ImageShowcase.template";
+import { HeadingSpecimenTemplate } from "../../components/shared/Blocks/HeadingSpecimen.template";
 import { seoInformation } from "../shared/SEOInformation";
 import { fileNameField } from "@tina/shared/FileName";
 
@@ -108,6 +109,7 @@ export const PagesSchema: Collection = {
         MediaHeroTemplate,
         ImageGridTemplate,
         ImageShowcaseTemplate,
+        HeadingSpecimenTemplate,
         FeaturesTemplate,
         FAQTemplate,
         CarouselFeatureTemplate,

@@ -23,6 +23,8 @@ const ANCHORED_FIELDS: Record<string, string[]> = {
   comparisonTable: ["headline"],
   downloadCards: ["title", "cards[].title"],
   faq: ["headline", "questions[].question"],
+  // the h1-h6 samples are plain specimens, not navigable; only the section title anchors
+  headingSpecimen: ["title"],
   imageGrid: ["title"],
   imageShowcase: ["title", "showcaseTitle"],
   // plan tiers and the add-on title are plain paragraphs; listTitle still anchors

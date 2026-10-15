@@ -8,6 +8,7 @@ import ComparisonTable from "./Blocks/ComparisonTable";
 import FAQ from "./Blocks/FAQ";
 import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
+import HeadingSpecimen from "./Blocks/HeadingSpecimen";
 import Hero from "./Blocks/Hero/Hero";
 import ImageGrid from "./Blocks/ImageGrid";
 import ImageShowcase from "./Blocks/ImageShowcase";
@@ -111,6 +112,8 @@ const Blocks = ({ blocks }: BlocksProps) => {
         return <ImageGrid key={index} {...block} />;
       case "PagesPageBlocksImageShowcase":
         return <ImageShowcase key={index} {...block} />;
+      case "PagesPageBlocksHeadingSpecimen":
+        return <HeadingSpecimen key={index} {...block} />;
       default:
         return null;
     }
