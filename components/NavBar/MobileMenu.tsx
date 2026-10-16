@@ -46,17 +46,16 @@ const MobileMenuItem = ({ href, label, openInNewTab = false, isActive = false }:
   const { setIsOpen } = useMenuContext();
   return (
     <li className="flex items-center py-1 mb-0">
-      <GrowingLink 
+      <GrowingLink
         {...(openInNewTab ? { target: "_blank"} : {})}
         onClick={()=> setIsOpen(false)}
-        href={href} 
-        underlineColor="red"
+        href={href}
         className={cn("uppercase mb-0 underline-offset-4 text-md flex items-center gap-1 min-h-9 min-w-9", isActive && "after:scale-x-100 after:origin-left")}
         >
           {label}
           {href &&
             (href.startsWith("http://") || href.startsWith("https://")) && (
-              <FaExternalLinkAlt className="text-xs text-ssw-red opacity-50" />
+              <FaExternalLinkAlt className="text-xs text-white opacity-50 ml-0.5" />
             )}
       </GrowingLink>
     </li>

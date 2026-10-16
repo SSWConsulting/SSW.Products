@@ -100,7 +100,7 @@ export default function LanguageToggle({ currentLocale }: LanguageToggleProps) {
     <>
       <button
         onClick={() => setIsOpen(true)}
-        className="min-h-[42px] min-w-[42px] flex items-center justify-center rounded-full overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+        className="min-h-[42px] min-w-[42px] flex items-center justify-center rounded-full overflow-hidden shadow-md transition-all duration-200 hover:shadow-lg hover:scale-105"
         aria-label="Switch language"
       >
         <Image
