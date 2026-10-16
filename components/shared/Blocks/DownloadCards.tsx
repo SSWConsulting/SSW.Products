@@ -66,7 +66,7 @@ export const DownloadCards = ({
               as="h2"
               wrap
               data-tina-field={tinaField(data, "title")}
-              className="text-2xl font-semibold text-center mb-7"
+              className="text-center mb-7"
             >
               {title}
             </LinkableHeading>
@@ -122,7 +122,7 @@ const DownloadCardItem = ({
           as="h3"
           wrap
           data-tina-field={tinaField(card, "title")}
-          className="text-2xl font-semibold text-center w-full"
+          className="text-center w-full"
         >
           {card.title}
         </LinkableHeading>

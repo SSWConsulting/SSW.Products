@@ -197,13 +197,13 @@ export default function Hero({ data }: { data: any }) {
           >
             <div className="flex flex-col font-bold items-center justify-center text-2xl md:text-5xl  text-white">
               <div className="pt-20 flex items-center justify-center gap-2">
-                <h1>{data?.titleBeforeRotate}</h1>
+                <h1 className="inherit-heading">{data?.titleBeforeRotate}</h1>
                 <span className="text-[#CC4141] pl-1">
                   <WordRotate words={data?.rotatingWords} />
                 </span>
               </div>
               <div>
-                <h1>{data?.titleAfterRotate}</h1>
+                <h1 className="inherit-heading">{data?.titleAfterRotate}</h1>
               </div>
             </div>
             {/* the byline is body copy, not a heading: it was an h2 for the
