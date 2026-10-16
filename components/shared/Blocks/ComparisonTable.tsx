@@ -135,7 +135,7 @@ export default function ComparisonTable({ data }: { data: any }) {
     <div className="container max-w-7xl mx-auto px-4 md:p-4 mb-14 lg:mb-4 md:mt-0 lg:pb-40">
       {data.headline && (
         <LinkableHeading
-          as="h1"
+          as="h2"
           wrap
           anchor={data.headline}
           className="text-center mb-4"
