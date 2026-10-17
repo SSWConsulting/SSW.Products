@@ -41,7 +41,6 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
 
   const footerItems = results?.footer?.footer;
   const footerTitle = results?.footer?.footerTitle;
-  const footerColor = results.footer.footerColor!;
   const dynamicYear = new Date().getFullYear();
   const poweredByTinaBanner = results?.footer?.poweredByTinaBanner;
 
@@ -59,8 +58,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
 
   return (
     <footer
-      className="text-white p-6 transition-opacity duration-300 bg-ssw-charcoal opacity-100"
-      style={{ backgroundColor: footerColor }}
+      className="text-white p-6 transition-opacity duration-300 bg-gray-darkest opacity-100"
     >
       <div className="max-w-7xl xl:mx-auto mx-4 w-full">
         <div className={`grid grid-cols-1 items-center gap-4 ${poweredByTinaBanner ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`}>
