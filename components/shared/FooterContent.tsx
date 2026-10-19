@@ -118,7 +118,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
                   href={item.footerItemLink ?? "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-lg md:text-2xl transition-colors hover:text-white hover:-translate-y-1 animation ease-in-out duration-300"
+                  className="flex items-center space-x-2 text-lg md:text-2xl hover:text-white hover:-translate-y-1 animation ease-in-out duration-300"
                 >
                   {icon && icon["svg"]}
                 </a>
