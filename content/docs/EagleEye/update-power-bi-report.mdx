@@ -1,0 +1,61 @@
+---
+seo:
+  title: SSW EagleEye - Update the Power BI Report
+  description: >-
+    Update your installed SSW EagleEye Power BI template app to a new version,
+    and keep your database connection and portal embed link.
+title: Update the Power BI report
+date: '2026-10-20T00:00:00.000Z'
+---
+
+SSW releases new versions of the SSW EagleEye - Power BI template app. Your installed app does not update itself. This guide shows you how to update it and keep your database connection, refresh schedule and portal embed link.
+
+## Prerequisites
+
+* You installed the app as [Step 4 - Integrate Power BI report](./step-4-integrate-power-bi-report) describes.
+* You are an Admin of the Power BI workspace that holds the app.
+* A new version is available. If you installed from the Microsoft Marketplace, Power BI shows an update banner in the workspace and a notification. If you installed from a link that SSW sent you, SSW tells you about the new version.
+
+## Update the app
+
+1. Turn off Large storage format. Power BI can't update a template app whose semantic model uses it.
+   1. In Power BI, open your EagleEye workspace.
+   2. Next to the **EagleEye** semantic model, select **More options (...)** → **Settings**.
+   3. Expand **Large semantic model storage format**. If the toggle shows **On**, set it to **Off** and click **Apply**.
+      ![Large semantic model storage format toggle set to On](/EagleEye/Guides/Power-BI-Large-Storage-Format.png)
+2. Click **Get it** on the update banner or in the notification. You can also open the [SSW EagleEye - Power BI](https://marketplace.microsoft.com/en-us/product/power-bi/ssw1700450141896.ssweagleeye-power-bi) page on the Microsoft Marketplace and click **Get it now**.
+3. Click **Install**. The **Update app** dialog opens.
+4. Select **Update only workspace content without updating the app**. This option keeps your workspace name and app name.
+5. In **Select the workspace to overwrite**, select your EagleEye workspace. Power BI preselects a workspace for you, and it can be a different one.
+   ![Update app dialog with Update only workspace content selected and the EagleEye workspace chosen](/EagleEye/Guides/Power-BI-Update-Workspace-Only.png)
+6. Click **Install**. Power BI shows **Your workspace was updated!**
+7. Wait for the refresh to finish. Power BI starts it by itself. Until it finishes, the report shows sample data. A large database can take 30 minutes or more.
+8. In the workspace, click **Update app**, then click **Update app** and **Update**. Your users now see the new version.
+
+The update keeps your report ID, so the embed link in your EagleEye Portal keeps working. It also keeps your database parameters, credentials and refresh schedule.
+
+## Check the update
+
+* In the semantic model **Settings** → **Refresh history**, the top refresh shows **Completed**.
+* In the workspace list, the semantic model shows a date under **Next refresh**.
+* The Power BI report in your EagleEye Portal shows your data.
+
+## Troubleshooting
+
+**"This app cannot be updated, choose a different app or install another copy of the app."**
+
+The semantic model uses Large storage format. Do step 1, then start again from step 2.
+
+![This app cannot be updated error in the Update app dialog](/EagleEye/Guides/Power-BI-Update-Blocked.png)
+
+**The workspace or the app has a new name, such as "SSW EagleEye Template" and a date**
+
+You selected **Update the workspace and the app**. Rename the workspace in **Workspace settings**, and the app in **Update app** → **Setup**. Then check that the report still shows in your EagleEye Portal. If it doesn't, copy the embed link again with steps 8 to 11 of [Step 4 - Integrate Power BI report](./step-4-integrate-power-bi-report).
+
+**The refresh fails**
+
+Open **Refresh history** and read the error. Check the database credentials, as [Manage Credentials for Database](./manage-database-credentials) describes. If the refresh still fails, contact SSW and include the error text.
+
+**No date under Next refresh**
+
+Power BI turns off the refresh schedule after 4 failed refreshes in a row. In the semantic model **Settings** → **Refresh**, turn the schedule on again.
