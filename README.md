@@ -17,7 +17,7 @@ The `YakShaver` and `EagleEye` websites should be used as a guide for creating f
 
 ###  Tina Branding 
 
-`Tina` branding, e.g. 'Powered By Tina' should be included in the footers.
+`Tina` branding, e.g. 'Created with Tina' should be included in the footers.
 This is enabled by default, and can be configured in the respective `{product}-footer.json` files.
 
 
