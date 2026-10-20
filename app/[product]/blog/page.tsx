@@ -6,7 +6,7 @@ import {
 import { BlogSearchProvider } from "../../../components/providers/BlogSearchProvider";
 import BlogIndexClient from "../../../components/shared/BlogIndexClient";
 import client from "../../../tina/__generated__/client";
-import { getAllConnectionEdges } from "@utils/tina";
+import { filterEdgesByTenant, getAllConnectionEdges } from "@utils/tina";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
 import { getLocale, getBlogIndexWithFallback } from "../../../utils/i18n";
 interface BlogIndex {
@@ -46,9 +46,7 @@ const getCategories = async (product: string) => {
     (vars) => client.queries.blogsConnection(vars),
     "blogsConnection"
   );
-  const filteredPosts = edges?.filter((blog) => {
-    return blog?.node?._sys?.path.includes(product);
-  });
+  const filteredPosts = filterEdgesByTenant(edges, product);
   let categories: string[] = [];
   if (filteredPosts) {
     categories = filteredPosts.reduce<string[]>((acc, curr) => {

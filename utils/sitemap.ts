@@ -51,10 +51,12 @@ const getAllUrls = async (product: string): Promise<SitemapEntry[]> => {
   const blogLinks = [...new Set(getSlugsFromCollections(blogEdges))];
 
   // Newest publish date across a blog's language variants, for <lastmod>.
+  // Note: `date` is the blog's publish date, not a last-edited date — docs have
+  // the same limitation (a "Date Created" field), so neither is a true lastmod.
   const latestBlogDate = (slug: string): string | undefined => {
     const dates = blogEdges
       .filter((edge) => edge?.node?._sys?.breadcrumbs?.at(-1) === slug)
-      .map((edge) => (edge?.node as { date?: string } | undefined)?.date)
+      .map((edge) => edge.node?.date)
       .filter((date): date is string => Boolean(date));
     return dates.length ? dates.sort().at(-1) : undefined;
   };
