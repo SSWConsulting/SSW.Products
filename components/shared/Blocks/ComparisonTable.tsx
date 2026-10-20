@@ -138,7 +138,7 @@ export default function ComparisonTable({ data }: { data: any }) {
           as="h1"
           wrap
           anchor={data.headline}
-          className="text-2xl md:text-4xl text-center font-semibold text-white mb-4"
+          className="text-center mb-4"
           data-tina-field={tinaField(data, "title")}
         >
           {curlyBracketFormatter(data.headline)}

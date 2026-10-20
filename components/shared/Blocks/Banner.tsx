@@ -38,7 +38,7 @@ const Banner = ({ data }: { data: BannerProps["data"] }) => {
           <LinkableHeading
             as="h2"
             wrap
-            className="text-4xl font-semibold mb-4"
+            className="mb-4"
             data-tina-field={tinaField(data, "headline")}
           >
             {data.headline}

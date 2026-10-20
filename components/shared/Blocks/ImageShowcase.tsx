@@ -54,7 +54,7 @@ const ImageShowcase = ({
             <LinkableHeading
               as="h2"
               wrap
-              className="text-[32px] font-semibold text-white mb-1"
+              className="mb-1"
             >
               {title}
             </LinkableHeading>
@@ -101,7 +101,7 @@ const ImageShowcase = ({
           <LinkableHeading
             as="h2"
             wrap
-            className="text-white text-2xl font-bold mb-3"
+            className="mb-3"
           >
             {showcaseTitle}
           </LinkableHeading>

@@ -159,7 +159,7 @@ export function TitleFadeIn({ title }: { title: string }) {
         as="h2"
         wrap
         anchor={title}
-        className="text-white text text-center text-3xl font-semibold pb-12"
+        className="text-center pb-12"
       >
         <span className="inline-block max-w-full break-words">
           {firstPart}

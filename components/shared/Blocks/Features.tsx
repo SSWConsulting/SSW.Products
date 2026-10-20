@@ -109,7 +109,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
             {/* First line: Headline (always on the first line) */}
             <div className="w-full md:w-auto lg:w-full xl:w-auto flex items-center">
               <h1
-                className="inline"
+                className="inline inherit-heading"
                 data-tina-field={tinaField(feature, "headline")}
               >
                 {feature.headline}
@@ -126,7 +126,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
                 <WordRotate words={feature.words} className="inline-flex" />
               </span>
               <h1
-                className="w-full md:w-auto lg:w-auto xl:w-full md:inline-flex"
+                className="w-full md:w-auto lg:w-auto xl:w-full md:inline-flex inherit-heading"
                 data-tina-field={tinaField(feature, "headlineAfter")}
               >
                 {feature.headlineAfter}
@@ -137,7 +137,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
             <div className="w-full flex flex-wrap items-center">
               {/* First line: Headline, Words, and HeadlineAfter (all on the same line) */}
               <h1
-                className="inline"
+                className="inline inherit-heading"
                 data-tina-field={tinaField(feature, "headline")}
               >
                 {feature.headline}
@@ -146,7 +146,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
                 <WordRotate words={feature.words} className="inline-flex" />
               </span>
               <h1
-                className="inline"
+                className="inline inherit-heading"
                 data-tina-field={tinaField(feature, "headlineAfter")}
               >
                 {feature.headlineAfter}
