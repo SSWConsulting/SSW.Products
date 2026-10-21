@@ -65,7 +65,7 @@ const NavigationMenuRoot = React.forwardRef<
           ? `shadow-xs ${
               mobileOpened
                 ? "bg-black"
-                : "bg-ssw-charcoal/75 backdrop-blur-md border-b border-white/10"
+                : "bg-ssw-charcoal/85 backdrop-blur-md border-b border-white/10"
             } my-2 py-4 px-6 animate-slide animate-in slide-in-from-top-3 animate-slide-in top-0 `
           : `p-6 ${mobileOpened ? "bg-black" : "bg-transparent"}`,
         `z-40 w-full`
