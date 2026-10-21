@@ -36,7 +36,14 @@ const BlogCard = ({
   return (
     <div className="h-full flex flex-col grow shrink-0 relative border bg-gradient-black border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
       {groupHover && (
-        <Link href={blogUrl} className="absolute inset-0 z-20" />
+        // the title already links to the post; hide this full-card overlay
+        // link from assistive tech so it isn't announced as an unnamed link
+        <Link
+          href={blogUrl}
+          className="absolute inset-0 z-20"
+          aria-hidden
+          tabIndex={-1}
+        />
       )}
       <div className="relative aspect-video ">
         <div className="inset-0 absolute align-middle items-center justify-center flex">
