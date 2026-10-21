@@ -4,7 +4,7 @@ import * as Popover from "@radix-ui/react-popover";
 import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import ExternalLinkIcon from "@comps/NavBar/ExternalLinkIcon";
 import { HiOutlineBars3 } from "react-icons/hi2";
 
 type MenuContextType = { setIsOpen: (open: boolean) => void; isOpen: boolean };
@@ -46,18 +46,14 @@ const MobileMenuItem = ({ href, label, openInNewTab = false, isActive = false }:
   const { setIsOpen } = useMenuContext();
   return (
     <li className="flex items-center py-1 mb-0">
-      <GrowingLink 
+      <GrowingLink
         {...(openInNewTab ? { target: "_blank"} : {})}
         onClick={()=> setIsOpen(false)}
-        href={href} 
-        underlineColor="red"
-        className={cn("uppercase mb-0 underline-offset-4 text-md flex items-center gap-1 min-h-9 min-w-9", isActive && "after:scale-x-100 after:origin-left")}
+        href={href}
+        className={cn("uppercase mb-0 underline-offset-4 text-md flex items-center gap-1 min-h-9 min-w-9", isActive && "after:scale-x-100 after:origin-left after:bg-ssw-red")}
         >
           {label}
-          {href &&
-            (href.startsWith("http://") || href.startsWith("https://")) && (
-              <FaExternalLinkAlt className="text-xs text-ssw-red opacity-50" />
-            )}
+          <ExternalLinkIcon href={href} className="opacity-50" />
       </GrowingLink>
     </li>
   );

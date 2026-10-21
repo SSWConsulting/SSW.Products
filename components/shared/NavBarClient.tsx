@@ -29,7 +29,7 @@ import { Button } from "@comps/ui/button";
 import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import ExternalLinkIcon from "@comps/NavBar/ExternalLinkIcon";
 import { BookingButton, variantMap } from "./Blocks/BookingButton";
 import LanguageToggle from "./LanguageToggle";
 import GrowingLink from "@comps/GrowingLink";
@@ -141,16 +141,11 @@ function NavBarClientContent({
                     <li key={subIndex}>
                       <GrowingLink
                         {...(subItem.openInNewTab ? { target: "_blank" } : {})}
-                        underlineColor="red"
                         href={contextualHref(subItem.href)}
-                        className={cn("flex items-center gap-1 min-h-[36px] min-w-[36px] w-fit hover:text-white underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal", isSubActive && "after:scale-x-100 after:origin-left text-white")}
+                        className={cn("flex items-center gap-1 min-h-[36px] min-w-[36px] w-fit underline-offset-4 transition-colors relative whitespace-nowrap writing-mode-horizontal", isSubActive && "after:scale-x-100 after:origin-left after:bg-ssw-red")}
                       >
                         {subItem!.label}
-                        {subItem!.href &&
-                          (subItem!.href.startsWith("http://") ||
-                            subItem!.href.startsWith("https://")) && (
-                            <FaExternalLinkAlt className="text-xs text-ssw-red" />
-                          )}
+                        <ExternalLinkIcon href={subItem!.href} />
                       </GrowingLink>
                     </li>
                     );
@@ -168,14 +163,10 @@ function NavBarClientContent({
                 <GrowingLink
                   href={contextualHref(item.href)}
                   {...(item.openInNewTab ? { target: "_blank" } : {})}
-                  className={cn("mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal", isActive && "after:scale-x-100 after:origin-left")}
-                  underlineColor="red"
+                  className={cn("mx-3 text-base flex flex-row gap-1 items-center min-h-[42px] rounded uppercase whitespace-nowrap writing-mode-horizontal", isActive && "after:scale-x-100 after:origin-left after:bg-ssw-red")}
                 >
                   {item.label}
-                  {item.href.startsWith("http://") ||
-                    (item.href.startsWith("https://") && (
-                      <FaExternalLinkAlt className="text-ssw-red text-xs" />
-                    ))}
+                  <ExternalLinkIcon href={item.href} />
                 </GrowingLink>
               </NavigationMenuItem>
             );
@@ -293,14 +284,20 @@ const ButtonMap = ({
       const shadcnVariant =
         variantMap[item.variant as ButtonVariant] ??
         variantMap[ButtonVariant.SolidWhite];
+      // The white Portal button already turns red on hover (shadcn's default
+      // variant). Make its border follow the background (white → red) instead
+      // of a stray black outline, and flip the text + (black) icon to white.
+      const isSolidWhite = shadcnVariant === variantMap[ButtonVariant.SolidWhite];
       return (
         <Button
           asChild
           className={cn(
-            "flex gap-1 min-h-[42px]",
+            "group flex gap-1 min-h-[42px]",
             item.iconPosition === "left" ? "flex-row-reverse" : "flex-row",
             className,
-            shadcnVariant
+            shadcnVariant,
+            isSolidWhite &&
+              "border-white hover:border-ssw-red/80 hover:text-white hover:opacity-100"
           )}
           href={item.url || ""}
           key={item.label}
@@ -314,7 +311,7 @@ const ButtonMap = ({
                   fill
                   src={item.icon}
                   alt={item.label || "Icon"}
-                  className=" inset-0"
+                  className={cn("inset-0", isSolidWhite && "transition group-hover:invert")}
                 />
               </div>
             )}
