@@ -195,17 +195,17 @@ export default function Hero({ data }: { data: any }) {
             className="z-10 flex flex-col items-center justify-center w-full"
             size="small"
           >
-            <div className="flex flex-col font-bold items-center justify-center text-2xl md:text-5xl  text-white">
-              <div className="pt-20 flex items-center justify-center gap-2">
-                <h1>{data?.titleBeforeRotate}</h1>
+            {/* one h1 for the whole headline; the before/after text and the
+                rotating word are spans within it */}
+            <h1 className="flex flex-col font-bold items-center justify-center text-2xl md:text-5xl text-white">
+              <span className="pt-20 flex items-center justify-center gap-2">
+                <span>{data?.titleBeforeRotate}</span>
                 <span className="text-[#CC4141] pl-1">
                   <WordRotate words={data?.rotatingWords} />
                 </span>
-              </div>
-              <div>
-                <h1>{data?.titleAfterRotate}</h1>
-              </div>
-            </div>
+              </span>
+              <span>{data?.titleAfterRotate}</span>
+            </h1>
             {/* the byline is body copy, not a heading: it was an h2 for the
                 type scale, which put marketing prose in the heading outline */}
             <div className="text-white flex flex-col gap-2 text-center text-base md:text-lg pt-6 lg:pt-12">

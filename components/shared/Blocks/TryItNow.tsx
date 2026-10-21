@@ -55,9 +55,8 @@ export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
           {tryItNowTitle && (
             <LinkableHeading
               as="h2"
-              wrap
               data-tina-field={tinaField(props, "tryItNowTitle")}
-              className="text-[1.75rem] font-semibold text-center mb-7"
+              className="text-center mb-7"
             >
               {tryItNowTitle}
             </LinkableHeading>
@@ -157,9 +156,7 @@ const Card = ({ card, key }: CardProps) => {
       {card?.title && (
         <LinkableHeading
           as="h3"
-          wrap
           data-tina-field={tinaField(card, "title")}
-          className="text-2xl font-semibold"
         >
           {card.title}
         </LinkableHeading>

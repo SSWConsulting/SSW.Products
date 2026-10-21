@@ -18,9 +18,8 @@ const CallToAction = ({ className, ...props }: CallToActionProps) => {
             {props.title && (
               <LinkableHeading
                 as="h2"
-                wrap
                 data-tina-field={tinaField(props, "title")}
-                className="sm:text-3xl text-xl font-bold mb-4"
+                className="mb-4"
               >
                 {props.title}
               </LinkableHeading>

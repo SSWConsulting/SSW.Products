@@ -23,14 +23,6 @@ export const footerCollection: Collection = {
       type: "string",
     },
     {
-        name: 'footerColor',
-        label: 'Footer Color',
-        type: 'string',
-        ui: {
-            component: 'color',
-        }
-    },
-    {
       name: "footer",
       label: "Footer",
       type: "object",

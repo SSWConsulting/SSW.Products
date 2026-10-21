@@ -135,10 +135,9 @@ export default function ComparisonTable({ data }: { data: any }) {
     <div className="container max-w-7xl mx-auto px-4 md:p-4 mb-14 lg:mb-4 md:mt-0 lg:pb-40">
       {data.headline && (
         <LinkableHeading
-          as="h1"
-          wrap
+          as="h2"
           anchor={data.headline}
-          className="text-2xl md:text-4xl text-center font-semibold text-white mb-4"
+          className="text-center mb-4"
           data-tina-field={tinaField(data, "title")}
         >
           {curlyBracketFormatter(data.headline)}
