@@ -99,7 +99,7 @@ const ImageShowcase = ({
 
         {showcaseTitle && (
           <LinkableHeading
-            as="h2"
+            as="h3"
             wrap
             className="mb-3"
           >
