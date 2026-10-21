@@ -90,7 +90,6 @@ const ImageGrid = ({
           {title && (
             <LinkableHeading
               as="h2"
-              wrap
               className="mb-1"
             >
               {title}
