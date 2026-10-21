@@ -1,8 +1,11 @@
+import { ReactNode } from "react";
 import LinkableHeading from "../LinkableHeading";
 
 interface HeadingSpecimenProps {
   title?: string;
-  description?: string;
+  description?: ReactNode;
+  /** h3 when nested under the Typography section; h2 if ever used standalone. */
+  headingLevel?: "h2" | "h3";
 }
 
 // The samples render as real h1–h6 elements with no utility classes, so they
@@ -21,19 +24,54 @@ const LEVELS = [
   { tag: "h6", spec: "Semibold 600 · 16px · line-height 1.5" },
 ] as const;
 
-const DEFAULT_DESCRIPTION =
-  "The six heading levels used across YakShaver. They render live from the site's base styles, so they always match what you see on the pages.";
+// The rules the scale is built on, linked from the words they apply to - a
+// designer reading the brand kit can get to the why without leaving the page.
+const RULES = {
+  level: "https://www.ssw.com.au/rules/use-heading-tags-h1-h2-h3",
+  descriptive:
+    "https://www.ssw.com.au/rules/make-title-h1-and-h2-tags-descriptive",
+  anchors: "https://www.ssw.com.au/rules/heading-to-anchor-targets",
+} as const;
+
+const RuleLink = ({ href, children }: { href: string; children: ReactNode }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-ssw-red underline underline-offset-2 hover:no-underline"
+  >
+    {children}
+  </a>
+);
+
+const DEFAULT_DESCRIPTION = (
+  <>
+    The six heading levels used across YakShaver. They render live from the
+    site&rsquo;s base styles, so they always match what you see on the pages.{" "}
+    <RuleLink href={RULES.level}>
+      Pick the level that matches where the section sits
+    </RuleLink>
+    , not the size you want;{" "}
+    <RuleLink href={RULES.descriptive}>keep the wording descriptive</RuleLink>;
+    and remember{" "}
+    <RuleLink href={RULES.anchors}>
+      every heading doubles as an anchor link
+    </RuleLink>
+    .
+  </>
+);
 
 export default function HeadingSpecimen({
   title = "Headings",
   description = DEFAULT_DESCRIPTION,
+  headingLevel = "h2",
 }: HeadingSpecimenProps) {
   return (
     <div className="py-8 px-4 mx-auto w-full max-w-300 md:px-12 sm:px-8 medium:px-0">
       {(title || description) && (
         <div className="text-center mb-12">
           {title && (
-            <LinkableHeading as="h2" className="mb-1">
+            <LinkableHeading as={headingLevel} className="mb-1">
               {title}
             </LinkableHeading>
           )}

@@ -1,5 +1,4 @@
 import type { RichText as RichTextProps } from "@/types/components/rich-text";
-import { Fragment } from "react";
 import Banner from "./Blocks/Banner";
 import BentoBox from "./Blocks/BentoBox/BentoBox";
 import CalculatorComponent from "./Blocks/Calculator";
@@ -9,13 +8,13 @@ import ComparisonTable from "./Blocks/ComparisonTable";
 import FAQ from "./Blocks/FAQ";
 import FeatureHorizontalCarousel from "./Blocks/FeatureCarousel";
 import FeatureBlocks, { FeatureItem } from "./Blocks/Features";
-import HeadingSpecimen from "./Blocks/HeadingSpecimen";
 import Hero from "./Blocks/Hero/Hero";
 import ImageGrid from "./Blocks/ImageGrid";
 import ImageShowcase from "./Blocks/ImageShowcase";
 import MediaHero from "./Blocks/MediaHero";
 import Pricing from "./Blocks/Pricing";
 import RichText from "./Blocks/RichText";
+import TypographySection from "./Blocks/TypographySection";
 import { Timeline } from "./Blocks/Timeline/Timeline";
 import { TryItNow } from "./Blocks/TryItNow";
 import { DownloadCards } from "./Blocks/DownloadCards";
@@ -110,17 +109,13 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksMediaHero":
         return <MediaHero key={index} {...block} />;
       case "PagesPageBlocksImageGrid":
-        // The /media page shows a live heading specimen beneath its "Fonts"
-        // section. It's rendered from code (not a Tina block) so it always
-        // mirrors the base heading styles in globals.css and needs no schema
-        // change. Only the English /media page has a block titled "Fonts".
+        // On /media the "Fonts" grid is the first half of a Typography section;
+        // the heading specimen is the second. Both the wrapper and the specimen
+        // are rendered from code (not Tina blocks) so they always mirror the
+        // base heading styles in globals.css and need no schema change. Only
+        // the English /media page has a block titled "Fonts".
         if (block.title === "Fonts") {
-          return (
-            <Fragment key={index}>
-              <ImageGrid {...block} />
-              <HeadingSpecimen />
-            </Fragment>
-          );
+          return <TypographySection key={index} fonts={block} />;
         }
         return <ImageGrid key={index} {...block} />;
       case "PagesPageBlocksImageShowcase":

@@ -17,15 +17,27 @@ describe("HeadingSpecimen", () => {
     expect(tags).toEqual(["h1", "h2", "h3", "h4", "h5", "h6"]);
   });
 
-  it("anchors the section title, not the samples", () => {
-    const { container } = render(<HeadingSpecimen />);
+  it("renders its own title at the level it is given", () => {
+    const { container } = render(<HeadingSpecimen headingLevel="h3" />);
 
-    // the default title "Headings" carries the slug id and the only self-link
     expect(container.querySelector("#headings")?.tagName.toLowerCase()).toBe(
-      "h2",
+      "h3",
     );
-    const links = screen.getAllByRole("link");
-    expect(links).toHaveLength(1);
-    expect(links[0]).toHaveAttribute("href", "#headings");
+  });
+
+  it("anchors the section title and cites the SSW Rules in its intro", () => {
+    render(<HeadingSpecimen />);
+
+    const hrefs = screen
+      .getAllByRole("link")
+      .map((el) => el.getAttribute("href"));
+
+    // the title's own self-link, then the rule behind each piece of advice
+    expect(hrefs).toEqual([
+      "#headings",
+      "https://www.ssw.com.au/rules/use-heading-tags-h1-h2-h3",
+      "https://www.ssw.com.au/rules/make-title-h1-and-h2-tags-descriptive",
+      "https://www.ssw.com.au/rules/heading-to-anchor-targets",
+    ]);
   });
 });
