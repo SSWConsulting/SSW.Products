@@ -41,16 +41,18 @@ export function WordRotate({
   if (words === null) return null;
 
   return (
-    <div className="overflow-hidden py-2">
+    // span, not h1: the rotating word is part of its parent heading, not a
+    // heading of its own. inline-block keeps the enter/exit y-transform working.
+    <span className="inline-block overflow-hidden py-2 align-bottom">
       <AnimatePresence mode="wait">
-        <motion.h1
+        <motion.span
           key={words[index]}
-          className={cn(className, gradientClasses)}
+          className={cn("inline-block", className, gradientClasses)}
           {...motionProps}
         >
           {words[index]}
-        </motion.h1>
+        </motion.span>
       </AnimatePresence>
-    </div>
+    </span>
   );
 }
