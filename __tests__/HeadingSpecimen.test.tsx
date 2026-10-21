@@ -7,25 +7,40 @@ import "@testing-library/jest-dom";
 import HeadingSpecimen from "../components/shared/Blocks/HeadingSpecimen";
 
 describe("HeadingSpecimen", () => {
-  it("renders a live sample of every heading level, h1 through h6", () => {
+  it("renders a sample for every heading level, as <p>s styled by the .h1-.h6 classes", () => {
     render(<HeadingSpecimen />);
 
-    // one sample per level; each is a real heading element so it inherits the
-    // base scale from globals.css rather than hard-coded classes
     const samples = screen.getAllByText("The quick brown fox");
-    const tags = samples.map((el) => el.tagName.toLowerCase()).sort();
-    expect(tags).toEqual(["h1", "h2", "h3", "h4", "h5", "h6"]);
+    // samples are <p> (not real headings) so /media keeps a single <h1>
+    expect(samples.every((el) => el.tagName.toLowerCase() === "p")).toBe(true);
+    // each borrows a level's look via its .hN class
+    const levels = samples
+      .map((el) =>
+        ["h1", "h2", "h3", "h4", "h5", "h6"].find((h) => el.classList.contains(h))
+      )
+      .sort();
+    expect(levels).toEqual(["h1", "h2", "h3", "h4", "h5", "h6"]);
   });
 
-  it("anchors the section title, not the samples", () => {
-    const { container } = render(<HeadingSpecimen />);
+  it("renders its own title at the level it is given", () => {
+    const { container } = render(<HeadingSpecimen headingLevel="h3" />);
 
-    // the default title "Headings" carries the slug id and the only self-link
     expect(container.querySelector("#headings")?.tagName.toLowerCase()).toBe(
-      "h2",
+      "h3",
     );
-    const links = screen.getAllByRole("link");
-    expect(links).toHaveLength(1);
-    expect(links[0]).toHaveAttribute("href", "#headings");
+  });
+
+  it("anchors the section title and cites the SSW Rules in its intro", () => {
+    render(<HeadingSpecimen />);
+
+    const hrefs = screen
+      .getAllByRole("link")
+      .map((el) => el.getAttribute("href"));
+
+    // the title's own self-link, then the one rule the intro cites
+    expect(hrefs).toEqual([
+      "#headings",
+      "https://www.ssw.com.au/rules/use-heading-tags-h1-h2-h3",
+    ]);
   });
 });

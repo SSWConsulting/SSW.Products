@@ -24,6 +24,8 @@ interface ImageGridProps {
   itemsPerRow?: number;
   aspectRatio?: number;
   className?: string;
+  /** h3 when the grid sits inside a larger section, e.g. Fonts under Typography. */
+  headingLevel?: "h2" | "h3";
 }
 
 const GRID_COLS = {
@@ -42,6 +44,7 @@ const ImageGrid = ({
   itemsPerRow = 3,
   aspectRatio = 0.65,
   className = "",
+  headingLevel = "h2",
 }: ImageGridProps) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
@@ -89,7 +92,7 @@ const ImageGrid = ({
         <div className="text-center mb-12">
           {title && (
             <LinkableHeading
-              as="h2"
+              as={headingLevel}
               className="mb-1"
             >
               {title}
