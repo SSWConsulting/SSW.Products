@@ -1,6 +1,7 @@
 import { cache } from "react";
 import client from "../tina/__generated__/client";
 import NotFoundError from "../src/errors/not-found";
+import { getAllConnectionEdges } from "./tina";
 
 type GetBlogsForProductProps = {
   startCursor?: string;
@@ -17,26 +18,27 @@ type GetBlogsForProductProps = {
 
 // Workaround: graphql doesn't allow you to query by file name
 const getTitlesInTenant = cache(async (product: string, locale?: string) => {
-  const res = await client.queries.blogsConnection();
-  const titles =
-    res.data.blogsConnection.edges?.reduce<string[]>((acc: string[], curr) => {
-      const pathToCheck = locale === 'zh' 
-        ? `/blogs/${product}/zh` 
-        : `/blogs/${product}`;
-      
-      const inCurrentTenant = curr?.node?._sys.path.includes(pathToCheck);
-      
-      const isCorrectLanguage = locale === 'zh' 
-        ? curr?.node?._sys.path.includes(`/blogs/${product}/zh`)
-        : !curr?.node?._sys.path.includes(`/blogs/${product}/zh`);
-      
-      const title = curr?.node?.title;
-      if (title && !acc.includes(title) && inCurrentTenant && isCorrectLanguage) {
-        return [...acc, title];
-      }
-      return acc;
-    }, []) || [];
-  return titles;
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.blogsConnection(vars),
+    "blogsConnection"
+  );
+  return edges.reduce<string[]>((acc: string[], curr) => {
+    const pathToCheck = locale === 'zh'
+      ? `/blogs/${product}/zh`
+      : `/blogs/${product}`;
+
+    const inCurrentTenant = curr?.node?._sys.path.includes(pathToCheck);
+
+    const isCorrectLanguage = locale === 'zh'
+      ? curr?.node?._sys.path.includes(`/blogs/${product}/zh`)
+      : !curr?.node?._sys.path.includes(`/blogs/${product}/zh`);
+
+    const title = curr?.node?.title;
+    if (title && !acc.includes(title) && inCurrentTenant && isCorrectLanguage) {
+      return [...acc, title];
+    }
+    return acc;
+  }, []);
 });
 
 // Get blogs using reverse pagination https://tina.io/docs/graphql/queries/advanced/pagination#reverse-pagination

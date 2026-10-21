@@ -1,6 +1,7 @@
 import { Docs } from "@tina/__generated__/types";
 import client from "../tina/__generated__/client";
 import { docSlugFromBreadcrumbs, renamedDocSlug } from "./docPath";
+import { getAllConnectionEdges } from "./tina";
 
 const getDocsForProduct = async (product: string, offset = 0, limit = 5) => {
   try {
@@ -115,9 +116,12 @@ const findMovedDocSlug = async (product: string, slug: string) => {
   const filename = slug.split("/").pop();
   if (!filename) return null;
 
-  const res = await client.queries.docsConnection();
-  const matches = (res.data.docsConnection.edges ?? [])
-    .map((edge) => edge?.node?._sys?.breadcrumbs)
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.docsConnection(vars),
+    "docsConnection"
+  );
+  const matches = edges
+    .map((edge) => edge.node?._sys?.breadcrumbs)
     .filter(
       (breadcrumbs): breadcrumbs is string[] =>
         !!breadcrumbs?.length &&
