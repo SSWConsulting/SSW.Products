@@ -8,13 +8,13 @@ interface HeadingSpecimenProps {
   headingLevel?: "h2" | "h3";
 }
 
-// The samples render as real h1–h6 elements with no utility classes, so they
-// inherit the single source of truth in globals.css (@layer base). If the base
-// scale ever changes, this specimen changes with it — it can't drift. The
-// `spec` captions mirror those @apply tokens as plain text for designers.
+// Each sample is a <p> that borrows a level's look via the `.h1`–`.h6` classes
+// (not a real heading), so the /media page keeps a single <h1>. Those classes
+// alias the same @apply rules in globals.css (@layer base), so if the base
+// scale changes this specimen changes with it — it can't drift. The `spec`
+// captions mirror those tokens as plain text for designers.
 //
-// This is rendered from code (not a Tina block) on the /media page, so it needs
-// no schema change and always matches the real pages.
+// Rendered from code (not a Tina block) on /media, so it needs no schema change.
 const LEVELS = [
   { tag: "h1", spec: "Bold 700 · 36 → 48px · line-height 1.1" },
   { tag: "h2", spec: "Semibold 600 · 24 → 30px · line-height 1.2" },
@@ -24,13 +24,10 @@ const LEVELS = [
   { tag: "h6", spec: "Semibold 600 · 16px · line-height 1.5" },
 ] as const;
 
-// The rules the scale is built on, linked from the words they apply to - a
+// The rule the scale is built on, linked from the words it applies to - a
 // designer reading the brand kit can get to the why without leaving the page.
 const RULES = {
   level: "https://www.ssw.com.au/rules/use-heading-tags-h1-h2-h3",
-  descriptive:
-    "https://www.ssw.com.au/rules/make-title-h1-and-h2-tags-descriptive",
-  anchors: "https://www.ssw.com.au/rules/heading-to-anchor-targets",
 } as const;
 
 const RuleLink = ({ href, children }: { href: string; children: ReactNode }) => (
@@ -38,7 +35,7 @@ const RuleLink = ({ href, children }: { href: string; children: ReactNode }) => 
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-ssw-red underline underline-offset-2 hover:no-underline"
+    className="text-white underline transition-colors hover:text-ssw-red"
   >
     {children}
   </a>
@@ -48,16 +45,9 @@ const DEFAULT_DESCRIPTION = (
   <>
     The six heading levels used across YakShaver. They render live from the
     site&rsquo;s base styles, so they always match what you see on the pages.{" "}
-    <RuleLink href={RULES.level}>
-      Pick the level that matches where the section sits
-    </RuleLink>
-    , not the size you want;{" "}
-    <RuleLink href={RULES.descriptive}>keep the wording descriptive</RuleLink>;
-    and remember{" "}
-    <RuleLink href={RULES.anchors}>
-      every heading doubles as an anchor link
-    </RuleLink>
-    .
+    Use <RuleLink href={RULES.level}>exactly one H1 per page</RuleLink>,
+    don&rsquo;t skip levels, and don&rsquo;t use heading tags for text that
+    isn&rsquo;t a heading.
   </>
 );
 
@@ -89,8 +79,8 @@ export default function HeadingSpecimen({
             key={Tag}
             className="flex flex-col gap-2 p-6 md:flex-row md:items-baseline md:justify-between md:gap-8"
           >
-            {/* the live sample: a real heading element, no classes */}
-            <Tag className="min-w-0">The quick brown fox</Tag>
+            {/* the live sample: styled like each level, but a <p> so /media keeps one <h1> */}
+            <p className={`${Tag} min-w-0`}>The quick brown fox</p>
             <p className="shrink-0 font-mono text-xs uppercase tracking-wide text-white/50 md:text-right">
               <span className="text-white/70">{Tag.toUpperCase()}</span>
               {" · "}
