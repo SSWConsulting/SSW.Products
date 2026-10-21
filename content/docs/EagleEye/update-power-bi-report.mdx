@@ -22,8 +22,12 @@ SSW releases new versions of the SSW EagleEye - Power BI template app. Your inst
 
 1. Turn off Large storage format. Power BI can't update a template app whose semantic model uses it.
    1. In Power BI, open your EagleEye workspace.
-   2. Next to the **EagleEye** semantic model, select **More options (...)** → **Settings**.
-   3. Expand **Large semantic model storage format**. If the toggle shows **On**, set it to **Off** and click **Apply**.
+   2. Next to the **EagleEye** semantic model, select **More options (...)** → **Settings**. A settings pane opens.
+      ![More options menu of the EagleEye semantic model with Settings highlighted](/EagleEye/Guides/Power-BI-Semantic-Model-Settings-Menu.png)
+   3. At the bottom of the pane, click **Open settings page**. The **Semantic models** tab opens, with **EagleEye** selected.
+      ![EagleEye semantic model settings pane with Open settings page highlighted](/EagleEye/Guides/Power-BI-Open-Settings-Page.png)
+   4. Scroll down and expand **Large semantic model storage format**.
+   5. If the toggle shows **On**, set it to **Off** and click **Apply**.
       ![Large semantic model storage format toggle set to On](/EagleEye/Guides/Power-BI-Large-Storage-Format.png)
 2. Click **Get it** on the update banner or in the notification. You can also open the [SSW EagleEye - Power BI](https://marketplace.microsoft.com/en-us/product/power-bi/ssw1700450141896.ssweagleeye-power-bi) page on the Microsoft Marketplace and click **Get it now**.
 3. Click **Install**. The **Update app** dialog opens.
@@ -42,9 +46,13 @@ The update keeps these settings, so you don't set them again:
 
 ## Check the update
 
-* In the semantic model **Settings** → **Refresh history**, the top refresh shows **Completed**.
-* In the workspace list, the semantic model shows a date under **Next refresh**.
-* The Power BI report in your EagleEye Portal shows your data.
+Open the semantic model settings page again, as in step 1, and check these:
+
+* **Last refresh succeeded** shows today's date, and **Next refresh** shows a date.
+* **Large semantic model storage format** shows the size of your semantic model. Power BI Pro allows up to 1 GB. Above that, every refresh fails.
+  ![The size of your semantic model is 91 MB, with Large semantic model storage format set to Off](/EagleEye/Guides/Power-BI-Semantic-Model-Size.png)
+
+Then check that the Power BI report in your EagleEye Portal shows your data.
 
 ## Troubleshooting
 
@@ -64,10 +72,10 @@ You selected **Update the workspace and the app**. To fix it:
 
 **The refresh fails**
 
-1. Open **Refresh history** and read the error.
+1. On the semantic model settings page, click **Refresh history** and read the error.
 2. Check the database credentials, as [Manage Credentials for Database](./manage-database-credentials) describes.
 3. If the refresh still fails, contact SSW and include the error text.
 
-**No date under Next refresh**
+**No date for Next refresh**
 
-Power BI turns off the refresh schedule after 4 failed refreshes in a row. In the semantic model **Settings** → **Refresh**, turn the schedule on again.
+Power BI turns off the refresh schedule after 4 failed refreshes in a row. On the semantic model settings page, expand **Refresh** and turn the schedule on again.
