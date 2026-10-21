@@ -12,7 +12,6 @@ import ArticleMetadata from "./shared/ArticleMetadata";
 import Author from "./shared/Author";
 import CategoryLabel from "./shared/CategoryLabel";
 import GridBackground from "./shared/GridBackground";
-import ReadMore from "./shared/ReadMore";
 import { useContextualLink } from "@utils/contextualLink";
 
 type BlogCardProps = Modify<Blog, {
@@ -114,7 +113,6 @@ const BlogCard = ({
             }}
           />
         </section>
-        <ReadMore groupHover={groupHover} fileName={slug || ""} />
       </div>
     </div>
   );
