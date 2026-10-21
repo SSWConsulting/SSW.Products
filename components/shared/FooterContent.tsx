@@ -41,7 +41,6 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
 
   const footerItems = results?.footer?.footer;
   const footerTitle = results?.footer?.footerTitle;
-  const footerColor = results.footer.footerColor!;
   const dynamicYear = new Date().getFullYear();
   const poweredByTinaBanner = results?.footer?.poweredByTinaBanner;
 
@@ -59,8 +58,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
 
   return (
     <footer
-      className="text-white p-6 transition-opacity duration-300 bg-ssw-charcoal opacity-100"
-      style={{ backgroundColor: footerColor }}
+      className="text-gray-300 p-6 transition-opacity duration-300 bg-gray-darkest opacity-100"
     >
       <div className="max-w-7xl xl:mx-auto mx-4 w-full">
         <div className={`grid grid-cols-1 items-center gap-4 ${poweredByTinaBanner ? 'lg:grid-cols-3' : 'lg:grid-cols-2'}`}>
@@ -69,7 +67,10 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
             &copy; {dynamicYear} {footerTitle || "Default Footer Title"} {hasPrivacyPolicy && (
               <>
                 {"| "}
-                <Link href={contextualHref("/privacy")} className="underline">
+                <Link
+                  href={contextualHref("/privacy")}
+                  className="underline transition-colors hover:text-white"
+                >
                   Privacy Policy
                 </Link>
               </>
@@ -81,7 +82,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
                   href="https://beian.miit.gov.cn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="underline"
+                  className="underline transition-colors hover:text-white"
                 >
                   {icpFiling}
                 </a>
@@ -93,14 +94,14 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
           {poweredByTinaBanner && (
             <div className="order-1 lg:order-2 flex justify-center">
               <a
-                className="flex items-center justify-center py-2 hover:text-orange-500 no-underline transition-colors duration-300"
+                className="flex items-center justify-center py-2 hover:text-white no-underline transition-colors duration-300"
                 href={poweredByTinaBanner.url || "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={poweredByTinaBanner?.text || "TinaCMS"}
               >
                 <Image alt="TinaCMS logo" width={24} height={24} src={poweredByTinaBanner?.image || ""} />
-                <span className="ml-2 uppercase tracking-widest text-xs">{poweredByTinaBanner?.text}</span>
+                <span className="ml-3 uppercase tracking-widest text-xs">{poweredByTinaBanner?.text}</span>
               </a>
             </div>
           )}
@@ -117,7 +118,7 @@ export default function FooterContent({ results, hasPrivacyPolicy, locale }: Foo
                   href={item.footerItemLink ?? "#"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center space-x-2 text-lg md:text-2xl hover:-translate-y-1 animation ease-in-out duration-300"
+                  className="flex items-center space-x-2 text-lg md:text-2xl hover:text-white hover:-translate-y-1 animation ease-in-out duration-300"
                 >
                   {icon && icon["svg"]}
                 </a>

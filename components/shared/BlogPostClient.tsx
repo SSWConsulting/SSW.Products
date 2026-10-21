@@ -197,26 +197,25 @@ export default function BlogPostClient({
                             {props?.children}
                           </li>
                         ),
-                        // summary sub-points, not document headings
+                        // summary sub-points, not document headings (a div, so
+                        // the container's [&_p] grey/small text styles skip it)
                         h1: (props: { children: ReactNode } | undefined) => (
-                          <p className="font-semibold text-white">
-                            {props?.children}
-                          </p>
+                          <div className="font-medium text-white">{props?.children}</div>
                         ),
                         h2: (props: { children: ReactNode } | undefined) => (
-                          <p className="font-semibold text-white">
-                            {props?.children}
-                          </p>
+                          <div className="font-medium text-white">{props?.children}</div>
                         ),
                         h3: (props: { children: ReactNode } | undefined) => (
-                          <p className="font-semibold text-white">
-                            {props?.children}
-                          </p>
+                          <div className="font-medium text-white">{props?.children}</div>
                         ),
                         h4: (props: { children: ReactNode } | undefined) => (
-                          <p className="font-semibold text-white">
-                            {props?.children}
-                          </p>
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h5: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h6: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
                         ),
                       }}
                     />

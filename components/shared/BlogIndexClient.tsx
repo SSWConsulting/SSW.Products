@@ -26,7 +26,6 @@ import { Button } from "../ui/button";
 import ArticleMetadata from "./ArticleMetadata";
 import CategoryLabel from "./CategoryLabel";
 import GridBackground from "./GridBackground";
-import ReadMore from "./ReadMore";
 import { useContextualLink } from "@utils/contextualLink";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
@@ -132,9 +131,6 @@ const FeaturedArticle = ({
                       )}
                     />
                   </section>
-                  <div className="flex justify-between items-center">
-                    <ReadMore fileName={featuredBlog._sys.filename || ""} />
-                  </div>
                 </div>
               </div>
             </div>
