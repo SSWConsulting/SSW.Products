@@ -17,12 +17,6 @@ const getSlugsFromCollections = <T extends Edges>(edges: T): string[] => {
   }, []);
 };
 
-// Tina connection queries return one page at a time, so a single call silently
-// truncates large collections. Follow the cursor to the end and return every
-// edge, typed from the query. Used by the sitemap and by the routes'
-// generateStaticParams so they enumerate every entry, not just the first page.
-// (This only completes the param list; it doesn't make the routes static —
-// locale/host resolution reads headers(), so rendering stays dynamic. See #737.)
 type Connection<E> = {
   edges?: (E | null)[] | null;
   pageInfo: { hasNextPage: boolean; endCursor: string };
@@ -30,6 +24,12 @@ type Connection<E> = {
 
 const MAX_PAGES = 50;
 
+// Tina connection queries return one page at a time, so a single call silently
+// truncates large collections. Follow the cursor to the end and return every
+// edge, typed from the query. Used by the sitemap and by the routes'
+// generateStaticParams so they enumerate every entry, not just the first page.
+// (This only completes the param list; it doesn't make the routes static —
+// locale/host resolution reads headers(), so rendering stays dynamic. See #737.)
 const getAllConnectionEdges = async <K extends string, E>(
   runQuery: (vars: { first: number; after?: string }) => Promise<{
     data: { [P in K]: Connection<E> };

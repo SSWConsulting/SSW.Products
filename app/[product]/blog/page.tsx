@@ -47,15 +47,11 @@ const getCategories = async (product: string) => {
     "blogsConnection"
   );
   const filteredPosts = filterEdgesByTenant(edges, product);
-  let categories: string[] = [];
-  if (filteredPosts) {
-    categories = filteredPosts.reduce<string[]>((acc, curr) => {
-      const category = curr?.node?.category;
-      if (category && !acc.includes(category)) return [...acc, category];
-      return acc;
-    }, []);
-  }
-  return categories;
+  return filteredPosts.reduce<string[]>((acc, curr) => {
+    const category = curr?.node?.category;
+    if (category && !acc.includes(category)) return [...acc, category];
+    return acc;
+  }, []);
 };
 
 export default async function BlogIndex({ params }: BlogIndex) {
