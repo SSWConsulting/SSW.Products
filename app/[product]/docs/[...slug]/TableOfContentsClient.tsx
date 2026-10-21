@@ -32,9 +32,10 @@ function NavigationGroup({ navigationGroup, activeItem }: {
           onClick={() => setIsExpanded(!isExpanded)}
           className="flex items-center w-full text-left"
         >
-          <h2 className="bg-linear-to-br text-white font-medium">
+          {/* a nav group label, not a document heading */}
+          <span className="bg-linear-to-br text-white font-medium">
             {navigationGroup.title}
-          </h2>
+          </span>
           <FaChevronDown
             className={`ml-2 transition-transform duration-300 ease-in-out ${
               isExpanded ? "" : "transform -rotate-90"
@@ -97,23 +98,25 @@ function TableOfContentsClient({ tableOfContentsData }: TableOfContentsClientPro
     <>
       <SearchBox.Trigger />
 
-      {tableOfContentsData.parentNavigationGroup &&
-        tableOfContentsData.parentNavigationGroup.map(
-          (group, index) =>
-            group && (
-              <NavigationGroup
-                activeItem={
-                  activeSlug ||
-                  docSlugFromBreadcrumbs(
-                    tableOfContentsData?.parentNavigationGroup?.[0]?.items?.[0]
-                      ?.slug?._sys?.breadcrumbs
-                  )
-                }
-                key={index}
-                navigationGroup={group}
-              />
-            )
-        )}
+      <nav aria-label="Documentation">
+        {tableOfContentsData.parentNavigationGroup &&
+          tableOfContentsData.parentNavigationGroup.map(
+            (group, index) =>
+              group && (
+                <NavigationGroup
+                  activeItem={
+                    activeSlug ||
+                    docSlugFromBreadcrumbs(
+                      tableOfContentsData?.parentNavigationGroup?.[0]?.items?.[0]
+                        ?.slug?._sys?.breadcrumbs
+                    )
+                  }
+                  key={index}
+                  navigationGroup={group}
+                />
+              )
+          )}
+      </nav>
     </>
   );
 }
