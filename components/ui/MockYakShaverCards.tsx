@@ -42,7 +42,7 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
           : " [&>div>span]:opacity-0 [&>div]:animate-pulse [&>p]:opacity-0"
       )}
     >
-      <div className="pb-2 text-sm md:text-base lg:text-lg font-semibold relative h-[2.5em]">
+      <span className="block pb-2 text-sm md:text-base lg:text-lg relative h-[2.5em]">
         <span
           className={`absolute left-0 right-0 transition-all duration-500 ${
             isVisible ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
@@ -61,7 +61,7 @@ export function HeroYakShaverCard({ isVisible }: { isVisible: boolean }) {
         >
           ✨ A bug report has been created
         </span>
-      </div>
+      </span>
       <p>Project</p>
       <div
         className={`h-9.25 items-center text-xs font-normal mb-2 flex  bg-white/5 rounded-lg px-2 py-1 border-2 border-[#4E4E4F]/30`}
