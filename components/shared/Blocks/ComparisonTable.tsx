@@ -136,7 +136,6 @@ export default function ComparisonTable({ data }: { data: any }) {
       {data.headline && (
         <LinkableHeading
           as="h2"
-          wrap
           anchor={data.headline}
           className="text-center mb-4"
           data-tina-field={tinaField(data, "title")}

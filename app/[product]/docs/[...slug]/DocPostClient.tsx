@@ -112,7 +112,8 @@ export default function DocPostClient({
       </div>
       <div className="flex flex-col gap-2 mb-8">
         <BreadCrumbs title={title} tableOfContentsData={tableOfContentsData} />
-        <h2 className="text-3xl font-semibold text-ssw-red">{title}</h2>
+        {/* the doc page title - its own h1 so the page has one (was an h2) */}
+        <h1 className="text-3xl font-semibold text-ssw-red">{title}</h1>
         <GitHubMetadata path={data.docs.id} className="text-sm font-light text-gray-300" />
       </div>
       <div className="text-base font-light mb-12 lg:prose-xl">

@@ -22,7 +22,10 @@ const Author = ({
       </div>
       <p className="font-medium h-fit">
         {sswPeopleLink ? (
-          <Link className="hover:underline" href={sswPeopleLink}>
+          // z-30 lifts the author link above the card's full-card overlay
+          // link (z-20) so clicking an author opens their SSW People page,
+          // not the post.
+          <Link className="relative z-30 hover:underline" href={sswPeopleLink}>
             {author}
           </Link>
         ) : (

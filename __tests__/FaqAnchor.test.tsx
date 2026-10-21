@@ -33,8 +33,9 @@ describe("FAQ question anchors", () => {
       "#what-file-formats-do-you-support",
     );
     expect(question).toBeInTheDocument();
+    // the self-link sits inside its own question heading, not elsewhere on the page
     expect(
-      screen.getAllByRole("link", { name: "Link to this section" })[0],
+      question?.querySelector('a[aria-label="Link to this section"]'),
     ).toHaveAttribute("href", "#what-file-formats-do-you-support");
   });
 

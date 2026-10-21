@@ -121,7 +121,6 @@ export default function CalculatorComponent({ data }: { data: any }) {
     <Container>
       <LinkableHeading
         as="h2"
-        wrap
         anchor={data?.title}
         className="text-center mb-4"
       >
