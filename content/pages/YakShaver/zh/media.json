@@ -10,10 +10,10 @@
       "heroButton": {
         "label": "下载品牌指南",
         "iconSrc": "/svg/file-download.svg",
-        "href": "/YakShaver/YakShaver-Brand-Guide-V4.pdf",
+        "href": "/YakShaver/YakShaver-Brand-Guide-V6.pdf",
         "target": "_blank"
       },
-      "dateText": "最后更新于 2025年10月24日",
+      "dateText": "最后更新于 2026年10月22日",
       "_template": "mediaHero"
     },
     {
