@@ -1,13 +1,13 @@
 {
   "seo": {
-    "title": "定价 - 简单透明的定价",
-    "description": "发现适合您需求的YakShaver AI灵活定价方案。探索选项，找到适合您项目的完美方案。"
+    "title": "定价 - 简单透明的方案",
+    "description": "发现适合您需求的YakShaver AI灵活定价方案。探索选项，找到项目的完美匹配。"
   },
-  "title": "YakShaver AI定价方案和选项",
+  "title": "YakShaver AI定价方案与选项",
   "pageBlocks": [
     {
       "title": "{简单透明的定价}",
-      "description": "选择适合您团队的方案，**今天就开始节省**问题报告的时间\n",
+      "description": "选择适合您团队的方案，**今天就开始节省**问题报告的**时间**\n",
       "plans": [
         {
           "planTier": "入门",
@@ -78,7 +78,7 @@
             "{每月500次剃须}",
             "{每月约节省250小时}",
             "15分钟视频录制",
-            "高级分析仪表板",
+            "高级分析仪表盘",
             "优先支持（Discord + 邮件）",
             "专属客户经理"
           ],
@@ -121,25 +121,25 @@
       ],
       "addOns": {
         "title": "{增强包}",
-        "description": "需要充值？添加一些额外积分",
+        "description": "需要充值？添加额外积分",
         "price": "$25",
         "subPriceText": "每50次剃须",
         "actionButton": {
           "label": "这里充值",
           "variant": "outlinedWhite",
           "size": "large",
-          "url": "https://portal.yakshaver.ai/settings/plan"
+          "url": "https://portal.yakshaver.ai/plan"
         }
       },
       "_template": "pricing"
     },
     {
-      "headline": "{功能比较}",
+      "headline": "{功能对比}",
       "sectionDescription": "比较我们不同方案的所有功能，找到最适合您需求的方案",
       "table": [
         {
           "title": "概览",
-          "footerText": "* 每个团队实例只能分配1个免费用户。",
+          "footerText": "* 每个Teams实例只能分配1个免费用户。",
           "rows": [
             {
               "column1": "功能",
@@ -330,7 +330,7 @@
               "column1": "分析",
               "column2": "❌",
               "column3": "基础",
-              "column4": "高级仪表板",
+              "column4": "高级仪表盘",
               "column5": "定制"
             },
             {

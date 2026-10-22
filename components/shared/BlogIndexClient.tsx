@@ -17,16 +17,15 @@ import CallToAction from "./Blocks/CallToAction";
 
 import { RemoveTinaMetadata } from "@/types/tina";
 import { BlogCard, SkeletonCard } from "@comps/BlogCard";
-import client from "../../tina/__generated__/client";
+import type client from "../../tina/__generated__/client";
 import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
-import { getBlogsForProduct } from "../../utils/fetchBlogs";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
+import type { BlogsResponse } from "../../utils/fetchBlogs";
 import { Button } from "../ui/button";
 import ArticleMetadata from "./ArticleMetadata";
 import CategoryLabel from "./CategoryLabel";
 import GridBackground from "./GridBackground";
-import ReadMore from "./ReadMore";
 import { useContextualLink } from "@utils/contextualLink";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
@@ -87,7 +86,7 @@ const FeaturedArticle = ({
                 {props.title}
               </h2>
             )}
-            <div className="bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
+            <div className="group bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
               <div className="flex flex-col lg:flex-row">
                 <div className="relative w-full grow md:basis-4/12 aspect-video">
                   <div className="w-full h-full lg:mask-to-right mask-to-bottom">
@@ -117,7 +116,7 @@ const FeaturedArticle = ({
                     </CategoryLabel>
                   )}
                   <Link href={contextualHref(`/blog/${featuredBlog._sys.filename}`)}>
-                    <h3 className="sm:text-2xl text-xl font-bold hover:text-ssw-red transition-colors">
+                    <h3 className="sm:text-2xl text-xl font-bold group-hover:text-ssw-red transition-colors">
                       {featuredBlog?.title}
                     </h3>
                   </Link>
@@ -132,9 +131,6 @@ const FeaturedArticle = ({
                       )}
                     />
                   </section>
-                  <div className="flex justify-between items-center">
-                    <ReadMore fileName={featuredBlog._sys.filename || ""} />
-                  </div>
                 </div>
               </div>
             </div>
@@ -181,15 +177,24 @@ const RecentArticles = ({
   const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
     useInfiniteQuery({
       queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
-      queryFn: ({ pageParam }) => {
-        return getBlogsForProduct({
-          product,
-          startCursor: pageParam,
-          keyword: searchTerm,
-          category:
-            selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
-          locale,
+      queryFn: async ({ pageParam }) => {
+        const res = await fetch("/api/blogs", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            product,
+            startCursor: pageParam || undefined,
+            // The first page stays small; "Load More Articles" brings in
+            // every remaining article at once
+            loadAll: Boolean(pageParam),
+            keyword: searchTerm || undefined,
+            category:
+              selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
+            locale,
+          }),
         });
+        if (!res.ok) throw new Error("Failed to fetch blogs");
+        return res.json() as Promise<BlogsResponse>;
       },
       initialPageParam: "",
       getNextPageParam: (lastPage) => {
@@ -228,7 +233,7 @@ const RecentArticles = ({
                     body={post.body}
                     bannerImage={post.bannerImage}
                     date={post.date}
-                    groupHover={false}
+                    groupHover
                     readLength={post.readLength}
                     title={post.title}
                     author={{
@@ -262,7 +267,7 @@ const RecentArticles = ({
                 Loading <LoaderCircle className="animate-spin animate size-4" />
               </>
             ) : (
-              <>Load More Articles</>
+              <>Load All Articles</>
             )}
           </Button>
         )}

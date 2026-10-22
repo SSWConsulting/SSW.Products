@@ -1,0 +1,72 @@
+---
+seo:
+  title: SSW EagleEye - Step 1 Azure Setup
+  description: >-
+    Configure your Azure subscription, register required resource providers, and
+    gather tenant and group details needed before installing SSW EagleEye from
+    the Azure Marketplace.
+title: Step 1 - Azure Setup
+date: '2025-12-29T13:00:00.000Z'
+---
+
+###
+
+<Youtube thumbnail="https://img.youtube.com/vi/J6dmwbysvw8/maxresdefault.jpg" size="medium" externalVideoLink="https://www.youtube.com/embed/J6dmwbysvw8" caption="Prerequisites & Step 1 - Azure Setup (4 min) | SSW EagleEye " />
+
+> **💡 Tip:** Jump to 1:15 for Azure Setup
+
+### Step 1.1 - Register Azure resource providers
+
+Before deploying EagleEye, make sure the following Azure resource providers are registered in your subscription:
+
+* Microsoft.App
+* Microsoft.Authorization
+* Microsoft.CognitiveServices
+* Microsoft.ContainerInstance
+* Microsoft.ContainerRegistry
+* Microsoft.Insights
+* Microsoft.KeyVault
+* Microsoft.ManagedIdentity
+* Microsoft.Network
+* Microsoft.OperationalInsights
+* Microsoft.Sql
+* Microsoft.Storage
+* Microsoft.Web
+
+To check and register, follow the official Microsoft guide:
+[Register resource providers in Azure Portal](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal)
+
+### Step 1.2 - Get Your Azure Tenant ID
+
+You will need your Azure Tenant ID for configuration:
+
+1. Sign in to the [Azure Portal](https://portal.azure.com)
+2. In the search bar, type "Microsoft Entra ID"
+   ![Manage Tenants](/EagleEye/Installation/Entra.png)
+3. Go to **Manage Tenants** and copy the **Tenant ID (Organization ID)**
+   ![Tenant ID](/EagleEye/Installation/Manage-Tenants.png)
+   ![Tenant Object ID](/EagleEye/Installation/Tenant-Id.png)
+
+> **Note:** If you have multiple tenants, ensure you select the correct one for EagleEye deployment.
+
+### Step 1.3 - Get Your Azure Group Name
+
+You will need an Azure group for EagleEye to perform email analysis. This can be either an existing Azure group or a new one you create.
+
+<OutlineBox
+  content={<>
+    ⚠️ Warning: EagleEye can only analyse mailboxes for internal users within your Microsoft 365 tenant; external email addresses, guest users, or mailboxes outside your tenant are not supported.
+  </>}
+/>
+
+To create a new group or find an existing one:
+
+1. Sign in to the [Azure Portal](https://portal.azure.com)
+2. In the search bar, type "Groups"
+   ![Search Azure Groups](/EagleEye/Installation/Search-Azure-Groups.png)
+3. Go to **Groups** → **All groups**
+4. Either select an existing group or click **New group** to create one
+5. If creating a new group:
+   * Follow this [guide](https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups) to create and configure a new group
+   * Select **Security** as the Group type if you want to add other groups as members (nesting), otherwise select **Microsoft 365**
+6. Copy the **Group name** (you will need this for configuration later)

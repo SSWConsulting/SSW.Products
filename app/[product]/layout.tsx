@@ -1,37 +1,97 @@
 import FooterServer from "@comps/shared/FooterServer";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import NavBarServer from "../../components/shared/NavBarServer";
+import { getFaviconHref } from "../../utils/favicon";
 import { getGoogleTagId } from "../../utils/getGoogleTagId";
-import { getLocale } from "../../utils/i18n";
+import { getHostname, getLocale } from "../../utils/i18n";
+import { getDomainForTenant } from "../../utils/tenancy";
 import "../globals.css";
+import QueryProvider from "@comps/providers/QueryProvider";
+import HostnameProvider from "@comps/providers/HostnameProvider";
 
 const inter = Inter({
   weight: ["400", "600", "700"],
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ product: string }>;
+}): Promise<Metadata> {
+  const { product } = await params;
+  const domain = getDomainForTenant(product);
+
+  return {
+    metadataBase: domain ? new URL(`https://${domain}`) : undefined,
+    title: {
+      default: product,
+      template: "%s",
+    },
+    openGraph: {
+      siteName: product,
+      type: "website",
+      images: [`/default-images/${product}-og.png`],
+    },
+    twitter: {
+      card: "summary_large_image",
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { product: string };
+  params: Promise<{ product: string }>;
 }) {
-  const googleTagId = getGoogleTagId(params.product);
-  const locale = getLocale();
+  
+  const { product } = await params;
+  const googleTagId = getGoogleTagId(product);
+  const locale = await getLocale();
   const htmlLang = locale === "zh" ? "zh-CN" : "en";
+  // Strip any port so this matches window.location.hostname after hydration.
+  const hostname = (await getHostname()).split(":")[0];
 
   return (
-    <html lang={htmlLang}>
+    // data-scroll-behavior tells next's router to suppress the smooth scroll
+    // from globals.css while it navigates, so only in-page hash links animate
+    <html lang={htmlLang} data-scroll-behavior="smooth">
       <head>
-        <link rel="icon" href={`/favicons/${params.product}.ico`} />
-
-        {params?.product === "YakShaver" && (
-          <Script
-            data-domain="yakshaver.ai"
-            src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
-          />
+        <link rel="icon" href={getFaviconHref(product)} />
+        
+        {product === "YakShaver" && (
+          <>
+            <Script
+              data-domain="yakshaver.ai"
+              src="https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js"
+            />
+            <Script
+              src="https://portal.yakshaver.ai/embed.js"
+              data-yak-key="yak_pub_eb2d73fc33ab8a3db7bf62d077bb2f38"
+            />
+          </>
+        )}
+        {product === "EagleEye" && (
+          <>
+            <Script
+              async
+              src="https://plausible.io/js/pa-mLKH9kmb_Ab1FoQjBIRMA.js"
+            />
+            <Script id="plausible-init">
+              {`
+                window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+                plausible.init()
+              `}
+            </Script>
+            <Script
+              src="https://portal.yakshaver.ai/embed.js"
+              data-yak-key="yak_pub_eb2d73fc33ab8a3db7bf62d077bb2f38"
+            />
+          </>
         )}
       </head>
       <body
@@ -49,12 +109,15 @@ export default function RootLayout({
             gtag('config', '${googleTagId}');
           `}
         </Script>
-
-        <main className="overflow-clip grow">
-          <NavBarServer product={params.product} locale={locale} />
-          {children}
-        </main>
-        <FooterServer product={params.product} locale={locale} />
+        <HostnameProvider hostname={hostname}>
+          <QueryProvider>
+            <main className="overflow-clip grow">
+              <NavBarServer product={product} locale={locale} />
+              {children}
+            </main>
+          </QueryProvider>
+          <FooterServer product={product} locale={locale} />
+        </HostnameProvider>
       </body>
     </html>
   );

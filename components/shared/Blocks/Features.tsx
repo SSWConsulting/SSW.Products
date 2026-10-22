@@ -8,6 +8,8 @@ import {
   TinaMarkdown,
   TinaMarkdownContent,
 } from "tinacms/dist/rich-text";
+import { slugifyHeading } from "@utils/anchorSlug";
+import { HeadingAnchorLink } from "../LinkableHeading";
 import { YouTubeEmbed } from "../YouTubeEmbed";
 import Actions from "./ActionsButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
@@ -49,6 +51,12 @@ export const featureComponents: Components<Record<string, unknown>> = {
   a: (props) => Link(props),
 };
 const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
+  // The headline is duplicated across responsive view modes, so the id lives on
+  // the block wrapper instead of on a heading that may be hidden at this width.
+  const slug = slugifyHeading(
+    [feature.headline, feature.headlineAfter].filter(Boolean).join(" ")
+  );
+
   const renderMedia = () => {
     if (feature.media && feature.media.length > 0) {
       const mediaItem = feature.media[0];
@@ -90,7 +98,8 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
 
   return (
     <div
-      className={`flex flex-col-reverse lg:flex-row w-full first:pt-20  items-center lg:gap-12 gap-8 px-8 ${
+      id={slug || undefined}
+      className={`group scroll-mt-28 flex flex-col-reverse lg:flex-row w-full first:pt-20  items-center lg:gap-12 gap-8 px-8 ${
         feature.isReversed ? "lg:flex-row-reverse" : "lg:flex-row"
       }  pb-10 lg:pb-0 3xl:px-20`}
     >
@@ -100,7 +109,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
             {/* First line: Headline (always on the first line) */}
             <div className="w-full md:w-auto lg:w-full xl:w-auto flex items-center">
               <h1
-                className="inline"
+                className="inline inherit-heading"
                 data-tina-field={tinaField(feature, "headline")}
               >
                 {feature.headline}
@@ -117,7 +126,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
                 <WordRotate words={feature.words} className="inline-flex" />
               </span>
               <h1
-                className="w-full md:w-auto lg:w-auto xl:w-full md:inline-flex"
+                className="w-full md:w-auto lg:w-auto xl:w-full md:inline-flex inherit-heading"
                 data-tina-field={tinaField(feature, "headlineAfter")}
               >
                 {feature.headlineAfter}
@@ -128,7 +137,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
             <div className="w-full flex flex-wrap items-center">
               {/* First line: Headline, Words, and HeadlineAfter (all on the same line) */}
               <h1
-                className="inline"
+                className="inline inherit-heading"
                 data-tina-field={tinaField(feature, "headline")}
               >
                 {feature.headline}
@@ -137,13 +146,14 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
                 <WordRotate words={feature.words} className="inline-flex" />
               </span>
               <h1
-                className="inline"
+                className="inline inherit-heading"
                 data-tina-field={tinaField(feature, "headlineAfter")}
               >
                 {feature.headlineAfter}
               </h1>
             </div>
           </div>
+          {slug && <HeadingAnchorLink slug={slug} />}
         </div>
 
         <div

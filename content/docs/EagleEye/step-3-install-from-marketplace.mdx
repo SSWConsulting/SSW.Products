@@ -1,0 +1,111 @@
+---
+seo:
+  title: SSW EagleEye - Step 3 Install from Azure Marketplace
+  description: >-
+    Install SSW EagleEye from the Azure Marketplace and complete the deployment
+    wizard, configuring Azure resources, app registrations, and database
+    settings for your environment.
+title: Step 3 - Install From Azure Marketplace
+date: '2025-12-29T13:00:00.000Z'
+---
+
+<Youtube thumbnail="https://img.youtube.com/vi/aA3zSByuu6s/maxresdefault.jpg" size="medium" externalVideoLink="https://www.youtube.com/embed/aA3zSByuu6s" caption="Step 3 - Install from Azure Marketplace (10 min) | SSW EagleEye Installation Guide" />
+
+### Step 3.1 - Get SSW EagleEye in Marketplace on Azure Portal
+
+1. Go to your [Azure Portal](https://portal.azure.com)
+2. Search for **Marketplace** in the search bar
+   ![Marketplace](/EagleEye/Installation/Marketplace-Azure.png)
+3. In the Marketplace, search for **SSW EagleEye**
+   ![EagleEye Marketplace](/EagleEye/Installation/EagleEye-Marketplace-Search.png)
+4. Select your subscription and click **Create**
+   ![EagleEye App](/EagleEye/Installation/EagleEye-Subscription.png)
+
+### Step 3.2 - Configure Application Settings
+
+Follow the deployment wizard with these configuration steps:
+
+#### Step 3.2.1 - Basics
+
+* **Resource Group**: Select an existing resource group or create a new one
+* **Region**: Choose your preferred Azure region
+* **Application Name**: Enter a unique name for your application
+
+![Basics](/EagleEye/Installation/Basics.png)
+
+#### Step 3.2.2 - Application Configuration
+
+* **Project Name**: Unique prefix for all resources
+* **Environment**: Select `production` or `staging`
+
+![Application Configuration](/EagleEye/Installation/Application-Configuration.png)
+
+#### Step 3.2.3 - Azure AD Configuration
+
+* **Azure Tenant ID**: Your Azure AD tenant ID
+* **Azure Group Name**: Enter the Azure AD group name for email processing
+
+![Azure AD Configuration](/EagleEye/Installation/Azure-AD-Configuration.png)
+
+#### Step 3.2.4 - App Registration
+
+You need to provide the details of Master App:
+
+* Select Existing → Make Selection (e.g. SSW\.EagleEye.Master) and enter the client secret.
+
+![App Registration Configuration](/EagleEye/Installation/Step-App-Registration.png)
+
+#### Step 3.2.5 - Database Configuration
+
+* **Database Pricing Tier**: Select appropriate tier (Basic, S0, S1, S2)
+* **Database Users**:
+  * Read-Only user (read-only access): provide the username and password
+  * Admin and Read-Write users are generated automatically during deployment
+
+![Database Configuration](/EagleEye/Installation/DB-Configuration.png)
+
+> **Where to find database credentials later:** See [Manage Credentials for Database](./manage-database-credentials).
+
+#### Step 3.2.6 - Review and Deploy
+
+1. Review all configuration settings
+2. Click **Create** to start deployment
+3. Monitor deployment progress in the Azure Portal
+4. Deployment typically takes 15-30 minutes
+
+### Step 3.3 - Verify Deployment
+
+1. **Access the Portal**:
+   * Open your EagleEye resource group in Azure Portal (e.g., `Northwind.EagleEye.RG`).
+   * Open the Portal container app (e.g., `ca-nextjs-xxx`).
+     ![](/EagleEye/Installation/CA-Portal.png)
+   * Click the **Application URL** and open it in your browser.
+     ![](/EagleEye/Installation/Portal-URL.png)
+2. **Test Authentication**: Sign in with a Microsoft account that belongs to the EagleEye group you configured. Only members of that group can access the portal.
+3. **Verify internal domains**: In the EagleEye portal, go to **Settings** and confirm your internal email domains are listed for the tenant.
+   ![](/EagleEye/Installation/Tenant-Domains.png)
+
+#### Common issues can be resolved by visiting:
+
+* [Set portal redirect URL](./set-portal-redirect-url)
+* [Update Internal email domains](./update-internal-email-domains)
+* [Manage Credentials for Database](./manage-database-credentials)
+* [Secret Management for App Registrations](./secret-management-app-registrations)
+
+#### Post-deployment steps
+
+After installation:
+
+* If you plan to use **[Non-AI Tags](./tags-non-ai)** only, no further AI setup is required. EagleEye is ready to analyse emails with non-AI tags.
+* If you plan to use **[AI Tags](./tags-ai)** or **[AI with mentions tags](./tags-ai-mention)**, follow [Deploy AI Model](./deploy-ai-model) to enable Azure OpenAI processing.
+* You can safely [Delete the Master App](./delete-master-app) after this step. It is no longer required.
+
+## Architecture Overview
+
+The deployed solution includes:
+
+* **Container Apps Environment**: Hosts the API (`ca-api-xxx`), Portal (`ca-nextjs-xxx`), and email analysis jobs (`cj-manual-xxx`, `cj-cli-xxx`)
+* **Azure SQL Database**: Shared database with configured user access (`db-shared-xxx`)
+* **Azure OpenAI**: Auto-provisioned Cognitive Services account in East US (`openai-shared-xxx`). If you want to use AI-based tagging, deploy a chat model named `eagleeye` after installation using the AI model guide.
+* **Key Vault**: Secure storage of shared secrets and configuration (`kv-shared-xxx`)
+* **Application Insights**: Monitoring and telemetry (`ai-shared-xxx`)

@@ -3,6 +3,7 @@ import { Download } from "lucide-react";
 import { useState } from "react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
+import LinkableHeading from "../LinkableHeading";
 
 interface ImageItem {
   id?: string;
@@ -23,6 +24,8 @@ interface ImageGridProps {
   itemsPerRow?: number;
   aspectRatio?: number;
   className?: string;
+  /** h3 when the grid sits inside a larger section, e.g. Fonts under Typography. */
+  headingLevel?: "h2" | "h3";
 }
 
 const GRID_COLS = {
@@ -41,6 +44,7 @@ const ImageGrid = ({
   itemsPerRow = 3,
   aspectRatio = 0.65,
   className = "",
+  headingLevel = "h2",
 }: ImageGridProps) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
@@ -87,9 +91,12 @@ const ImageGrid = ({
       {(title || gridDescription) && (
         <div className="text-center mb-12">
           {title && (
-            <h2 className="text-[32px] font-semibold text-white mb-1">
+            <LinkableHeading
+              as={headingLevel}
+              className="mb-1"
+            >
               {title}
-            </h2>
+            </LinkableHeading>
           )}
           {gridDescription && (
             <div className="text-[14px] text-white font-medium leading-relaxed max-w-3xl mx-auto">

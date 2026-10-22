@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -17,16 +21,33 @@
         "name": "next"
       }
     ],
-
     "paths": {
       // TODO: consolidate ./src/components & ./components https://github.com/SSWConsulting/SSW.YakShaver/issues/2062
-      "@/*": ["./src/*"],
-      "@comps/*": ["./components/*"],
-      "@utils/*": ["./utils/*"],
-      "@tina/*": ["./tina/*"],
-      "@images/*": ["./images/*"]
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "@comps/*": [
+        "./components/*"
+      ],
+      "@utils/*": [
+        "./utils/*"
+      ],
+      "@tina/*": [
+        "./tina/*"
+      ],
+      "@images/*": [
+        "./images/*"
+      ]
+    },
+    "target": "ES2017"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

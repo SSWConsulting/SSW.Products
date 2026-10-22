@@ -3,9 +3,10 @@ import { getDomainForTenant } from "@utils/tenancy";
 
 export async function GET(
   request: Request,
-  { params }: { params: { product: string } }
+  { params }: { params: Promise<{ product: string }> }
 ): Promise<Response> {
-  const product = params.product;
+
+  const { product } = await params;
 
   const hostname = getDomainForTenant(product);
   if (!hostname) {

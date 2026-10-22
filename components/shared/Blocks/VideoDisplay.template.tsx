@@ -1,7 +1,6 @@
 import { getYouTubeVideoId } from "@utils/youtube";
-import axios from "axios";
 import React, { useEffect } from "react";
-import { FormApi, Template, TextField, TinaField } from "tinacms";
+import { Form, FormApi, Template, TextField, TinaField } from "tinacms";
 
 const VideoUrl = (props: {
   field: {
@@ -10,6 +9,7 @@ const VideoUrl = (props: {
     label?: string | undefined | boolean;
   };
   form?: FormApi;
+  tinaForm?: Form;
   input: {
     onBlur: (event?: React.FocusEvent<string> | undefined) => void;
     onChange: (event: React.ChangeEvent<string>) => void;
@@ -19,32 +19,31 @@ const VideoUrl = (props: {
   };
   meta: object;
 }) => {
-  if (!props.form)
+  if (!props.form || !props.tinaForm)
     throw new Error("Form is required for Video Display component");
 
   useEffect(() => {
     const leadingField = props.input.name.replace("externalVideoLink", "");
-
     const videoId = getYouTubeVideoId(props.input.value);
-
+  
     const urls = [
       `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
       `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
     ];
-    const traverseUrls = (urls: string[]) => {
-      axios
-        .get(urls[0])
-        .then(() => {
-          props.form?.change(`${leadingField}thumbnail`, urls[0]);
-        })
-        .catch(() => {
-          urls = urls.slice(1);
-          if (urls.length === 0) {
-            props.form?.change(`${leadingField}thumbnail`, null);
-            return;
-          }
-          traverseUrls(urls);
-        });
+    
+    const traverseUrls = async (urls: string[]) => {
+      const axios = (await import("axios")).default;
+      try {
+        await axios.get(urls[0]);
+        props.form?.change(`${leadingField}thumbnail`, urls[0]);
+      } catch {
+        urls = urls.slice(1);
+        if (urls.length === 0) {
+          props.form?.change(`${leadingField}thumbnail`, null);
+          return;
+        }
+        traverseUrls(urls);
+      }
     };
     traverseUrls(urls);
   }, [props.input.value, props.input.name, props.form]);
@@ -62,6 +61,7 @@ const VideoUrl = (props: {
         }}
         meta={props.meta}
         form={props.form}
+        tinaForm={props.tinaForm}
         input={{
           name: props.field.name,
           value: props.input.value,
@@ -105,6 +105,12 @@ export const optimizedYoutubeFields: TinaField[] = [
       { value: "large", label: "Large (800x600)" },
     ],
     description: "Choose the size of the YouTube embed.",
+    required: false,
+  },
+  {
+    name: "caption",
+    label: "Figure Caption",
+    type: "string",
     required: false,
   },
 ];

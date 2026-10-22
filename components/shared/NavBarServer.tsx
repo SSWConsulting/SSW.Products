@@ -1,6 +1,7 @@
 import { NavGroup } from "@/types/nav-group";
 import { NavigationBarLeftNavItemStringItem as NavItem } from "@tina/__generated__/types";
-import { getNavigationBarWithFallback } from "@utils/i18n";
+import { withAssetVersion } from "@utils/assetVersion";
+import { getHostname, getNavigationBarWithFallback } from "@utils/i18n";
 import NavBarClient from "./NavBarClient";
 
 interface NavBarServerProps {
@@ -10,7 +11,9 @@ interface NavBarServerProps {
 
 export default async function NavBarServer({ product, locale }: NavBarServerProps) {
   const result = await getNavigationBarWithFallback(product, locale);
-  
+  // Strip any port so this matches window.location.hostname after hydration.
+  const hostname = (await getHostname()).split(":")[0];
+
   if (!result?.data) {
     return null;
   }
@@ -47,17 +50,39 @@ export default async function NavBarServer({ product, locale }: NavBarServerProp
 
   const buttons =
     data.navigationBar.buttons?.filter((button) => button !== null) || [];
-  const { imgSrc, imgHeight, imgWidth } = data.navigationBar || {};
+  const { imgSrc, imgHeight, imgWidth, showLanguageToggle } =
+    data.navigationBar || {};
+
+  const normalizedImgSrc = (() => {
+    if (product !== "YakShaver" || typeof imgSrc !== "string") {
+      return imgSrc;
+    }
+    if (!imgSrc.includes("assets.tina.io")) {
+      return imgSrc;
+    }
+    try {
+      const url = new URL(imgSrc);
+      if (url.pathname.includes("yakshaver-logo.png")) {
+        return "/yakshaver-logo.png";
+      }
+    } catch {
+      // Ignore URL parsing errors
+    }
+    return imgSrc;
+  })();
+
   const bannerImage =
-    imgSrc && imgHeight && imgWidth
-      ? { imgHeight, imgSrc, imgWidth }
+    normalizedImgSrc && imgHeight && imgWidth
+      ? { imgHeight, imgSrc: withAssetVersion(normalizedImgSrc), imgWidth }
       : undefined;
   return (
-    <NavBarClient 
-      bannerImage={bannerImage} 
-      buttons={buttons} 
-      items={items} 
+    <NavBarClient
+      bannerImage={bannerImage}
+      buttons={buttons}
+      items={items}
       currentLocale={locale || 'en'}
+      hostname={hostname}
+      showLanguageToggle={showLanguageToggle ?? false}
     />
   );
 }
