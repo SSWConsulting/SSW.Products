@@ -24,6 +24,10 @@
         {
           "title": "Customer Portal",
           "description": "Develop a self-service portal where customers can access Power BI reports for email insights, manage tags for better categorization, and track email synchronization jobs."
+        },
+        {
+          "title": "Customer Instance Setup",
+          "description": "Automate the provisioning of dedicated EagleEye instances for customers, ensuring secure data isolation, streamlined onboarding, and customized configurations for enterprise users."
         }
       ],
       "_template": "Timeline"
@@ -32,8 +36,10 @@
       "title": "In Progress",
       "items": [
         {
-          "title": "Customer Instance Setup \t",
-          "description": "Automate the provisioning of dedicated EagleEye instances for customers, ensuring secure data isolation, streamlined onboarding, and customized configurations for enterprise users.\t\n"
+          "title": "GitHub Integration",
+          "description": "Bring GitHub issues and pull requests into EagleEye, so they are scanned, AI-tagged and reported on like email. Already live: the Issues report (Overview, Mentions, Opened and Closed tabs), the Pull Requests report (Overview, Mentions, Opened and Approved tabs), custom AI tags for GitHub, and daily and manual GitHub scans. Next: comments as messages of their own, webhook triggers on GitHub tags, and linking a person's GitHub and email identities.",
+          "badgeTitle": "🎥 GitHub integration mock-up (5 min)",
+          "badgeLink": "https://www.youtube.com/watch?v=yMQmMofzPJw"
         }
       ],
       "_template": "Timeline"
@@ -41,12 +47,6 @@
     {
       "title": "Coming Soon",
       "items": [
-        {
-          "title": "GitHub Integration \t",
-          "description": "Integrate with GitHub to analyze email discussions related to pull requests, issues, and code reviews, helping teams optimize collaboration and workflow efficiency.\t\n",
-          "badgeTitle": "🎥 GitHub integration mock-up (5 min)",
-          "badgeLink": "https://www.youtube.com/watch?v=yMQmMofzPJw"
-        },
         {
           "title": "Teams Integration ",
           "description": "Enable Microsoft Teams integration to analyze chat-based communications alongside email insights, providing a holistic view of team collaboration and workload balance"
