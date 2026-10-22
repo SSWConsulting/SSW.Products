@@ -27,6 +27,12 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # tina/__generated__ is gitignored, so the client and types have to be
+      # built before anything can typecheck. --local keeps it off TinaCloud,
+      # so this step needs no credentials.
+      - name: Generate Tina client
+        run: pnpm exec tinacms build --local --skip-cloud-checks --skip-indexing --skip-search-index
+
       # lint, typecheck and tests - the same command developers run locally
       - name: Check
         run: pnpm check

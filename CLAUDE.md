@@ -24,4 +24,5 @@ Headings inherit Inter from `<body>` (`app/[product]/layout.tsx`), so leave the 
 ## TinaCMS
 
 - `tina/tina-lock.json` is generated, committed, and 442KB on one line. `pnpm dev` rewrites it: revert it unless your change touched `tina/collectionSchema/`.
+- `tina/__generated__/` holds the generated client and types. It is gitignored, so a fresh clone cannot typecheck until you run `pnpm exec tinacms build --local --skip-cloud-checks --skip-indexing --skip-search-index`, which needs no credentials. CI runs that step before `pnpm check`.
 - `pnpm dev` needs `NEXT_PUBLIC_TINA_CLIENT_ID` and `TINA_TOKEN` (see `.env.example`). Without them, verify on the PR's Vercel preview deploy.
