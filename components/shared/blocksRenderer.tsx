@@ -14,6 +14,7 @@ import ImageShowcase from "./Blocks/ImageShowcase";
 import MediaHero from "./Blocks/MediaHero";
 import Pricing from "./Blocks/Pricing";
 import RichText from "./Blocks/RichText";
+import TypographySection from "./Blocks/TypographySection";
 import { Timeline } from "./Blocks/Timeline/Timeline";
 import { TryItNow } from "./Blocks/TryItNow";
 import { DownloadCards } from "./Blocks/DownloadCards";
@@ -108,6 +109,14 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksMediaHero":
         return <MediaHero key={index} {...block} />;
       case "PagesPageBlocksImageGrid":
+        // On /media the "Fonts" grid is the first half of a Typography section;
+        // the heading specimen is the second. Both the wrapper and the specimen
+        // are rendered from code (not Tina blocks) so they always mirror the
+        // base heading styles in globals.css and need no schema change. Only
+        // the English /media page has a block titled "Fonts".
+        if (block.title === "Fonts") {
+          return <TypographySection key={index} fonts={block} />;
+        }
         return <ImageGrid key={index} {...block} />;
       case "PagesPageBlocksImageShowcase":
         return <ImageShowcase key={index} {...block} />;

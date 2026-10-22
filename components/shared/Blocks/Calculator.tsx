@@ -121,9 +121,8 @@ export default function CalculatorComponent({ data }: { data: any }) {
     <Container>
       <LinkableHeading
         as="h2"
-        wrap
         anchor={data?.title}
-        className="text-3xl text-center font-semibold text-white mb-4"
+        className="text-center mb-4"
       >
         {" "}
         {curlyBracketFormatter(data?.title)}

@@ -1,6 +1,7 @@
 import { cache } from "react";
 import client from "../tina/__generated__/client";
 import NotFoundError from "../src/errors/not-found";
+import { getAllConnectionEdges } from "./tina";
 
 type GetBlogsForProductProps = {
   startCursor?: string;
@@ -12,30 +13,32 @@ type GetBlogsForProductProps = {
   filteredBlogs?: string[];
   locale?: string;
   branch?: string;  
+  loadAll?: boolean;
 };
 
 // Workaround: graphql doesn't allow you to query by file name
 const getTitlesInTenant = cache(async (product: string, locale?: string) => {
-  const res = await client.queries.blogsConnection();
-  const titles =
-    res.data.blogsConnection.edges?.reduce<string[]>((acc: string[], curr) => {
-      const pathToCheck = locale === 'zh' 
-        ? `/blogs/${product}/zh` 
-        : `/blogs/${product}`;
-      
-      const inCurrentTenant = curr?.node?._sys.path.includes(pathToCheck);
-      
-      const isCorrectLanguage = locale === 'zh' 
-        ? curr?.node?._sys.path.includes(`/blogs/${product}/zh`)
-        : !curr?.node?._sys.path.includes(`/blogs/${product}/zh`);
-      
-      const title = curr?.node?.title;
-      if (title && !acc.includes(title) && inCurrentTenant && isCorrectLanguage) {
-        return [...acc, title];
-      }
-      return acc;
-    }, []) || [];
-  return titles;
+  const edges = await getAllConnectionEdges(
+    (vars) => client.queries.blogsConnection(vars),
+    "blogsConnection"
+  );
+  return edges.reduce<string[]>((acc: string[], curr) => {
+    const pathToCheck = locale === 'zh'
+      ? `/blogs/${product}/zh`
+      : `/blogs/${product}`;
+
+    const inCurrentTenant = curr?.node?._sys.path.includes(pathToCheck);
+
+    const isCorrectLanguage = locale === 'zh'
+      ? curr?.node?._sys.path.includes(`/blogs/${product}/zh`)
+      : !curr?.node?._sys.path.includes(`/blogs/${product}/zh`);
+
+    const title = curr?.node?.title;
+    if (title && !acc.includes(title) && inCurrentTenant && isCorrectLanguage) {
+      return [...acc, title];
+    }
+    return acc;
+  }, []);
 });
 
 // Get blogs using reverse pagination https://tina.io/docs/graphql/queries/advanced/pagination#reverse-pagination
@@ -48,6 +51,7 @@ export async function getBlogsForProduct({
   filteredBlogs,
   locale,
   branch,
+  loadAll,
 }: GetBlogsForProductProps) {
   try {
 
@@ -70,6 +74,10 @@ export async function getBlogsForProduct({
       );
     }
 
+    // "Load more" pulls in every remaining article in one go, so the page size
+    // becomes the candidate title count - the most documents the filter can match
+    const pageSize = loadAll ? Math.max(titles.length, limit) : limit;
+
     const categoryFilter = category
       ? {
           category: {
@@ -85,7 +93,7 @@ export async function getBlogsForProduct({
         ...categoryFilter,
       },
       ...beforeFilter,
-      last: limit * 2,
+      last: pageSize * 2,
       before: startCursor,
       sort: "date",
       },{ ...fetchOptions});
@@ -99,11 +107,11 @@ export async function getBlogsForProduct({
     }
 
     const remainingPages = Math.max(
-      res.data.blogsConnection.edges.length - limit,
+      res.data.blogsConnection.edges.length - pageSize,
       0
     );
 
-    const croppedBlogResponse = res.data.blogsConnection.edges?.slice(0, limit);
+    const croppedBlogResponse = res.data.blogsConnection.edges?.slice(0, pageSize);
 
     return {
       blogs: croppedBlogResponse,

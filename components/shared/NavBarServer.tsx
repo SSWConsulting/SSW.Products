@@ -1,7 +1,7 @@
 import { NavGroup } from "@/types/nav-group";
 import { NavigationBarLeftNavItemStringItem as NavItem } from "@tina/__generated__/types";
 import { withAssetVersion } from "@utils/assetVersion";
-import { getNavigationBarWithFallback } from "@utils/i18n";
+import { getHostname, getNavigationBarWithFallback } from "@utils/i18n";
 import NavBarClient from "./NavBarClient";
 
 interface NavBarServerProps {
@@ -11,7 +11,9 @@ interface NavBarServerProps {
 
 export default async function NavBarServer({ product, locale }: NavBarServerProps) {
   const result = await getNavigationBarWithFallback(product, locale);
-  
+  // Strip any port so this matches window.location.hostname after hydration.
+  const hostname = (await getHostname()).split(":")[0];
+
   if (!result?.data) {
     return null;
   }
@@ -79,6 +81,7 @@ export default async function NavBarServer({ product, locale }: NavBarServerProp
       buttons={buttons}
       items={items}
       currentLocale={locale || 'en'}
+      hostname={hostname}
       showLanguageToggle={showLanguageToggle ?? false}
     />
   );

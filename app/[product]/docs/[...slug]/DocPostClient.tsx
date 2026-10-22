@@ -6,6 +6,7 @@ import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMark
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useContextualLink } from "@utils/contextualLink";
+import { docSlugFromBreadcrumbs } from "@utils/docPath";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import TableOfContentsClient from "./TableOfContentsClient";
@@ -26,13 +27,18 @@ interface DocPostClientProps {
 // Find the section (navigation group) that contains the current doc, and the
 // link to that section (its first item). Falls back to the docs index.
 const useDocSection = (tableOfContentsData: DocsTableOfContents) => {
-  const params = useParams<{ slug: string }>();
+  const params = useParams<{ slug?: string[] }>();
   const contextualHref = useContextualLink();
+  const activeSlug = params.slug?.join("/") ?? "";
 
   const section = tableOfContentsData.parentNavigationGroup?.find((group) =>
-    group?.items?.some((item) => item?.slug?._sys?.filename === params.slug)
+    group?.items?.some(
+      (item) => docSlugFromBreadcrumbs(item?.slug?._sys?.breadcrumbs) === activeSlug
+    )
   );
-  const firstItemSlug = section?.items?.[0]?.slug?._sys?.filename;
+  const firstItemSlug = docSlugFromBreadcrumbs(
+    section?.items?.[0]?.slug?._sys?.breadcrumbs
+  );
 
   return {
     sectionTitle: section?.title ?? null,
@@ -106,7 +112,8 @@ export default function DocPostClient({
       </div>
       <div className="flex flex-col gap-2 mb-8">
         <BreadCrumbs title={title} tableOfContentsData={tableOfContentsData} />
-        <h2 className="text-3xl font-semibold text-ssw-red">{title}</h2>
+        {/* the doc page title - its own h1 so the page has one (was an h2) */}
+        <h1 className="text-3xl font-semibold text-ssw-red">{title}</h1>
         <GitHubMetadata path={data.docs.id} className="text-sm font-light text-gray-300" />
       </div>
       <div className="text-base font-light mb-12 lg:prose-xl">

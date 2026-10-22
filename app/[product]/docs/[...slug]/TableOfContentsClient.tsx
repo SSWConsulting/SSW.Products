@@ -5,6 +5,7 @@ import * as SearchBox from "@comps/search/SearchBox";
 import Link from "next/link";
 import { useState } from "react";
 import { useContextualLink } from "@utils/contextualLink";
+import { docSlugFromBreadcrumbs } from "@utils/docPath";
 import { FaChevronDown } from "react-icons/fa";
 
 import {
@@ -31,9 +32,10 @@ function NavigationGroup({ navigationGroup, activeItem }: {
           onClick={() => setIsExpanded(!isExpanded)}
           className="flex items-center w-full text-left"
         >
-          <h2 className="bg-linear-to-br text-white font-medium">
+          {/* a nav group label, not a document heading */}
+          <span className="bg-linear-to-br text-white font-medium">
             {navigationGroup.title}
-          </h2>
+          </span>
           <FaChevronDown
             className={`ml-2 transition-transform duration-300 ease-in-out ${
               isExpanded ? "" : "transform -rotate-90"
@@ -48,9 +50,10 @@ function NavigationGroup({ navigationGroup, activeItem }: {
         >
           <ul className="pt-1">
             {navigationGroup?.items?.map((item, index) => {
-              const isActive = activeItem === item?.slug?._sys?.filename;
+              const itemSlug = docSlugFromBreadcrumbs(item?.slug?._sys?.breadcrumbs);
+              const isActive = activeItem === itemSlug;
               return (
-                <div className="group" key={item?.slug?._sys?.filename}>
+                <div className="group" key={itemSlug}>
                   <li
                     key={`navigation-item-${index}`}
                     className={cn(
@@ -65,10 +68,10 @@ function NavigationGroup({ navigationGroup, activeItem }: {
                     ></div>
                     <div className="absolute h-full w-1 inset-x-0 border-l z-1 box-content border-white/20"></div>
                     <Link
-                      href={contextualHref(`/docs/${item?.slug?._sys?.filename}`)}
+                      href={contextualHref(`/docs/${itemSlug}`)}
                       className={cn(
                         `block transition-colors p-1.5 ml-6 `,
-                        activeItem === item?.slug?._sys?.filename
+                        isActive
                           ? "text-ssw-red"
                           : "text-white/60 group-hover:text-white"
                       )}
@@ -87,28 +90,33 @@ function NavigationGroup({ navigationGroup, activeItem }: {
 }
 
 function TableOfContentsClient({ tableOfContentsData }: TableOfContentsClientProps) {
-  const params = useParams<{ product: string; slug: string }>();
+  const params = useParams<{ product: string; slug?: string[] }>();
+  // Catch-all route: /docs/tenants/create-tenant arrives as ["tenants", "create-tenant"]
+  const activeSlug = params.slug?.join("/") ?? "";
 
   return (
     <>
       <SearchBox.Trigger />
 
-      {tableOfContentsData.parentNavigationGroup &&
-        tableOfContentsData.parentNavigationGroup.map(
-          (group, index) =>
-            group && (
-              <NavigationGroup
-                activeItem={
-                  params.slug ||
-                  tableOfContentsData?.parentNavigationGroup?.[0]?.items?.[0]
-                    ?.slug?._sys?.filename ||
-                  ""
-                }
-                key={index}
-                navigationGroup={group}
-              />
-            )
-        )}
+      <nav aria-label="Documentation">
+        {tableOfContentsData.parentNavigationGroup &&
+          tableOfContentsData.parentNavigationGroup.map(
+            (group, index) =>
+              group && (
+                <NavigationGroup
+                  activeItem={
+                    activeSlug ||
+                    docSlugFromBreadcrumbs(
+                      tableOfContentsData?.parentNavigationGroup?.[0]?.items?.[0]
+                        ?.slug?._sys?.breadcrumbs
+                    )
+                  }
+                  key={index}
+                  navigationGroup={group}
+                />
+              )
+          )}
+      </nav>
     </>
   );
 }

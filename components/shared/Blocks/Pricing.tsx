@@ -82,9 +82,8 @@ const Pricing = ({ data }: PricingProps) => {
       {title && (
         <LinkableHeading
           as="h1"
-          wrap
           anchor={title}
-          className="text-4xl text-center font-semibold text-white mb-4"
+          className="text-center mb-4"
           data-tina-field={tinaField(data, "title")}
         >
           {curlyBracketFormatter(title)}
@@ -259,9 +258,8 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
       </div>
 
       <div className="flex-col pb-3 grow">
-        <LinkableHeading as="h3" wrap className="text-base text-white pb-1">
-          {plan.listTitle}
-        </LinkableHeading>
+        {/* a lead-in label above the feature list, not a heading */}
+        <p className="text-base text-white pb-1">{plan.listTitle}</p>
         {plan.listItems?.map((item: string, index: number) => (
           <div key={index} className="flex items-start gap-2 py-1">
             <BsCheck

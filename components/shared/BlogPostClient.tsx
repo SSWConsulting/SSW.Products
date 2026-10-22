@@ -49,14 +49,9 @@ export default function BlogPostClient({
   });
 
   const titles = useMemo(() => {
-    const titleNodes = searchAstTree(data.blogs.body, [
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "h5",
-      "h6",
-    ]);
+    const titleNodes = data.blogs.body
+      ? searchAstTree(data.blogs.body, ["h1", "h2", "h3", "h4", "h5", "h6"])
+      : [];
     const bodyTitles = nodesToText(titleNodes);
     return bodyTitles;
   }, [data.blogs.body]);
@@ -201,6 +196,26 @@ export default function BlogPostClient({
                           <li className="list-outside ml-6 list-disc">
                             {props?.children}
                           </li>
+                        ),
+                        // summary sub-points, not document headings (a div, so
+                        // the container's [&_p] grey/small text styles skip it)
+                        h1: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h2: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h3: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h4: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h5: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h6: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
                         ),
                       }}
                     />

@@ -62,9 +62,8 @@ export default function CardAndImageParent({
         {ParentContainerTitle && (
           <LinkableHeading
             as="h2"
-            wrap
             anchor={ParentContainerTitle}
-            className="text-3xl text-white flex justify-center font-bold pb-3"
+            className="flex justify-center pb-3"
           >
             {curlyBracketFormatter(ParentContainerTitle)}
           </LinkableHeading>

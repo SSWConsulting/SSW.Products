@@ -21,6 +21,11 @@
         "title": "Watch video",
         "link": "https://www.youtube.com/shorts/0TPo98R1tnI"
       },
+      "demoQr": {
+        "enabled": true,
+        "title": "Try it now",
+        "caption": "Scan to try YakShaver on your phone"
+      },
       "reportUIEnabled": true,
       "reportUI": {
         "leftHandSide": {

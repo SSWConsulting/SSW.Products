@@ -1,6 +1,6 @@
 import { getYouTubeVideoId } from "@utils/youtube";
 import React, { useEffect } from "react";
-import { FormApi, Template, TextField, TinaField } from "tinacms";
+import { Form, FormApi, Template, TextField, TinaField } from "tinacms";
 
 const VideoUrl = (props: {
   field: {
@@ -9,6 +9,7 @@ const VideoUrl = (props: {
     label?: string | undefined | boolean;
   };
   form?: FormApi;
+  tinaForm?: Form;
   input: {
     onBlur: (event?: React.FocusEvent<string> | undefined) => void;
     onChange: (event: React.ChangeEvent<string>) => void;
@@ -18,7 +19,7 @@ const VideoUrl = (props: {
   };
   meta: object;
 }) => {
-  if (!props.form)
+  if (!props.form || !props.tinaForm)
     throw new Error("Form is required for Video Display component");
 
   useEffect(() => {
@@ -60,6 +61,7 @@ const VideoUrl = (props: {
         }}
         meta={props.meta}
         form={props.form}
+        tinaForm={props.tinaForm}
         input={{
           name: props.field.name,
           value: props.input.value,

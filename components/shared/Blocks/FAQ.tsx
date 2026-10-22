@@ -21,8 +21,7 @@ const FAQ = ({ data }: { data: FAQData }) => {
     <Container className="text-white w-full mx-auto" size="medium">
       <LinkableHeading
         as="h2"
-        wrap
-        className="text-3xl font-semibold mb-12 flex justify-center"
+        className="mb-12 flex justify-center"
         data-tina-field={tinaField(data, "headline")}
       >
         {data.headline}
@@ -79,7 +78,7 @@ const Question = ({
         >
           {/* eslint-disable-next-line no-restricted-syntax -- anchored via
               the wrapper id above; an <a> inside this <button> is invalid */}
-          <h3 className="text-lg font-bold">{item.question}</h3>
+          <h3>{item.question}</h3>
 
           {isOpen ? (
             <FaMinus className="ml-auto text-[#e34f4f]" />
