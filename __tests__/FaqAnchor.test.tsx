@@ -4,8 +4,6 @@
 import { act, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-// tinacms is ESM-only; the field metadata doesn't affect the anchor markup
-jest.mock("tinacms/dist/react", () => ({ tinaField: () => "" }));
 
 import FAQ from "../components/shared/Blocks/FAQ";
 

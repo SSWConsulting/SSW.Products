@@ -6,6 +6,8 @@ Multi-tenant Next.js + TinaCMS site. One codebase serves YakShaver, EagleEye, Ti
 
 `pnpm check` runs lint, typecheck and tests together. CI runs the same command on every PR.
 
+Wait on a PR's checks with the PR monitor (`mcp__ccd_pr__set_monitor`, then `get_status`), not a `sleep` loop — the sandbox blocks `sleep` chained into `gh pr checks`.
+
 ## Navigation
 
 - **Content** lives in `content/pages/<Tenant>/`, with `zh/` beside it for the Chinese locale. A change for one tenant leaves the other three alone — decide which ones it belongs to.
