@@ -5,6 +5,16 @@ const nextConfig = {
   images: {
     domains: ["assets.tina.io", "img.youtube.com"],
   },
+  // The blog opengraph-image route reads banners/author photos from public/ via
+  // fs at runtime; dynamic paths aren't statically traced, so without this the
+  // files are missing from the serverless bundle and the image renders black
+  outputFileTracingIncludes: {
+    "/**/opengraph-image": [
+      "./public/*/Blogs/**/*",
+      "./public/*/Devs/**/*",
+      "./public/default-images/**/*",
+    ],
+  },
   async redirects() {
     return [
       {
@@ -20,6 +30,11 @@ const nextConfig = {
       {
         source: "/docs/recording-work-item-smartphone",
         destination: "/docs/recording-on-mobile",
+        permanent: true,
+      },
+      {
+        source: "/docs/setting-up-other-recording-tools",
+        destination: "/docs/third-party-tools-setup",
         permanent: true,
       },
     ];

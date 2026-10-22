@@ -1,18 +1,21 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
+import clsx from "clsx";
 import { FaChevronRight } from "react-icons/fa";
+import { underlineBase } from "@comps/GrowingLink";
 const SubGroupContent = ({ children }: { children: React.ReactNode }) => {
   return (
-    <NavigationMenu.Content className="border mt-2 slide-in-from-top-0 rounded text-[#d1d5db] hover:text-white  border-white/20 shadow-lg p-3 space-y-2 bg-gray-light absolute data-[motion=open]:animation-duration-100 data-[state=open]:animate-in  data-[state=closed]:animate-out data-[state=closed]:animation-duration-300 data-[state=open]:fade-in data-[state=closed]:fade-out">
+    <NavigationMenu.Content className="border mt-2 slide-in-from-top-0 rounded text-white border-white/20 shadow-lg p-3 space-y-2 bg-gray-light absolute data-[motion=open]:animation-duration-100 data-[state=open]:animate-in  data-[state=closed]:animate-out data-[state=closed]:animation-duration-300 data-[state=open]:fade-in data-[state=closed]:fade-out">
       {children}
     </NavigationMenu.Content>
   );
 };
 
-const SubGroupTrigger = ({ label }: { label: string }) => {
+const SubGroupTrigger = ({ label, isActive = false }: { label: string; isActive?: boolean }) => {
   return (
-    <NavigationMenu.Trigger className="outline-none text-base h-fit flex items-center w-full gap-2 px-3  rounded  transition-colors whitespace-nowrap writing-mode-horizontal">
+    <NavigationMenu.Trigger className={clsx("outline-none text-base min-h-[42px] flex items-center w-full gap-2 px-3 rounded transition-colors whitespace-nowrap writing-mode-horizontal relative", underlineBase, "after:inset-x-3 after:bg-ssw-red", isActive ? "after:scale-x-100 after:origin-left" : "after:origin-right")}>
       {label}
-      <FaChevronRight className="text-ssw-red text-sm rotate-90 transition-all duration-300" />
+
+      <FaChevronRight className="text-white text-sm rotate-90 transition-all duration-300" />
     </NavigationMenu.Trigger>
   );
 };

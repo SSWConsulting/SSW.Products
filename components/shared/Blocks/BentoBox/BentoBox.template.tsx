@@ -1,5 +1,10 @@
-import { Template, wrapFieldsWithMeta } from "tinacms";
+import { Template, TinaField, wrapFieldsWithMeta } from "tinacms";
 import IconSelector from "../../../../tina/customSchemaComponents/IconSelector";
+
+// tinacms UIField.component type omits the 'form' prop that wrapFieldsWithMeta provides
+type StringFieldComponent = NonNullable<
+  Extract<TinaField<false>, { type: "string"; list?: false }>["ui"]
+>["component"];
 
 export const bentoBoxTemplate: Template = {
   name: "BentoBox",
@@ -177,8 +182,7 @@ export const bentoBoxTemplate: Template = {
               description:
                 "Can't find the icon you want? ask a developer to add it",
               ui: {
-                // @ts-expect-error - TOOD Investigate
-                component: wrapFieldsWithMeta(IconSelector),
+                component: wrapFieldsWithMeta(IconSelector) as StringFieldComponent,
               },
             },
           ],

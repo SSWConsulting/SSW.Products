@@ -35,10 +35,10 @@ export const ImageShowcaseTemplate: Template = {
       description: "Title displayed below the image",
     },
     {
-      type: "string",
+      type: "rich-text",
       name: "showcaseDescription",
       label: "Showcase Description",
-      description: "Description displayed below the showcase title",
+      description: "Description displayed below the showcase title. Supports rich text formatting including links, bold, italic, and lists.",
     },
   ],
 };

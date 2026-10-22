@@ -18,10 +18,12 @@ import { CardAndImageTemplate } from "../../components/shared/Blocks/CardAndImag
 import { ComparisonTable } from "../../components/shared/Blocks/ComparisonTable.template";
 import { RichTextTemplate } from "../../components/shared/Blocks/RichText.template";
 import TryItNowTemplate from "../../components/shared/Blocks/TryItNow.template";
+import DownloadCardsTemplate from "../../components/shared/Blocks/DownloadCards.template";
 import { MediaHeroTemplate } from "../../components/shared/Blocks/MediaHero.template";
 import { ImageGridTemplate } from "../../components/shared/Blocks/ImageGrid.template";
 import { ImageShowcaseTemplate } from "../../components/shared/Blocks/ImageShowcase.template";
 import { seoInformation } from "../shared/SEOInformation";
+import { fileNameField } from "@tina/shared/FileName";
 
 export const bottomPaddingOptions = {
   none: undefined,
@@ -32,6 +34,7 @@ export const bottomPaddingOptions = {
 export const inputClasses: Record<string, string> = {
   gray: "bg-[#222222]",
   black: "bg-black",
+  "near-black": "bg-[#010101]",
 };
 
 const ColorPickerInput = wrapFieldsWithMeta(({ input }: any) => {
@@ -68,12 +71,18 @@ export const PagesSchema: Collection = {
   format: "json",
   // This ui is needed because of the dynamic routing with [filename] -> tina is looking for a static path (i.e pages/TimePro, pages/YakShaver)
   ui: {
+    ...fileNameField,
     router: ({ document, collection }) => {
       const relativePath = document?._sys.relativePath;
       if (relativePath) {
-        return `/${relativePath
-          .replace(`.${collection.format}`, '')
-          .split('/').slice(1).join('/')}`;
+        const normalizedPath = relativePath.replace(`.${collection.format}`, '');
+        const [maybeLocale, ...rest] = normalizedPath.split('/');
+
+        if (maybeLocale === 'zh' && rest.length > 0) {
+          return `/zh/${rest.join('/')}`;
+        }
+
+        return `/${normalizedPath}`;
       }
       return `/${document?._sys.filename}`;
     },
@@ -113,6 +122,7 @@ export const PagesSchema: Collection = {
         ComparisonTable,
         CalculatorTemplate,
         TryItNowTemplate,
+        DownloadCardsTemplate,
       ],
     },
     {

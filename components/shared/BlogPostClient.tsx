@@ -14,7 +14,7 @@ import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMark
 import { nodesToText, searchAstTree } from "@utils/astHelpers";
 import Image from "next/image";
 import Link from "next/link";
-import { ReactNode, useMemo, useState } from "react";
+import { ReactNode, useMemo } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { Blogs } from "../../tina/__generated__/types";
@@ -42,22 +42,16 @@ export default function BlogPostClient({
   nextBlog,
   initialFormattedDate,
 }: BlogPostClientProps) {
-  const { data } = useTina<{ blogs: Blogs }>({
+  const { data } = useTina({
     query,
     variables,
     data: pageData,
   });
 
-  const [contentsOpen, setContentsOpen] = useState(false);
   const titles = useMemo(() => {
-    const titleNodes = searchAstTree(data.blogs.body, [
-      "h1",
-      "h2",
-      "h3",
-      "h4",
-      "h5",
-      "h6",
-    ]);
+    const titleNodes = data.blogs.body
+      ? searchAstTree(data.blogs.body, ["h1", "h2", "h3", "h4", "h5", "h6"])
+      : [];
     const bodyTitles = nodesToText(titleNodes);
     return bodyTitles;
   }, [data.blogs.body]);
@@ -134,12 +128,7 @@ export default function BlogPostClient({
       {titles.length > 0 && (
         <Container className="w-full relative block sm:hidden">
           <TableOfContents.Root>
-            <TableOfContents.Button
-              className="my-2"
-              onClick={() => {
-                setContentsOpen(!contentsOpen);
-              }}
-            />
+            <TableOfContents.Button className="my-2" />
             <TableOfContents.Popover className="my-2 mx-4">
               <Contents titles={titles} />
             </TableOfContents.Popover>
@@ -189,7 +178,7 @@ export default function BlogPostClient({
             <div
               className={cn(
                 "sticky flex flex-col pt-6 sm:pt-0 summary top-32 space-y-6",
-                titles.length && "sm:h-[calc(100vh_-_11rem)]"
+                titles.length && "sm:h-[calc(100vh-11rem)]"
               )}
             >
               {data.blogs.summaryCard && (
@@ -207,6 +196,26 @@ export default function BlogPostClient({
                           <li className="list-outside ml-6 list-disc">
                             {props?.children}
                           </li>
+                        ),
+                        // summary sub-points, not document headings (a div, so
+                        // the container's [&_p] grey/small text styles skip it)
+                        h1: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h2: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h3: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h4: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h5: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
+                        ),
+                        h6: (props: { children: ReactNode } | undefined) => (
+                          <div className="font-medium text-white">{props?.children}</div>
                         ),
                       }}
                     />

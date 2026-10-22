@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh issue *)",
+      "Bash(git --no-pager diff components/shared/FooterContent.tsx)",
+      "Bash(git --no-pager diff tina/collectionSchema/footer.tsx)",
+      "Bash(git --no-pager diff content/footer/YakShaver/YakShaver-Footer.json)",
+      "Bash(git --no-pager diff --name-only)",
+      "Bash(git --no-pager diff --cached content/footer/YakShaver/zh/YakShaver-Footer.json)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git -c user.email=\"12601228+tiagov8@users.noreply.github.com\" commit -F -)",
+      "Bash(git push *)",
+      "Bash(gh pr *)",
+      "Bash(gh api *)",
+      "Bash(pnpm install *)",
+      "Bash(npx tsc *)",
+      "Bash(pnpm lint *)",
+      "Bash(git -c user.email=12601228+tiagov8@users.noreply.github.com commit -m 'Restore smooth hover lift on footer social icons *)",
+      "Bash(python3 -c \"import json; print\\(json.load\\(open\\('content/footer/YakShaver/zh/YakShaver-Footer.json'\\)\\)['footerTitle']\\)\")",
+      "Bash(git -c user.email=12601228+tiagov8@users.noreply.github.com commit -m 'Drop '\\\\''SSW'\\\\'' from the zh YakShaver footer copyright too *)",
+      "Bash(git pull *)",
+      "Bash(git fetch *)",
+      "Bash(git -c user.email=12601228+tiagov8@users.noreply.github.com commit -m 'Fix hero mock-card title: span, not div \\(per Alex'\\\\''s review\\) *)",
+      "Bash(git -c user.email=\"12601228+tiagov8@users.noreply.github.com\" merge origin/main --no-edit)",
+      "Bash(git -c user.email=\"12601228+tiagov8@users.noreply.github.com\" commit --no-edit)",
+      "Bash(python3 -c 'import json;print\\(json.load\\(open\\(\"node_modules/tinacms/package.json\"\\)\\)[\"version\"]\\)')",
+      "Bash(echo \"node_modules tinacms: $\\(python3 -c 'import json;print\\(json.load\\(open\\(\"node_modules/tinacms/package.json\"\\)\\)[\"version\"]\\)' \\)\")",
+      "Bash(git --no-pager diff origin/main -- tina/tina-lock.json)",
+      "Bash(git --no-pager diff origin/main -- tina/collectionSchema/footer.tsx components/shared/FooterContent.tsx)"
+    ]
+  }
+}

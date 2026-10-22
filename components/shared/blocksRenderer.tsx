@@ -14,8 +14,10 @@ import ImageShowcase from "./Blocks/ImageShowcase";
 import MediaHero from "./Blocks/MediaHero";
 import Pricing from "./Blocks/Pricing";
 import RichText from "./Blocks/RichText";
+import TypographySection from "./Blocks/TypographySection";
 import { Timeline } from "./Blocks/Timeline/Timeline";
 import { TryItNow } from "./Blocks/TryItNow";
+import { DownloadCards } from "./Blocks/DownloadCards";
 import VideoDisplay from "./Blocks/VideoDisplay";
 
 interface Block {
@@ -87,23 +89,34 @@ const Blocks = ({ blocks }: BlocksProps) => {
       case "PagesPageBlocksRichText":
         return <RichText key={index} {...(block as RichTextProps)} />;
       case "PagesPageBlocksBentoBox":
-        return <BentoBox data={block} />;
+        return <BentoBox key={index} data={block} />;
       case "PagesPageBlocksTimeline":
-        return <Timeline data={block} />;
+        return <Timeline key={index} data={block} />;
       case "PagesPageBlocksCardAndImage":
         return <CardAndImageParent key={index} {...block} />;
       case "PagesPageBlocksComparisonTable":
-        return <ComparisonTable data={block} />;
+        return <ComparisonTable key={index} data={block} />;
       case "PagesPageBlocksCalculator":
-        return <CalculatorComponent data={block} />;
+        return <CalculatorComponent key={index} data={block} />;
       case "PagesPageBlocksCallToAction":
-        return <CallToAction className="w-full" {...block} />;
+        return <CallToAction key={index} className="w-full" {...block} />;
 
       case "PagesPageBlocksTryItNow":
-        return <TryItNow {...block} />;
+        return <TryItNow key={index} {...block} />;
+      case "PagesPageBlocksDownloadCards":
+        // @ts-expect-error typing issue with data
+        return <DownloadCards key={index} data={block} />;
       case "PagesPageBlocksMediaHero":
         return <MediaHero key={index} {...block} />;
       case "PagesPageBlocksImageGrid":
+        // On /media the "Fonts" grid is the first half of a Typography section;
+        // the heading specimen is the second. Both the wrapper and the specimen
+        // are rendered from code (not Tina blocks) so they always mirror the
+        // base heading styles in globals.css and need no schema change. Only
+        // the English /media page has a block titled "Fonts".
+        if (block.title === "Fonts") {
+          return <TypographySection key={index} fonts={block} />;
+        }
         return <ImageGrid key={index} {...block} />;
       case "PagesPageBlocksImageShowcase":
         return <ImageShowcase key={index} {...block} />;

@@ -2,11 +2,20 @@ import { optimizedYoutubeFields } from "@comps/shared/Blocks/VideoDisplay.templa
 import { Collection, TinaField } from "tinacms";
 import { seoInformation } from "../shared/SEOInformation";
 import { imageEmbedTemplate } from "@comps/shared/Blocks/ImageEmbed";
+import { fileNameField } from "@tina/shared/FileName";
+import { docSlugFromBreadcrumbs } from "@utils/docPath";
 
 export const docsCollection: Collection = {
   label: "Docs",
   name: "docs",
   path: "content/docs/",
+  ui: {
+
+    router: ({document}) => {
+      return `/docs/${docSlugFromBreadcrumbs(document._sys.breadcrumbs)}`;
+    },
+    ...fileNameField
+  },
   format: "mdx",
   fields: [
     seoInformation as TinaField,

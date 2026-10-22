@@ -4,12 +4,15 @@ import { Collection, Template, TinaField } from "tinacms";
 import { DEFAULT_CATEGORY } from "../../components/providers/BlogSearchProvider";
 import { callToActionTemplate } from "../../components/shared/Blocks/CallToAction.template";
 import { seoInformation } from "../shared/SEOInformation";
+import { fileNameField } from "@tina/shared/FileName";
 export const blogCollection: Collection = {
   label: "Blog Posts",
   name: "blogs",
   path: "content/blogs/",
   format: "mdx",
   ui: {
+
+    ...fileNameField,
     router: ({ document }) => {
       const relativePath = document?._sys.relativePath;
       if (relativePath?.includes('/zh/')) {
@@ -17,10 +20,16 @@ export const blogCollection: Collection = {
       }
       return `/blog/${document?._sys.filename}`;
     },
+    // Blog lists sort by date, so a post without one never shows up
+    beforeSubmit: async ({ values }) => ({
+      ...values,
+      date: values.date || new Date().toISOString(),
+    }),
   },
   defaultItem: () => {
     return {
       category: DEFAULT_CATEGORY,
+      date: new Date().toISOString(),
     };
   },
   fields: [
@@ -51,10 +60,12 @@ export const blogCollection: Collection = {
       },
     },
     {
-      // note: default to current date/time
       type: "string",
       name: "date",
       label: "Date Created",
+      required: true,
+      description:
+        "Blog lists sort by this date. A post with no date does not show in the list.",
       ui: {
         component: "date",
       },
