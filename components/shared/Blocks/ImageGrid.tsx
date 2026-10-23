@@ -48,6 +48,11 @@ const ImageGrid = ({
 }: ImageGridProps) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
+  // A freshly-added Tina block sends `images: null`, and a default param only
+  // fills in for `undefined` — so normalise to [] here to avoid reading
+  // `.length`/`.map` on null (which crashed the editor, #649).
+  const items = images ?? [];
+
   const downloadFile = async (url: string, fallbackUrl?: string) => {
     try {
       const testResponse = await fetch(url, { method: 'HEAD' });
@@ -63,7 +68,7 @@ const ImageGrid = ({
   };
 
   const handleInteraction = (index: number, action: 'enter' | 'leave' | 'click') => {
-    if (images[index]?.enableDownload === false) return;
+    if (items[index]?.enableDownload === false) return;
     
     setActiveImageIndex(
       action === 'enter' ? index :
@@ -72,7 +77,7 @@ const ImageGrid = ({
     );
   };
   
-  if (!images.length && !title && !gridDescription) return null;
+  if (!items.length && !title && !gridDescription) return null;
   
   const gridCols = GRID_COLS[itemsPerRow as keyof typeof GRID_COLS] || GRID_COLS[3];
 
@@ -106,9 +111,9 @@ const ImageGrid = ({
         </div>
       )}
 
-      {images.length > 0 && (
+      {items.length > 0 && (
         <div className={`grid ${gridCols} gap-6`}>
-          {images.map((image, index) => {
+          {items.map((image, index) => {
             const displaySrc = image.svgSrc || image.pngSrc;
             if (!displaySrc) return null;
 
