@@ -5,10 +5,6 @@ import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { DocAndBlogMarkdownStyle } from "../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 
-// CodeBlock drags in shiki (ESM-only, jest can't parse it) and is irrelevant here
-jest.mock("../components/shared/code-block/code-block", () => ({
-  CodeBlock: () => null,
-}));
 
 describe("DocAndBlogMarkdownStyle headings", () => {
   it("anchors headings receiving tina's nested rich-text children", () => {

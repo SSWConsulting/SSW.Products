@@ -4,10 +4,7 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-// tinacms and motion are ESM-only, so jest can't parse them; none of them
-// affect the anchor markup under test
-jest.mock("tinacms/dist/react", () => ({ tinaField: () => "" }));
-jest.mock("tinacms/dist/rich-text", () => ({ TinaMarkdown: () => null }));
+// word-rotate is ESM-only and animates text that isn't under test here
 jest.mock("../src/components/magicui/word-rotate", () => ({
   WordRotate: () => null,
 }));

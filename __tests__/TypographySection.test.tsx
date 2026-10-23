@@ -4,15 +4,6 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 
-// lucide-react, tinacms and the markdown styles (shiki) are ESM-only; none of
-// the download icon, rich-text renderer or code highlighting affects the
-// heading structure under test
-jest.mock("lucide-react", () => ({ Download: () => null }));
-jest.mock("tinacms/dist/rich-text", () => ({ TinaMarkdown: () => null }));
-jest.mock("../tina/tinamarkdownStyles/DocAndBlogMarkdownStyle", () => ({
-  DocAndBlogMarkdownStyle: {},
-}));
-
 import TypographySection from "../components/shared/Blocks/TypographySection";
 
 const fonts = { title: "Fonts", images: [] };

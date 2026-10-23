@@ -1,0 +1,38 @@
+name: Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.6.0
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # tina/__generated__ is gitignored, so the client and types have to be
+      # built before anything can typecheck. --local keeps it off TinaCloud,
+      # so this step needs no credentials.
+      - name: Generate Tina client
+        run: pnpm exec tinacms build --local --skip-cloud-checks --skip-indexing --skip-search-index
+
+      # lint, typecheck and tests - the same command developers run locally
+      - name: Check
+        run: pnpm check
