@@ -66,7 +66,13 @@ You need to provide the details of Master App:
 
 > **Where to find database credentials later:** See [Manage Credentials for Database](./manage-database-credentials).
 
-#### Step 3.2.6 - Review and Deploy
+#### Step 3.2.6 - AI Configuration
+
+* **Azure OpenAI Region**: The Azure region that hosts the Azure OpenAI resource, which reads your email content for AI tags. It defaults to the region you chose in [Step 3.2.1 - Basics](#step-321---basics) when that region is in the list, otherwise **East US**. The list only contains regions where the supported chat models are offered with the `Standard` (regional) deployment type, which keeps prompts and responses within the region's Azure geography.
+
+> **Note:** The chat model you deploy later must be available in this region. See [Region availability for Foundry Models sold by Azure](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability) and [Deploy AI Model](./deploy-ai-model).
+
+#### Step 3.2.7 - Review and Deploy
 
 1. Review all configuration settings
 2. Click **Create** to start deployment
@@ -106,6 +112,6 @@ The deployed solution includes:
 
 * **Container Apps Environment**: Hosts the API (`ca-api-xxx`), Portal (`ca-nextjs-xxx`), and email analysis jobs (`cj-manual-xxx`, `cj-cli-xxx`)
 * **Azure SQL Database**: Shared database with configured user access (`db-shared-xxx`)
-* **Azure OpenAI**: Auto-provisioned Cognitive Services account in East US (`openai-shared-xxx`). If you want to use AI-based tagging, deploy a chat model named `eagleeye` after installation using the AI model guide.
+* **Azure OpenAI**: Auto-provisioned Cognitive Services account in the region you chose during installation (`openai-shared-xxx`). If you want to use AI-based tagging, deploy a chat model named `eagleeye` after installation using the AI model guide.
 * **Key Vault**: Secure storage of shared secrets and configuration (`kv-shared-xxx`)
 * **Application Insights**: Monitoring and telemetry (`ai-shared-xxx`)
