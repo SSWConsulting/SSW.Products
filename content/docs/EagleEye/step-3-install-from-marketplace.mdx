@@ -66,7 +66,20 @@ You need to provide the details of Master App:
 
 > **Where to find database credentials later:** See [Manage Credentials for Database](./manage-database-credentials).
 
-#### Step 3.2.6 - Review and Deploy
+#### Step 3.2.6 - AI Model Configuration
+
+<Youtube thumbnail="https://img.youtube.com/vi/tSY2zolDjDw/maxresdefault.jpg" size="medium" externalVideoLink="https://www.youtube.com/embed/tSY2zolDjDw" caption="Azure OpenAI Regions for SSW EagleEye (1 min) | SSW EagleEye" />
+
+* **AI model region**: The region of the Azure OpenAI account. EagleEye uses this account to tag your email and GitHub issues.
+  * The wizard selects your Basics region (Step 3.2.1) by default.
+  * If Azure has no AI model in your Basics region, the wizard selects the next best region and shows a warning. It tries the same country first, then a default for your area, then East US.
+  * To keep your data in your country, pick a region in your country. If your country is not in the list, pick the nearest region.
+
+![AI Model Configuration](/EagleEye/Installation/AI-Model-Configuration.png)
+
+> **To keep your data in your country:** When you [deploy the AI model](./deploy-ai-model), use the **Standard** deployment type. Do not use **Global Standard**. It can process prompts in any Azure region.
+
+#### Step 3.2.7 - Review and Deploy
 
 1. Review all configuration settings
 2. Click **Create** to start deployment
@@ -106,6 +119,6 @@ The deployed solution includes:
 
 * **Container Apps Environment**: Hosts the API (`ca-api-xxx`), Portal (`ca-nextjs-xxx`), and email analysis jobs (`cj-manual-xxx`, `cj-cli-xxx`)
 * **Azure SQL Database**: Shared database with configured user access (`db-shared-xxx`)
-* **Azure OpenAI**: Auto-provisioned Cognitive Services account in East US (`openai-shared-xxx`). If you want to use AI-based tagging, deploy a chat model named `eagleeye` after installation using the AI model guide.
+* **Azure OpenAI**: Auto-provisioned Cognitive Services account in the AI model region from Step 3.2.6 (`openai-shared-xxx`). If you want to use AI-based tagging, deploy a chat model named `eagleeye` after installation using the AI model guide.
 * **Key Vault**: Secure storage of shared secrets and configuration (`kv-shared-xxx`)
 * **Application Insights**: Monitoring and telemetry (`ai-shared-xxx`)
