@@ -33,11 +33,11 @@
       "items": [
         {
           "title": "GitHub Integration",
-          "description": "Bring your GitHub issues and pull requests into EagleEye, so they are tagged and reported on like your email."
+          "description": "See your GitHub issues and pull requests in EagleEye, tagged and reported on like your email; the first reports are already live."
         },
         {
           "title": "Connect your AI assistant (MCP)",
-          "description": "Ask Claude or Copilot about your EagleEye email and GitHub reports directly. Read-only, you sign in with your Microsoft work account, and an administrator turns it on."
+          "description": "Ask Claude or Copilot about your EagleEye email and GitHub reports directly: read-only, signed in with your Microsoft work account, and turned on by an administrator."
         }
       ],
       "_template": "Timeline"
