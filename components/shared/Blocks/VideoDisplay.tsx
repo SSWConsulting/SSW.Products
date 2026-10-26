@@ -17,7 +17,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
   const { externalVideoLink, title, figureCaption } = data;
 
   return (
-    <Container className="flex justify-center mx-auto container">
+    <Container className="flex justify-center mx-auto container pb-16 md:pb-24">
       <div className="items-center w-full h-auto ">
         <LinkableHeading
           as="h2"
@@ -32,7 +32,7 @@ export default function VideoDisplay({ data }: VideoDisplayProps) {
           placeholder={data.thumbnail || ""}
         />
         {figureCaption && (
-          <p className="text-sm text-gray-400 mt-2 text-left">
+          <p className="text-sm font-bold text-gray-300 mt-2 text-left">
             {figureCaption}
           </p>
         )}
