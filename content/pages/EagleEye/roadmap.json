@@ -14,16 +14,16 @@
       "title": "✅ Done",
       "items": [
         {
-          "title": "Email insights from Microsoft 365",
-          "description": "Connect your Microsoft 365 tenant and EagleEye scans your email every night. It can also scan your past emails, so your reports start with history, not a blank page."
+          "title": "Microsoft 365 Integration",
+          "description": "Connect Microsoft 365 and EagleEye scans your email every night, including your past emails."
         },
         {
           "title": "Customer Portal",
-          "description": "Develop a self-service portal where customers can access Power BI reports for email insights, manage tags for better categorization, and track email synchronization jobs."
+          "description": "View your reports, manage your tags and track your scans in one place."
         },
         {
-          "title": "Install from Azure Marketplace",
-          "description": "Install EagleEye into your own Azure subscription from the Azure Marketplace. Your data stays in your tenant, under your control."
+          "title": "Azure Marketplace App",
+          "description": "Install EagleEye from the Azure Marketplace straight into your own Azure subscription."
         }
       ],
       "_template": "Timeline"
@@ -33,11 +33,11 @@
       "items": [
         {
           "title": "GitHub Integration",
-          "description": "See your GitHub issues and pull requests in EagleEye, tagged and reported on like your email; the first reports are already live."
+          "description": "Scan your GitHub issues and pull requests, then AI-tag and report on them just like your email."
         },
         {
-          "title": "Connect your AI assistant (MCP)",
-          "description": "Ask Claude or Copilot about your EagleEye email and GitHub reports directly: read-only, signed in with your Microsoft work account, and turned on by an administrator."
+          "title": "MCP Integration",
+          "description": "Ask Claude or Copilot about your EagleEye data directly, read-only and turned on by an administrator."
         }
       ],
       "_template": "Timeline"
@@ -46,8 +46,8 @@
       "title": "Coming Soon",
       "items": [
         {
-          "title": "Team mailboxes",
-          "description": "Reports on the mailboxes your team shares with customers, such as support@ and sales@, by mailbox and by thread rather than by person, including how quickly replies go out and which emails are still waiting for one."
+          "title": "Team Mailboxes",
+          "description": "Analyze the email and reply times of shared mailboxes like support@ and sales@, by mailbox rather than by person."
         }
       ],
       "_template": "Timeline"
