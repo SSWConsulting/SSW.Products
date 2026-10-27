@@ -55,9 +55,9 @@ You have 2 options. Pick the one that best fits your workflow.
    ![](/EagleEye/Guides/GPT-4.1-Mini.png)
 6. On the deployment screen, set:
    * **Deployment name** to exactly `eagleeye`
-   * **Deployment type** to `Global Standard` if available. If not, choose another compatible deployment type with available quota
+   * **Deployment type** to `Standard` to keep your data in your country (see [Step 3.2.6](./step-3-install-from-marketplace#step-326---ai-model-configuration)). `Global Standard` can process prompts in any Azure region. If `Standard` has no quota, choose another compatible deployment type with available quota
    * **Tokens per Minute Rate Limit** to at least `100`
-     ![](/EagleEye/Guides/Model-Config.png)
+     ![](/EagleEye/Guides/Model-Config-Standard.png)
 7. Click **Deploy** and wait for the deployment to become active
 
 <OutlineBox
@@ -73,7 +73,7 @@ If you have an AI coding agent connected to Azure MCP, or you have `az` CLI inst
 ```text
 Deploy a chat model for my SSW EagleEye install.
 Ask me for the resource group name, then find the `openai-shared-*` resource in it.
-List which non-reasoning OpenAI chat models have available quota (show me the per-SKU numbers - Standard, GlobalStandard, DataZoneStandard), then ask me which model and capacity to deploy (EagleEye minimum is 100, 1 unit = 1K TPM).
+List which non-reasoning OpenAI chat models have available quota (show me the per-SKU numbers - Standard, GlobalStandard, DataZoneStandard), then ask me which model, deployment type and capacity to deploy (EagleEye minimum is 100, 1 unit = 1K TPM). Standard keeps my data in the region of the resource. GlobalStandard can process prompts in any Azure region.
 Create the deployment with the name exactly `eagleeye`.
 ```
 
@@ -82,7 +82,7 @@ The agent should:
 1. Ask for the resource group you used during Step 3 installation (e.g., `Northwind.EagleEye.RG`)
 2. Find the `openai-shared-xxx` Azure OpenAI resource in that resource group
 3. Show which compatible non-reasoning chat models have available quota
-4. Ask which model and capacity you want to deploy
+4. Ask which model, deployment type and capacity you want to deploy
 5. Create the deployment with the exact name `eagleeye`
 
 <OutlineBox
