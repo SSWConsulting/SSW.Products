@@ -8,7 +8,9 @@
     "rebuild-search-indices": "tsc --project ./scripts/tsconfig.json && node ./scripts/createIndices.js",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "check": "pnpm lint && pnpm typecheck && pnpm test"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
