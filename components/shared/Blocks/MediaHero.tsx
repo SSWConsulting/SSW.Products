@@ -67,7 +67,7 @@ const MediaHero = ({
         )}
 
         {dateText && (
-          <p className="text-sm font-light text-white/70 mt-4">
+          <p className="text-sm text-white/70 mt-4">
             {dateText}
           </p>
         )}
