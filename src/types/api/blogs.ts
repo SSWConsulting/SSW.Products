@@ -5,4 +5,6 @@ export type BlogsRequest = {
     category?: string;
     locale?: string;
     loadAll?: boolean;
+    /** Titles to leave out, e.g. the featured post shown above the list. */
+    excludeTitles?: string[];
 }
