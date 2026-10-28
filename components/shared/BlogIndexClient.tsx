@@ -87,7 +87,7 @@ const FeaturedArticle = ({
                 {props.title}
               </h2>
             )}
-            <div className="group bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
+            <div className="group bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] rounded-xl overflow-hidden shadow-xl">
               <div className="flex flex-col lg:flex-row">
                 <div className="relative w-full grow md:basis-4/12 aspect-video">
                   <div className="w-full h-full lg:mask-to-right mask-to-bottom">
