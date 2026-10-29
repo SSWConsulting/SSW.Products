@@ -33,7 +33,7 @@
       "items": [
         {
           "title": "GitHub Integration",
-          "description": "Scan your GitHub issues and pull requests, then AI-tag and report on them just like your email."
+          "description": "Scan, AI-tag and report on your GitHub issues and pull requests today, with webhook triggers still in progress."
         },
         {
           "title": "MCP Integration",
