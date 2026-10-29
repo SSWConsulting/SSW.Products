@@ -37,7 +37,7 @@
         },
         {
           "title": "MCP Integration",
-          "description": "Ask Claude or Copilot about your EagleEye data directly, read-only and turned on by an administrator."
+          "description": "Ask Claude or GitHub Copilot about your EagleEye data directly, read-only and turned on by an administrator."
         }
       ],
       "_template": "Timeline"
