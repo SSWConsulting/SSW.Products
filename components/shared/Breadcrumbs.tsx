@@ -52,7 +52,7 @@ const Breadcrumbs = (props: BreadcrumbsProps) => {
           <li key={link.href} className="flex items-center gap-2">
             <Link
               href={contextualHref(link.href)}
-              className="text-white underline underline-offset-4 hover:text-ssw-red transition-colors"
+              className="text-white underline hover:text-ssw-red transition-colors"
             >
               {link.label}
             </Link>
