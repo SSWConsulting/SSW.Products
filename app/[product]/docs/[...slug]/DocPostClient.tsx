@@ -60,7 +60,7 @@ const BreadCrumbs = ({
   const { sectionTitle, sectionHref } = useDocSection(tableOfContentsData);
 
   return (
-    <div className="font-light text-base flex items-center mb-4 max-w-full">
+    <div className="text-base flex items-center mb-4 max-w-full">
       <Link className="underline cursor-pointer whitespace-nowrap" href={sectionHref}>
         {sectionTitle ?? "Docs"}
       </Link>
@@ -114,9 +114,9 @@ export default function DocPostClient({
         <BreadCrumbs title={title} tableOfContentsData={tableOfContentsData} />
         {/* the doc page title - its own h1 so the page has one (was an h2) */}
         <h1 className="text-3xl font-semibold text-ssw-red">{title}</h1>
-        <GitHubMetadata path={data.docs.id} className="text-sm font-light text-gray-300" />
+        <GitHubMetadata path={data.docs.id} className="text-sm text-gray-300" />
       </div>
-      <div className="text-base font-light mb-12 lg:prose-xl">
+      <div className="text-base mb-12">
         {body && (
           <TinaMarkdown content={body} components={components} />
         )}

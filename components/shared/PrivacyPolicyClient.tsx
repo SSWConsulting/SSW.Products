@@ -32,7 +32,7 @@ export default function BlogPostClient({
       </h2>
       <div
         data-tina-field={tinaField(privacy, "body")}
-        className="text-base font-light lg:prose-xl"
+        className="text-base"
       >
         <TinaMarkdown
           content={privacy.body}
