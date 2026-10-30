@@ -47,7 +47,7 @@
       "items": [
         {
           "title": "Team Mailboxes",
-          "description": "Analyze the email and reply times of shared mailboxes like support@ and sales@, by mailbox rather than by person."
+          "description": "Analyse how your shared inboxes like support@ and sales@ are performing. Track email volume and communication metrics per mailbox, so you can measure team service levels rather than individual output."
         }
       ],
       "_template": "Timeline"
