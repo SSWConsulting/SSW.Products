@@ -12,15 +12,13 @@ import ArticleMetadata from "./shared/ArticleMetadata";
 import Author from "./shared/Author";
 import GridBackground from "./shared/GridBackground";
 import { useContextualLink } from "@utils/contextualLink";
+import { isUncategorized } from "@utils/category";
 
 type BlogCardProps = Modify<Blog, {
   author?: AuthorType | null;
   slug?: string | null;
   groupHover?: boolean;
 }>;
-
-// Hidden on cards: it's the fallback for posts nobody categorised (#840)
-const UNCATEGORIZED = "uncategorized";
 
 // Render excerpt headings and links as inline text: the excerpt is clamped
 // body text, not a document outline, and the whole card already links to the
@@ -42,8 +40,7 @@ const BlogCard = ({
 }: BlogCardProps) => {
   const contextualHref = useContextualLink();
   const blogUrl = contextualHref(`/blog/${slug || ''}`);
-  const showCategory =
-    category && category.toLowerCase() !== UNCATEGORIZED;
+  const showCategory = !isUncategorized(category);
   return (
     // No card box: posts sit on the page background, split by a thin line (#810)
     <article className="h-full flex flex-col gap-3 relative border-t border-white/10 pt-6 group">
