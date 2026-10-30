@@ -1,0 +1,66 @@
+---
+seo:
+  title: What to Do When a Meeting Organiser Leaves
+  description: >-
+    Learn why SSW Tiger stops generating dashboards for a recurring meeting
+    when its organiser leaves SSW, and how to hand the meeting over so Tiger
+    picks it up again.
+title: What to Do When a Meeting Organiser Leaves
+date: '2026-10-30T00:00:00.000Z'
+---
+
+SSW Tiger creates a dashboard after every recorded meeting. But if the person who set up a recurring meeting leaves SSW, Tiger stops creating dashboards for that meeting. This guide explains why, and how to fix it in a few minutes.
+
+**Who is this guide for?**
+
+This guide is for anyone who runs a recurring meeting that Tiger processes, such as a Sprint Review. For example, use this when you got a Tiger message pointing you here, or when dashboards stopped arriving after a team member left.
+
+## How to Tell If This Has Happened
+
+- The meeting is still recorded and transcribed in Teams
+- But no Tiger dashboard is created, and no Tiger message arrives after the meeting
+- The person who first scheduled the meeting has recently left SSW
+
+Nothing shows an error. Tiger just stops hearing about the meeting.
+
+## Who Is the Organiser?
+
+The organiser is the person who **first created the Teams meeting**.
+
+This is true for channel meetings too. Outlook may show the team (e.g. "SSW Designers") as the organiser, but in Teams the meeting still belongs to the person who scheduled it.
+
+## How Tiger Lets You Know
+
+Every day, Tiger checks for recurring meetings whose organiser's account has been disabled. When it finds one, it sends the meeting's participants a Teams message with a link to this page.
+
+## The Fix: Hand the Meeting Over
+
+Don't delete the old meeting. End it instead. That way the history of past meetings stays in the channel.
+
+1. **End the old series.** In the channel's **Posts**, open the meeting's dropdown and choose **Edit meeting details**. Add an **end date** to the recurring series.
+2. **Schedule a new meeting.** From an active account, go to the same channel's **Posts**. Click the dropdown next to the search icon in the top bar, then choose **Schedule a meeting**.
+3. **Copy the details over.** Copy the title, attendees, time, recurrence and description from the original meeting, then click **Send**. Use the new meeting from now on.
+
+Whoever schedules the new meeting becomes its organiser. Tiger picks it up again from the next meeting.
+
+**Pro Tip**: Ask the Scrum Master or Product Owner to schedule the new meeting. Avoid someone who is likely to roll off the team soon.
+
+**Note**: Re-sending the existing invite does **not** fix it. That keeps the same Teams meeting link, which still belongs to the old organiser. It has to be a newly scheduled meeting.
+
+## Recovering a Meeting That Was Already Missed
+
+Tiger doesn't pick up a missed meeting by itself, but you can still get a dashboard for it.
+
+**Ask the Tiger team to reprocess it.** Send them the meeting's Teams join link. They can usually reprocess it straight from the link, as long as the old organiser's account has only been disabled and not yet deleted.
+
+**Or process it yourself:**
+
+1. Someone who attended opens the meeting in Teams and goes to the **Recap** tab.
+2. Download the transcript as a `.vtt` file.
+3. Follow [How to Process Your Own Transcripts Locally](/docs/introduction).
+
+## Why Does This Happen?
+
+Tiger gets each transcript through Microsoft Graph. Microsoft only tells Tiger about a new transcript through the meeting's organiser, because the meeting belongs to them.
+
+When the organiser leaves SSW, their account is disabled. Microsoft then stops telling Tiger about new transcripts for their meetings. Recording and transcription still work in Teams, but Tiger never hears about them.
