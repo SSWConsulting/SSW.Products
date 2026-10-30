@@ -10,6 +10,7 @@ import { GoPeople } from "react-icons/go";
 import { IoMdBook } from "react-icons/io";
 import { useTina } from "tinacms/dist/react";
 import { Components, TinaMarkdown } from "tinacms/dist/rich-text";
+import MarkdownLink from "@tina/tinamarkdownStyles/Link";
 import Container from "../../../components/Container";
 import { Button } from "../../../components/ui/button";
 
@@ -74,13 +75,9 @@ const HeaderBanner = ({
           <div className="flex gap-2 items-center justify-center">
             <FaRegMap className="text-[#CC4141]" />
             {banner?.locationLink ? (
-              <Link
-                href={banner.locationLink}
-                target="_blank"
-                className="underline hover:text-[#CC4141] transition-colors"
-              >
+              <MarkdownLink url={banner.locationLink}>
                 {banner?.location}
-              </Link>
+              </MarkdownLink>
             ) : (
               <span>{banner?.location}</span>
             )}
@@ -141,15 +138,7 @@ const KeyHighlights = ({
 };
 
 const conferenceMarkdownComponents: Components<object> = {
-  a: (props) => (
-    <Link
-      href={props?.url ?? "#"}
-      target="_blank"
-      className="underline hover:text-[#CC4141] transition-colors"
-    >
-      {props?.children}
-    </Link>
-  ),
+  a: MarkdownLink,
 };
 
 const ExpertSpeakers = ({ speakers }: { speakers: Speaker[] }) => {
