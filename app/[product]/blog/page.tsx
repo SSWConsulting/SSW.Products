@@ -8,6 +8,7 @@ import BlogIndexClient from "../../../components/shared/BlogIndexClient";
 import client from "../../../tina/__generated__/client";
 import { filterEdgesByTenant, getAllConnectionEdges } from "@utils/tina";
 import { getBlogsForProduct } from "../../../utils/fetchBlogs";
+import { getFeaturedBlogTitles } from "../../../utils/featuredBlogTitles";
 import { getLocale, getBlogIndexWithFallback } from "../../../utils/i18n";
 interface BlogIndex {
   params: Promise<{ product: string }>;
@@ -63,7 +64,13 @@ export default async function BlogIndex({ params }: BlogIndex) {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
     queryKey: [`blogs${locale || 'en'}`],
-    queryFn: () => getBlogsForProduct({ product, locale }),
+    // Leave the featured post out of Recent Articles so it isn't shown twice
+    queryFn: () =>
+      getBlogsForProduct({
+        product,
+        locale,
+        filteredBlogs: getFeaturedBlogTitles(tinaData.data.blogsIndex.blocks),
+      }),
     initialPageParam: undefined,
   });
 

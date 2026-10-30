@@ -25,6 +25,7 @@ export async function POST(request: Request) {
             category: body.category,
             locale: body.locale,
             loadAll: body.loadAll,
+            filteredBlogs: body.excludeTitles,
             branch,
         });
         return new Response(JSON.stringify(data), {status: 200});

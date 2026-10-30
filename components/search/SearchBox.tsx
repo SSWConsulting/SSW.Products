@@ -1,6 +1,12 @@
 "use client";
 
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 import { cn } from "@/lib/utils";
 import Input from "@comps/Input";
@@ -53,6 +59,10 @@ const Root = ({ index, children }: { index: string; children: ReactNode }) => {
     <DialogProvider setOpen={setOpen}>
       <Dialog onOpenChange={setOpen} open={open}>
         <DialogContent className="box-border">
+          <DialogTitle className="sr-only">Search</DialogTitle>
+          <DialogDescription className="sr-only">
+            Type to search this site
+          </DialogDescription>
           <div className="max-w-3xl box-border relative w-[calc(100vw_-_2rem)]">
             <AlgoliaSearchProvider index={index}>
               <div className="h-full box-border pb-8 z-70 relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">

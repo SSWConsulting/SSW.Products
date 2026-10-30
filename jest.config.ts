@@ -8,6 +8,7 @@ const createJestConfig = nextJest({
 
 const config: Config = {
   coverageProvider: "v8",
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.tsx"],
 };
 
 export default createJestConfig(config);

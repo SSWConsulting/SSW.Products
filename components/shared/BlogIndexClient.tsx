@@ -20,6 +20,7 @@ import { BlogCard, SkeletonCard } from "@comps/BlogCard";
 import type client from "../../tina/__generated__/client";
 import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
+import { getFeaturedBlogTitles } from "../../utils/featuredBlogTitles";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import type { BlogsResponse } from "../../utils/fetchBlogs";
 import { Button } from "../ui/button";
@@ -86,7 +87,7 @@ const FeaturedArticle = ({
                 {props.title}
               </h2>
             )}
-            <div className="group bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] border border-white/20 rounded-xl overflow-hidden shadow-xl">
+            <div className="group bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] rounded-xl overflow-hidden shadow-xl">
               <div className="flex flex-col lg:flex-row">
                 <div className="relative w-full grow md:basis-4/12 aspect-video">
                   <div className="w-full h-full lg:mask-to-right mask-to-bottom">
@@ -148,6 +149,7 @@ type BlocksProps = {
 };
 
 const Blocks = ({ blocks, product, locale }: BlocksProps) => {
+  const featuredTitles = getFeaturedBlogTitles(blocks);
   return (
     <>
       {blocks.map((block) => {
@@ -157,7 +159,14 @@ const Blocks = ({ blocks, product, locale }: BlocksProps) => {
           case "BlogsIndexBlocksCallToAction":
             return <CallToAction className="container" {...block} />;
           case "BlogsIndexBlocksArticleList":
-            return <RecentArticles {...block} product={product} locale={locale} />;
+            return (
+              <RecentArticles
+                {...block}
+                product={product}
+                locale={locale}
+                featuredTitles={featuredTitles}
+              />
+            );
           case "BlogsIndexBlocksFeaturedBlog":
             return <FeaturedArticle {...block} />;
           default:
@@ -171,8 +180,13 @@ const Blocks = ({ blocks, product, locale }: BlocksProps) => {
 const RecentArticles = ({
   product,
   locale,
+  featuredTitles,
   ...props
-}: RemoveTinaMetadata<ArticleListProps> & { product: string; locale?: string }) => {
+}: RemoveTinaMetadata<ArticleListProps> & {
+  product: string;
+  locale?: string;
+  featuredTitles?: string[];
+}) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
   const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
     useInfiniteQuery({
@@ -191,6 +205,10 @@ const RecentArticles = ({
             category:
               selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
             locale,
+            // The featured post sits above this list, so leave it out to avoid
+            // showing it twice (#550). It's hidden while searching, so let a
+            // search still find it.
+            excludeTitles: searchTerm ? undefined : featuredTitles,
           }),
         });
         if (!res.ok) throw new Error("Failed to fetch blogs");

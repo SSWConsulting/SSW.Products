@@ -34,7 +34,7 @@ const BlogCard = ({
   const contextualHref = useContextualLink();
   const blogUrl = contextualHref(`/blog/${slug || ''}`);
   return (
-    <div className="h-full flex flex-col grow shrink-0 relative border bg-gradient-black border-white/20 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
+    <div className="h-full flex flex-col grow shrink-0 relative bg-gradient-black rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group">
       {groupHover && (
         // the title already links to the post; hide this full-card overlay
         // link from assistive tech so it isn't announced as an unnamed link
