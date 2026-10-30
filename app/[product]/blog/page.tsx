@@ -64,7 +64,7 @@ export default async function BlogIndex({ params }: BlogIndex) {
   const queryClient = new QueryClient();
   await queryClient.prefetchInfiniteQuery({
     queryKey: [`blogs${locale || 'en'}`],
-    // Leave the featured post out of Recent Articles so it isn't shown twice
+    // Leave the featured post out of the Latest list so it isn't shown twice
     queryFn: () =>
       getBlogsForProduct({
         product,
