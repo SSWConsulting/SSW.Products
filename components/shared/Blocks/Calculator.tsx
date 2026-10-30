@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
+import MarkdownLink from "@tina/tinamarkdownStyles/Link";
 import Container from "../../Container";
 import LinkableHeading from "../LinkableHeading";
 import Actions from "./ActionsButton";
@@ -148,7 +149,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
               setHourlyRate={setHourlyRate}
             />
             <div className="mt-16 text-white/30 rounded-xl w-full text-sm overflow-hidden">
-              <TinaMarkdown content={data?.bottomBox} />
+              <TinaMarkdown content={data?.bottomBox} components={{ a: MarkdownLink }} />
             </div>
           </div>
         </div>

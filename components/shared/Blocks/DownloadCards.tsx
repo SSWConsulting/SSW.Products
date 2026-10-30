@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { tinaField } from "tinacms/dist/react";
 import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
+import MarkdownLink from "@tina/tinamarkdownStyles/Link";
 import Container from "../../Container";
 import LinkableHeading from "../LinkableHeading";
 import PurpleSunBackground from "../Background/PurpleSunBackground";
@@ -24,7 +24,7 @@ const descriptionComponents = {
       <Image src={props?.url || ""} aria-hidden="true" alt="" fill={true} />
     </span>
   ),
-  a: (props: any) => <Link {...props} />,
+  a: MarkdownLink,
 };
 
 export const DownloadCards = ({

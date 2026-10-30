@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import MarkdownLink from "@tina/tinamarkdownStyles/Link";
 import {
   BlogsIndexBlocksArticleList,
   BlogsIndexBlocksHeroSearch,
@@ -130,6 +131,7 @@ const FeaturedArticle = ({
                         featuredBlog?.body,
                         2
                       )}
+                      components={{ a: MarkdownLink }}
                     />
                   </section>
                 </div>
