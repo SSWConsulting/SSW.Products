@@ -8,6 +8,7 @@ import { OptionalProps } from "@/optionalProps";
 import { Blog } from "@/types/blog";
 import { AuthorInfo } from "@comps/AuthorInfo";
 import { BlogCard } from "@comps/BlogCard";
+import Breadcrumbs from "@comps/shared/Breadcrumbs";
 import Container from "@comps/Container";
 import { TableOfContents } from "@comps/TableOfContents";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
@@ -61,7 +62,9 @@ export default function BlogPostClient({
   return (
     <div className="min-h-screen text-white pb-12 pt-20">
       <Container className="w-full">
-        {" "}
+        <div className="mb-6">
+          <Breadcrumbs kind="blog" />
+        </div>
         <div
           data-tina-field={tinaField(data.blogs, "category")}
           className="text-sm uppercase w-fit tracking-wide mb-3 text-white/60"
