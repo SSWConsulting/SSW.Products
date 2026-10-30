@@ -14,16 +14,16 @@
       "title": "✅ Done",
       "items": [
         {
-          "title": "Microsoft Graph Integration",
-          "description": "Enable seamless access to Microsoft 365 data, allowing EagleEye to scan emails nightly, extract insights, and enhance tagging accuracy based on structured communication data from Outlook and other Microsoft services."
-        },
-        {
-          "title": "Synchronization of historical data",
-          "description": "Implement a historical data sync feature to allow users to analyze past email trends, providing deeper insights into communication patterns and workload distribution"
+          "title": "Outlook Integration",
+          "description": "Connect Microsoft 365 and EagleEye scans your email every night, including your past emails."
         },
         {
           "title": "Customer Portal",
-          "description": "Develop a self-service portal where customers can access Power BI reports for email insights, manage tags for better categorization, and track email synchronization jobs."
+          "description": "View your reports, manage your tags and track your scans in one place."
+        },
+        {
+          "title": "Azure Marketplace App",
+          "description": "Install EagleEye from the Azure Marketplace straight into your own Azure subscription."
         }
       ],
       "_template": "Timeline"
@@ -32,8 +32,12 @@
       "title": "In Progress",
       "items": [
         {
-          "title": "Customer Instance Setup \t",
-          "description": "Automate the provisioning of dedicated EagleEye instances for customers, ensuring secure data isolation, streamlined onboarding, and customized configurations for enterprise users.\t\n"
+          "title": "GitHub Integration",
+          "description": "Scan your GitHub issues and pull requests, then AI-tag and report on them just like your email."
+        },
+        {
+          "title": "MCP Integration",
+          "description": "Ask Claude or GitHub Copilot about your EagleEye data directly, read-only and turned on by an administrator."
         }
       ],
       "_template": "Timeline"
@@ -42,18 +46,8 @@
       "title": "Coming Soon",
       "items": [
         {
-          "title": "GitHub Integration \t",
-          "description": "Integrate with GitHub to analyze email discussions related to pull requests, issues, and code reviews, helping teams optimize collaboration and workflow efficiency.\t\n",
-          "badgeTitle": "🎥 GitHub integration mock-up (5 min)",
-          "badgeLink": "https://www.youtube.com/watch?v=yMQmMofzPJw"
-        },
-        {
-          "title": "Teams Integration ",
-          "description": "Enable Microsoft Teams integration to analyze chat-based communications alongside email insights, providing a holistic view of team collaboration and workload balance"
-        },
-        {
-          "title": "Email Response Time Analytics",
-          "description": "Implement analytics to track and visualize email response times, helping organizations identify bottlenecks, improve communication efficiency, and enhance customer support effectiveness. "
+          "title": "Team Mailboxes",
+          "description": "Analyse how your shared inboxes like support@ and sales@ are performing. Track email volume and communication metrics per mailbox, so you can measure team service levels rather than individual output."
         }
       ],
       "_template": "Timeline"

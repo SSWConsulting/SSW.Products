@@ -224,7 +224,7 @@ export default function BlogPostClient({
               )}
 
               {titles.length > 0 && (
-                <div className="hidden sm:block  rounded-lg border shrink-0 border-white/20 [background-image:var(--gradient-black)] p-6">
+                <div className="hidden sm:block rounded-lg shrink-0 [background-image:var(--gradient-black)] p-6">
                   <h3 className="mb-1 font-medium text-white">
                     Table of Contents
                   </h3>
