@@ -7,12 +7,12 @@
       "_template": "heroSearch"
     },
     {
-      "title": "精选文章",
+      "title": "精选",
       "featuredBlog": "content/blogs/YakShaver/zh/how-much-time-does-yakshaver-save.mdx",
       "_template": "featuredBlog"
     },
     {
-      "title": "最新文章",
+      "title": "最新",
       "_template": "articleList"
     },
     {

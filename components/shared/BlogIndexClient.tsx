@@ -198,7 +198,7 @@ const RecentArticles = ({
           body: JSON.stringify({
             product,
             startCursor: pageParam || undefined,
-            // The first page stays small; "Load More Articles" brings in
+            // The first page stays small; "Load All" brings in
             // every remaining article at once
             loadAll: Boolean(pageParam),
             keyword: searchTerm || undefined,
@@ -239,7 +239,7 @@ const RecentArticles = ({
       {!data?.pages.length && !isFetchingNextPage && !isLoading ? (
         <span className="mx-auto block w-fit">No results found</span>
       ) : (
-        <div className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-4 lg:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {data?.pages.map((page) =>
             page?.blogs?.map((edge, index) => {
               const post = edge?.node;
@@ -285,7 +285,7 @@ const RecentArticles = ({
                 Loading <LoaderCircle className="animate-spin animate size-4" />
               </>
             ) : (
-              <>Load All Articles</>
+              <>Load All</>
             )}
           </Button>
         )}
@@ -383,7 +383,7 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
               onChange={(e) => {
                 setSearchTerm(e.target.value);
               }}
-              placeholder="Search articles..."
+              placeholder="Search the blog…"
               className="w-full bg-ssw-charcoal placeholder:text-gray-300! border text-white border-white/20 rounded-lg py-3 px-4 pl-12 focus:outline-hidden"
             />
             <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-300 h-5 w-5" />
