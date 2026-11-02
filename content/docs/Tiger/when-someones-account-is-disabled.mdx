@@ -1,25 +1,27 @@
 ---
 seo:
-  title: What to Do When a Meeting Organiser Leaves
+  title: What to Do When Someone's Account Is Disabled
   description: >-
-    Learn why SSW Tiger stops generating dashboards for a recurring meeting
-    when its organiser leaves SSW, and how to hand the meeting over so Tiger
-    picks it up again.
-title: What to Do When a Meeting Organiser Leaves
+    Learn why SSW Tiger stops generating dashboards for a meeting when its
+    organiser's Microsoft 365 account is disabled, and how to hand the meeting
+    over so Tiger picks it up again.
+title: What to Do When Someone's Account Is Disabled
 date: '2026-10-30T00:00:00.000Z'
 ---
 
-SSW Tiger creates a dashboard after every recorded meeting. But if the person who set up a recurring meeting leaves SSW, Tiger stops creating dashboards for that meeting. This guide explains why, and how to fix it in a few minutes.
+SSW Tiger creates a dashboard after every recorded meeting. But if the Microsoft 365 account of the person who set up a meeting is disabled, Tiger stops creating dashboards for that meeting. This guide explains why, and how to fix it in a few minutes.
+
+An account can be disabled for many reasons. For example, the person left the company, is on extended leave, or was blocked from signing in by your Microsoft 365 admin.
 
 **Who is this guide for?**
 
-This guide is for anyone who runs a recurring meeting that Tiger processes, such as a Sprint Review. For example, use this when you got a Tiger message pointing you here, or when dashboards stopped arriving after a team member left.
+This guide is for anyone who runs a recurring meeting that Tiger processes, such as a Sprint Review. For example, use this when you got a Tiger message pointing you here, or when dashboards stopped arriving after someone's account was disabled.
 
 ## How to Tell If This Has Happened
 
 - The meeting is still recorded and transcribed in Teams
 - But no Tiger dashboard is created, and no Tiger message arrives after the meeting
-- The person who first scheduled the meeting has recently left SSW
+- The person who first scheduled the meeting can no longer sign in, for example because they left
 
 Nothing shows an error. Tiger just stops hearing about the meeting.
 
@@ -27,11 +29,11 @@ Nothing shows an error. Tiger just stops hearing about the meeting.
 
 The organiser is the person who **first created the Teams meeting**.
 
-This is true for channel meetings too. Outlook may show the team (e.g. "SSW Designers") as the organiser, but in Teams the meeting still belongs to the person who scheduled it.
+This is true for channel meetings too. Outlook may show the team as the organiser, but in Teams the meeting still belongs to the person who scheduled it.
 
 ## How Tiger Lets You Know
 
-Every day, Tiger checks for recurring meetings whose organiser's account has been disabled. When it finds one, it sends the meeting's participants a Teams message with a link to this page.
+Every day, Tiger checks the organiser of each meeting it has processed in the last 45 days. If the organiser's account is disabled or deleted, Tiger sends the meeting's participants one Teams message with a link to this page.
 
 ## The Fix: Hand the Meeting Over
 
@@ -43,7 +45,7 @@ Don't delete the old meeting. End it instead. That way the history of past meeti
 
 Whoever schedules the new meeting becomes its organiser. Tiger picks it up again from the next meeting.
 
-**Pro Tip**: Ask the Scrum Master or Product Owner to schedule the new meeting. Avoid someone who is likely to roll off the team soon.
+**Pro Tip**: Ask someone who will own the meeting long term to schedule it, such as the team lead or Scrum Master.
 
 **Note**: Re-sending the existing invite does **not** fix it. That keeps the same Teams meeting link, which still belongs to the old organiser. It has to be a newly scheduled meeting.
 
@@ -51,7 +53,7 @@ Whoever schedules the new meeting becomes its organiser. Tiger picks it up again
 
 Tiger doesn't pick up a missed meeting by itself, but you can still get a dashboard for it.
 
-**Ask the Tiger team to reprocess it.** Send them the meeting's Teams join link. They can usually reprocess it straight from the link, as long as the old organiser's account has only been disabled and not yet deleted.
+**Ask whoever manages Tiger for your organisation to reprocess it.** Send them the meeting's Teams join link. They can usually reprocess it straight from the link, as long as the organiser's account has only been disabled and not yet deleted.
 
 **Or process it yourself:**
 
@@ -63,4 +65,4 @@ Tiger doesn't pick up a missed meeting by itself, but you can still get a dashbo
 
 Tiger gets each transcript through Microsoft Graph. Microsoft only tells Tiger about a new transcript through the meeting's organiser, because the meeting belongs to them.
 
-When the organiser leaves SSW, their account is disabled. Microsoft then stops telling Tiger about new transcripts for their meetings. Recording and transcription still work in Teams, but Tiger never hears about them.
+When the organiser's account is disabled, Microsoft stops telling Tiger about new transcripts for their meetings. Recording and transcription still work in Teams, but Tiger never hears about them.
