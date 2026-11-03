@@ -8,6 +8,7 @@ import { OptionalProps } from "@/optionalProps";
 import { Blog } from "@/types/blog";
 import { AuthorInfo } from "@comps/AuthorInfo";
 import { BlogCard } from "@comps/BlogCard";
+import CategoryLabel from "@comps/shared/CategoryLabel";
 import Breadcrumbs from "@comps/shared/Breadcrumbs";
 import Container from "@comps/Container";
 import { TableOfContents } from "@comps/TableOfContents";
@@ -68,11 +69,8 @@ export default function BlogPostClient({
           <Breadcrumbs kind="blog" />
         </div>
         {!isUncategorized(data.blogs.category) && (
-          <div
-            data-tina-field={tinaField(data.blogs, "category")}
-            className="text-sm uppercase w-fit tracking-wide mb-3 text-white/60"
-          >
-            {data.blogs.category}
+          <div data-tina-field={tinaField(data.blogs, "category")} className="mb-3 w-fit">
+            <CategoryLabel>{data.blogs.category}</CategoryLabel>
           </div>
         )}
         <h1
@@ -189,7 +187,15 @@ export default function BlogPostClient({
               )}
             >
               {titles.length > 0 && (
-                <div className={cn(SIDE_PANEL, "hidden sm:block overflow-y-auto min-h-0")}>
+                <div
+                  className={cn(
+                    SIDE_PANEL,
+                    // the TOC is the navigation, so it keeps its height and
+                    // the Summary below takes what's left and scrolls
+                    "hidden sm:block shrink-0 overflow-y-auto",
+                    data.blogs.summaryCard && "max-h-[60%]"
+                  )}
+                >
                   <h2 className={SIDE_PANEL_HEADING}>Table of Contents</h2>
                   <Contents titles={titles} />
                 </div>
@@ -285,7 +291,7 @@ const Contents = ({ titles }: { titles: Title[] }) => {
       <ul className="text-sm">
         {titles.map((title, index) => (
           <li
-            className="text-white/60 group py-1 border-l w-fit pl-2 hover:border-white border-white/10"
+            className="text-white/60 group py-1 border-l w-fit pl-2 hover:border-ssw-red border-white/10 transition-colors"
             key={index}
             style={{}}
           >
@@ -314,7 +320,7 @@ const Contents = ({ titles }: { titles: Title[] }) => {
                 });
               }}
               href={`#${title.text}`}
-              className="inset-0 group-hover:text-ssw-red"
+              className="inset-0 transition-colors group-hover:text-white"
             >
               {title.text}
             </a>
