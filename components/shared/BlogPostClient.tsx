@@ -8,11 +8,14 @@ import { OptionalProps } from "@/optionalProps";
 import { Blog } from "@/types/blog";
 import { AuthorInfo } from "@comps/AuthorInfo";
 import { BlogCard } from "@comps/BlogCard";
+import CategoryLabel from "@comps/shared/CategoryLabel";
 import Breadcrumbs from "@comps/shared/Breadcrumbs";
 import Container from "@comps/Container";
 import { TableOfContents } from "@comps/TableOfContents";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import { nodesToText, searchAstTree } from "@utils/astHelpers";
+import { isUncategorized } from "@utils/category";
+import MarkdownLink from "@tina/tinamarkdownStyles/Link";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useMemo } from "react";
@@ -65,12 +68,11 @@ export default function BlogPostClient({
         <div className="mb-6">
           <Breadcrumbs kind="blog" />
         </div>
-        <div
-          data-tina-field={tinaField(data.blogs, "category")}
-          className="text-sm uppercase w-fit tracking-wide mb-3 text-white/60"
-        >
-          {data.blogs.category}
-        </div>
+        {!isUncategorized(data.blogs.category) && (
+          <div data-tina-field={tinaField(data.blogs, "category")} className="mb-3 w-fit">
+            <CategoryLabel>{data.blogs.category}</CategoryLabel>
+          </div>
+        )}
         <h1
           data-tina-field={tinaField(data.blogs, "title")}
           className="text-3xl w-fit mb-3 font-bold text-white md:text-4xl lg:text-5xl "
@@ -160,7 +162,7 @@ export default function BlogPostClient({
                   className="flex items-center text-white/60 transition-colors hover:text-white"
                 >
                   <FaArrowLeft className="mr-2 h-4 w-4" />
-                  Previous Article
+                  Previous article
                 </Link>
               )}
               {nextBlog && (
@@ -168,7 +170,7 @@ export default function BlogPostClient({
                   href={nextBlog.slug ? `/blog/${nextBlog.slug}` : "#"}
                   className="flex ml-auto items-center text-white/60 transition-colors hover:text-white"
                 >
-                  Next Article
+                  Next article
                   <FaArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               )}
@@ -184,17 +186,33 @@ export default function BlogPostClient({
                 titles.length && "sm:h-[calc(100vh-11rem)]"
               )}
             >
+              {titles.length > 0 && (
+                <div
+                  className={cn(
+                    SIDE_PANEL,
+                    // the TOC is the navigation, so it keeps its height and
+                    // the Summary below takes what's left and scrolls
+                    "hidden sm:block shrink-0 overflow-y-auto",
+                    data.blogs.summaryCard && "max-h-[60%]"
+                  )}
+                >
+                  <h2 className={SIDE_PANEL_HEADING}>Table of Contents</h2>
+                  <Contents titles={titles} />
+                </div>
+              )}
               {data.blogs.summaryCard && (
-                <div className="rounded-lg bg-gray-darkest [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]  p-6 overflow-y-auto">
-                  <h2 className="text-xl font-semibold mb-1.5">Summary</h2>
+                <div className={cn(SIDE_PANEL, "overflow-y-auto min-h-0")}>
+                  <h2 className={SIDE_PANEL_HEADING}>Summary</h2>
 
                   <div
                     data-tina-field={tinaField(data.blogs, "summary")}
-                    className="[&_p]:text-white/60  [&_li]:text-white/60 [&_p] space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base [&_a]:text-sm [&_a]:text-ssw-red [&_a]:hover:underline"
+                    className="[&_p]:text-white/60 [&_li]:text-white/60 space-y-1.5 [&_li]:text-sm [&_li]:list-disc [&_p]:text-sm text-base"
                   >
                     <TinaMarkdown
                       content={data.blogs.summary}
                       components={{
+                        // the shared body-text link: white, turns SSW red on hover (#840, #859)
+                        a: MarkdownLink,
                         li: (props: { children: ReactNode } | undefined) => (
                           <li className="list-outside ml-6 list-disc">
                             {props?.children}
@@ -225,15 +243,6 @@ export default function BlogPostClient({
                   </div>
                 </div>
               )}
-
-              {titles.length > 0 && (
-                <div className="hidden sm:block rounded-lg shrink-0 [background-image:var(--gradient-black)] p-6">
-                  <h3 className="mb-1 font-medium text-white">
-                    Table of Contents
-                  </h3>
-                  <Contents titles={titles} />
-                </div>
-              )}
             </div>
           </aside>
         )}
@@ -246,7 +255,7 @@ export default function BlogPostClient({
         <Container>
           {" "}
           <h2 className="text-2xl font-bold mb-8 text-white border-ssw-red pl-4 border-l-4">
-            Recent Articles
+            Latest
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
             {recentBlogs.map((article, index) => {
@@ -271,13 +280,18 @@ export default function BlogPostClient({
   );
 }
 
+// Summary and Table of Contents share one box style (#840)
+const SIDE_PANEL =
+  "rounded-lg bg-gray-darkest p-6 [scrollbar-width:thin] [scrollbar-color:var(--color-ssw-charcoal)_transparent]";
+const SIDE_PANEL_HEADING = "text-lg font-semibold text-white mb-2";
+
 const Contents = ({ titles }: { titles: Title[] }) => {
   return (
     <nav>
       <ul className="text-sm">
         {titles.map((title, index) => (
           <li
-            className="text-white/60 group py-1 border-l w-fit pl-2 hover:border-white border-white/10"
+            className="text-white/60 group py-1 border-l w-fit pl-2 hover:border-ssw-red border-white/10 transition-colors"
             key={index}
             style={{}}
           >
@@ -306,7 +320,7 @@ const Contents = ({ titles }: { titles: Title[] }) => {
                 });
               }}
               href={`#${title.text}`}
-              className="inset-0 group-hover:text-ssw-red"
+              className="inset-0 transition-colors group-hover:text-white"
             >
               {title.text}
             </a>
