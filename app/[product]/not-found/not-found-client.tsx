@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import MarkdownLink from "@tina/tinamarkdownStyles/Link";
 type NotFound = Awaited<ReturnType<typeof client.queries.notFound>>;
 
 type NotFoundData = Record<string, NotFound>;
@@ -35,10 +36,10 @@ const NotFoundClient = ({
             {heading}
           </h1>
           <section
-            className="[&_a]:underline text-xl [&_a]:underline-offset-2"
+            className="text-xl"
             data-tina-field={tinaField(data.notFound, "body")}
           >
-            <TinaMarkdown content={body} />
+            <TinaMarkdown content={body} components={{ a: MarkdownLink }} />
           </section>
           <Button className="w-fit mt-6" variant={"white"} asChild>
             <Link className="w-fit mt-6" href="/">
