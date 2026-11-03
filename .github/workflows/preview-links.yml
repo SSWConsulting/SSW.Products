@@ -1,0 +1,81 @@
+name: Preview links
+
+# When Vercel finishes a preview deployment, comment on the PR with a link that
+# opens the preview on each product the PR changes. The middleware remembers the
+# product from ?product=, so links inside the page stay on that product.
+on: deployment_status
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  comment:
+    # Vercel names its environments "Preview – ssw-products" and
+    # "Production – ssw-products". startsWith ignores case.
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      startsWith(github.event.deployment.environment, 'Preview')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment preview links on the PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.deployment.sha }}
+          PREVIEW_URL: ${{ github.event.deployment_status.environment_url || github.event.deployment_status.target_url }}
+        run: |
+          set -euo pipefail
+          marker='<!-- preview-product-links -->'
+          preview_url="${PREVIEW_URL%/}"
+          if [ -z "$preview_url" ]; then
+            echo "The deployment has no URL."
+            exit 0
+          fi
+
+          pr=$(gh api "repos/$REPO/commits/$SHA/pulls" \
+            --jq '[.[] | select(.state == "open")][0].number // empty')
+          if [ -z "$pr" ]; then
+            echo "No open PR for $SHA."
+            exit 0
+          fi
+
+          # The products are the folders in content/pages: YakShaver, Tiger, ...
+          products=$(gh api "repos/$REPO/contents/content/pages?ref=$SHA" \
+            --jq '[.[] | select(.type == "dir") | .name] | join("|")')
+          changed=$(gh api --paginate "repos/$REPO/pulls/$pr/files" --jq '.[].filename')
+          touched=$(echo "$changed" \
+            | sed -nE "s#^(content/[^/]+|public)/($products)/.*#\2#p" \
+            | sort -u)
+          if [ -z "$products" ] || [ -z "$touched" ]; then
+            echo "PR #$pr changes no product's content."
+            exit 0
+          fi
+
+          {
+            echo "$marker"
+            echo "### Preview by product"
+            echo
+            echo "This PR changes the products below. Each link opens the preview on that product, and the links inside it stay on it."
+            echo
+            for product in $touched; do
+              echo "- **$product**: $preview_url/?product=$product"
+            done
+            echo
+            echo "To go back to the default product, open $preview_url/?product=default"
+            echo
+            echo "<sub>Deployment of $SHA</sub>"
+          } > "$RUNNER_TEMP/body.md"
+
+          ids=$(gh api --paginate "repos/$REPO/issues/$pr/comments" \
+            --jq ".[] | select(.user.login == \"github-actions[bot]\" and (.body | startswith(\"$marker\"))) | .id")
+          comment_id="${ids%%$'\n'*}"
+          if [ -n "$comment_id" ]; then
+            gh api --method PATCH "repos/$REPO/issues/comments/$comment_id" \
+              -F "body=@$RUNNER_TEMP/body.md" > /dev/null
+            echo "Updated the comment on PR #$pr."
+          else
+            gh api --method POST "repos/$REPO/issues/$pr/comments" \
+              -F "body=@$RUNNER_TEMP/body.md" > /dev/null
+            echo "Commented on PR #$pr."
+          fi

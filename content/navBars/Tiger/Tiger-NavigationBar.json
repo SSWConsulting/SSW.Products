@@ -23,6 +23,15 @@
       "JotFormId": "233468468973070",
       "variants": "outline",
       "_template": "BookingButton"
+    },
+    {
+      "label": "Portal",
+      "icon": "/Tiger/tiger-black.svg",
+      "iconPosition": "left",
+      "variant": "solidWhite",
+      "_template": "actions",
+      "size": "medium",
+      "url": "https://portal.sswtiger.com/"
     }
   ]
 }
