@@ -4,7 +4,6 @@ import { TableOfContents } from "@comps/TableOfContents";
 import { Docs, DocsTableOfContents } from "@tina/__generated__/types";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import { useParams } from "next/navigation";
-import { useContextualLink } from "@utils/contextualLink";
 import { docSlugFromBreadcrumbs } from "@utils/docPath";
 import { useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -24,11 +23,9 @@ interface DocPostClientProps {
   paginationData: PaginationLinksClientProps;
 }
 
-// Find the section (navigation group) that contains the current doc, and the
-// link to that section (its first item). Falls back to the docs index.
-const useDocSection = (tableOfContentsData: DocsTableOfContents) => {
+// The title of the section (navigation group) that contains the current doc
+const useDocSectionTitle = (tableOfContentsData: DocsTableOfContents) => {
   const params = useParams<{ slug?: string[] }>();
-  const contextualHref = useContextualLink();
   const activeSlug = params.slug?.join("/") ?? "";
 
   const section = tableOfContentsData.parentNavigationGroup?.find((group) =>
@@ -36,32 +33,16 @@ const useDocSection = (tableOfContentsData: DocsTableOfContents) => {
       (item) => docSlugFromBreadcrumbs(item?.slug?._sys?.breadcrumbs) === activeSlug
     )
   );
-  const firstItemSlug = docSlugFromBreadcrumbs(
-    section?.items?.[0]?.slug?._sys?.breadcrumbs
-  );
-
-  return {
-    sectionTitle: section?.title ?? null,
-    sectionHref:
-      section?.title && firstItemSlug
-        ? contextualHref(`/docs/${firstItemSlug}`)
-        : contextualHref("/docs"),
-  };
+  return section?.title ?? null;
 };
 
 const DocBreadcrumbs = ({
   tableOfContentsData,
 }: {
   tableOfContentsData: DocsTableOfContents;
-}) => {
-  const { sectionTitle, sectionHref } = useDocSection(tableOfContentsData);
-  return (
-    <Breadcrumbs
-      kind="docs"
-      section={sectionTitle ? { title: sectionTitle, href: sectionHref } : null}
-    />
-  );
-};
+}) => (
+  <Breadcrumbs kind="docs" section={useDocSectionTitle(tableOfContentsData)} />
+);
 
 export default function DocPostClient({
   query,
@@ -104,7 +85,9 @@ export default function DocPostClient({
         </TableOfContents.Root>
       </div>
       <div className="flex flex-col gap-2 mb-8">
-        <DocBreadcrumbs tableOfContentsData={tableOfContentsData} />
+        <div className="mb-4">
+          <DocBreadcrumbs tableOfContentsData={tableOfContentsData} />
+        </div>
         {/* the doc page title - its own h1 so the page has one (was an h2) */}
         <h1 className="text-3xl font-semibold text-ssw-red">{title}</h1>
         <GitHubMetadata path={data.docs.id} className="text-sm font-light text-gray-300" />

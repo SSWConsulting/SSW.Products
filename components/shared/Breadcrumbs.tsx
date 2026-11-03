@@ -1,7 +1,7 @@
 "use client";
-import { useContextualLink, useContextualLocale } from "@utils/contextualLink";
+import Link from "@tina/tinamarkdownStyles/Link";
+import { useContextualLocale } from "@utils/contextualLink";
 import { ChevronRight } from "lucide-react";
-import Link from "next/link";
 
 const LABELS = {
   en: {
@@ -24,13 +24,13 @@ const LABELS = {
 
 type BreadcrumbsProps =
   | { kind: "blog" }
-  | { kind: "docs"; section?: { title: string; href: string } | null };
+  | { kind: "docs"; section?: string | null };
 
 // "Home > Blog > This post" / "Home > Docs > Section > This page". The last
 // crumb is a fixed label, not the title, because the title is the heading
-// right below it (https://www.ssw.com.au/rules/simplify-breadcrumbs/)
+// right below it (https://www.ssw.com.au/rules/simplify-breadcrumbs/).
+// A docs section has no page of its own, so it's plain text, not a link
 const Breadcrumbs = (props: BreadcrumbsProps) => {
-  const contextualHref = useContextualLink();
   const labels = LABELS[useContextualLocale()];
 
   const links =
@@ -42,23 +42,25 @@ const Breadcrumbs = (props: BreadcrumbsProps) => {
       : [
           { label: labels.home, href: "/" },
           { label: labels.docs, href: "/docs" },
-          ...(props.section ? [{ label: props.section.title, href: props.section.href }] : []),
         ];
+  const section = props.kind === "docs" ? props.section : null;
 
   return (
     <nav aria-label={labels.nav}>
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-300">
         {links.map((link) => (
           <li key={link.href} className="flex items-center gap-2">
-            <Link
-              href={contextualHref(link.href)}
-              className="text-white underline hover:text-ssw-red transition-colors"
-            >
-              {link.label}
-            </Link>
+            {/* the shared body-text link, so the link standard lives in one place */}
+            <Link url={link.href}>{link.label}</Link>
             <ChevronRight aria-hidden className="size-3.5 text-gray-400" />
           </li>
         ))}
+        {section && (
+          <li className="flex items-center gap-2 text-white">
+            {section}
+            <ChevronRight aria-hidden className="size-3.5 text-gray-400" />
+          </li>
+        )}
         <li aria-current="page">
           {props.kind === "blog" ? labels.thisPost : labels.thisPage}
         </li>
