@@ -28,6 +28,7 @@ import ArticleMetadata from "./ArticleMetadata";
 import CategoryLabel from "./CategoryLabel";
 import GridBackground from "./GridBackground";
 import { useContextualLink } from "@utils/contextualLink";
+import { isUncategorized } from "@utils/category";
 
 type BlogTinaProps = Awaited<ReturnType<typeof client.queries.blogsIndex>>;
 
@@ -111,10 +112,8 @@ const FeaturedArticle = ({
                 </div>
 
                 <div className="p-8 md:basis-8/12 flex gap-3 flex-col">
-                  {featuredBlog.category && (
-                    <CategoryLabel className="text-sm">
-                      {featuredBlog.category}
-                    </CategoryLabel>
+                  {!isUncategorized(featuredBlog.category) && (
+                    <CategoryLabel>{featuredBlog.category}</CategoryLabel>
                   )}
                   <Link href={contextualHref(`/blog/${featuredBlog._sys.filename}`)}>
                     <h3 className="sm:text-2xl text-xl font-bold group-hover:text-ssw-red transition-colors">

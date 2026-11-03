@@ -10,6 +10,7 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import type { ReactNode } from "react";
 import ArticleMetadata from "./shared/ArticleMetadata";
 import Author from "./shared/Author";
+import CategoryLabel from "./shared/CategoryLabel";
 import GridBackground from "./shared/GridBackground";
 import { useContextualLink } from "@utils/contextualLink";
 import { isUncategorized } from "@utils/category";
@@ -71,10 +72,11 @@ const BlogCard = ({
           <GridBackground />
         )}
       </div>
-      {showCategory && (
-        <span className="text-xs font-semibold uppercase tracking-wider text-ssw-red">
-          {category}
-        </span>
+      {/* keep the line when there's no category, so titles line up across a row */}
+      {showCategory ? (
+        <CategoryLabel>{category}</CategoryLabel>
+      ) : (
+        <span aria-hidden className="h-4" />
       )}
       <Link className="w-fit" href={blogUrl}>
         <h3 className={cn(
