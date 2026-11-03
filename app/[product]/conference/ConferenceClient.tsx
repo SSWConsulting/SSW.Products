@@ -65,15 +65,15 @@ const HeaderBanner = ({
         </h3>
         <div className="flex flex-col md:flex-row py-6 gap-6 md:gap-10">
           <div className="flex gap-2 items-center justify-center">
-            <FaRegCalendar className="text-[#CC4141]" />
+            <FaRegCalendar className="text-red-400" />
             <span>{banner?.date}</span>
           </div>
           <div className="flex gap-2 items-center justify-center">
-            <FaRegClock className="text-[#CC4141]" />
+            <FaRegClock className="text-red-400" />
             <span>{banner?.time}</span>
           </div>
           <div className="flex gap-2 items-center justify-center">
-            <FaRegMap className="text-[#CC4141]" />
+            <FaRegMap className="text-red-400" />
             {banner?.locationLink ? (
               <MarkdownLink url={banner.locationLink}>
                 {banner?.location}
