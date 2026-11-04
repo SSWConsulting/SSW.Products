@@ -1,0 +1,110 @@
+---
+seo:
+  title: Connect Jira Cloud to YakShaver
+  description: >-
+    Set up YakShaver to create Jira Cloud issues from your recordings. Allow
+    YakShaver in your Atlassian organisation, connect Jira, and point a project
+    at it.
+title: Connect Jira Cloud
+date: '2026-11-03T00:00:00.000Z'
+---
+
+YakShaver can create issues in Jira Cloud for shaves recorded with **YakShaver Anywhere**. It connects through Atlassian's remote MCP server, so there is no app to register and no credentials to create. Your Atlassian organisation admin does have to allow YakShaver first (step 1).
+
+> **Jira Cloud only.** Jira Data Center and Jira Server are not supported. See [Limitations](#limitations).
+
+## 1. Allow YakShaver in your Atlassian organisation
+
+Atlassian's MCP server only accepts a sign-in that returns to a domain it trusts: one on its [supported list](https://support.atlassian.com/security-and-access-policies/docs/available-atlassian-mcp-server-domains/), or one your organisation has added. YakShaver is not on that list, so an Atlassian **organisation admin** has to add it, once per organisation. This is not a Jira project setting.
+
+1. Go to [Atlassian Administration](https://admin.atlassian.com) and select your organisation.
+2. Open **Connectors → Atlassian MCP server**. Some Atlassian articles call this **Rovo → Rovo MCP server → Domain settings**, so your menu may differ.
+3. Click **Add domain** and enter `https://api.yakshaver.ai/**`
+4. On the **Permissions** tab, allow Jira for **Read**, **Write** and **Search**. YakShaver reads projects and create screens, creates issues, and searches for issues it has already filed.
+5. If your organisation uses **IP allowlists**, allow YakShaver's outbound IP addresses too. [Contact us](/docs/support) for the current list, because they can change when the service scales.
+
+> **If you skip this step, Atlassian stops the connection on its own page.** Nothing reaches YakShaver, so the portal cannot show an error. Use the wording on Atlassian's page to find the cause in [Troubleshooting](#troubleshooting).
+>
+> If a saved domain does not take effect, remove it and add it again, then retry in a private window.
+
+## 2. Connect Jira
+
+1. In the YakShaver portal, go to [**Settings → Integrations**](https://portal.yakshaver.ai/integrations). You need the Admin role.
+2. Click **Connect** on the Jira row and read the prerequisites.
+3. Complete the Atlassian consent screen, choosing the site you want to file to.
+
+Atlassian signs you in with whichever account this browser is already using. To connect a different account, sign out of Atlassian first or use a private window.
+
+> **Use a dedicated Jira service account.**
+>
+> The connection acts as whoever completes this step. Every issue YakShaver creates is attributed to them, and the connection stops working when they leave or lose access. Connecting with a personal account works, and then breaks at the worst time.
+>
+> The account needs a Jira licence on the site and permission to create issues in your projects.
+
+## 3. Point a project at Jira
+
+1. In the portal, open the project and click **Edit**.
+2. Under **Work item destination**, choose **Jira**.
+3. Pick the **site**, then the **project**.
+4. Click **Save destination**.
+
+You don't choose an issue type. YakShaver decides for each shave from the recording: a title starting with 🐛 files a **Bug**, and anything else files a **Story**, **Task** or **Feature**, whichever the project has.
+
+When you save, YakShaver checks the create screens of those issue types. If one needs a field YakShaver cannot fill, or has no **Labels** field (see [Limitations](#limitations)), the save is refused with the type and the problem named. You find out now, not when a shave fails.
+
+To undo, click **Use backlog URL instead**.
+
+## What lands in the issue
+
+| YakShaver | Jira |
+| --- | --- |
+| Title | **Summary**, as plain text on one line, cut at 255 characters |
+| Description | The issue description. YakShaver sends markdown and Atlassian converts it |
+| Acceptance criteria | An "Acceptance Criteria" heading and numbered list in the description, because Jira has no field for it |
+| Reproduce steps | A "Reproduce Steps" heading and numbered list in the description |
+| Recording link | A link at the top of the description |
+| Labels | `YakShaver`, plus a label YakShaver uses to spot duplicates |
+| Assignee | Matched by email. Left unassigned if there is no match |
+
+## Limitations
+
+**Platform**
+
+* **Jira Cloud only.** Atlassian's MCP server cannot reach Jira Data Center or Jira Server.
+* **Jira Service Management projects are not supported.** They need a request type YakShaver cannot supply, so they are hidden from the project list.
+* **Sub-task issue types are excluded.** A sub-task needs a parent, and a shave cannot choose one.
+* **The issue type needs a Labels field on its create screen.** Labels are how YakShaver recognises an issue it has already created, so a type without them is refused when you save the destination, instead of being allowed to file duplicates.
+
+**Content**
+
+* **Summaries are cut at 255 characters**, and line breaks become spaces.
+* **Screenshots are linked images, not attachments.** Atlassian's MCP server cannot upload attachments.
+* **The recording is linked, not attached.**
+* **Creating an issue triggers the project's notification scheme**, so watchers and the project lead get an email.
+
+**Identity and connection**
+
+* **Issues are attributed to the account that connected Jira** (see step 2).
+* **The connection expires after 90 days without use.** YakShaver refreshes it each time it files, not on a schedule, so if nothing is filed for 90 days an admin has to reconnect. The portal asks you to reconnect when that happens, as it does when someone revokes access.
+* **Issue keys change when an issue moves between projects.** YakShaver also keeps the issue's permanent ID where Atlassian provides one, so its links keep working.
+* **Atlassian can change its MCP server at any time.** If a tool YakShaver needs is renamed or removed, YakShaver tells you which one, but it may need an update before it can file again.
+
+**Scope**
+
+* **Jira works with YakShaver Anywhere only.** Teams and browser extension shaves on the same project still use the project's **Backlog URL**, which supports GitHub and Azure DevOps only, and fall back to email. A Backlog URL that points at Jira is rejected.
+
+## Troubleshooting
+
+| What you see | What to do |
+| --- | --- |
+| Atlassian says your organization admin must authorize access from the redirect URL | YakShaver's domain is not allowed yet. Add it (step 1). |
+| Atlassian says your organization admin has not authorized a permission | Allow Jira for Read, Write and Search on the **Permissions** tab (step 1). |
+| "You don't have permission to connect from this IP address" | Your organisation's IP allowlist is blocking the connection (step 1). |
+| "Your site admin must authorize this app before it can access your account" | Atlassian does not document this message. Community reports say someone with a Jira licence on the site has to consent first, so try a licensed user or a site admin. |
+| "Supported sites required" | The account has no active licence on a Jira Cloud site. If it does have one, [contact us](/docs/support). |
+| "Your Atlassian admin has not approved YakShaver for any site", or an empty site list | The connection reached no site. Check step 1, and that the account has a Jira licence on the site, then reconnect. |
+| An issue type "requires" a field "which YakShaver cannot supply" | That issue type has a required custom field. Make the field optional in Jira. |
+| An issue type "has no 'labels' field" | Add the Labels field to that issue type's create screen in Jira. |
+| "Your Jira connection has expired" | Someone revoked access, or it went unused for 90 days or more. An admin reconnects it. |
+| "Atlassian's MCP server does not offer the '…' tool" | Atlassian changed its MCP server, and YakShaver needs an update. [Contact us](/docs/support). |
+| Issues are attributed to someone who has left | Jira was connected with a personal account. The Integrations row shows which one ("Connected as …"). Sign out of Atlassian in this browser, or open a private window, then choose **⋯ → Reconnect…** and sign in as the service account. Don't disconnect first, because that turns off every project's destination. |

@@ -24,6 +24,40 @@ const markdownToPlainText = async (body: string) => {
   return res.toString();
 };
 
+// Algolia rejects any record over 10KB, and one oversized doc fails the whole
+// index rebuild - so a long doc's body is cut short, leaving room to spare
+const MAX_RECORD_BYTES = 9000;
+
+// What a character split in two decodes to
+const REPLACEMENT_CHARACTER = String.fromCharCode(0xfffd);
+
+const truncateToBytes = (text: string, maxBytes: number) => {
+  if (Buffer.byteLength(text) <= maxBytes) return text;
+  const truncated = Buffer.from(text).subarray(0, maxBytes).toString();
+  // Cutting the bytes can split the last character - drop what's left of it
+  return truncated.endsWith(REPLACEMENT_CHARACTER)
+    ? truncated.slice(0, -1)
+    : truncated;
+};
+
+// Measured as JSON, as Algolia does - newlines and quotes are escaped there, so
+// the record can be bigger than its raw text
+const recordBytes = (record: object) => Buffer.byteLength(JSON.stringify(record));
+
+const fitRecord = <T extends { body: string }>(record: T): T => {
+  let fitted = record;
+  let excess = recordBytes(fitted) - MAX_RECORD_BYTES;
+  // Each cut removes at least `excess` bytes of JSON, so this ends in a few rounds
+  while (excess > 0 && fitted.body) {
+    fitted = {
+      ...fitted,
+      body: truncateToBytes(fitted.body, Buffer.byteLength(fitted.body) - excess),
+    };
+    excess = recordBytes(fitted) - MAX_RECORD_BYTES;
+  }
+  return fitted;
+};
+
 const getDocumentationData = async (fileName: string, product: string) => {
   const mdContents = matter.read(fileName, {
     delimiters: ["---", "---"],
@@ -40,11 +74,11 @@ const getDocumentationData = async (fileName: string, product: string) => {
   const title = mdContents.data.title;
   const plainText = await markdownToPlainText(body);
 
-  return {
+  return fitRecord({
     title: title,
     body: plainText,
     file: slug,
-  };
+  });
 };
 
 const fetchDocData = async (globPattern: string, product: string) => {

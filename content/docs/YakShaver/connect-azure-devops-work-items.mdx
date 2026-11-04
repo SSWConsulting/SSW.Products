@@ -1,0 +1,144 @@
+---
+seo:
+  title: Connect Azure DevOps Work Items to YakShaver Anywhere
+  description: >-
+    Set up YakShaver Anywhere to create Azure DevOps work items. Prepare your
+    Microsoft Entra tenant, connect Azure DevOps, and choose a project and team.
+title: Connect Azure DevOps work items
+date: '2026-11-03T00:00:00.000Z'
+---
+
+YakShaver can create work items in Azure DevOps for shaves recorded with **YakShaver Anywhere**. It connects through Microsoft's remote Azure DevOps MCP server. Unlike Jira, your Microsoft Entra tenant needs a one-off setup: YakShaver uses a pre-registered app, and your tenant has to be willing to consent to it.
+
+> **This is separate from the Backlog URL.** Projects whose **Backlog URL** points at `dev.azure.com` already create Azure DevOps work items for Teams and browser extension shaves, as set up in [Adding Azure DevOps projects](/docs/add-azure-devops-projects). This page covers the **work item destination**, which YakShaver Anywhere uses. See [Limitations](#limitations) for which shaves use which.
+
+> **Azure DevOps Services (cloud) with Microsoft Entra ID only.** Organisations still on Microsoft accounts, and Azure DevOps Server (on-premises), are not supported.
+
+## 1. Before you start
+
+Get these in place first. If one is missing, it shows up later as a confusing failure rather than a helpful message.
+
+### Your organisation uses Microsoft Entra ID
+
+The Azure DevOps organisation must be connected to Microsoft Entra ID. An organisation still backed by Microsoft accounts cannot sign in to the MCP server at all.
+
+### Your tenant has the Azure DevOps MCP service principal
+
+A Global Administrator runs this once for the tenant:
+
+```bash
+az ad sp create --id 2a72489c-aab2-4b65-b93a-a91edccf33b8
+```
+
+Without it, consent in step 2 fails with an Entra error naming an application nobody recognises.
+
+### Your tenant can consent to YakShaver's permissions
+
+YakShaver asks for two delegated permissions, and no more:
+
+| Permission | What your admin sees |
+| --- | --- |
+| `wit.write` | "read and create or update work items, comments, and links on behalf of the signed-in user" |
+| `work.read` | "read Azure Boards backlogs, iterations, team capacity, and team settings" |
+
+Neither permission needs admin consent, so with Entra's default settings anyone can connect without an admin.
+
+Many organisations turn user consent off, though (in the Microsoft Entra admin center, under **Enterprise applications → Consent and permissions**). Then the first person to click **Connect** cannot finish on their own, however much access they have in Azure DevOps. YakShaver detects this and shows a link they can forward to an admin.
+
+An admin approves once for the whole tenant, and after that everyone connects without help. Approving does not connect anything by itself: someone still has to click **Connect** afterwards.
+
+### Conditional Access allows the MCP service
+
+If your tenant uses location-based Conditional Access, allow `20.125.155.22` and `40.74.28.81`. Sign-in appears to come from the MCP service, not from your network, so a location policy blocks it.
+
+### The account can reach your projects
+
+The account you connect with needs **Contribute** on the projects you want to file into, and access to the organisation.
+
+## 2. Connect Azure DevOps
+
+1. In the YakShaver portal, go to [**Settings → Integrations**](https://portal.yakshaver.ai/integrations). You need the Admin role.
+2. Click **Connect** on the Azure DevOps row and read the prerequisites.
+3. Sign in and complete the Microsoft consent screen.
+
+> **Use a dedicated Azure DevOps service account.**
+>
+> The connection acts as whoever completes this step. Every work item YakShaver creates is attributed to them, with their name in **Created By**, and the connection stops working when they leave or lose access. Connecting with a personal account works, and then breaks at the worst time.
+
+> **Already use the Backlog URL for Azure DevOps?** This is a separate connection with its own consent, so it cannot reuse the Backlog URL's access. Connecting one does not affect the other.
+
+## 3. Point a project at Azure DevOps
+
+1. In the portal, open the project and click **Edit**.
+2. Under **Work item destination**, choose **Azure DevOps**.
+3. Type the **organisation** name as it appears in your Azure DevOps URL, for example `contoso` in `https://dev.azure.com/contoso`. The project list loads once the name is right.
+4. Pick the **project**, and optionally a **team**.
+5. Click **Save destination**.
+
+With a team, YakShaver files into that team's default area path and current iteration, so work items land on the right board and in the right sprint. Without one, they land at the project's root area path with no iteration.
+
+You don't choose a work item type. YakShaver decides for each shave from the recording: a title starting with 🐛 files a **Bug**, and anything else files a **Product Backlog Item**, **User Story**, **Requirement**, **Issue** or **Task**, whichever your process has.
+
+When you save, YakShaver checks that the project has one of those types. If it has none, the save is refused with the types it looked for named. You find out now, not when a shave fails.
+
+To undo, click **Use backlog URL instead**.
+
+## What lands in the work item
+
+| YakShaver | Azure DevOps |
+| --- | --- |
+| Title | **Title**, as plain text on one line, cut at 128 characters |
+| Description | **Description**, or **Repro Steps** for a Bug, written in Markdown |
+| Reproduce steps | Part of the Bug's **Repro Steps** |
+| Acceptance criteria and other text fields | The work item type's own long text fields. Acceptance criteria are always filled in, worked out from the expected behaviour when the recording lists none. If Azure DevOps refuses a field, its content goes in the description instead and the work item is still created |
+| People | A `cc:` line of @mentions at the top of the description, under the "Issue recorded by" line. It lists the project's Primary Contact, the requester (when someone signed in recorded it), people named in the recording, then the project's members, up to 10 people in all. Names are matched against everyone in your YakShaver tenant |
+| Recording link | A link at the top of the description |
+| Tags | `YakShaver`, plus a tag YakShaver uses to spot duplicates |
+| Assignee | **Assigned To**, matched by email. Left unassigned if there is no match |
+| Team | **Area Path** and **Iteration Path**, from the team's settings |
+
+The @mentions need YakShaver to be a user in your Azure DevOps organisation, as set up in [Adding Azure DevOps projects](/docs/add-azure-devops-projects). Without that, the work item is still created, and the mentions are skipped.
+
+## Limitations
+
+**Platform**
+
+* **Azure DevOps Services (cloud) only, and the organisation must use Microsoft Entra ID.** Organisations on Microsoft accounts are not supported.
+* **Azure DevOps Server (on-premises) is not supported.** Microsoft has no remote MCP server for it, and there is no plan to add one.
+* **The Azure DevOps MCP server is a Microsoft preview service.** If Microsoft renames or removes a tool YakShaver needs, YakShaver tells you which one, but it may need an update before it can file again.
+* **Duplicate detection relies on a preview feature of that server.** If the feature is unavailable for your organisation, YakShaver refuses to file and says so, rather than risk creating duplicates.
+* **YakShaver looks for work item types by their standard names.** A process that renames the standard types is reported as having none of them.
+
+**Content**
+
+* **Titles are cut at 128 characters**, Azure DevOps's own limit, and line breaks become spaces.
+* **Screenshots are linked images, not attachments.** The MCP server cannot upload attachments.
+* **The recording is linked, not attached.**
+* **No parent link, and no area or iteration per shave.** Everything lands where the destination says.
+
+**Identity and connection**
+
+* **Work items are attributed to the account that connected Azure DevOps** (see step 2). **Created By** shows that account, not the person who recorded the shave.
+* **This connection is separate from the Backlog URL's.** Revoking or re-approving one does not affect the other, and a working Backlog URL does not mean this connection is healthy.
+* **You need to reconnect after access is revoked, the service principal is removed, or a Conditional Access policy changes.** The portal asks you to reconnect when that happens.
+
+**Scope**
+
+* **Azure DevOps destinations apply to YakShaver Anywhere only.** Teams and browser extension shaves on the same project still use the **Backlog URL**, which keeps working as before. Setting a destination does not move those shaves onto it.
+* **One destination per project.** A project files to one place.
+
+## Troubleshooting
+
+| What you see | What to do |
+| --- | --- |
+| Consent fails naming an application nobody recognises | The Azure DevOps MCP service principal is missing from your tenant. Run the `az ad sp create` command in step 1. |
+| Sign-in is blocked by your organisation's policy | Conditional Access is blocking it. Allow `20.125.155.22` and `40.74.28.81` (step 1). |
+| "Your Entra administrator needs to approve YakShaver" | Your tenant has user consent turned off. Send an admin the link in the message. One approval covers everyone in the tenant. |
+| Any other `AADSTS` error during sign-in or consent | [Contact us](/docs/support) with the error code. |
+| The project list is empty after typing an organisation | The name is misspelled, or the connected account cannot reach that organisation. |
+| "The Azure DevOps MCP server is not exposing ad-hoc WIQL" | The preview feature YakShaver uses to avoid duplicates is unavailable for your organisation. [Contact us](/docs/support). |
+| Saving the destination is refused, naming work item types | The project's process has none of the types YakShaver files into. Pick another project, or add one of the named types to the process. |
+| "Azure DevOps does not offer the '…' tool" | Microsoft changed its MCP server, and YakShaver needs an update. [Contact us](/docs/support). |
+| Work items are attributed to someone who has left | Azure DevOps was connected with a personal account. The Integrations row shows which one ("Connected as …"). Choose **⋯ → Reconnect…** and sign in as the service account. Don't disconnect first, because that turns off every project's destination. |
+| Work items land on the wrong board or sprint | No team was selected, or the team's default iteration has moved. Edit the project's destination and pick the team. |
+| Teams shaves still go somewhere else | That's expected. Teams and browser extension shaves use the **Backlog URL**, not the destination. See [Limitations](#limitations). |

@@ -37,6 +37,18 @@ const nextConfig = {
         destination: "/docs/third-party-tools-setup",
         permanent: true,
       },
+      // An old copy of the YakShaver introduction that showed up as a duplicate
+      // search result - the doc was retired, so send its readers to the live one
+      {
+        source: "/docs/how-to-use-yakshaver",
+        destination: "/docs/introduction",
+        permanent: true,
+      },
+      {
+        source: "/zh/docs/how-to-use-yakshaver",
+        destination: "/zh/docs/introduction",
+        permanent: true,
+      },
     ];
   },
   async rewrites() {
