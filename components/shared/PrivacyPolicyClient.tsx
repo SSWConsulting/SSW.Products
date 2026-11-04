@@ -23,16 +23,16 @@ export default function BlogPostClient({
   const privacy = pageData.data.privacy;
 
   return (
-    <div className="p-4 lg:pt-32 md:pt-20 mt-20 font-semibold max-w-3xl mx-auto text-white">
+    <div className="p-4 lg:pt-32 md:pt-20 mt-20 max-w-3xl mx-auto text-white">
       <h2
         data-tina-field={tinaField(privacy, "title")}
-        className="text-3xl mb-2 tracking-wide"
+        className="text-3xl mb-2 tracking-wide font-semibold"
       >
         {privacy.title}
       </h2>
       <div
         data-tina-field={tinaField(privacy, "body")}
-        className="text-base font-light lg:prose-xl"
+        className="text-base"
       >
         <TinaMarkdown
           content={privacy.body}

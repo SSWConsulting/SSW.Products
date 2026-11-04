@@ -90,9 +90,9 @@ export default function DocPostClient({
         </div>
         {/* the doc page title - its own h1 so the page has one (was an h2) */}
         <h1 className="text-3xl font-semibold text-ssw-red">{title}</h1>
-        <GitHubMetadata path={data.docs.id} className="text-sm font-light text-gray-300" />
+        <GitHubMetadata path={data.docs.id} className="text-sm text-gray-300" />
       </div>
-      <div className="text-base font-light mb-12 lg:prose-xl">
+      <div className="text-base mb-12">
         {body && (
           <TinaMarkdown content={body} components={components} />
         )}

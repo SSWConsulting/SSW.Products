@@ -36,7 +36,7 @@ export const DocAndBlogMarkdownStyle: Components<{
     );
   },
   imageEmbed: (props) => <ImageEmbed data={props} />,
-  p: (props) => <p className="text-base font-light mb-4">{props?.children}</p>,
+  p: (props) => <p className="text-base mb-4">{props?.children}</p>,
 
   h1: (props) => (
     <LinkableHeading as="h1" className="text-3xl font-bold mb-4 mt-4">
@@ -83,11 +83,11 @@ export const DocAndBlogMarkdownStyle: Components<{
   ),
 
   ol: (props) => (
-    <ol className="list-decimal ps-7 font-light mb-4">{props?.children}</ol>
+    <ol className="list-decimal ps-7 mb-4">{props?.children}</ol>
   ),
 
   ul: (props) => (
-    <ul className="list-disc ps-7 font-light mb-4">{props?.children}</ul>
+    <ul className="list-disc ps-7 mb-4">{props?.children}</ul>
   ),
 
   li: (props) => <li className="mb-4">{props?.children}</li>,

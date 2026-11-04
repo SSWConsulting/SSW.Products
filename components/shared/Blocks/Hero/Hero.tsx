@@ -98,7 +98,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
               {" "}
               {data.leftHandSide?.issueReportSummaryTitle}{" "}
             </p>
-            <span className="font-light text-sm">
+            <span className="text-sm">
               {" "}
               {data.leftHandSide?.issueReportSummarySubtitle}
             </span>
@@ -125,7 +125,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
               {" "}
               {data.rightHandSide?.issueReportSummaryTitle}{" "}
             </p>
-            <span className="font-light text-sm">
+            <span className="text-sm">
               {" "}
               {data.rightHandSide?.issueReportSummarySubtitle}
             </span>
