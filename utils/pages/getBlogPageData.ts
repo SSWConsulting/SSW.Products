@@ -19,6 +19,8 @@ async function getBlogPageData(product: string, slug: string, branch?: string) {
       if (!blog?.node) return acc;
       const {
         author,
+        authorImage,
+        sswPeopleLink,
         date,
         title,
         _sys,
@@ -32,6 +34,8 @@ async function getBlogPageData(product: string, slug: string, branch?: string) {
         {
           readLength,
           author,
+          authorImage,
+          sswPeopleLink,
           date,
           title,
           slug: _sys.filename,

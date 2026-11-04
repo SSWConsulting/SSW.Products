@@ -6,7 +6,10 @@ import { FormattedDate } from "@/formattedDate";
 import { cn } from "@/lib/utils";
 import { OptionalProps } from "@/optionalProps";
 import { Blog } from "@/types/blog";
-import { AuthorInfo } from "@comps/AuthorInfo";
+import ArticleMetadata from "@comps/shared/ArticleMetadata";
+import Author from "@comps/shared/Author";
+import { useFormattedDate } from "@comps/hooks/useFormattedDate";
+import { formatDate } from "@utils/formatDate";
 import { BlogCard } from "@comps/BlogCard";
 import CategoryLabel from "@comps/shared/CategoryLabel";
 import Breadcrumbs from "@comps/shared/Breadcrumbs";
@@ -62,9 +65,17 @@ export default function BlogPostClient({
 
   const showPanel = titles.length > 0 || data.blogs.summaryCard;
 
+  // the server-formatted date, until the date is edited live in Tina
+  const { date } = useFormattedDate({
+    initialFormattedDate:
+      initialFormattedDate ?? (data.blogs.date ? formatDate(data.blogs.date) : ""),
+    dynamicDate: data.blogs.date ?? "",
+  });
+
   return (
     <div className="min-h-screen text-white pb-12 pt-20">
-      <Container className="w-full">
+      {/* without a banner, keep a gap between the author row and the post */}
+      <Container className={cn("w-full", !data.blogs.bannerImage && "mb-12")}>
         <div className="mb-6">
           <Breadcrumbs kind="blog" />
         </div>
@@ -79,16 +90,18 @@ export default function BlogPostClient({
         >
           {data.blogs.title}
         </h1>
-        <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-          <AuthorInfo
-            data-tina-field={tinaField(data.blogs, "author")}
-            authorImage={data.blogs.authorImage}
+        {/* the same author row as the blog cards: avatar (or a placeholder),
+            name, then date and read time on one line */}
+        <div
+          data-tina-field={tinaField(data.blogs, "author")}
+          className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm"
+        >
+          <Author
             author={data.blogs.author}
+            authorImage={data.blogs.authorImage}
             sswPeopleLink={data.blogs.sswPeopleLink}
-            initialFormattedDate={initialFormattedDate}
-            dynamicDate={data.blogs.date}
-            readingTime={data.blogs.readLength}
           />
+          <ArticleMetadata formattedDate={date} readLength={data.blogs.readLength} />
         </div>
       </Container>
       {data.blogs.bannerImage && (
@@ -257,7 +270,7 @@ export default function BlogPostClient({
           <h2 className="text-2xl font-bold mb-8 text-white border-ssw-red pl-4 border-l-4">
             Latest
           </h2>
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid md:grid-cols-2 gap-x-8 gap-y-12">
             {recentBlogs.map((article, index) => {
               return (
                 <BlogCard
@@ -268,8 +281,13 @@ export default function BlogPostClient({
                   body={article.body}
                   date={article.date}
                   bannerImage={article.bannerImage}
-                  category={""}
+                  category={article.category}
                   title={article.title}
+                  author={{
+                    author: article.author,
+                    authorImage: article.authorImage,
+                    sswPeopleLink: article.sswPeopleLink,
+                  }}
                 />
               );
             })}
