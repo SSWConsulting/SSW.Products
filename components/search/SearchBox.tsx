@@ -12,10 +12,8 @@ import { cn } from "@/lib/utils";
 import Input from "@comps/Input";
 import { Search } from "lucide-react";
 import { createContext, useContext, useState } from "react";
-import { useSearchBox } from "react-instantsearch";
 
 import { ReactNode } from "react";
-import AlgoliaSearchProvider from "../../components/providers/AlgoliaSearchProvider";
 import SearchResults from "./SearchResults";
 
 const Trigger = ({ className }: { className?: string }) => {
@@ -32,6 +30,8 @@ const Trigger = ({ className }: { className?: string }) => {
 
 type SearchFieldProps = {
   className?: string;
+  value: string;
+  onChange: (value: string) => void;
 };
 
 const DialogContext = createContext<{
@@ -53,8 +53,15 @@ const DialogProvider = ({
 };
 const useDialog = () => useContext(DialogContext);
 
-const Root = ({ index, children }: { index: string; children: ReactNode }) => {
+const Root = ({
+  product,
+  children,
+}: {
+  product: string;
+  children: ReactNode;
+}) => {
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
   return (
     <DialogProvider setOpen={setOpen}>
       <Dialog onOpenChange={setOpen} open={open}>
@@ -64,15 +71,17 @@ const Root = ({ index, children }: { index: string; children: ReactNode }) => {
             Type to search this site
           </DialogDescription>
           <div className="max-w-3xl box-border relative w-[calc(100vw_-_2rem)]">
-            <AlgoliaSearchProvider index={index}>
-              <div className="h-full box-border pb-8 z-70 relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
-                <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b">
-                  <Search />
-                  <SearchField className="w-full" />
-                </div>
-                <SearchResults />
+            <div className="h-full box-border pb-8 z-70 relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
+              <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b">
+                <Search />
+                <SearchField
+                  className="w-full"
+                  value={query}
+                  onChange={setQuery}
+                />
               </div>
-            </AlgoliaSearchProvider>
+              <SearchResults product={product} query={query} />
+            </div>
 
             <div className="absolute z-60 shadow-lg bg-gray-dark/75  inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
           </div>
@@ -83,8 +92,7 @@ const Root = ({ index, children }: { index: string; children: ReactNode }) => {
   );
 };
 
-const SearchField = ({ className }: SearchFieldProps) => {
-  const { refine } = useSearchBox();
+const SearchField = ({ className, value, onChange }: SearchFieldProps) => {
   return (
     <input
       type="text"
@@ -93,9 +101,8 @@ const SearchField = ({ className }: SearchFieldProps) => {
         "bg-transparent outline-hidden placeholder-white! "
       )}
       placeholder="Search..."
-      onChange={(e) => {
-        refine(e.target.value);
-      }}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
     />
   );
 };

@@ -51,12 +51,6 @@ export const docsTableOfContentsCollection: Collection = {
   },
   fields: [
     {
-      name: "algoliaSearchIndex",
-      label: "Algolia Search Index",
-      type: "string",
-      description: "Used to configure the Algolia search index for the docs",
-    },
-    {
       name: "parentNavigationGroup",
       label: "Parent Navigation Group",
       type: "object",

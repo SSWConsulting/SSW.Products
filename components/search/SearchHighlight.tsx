@@ -1,42 +1,23 @@
-import type { Hit } from "instantsearch.js";
 import Link from "next/link";
-import { Highlight, Snippet } from "react-instantsearch";
 
 import { useDialog } from "./SearchBox";
+import type { SearchResult } from "./usePagefindSearch";
 
-const SearchHighlight = ({
-  hit,
-}: {
-  hit: Hit<{
-    title: string;
-    body: string;
-    file: string;
-  }>;
-}) => {
+const SearchHighlight = ({ result }: { result: SearchResult }) => {
   const { setOpen } = useDialog();
   return (
     <div className="border-b snap-start py-1 px-4 border-gray-lighter/40">
       <Link
         onClick={() => setOpen(false)}
-        className="hover:underline underline-offset-2"
-        href={`/docs/${hit?.file}`}
+        className="hover:underline underline-offset-2 text-lg"
+        href={result.url}
       >
-        <Highlight
-          className="text-lg"
-          highlightedTagName={({ children }) => (
-            <span className="bg-yellow-400 text-black">{children}</span>
-          )}
-          attribute="title"
-          hit={hit}
-        />
+        {result.title}
       </Link>
-      <Snippet
-        className="truncate text-sm overflow-hidden block text-[#797979]"
-        highlightedTagName={({ children }) => (
-          <span className="bg-yellow-400 text-black">{children}</span>
-        )}
-        hit={hit}
-        attribute="body"
+      {/* Pagefind escapes the doc text and only adds the <mark> tags */}
+      <p
+        className="truncate text-sm overflow-hidden block text-[#797979] [&_mark]:bg-yellow-400 [&_mark]:text-black"
+        dangerouslySetInnerHTML={{ __html: result.excerpt }}
       />
     </div>
   );
