@@ -40,6 +40,24 @@ const truncateToBytes = (text: string, maxBytes: number) => {
     : truncated;
 };
 
+// Measured as JSON, as Algolia does - newlines and quotes are escaped there, so
+// the record can be bigger than its raw text
+const recordBytes = (record: object) => Buffer.byteLength(JSON.stringify(record));
+
+const fitRecord = <T extends { body: string }>(record: T): T => {
+  let fitted = record;
+  let excess = recordBytes(fitted) - MAX_RECORD_BYTES;
+  // Each cut removes at least `excess` bytes of JSON, so this ends in a few rounds
+  while (excess > 0 && fitted.body) {
+    fitted = {
+      ...fitted,
+      body: truncateToBytes(fitted.body, Buffer.byteLength(fitted.body) - excess),
+    };
+    excess = recordBytes(fitted) - MAX_RECORD_BYTES;
+  }
+  return fitted;
+};
+
 const getDocumentationData = async (fileName: string, product: string) => {
   const mdContents = matter.read(fileName, {
     delimiters: ["---", "---"],
@@ -56,14 +74,11 @@ const getDocumentationData = async (fileName: string, product: string) => {
   const title = mdContents.data.title;
   const plainText = await markdownToPlainText(body);
 
-  return {
+  return fitRecord({
     title: title,
-    body: truncateToBytes(
-      plainText,
-      MAX_RECORD_BYTES - Buffer.byteLength(JSON.stringify({ title, file: slug }))
-    ),
+    body: plainText,
     file: slug,
-  };
+  });
 };
 
 const fetchDocData = async (globPattern: string, product: string) => {
