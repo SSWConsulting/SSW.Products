@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 // The shape of what Pagefind returns - see https://pagefind.app/docs/api/
 type PagefindResultData = {
@@ -29,16 +29,28 @@ export type SearchResult = {
 
 const MAX_RESULTS = 20;
 
-// The index for each product is built by scripts/buildSearchIndex.mjs
-const loadPagefind = (product: string): Promise<Pagefind> =>
-  import(
-    /* webpackIgnore: true */ `/pagefind/${product.toLowerCase()}/pagefind.js`
-  );
+// The index for each product is built by scripts/buildSearchIndex.mjs. Each
+// product's module is cached on its own, so switching product (e.g. in the
+// multi-product preview) never searches the previous product's index.
+const pagefindByProduct = new Map<string, Promise<Pagefind>>();
+
+const loadPagefind = (product: string): Promise<Pagefind> => {
+  const key = product.toLowerCase();
+  let pagefind = pagefindByProduct.get(key);
+  if (!pagefind) {
+    pagefind = import(
+      /* webpackIgnore: true */ `/pagefind/${key}/pagefind.js`
+    ) as Promise<Pagefind>;
+    // Let a failed load be retried on the next search
+    pagefind.catch(() => pagefindByProduct.delete(key));
+    pagefindByProduct.set(key, pagefind);
+  }
+  return pagefind;
+};
 
 export const usePagefindSearch = (product: string, query: string) => {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [error, setError] = useState(false);
-  const pagefind = useRef<Promise<Pagefind> | null>(null);
 
   useEffect(() => {
     const trimmed = query.trim();
@@ -52,8 +64,8 @@ export const usePagefindSearch = (product: string, query: string) => {
 
     const search = async () => {
       try {
-        pagefind.current ??= loadPagefind(product);
-        const response = await (await pagefind.current).debouncedSearch(
+        const pagefind = await loadPagefind(product);
+        const response = await pagefind.debouncedSearch(
           trimmed,
           {},
           150
@@ -80,7 +92,6 @@ export const usePagefindSearch = (product: string, query: string) => {
         );
       } catch (e) {
         console.error("Docs search failed:", e);
-        pagefind.current = null;
         if (!cancelled) setError(true);
       }
     };
