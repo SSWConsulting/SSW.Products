@@ -88,13 +88,14 @@ This also means we have to set up the file structure for where we store our cont
 
 Note in this instance Product1 and Product2 are just the product names such like [YakShaver](www.YakShaver.ai) or TimePro
 
-## Docs Search
+## Algolia Search Indices
 
-The docs search (e.g. `yakshaver.ai/docs`) is powered by [Pagefind](https://pagefind.app/), the same search the [TinaDocs](https://github.com/tinacms/tina-docs) template uses. It needs no external service or API keys.
 
-[scripts/buildSearchIndex.mjs](scripts/buildSearchIndex.mjs) builds one index per product from the `.mdx` files in `content/docs/<product>/` and writes it to `public/pagefind/<product>/` (git-ignored). It runs automatically before `pnpm dev` and `pnpm build`, so the search always matches the docs being served - there is nothing to rebuild by hand. To rebuild it on its own, run `pnpm build-search-index`.
+The search indices for the docs pages (e.g. `yakshaver.ai/docs`) are powered by Algolia, mearning that when changes are made to the docs, the search indices need to be rebuilt to reflect those changes.
 
-Chinese translations (`zh/` folders) are not indexed, as they share the English URLs.
+This re-indexing is triggered automatically via GitHub Actions on pushes to `main` or manually via workflow dispatch.
+
+For detailed instructions on how to rebuild the Algolia search indices, see [scripts/README.md](scripts/README.md).
 
 
 

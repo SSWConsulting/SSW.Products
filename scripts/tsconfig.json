@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "module": "NodeNext",
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "isolatedModules": false
+  },
+  "exclude": ["node_modules"],
+  "include": ["./createIndices.ts"]
+}
