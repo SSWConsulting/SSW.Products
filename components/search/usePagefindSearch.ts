@@ -2,25 +2,24 @@
 
 import { useEffect, useState } from "react";
 
-// The shape of what Pagefind returns - see https://pagefind.app/docs/api/
-type PagefindResultData = {
-  url: string;
-  excerpt: string;
-  meta: { title?: string };
-};
-
+// What Pagefind returns - see https://pagefind.app/docs/api/
 type Pagefind = {
   debouncedSearch: (
     query: string,
     options?: object,
     debounceMs?: number
   ) => Promise<{
-    results: { id: string; data: () => Promise<PagefindResultData> }[];
+    results: {
+      data: () => Promise<{
+        url: string;
+        excerpt: string;
+        meta: { title?: string };
+      }>;
+    }[];
   } | null>;
 };
 
 export type SearchResult = {
-  id: string;
   url: string;
   title: string;
   // HTML from Pagefind - the matched words are wrapped in <mark>
@@ -29,78 +28,74 @@ export type SearchResult = {
 
 const MAX_RESULTS = 20;
 
-// The index for each product is built by scripts/buildSearchIndex.mjs. Each
-// product's module is cached on its own, so switching product (e.g. in the
-// multi-product preview) never searches the previous product's index.
+// Each product has its own index (built by scripts/buildSearchIndex.mjs), so the
+// module is cached per product - switching product never searches the old one.
 const pagefindByProduct = new Map<string, Promise<Pagefind>>();
 
-const loadPagefind = (product: string): Promise<Pagefind> => {
+const loadPagefind = (product: string) => {
   const key = product.toLowerCase();
-  let pagefind = pagefindByProduct.get(key);
-  if (!pagefind) {
-    pagefind = import(
+  if (!pagefindByProduct.has(key)) {
+    const pagefind: Promise<Pagefind> = import(
       /* webpackIgnore: true */ `/pagefind/${key}/pagefind.js`
-    ) as Promise<Pagefind>;
+    );
     // Let a failed load be retried on the next search
     pagefind.catch(() => pagefindByProduct.delete(key));
     pagefindByProduct.set(key, pagefind);
   }
-  return pagefind;
+  return pagefindByProduct.get(key)!;
 };
 
 export const usePagefindSearch = (product: string, query: string) => {
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [error, setError] = useState(false);
+  const trimmed = query.trim();
+  // Remembers which query the results belong to, so "no results" only shows
+  // once the current query has actually been searched
+  const [state, setState] = useState({
+    query: "",
+    results: [] as SearchResult[],
+    error: false,
+  });
 
   useEffect(() => {
-    const trimmed = query.trim();
-    if (!trimmed) {
-      setResults([]);
-      return;
-    }
-
+    if (!trimmed) return;
     // A slower response for an older query must not replace a newer one
     let cancelled = false;
 
-    const search = async () => {
+    (async () => {
       try {
         const pagefind = await loadPagefind(product);
-        const response = await pagefind.debouncedSearch(
-          trimmed,
-          {},
-          150
-        );
         // null means a newer search superseded this one
-        if (!response || cancelled) return;
+        const search = await pagefind.debouncedSearch(trimmed, {}, 150);
+        if (!search || cancelled) return;
 
         const data = await Promise.all(
-          response.results.slice(0, MAX_RESULTS).map(async (result) => ({
-            id: result.id,
-            ...(await result.data()),
-          }))
+          search.results.slice(0, MAX_RESULTS).map((result) => result.data())
         );
         if (cancelled) return;
 
-        setError(false);
-        setResults(
-          data.map(({ id, url, excerpt, meta }) => ({
-            id,
+        setState({
+          query: trimmed,
+          error: false,
+          results: data.map(({ url, excerpt, meta }) => ({
             url,
             excerpt,
             title: meta.title ?? url,
-          }))
-        );
+          })),
+        });
       } catch (e) {
         console.error("Docs search failed:", e);
-        if (!cancelled) setError(true);
+        if (!cancelled) setState({ query: trimmed, results: [], error: true });
       }
-    };
+    })();
 
-    search();
     return () => {
       cancelled = true;
     };
-  }, [product, query]);
+  }, [product, trimmed]);
 
-  return { results, error };
+  return {
+    // Keeps showing the last results while the next query is being searched
+    results: trimmed ? state.results : [],
+    searched: trimmed !== "" && state.query === trimmed,
+    error: state.error,
+  };
 };

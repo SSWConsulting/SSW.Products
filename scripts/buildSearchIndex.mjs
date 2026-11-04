@@ -37,9 +37,7 @@ const buildProductIndex = async (product) => {
     ignore: ["**/zh/**"],
   });
 
-  const { index, errors } = await pagefind.createIndex({
-    forceLanguage: "en",
-  });
+  const { index, errors } = await pagefind.createIndex();
   if (!index) throw new Error(`Pagefind failed to start: ${errors.join(", ")}`);
 
   for (const file of files) {

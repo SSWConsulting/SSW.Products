@@ -28,12 +28,6 @@ const Trigger = ({ className }: { className?: string }) => {
   );
 };
 
-type SearchFieldProps = {
-  className?: string;
-  value: string;
-  onChange: (value: string) => void;
-};
-
 const DialogContext = createContext<{
   setOpen: (value: boolean) => void;
 }>({ setOpen: () => {} });
@@ -61,7 +55,6 @@ const Root = ({
   children: ReactNode;
 }) => {
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
   return (
     <DialogProvider setOpen={setOpen}>
       <Dialog onOpenChange={setOpen} open={open}>
@@ -71,17 +64,7 @@ const Root = ({
             Type to search this site
           </DialogDescription>
           <div className="max-w-3xl box-border relative w-[calc(100vw_-_2rem)]">
-            <div className="h-full box-border pb-8 z-70 relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
-              <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b">
-                <Search />
-                <SearchField
-                  className="w-full"
-                  value={query}
-                  onChange={setQuery}
-                />
-              </div>
-              <SearchResults product={product} query={query} />
-            </div>
+            <SearchPanel product={product} />
 
             <div className="absolute z-60 shadow-lg bg-gray-dark/75  inset-y-4 rounded-3xl inset-x-8 -bottom-4"></div>
           </div>
@@ -92,18 +75,24 @@ const Root = ({
   );
 };
 
-const SearchField = ({ className, value, onChange }: SearchFieldProps) => {
+// Lives inside the dialog content, so the query is cleared each time the dialog
+// closes - the same as when the search was powered by Algolia
+const SearchPanel = ({ product }: { product: string }) => {
+  const [query, setQuery] = useState("");
   return (
-    <input
-      type="text"
-      className={cn(
-        className,
-        "bg-transparent outline-hidden placeholder-white! "
-      )}
-      placeholder="Search..."
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    />
+    <div className="h-full box-border pb-8 z-70 relative shadow-lg text-lg rounded-3xl text-white  bg-[#1F1F1F] border-2 border-gray-lighter/40">
+      <div className="border-gray-lighter/40 px-4 py-2 align-middle items-center gap-5 flex relative w-full border-b">
+        <Search />
+        <input
+          type="text"
+          className="w-full bg-transparent outline-hidden placeholder-white!"
+          placeholder="Search..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </div>
+      <SearchResults product={product} query={query} />
+    </div>
   );
 };
 
