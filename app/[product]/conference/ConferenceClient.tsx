@@ -344,7 +344,7 @@ function Agenda({
                         key={breakSession.speechTitle}
                         className="mb-4 last:mb-0"
                       >
-                        <div className="bg-[#CC4141]/20 text-[#CC4141] text-sm rounded-full px-2 w-fit mb-2">
+                        <div className="bg-[#CC4141]/20 text-red-400 text-sm rounded-full px-2 w-fit mb-2">
                           Break
                         </div>
                         <h3 className="text-lg leading-5 font-bold">
