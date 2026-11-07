@@ -1,14 +1,12 @@
 "use client";
-import type { Author } from "@/types/author";
 import Container from "@comps/Container";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { LoaderCircle, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
-import MarkdownLink from "@tina/tinamarkdownStyles/Link";
 import {
   BlogsIndexBlocksArticleList,
   BlogsIndexBlocksHeroSearch,
@@ -26,6 +24,7 @@ import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import type { BlogsResponse } from "../../utils/fetchBlogs";
 import { Button } from "../ui/button";
 import ArticleMetadata from "./ArticleMetadata";
+import Author from "./Author";
 import CategoryLabel from "./CategoryLabel";
 import GridBackground from "./GridBackground";
 import { useContextualLink } from "@utils/contextualLink";
@@ -76,6 +75,9 @@ const FeaturedArticle = ({
 }: RemoveTinaMetadata<FeaturedBlog>) => {
   const { searchTerm } = useBlogSearch();
   const contextualHref = useContextualLink();
+  const blogUrl = featuredBlog
+    ? contextualHref(`/blog/${featuredBlog._sys.filename}`)
+    : "";
   return (
     <>
       {featuredBlog && !searchTerm && (
@@ -89,7 +91,17 @@ const FeaturedArticle = ({
                 {props.title}
               </h2>
             )}
-            <div className="group bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] rounded-xl overflow-hidden shadow-xl">
+            {/* The featured card keeps its own box so it stands out from the
+                grid, but shares the grid card's order, author and hover (#874) */}
+            <div className="group relative bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] rounded-xl overflow-hidden shadow-xl">
+              {/* the title already links to the post; hide this full-card
+                  overlay link from assistive tech so it isn't announced twice */}
+              <Link
+                href={blogUrl}
+                className="absolute inset-0 z-20"
+                aria-hidden
+                tabIndex={-1}
+              />
               <div className="flex flex-col lg:flex-row">
                 <div className="relative w-full grow md:basis-4/12 aspect-video">
                   <div className="w-full h-full lg:mask-to-right mask-to-bottom">
@@ -98,7 +110,7 @@ const FeaturedArticle = ({
 
                   {featuredBlog.bannerImage && (
                     <div className="inset-0 flex items-center justify-center absolute">
-                      <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-to-bottom aspect-video relative">
+                      <div className="h-5/6 lg:h-auto lg:w-5/6 rounded-md overflow-hidden mask-to-bottom aspect-video relative transition-transform duration-700 group-hover:scale-105">
                         <Image
                           priority={true}
                           aria-hidden={true}
@@ -116,23 +128,32 @@ const FeaturedArticle = ({
                   {!isUncategorized(featuredBlog.category) && (
                     <CategoryLabel>{featuredBlog.category}</CategoryLabel>
                   )}
-                  <Link href={contextualHref(`/blog/${featuredBlog._sys.filename}`)}>
+                  <Link className="w-fit" href={blogUrl}>
                     <h3 className="sm:text-2xl text-xl font-bold group-hover:text-ssw-red transition-colors">
                       {featuredBlog?.title}
                     </h3>
                   </Link>
-                  <Author {...featuredBlog} />
-                  <ArticleMetadata className="" {...featuredBlog} />
 
-                  <section className="text-gray-300 text-sm md:text-base mb-6 line-clamp-2 md:line-clamp-none">
+                  <section className="text-gray-300 text-base line-clamp-3 md:line-clamp-none">
                     <TinaMarkdown
                       content={extractBlurbAsTinaMarkdownContent(
                         featuredBlog?.body,
                         2
                       )}
-                      components={{ a: MarkdownLink }}
+                      // the whole card links to the post, so a link in the
+                      // blurb couldn't be clicked: show it as text (#858)
+                      components={{
+                        a: (props: { children: ReactNode } | undefined) => (
+                          <span>{props?.children}</span>
+                        ),
+                      }}
                     />
                   </section>
+                  {/* author and date under the blurb, like the grid cards */}
+                  <div className="mt-auto pt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
+                    <Author {...featuredBlog} />
+                    <ArticleMetadata {...featuredBlog} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -305,37 +326,6 @@ const PlaceholderCards = ({ cards }: PlaceholderCardsProps) => {
   ));
 };
 
-const Author = ({
-  authorImage,
-  sswPeopleLink,
-  author,
-}: {
-  authorImage?: string | null;
-  sswPeopleLink?: string | null;
-  author?: string | null;
-}) => {
-  return (
-    <div className="flex gap-3 items-center">
-      <div className="size-8 items-center relative rounded-full overflow-hidden">
-        <Image
-          src={authorImage || "/default-images/Placeholder-profile.png"}
-          alt="placeholder blog author"
-          fill
-          className="object-cover"
-        />
-      </div>
-      <p className="font-medium h-fit">
-        {sswPeopleLink ? (
-          <Link className="hover:underline" href={sswPeopleLink}>
-            {author}
-          </Link>
-        ) : (
-          <>{author}</>
-        )}
-      </p>
-    </div>
-  );
-};
 const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
   const debounceTime = 1000;
   const {
