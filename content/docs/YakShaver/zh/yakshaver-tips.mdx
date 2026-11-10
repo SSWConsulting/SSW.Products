@@ -8,7 +8,7 @@ title: 创建完美工作项（或邮件）的技巧
 date: '2025-01-28T13:00:00.000Z'
 ---
 
-YakShaver 通常会把你的录制转换成工作项（例如 PBI 或缺陷），也可以改为发送邮件，做法见下面的示例 2。
+YakShaver 通常会把你的录制转换成工作项（例如 PBI 或缺陷），也可以改为[发送邮件](#示例-2让-yakshaver-发送邮件)。
 
 以下是创建完美工作项（或邮件）的一些技巧：
 
@@ -26,23 +26,24 @@ YakShaver 通常会把你的录制转换成工作项（例如 PBI 或缺陷）�
 
 ### 示例 2：让 YakShaver 发送邮件
 
-能否发送邮件，取决于你在哪里录制。
+能否发送邮件，取决于你用什么方式录制：
 
-**Microsoft Teams 或浏览器扩展 - 直接说出来**
+| | [Microsoft Teams 或浏览器扩展](#microsoft-teams-或浏览器扩展) | [YakShaver Anywhere](#yakshaver-anywhere) |
+|---|---|---|
+| **什么情况下发邮件** | 明确要求发邮件，例如 *“请发一封邮件给 Tino”* | 项目的工作项目的地（work item destination）是 **Email** |
+| **谁会收到** | 你说出名字的那一个人 | 你说出名字的所有人 |
+| **抄送** | 说 *“抄送 ...”* | 说 *“抄送 ...”*，你自己也会被自动抄送 |
+| **如果名字匹配不到** | Teams 会给你发一张卡片，让你选择收件人 | 邮件会改为发给你自己 |
 
-说 *“请发一封邮件给 Tino”*（或 *“能把这个用邮件发给 Tino 吗？”*），YakShaver 就会发送邮件，而不是创建工作项。只是提到“邮件”还不够，必须是明确要求发送邮件。
+#### Microsoft Teams 或浏览器扩展
 
-- **一个收件人：** 邮件发给你说出名字的那个人。需要抄送的人，说 *“抄送 ...”*
-- **如果名字匹配不到：** YakShaver 会在 Teams 里给你发一张卡片，让你选择收件人
+使用 [Microsoft Teams](/docs/recording-work-item-teams) 或[浏览器扩展](/docs/recording-work-item-browser-extension)录制时，直接要求发邮件即可，例如说 *“请发一封邮件给 Tino”* 或 *“能把这个用邮件发给 Tino 吗？”*。只是提到“邮件”还不够，必须是明确要求发送邮件。和其他请求一样，请清楚地[陈述你的意图](#section-1-陈述你的意图)。
 
-**YakShaver Anywhere - 由项目决定**
+#### YakShaver Anywhere
 
-只有当管理员在项目设置中把项目的目的地设为 **Email** 时，这个项目才会发送邮件。如果项目的目的地是 GitHub、Azure DevOps 或 Jira，即使你说“发邮件”，也会创建工作项。在目的地为 Email 的项目中，说出收件人：
+在 YakShaver Anywhere 中，由项目决定。管理员把项目的**工作项目的地**设为 **Email** 后，这个项目才会发送邮件；这和把录制发送到 Azure DevOps 或 Jira Cloud 用的是同一个设置。目的地是其他类型的项目会创建工作项，即使你说了“发邮件”。
 
-- **谁能收到：** 你所在组织中使用 YakShaver 的人。YakShaver 会根据你说出的名字（或他们的[昵称](/docs/assign-using-nicknames)）进行匹配，所以无法发给组织外的人
-- **多个收件人：** 说出所有收件人的名字；需要抄送的人，说 *“抄送 ...”*
-- **你会收到副本：** 你会被自动抄送
-- **如果名字匹配不到：** 邮件会改为发给你自己，内容不会丢失
+在目的地为 Email 的项目中，说出邮件发给谁。YakShaver 会把你说出的名字（或他们的[昵称](/docs/assign-using-nicknames)）与你所在组织中使用 YakShaver 的人进行匹配，所以无法发给组织外的人。
 
 下面这封邮件是用 YakShaver Anywhere 在一个目的地为 Email 的项目中录制的：
 
