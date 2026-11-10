@@ -8,11 +8,11 @@ title: Tips to create the perfect work item (or email)
 date: '2025-01-28T13:00:00.000Z'
 ---
 
-By default, YakShaver turns your recording into a work item (e.g. a PBI or bug). But if you say *"please send an email to..."*, YakShaver sends an email instead of creating a work item.
+YakShaver usually turns your recording into a work item (e.g. a PBI or bug). It can also send an email instead - see Example 2 below for how.
 
 Here are some tips to create the perfect work item (or email):
 
-## Work item or email? Just say what you want
+## Work item or email?
 
 ### Example 1: Recording for a PBI
 
@@ -26,12 +26,25 @@ Say which project it is for and what you want changed. YakShaver creates a work 
 
 ### Example 2: Asking YakShaver to send an email
 
-Clearly ask YakShaver to send an email and say who it is for, e.g. *"please send an email to Tino"* or *"can you email this to Tino?"*. YakShaver sends the email for you, instead of creating a work item. Just mentioning an email is not enough - it has to be a request to send one.
+How you get an email depends on where you record.
+
+**Microsoft Teams or the browser extension - just ask**
+
+Say *"please send an email to Tino"* (or *"can you email this to Tino?"*) and YakShaver sends an email instead of creating a work item. Just mentioning an email is not enough - it has to be a request to send one.
+
+- **One recipient:** The email goes to the person you name. Say *"CC ..."* for anyone who should be copied in
+- **If no name matches:** YakShaver sends you a card in Teams so you can pick who it goes to
+
+**YakShaver Anywhere - the project decides**
+
+A project sends emails only when an admin has set its destination to **Email** in the project settings. Recording into a project that goes to GitHub, Azure DevOps or Jira creates a work item, even if you say "send an email". In an Email project, say who it is for:
 
 - **Who can get it:** People in your organization who use YakShaver. YakShaver matches the names you say (or their [nicknames](/docs/assign-using-nicknames)), so you can't email someone outside your organization
 - **More than one person:** Name everyone it should go to, and say *"CC ..."* for anyone who should be copied in
 - **You get a copy:** You are CC'd automatically
 - **If no name matches:** The email is sent to you instead, so nothing is lost
+
+This email was recorded with YakShaver Anywhere, in a project whose destination is Email:
 
 > “Please send an email to Tino. Tino, I’m on the YakShaver docs, on the ‘Tips to create the perfect work item (or email)’ page. First, nice work on the new examples at the top. One small thing: the ‘Quick Reference’ table at the bottom only talks about work items. Could you add a row for emails? No rush, end of this week is fine. So again, please send this as an email to Tino, not a PBI.”
 
