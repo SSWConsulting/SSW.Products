@@ -20,6 +20,7 @@ import type client from "../../tina/__generated__/client";
 import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getFeaturedBlogTitles } from "../../utils/featuredBlogTitles";
+import { getBlogListEmptyMessage } from "../../utils/blogListEmptyMessage";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import type { BlogsResponse } from "../../utils/fetchBlogs";
 import { Button } from "../ui/button";
@@ -247,6 +248,16 @@ const RecentArticles = ({
   const lastPage = data?.pages[totalPages - 1];
   const remainingPages = lastPage?.remainingPages || 0;
   const hasMoreBlogs = remainingPages > 0;
+  const emptyMessage =
+    isLoading || isFetchingNextPage
+      ? null
+      : getBlogListEmptyMessage({
+          pages: data?.pages,
+          isFiltering:
+            Boolean(searchTerm) ||
+            (Boolean(selectedCategory) && selectedCategory !== ALL_CATEGORY),
+          hasFeaturedPost: Boolean(featuredTitles?.length),
+        });
 
   return (
     <Container className="w-full">
@@ -258,8 +269,8 @@ const RecentArticles = ({
           {props.title}
         </h2>
       )}
-      {!data?.pages.length && !isFetchingNextPage && !isLoading ? (
-        <span className="mx-auto block w-fit">No results found</span>
+      {emptyMessage ? (
+        <span className="mx-auto block w-fit">{emptyMessage}</span>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {data?.pages.map((page) =>
