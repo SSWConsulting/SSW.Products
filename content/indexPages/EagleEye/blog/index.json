@@ -7,6 +7,11 @@
       "_template": "heroSearch"
     },
     {
+      "title": "Featured",
+      "featuredBlog": "content/blogs/EagleEye/what-is-eagleeye.mdx",
+      "_template": "featuredBlog"
+    },
+    {
       "title": "Latest",
       "_template": "articleList"
     }
