@@ -211,7 +211,9 @@ const RecentArticles = ({
   featuredTitles?: string[];
 }) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
-  const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
+  const category =
+    selectedCategory === ALL_CATEGORY ? undefined : selectedCategory;
+  const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching, isError } =
     useInfiniteQuery({
       queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
       queryFn: async ({ pageParam }) => {
@@ -225,8 +227,7 @@ const RecentArticles = ({
             // every remaining article at once
             loadAll: Boolean(pageParam),
             keyword: searchTerm || undefined,
-            category:
-              selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
+            category,
             locale,
             // The featured post sits above this list, so leave it out to avoid
             // showing it twice (#550). It's hidden while searching, so let a
@@ -248,14 +249,13 @@ const RecentArticles = ({
   const lastPage = data?.pages[totalPages - 1];
   const remainingPages = lastPage?.remainingPages || 0;
   const hasMoreBlogs = remainingPages > 0;
+  // A failed request says nothing about whether the blog has posts
   const emptyMessage =
-    isLoading || isFetchingNextPage
+    isLoading || isFetchingNextPage || isError
       ? null
       : getBlogListEmptyMessage({
           pages: data?.pages,
-          isFiltering:
-            Boolean(searchTerm) ||
-            (Boolean(selectedCategory) && selectedCategory !== ALL_CATEGORY),
+          isFiltering: Boolean(searchTerm || category),
           hasFeaturedPost: Boolean(featuredTitles?.length),
         });
 
