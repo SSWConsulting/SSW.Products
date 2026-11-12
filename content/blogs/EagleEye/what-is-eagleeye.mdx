@@ -2,8 +2,8 @@
 seo:
   title: What is EagleEye?
   description: >-
-    EagleEye tags your company's email with AI and turns it into Power BI
-    reports, running in your own Azure tenant.
+    EagleEye tags your company's email and GitHub activity with AI and turns it
+    into reports, running in your own Azure tenant.
 category: Getting Started
 title: What is EagleEye?
 date: '2026-11-12T00:00:00.000Z'
@@ -11,30 +11,43 @@ author: Luke Mao
 authorImage: /people/Luke-Mao.jpg
 sswPeopleLink: 'https://www.ssw.com.au/people/luke-mao/'
 bannerImage: /EagleEye/Blogs/what-is-eagleeye.png
-readLength: 2 minutes
+readLength: 3 minutes
 ---
 
-Every company has its own language. "Checked by", "Test passed", "As per our conversation" - the phrases your team uses in email say a lot about how work actually gets done. EagleEye finds them for you.
+Every company has its own language. "Checked by", "Test passed", "As per our conversation" - the phrases your team uses in email, issues and pull requests say a lot about how work actually gets done. EagleEye finds them for you.
 
-## How it works
+## What EagleEye reads
 
-EagleEye scans your company's email every night and tags it. You decide what to look for:
+EagleEye scans your company's work every night:
+
+* 📧 **Email** from Microsoft Exchange
+* 🐙 **GitHub** issues, pull requests and their comments
+
+Need to look further back? Run a historical scan from the Portal and EagleEye goes through past activity too.
+
+## You decide what to look for
+
+Tags tell EagleEye what matters to you, and the same tags work across email and GitHub:
 
 * 📃 **Non-AI tags** match simple rules, like a phrase in the subject
 * 🤖 **AI tags** understand context, so they catch the idea even when the wording changes
-* 🤖 **AI with Mentions tags** also pick out who is mentioned in the email
+* 🤖 **AI with Mentions tags** also pick out who is mentioned
 
-Need to look further back? Run a historical scan from the Portal and EagleEye goes through past email too.
+## See it in reports
 
-## See it in Power BI
+* 📊 **Email** - Power BI reports of emails sent, received and with mentions, broken down by tag
+* 📈 **GitHub** - an Overview for issues and for pull requests: what was raised and closed, how many are waiting, and how long they take
 
-The results land in Power BI reports built for you: emails sent, emails received and emails with mentions, each broken down by tag. No spreadsheets, no manual searching.
+No spreadsheets, no manual searching.
+
+## Put it to work
+
+* ⚡ **Webhooks** - give a tag a webhook, and EagleEye calls it whenever an email, issue, pull request or comment gets that tag
+* 🤖 **AI assistants** - turn on MCP access in Settings, and ask your AI assistant about your EagleEye data. It's read-only and off by default
 
 ## Your data stays yours
 
-EagleEye runs on Azure resources in your own tenant. You control who has access, how it's encrypted and where it lives. It works with Microsoft Exchange and GitHub, with more integrations on the way.
-
-<Youtube thumbnail="https://img.youtube.com/vi/-7c6uagBBBM/maxresdefault.jpg" externalVideoLink="https://www.youtube.com/embed/-7c6uagBBBM" />
+EagleEye runs on Azure resources in your own tenant. You control who has access, how it's encrypted and where it lives.
 
 ## Get started
 
