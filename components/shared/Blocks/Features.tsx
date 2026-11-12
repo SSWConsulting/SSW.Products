@@ -162,7 +162,7 @@ const FeatureBlock = ({ feature }: { feature: FeatureItem }) => {
         >
           <TinaMarkdown content={feature.text} components={featureComponents} />
         </div>
-        <div className="flex flex-col lg:flex-row lg:justify-start lg:items-center gap-4 xl:gap-0">
+        <div className="flex flex-col lg:flex-row lg:justify-start lg:items-center gap-4">
           {feature.buttons?.map((button, index) => (
             <Actions key={index} actions={[button]} />
           ))}

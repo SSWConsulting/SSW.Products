@@ -24,6 +24,10 @@
         {
           "title": "Azure Marketplace App",
           "description": "Install EagleEye from the Azure Marketplace straight into your own Azure subscription."
+        },
+        {
+          "title": "GitHub Integration",
+          "description": "Scan your GitHub issues and pull requests, then AI-tag and report on them just like your email."
         }
       ],
       "_template": "Timeline"
@@ -31,10 +35,6 @@
     {
       "title": "In Progress",
       "items": [
-        {
-          "title": "GitHub Integration",
-          "description": "Scan your GitHub issues and pull requests, then AI-tag and report on them just like your email."
-        },
         {
           "title": "MCP Integration",
           "description": "Ask Claude or GitHub Copilot about your EagleEye data directly, read-only and turned on by an administrator."
