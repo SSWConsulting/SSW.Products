@@ -1,9 +1,14 @@
 {
   "blocks": [
     {
-      "title": "",
-      "featuredBlog": "content/blogs/EagleEye/what-is-eagleeye.mdx",
-      "_template": "featuredBlog"
+      "title": "EagleEye Blog",
+      "description": "News, tips and updates about turning your email into insights",
+      "showCategories": false,
+      "_template": "heroSearch"
+    },
+    {
+      "title": "Latest",
+      "_template": "articleList"
     }
   ]
 }
