@@ -11,6 +11,8 @@ interface NavigationMenuBadgeProps {
   imgSrc: string;
   imgWidth: number;
   imgHeight: number;
+  /** The image is the link's only content, so this is the link's accessible name. */
+  alt: string;
   currentLocale?: string;
 }
 
@@ -22,6 +24,7 @@ const NavigationMenuBadge = ({
   imgSrc,
   imgWidth,
   imgHeight,
+  alt,
   currentLocale = "en",
 }: NavigationMenuBadgeProps) => {
   const aspectRatio =
@@ -40,7 +43,7 @@ const NavigationMenuBadge = ({
           className={`${heightClass} w-auto`}
           width={imgWidth}
           height={imgHeight}
-          alt="Logo"
+          alt={alt}
         />
       </Link>
     </NavigationMenu.Item>
