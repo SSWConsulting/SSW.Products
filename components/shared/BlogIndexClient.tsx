@@ -213,7 +213,15 @@ const RecentArticles = ({
   const { searchTerm, selectedCategory } = useBlogSearch();
   const category =
     selectedCategory === ALL_CATEGORY ? undefined : selectedCategory;
-  const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching, isError } =
+  const {
+    data,
+    fetchNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+  } =
     useInfiniteQuery({
       queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
       queryFn: async ({ pageParam }) => {
@@ -249,9 +257,10 @@ const RecentArticles = ({
   const lastPage = data?.pages[totalPages - 1];
   const remainingPages = lastPage?.remainingPages || 0;
   const hasMoreBlogs = remainingPages > 0;
-  // A failed request says nothing about whether the blog has posts
+  // Nothing loaded yet (loading, offline, or the first load failed) says
+  // nothing about whether the blog has posts
   const emptyMessage =
-    isLoading || isFetchingNextPage || isError
+    !data || isFetchingNextPage
       ? null
       : getBlogListEmptyMessage({
           pages: data?.pages,
@@ -268,6 +277,14 @@ const RecentArticles = ({
         >
           {props.title}
         </h2>
+      )}
+      {isError && !data && (
+        <span className="mx-auto block w-fit">
+          Couldn&apos;t load posts.{" "}
+          <button className="underline" onClick={() => refetch()}>
+            Try again
+          </button>
+        </span>
       )}
       {emptyMessage ? (
         <span className="mx-auto block w-fit">{emptyMessage}</span>
