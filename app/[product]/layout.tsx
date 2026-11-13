@@ -109,10 +109,22 @@ export default async function RootLayout({
             gtag('config', '${googleTagId}');
           `}
         </Script>
+        {/* The first Tab stop, for WCAG 2.4.1. It sits off screen until focused
+            and jumps past the nav. tabIndex on main makes every browser move focus. */}
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-50 -translate-y-[200%] rounded-md bg-white px-4 py-2 font-semibold text-ssw-charcoal focus:translate-y-0"
+        >
+          Skip to main content
+        </a>
         <HostnameProvider hostname={hostname}>
           <QueryProvider>
-            <main className="overflow-clip grow">
-              <NavBarServer product={product} locale={locale} />
+            <NavBarServer product={product} locale={locale} />
+            <main
+              id="main-content"
+              tabIndex={-1}
+              className="overflow-clip grow focus:outline-none"
+            >
               {children}
             </main>
           </QueryProvider>

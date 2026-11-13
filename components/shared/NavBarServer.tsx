@@ -73,7 +73,12 @@ export default async function NavBarServer({ product, locale }: NavBarServerProp
 
   const bannerImage =
     normalizedImgSrc && imgHeight && imgWidth
-      ? { imgHeight, imgSrc: withAssetVersion(normalizedImgSrc), imgWidth }
+      ? {
+          imgHeight,
+          imgSrc: withAssetVersion(normalizedImgSrc),
+          imgWidth,
+          alt: `${product} home`,
+        }
       : undefined;
   return (
     <NavBarClient
