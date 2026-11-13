@@ -77,7 +77,7 @@ export default async function NavBarServer({ product, locale }: NavBarServerProp
           imgHeight,
           imgSrc: withAssetVersion(normalizedImgSrc),
           imgWidth,
-          alt: `${product} home`,
+          alt: locale === "zh" ? `${product} 首页` : `${product} home`,
         }
       : undefined;
   return (

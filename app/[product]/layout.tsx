@@ -53,6 +53,7 @@ export default async function RootLayout({
   const googleTagId = getGoogleTagId(product);
   const locale = await getLocale();
   const htmlLang = locale === "zh" ? "zh-CN" : "en";
+  const skipLinkLabel = locale === "zh" ? "跳到主要内容" : "Skip to main content";
   // Strip any port so this matches window.location.hostname after hydration.
   const hostname = (await getHostname()).split(":")[0];
 
@@ -115,7 +116,7 @@ export default async function RootLayout({
           href="#main-content"
           className="fixed left-4 top-4 z-50 -translate-y-[200%] rounded-md bg-white px-4 py-2 font-semibold text-ssw-charcoal focus:translate-y-0"
         >
-          Skip to main content
+          {skipLinkLabel}
         </a>
         <HostnameProvider hostname={hostname}>
           <QueryProvider>
@@ -123,7 +124,7 @@ export default async function RootLayout({
             <main
               id="main-content"
               tabIndex={-1}
-              className="overflow-clip grow focus:outline-none"
+              className="overflow-clip grow scroll-mt-28 focus:outline-none"
             >
               {children}
             </main>
