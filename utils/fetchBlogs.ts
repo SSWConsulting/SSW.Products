@@ -119,7 +119,10 @@ export async function getBlogsForProduct({
     };
   }
   catch (error) {
-    console.error("Error fetching TinaCMS blog data:", error);
+    // No posts is normal for an empty blog or a search miss, not an error
+    if (!(error instanceof NotFoundError)) {
+      console.error("Error fetching TinaCMS blog data:", error);
+    }
     throw error;
   }
 }
