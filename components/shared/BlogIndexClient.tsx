@@ -274,17 +274,22 @@ const RecentArticles = ({
           {props.title}
         </h2>
       )}
-      {isError && !data && (
-        <span className="mx-auto block w-fit">
-          Couldn&apos;t load posts.{" "}
-          <button className="underline" onClick={() => refetch()}>
-            Try again
-          </button>
-        </span>
-      )}
-      {emptyMessage ? (
-        <span className="mx-auto block w-fit">{emptyMessage}</span>
-      ) : (
+      {/* Always on the page, so screen readers announce a message that
+          appears in it, such as a search with no match */}
+      <div role="status">
+        {isError && !data && (
+          <span className="mx-auto block w-fit">
+            Couldn&apos;t load posts.{" "}
+            <button className="underline" onClick={() => refetch()}>
+              Try again
+            </button>
+          </span>
+        )}
+        {emptyMessage && (
+          <span className="mx-auto block w-fit">{emptyMessage}</span>
+        )}
+      </div>
+      {!emptyMessage && (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {data?.pages.map((page) =>
             page?.blogs?.map((edge, index) => {
