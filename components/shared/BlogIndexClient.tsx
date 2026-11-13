@@ -257,16 +257,12 @@ const RecentArticles = ({
   const lastPage = data?.pages[totalPages - 1];
   const remainingPages = lastPage?.remainingPages || 0;
   const hasMoreBlogs = remainingPages > 0;
-  // Nothing loaded yet (loading, offline, or the first load failed) says
-  // nothing about whether the blog has posts
-  const emptyMessage =
-    !data || isFetchingNextPage
-      ? null
-      : getBlogListEmptyMessage({
-          pages: data?.pages,
-          isFiltering: Boolean(searchTerm || category),
-          hasFeaturedPost: Boolean(featuredTitles?.length),
-        });
+  const emptyMessage = getBlogListEmptyMessage({
+    pages: data?.pages,
+    isFetchingNextPage,
+    isFiltering: Boolean(searchTerm || category),
+    hasFeaturedPost: Boolean(featuredTitles?.length),
+  });
 
   return (
     <Container className="w-full">

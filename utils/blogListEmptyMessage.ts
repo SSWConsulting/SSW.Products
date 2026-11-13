@@ -5,14 +5,19 @@ type BlogPage = { blogs?: unknown[] | null } | null | undefined;
 // empty page rather than no page, so count the posts, not the pages.
 export const getBlogListEmptyMessage = ({
   pages,
+  isFetchingNextPage,
   isFiltering,
   hasFeaturedPost,
 }: {
+  // undefined until a page has loaded: while loading, offline, or after the
+  // first load failed. None of those says whether the blog has posts.
   pages: BlogPage[] | undefined;
+  isFetchingNextPage: boolean;
   isFiltering: boolean;
   hasFeaturedPost: boolean;
 }): string | null => {
-  const postCount = (pages ?? []).reduce(
+  if (!pages || isFetchingNextPage) return null;
+  const postCount = pages.reduce(
     (count, page) => count + (page?.blogs?.length ?? 0),
     0
   );
