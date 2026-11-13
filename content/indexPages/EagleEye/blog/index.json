@@ -2,9 +2,14 @@
   "blocks": [
     {
       "title": "EagleEye Blog",
-      "description": "News, tips and updates about turning your email into insights",
+      "description": "News, tips and updates about turning your email and GitHub activity into insights",
       "showCategories": false,
       "_template": "heroSearch"
+    },
+    {
+      "title": "Featured",
+      "featuredBlog": "content/blogs/EagleEye/what-is-eagleeye.mdx",
+      "_template": "featuredBlog"
     },
     {
       "title": "Latest",
