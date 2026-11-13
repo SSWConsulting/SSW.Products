@@ -20,6 +20,7 @@ import type client from "../../tina/__generated__/client";
 import { BlogsIndexBlocks, Maybe } from "../../tina/__generated__/types";
 import { extractBlurbAsTinaMarkdownContent } from "../../utils/extractBlurbAsTinaMarkdownContent";
 import { getFeaturedBlogTitles } from "../../utils/featuredBlogTitles";
+import { getBlogListEmptyMessage } from "../../utils/blogListEmptyMessage";
 import { ALL_CATEGORY, useBlogSearch } from "../providers/BlogSearchProvider";
 import type { BlogsResponse } from "../../utils/fetchBlogs";
 import { Button } from "../ui/button";
@@ -210,7 +211,17 @@ const RecentArticles = ({
   featuredTitles?: string[];
 }) => {
   const { searchTerm, selectedCategory } = useBlogSearch();
-  const { data, fetchNextPage, isFetchingNextPage, isLoading, isFetching } =
+  const category =
+    selectedCategory === ALL_CATEGORY ? undefined : selectedCategory;
+  const {
+    data,
+    fetchNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isFetching,
+    isError,
+    refetch,
+  } =
     useInfiniteQuery({
       queryKey: [`blogs${searchTerm}${selectedCategory}${locale || 'en'}`],
       queryFn: async ({ pageParam }) => {
@@ -224,8 +235,7 @@ const RecentArticles = ({
             // every remaining article at once
             loadAll: Boolean(pageParam),
             keyword: searchTerm || undefined,
-            category:
-              selectedCategory === ALL_CATEGORY ? undefined : selectedCategory,
+            category,
             locale,
             // The featured post sits above this list, so leave it out to avoid
             // showing it twice (#550). It's hidden while searching, so let a
@@ -247,6 +257,12 @@ const RecentArticles = ({
   const lastPage = data?.pages[totalPages - 1];
   const remainingPages = lastPage?.remainingPages || 0;
   const hasMoreBlogs = remainingPages > 0;
+  const emptyMessage = getBlogListEmptyMessage({
+    pages: data?.pages,
+    isFetchingNextPage,
+    isFiltering: Boolean(searchTerm || category),
+    hasFeaturedPost: Boolean(featuredTitles?.length),
+  });
 
   return (
     <Container className="w-full">
@@ -258,9 +274,22 @@ const RecentArticles = ({
           {props.title}
         </h2>
       )}
-      {!data?.pages.length && !isFetchingNextPage && !isLoading ? (
-        <span className="mx-auto block w-fit">No results found</span>
-      ) : (
+      {/* Always on the page, so screen readers announce a message that
+          appears in it, such as a search with no match */}
+      <div role="status">
+        {isError && !data && (
+          <span className="mx-auto block w-fit">
+            Couldn&apos;t load posts.{" "}
+            <button className="underline" onClick={() => refetch()}>
+              Try again
+            </button>
+          </span>
+        )}
+        {emptyMessage && (
+          <span className="mx-auto block w-fit">{emptyMessage}</span>
+        )}
+      </div>
+      {!emptyMessage && (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           {data?.pages.map((page) =>
             page?.blogs?.map((edge, index) => {
