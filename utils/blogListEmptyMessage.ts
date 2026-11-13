@@ -1,8 +1,12 @@
-type BlogPage = { blogs?: unknown[] | null } | null | undefined;
+type BlogPage =
+  | { blogs?: ({ node?: unknown } | null | undefined)[] | null }
+  | null
+  | undefined;
 
 // What the Latest list says when it has no posts to show, or null when it
 // shouldn't say anything (#1845). The blogs API answers an empty match with an
-// empty page rather than no page, so count the posts, not the pages.
+// empty page rather than no page, so count the posts, not the pages. The grid
+// skips an edge with no post in it, so this does too.
 export const getBlogListEmptyMessage = ({
   pages,
   isFetchingNextPage,
@@ -18,7 +22,8 @@ export const getBlogListEmptyMessage = ({
 }): string | null => {
   if (!pages || isFetchingNextPage) return null;
   const postCount = pages.reduce(
-    (count, page) => count + (page?.blogs?.length ?? 0),
+    (count, page) =>
+      count + (page?.blogs?.filter((edge) => edge?.node).length ?? 0),
     0
   );
   if (postCount > 0) return null;

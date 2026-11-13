@@ -52,11 +52,22 @@ describe("getBlogListEmptyMessage", () => {
     expect(
       getBlogListEmptyMessage({
         ...loaded,
-        pages: [emptyPage, { blogs: [{}] }],
+        pages: [emptyPage, { blogs: [{ node: {} }] }],
         isFiltering: true,
         hasFeaturedPost: false,
       })
     ).toBeNull();
+  });
+
+  it("counts only edges that have a post, as the grid does", () => {
+    expect(
+      getBlogListEmptyMessage({
+        ...loaded,
+        pages: [{ blogs: [null, { node: null }] }],
+        isFiltering: false,
+        hasFeaturedPost: false,
+      })
+    ).toBe("No blog posts yet");
   });
 
   it("stays quiet before any page has loaded", () => {
