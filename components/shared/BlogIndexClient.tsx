@@ -329,7 +329,7 @@ const RecentArticles = ({
               fetchNextPage();
             }}
             className="gap-1"
-            variant={"secondary"}
+            variant="outlinedWhite"
           >
             {isFetching ? (
               <>

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@comps/ui/button";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
 import NextLink from "next/link";
@@ -227,38 +228,43 @@ const ConditionalLink = ({ href, children }: { href?: string | null; children: R
 };
 
 const CardButton = (button: CardButtonProps) => {
-  const WrapperComponent = ({
-    children,
-    button,
-  }: {
-    children: ReactNode;
-    button: CardButtonProps;
-  }) => {
-    return ConditionalLink({ href: button.link, children });
-  };
-  return (
-    <WrapperComponent button={button}>
-      <div className="font-bold bg-ssw-red rounded-xl py-4 text-center">
-        <span data-tina-field={tinaField(button)}>
-          <TinaMarkdown
-            content={button.label}
-            components={{
-              img: (props?: { url: string }) => (
-                <span className="size-5 mx-1 relative align-text-top inline-block">
-                  <Image
-                    className=""
-                    src={props?.url || ""}
-                    aria-hidden="true"
-                    alt=""
-                    fill={true}
-                  />
-                </span>
-              ),
-            }}
-          />
-        </span>
-      </div>
-    </WrapperComponent>
+  const className = cn(
+    buttonVariants({ variant: "solidRed", size: "large" }),
+    "w-full"
+  );
+  const label = (
+    <span data-tina-field={tinaField(button)}>
+      <TinaMarkdown
+        content={button.label}
+        components={{
+          img: (props?: { url: string }) => (
+            <span className="size-5 mx-1 relative align-text-top inline-block">
+              <Image
+                className=""
+                src={props?.url || ""}
+                aria-hidden="true"
+                alt=""
+                fill={true}
+              />
+            </span>
+          ),
+        }}
+      />
+    </span>
+  );
+
+  // The link itself is the button, so it gets the hover and focus states
+  return button.link ? (
+    <NextLink
+      href={button.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      {label}
+    </NextLink>
+  ) : (
+    <div className={className}>{label}</div>
   );
 };
 

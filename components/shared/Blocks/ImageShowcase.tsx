@@ -1,4 +1,5 @@
 "use client";
+import { buttonVariants } from "@comps/ui/button";
 
 import { useState, useCallback } from "react";
 import Image from "next/image";
@@ -86,9 +87,9 @@ const ImageShowcase = ({
               <div className={`absolute inset-0 bg-black/70 flex items-center justify-center transition-opacity duration-200 rounded-2xl ${isHovered ? 'opacity-90 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
                 <button
                   onClick={handleDownload}
-                  className="flex items-center gap-2 px-6 py-3 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
+                  className={buttonVariants({ variant: "outlinedWhite", size: "small" })}
                 >
-                  <Download className="w-5 h-5" />
+                  <Download className="w-4 h-4" />
                   Download
                 </button>
               </div>

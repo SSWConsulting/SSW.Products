@@ -1,4 +1,5 @@
 import { WordRotate } from "@/components/magicui/word-rotate";
+import { buttonVariants } from "@comps/ui/button";
 
 import { TranscriptBoxProps } from "@/types/components/transcript";
 import Image from "next/image";
@@ -225,7 +226,7 @@ export default function Hero({ data }: { data: any }) {
             <div className="flex items-center justify-center pt-12 gap-6">
               {data?.ctaLeft?.title && data?.ctaLeft?.link && (
                 <Link
-                  className="bg-white hover:bg-white/80 text-[#222222] px-5 py-2 font-bold rounded-lg transition-all ease-in-out duration-300 border border-white uppercase"
+                  className={buttonVariants({ variant: "solidWhite" })}
                   href={contextualHref(data.ctaLeft?.link)}
                 >
                   {data.ctaLeft?.title}
@@ -233,7 +234,7 @@ export default function Hero({ data }: { data: any }) {
               )}
               {data?.ctaRight?.title && data?.ctaRight?.link && (
                 <Link
-                  className="px-5 py-2 font-bold rounded-lg text-white border border-white bg-none flex items-center text-center justify-center gap-2 hover:bg-white/20 transition-all ease-in-out duration-300 uppercase"
+                  className={buttonVariants({ variant: "outlinedWhite" })}
                   href={contextualHref(data.ctaRight?.link)}
                 >
                   {data.ctaRight?.title} <FaChevronRight className="pb-0.5" />
