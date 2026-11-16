@@ -12,7 +12,9 @@ interface BookingButtonProps {
 }
 export const variantMap: Record<ButtonVariant, string> = {
   solidRed: "bg-ssw-red hover:opacity-80 text-white",
-  solidWhite: "text-black hover:opacity-80 border-1 bg-white",
+  // The border matches the background, so it's invisible but keeps the button
+  // the same size as the outlined one beside it
+  solidWhite: "text-black hover:opacity-80 border-1 border-white bg-white",
   outlinedWhite: "border-1 hover:bg-white/20 border-white text-white",
 };
 

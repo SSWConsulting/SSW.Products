@@ -285,8 +285,8 @@ const ButtonMap = ({
         variantMap[item.variant as ButtonVariant] ??
         variantMap[ButtonVariant.SolidWhite];
       // The white Portal button already turns red on hover (shadcn's default
-      // variant). Make its border follow the background (white → red) instead
-      // of a stray black outline, and flip the text + (black) icon to white.
+      // variant). Make its border follow the background (white → red) and flip
+      // the text + (black) icon to white.
       const isSolidWhite = shadcnVariant === variantMap[ButtonVariant.SolidWhite];
       return (
         <Button
@@ -297,7 +297,7 @@ const ButtonMap = ({
             className,
             shadcnVariant,
             isSolidWhite &&
-              "border-white hover:border-ssw-red/80 hover:text-white hover:opacity-100"
+              "hover:border-ssw-red/80 hover:text-white hover:opacity-100"
           )}
           href={item.url || ""}
           key={item.label}
