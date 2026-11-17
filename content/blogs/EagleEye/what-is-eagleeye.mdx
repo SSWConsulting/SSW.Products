@@ -1,0 +1,72 @@
+---
+seo:
+  title: What is EagleEye?
+  description: >-
+    Your email and GitHub already show who is overloaded, who is blocked and
+    who follows your standards. EagleEye finds it with AI, inside your own Azure.
+category: Getting Started
+title: What is EagleEye?
+date: '2026-11-12T00:00:00.000Z'
+author: Luke Mao
+authorImage: /people/Luke-Mao.jpg
+sswPeopleLink: 'https://www.ssw.com.au/people/luke-mao/'
+bannerImage: /EagleEye/Blogs/what-is-eagleeye.png
+readLength: 3 minutes
+---
+
+Who on your team is overloaded? Who is blocked? Who follows your standards, and which projects are actually shipping?
+
+You probably have a feeling. But the real answer is already written down, in the thousands of emails, issues and pull requests your team creates every week. Nobody has time to read them all, so the answer just sits there.
+
+## Why we built it
+
+At SSW we have rules for how we work. Before something goes out, you send a "Test please" and wait for a "Test pass". After a client call, you confirm it in writing with "As per our conversation".
+
+We wanted to know if people actually do this, and who does it the most. The only way was to search mailboxes by hand and count. It took hours, and by the time we finished, the numbers were already old.
+
+So we built EagleEye.
+
+## What is EagleEye?
+
+EagleEye reads your company's email and GitHub activity, tags it with AI, and turns it into reports you can act on. It runs in your own Azure.
+
+## How it works
+
+### 1. Tell it what matters to you
+
+Create tags for the things you care about, like "Test pass" or "As per our conversation". The same tags work across email and GitHub.
+
+* 📃 **Non-AI tags** match simple rules, like a phrase in the subject
+* 🤖 **AI tags** understand context, so they catch the idea even when the wording changes
+* 🤖 **AI with Mentions tags** also pick out who is mentioned
+
+### 2. EagleEye reads it every night
+
+Every night it scans email from Microsoft Exchange, and GitHub issues, pull requests and their comments. Need to look further back? Run a historical scan from the Portal.
+
+### 3. See the answers
+
+* 📊 **Email** - who sends and receives the most, who gets mentioned, and which tags they get
+* 📈 **GitHub** - what was raised and closed, what is waiting, and how long things take, repo by repo
+
+No spreadsheets, no searching by hand.
+
+### 4. Ask your AI assistant, or let it act for you
+
+* 🤖 **AI assistants** - turn on MCP access in Settings and do a one-time Microsoft Entra setup. Then ask Claude or GitHub Copilot something like "Who was mentioned in the most test passes last month?". It's read-only and off by default
+* ⚡ **Webhooks** - give a tag a webhook, and EagleEye calls it when a new email, issue, pull request or comment gets that tag
+
+## Your data stays yours
+
+Email is sensitive, so where it lives matters.
+
+* EagleEye installs from the Azure Marketplace into your own Azure subscription
+* The AI service is yours too, and you pick the model
+* EagleEye doesn't keep the email body. Once an email is read, only the subject, people, date and tags are kept
+* SSW has no access to your data
+
+## Try it
+
+* 👀 Try it with sample data at [demo.ssweagleeye.com](https://demo.ssweagleeye.com)
+* 🎉 EagleEye is free during the public beta, until 1 July 2027
+* 📖 Read the [docs](/docs) to set it up, or book a 30-minute call with an EagleEye expert from the [home page](/)
