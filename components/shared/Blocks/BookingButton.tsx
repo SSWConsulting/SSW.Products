@@ -1,3 +1,4 @@
+import { buttonVariants } from "@comps/ui/button";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import Modal from "react-responsive-modal";
@@ -10,13 +11,6 @@ interface BookingButtonProps {
   variant?: ButtonVariant;
   className?: string;
 }
-export const variantMap: Record<ButtonVariant, string> = {
-  solidRed: "bg-ssw-red hover:opacity-80 text-white",
-  // The border matches the background, so it's invisible but keeps the button
-  // the same size as the outlined one beside it
-  solidWhite: "text-black hover:opacity-80 border-1 border-white bg-white",
-  outlinedWhite: "border-1 hover:bg-white/20 border-white text-white",
-};
 
 export const BookingButton = ({
   title,
@@ -33,11 +27,7 @@ export const BookingButton = ({
     <>
       <button
         onClick={openModal}
-        className={cn(
-          variantMap[variant],
-          className,
-          `px-5 py-2 min-h-[42px] font-semibold text-center transition-all items-center justify-center text-white rounded-lg whitespace-nowrap uppercase flex`
-        )}
+        className={cn(buttonVariants({ variant, size: "medium" }), className)}
       >
         {title}
       </button>

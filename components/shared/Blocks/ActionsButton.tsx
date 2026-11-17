@@ -1,7 +1,7 @@
+import { buttonVariants } from "@comps/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useContextualLink } from "@utils/contextualLink";
-import { variantMap } from "./BookingButton";
 import { ButtonSize, ButtonVariant } from "./buttonEnum";
 import Image from "next/image";
 
@@ -19,12 +19,6 @@ type ActionsProps = {
   className?: string;
 };
 
-export const sizeMap = {
-  small: "py-1 px-2 text-sm",
-  medium: "py-2 px-4 text-base",
-  large: "py-3 text-lg px-6 text-lg",
-};
-
 export const ActionButton = ({
   action,
   className,
@@ -40,9 +34,7 @@ export const ActionButton = ({
     <Link
       href={contextualHref(action.url)}
       className={cn(
-        variantMap[action.variant],
-        sizeMap[action.size],
-        "whitespace-nowrap inline-flex items-center gap-2 rounded-lg transition-all duration-200 font-semibold uppercase",
+        buttonVariants({ variant: action.variant, size: action.size }),
         action.iconPosition === "left" ? "flex-row-reverse" : "flex-row",
         className
       )}

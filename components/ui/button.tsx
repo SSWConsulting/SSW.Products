@@ -3,31 +3,34 @@ import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import * as React from "react";
 
+// The site's button standard. The first 3 variants and the sizes are the
+// styles editors pick in the CMS (see `ButtonVariant` and `ButtonSize`), so
+// their keys must match the values stored in content.
+// Every variant has a 1px border (transparent on the solid ones) so they're
+// all the same height side by side, and hover only changes the background so
+// the label never fades.
 const buttonVariants = cva(
-  "inline-flex items-center font-semibold uppercase justify-center whitespace-nowrap rounded-md text-base ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative",
+  "relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg border font-semibold uppercase ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default:
-          "bg-ssw-red border text-primary-foreground hover:bg-ssw-red/80",
-        white: "bg-white text-black hover:bg-white/80",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border-1 border-white hover:bg-white/20 text-white",
-        secondary: "bg-ssw-charcoal text-white hover:text-black hover:bg-white",
-        ghost: "hover:text-ssw-red",
-        link: "text-primary underline-offset-4 hover:underline",
+        solidRed: "border-transparent bg-ssw-red text-white hover:bg-ssw-red/80",
+        solidWhite: "border-transparent bg-white text-black hover:bg-white/80",
+        outlinedWhite: "border-white text-white hover:bg-white/20",
+        // Not CMS styles: the blog's "Load All" button and category filters
+        secondary:
+          "border-transparent bg-ssw-charcoal text-white hover:bg-white hover:text-black",
+        ghost: "border-transparent hover:text-ssw-red",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10",
+        small: "h-9 px-3 text-sm",
+        medium: "h-10 px-4 text-base",
+        large: "h-13 px-6 text-lg",
       },
     },
     defaultVariants: {
-      variant: "default",
-      size: "default",
+      variant: "solidRed",
+      size: "medium",
     },
   }
 );

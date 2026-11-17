@@ -417,7 +417,7 @@ const HeroSearch = (props: RemoveTinaMetadata<HeroSearchProps>) => {
                   onClick={() => {
                     if (setSelectedCategory) setSelectedCategory(category);
                   }}
-                  variant={category === selectedCategory ? "default" : "ghost"}
+                  variant={category === selectedCategory ? "solidRed" : "ghost"}
                   key={`button ${index}`}
                 >
                   {category || ALL_CATEGORY}

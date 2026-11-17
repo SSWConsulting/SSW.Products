@@ -85,7 +85,7 @@ const HeaderBanner = ({
         </div>
         <div className="flex flex-row gap-4">
           {banner?.actionButton?.title && (
-            <Button variant="white" onClick={scrollToAgenda}>
+            <Button variant="solidWhite" onClick={scrollToAgenda}>
               {banner.actionButton.title}
             </Button>
           )}
@@ -402,7 +402,7 @@ function Agenda({
       )}
 
       {ticketButton?.title && ticketButton?.link && (
-        <Button asChild size="lg" className="mt-8 mb-16">
+        <Button asChild size="large" className="mt-8 mb-16">
           <Link href={ticketButton.link} target="_blank">
             {ticketButton.title}
           </Link>
