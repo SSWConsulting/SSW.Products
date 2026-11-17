@@ -17,13 +17,16 @@ type LinkableHeadingProps = {
  *
  * pointer-coarse keeps the icon visible on touch, where group-hover never fires
  * (Tailwind wraps hover variants in @media (hover: hover)).
+ *
+ * focus:transition-none shows the icon the moment it takes keyboard focus;
+ * fading in from opacity 0 leaves a moment with no visible focus (WCAG 2.4.7).
  */
 export function HeadingAnchorLink({ slug }: { slug: string }) {
   return (
     <a
       href={`#${slug}`}
       aria-label="Link to this section"
-      className="ml-2 inline-flex items-center align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100 pointer-coarse:opacity-100"
+      className="ml-2 inline-flex items-center align-middle text-[0.6em] text-ssw-red opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-within:opacity-100 focus:opacity-100 focus:transition-none pointer-coarse:opacity-100"
     >
       <FaLink aria-hidden="true" />
     </a>

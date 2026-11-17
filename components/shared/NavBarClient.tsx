@@ -47,6 +47,7 @@ interface NavBarClientProps {
     imgSrc: string;
     imgHeight: number;
     imgWidth: number;
+    alt: string;
   };
 }
 
