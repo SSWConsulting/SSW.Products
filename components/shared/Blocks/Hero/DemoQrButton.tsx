@@ -1,5 +1,6 @@
 "use client";
 
+import { buttonVariants } from "@comps/ui/button";
 import * as Popover from "@radix-ui/react-popover";
 import Image from "next/image";
 import { useState } from "react";
@@ -20,8 +21,7 @@ const DEMO_URL = {
 /** Rendered at 2x the display size so the code stays crisp on retina screens. */
 const QR_DISPLAY_PX = 176;
 
-const BUTTON_CLASSES =
-  "bg-white hover:bg-white/80 text-[#222222] px-5 py-2 font-bold rounded-lg transition-all ease-in-out duration-300 border border-white uppercase flex items-center text-center justify-center gap-2 min-h-11";
+const BUTTON_CLASSES = buttonVariants({ variant: "solidWhite" });
 
 type DemoQrButtonProps = {
   label: string;

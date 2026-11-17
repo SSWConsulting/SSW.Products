@@ -17,9 +17,7 @@ const buttonVariants = cva(
         solidRed: "border-transparent bg-ssw-red text-white hover:bg-ssw-red/80",
         solidWhite: "border-transparent bg-white text-black hover:bg-white/80",
         outlinedWhite: "border-white text-white hover:bg-white/20",
-        // Not CMS styles: the blog's "Load All" button and category filters
-        secondary:
-          "border-transparent bg-ssw-charcoal text-white hover:bg-white hover:text-black",
+        // Not a CMS style: the blog's category filters
         ghost: "border-transparent hover:text-ssw-red",
       },
       size: {
