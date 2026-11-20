@@ -146,7 +146,7 @@
       },
       "topRightBox": {
         "title": "实时 PBI",
-        "description": "当 PBI 被创建、分配或需要跟进时，立即保持更新"
+        "description": "PBI 创建、分配或需要跟进时，即时获取更新。"
       },
       "counterBox1": {
         "title": "Shave的 Yaks 数量",
@@ -161,7 +161,7 @@
       },
       "bottomRightBox": {
         "title": "自动任务创建：从想法到行动",
-        "description": "利用生成式 AI 的自动化力量，无缝将视频、音频和屏幕共享转换为可执行的产品待办事项",
+        "description": "借助生成式 AI，将视频、音频和屏幕共享转换为可执行的产品待办事项。",
         "inputItem": [
           {
             "name": "视频",
