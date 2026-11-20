@@ -88,7 +88,7 @@
         {
           "AboveHeaderText": "{Solve it}",
           "Header": "3 - Tasks are created",
-          "Description": "**YakShaver creates a task, bug report, or feature request** in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
+          "Description": "YakShaver creates a task, bug report, or feature request in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
           "Badges": [
             {
               "showTickIcon": true,

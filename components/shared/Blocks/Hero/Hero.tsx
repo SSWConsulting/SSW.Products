@@ -95,14 +95,10 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
         {/* labels inside the mock report card, not page headings */}
         <div className="flex  justify-center items-center gap-6 w-full pt-4 ">
           <div className="w-full">
-            <p className="text-white text-2xl pb-2 ">
-              {" "}
-              {data.leftHandSide?.issueReportSummaryTitle}{" "}
-            </p>
-            <span className="text-sm">
-              {" "}
+            <p className="h3 pb-2">{data.leftHandSide?.issueReportSummaryTitle}</p>
+            <p className="text-base text-gray-300">
               {data.leftHandSide?.issueReportSummarySubtitle}
-            </span>
+            </p>
           </div>
         </div>
       </div>
@@ -122,14 +118,10 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
 
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">
-            <p className="text-white text-2xl pb-2 ">
-              {" "}
-              {data.rightHandSide?.issueReportSummaryTitle}{" "}
-            </p>
-            <span className="text-sm">
-              {" "}
+            <p className="h3 pb-2">{data.rightHandSide?.issueReportSummaryTitle}</p>
+            <p className="text-base text-gray-300">
               {data.rightHandSide?.issueReportSummarySubtitle}
-            </span>
+            </p>
           </div>
         </div>
       </div>

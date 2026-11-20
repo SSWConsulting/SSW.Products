@@ -83,7 +83,7 @@
         {
           "AboveHeaderText": "{解决问题}",
           "Header": "3 - 创建任务",
-          "Description": "**YakShaver 在您喜欢的系统中创建任务、错误报告或功能请求**（Azure DevOps、GitHub）。YakShaver 也可以发送邮件。\n\n它会包含一个优秀的标题、描述和任务，以及原始视频以提供更多上下文。\n",
+          "Description": "YakShaver 在您喜欢的系统中创建任务、错误报告或功能请求（Azure DevOps、GitHub）。YakShaver 也可以发送邮件。\n\n它会包含一个优秀的标题、描述和任务，以及原始视频以提供更多上下文。\n",
           "Badges": [
             {
               "showTickIcon": true,
