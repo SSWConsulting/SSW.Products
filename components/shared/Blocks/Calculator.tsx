@@ -119,7 +119,9 @@ export default function CalculatorComponent({ data }: { data: any }) {
   }, [selectedTier, data.tiers]);
 
   return (
-    <Container>
+    // w-full: a centred flex item shrinks to its content, so the width
+    // otherwise depends on how long the footnotes are
+    <Container className="w-full">
       <LinkableHeading
         as="h2"
         anchor={data?.title}
