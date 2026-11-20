@@ -150,7 +150,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
               hourlyRate={hourlyRate}
               setHourlyRate={setHourlyRate}
             />
-            <div className="mt-16 text-gray-400 rounded-xl w-full text-sm overflow-hidden">
+            <div className="mt-16 text-sm text-gray-400">
               <TinaMarkdown content={data?.bottomBox} components={{ a: MarkdownLink }} />
             </div>
           </div>
@@ -276,7 +276,7 @@ const SliderBoxContent = ({
         <h3>Average Hourly Rate of Employee*</h3>
       </div>
 
-      <p className="text-base text-gray-300 pb-3">
+      <p className="text-gray-300 pb-3">
         Adjust the slider to match the average hourly rate of your employees.
       </p>
       <div className="bg-linear-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold text-2xl">

@@ -4,15 +4,25 @@ import MarkdownLink from "@tina/tinamarkdownStyles/Link";
 import { tinaField } from "tinacms/dist/react";
 import LinkableHeading from "../LinkableHeading";
 import Actions from "./ActionsButton";
-import {
-  curlyBracketFormatter,
-  SSWRedCurlyBracketFormatter,
-} from "./Hero/Hero";
+import { curlyBracketFormatter } from "./Hero/Hero";
 
 import { ShineBorder } from "@/components/magicui/shine-border";
 import { BsCheck } from "react-icons/bs";
 import { BookingButton } from "./BookingButton";
 import { ButtonVariant } from "./buttonEnum";
+
+// Wraps each {curly-bracketed} part of a feature in red. red-400, not the SSW
+// red: #CC4141 is about 3:1 on the dark cards, too low for body text.
+const redHighlightFormatter = (text: string) =>
+  text?.split(/({.*?})/).map((part, index) =>
+    part.startsWith("{") && part.endsWith("}") ? (
+      <span key={index} className="text-red-400">
+        {part.slice(1, -1)}
+      </span>
+    ) : (
+      part
+    )
+  );
 
 interface PlanAction {
   label: string;
@@ -208,13 +218,13 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
         )}
 
         {isRecommended && (
-          <div className="text-white text-center text-xs bg-ssw-red rounded-full h-auto px-4 py-1 -mt-1">
+          <div className="text-center text-xs bg-ssw-red rounded-full px-4 py-1 -mt-1">
             {plan.recommendation || "Most Popular"}
           </div>
         )}
       </div>
       {plan.planDescription && (
-        <p className="text-base pb-3 text-gray-300 h-14">
+        <p className="pb-3 text-gray-300 h-14">
           {curlyBracketFormatter(plan.planDescription)}
         </p>
       )}
@@ -222,7 +232,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
       <div className="flex text-center items-baseline gap-2 pb-3">
         {plan.price && <p className="text-3xl font-bold ">{plan.price}</p>}
         {plan.subPriceText && (
-          <p className="text-base text-gray-400">{plan.subPriceText}</p>
+          <p className="text-gray-400">{plan.subPriceText}</p>
         )}
       </div>
       <div className="flex-col mt-auto py-6 ">
@@ -267,7 +277,7 @@ const PlanCard = ({ plan, index, data, isRecommended }: PlanCardProps) => {
               className={`mt-[2px] text-xl bg-transparent text-[#CC4141]`}
             />
             <span className="text-gray-300">
-              {SSWRedCurlyBracketFormatter(item)}
+              {redHighlightFormatter(item)}
             </span>
           </div>
         ))}

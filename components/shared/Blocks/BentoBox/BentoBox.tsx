@@ -54,7 +54,7 @@ function SmAndMdView({ data }: { data: any }) {
           {/* eslint-disable-next-line no-restricted-syntax -- a card title
               inside its section, not a section to link to */}
           <h3>{data.title}</h3>
-          <p className="text-base text-gray-300">{data.description}</p>
+          <p className="text-gray-300">{data.description}</p>
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@ function BeamBox({ data }: { data: any }) {
         {/* eslint-disable-next-line no-restricted-syntax -- a card title
             inside its section, not a section to link to */}
         <h3>{data?.title}</h3>
-        <p className="text-base text-gray-300">{data?.description}</p>
+        <p className="text-gray-300">{data?.description}</p>
       </div>
     </div>
   );
@@ -252,7 +252,7 @@ export default function BentoBox({ data }: { data: any }) {
                   {/* eslint-disable-next-line no-restricted-syntax -- a card title
                       inside its section, not a section to link to */}
                   <h3>{topRightBox.title}</h3>
-                  <p className="text-base text-gray-300">
+                  <p className="text-gray-300">
                     {topRightBox.description}
                   </p>
                 </div>

@@ -96,7 +96,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
         <div className="flex  justify-center items-center gap-6 w-full pt-4 ">
           <div className="w-full">
             <p className="h3 pb-2">{data.leftHandSide?.issueReportSummaryTitle}</p>
-            <p className="text-base text-gray-300">
+            <p className="text-gray-300">
               {data.leftHandSide?.issueReportSummarySubtitle}
             </p>
           </div>
@@ -119,7 +119,7 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">
             <p className="h3 pb-2">{data.rightHandSide?.issueReportSummaryTitle}</p>
-            <p className="text-base text-gray-300">
+            <p className="text-gray-300">
               {data.rightHandSide?.issueReportSummarySubtitle}
             </p>
           </div>
@@ -138,19 +138,6 @@ export const curlyBracketFormatter = (byLine: string) => {
         key={index}
         className="bg-linear-to-br from-red-400 to-red-700 bg-clip-text text-transparent font-bold"
       >
-        {part.slice(1, -1)}
-      </span>
-    ) : (
-      part
-    )
-  );
-};
-
-// red-400, not the SSW red: #CC4141 is about 3:1 on the dark cards, too low for body text
-export const SSWRedCurlyBracketFormatter = (byLine: string) => {
-  return byLine?.split(/({.*?})/).map((part, index) =>
-    part.startsWith("{") && part.endsWith("}") ? (
-      <span key={index} className="text-red-400">
         {part.slice(1, -1)}
       </span>
     ) : (

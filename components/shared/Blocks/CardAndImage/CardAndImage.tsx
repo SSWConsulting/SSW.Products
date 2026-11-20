@@ -192,7 +192,7 @@ function CardItem({
         style={{ maxHeight: `${contentHeight}px` }}
       >
         <div ref={contentRef}>
-          <div className="text-gray-300 text-base pt-3">
+          <div className="text-gray-300 pt-3">
             <TinaMarkdown
               content={data.Description}
               components={cardAndImageMarkdownRenderer}
