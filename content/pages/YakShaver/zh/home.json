@@ -83,7 +83,7 @@
         {
           "AboveHeaderText": "{解决问题}",
           "Header": "3 - 创建任务",
-          "Description": "**YakShaver 在您喜欢的系统中创建任务、错误报告或功能请求**（Azure DevOps、GitHub）。YakShaver 也可以发送邮件。\n\n它会包含一个优秀的标题、描述和任务，以及原始视频以提供更多上下文。\n",
+          "Description": "YakShaver 在您喜欢的系统中创建任务、错误报告或功能请求（Azure DevOps、GitHub）。YakShaver 也可以发送邮件。\n\n它会包含一个优秀的标题、描述和任务，以及原始视频以提供更多上下文。\n",
           "Badges": [
             {
               "showTickIcon": true,
@@ -146,7 +146,7 @@
       },
       "topRightBox": {
         "title": "实时 PBI",
-        "description": "当 PBI 被创建、分配或需要跟进时，立即保持更新"
+        "description": "PBI 创建、分配或需要跟进时，即时获取更新。"
       },
       "counterBox1": {
         "title": "Shave的 Yaks 数量",
@@ -161,7 +161,7 @@
       },
       "bottomRightBox": {
         "title": "自动任务创建：从想法到行动",
-        "description": "利用生成式 AI 的自动化力量，无缝将视频、音频和屏幕共享转换为可执行的产品待办事项",
+        "description": "借助生成式 AI，将视频、音频和屏幕共享转换为可执行的产品待办事项。",
         "inputItem": [
           {
             "name": "视频",
@@ -257,7 +257,7 @@
           "url": "/pricing"
         }
       },
-      "bottomBox": "\\* 平均小时费率包括薪资、福利和间接费用。\n\n\\** 我们的价值回收计算：基于客户数据，YakShaver 将问题报告时间减少了 90%——从每周 5 小时缩短到仅 30 分钟。\n",
+      "bottomBox": "\\* 包括薪资、福利和间接费用。\n\n\\*\\* 假设 YakShaver 每个工作项节省 30 分钟，并扣除您套餐的月费。\n",
       "bottomAction": {
         "label": "完整定价详情",
         "variant": "solidWhite",

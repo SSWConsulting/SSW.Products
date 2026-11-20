@@ -27,7 +27,7 @@ const CallToAction = ({ className, ...props }: CallToActionProps) => {
             {props.ctaDescription && (
               <p
                 data-tina-field={tinaField(props, "ctaDescription")}
-                className="text-gray-300 text-sm sm:text-base mb-8"
+                className="text-gray-300 mb-8"
               >
                 {props.ctaDescription}
               </p>

@@ -35,7 +35,7 @@ function SmAndMdView({ data }: { data: any }) {
 
       {/* Large Box with Animated Content */}
       <div
-        className={`${YakShaverGray} rounded-xl col-span-1 md:col-span-2 relative overflow-hidden h-96 md:h-64 flex flex-col sm:flex-row`}
+        className={`${YakShaverGray} rounded-xl col-span-1 md:col-span-2 relative overflow-hidden min-h-96 sm:h-96 md:h-64 flex flex-col sm:flex-row`}
       >
         <div className="absolute left-0 top-0 h-full w-full sm:w-[36%] bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] z-10"></div>
 
@@ -46,13 +46,15 @@ function SmAndMdView({ data }: { data: any }) {
           className="h-full w-full flex rounded-xl z-20 object-cover"
         />
 
-        <div className="pt-14 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
+        <div className="pt-14 md:pt-0 flex items-center justify-center h-48 shrink-0 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
           <AnimatedBeamMultipleOutput data={data} />
         </div>
 
         <div className="pt-10 md:pt-6 lg:pt-20 flex flex-col justify-center p-6 z-30 w-full sm:w-1/2 order-last sm:order-first">
-          <p className="text-white text-xl font-semibold">{data.title}</p>
-          <span className="text-[#797979] text-xs">{data.description}</span>
+          {/* eslint-disable-next-line no-restricted-syntax -- a card title
+              inside its section, not a section to link to */}
+          <h3>{data.title}</h3>
+          <p className="text-gray-300">{data.description}</p>
         </div>
       </div>
     </div>
@@ -107,8 +109,10 @@ function BeamBox({ data }: { data: any }) {
         <AnimatedBeamMultipleOutput data={data} />
       </div>
       <div className="absolute bottom-0 w-full pb-4  px-6">
-        <p className="text-white text-xl font-semibold">{data?.title}</p>
-        <span className="text-[#797979] text-sm">{data?.description}</span>
+        {/* eslint-disable-next-line no-restricted-syntax -- a card title
+            inside its section, not a section to link to */}
+        <h3>{data?.title}</h3>
+        <p className="text-gray-300">{data?.description}</p>
       </div>
     </div>
   );
@@ -245,10 +249,10 @@ export default function BentoBox({ data }: { data: any }) {
                 className={`${YakShaverGray} relative rounded-xl w-full h-full`}
               >
                 <div className="p-6 pb-0 md:pb-6">
-                  <p className="text-white text-2xl font-semibold">
-                    {topRightBox.title}
-                  </p>
-                  <p className="text-[#797979] text-sm">
+                  {/* eslint-disable-next-line no-restricted-syntax -- a card title
+                      inside its section, not a section to link to */}
+                  <h3>{topRightBox.title}</h3>
+                  <p className="text-gray-300">
                     {topRightBox.description}
                   </p>
                 </div>

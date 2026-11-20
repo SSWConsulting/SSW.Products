@@ -129,7 +129,7 @@ const KeyHighlights = ({
           <div className="text-white bg-linear-to-br from-red-400 to-red-700 p-2 mb-4 rounded-full [&>svg]:p-1">
             {icons[item.icon as keyof typeof icons] ?? icons.FaRegStar}
           </div>
-          <h3 className="font-bold text-white">{item.header}</h3>
+          <h3>{item.header}</h3>
           <p className="text-gray-300 text-base">{item.description}</p>
         </div>
       ))}

@@ -119,7 +119,9 @@ export default function CalculatorComponent({ data }: { data: any }) {
   }, [selectedTier, data.tiers]);
 
   return (
-    <Container>
+    // w-full: a centred flex item shrinks to its content, so the width
+    // otherwise depends on how long the footnotes are
+    <Container className="w-full">
       <LinkableHeading
         as="h2"
         anchor={data?.title}
@@ -148,7 +150,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
               hourlyRate={hourlyRate}
               setHourlyRate={setHourlyRate}
             />
-            <div className="mt-16 text-white/30 rounded-xl w-full text-sm overflow-hidden">
+            <div className="mt-16 text-sm text-gray-400">
               <TinaMarkdown content={data?.bottomBox} components={{ a: MarkdownLink }} />
             </div>
           </div>
@@ -187,9 +189,11 @@ const EstimatedSavingsContent = ({
 
   return (
     <div className="w-full flex flex-col space-y-3">
-      <p className="text-2xl text-white font-bold">YakShaver Usage ROI</p>
+      {/* eslint-disable-next-line no-restricted-syntax -- a card title
+          inside its section, not a section to link to */}
+      <h3>YakShaver Usage ROI</h3>
       <div className="flex flex-col">
-        <p className="text-white/50">Monthly Detailed Work Items</p>
+        <p className="text-gray-300">Monthly Detailed Work Items</p>
         <p
           className={`text-white font-bold ${
             isCustomTier ? "text-xl" : "text-2xl"
@@ -204,7 +208,7 @@ const EstimatedSavingsContent = ({
       </div>
       <div className="flex flex-col">
         <div className="flex align-baseline items-center gap-1">
-          <p className="text-white/50">Monthly Time Saved</p>
+          <p className="text-gray-300">Monthly Time Saved</p>
           <Tooltip text="Based on average time saved of 30 minutes per work item">
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
@@ -221,7 +225,7 @@ const EstimatedSavingsContent = ({
       </div>
       <div className="flex flex-col">
         <div className="flex align-baseline items-center gap-1">
-          <p className="text-white/50">Monthly Value Reclaimed</p>
+          <p className="text-gray-300">Monthly Value Reclaimed**</p>
           <Tooltip text="Calculated as: (Monthly Time Saved × Hourly Rate) - Monthly Price">
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
@@ -238,7 +242,7 @@ const EstimatedSavingsContent = ({
       </div>
       <div className="flex flex-col">
         <div className="flex align-baseline items-center gap-1">
-          <p className="text-white/50">Annual Value Reclaimed</p>
+          <p className="text-gray-300">Annual Value Reclaimed</p>
           <Tooltip text="Monthly Value Reclaimed × 12 months">
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
@@ -267,12 +271,12 @@ const SliderBoxContent = ({
   return (
     <div className="w-full flex flex-col space-y-3">
       <div className="flex justify-between">
-        <p className="text-2xl text-white font-bold">
-          Average Hourly Rate of Employee
-        </p>
+        {/* eslint-disable-next-line no-restricted-syntax -- a card title
+            inside its section, not a section to link to */}
+        <h3>Average Hourly Rate of Employee*</h3>
       </div>
 
-      <p className="text-white/50 pb-3">
+      <p className="text-gray-300 pb-3">
         Adjust the slider to match the average hourly rate of your employees.
       </p>
       <div className="bg-linear-to-r from-[#e34f4f] via-[#D699FB] to-[#FF778E] bg-clip-text text-transparent font-bold text-2xl">

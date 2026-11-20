@@ -95,14 +95,10 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
         {/* labels inside the mock report card, not page headings */}
         <div className="flex  justify-center items-center gap-6 w-full pt-4 ">
           <div className="w-full">
-            <p className="text-white text-2xl pb-2 ">
-              {" "}
-              {data.leftHandSide?.issueReportSummaryTitle}{" "}
-            </p>
-            <span className="text-sm">
-              {" "}
+            <p className="h3 pb-2">{data.leftHandSide?.issueReportSummaryTitle}</p>
+            <p className="text-gray-300">
               {data.leftHandSide?.issueReportSummarySubtitle}
-            </span>
+            </p>
           </div>
         </div>
       </div>
@@ -122,14 +118,10 @@ const TranscriptBox = ({ data }: { data: TranscriptBoxProps }) => {
 
         <div className="flex  items-center gap-6 w-full pt-4 ">
           <div className="w-full">
-            <p className="text-white text-2xl pb-2 ">
-              {" "}
-              {data.rightHandSide?.issueReportSummaryTitle}{" "}
-            </p>
-            <span className="text-sm">
-              {" "}
+            <p className="h3 pb-2">{data.rightHandSide?.issueReportSummaryTitle}</p>
+            <p className="text-gray-300">
               {data.rightHandSide?.issueReportSummarySubtitle}
-            </span>
+            </p>
           </div>
         </div>
       </div>
@@ -146,18 +138,6 @@ export const curlyBracketFormatter = (byLine: string) => {
         key={index}
         className="bg-linear-to-br from-red-400 to-red-700 bg-clip-text text-transparent font-bold"
       >
-        {part.slice(1, -1)}
-      </span>
-    ) : (
-      part
-    )
-  );
-};
-
-export const SSWRedCurlyBracketFormatter = (byLine: string) => {
-  return byLine?.split(/({.*?})/).map((part, index) =>
-    part.startsWith("{") && part.endsWith("}") ? (
-      <span key={index} className="text-[#CC4141]">
         {part.slice(1, -1)}
       </span>
     ) : (

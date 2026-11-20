@@ -88,7 +88,7 @@
         {
           "AboveHeaderText": "{Solve it}",
           "Header": "3 - Tasks are created",
-          "Description": "**YakShaver creates a task, bug report, or feature request** in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
+          "Description": "YakShaver creates a task, bug report, or feature request in your favourite system (Azure DevOps, GitHub). YakShaver can also send emails.\n\nIt will include a great title, description, and tasks plus the original video for additional context.\n",
           "Badges": [
             {
               "showTickIcon": true,
@@ -151,7 +151,7 @@
       },
       "topRightBox": {
         "title": "Real-time PBIs",
-        "description": "Stay updated instantly when PBIs have been created, assigned, or require follow-up"
+        "description": "Get instant updates when PBIs are created, assigned, or need follow-up."
       },
       "counterBox1": {
         "title": "Yaks shaved",
@@ -166,7 +166,7 @@
       },
       "bottomRightBox": {
         "title": "Automated task creation: From idea to action",
-        "description": "Unlock the power of automation with generative AI that seamlessly converts videos, audio and screenshares into actionable product backlog items ",
+        "description": "Turn videos, audio, and screen shares into actionable product backlog items with generative AI.",
         "inputItem": [
           {
             "name": "Video",
@@ -274,7 +274,7 @@
           "url": "/pricing"
         }
       },
-      "bottomBox": "\\* The average hourly rate includes salary, benefits, and overhead costs.\n\n\\*\\* Our Value Reclaimed Calculation: Based on customer data, YakShaver reduces issue reporting time by 90% - from 5 hours weekly to just 30 minutes.\n",
+      "bottomBox": "\\* Includes salary, benefits and overheads.\n\n\\*\\* Assumes YakShaver saves 30 minutes per work item, minus your plan's monthly price.\n",
       "bottomAction": {
         "label": "Full pricing details",
         "variant": "solidWhite",
