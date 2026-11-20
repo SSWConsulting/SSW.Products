@@ -166,7 +166,7 @@
       },
       "bottomRightBox": {
         "title": "Automated task creation: From idea to action",
-        "description": "Unlock the power of automation with generative AI that seamlessly converts videos, audio and screenshares into actionable product backlog items ",
+        "description": "Turn videos, audio, and screen shares into actionable product backlog items with generative AI.",
         "inputItem": [
           {
             "name": "Video",
