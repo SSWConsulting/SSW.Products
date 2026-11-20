@@ -35,7 +35,7 @@ function SmAndMdView({ data }: { data: any }) {
 
       {/* Large Box with Animated Content */}
       <div
-        className={`${YakShaverGray} rounded-xl col-span-1 md:col-span-2 relative overflow-hidden h-96 md:h-64 flex flex-col sm:flex-row`}
+        className={`${YakShaverGray} rounded-xl col-span-1 md:col-span-2 relative overflow-hidden min-h-96 sm:h-96 md:h-64 flex flex-col sm:flex-row`}
       >
         <div className="absolute left-0 top-0 h-full w-full sm:w-[36%] bg-linear-to-r to-[#141414] via-[#131313] from-[#0e0e0e] z-10"></div>
 
@@ -46,7 +46,7 @@ function SmAndMdView({ data }: { data: any }) {
           className="h-full w-full flex rounded-xl z-20 object-cover"
         />
 
-        <div className="pt-14 md:pt-0 flex items-center justify-center h-1/2 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
+        <div className="pt-14 md:pt-0 flex items-center justify-center h-48 shrink-0 sm:h-full w-full sm:w-2/3 z-30 order-first sm:order-last">
           <AnimatedBeamMultipleOutput data={data} />
         </div>
 
