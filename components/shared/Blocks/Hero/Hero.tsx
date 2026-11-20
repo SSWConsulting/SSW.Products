@@ -10,6 +10,7 @@ import { HeroYakShaverCard } from "../../../ui/MockYakShaverCards";
 
 import { AnimatedComponent } from "@/types/components/animated";
 import Link from "next/link";
+import MarkdownLink from "@tina/tinamarkdownStyles/Link";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { useContextualLink, useContextualLocale } from "@utils/contextualLink";
 import { DemoQrButton } from "./DemoQrButton";
@@ -213,6 +214,7 @@ export default function Hero({ data }: { data: any }) {
               <TinaMarkdown
                 content={data?.byLine}
                 components={{
+                  a: MarkdownLink,
                   bold: (props: { children: ReactNode } | undefined) => (
                     <span className="text-[#CC4141] font-bold">
                       {props?.children}

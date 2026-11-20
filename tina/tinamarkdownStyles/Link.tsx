@@ -2,12 +2,7 @@
 
 import NextLink from "next/link";
 import { useContextualLink } from "@utils/contextualLink";
-
-// The body-text link standard (#859). The text stays white on hover and the
-// underline turns SSW red: red text on our dark backgrounds is only ~3.3:1,
-// under the AA minimum, which is what the Design System's dark mode does too
-const LINK_CLASSES =
-  "text-white underline transition-colors hover:decoration-ssw-red";
+import { LINK_CLASSES } from "./linkClasses";
 
 const Link = (props: { url: string; children: React.ReactNode } | undefined) => {
   const contextualHref = useContextualLink();

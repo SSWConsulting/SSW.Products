@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { FaHistory } from "react-icons/fa";
+import { LINK_CLASSES } from "@tina/tinamarkdownStyles/linkClasses";
 import { formatDate } from "./formatDate";
 import { getRelativeTime } from "./timeUtils";
 
@@ -120,7 +121,7 @@ export default function GitHubMetadata({
             target="_blank"
             title={tooltipContent}
             rel="noopener noreferrer"
-            className="hover:text-ssw-red text-white underline flex flex-row items-center gap-1.5"
+            className={`${LINK_CLASSES} flex flex-row items-center gap-1.5`}
           >
             See history
             <FaHistory className="w-3 h-3" />
