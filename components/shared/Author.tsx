@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { STANDALONE_LINK_CLASSES } from "@tina/tinamarkdownStyles/linkClasses";
 
 const Author = ({
   authorImage,
@@ -20,12 +21,12 @@ const Author = ({
           className="object-cover"
         />
       </div>
-      <p className="font-medium h-fit">
+      <p className="font-semibold h-fit">
         {sswPeopleLink ? (
           // z-30 lifts the author link above the card's full-card overlay
           // link (z-20) so clicking an author opens their SSW People page,
           // not the post.
-          <Link className="relative z-30 hover:underline" href={sswPeopleLink}>
+          <Link className={`relative z-30 ${STANDALONE_LINK_CLASSES}`} href={sswPeopleLink}>
             {author}
           </Link>
         ) : (

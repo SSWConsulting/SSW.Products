@@ -5,3 +5,9 @@
 // plain string rather than a client reference.
 export const LINK_CLASSES =
   "text-white underline transition-colors hover:text-ssw-red-light";
+
+// A standalone link: a short label on its own line (Try It Now's "Learn more",
+// blog authors, previous/next article). Its position already says it's a link,
+// so it has no underline until hover, then turns red like a body link.
+export const STANDALONE_LINK_CLASSES =
+  "font-semibold transition-colors hover:text-ssw-red-light hover:underline";

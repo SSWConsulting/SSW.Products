@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { STANDALONE_LINK_CLASSES } from "@tina/tinamarkdownStyles/linkClasses";
 import { buttonVariants } from "@comps/ui/button";
 import { RemoveTinaMetadata } from "@/types/tina";
 import Image from "next/image";
@@ -76,7 +77,7 @@ export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
         <div className="absolute bg-gray-dark/75 inset-y-4 rounded-3xl inset-x-8 z-10 -bottom-4"></div>
       </div>
       {props.bottomLinks && (
-        <div className="flex w-fit text-sm font-bold mx-auto  text-white md:grid-cols-3 mt-32">
+        <div className="flex w-fit text-sm font-semibold mx-auto  text-white md:grid-cols-3 mt-32">
           {props.bottomLinks.map((link, index) => {
             if (!link) return <></>;
             const BottomComponent = ({
@@ -93,7 +94,7 @@ export const TryItNow = (props: TryItNowProps & { aspectRatio?: string }) => {
                     <NextLink
                       target="_blank"
                       {...props}
-                      className={cn(className, "hover:underline")}
+                      className={cn(className, STANDALONE_LINK_CLASSES)}
                       href={link.url}
                     >
                       {children}
