@@ -146,10 +146,11 @@ export const curlyBracketFormatter = (byLine: string) => {
   );
 };
 
+// red-400, not the SSW red: #CC4141 is about 3:1 on the dark cards, too low for body text
 export const SSWRedCurlyBracketFormatter = (byLine: string) => {
   return byLine?.split(/({.*?})/).map((part, index) =>
     part.startsWith("{") && part.endsWith("}") ? (
-      <span key={index} className="text-[#CC4141]">
+      <span key={index} className="text-red-400">
         {part.slice(1, -1)}
       </span>
     ) : (
