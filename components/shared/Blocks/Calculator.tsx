@@ -148,7 +148,7 @@ export default function CalculatorComponent({ data }: { data: any }) {
               hourlyRate={hourlyRate}
               setHourlyRate={setHourlyRate}
             />
-            <div className="mt-16 text-white/30 rounded-xl w-full text-sm overflow-hidden">
+            <div className="mt-16 text-gray-400 rounded-xl w-full text-sm overflow-hidden">
               <TinaMarkdown content={data?.bottomBox} components={{ a: MarkdownLink }} />
             </div>
           </div>
@@ -223,7 +223,7 @@ const EstimatedSavingsContent = ({
       </div>
       <div className="flex flex-col">
         <div className="flex align-baseline items-center gap-1">
-          <p className="text-gray-300">Monthly Value Reclaimed</p>
+          <p className="text-gray-300">Monthly Value Reclaimed**</p>
           <Tooltip text="Calculated as: (Monthly Time Saved × Hourly Rate) - Monthly Price">
             <IoIosInformationCircleOutline className="text-white/50 cursor-help" />
           </Tooltip>
@@ -271,7 +271,7 @@ const SliderBoxContent = ({
       <div className="flex justify-between">
         {/* eslint-disable-next-line no-restricted-syntax -- a card title
             inside its section, not a section to link to */}
-        <h3>Average Hourly Rate of Employee</h3>
+        <h3>Average Hourly Rate of Employee*</h3>
       </div>
 
       <p className="text-base text-gray-300 pb-3">

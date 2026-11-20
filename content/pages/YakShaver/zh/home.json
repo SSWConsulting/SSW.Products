@@ -257,7 +257,7 @@
           "url": "/pricing"
         }
       },
-      "bottomBox": "\\* 平均小时费率包括薪资、福利和间接费用。\n\n\\** 我们的价值回收计算：基于客户数据，YakShaver 将问题报告时间减少了 90%——从每周 5 小时缩短到仅 30 分钟。\n",
+      "bottomBox": "\\* 包括薪资、福利和间接费用。\n\n\\*\\* 假设 YakShaver 每个工作项节省 30 分钟，并扣除您套餐的月费。\n",
       "bottomAction": {
         "label": "完整定价详情",
         "variant": "solidWhite",
