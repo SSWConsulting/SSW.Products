@@ -1,3 +1,4 @@
+import { buttonVariants } from "@comps/ui/button";
 import Image from "next/image";
 import { Download } from "lucide-react";
 import { useState } from "react";
@@ -84,7 +85,7 @@ const ImageGrid = ({
   const DownloadButton = ({ onClick, label }: { onClick: () => void; label: string }) => (
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className="flex items-center gap-2 px-4 py-2 rounded-md text-sm font-semibold border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-all duration-200"
+      className={buttonVariants({ variant: "outlinedWhite", size: "small" })}
     >
       <Download className="w-4 h-4" />
       {label}

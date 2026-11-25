@@ -1,3 +1,4 @@
+import { buttonVariants } from "@comps/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import { GradientBackground } from "./Hero/GradientBackground";
@@ -51,7 +52,7 @@ const MediaHero = ({
           <Link
             href={heroButton.href}
             target={heroButton.target}
-            className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 rounded-md text-base font-semibold uppercase whitespace-nowrap transition-colors duration-200 ease-in-out shadow-lg hover:bg-white/80 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 relative"
+            className={buttonVariants({ variant: "solidWhite" })}
           >
             {heroButton.iconSrc && (
               <Image 

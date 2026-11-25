@@ -41,7 +41,7 @@ const NotFoundClient = ({
           >
             <TinaMarkdown content={body} components={{ a: MarkdownLink }} />
           </section>
-          <Button className="w-fit mt-6" variant={"white"} asChild>
+          <Button className="w-fit mt-6" variant="solidWhite" asChild>
             <Link className="w-fit mt-6" href="/">
               Back to Home
             </Link>

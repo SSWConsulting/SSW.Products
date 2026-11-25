@@ -1,6 +1,5 @@
 import { Template } from "tinacms";
 import { actionsButtonTemplate } from "./ActionsButton.template";
-import { modalButtonTemplate } from "./ModalButton.template";
 import { optimizedYoutubeFields } from "./VideoDisplay.template";
 
 interface FeatureItem {
@@ -64,7 +63,7 @@ export const FeaturesTemplate: Template = {
           label: "Buttons",
           list: true,
           type: "object",
-          templates: [actionsButtonTemplate, modalButtonTemplate],
+          templates: [actionsButtonTemplate],
         },
         {
           name: "media",

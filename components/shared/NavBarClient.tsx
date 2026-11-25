@@ -30,7 +30,7 @@ import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import ExternalLinkIcon from "@comps/NavBar/ExternalLinkIcon";
-import { BookingButton, variantMap } from "./Blocks/BookingButton";
+import { BookingButton } from "./Blocks/BookingButton";
 import LanguageToggle from "./LanguageToggle";
 import GrowingLink from "@comps/GrowingLink";
 import { ButtonVariant } from "./Blocks/buttonEnum";
@@ -282,23 +282,15 @@ const ButtonMap = ({
         />
       );
     case "NavigationBarButtonsActions": {
-      const shadcnVariant =
-        variantMap[item.variant as ButtonVariant] ??
-        variantMap[ButtonVariant.SolidWhite];
-      // The white Portal button already turns red on hover (shadcn's default
-      // variant). Make its border follow the background (white → red) instead
-      // of a stray black outline, and flip the text + (black) icon to white.
-      const isSolidWhite = shadcnVariant === variantMap[ButtonVariant.SolidWhite];
       return (
         <Button
           asChild
+          variant={(item.variant as ButtonVariant) ?? ButtonVariant.SolidWhite}
+          size="medium"
           className={cn(
-            "group flex gap-1 min-h-[42px]",
+            "flex gap-1",
             item.iconPosition === "left" ? "flex-row-reverse" : "flex-row",
-            className,
-            shadcnVariant,
-            isSolidWhite &&
-              "border-white hover:border-ssw-red/80 hover:text-white hover:opacity-100"
+            className
           )}
           href={item.url || ""}
           key={item.label}
@@ -312,7 +304,7 @@ const ButtonMap = ({
                   fill
                   src={item.icon}
                   alt={item.label || "Icon"}
-                  className={cn("inset-0", isSolidWhite && "transition group-hover:invert")}
+                  className="inset-0"
                 />
               </div>
             )}
