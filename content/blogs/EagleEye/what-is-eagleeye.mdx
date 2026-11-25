@@ -2,8 +2,8 @@
 seo:
   title: What is EagleEye?
   description: >-
-    Your email and GitHub already show who is overloaded, who is blocked and
-    who follows your standards. EagleEye finds it with AI, inside your own Azure.
+    The warning signs are already in your team's email and GitHub. EagleEye
+    finds them with AI and shows you the trends, inside your own Azure.
 category: Getting Started
 title: What is EagleEye?
 date: '2026-11-12T00:00:00.000Z'
@@ -14,59 +14,48 @@ bannerImage: /EagleEye/Blogs/what-is-eagleeye.png
 readLength: 3 minutes
 ---
 
-Who on your team is overloaded? Who is blocked? Who follows your standards, and which projects are actually shipping?
+A customer emails your team about a late delivery. A week later they email again, and this time they're angry. Nobody escalates it, because it's one email among thousands. You find out when they cancel.
 
-You probably have a feeling. But the real answer is already written down, in the thousands of emails, issues and pull requests your team creates every week. Nobody has time to read them all, so the answer just sits there.
-
-## Why we built it
-
-At SSW we have rules for how we work. Before something goes out, you send a "Test please" and wait for a "Test pass". After a client call, you confirm it in writing with "As per our conversation".
-
-We wanted to know if people actually do this, and who does it the most. The only way was to search mailboxes by hand and count. It took hours, and by the time we finished, the numbers were already old.
-
-So we built EagleEye.
+The warning was there, in writing. It usually is. Your team's email, GitHub issues and pull requests already answer the questions you ask every week: are customers getting happier or angrier? Are we following our own process? Which projects are stuck? But nobody has time to read it all, so it just sits there.
 
 ## What is EagleEye?
 
-EagleEye reads your company's email and GitHub activity, tags it with AI, and turns it into reports you can act on. It runs in your own Azure.
+EagleEye reads your company's email and GitHub activity every night, tags what matters with AI, and turns it into reports. It runs in your own Azure, so your email stays inside your company.
 
-## How it works
+## Tell it what to look for
 
-### 1. Tell it what matters to you
+A tag is something you want to find. Create an "Angry customer" tag, describe it in plain English, and AI finds those emails however people word them. For simple things, use a rule, like "Approved by" in the email. The same tags work across email and GitHub.
 
-Create tags for the things you care about, like "Test pass" or "As per our conversation". The same tags work across email and GitHub.
+## See the trends
 
-* 📃 **Non-AI tags** match simple rules, like a phrase in the subject
-* 🤖 **AI tags** understand context, so they catch the idea even when the wording changes
-* 🤖 **AI with Mentions tags** also pick out who is mentioned
+* 📊 **Email** - how many emails got each tag, week by week
+* 📈 **GitHub** - issues and pull requests raised and closed, what's waiting, and how long things take, repo by repo
 
-### 2. EagleEye reads it every night
+![The Emails Sent report in the EagleEye demo, filtered to the Angry customer tag](/EagleEye/Blogs/what-is-eagleeye-email.png)
 
-Every night it scans email from Microsoft Exchange, and GitHub issues, pull requests and their comments. Need to look further back? Run a historical scan from the Portal.
+Figure: In the demo, the "Angry customer" tag finds 411 emails, with a spike in week 29
 
-### 3. See the answers
+![The GitHub Issues Overview in the EagleEye demo](/EagleEye/Blogs/what-is-eagleeye-github.png)
 
-* 📊 **Email** - who sends and receives the most, who gets mentioned, and which tags they get
-* 📈 **GitHub** - what was raised and closed, what is waiting, and how long things take, repo by repo
+Figure: In the demo, one repository opened 22 issues in a month and closed 1
 
-No spreadsheets, no searching by hand.
+## Or just ask
 
-### 4. Ask your AI assistant, or let it act for you
+Connect EagleEye to Claude or GitHub Copilot over MCP and ask:
 
-* 🤖 **AI assistants** - turn on MCP access in Settings and do a one-time Microsoft Entra setup. Then ask Claude or GitHub Copilot something like "Who was mentioned in the most test passes last month?". It's read-only and off by default
-* ⚡ **Webhooks** - give a tag a webhook, and EagleEye calls it when a new email, issue, pull request or comment gets that tag
+> Are angry customer emails going up, and which repos are slowest to fix issues?
+
+It's read-only and off by default, and needs a one-time Microsoft Entra setup. EagleEye can also call a webhook when a new email, issue or pull request gets a tag, so you can act on it straight away.
 
 ## Your data stays yours
 
-Email is sensitive, so where it lives matters.
-
 * EagleEye installs from the Azure Marketplace into your own Azure subscription
 * The AI service is yours too, and you pick the model
-* EagleEye doesn't keep the email body. Once an email is read, only the subject, people, date and tags are kept
+* The email body isn't kept: only the subject, people, date and tags
 * SSW has no access to your data
 
 ## Try it
 
-* 👀 Try it with sample data at [demo.ssweagleeye.com](https://demo.ssweagleeye.com)
-* 🎉 EagleEye is free during the public beta, until 1 July 2027
-* 📖 Read the [docs](/docs) to set it up, or book a 30-minute call with an EagleEye expert from the [home page](/)
+* 👀 Click around the [demo](https://demo.ssweagleeye.com), with sample data from a made-up company
+* 🎉 Free during the public beta, until 1 July 2027
+* 📖 Read the [docs](/docs), or book a 30-minute call from the [home page](/)
