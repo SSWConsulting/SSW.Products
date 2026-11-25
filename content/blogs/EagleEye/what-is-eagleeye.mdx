@@ -29,21 +29,21 @@ A tag is something you want to find. Create an "Angry customer" tag, describe it
 ## See the trends
 
 * 📊 **Email** - how many emails got each tag, week by week
-* 📈 **GitHub** - issues and pull requests raised and closed, what's waiting, and how long things take, repo by repo
+* 📈 **GitHub** - the same tags on issues and pull requests, so you can see which ones are waiting for a decision or blocked, repo by repo
 
 ![The Emails Sent report in the EagleEye demo, filtered to the Angry customer tag](/EagleEye/Blogs/what-is-eagleeye-email.png)
 
 Figure: In the demo, the "Angry customer" tag finds 411 emails, with a spike in week 29
 
-![The GitHub Issues Overview in the EagleEye demo](/EagleEye/Blogs/what-is-eagleeye-github.png)
+![New GitHub issues in the EagleEye demo, filtered to the Needs decision tag](/EagleEye/Blogs/what-is-eagleeye-github.png)
 
-Figure: In the demo, one repository opened 22 issues in a month and closed 1
+Figure: In the demo, AI tagged 11 of last month's new issues as waiting for a decision
 
 ## Or just ask
 
 Connect EagleEye to Claude or GitHub Copilot over MCP and ask:
 
-> Are angry customer emails going up, and which repos are slowest to fix issues?
+> Are angry customer emails going up, and how many new issues are waiting for a decision?
 
 It's read-only and off by default, and needs a one-time Microsoft Entra setup. EagleEye can also call a webhook when a new email, issue or pull request gets a tag, so you can act on it straight away.
 
