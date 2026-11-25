@@ -120,14 +120,17 @@ export default async function RootLayout({
         </a>
         <HostnameProvider hostname={hostname}>
           <QueryProvider>
-            <NavBarServer product={product} locale={locale} />
-            <main
-              id="main-content"
-              tabIndex={-1}
-              className="overflow-clip grow scroll-mt-28 focus:outline-none"
-            >
-              {children}
-            </main>
+            {/* The clip wraps the nav too, so a block's glow can rise behind it */}
+            <div className="overflow-clip grow">
+              <NavBarServer product={product} locale={locale} />
+              <main
+                id="main-content"
+                tabIndex={-1}
+                className="scroll-mt-28 focus:outline-none"
+              >
+                {children}
+              </main>
+            </div>
           </QueryProvider>
           <FooterServer product={product} locale={locale} />
         </HostnameProvider>
