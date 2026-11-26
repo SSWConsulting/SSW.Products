@@ -176,7 +176,7 @@ function CardItem({
       <div className="flex items-center justify-between">
         {data.Header && (
           // a card label, not a section heading, so a plain span (not anchored)
-          <span className="text-2xl font-bold">
+          <span className="h3">
             {curlyBracketFormatter(data.Header)}
           </span>
         )}
@@ -192,7 +192,7 @@ function CardItem({
         style={{ maxHeight: `${contentHeight}px` }}
       >
         <div ref={contentRef}>
-          <div className="text-gray-300 text-lg pt-3 ">
+          <div className="text-gray-300 pt-3">
             <TinaMarkdown
               content={data.Description}
               components={cardAndImageMarkdownRenderer}
