@@ -22,9 +22,9 @@
   --mask-to-right: linear-gradient(to right, black, black, transparent);
   --mask-to-bottom: linear-gradient(to bottom, black, black, transparent);
   --color-ssw-red: #cc4141;
-  /* SSW red mixed with 25% white: ~5:1 on our dark backgrounds, so unlike
-     ssw-red (~3.3:1) it passes AA as text colour */
-  --color-ssw-red-light: #d97171;
+  /* Light SSW red for red text on our dark backgrounds: ~5:1, so unlike
+     ssw-red (~3.3:1) it passes AA. Same as SSW.MegaMenu's ssw-light-red */
+  --color-ssw-red-light: #d26e6e;
   --color-ssw-charcoal: #333333;
   --color-gray-dark: #1f1f1f;
   --color-gray-darkest: #141414;
