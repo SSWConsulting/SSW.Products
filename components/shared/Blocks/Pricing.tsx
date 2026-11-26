@@ -11,12 +11,12 @@ import { BsCheck } from "react-icons/bs";
 import { BookingButton } from "./BookingButton";
 import { ButtonVariant } from "./buttonEnum";
 
-// Wraps each {curly-bracketed} part of a feature in red. red-400, not the SSW
-// red: #CC4141 is about 3:1 on the dark cards, too low for body text.
+// Wraps each {curly-bracketed} part of a feature in red. ssw-red-light, not the
+// SSW red: #CC4141 is about 3:1 on the dark cards, too low for body text.
 const redHighlightFormatter = (text: string) =>
   text?.split(/({.*?})/).map((part, index) =>
     part.startsWith("{") && part.endsWith("}") ? (
-      <span key={index} className="text-red-400">
+      <span key={index} className="text-ssw-red-light">
         {part.slice(1, -1)}
       </span>
     ) : (

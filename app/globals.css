@@ -22,6 +22,9 @@
   --mask-to-right: linear-gradient(to right, black, black, transparent);
   --mask-to-bottom: linear-gradient(to bottom, black, black, transparent);
   --color-ssw-red: #cc4141;
+  /* Light SSW red for red text on our dark backgrounds: ~5:1, so unlike
+     ssw-red (~3.3:1) it passes AA. Same as SSW.MegaMenu's ssw-light-red */
+  --color-ssw-red-light: #d26e6e;
   --color-ssw-charcoal: #333333;
   --color-gray-dark: #1f1f1f;
   --color-gray-darkest: #141414;
