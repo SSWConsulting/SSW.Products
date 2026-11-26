@@ -27,7 +27,7 @@ MCP answers questions about your email and GitHub reports. For example:
 | How many GitHub issues did we open and close in September, and how long did closes take? | GitHub issues |
 | Who approved the most pull requests in SSW.EagleEye last month? | GitHub pull request approvals |
 
-Each question covers a date range. Email questions cover up to 92 days at a time, and GitHub questions up to 366 days. For a longer range, ask for shorter periods and the assistant adds them up.
+Each question covers a date range. Email questions cover up to 92 days at a time (31 days when split by every tag), and GitHub questions up to 366 days. For a longer range, ask for shorter periods and the assistant adds them up.
 
 ## Turn MCP on
 
@@ -35,7 +35,7 @@ Do this once per install. EagleEye has no admin role yet, so anyone who can open
 
 1. In the EagleEye Portal, go to **Settings**
 2. In **AI assistants (MCP)**, turn on **Allow MCP access**
-3. Copy the **MCP server URL**, and share it with your users
+3. Once the Entra setup below is done, copy the **MCP server URL** and share it with your users. It changes if you do [Step 5](#step-5-give-the-api-a-custom-domain-for-claude)
 
 The card also shows the connect steps for each app. To stop access for everyone, turn **Allow MCP access** off again.
 
@@ -74,11 +74,11 @@ Claude Code and the Claude app need an app registration of your own. It is a pub
 1. Open **App registrations** → **New registration**
 2. Name it `SSW.EagleEye.Mcp`, keep **Single tenant**, and click **Register**
 3. Copy its **Application (client) ID**. This is the sign-in client ID
-4. Open **Authentication** → **Add a platform** → **Mobile and desktop applications**, and add these redirect URIs:
+4. Open **Authentication** → **Add Redirect URI** → **Mobile and desktop applications**, and add these redirect URIs:
    * `http://localhost/callback` - for Claude Code
    * `https://claude.ai/api/mcp/auth_callback` - for the Claude app
    * `https://claude.com/api/mcp/auth_callback` - for the Claude app
-5. Turn on **Allow public client flows**, and click **Save**
+5. Under the **Settings** tab, turn on **Allow public client flows**, and click **Save**
 6. Open **API permissions** → **Add a permission** → **My APIs** → **SSW.EagleEye.Api**, tick `access_as_user`, and click **Add permissions**
 7. Click **Grant admin consent**
 
