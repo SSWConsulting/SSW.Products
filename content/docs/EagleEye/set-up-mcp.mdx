@@ -15,7 +15,7 @@ An admin does this once per install, so people can ask Claude about your EagleEy
 
 You need:
 
-* **A domain verified in your Microsoft Entra tenant** for the API, e.g., `api.northwind.com`. Claude sends the MCP server URL to Entra when it signs in, and Entra accepts it only on a verified domain. The default `*.azurecontainerapps.io` address is not one
+* **A domain verified in your Microsoft Entra tenant** for the API, e.g., `api.northwind.com`. Claude sends the MCP server URL to Entra when it signs in, and Entra accepts it only on a verified domain. The default `*.azurecontainerapps.io` address is not one. Check your verified domains under **Domain names** in the Microsoft Entra admin center
 * Someone who can edit app registrations and enterprise applications in Microsoft Entra ID, and grant admin consent
 * Access to the EagleEye **Managed Resource Group** in the Azure portal (e.g., `mrg-ssw-eagleeye-xxxxxx`)
 
@@ -72,7 +72,7 @@ Claude Code and the Claude app sign in with an app registration of your own. It 
 2. Name it `SSW.EagleEye.Mcp`, keep **Single tenant**, and click **Register**
 3. Copy its **Application (client) ID**. This is the sign-in client ID
 4. Open **Authentication** → **Add Redirect URI** → **Mobile and desktop applications**, and add these redirect URIs:
-   * `http://localhost/callback` - for Claude Code
+   * `http://localhost/callback` - for Claude Code. Entra ignores the port on `localhost`, so this also covers the port in the Claude Code command
    * `https://claude.ai/api/mcp/auth_callback` - for the Claude app
    * `https://claude.com/api/mcp/auth_callback` - for the Claude app
 5. Under the **Settings** tab, turn on **Allow public client flows**, and click **Save**
@@ -98,8 +98,9 @@ Marketplace updates keep `MCP_CLIENT_ID`, and set `MCP_SERVER_URL` from the API'
 Do this last. EagleEye has no admin role yet, so anyone who can open **Settings** can turn MCP on or off.
 
 1. In the EagleEye Portal, go to **Settings**
-2. In **AI assistants (MCP)**, turn on **Allow MCP access**
-3. Send your users the link to [AI assistants (MCP)](/docs/mcp)
+2. In **AI assistants (MCP)**, turn on **Allow MCP access**. The card now shows the MCP server URL and the sign-in client ID. If the client ID is missing, or the URL is not on your custom domain, check [Step 5](#step-5-show-the-url-and-client-id-in-settings)
+3. Connect yourself as in [AI assistants (MCP)](/docs/mcp), and ask one question to check it works
+4. Send your users the link to [AI assistants (MCP)](/docs/mcp)
 
 ## Troubleshooting
 
