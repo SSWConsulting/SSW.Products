@@ -63,7 +63,7 @@ Do this first. Without it, anyone in your tenant can sign in through an MCP clie
 
 VS Code signs in with Microsoft's own client ID. Pre-authorizing it saves each user a consent prompt, or a consent error if your tenant blocks user consent.
 
-1. Open **App registrations** → **SSW.EagleEye.Api** → **Expose an API**
+1. Open **App registrations** → **All applications** → **SSW.EagleEye.Api** → **Expose an API**
 2. Under **Authorized client applications**, click **Add a client application**
 3. Enter the Visual Studio Code client ID `aebc6443-996d-45c2-90f0-388ff96faa56`, tick the `access_as_user` scope, and click **Add application**
 
@@ -79,7 +79,7 @@ Claude Code and the Claude app need an app registration of your own. It is a pub
    * `https://claude.ai/api/mcp/auth_callback` - for the Claude app
    * `https://claude.com/api/mcp/auth_callback` - for the Claude app
 5. Under the **Settings** tab, turn on **Allow public client flows**, and click **Save**
-6. Open **API permissions** → **Add a permission** → **My APIs** → **SSW.EagleEye.Api**, tick `access_as_user`, and click **Add permissions**
+6. Open **API permissions** → **Add a permission** → **APIs my organization uses**, search for **SSW.EagleEye.Api**, select it, tick `access_as_user`, and click **Add permissions**
 7. Click **Grant admin consent**
 
 ⚠️ Add the redirect URIs under **Mobile and desktop applications**, not **Web**. Under **Web**, sign-in fails with `AADSTS7000218`.
@@ -101,9 +101,9 @@ Claude sends the MCP server URL to Microsoft Entra when it signs in, and Entra a
 
 VS Code does not need this step.
 
-1. Add a custom domain on a domain verified in your tenant (e.g., `api.northwind.com`) to the API container app (e.g., `ca-api-xxxxxx`), with a certificate. See [Custom domain names and certificates in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-certificates)
+1. Add a custom domain on a domain verified in your tenant (e.g., `api.northwind.com`) to the API container app (e.g., `ca-api-xxxxxx`), with a certificate. See [Custom domain names and certificates in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-certificates). If you entered a custom domain when you installed EagleEye, the API's domain is already there without a certificate: add the certificate
 2. On the Portal container app, set the environment variable `MCP_SERVER_URL` to `https://<your-api-domain>/mcp`, so the Settings card shows that URL. Once the custom domain is bound with its certificate, the next Marketplace update sets this for you
-3. Open **App registrations** → **SSW.EagleEye.Api** → **Manifest**
+3. Open **App registrations** → **All applications** → **SSW.EagleEye.Api** → **Manifest**
 4. Add the MCP server URL to `identifierUris`, keep the `api://` entry, and click **Save**
 
 For example:
