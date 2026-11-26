@@ -29,23 +29,13 @@ MCP answers questions about your email and GitHub reports. For example:
 
 Each question covers a date range. Email questions cover up to 92 days at a time (31 days when split by every tag), and GitHub questions up to 366 days. For a longer range, ask for shorter periods and the assistant adds them up.
 
-## Turn MCP on
-
-Do this once per install. EagleEye has no admin role yet, so anyone who can open **Settings** can turn MCP on or off.
-
-1. In the EagleEye Portal, go to **Settings**
-2. In **AI assistants (MCP)**, turn on **Allow MCP access**
-3. Once the Entra setup below is done, copy the **MCP server URL** and share it with your users. It changes if you do [Step 5](#step-5-give-the-api-a-custom-domain-for-claude)
-
-The card also shows the connect steps for each app. To stop access for everyone, turn **Allow MCP access** off again.
-
 ## Set up Microsoft Entra once
 
-Someone who can edit app registrations and enterprise applications in Microsoft Entra ID does this once per install. Do the steps in order.
+Someone who can edit app registrations and enterprise applications in Microsoft Entra ID does this once per install, before MCP is turned on. Do the steps in order.
 
 In these steps:
 
-* `https://api.example.com/mcp` is your MCP server URL, from the Settings card
+* `https://api.example.com/mcp` is your MCP server URL: the API's address followed by `/mcp`. The API's address is the **Application URL** of the API container app (e.g., `ca-api-xxxxxx`), or its custom domain from Step 5
 * `<api-client-id>` is the **Application (client) ID** of the **SSW.EagleEye.Api** app registration
 
 ### Step 1 - Limit the API to EagleEye users
@@ -120,6 +110,16 @@ The URL must match the MCP server URL exactly: same path, no trailing slash.
 ⚠️ Do not remove `api://<api-client-id>`. The Portal signs in with it.
 
 Leave the Portal's `API_URL` on the API's default address. The Portal sends every request there, so a problem with the custom domain stops only MCP sign-in.
+
+## Turn MCP on
+
+Do this after the Entra setup above. EagleEye has no admin role yet, so anyone who can open **Settings** can turn MCP on or off.
+
+1. In the EagleEye Portal, go to **Settings**
+2. In **AI assistants (MCP)**, turn on **Allow MCP access**
+3. Copy the **MCP server URL**, and share it with your users
+
+The card also shows the connect steps for each app. To stop access for everyone, turn **Allow MCP access** off again.
 
 ## Connect an app
 
