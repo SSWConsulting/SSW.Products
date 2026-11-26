@@ -8,6 +8,15 @@ import { TinaMarkdown, type TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMarkdownStyle";
 import LinkableHeading from "../LinkableHeading";
 
+// The link comes from the CMS, so allow only http(s) and site paths, never javascript:.
+const isHttpUrl = (value: string) => {
+  try {
+    return ['http:', 'https:'].includes(new URL(value, window.location.href).protocol);
+  } catch {
+    return false;
+  }
+};
+
 interface ImageShowcaseProps {
   title?: string | null;
   gridDescription?: any;
@@ -29,7 +38,7 @@ const ImageShowcase = ({
 
   const handleDownload = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
-    if (downloadFile) {
+    if (downloadFile && isHttpUrl(downloadFile)) {
       const link = document.createElement('a');
       link.href = downloadFile;
       link.download = downloadFile.split('/').pop() || 'download.zip';

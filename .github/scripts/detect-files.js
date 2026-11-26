@@ -1,4 +1,5 @@
 const axios = require('axios');
+const crypto = require('crypto');
 const fs = require('fs');
 const minimatch = require('minimatch');
 
@@ -71,8 +72,16 @@ function shouldProcessFile(filename, watchPaths, excludePaths) {
   return isWatched && !isExcluded;
 }
 
+// Filenames end up in GITHUB_ENV, where a line break would start a new variable.
+const hasLineBreak = (name) => /[\r\n]/.test(name || '');
+
 function processFileChange(file, fileOperations, contentFiles) {
   const { status, filename, previous_filename } = file;
+
+  if (hasLineBreak(filename) || hasLineBreak(previous_filename)) {
+    console.warn(`Skipping a file whose name contains a line break: ${JSON.stringify(filename)}`);
+    return;
+  }
   
   switch (status) {
     case FILE_STATUS.REMOVED:
@@ -100,17 +109,19 @@ function processFileChange(file, fileOperations, contentFiles) {
 
 function writeEnvironmentVariables(contentFiles, fileOperations) {
   const githubEnv = process.env.GITHUB_ENV;
+  // A random delimiter, so no value can end the multiline block early.
+  const delimiter = `EOF_${crypto.randomBytes(16).toString('hex')}`;
 
   if (contentFiles.length > 0) {
     fs.appendFileSync(githubEnv, `HAS_CHANGED_FILES=true\n`);
-    fs.appendFileSync(githubEnv, `CHANGED_FILES<<EOF\n${contentFiles.join('\n')}\nEOF\n`);
+    fs.appendFileSync(githubEnv, `CHANGED_FILES<<${delimiter}\n${contentFiles.join('\n')}\n${delimiter}\n`);
   } else {
     fs.appendFileSync(githubEnv, `HAS_CHANGED_FILES=false\n`);
   }
 
   if (fileOperations.length > 0) {
     fs.appendFileSync(githubEnv, `HAS_FILE_OPERATIONS=true\n`);
-    fs.appendFileSync(githubEnv, `FILE_OPERATIONS<<EOF\n${JSON.stringify(fileOperations)}\nEOF\n`);
+    fs.appendFileSync(githubEnv, `FILE_OPERATIONS<<${delimiter}\n${JSON.stringify(fileOperations)}\n${delimiter}\n`);
   } else {
     fs.appendFileSync(githubEnv, `HAS_FILE_OPERATIONS=false\n`);
   }

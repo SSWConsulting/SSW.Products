@@ -44,3 +44,6 @@ next-env.d.ts
 
 node_modules
 .env
+
+# Claude Code personal settings
+.claude/settings.local.json
