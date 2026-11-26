@@ -24,26 +24,26 @@ EagleEye reads your company's email and GitHub activity every night, tags what m
 
 ## Tell it what to look for
 
-A tag is something you want to find. Create an "Angry customer" tag, describe it in plain English, and AI finds those emails however people word them. For simple things, use a rule, like "Approved by" in the email. The same tags work across email and GitHub.
+A tag is something you want to find. Create an "Angry customer" tag, describe it in plain English, and AI finds those emails however people word them. For simple things, use a rule, like "Approved by" in the email. Some tags also find who is named, like who a decision is waiting on. The same tags work across email and GitHub.
 
 ## See the trends
 
 * 📊 **Email** - how many emails got each tag, week by week
-* 📈 **GitHub** - the same tags on issues and pull requests, so you can see which ones are waiting for a decision or blocked, repo by repo
+* 📈 **GitHub** - AI reads issues and their comments, and finds which decisions are waiting and who they're waiting on
 
-![The Emails Sent report in the EagleEye demo, filtered to the Angry customer tag](/EagleEye/Blogs/what-is-eagleeye-email.png)
+![The Emails Received report in the EagleEye demo, filtered to the Angry customer tag](/EagleEye/Blogs/what-is-eagleeye-email-received.png)
 
-Figure: In the demo, the "Angry customer" tag finds 411 emails, with a spike in week 29
+Figure: In the demo, angry customer emails to the team spike in week 29
 
-![New GitHub issues in the EagleEye demo, filtered to the Needs decision tag](/EagleEye/Blogs/what-is-eagleeye-github-needs-decision.png)
+![GitHub issue mentions in the EagleEye demo, filtered to the Needs decision tag](/EagleEye/Blogs/what-is-eagleeye-github-mentions.png)
 
-Figure: In the demo, AI tagged 11 of last month's new issues as waiting for a decision
+Figure: In the demo, AI finds who each decision is waiting on, and quotes where it was asked
 
 ## Or just ask
 
 Connect EagleEye to Claude or GitHub Copilot over MCP and ask:
 
-> Are angry customer emails going up, and how many new issues are waiting for a decision?
+> Are angry customer emails going up, and which GitHub issues are waiting on a decision, and from whom?
 
 It's read-only and off by default, and needs a one-time Microsoft Entra setup. EagleEye can also call a webhook when a new email, issue or pull request gets a tag, so you can act on it straight away.
 
