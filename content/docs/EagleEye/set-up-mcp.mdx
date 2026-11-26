@@ -23,17 +23,9 @@ In these steps:
 * `https://api.example.com/mcp` is your MCP server URL: the API's address followed by `/mcp`. The API's address is the **Application URL** of the API container app (e.g., `ca-api-xxxxxx`), or its custom domain from Step 5
 * `<api-client-id>` is the **Application (client) ID** of the **SSW.EagleEye.Api** app registration
 
-## Choose which apps to support
-
-| App | Steps |
-| --- | --- |
-| Claude app (Desktop and claude.ai) | 1, 3, 4, 5, 6 |
-| Claude Code | 1, 3, 4, 5, 6 |
-| VS Code (GitHub Copilot) | 1, 2, 6 |
-
-Step 1 is required for every app. Do the steps in order.
-
 ## Steps
+
+Do the steps in order. Step 2 is only for VS Code, and Steps 3 to 5 are only for Claude, so skip the ones for apps you don't use.
 
 ### Step 1 - Limit the API to EagleEye users
 
@@ -71,7 +63,7 @@ Claude Code and the Claude app need an app registration of your own. It is a pub
 
 ⚠️ Add the redirect URIs under **Mobile and desktop applications**, not **Web**. Under **Web**, sign-in fails with `AADSTS7000218`.
 
-### Step 4 - Show the sign-in client ID in Settings
+### Step 4 - Show the sign-in client ID in Settings (for Claude)
 
 The Settings card shows the sign-in client ID, and puts it in the Claude Code command, when the Portal has it.
 
