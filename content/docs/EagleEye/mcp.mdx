@@ -31,7 +31,7 @@ Each question covers a date range. Email questions cover up to 92 days at a time
 
 ## Connect an app
 
-In the EagleEye Portal, open **Settings** → **AI assistants (MCP)**, and copy the **MCP server URL** and the **Sign-in client ID**. If the card shows no URL or no client ID, ask your EagleEye admin to finish [Set up MCP](/docs/set-up-mcp).
+In the EagleEye Portal, open **Settings** → **AI assistants (MCP)**, and copy the **MCP server URL** and the **Sign-in client ID**. If the card says setup is not finished, or shows no URL, ask your EagleEye admin to finish [Set up MCP](/docs/set-up-mcp).
 
 ### Claude app (Desktop and claude.ai)
 
@@ -46,7 +46,7 @@ You cannot edit a connector's sign-in settings after you add it. To change them,
 
 ### Claude Code
 
-The Settings card shows this command with your values filled in. Run it in a terminal. `-s user` makes EagleEye available in every folder, not only the current one.
+Once setup is finished, the Settings card shows this command with your values filled in. Run it in a terminal. `-s user` makes EagleEye available in every folder, not only the current one.
 
 ```bash
 claude mcp add --transport http eagleeye https://api.northwind.com/mcp --client-id <mcp-client-id> --callback-port 33418 -s user
