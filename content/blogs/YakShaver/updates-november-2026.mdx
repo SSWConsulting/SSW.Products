@@ -13,40 +13,33 @@ bannerImage: /YakShaver/Blogs/updates-november-2026.png
 author: The YakShaver Team
 ---
 
-This month's releases are about getting each shave to the right person and the right place. Team members can now sign in to a YakShaver Widget, a shave filed in the wrong project can be moved from the portal, and Teams recordings show what YakShaver is about to file before you pick a project. This update covers product changes in the seven releases published between **23 October and 26 November 2026, Australia/Brisbane** (v0.96.4 to v0.96.10).
+Across seven releases published from 26 October to 23 November, YakShaver made it easier to get each shave to the right person and the right place. This update covers product changes included in releases published between **23 October and 26 November 2026, Australia/Brisbane**.
 
-## YakShaver - 5 New Features
+## YakShaver - 4 New Features
 
 ### Sign in to a YakShaver Widget
 
-Until now, anyone recording through a YakShaver Widget on another site was anonymous, so their shaves were credited to the widget rather than to them. Team members can now sign in to a widget with their YakShaver account, and the shaves they record there are credited to them. The sign-in is remembered for that site and browser.
+Anyone recording through a YakShaver Widget on another site used to be anonymous, so their shaves were credited to the widget. Team members can now sign in to a widget with their YakShaver account, and the shaves they record there are credited to them. The sign-in is remembered for that site and browser.
 
-The widget also shows who you are recording as at the top. If you are not signed in, it warns you and offers **Sign in**. You can sign out from the widget, or record as a guest and switch back to your account later.
+The widget shows who you are recording as at the top. If you are not signed in, it warns you and offers **Sign in**. You can sign out from the widget, or record as a guest and go back to your account later.
 
 ### Move a shave to another project
 
-A shave that lands in the wrong project could only be moved from its Teams card, and desktop or YakShaver Anywhere shaves have no Teams card. The portal's **More actions** menu now has **Move to...**, next to **Retry**, on My Shaves and on the admin shaves page. Pick the target project and YakShaver moves the shave. It is available to the shave's owner and to admins.
+A shave that landed in the wrong project could only be moved from its Teams card, and desktop and YakShaver Anywhere shaves have no Teams card. The **More actions** menu on My Shaves and the admin shaves page now has **Move to...**, next to **Retry**. Pick the target project and YakShaver moves the shave. It is available to the shave's owner and to admins.
 
 ### Teams cards show the title and project before you choose
 
-When you send a recording through Teams, the project selection card now shows the work item title YakShaver proposes and the project it thinks the recording belongs to. The title starts the way that project's work items usually start, and the card lists the people the recording mentions. The card also only offers projects that are set up for YakShaver Anywhere, so you can't pick a project that has nowhere to file the work item.
+When you send a recording through Teams, the project selection card now shows the work item title YakShaver proposes, the project it thinks the recording belongs to, and the people the recording mentions. The card only offers projects that are set up for YakShaver Anywhere, so you can't pick one that has nowhere to file the work item.
 
 ### Recordings stay private until they are published
 
-YakShaver Anywhere recordings are now stored privately and read through short-lived signed links, instead of sitting at a link anyone could open. A published copy on your Video Host is public; the private recording can be viewed by people signed in to the same YakShaver tenant. If a project uses the default OneDrive / SharePoint Video Host, the project form now tells you that videos there are published at a public link.
+YakShaver Anywhere recordings are now stored privately and read through short-lived signed links, instead of sitting at a link anyone could open. A published copy on your Video Host is public, and people signed in to the same YakShaver tenant can view the private recording. If a project uses the default OneDrive / SharePoint Video Host, the project form now tells you that videos there are published at a public link.
 
-### Start a recording from your own app
+## A couple of useful fixes
 
-Developers embedding YakShaver Anywhere can hide the YakShaver button and start a recording from their own UI by calling `YakShaverAnywhere.startRecording()`. Host pages can also attach structured context during a recording, such as the exact page URL or record ID, so the work item uses those values instead of reading them off the video.
+Developers embedding YakShaver Anywhere can start a recording from their own app and attach structured context, such as the page URL or record ID, so the work item uses those values. Work items also mention the project's Primary Contact and the people named in the recording, and transcription is given the project's people so their names are spelled correctly.
 
-## Smaller improvements and fixes
-
-* **The right people are cc'd.** Work items mention the project's Primary Contact and the people named in the recording, and saying "cc Tino" in a widget, link or QR recording now works too.
-* **Names are spelled correctly.** Transcription is given the project's people, so names are less likely to be misheard.
-* **Search and sort every shave.** A project's Shaves tab searches, sorts and pages across all of its shaves, not just the page on screen.
-* **See who connected an integration.** Admins can see which account connected Azure DevOps or Jira and reconnect in place without detaching projects.
-* **Re-file an uncertain Zendesk ticket.** If YakShaver can't tell whether a Zendesk ticket was created, you can check and file it again from the portal.
-* **Thumbnails and labels.** The Shaves list now uses the shave's screenshot as its thumbnail, and the camera option on the Record Shave page reads **Record camera instead**.
+A project's Shaves tab now searches, sorts and pages across all of its shaves, not just the page on screen. If YakShaver can't tell whether a Zendesk ticket was created, you can check and file it again from the portal.
 
 ## November releases
 
