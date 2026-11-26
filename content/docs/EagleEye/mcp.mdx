@@ -1,0 +1,191 @@
+---
+seo:
+  title: AI assistants (MCP) - SSW EagleEye
+  description: >-
+    Ask Claude or GitHub Copilot about your EagleEye email and GitHub reports
+    through MCP. Read-only. How to turn it on, set up Microsoft Entra once, and
+    connect each app.
+title: AI assistants (MCP)
+date: '2026-11-26T00:00:00.000Z'
+---
+
+EagleEye has an MCP (Model Context Protocol) server. Connect an AI assistant such as Claude Code, the Claude app or GitHub Copilot in VS Code, and ask about your EagleEye reports in plain language. You get the same numbers the Portal shows.
+
+* **Read-only** - MCP can only read your reports. It cannot change tags, settings, scans or emails
+* **Your own sign-in** - Each person signs in with their own Microsoft work account
+* **Off by default** - Nothing can connect until an EagleEye admin turns MCP on
+
+## What you can ask
+
+MCP answers questions about your email and GitHub reports. For example:
+
+| Ask | It looks at |
+| --- | --- |
+| Who was mentioned the most in emails last month? | Emails @Mentions |
+| Who sent the most emails tagged Sales this quarter? | Emails Sent, by tag |
+| How did Kudos emails trend week by week over the last 3 months? | Emails per week, by tag |
+| How many GitHub issues did we open and close in September, and how long did closes take? | GitHub issues |
+| Who approved the most pull requests in SSW.EagleEye last month? | GitHub pull request approvals |
+
+Each question covers a date range. Email questions cover up to 92 days at a time, and GitHub questions up to 366 days. For a longer range, ask for shorter periods and the assistant adds them up.
+
+## Turn MCP on
+
+An EagleEye admin does this once.
+
+1. In the EagleEye Portal, go to **Settings**
+2. In **AI assistants (MCP)**, turn on **Allow MCP access**
+3. Copy the **MCP server URL**, and share it with your users
+
+The card also shows the connect steps for each app. To stop access for everyone, turn **Allow MCP access** off again.
+
+## Set up Microsoft Entra once
+
+Someone who can edit app registrations and enterprise applications in Microsoft Entra ID does this once per install. Do the steps in order.
+
+In these steps:
+
+* `https://api.example.com/mcp` is your MCP server URL, from the Settings card
+* `<api-client-id>` is the **Application (client) ID** of the **SSW.EagleEye.Api** app registration
+
+### Step 1 - Limit the API to EagleEye users
+
+Do this first. Without it, anyone in your tenant can sign in through an MCP client and read every report, with no consent prompt.
+
+1. In the [Microsoft Entra admin center](https://entra.microsoft.com), open **Enterprise applications** → **SSW.EagleEye.Portal** → **Users and groups**, and note who is assigned
+   * On an Azure Marketplace install, it is the group you chose in [Step 1 - Azure Setup](./step-1-azure-setup)
+2. Open **Enterprise applications** → **SSW.EagleEye.Api** → **Properties**, set **Assignment required?** to **Yes**, and click **Save**
+3. Open **Users and groups**, click **Add user/group**, and assign the same users and groups as the Portal
+
+⚠️ Assign everyone who uses the Portal. The Portal also signs in to the API, so anyone you leave out loses the Portal too.
+
+### Step 2 - Pre-authorize VS Code
+
+VS Code signs in with Microsoft's own client ID. Pre-authorizing it saves each user a consent prompt, or a consent error if your tenant blocks user consent.
+
+1. Open **App registrations** → **SSW.EagleEye.Api** → **Expose an API**
+2. Under **Authorized client applications**, click **Add a client application**
+3. Enter the Visual Studio Code client ID `aebc6443-996d-45c2-90f0-388ff96faa56`, tick the `access_as_user` scope, and click **Add application**
+
+### Step 3 - Register a client for Claude
+
+Claude Code and the Claude app need an app registration of your own. It is a public client, so it has no secret to create or rotate.
+
+1. Open **App registrations** → **New registration**
+2. Name it `SSW.EagleEye.Mcp`, keep **Single tenant**, and click **Register**
+3. Copy its **Application (client) ID**. This is the sign-in client ID
+4. Open **Authentication** → **Add a platform** → **Mobile and desktop applications**, and add these redirect URIs:
+   * `http://localhost/callback` - for Claude Code
+   * `https://claude.ai/api/mcp/auth_callback` - for the Claude app
+   * `https://claude.com/api/mcp/auth_callback` - for the Claude app
+5. Turn on **Allow public client flows**, and click **Save**
+6. Open **API permissions** → **Add a permission** → **My APIs** → **SSW.EagleEye.Api**, tick `access_as_user`, and click **Add permissions**
+7. Click **Grant admin consent**
+
+⚠️ Add the redirect URIs under **Mobile and desktop applications**, not **Web**. Under **Web**, sign-in fails with `AADSTS7000218`.
+
+### Step 4 - Show the sign-in client ID in Settings
+
+The Settings card shows the sign-in client ID, and puts it in the Claude Code command, when the Portal has it.
+
+1. In the Azure portal, go to your Managed Applications, select SSW EagleEye → the **Managed Resource Group** (e.g., `mrg-ssw-eagleeye-xxxxxx`)
+2. Open the Portal container app (e.g., `ca-nextjs-xxxxxx`) → **Containers** → **Edit and deploy**, and select the container
+3. Under **Environment variables**, add `MCP_CLIENT_ID` with the client ID from Step 3
+4. Click **Save**, then **Create**
+
+Marketplace updates keep this value. If you skip this step, give your users the client ID yourself.
+
+### Step 5 - Give the API a custom domain (for Claude)
+
+Claude sends the MCP server URL to Microsoft Entra when it signs in, and Entra accepts it only on a domain your tenant has verified. The default `*.azurecontainerapps.io` address is not one. Without this step, Claude's sign-in fails with `AADSTS9010010`.
+
+VS Code does not need this step.
+
+1. Add a custom domain on a domain verified in your tenant (e.g., `api.northwind.com`) to the API container app (e.g., `ca-api-xxxxxx`), with a certificate. See [Custom domain names and certificates in Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/custom-domains-certificates)
+2. On the Portal container app, set the environment variable `MCP_SERVER_URL` to `https://<your-api-domain>/mcp`, so the Settings card shows that URL. The next Marketplace update sets it for you
+3. Open **App registrations** → **SSW.EagleEye.Api** → **Manifest**
+4. Add the MCP server URL to `identifierUris`, keep the `api://` entry, and click **Save**
+
+For example:
+
+```json
+"identifierUris": [
+  "https://api.northwind.com/mcp",
+  "api://<api-client-id>"
+]
+```
+
+The URL must match the MCP server URL exactly: same path, no trailing slash.
+
+⚠️ Do not remove `api://<api-client-id>`. The Portal signs in with it.
+
+Leave the Portal's `API_URL` on the API's default address. The Portal sends every request there, so a problem with the custom domain stops only MCP sign-in.
+
+## Connect an app
+
+In each step, use your MCP server URL from the Settings card in place of `https://api.example.com/mcp`, and the sign-in client ID in place of `<mcp-client-id>`.
+
+### Claude Code
+
+Run this command in a terminal. `-s user` makes EagleEye available in every folder, not only the current one.
+
+```bash
+claude mcp add --transport http eagleeye https://api.example.com/mcp --client-id <mcp-client-id> --callback-port 33418 -s user
+```
+
+Then:
+
+1. Start Claude Code, type `/mcp`, pick **eagleeye**, and pick **Authenticate**
+2. Sign in with your Microsoft work account
+3. Ask a question, for example "Who was mentioned the most in emails last month?"
+
+If your API has no custom domain yet ([Step 5](#step-5-give-the-api-a-custom-domain-for-claude)), the sign-in fails with `AADSTS9010010`. Use VS Code until it has one.
+
+### VS Code (GitHub Copilot)
+
+You need VS Code 1.142.0 or later. Earlier versions fail to sign in with `AADSTS9010010`.
+
+1. Open the Command Palette, and run **MCP: Add Server** → **HTTP**
+2. Paste the MCP server URL, and name it `eagleeye`
+3. Pick **Global** when VS Code asks where to save it
+4. Sign in with Microsoft when VS Code asks
+5. In Copilot Chat, switch to **Agent** mode, and ask a question
+
+### Claude app (Desktop and claude.ai)
+
+The Claude app connects from Anthropic's cloud, so your MCP server URL must be reachable from the internet. 1 connector works in both the Desktop app and claude.ai.
+
+1. In Claude, open **Customize** → **Connectors** → **Add custom connector**
+2. Name it `EagleEye`, and paste the MCP server URL
+3. Paste the sign-in client ID in the client ID field, and leave the client secret empty
+4. Click **Add**, then **Connect**, and sign in with your Microsoft work account
+
+You cannot edit a connector's sign-in settings after you add it. To change them, remove the connector and add it again.
+
+## Sign in again, change or remove an app
+
+| To do this | Claude Code | VS Code | Claude app |
+| --- | --- | --- | --- |
+| Sign in again | Run `claude mcp logout eagleeye`, then `claude mcp login eagleeye` | **Accounts** menu → your Microsoft account → **Sign Out**, then use a tool and sign in | **Customize** → **Connectors** → **EagleEye** → **Disconnect**, then **Connect** |
+| Change the URL or client ID | Remove it, then run the new command | Run **MCP: Open User Configuration**, and change the URL | Remove the connector, then add it again |
+| Remove it | Run `claude mcp logout eagleeye`, then `claude mcp remove eagleeye -s user` | Run **MCP: Open User Configuration**, and delete the `eagleeye` entry | **Customize** → **Connectors** → **EagleEye**, and remove the connector |
+
+To stop access for 1 person, remove them from the users and groups of **SSW.EagleEye.Api** ([Step 1](#step-1-limit-the-api-to-eagleeye-users)). Their current sign-in works until it ends, within 90 minutes.
+
+## Troubleshooting
+
+| You see | Cause | Fix |
+| --- | --- | --- |
+| `404 MCP is turned off` | **Allow MCP access** is off | Ask an EagleEye admin to [turn MCP on](#turn-mcp-on) |
+| `AADSTS50105` | You are not assigned to **SSW.EagleEye.Api** | Ask your admin to assign you, as in [Step 1](#step-1-limit-the-api-to-eagleeye-users) |
+| `AADSTS65001`, or a consent prompt | The app is not pre-authorized, and user consent is blocked | Do [Step 2](#step-2-pre-authorize-vs-code) for VS Code, or grant admin consent in [Step 3](#step-3-register-a-client-for-claude) for Claude |
+| `AADSTS50011` | The app's redirect URI is not on **SSW.EagleEye.Mcp** | Add the exact URI from the error, as in [Step 3](#step-3-register-a-client-for-claude) |
+| `AADSTS7000218` | A Claude redirect URI is under **Web** | Move it to **Mobile and desktop applications** |
+| `AADSTS9010010` | The MCP server URL is not on the API's `identifierUris`, or VS Code is older than 1.142.0 | Do [Step 5](#step-5-give-the-api-a-custom-domain-for-claude), or update VS Code |
+| "The window is N days..." | The date range is too long for that question | Ask for shorter periods |
+
+## Known limitations
+
+* **Every EagleEye user can read every report** - While MCP is on, anyone assigned to **SSW.EagleEye.Api** can read every report through it
+* **Every EagleEye user can turn MCP on or off** - EagleEye has no admin role yet, so anyone who can open **Settings** can change it
+* **Claude needs a custom domain on the API** - See [Step 5](#step-5-give-the-api-a-custom-domain-for-claude). VS Code works without one
