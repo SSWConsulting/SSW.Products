@@ -2,13 +2,14 @@
 seo:
   title: AI assistants (MCP) - SSW EagleEye
   description: >-
-    Ask Claude or GitHub Copilot about your EagleEye email and GitHub reports
-    through MCP. Read-only. What you can ask and how to connect each app.
+    Ask Claude about your EagleEye email and GitHub reports through MCP.
+    Read-only. What you can ask and how to connect the Claude app or Claude
+    Code.
 title: AI assistants (MCP)
 date: '2026-11-26T00:00:00.000Z'
 ---
 
-EagleEye has an MCP (Model Context Protocol) server. Connect an AI assistant such as the Claude app, Claude Code or GitHub Copilot in VS Code, and ask about your EagleEye reports in plain language. You get the same numbers the Portal shows.
+EagleEye has an MCP (Model Context Protocol) server. Connect the Claude app or Claude Code, and ask about your EagleEye reports in plain language. You get the same numbers the Portal shows.
 
 * **Read-only** - MCP can only read your reports. It cannot change tags, settings, scans or emails
 * **Your own sign-in** - Each person signs in with their own Microsoft work account
@@ -30,19 +31,11 @@ Each question covers a date range. Email questions cover up to 92 days at a time
 
 ## Connect an app
 
-In the EagleEye Portal, open **Settings** → **AI assistants (MCP)**, and copy the **MCP server URL**. For Claude, also copy the **Sign-in client ID**. If the card shows no URL, MCP is off: ask your EagleEye admin.
-
-| App | Needs |
-| --- | --- |
-| Claude app (Desktop and claude.ai) | The sign-in client ID, a custom domain on the API, and a URL reachable from the internet |
-| Claude Code | The sign-in client ID, and a custom domain on the API |
-| VS Code (GitHub Copilot) | VS Code 1.142.0 or later |
-
-Without a custom domain on the API, Claude's sign-in fails with `AADSTS9010010`. Use VS Code until your admin adds one ([Step 5](/docs/set-up-mcp#step-5-give-the-api-a-custom-domain-for-claude)).
+In the EagleEye Portal, open **Settings** → **AI assistants (MCP)**, and copy the **MCP server URL** and the **Sign-in client ID**. If the card shows no URL or no client ID, ask your EagleEye admin to finish [Set up MCP](/docs/set-up-mcp).
 
 ### Claude app (Desktop and claude.ai)
 
-1 connector works in both the Desktop app and claude.ai.
+1 connector works in both the Desktop app and claude.ai. It connects from Anthropic's cloud, so the MCP server URL must be reachable from the internet.
 
 1. In Claude, open **Customize** → **Connectors** → **Add custom connector**
 2. Name it `EagleEye`, and paste the MCP server URL
@@ -56,7 +49,7 @@ You cannot edit a connector's sign-in settings after you add it. To change them,
 The Settings card shows this command with your values filled in. Run it in a terminal. `-s user` makes EagleEye available in every folder, not only the current one.
 
 ```bash
-claude mcp add --transport http eagleeye https://api.example.com/mcp --client-id <mcp-client-id> --callback-port 33418 -s user
+claude mcp add --transport http eagleeye https://api.northwind.com/mcp --client-id <mcp-client-id> --callback-port 33418 -s user
 ```
 
 Then:
@@ -64,25 +57,17 @@ Then:
 1. Start Claude Code, type `/mcp`, pick **eagleeye**, and pick **Authenticate**
 2. Sign in with your Microsoft work account
 
-### VS Code (GitHub Copilot)
-
-1. Open the Command Palette, and run **MCP: Add Server** → **HTTP**
-2. Paste the MCP server URL, and name it `eagleeye`
-3. Pick **Global** when VS Code asks where to save it
-4. Sign in with Microsoft when VS Code asks
-5. In Copilot Chat, switch to **Agent** mode
-
 ## Test it
 
 Ask one of the questions in [What you can ask](#what-you-can-ask). The assistant calls EagleEye and answers with numbers from your reports.
 
 ## Sign in again, change or remove an app
 
-| To do this | Claude app | Claude Code | VS Code |
-| --- | --- | --- | --- |
-| Sign in again | **Customize** → **Connectors** → **EagleEye** → **Disconnect**, then **Connect** | Run `claude mcp logout eagleeye`, then `claude mcp login eagleeye` | **Accounts** menu → your Microsoft account → **Sign Out**, then use a tool and sign in |
-| Change the URL or client ID | Remove the connector, then add it again | Remove it, then run the new command | Run **MCP: Open User Configuration**, and change the URL |
-| Remove it | **Customize** → **Connectors** → **EagleEye**, and remove the connector | Run `claude mcp logout eagleeye`, then `claude mcp remove eagleeye -s user` | Run **MCP: Open User Configuration**, and delete the `eagleeye` entry |
+| To do this | Claude app | Claude Code |
+| --- | --- | --- |
+| Sign in again | **Customize** → **Connectors** → **EagleEye** → **Disconnect**, then **Connect** | Run `claude mcp logout eagleeye`, then `claude mcp login eagleeye` |
+| Change the URL or client ID | Remove the connector, then add it again | Remove it, then run the new command |
+| Remove it | **Customize** → **Connectors** → **EagleEye**, and remove the connector | Run `claude mcp logout eagleeye`, then `claude mcp remove eagleeye -s user` |
 
 ## Troubleshooting
 
@@ -90,8 +75,6 @@ Ask one of the questions in [What you can ask](#what-you-can-ask). The assistant
 | --- | --- | --- |
 | `404 MCP is turned off` | **Allow MCP access** is off | Ask your EagleEye admin to turn it on |
 | `AADSTS50105` | You are not assigned to EagleEye | Ask your admin to assign you |
-| `AADSTS9010010` in Claude | The API has no custom domain for Claude yet | Use VS Code, and ask your admin to do [Step 5](/docs/set-up-mcp#step-5-give-the-api-a-custom-domain-for-claude) |
-| `AADSTS9010010` in VS Code | VS Code is older than 1.142.0 | Update VS Code |
 | "The window is N days..." | The date range is too long for that question | Ask for shorter periods |
 | Any other `AADSTS` error | The Entra setup is incomplete | Send your admin the error. See [Set up MCP - Troubleshooting](/docs/set-up-mcp#troubleshooting) |
 
@@ -99,4 +82,3 @@ Ask one of the questions in [What you can ask](#what-you-can-ask). The assistant
 
 * **Every EagleEye user can read every report** - While MCP is on, anyone assigned to **SSW.EagleEye.Api** can read every report through it
 * **Every EagleEye user can turn MCP on or off** - EagleEye has no admin role yet, so anyone who can open **Settings** can change it
-* **Claude needs a custom domain on the API** - VS Code works without one
