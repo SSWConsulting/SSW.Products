@@ -170,7 +170,7 @@ You cannot edit a connector's sign-in settings after you add it. To change them,
 | Change the URL or client ID | Remove it, then run the new command | Run **MCP: Open User Configuration**, and change the URL | Remove the connector, then add it again |
 | Remove it | Run `claude mcp logout eagleeye`, then `claude mcp remove eagleeye -s user` | Run **MCP: Open User Configuration**, and delete the `eagleeye` entry | **Customize** → **Connectors** → **EagleEye**, and remove the connector |
 
-To stop access for 1 person, remove them from the users and groups of **SSW.EagleEye.Api** ([Step 1](#step-1-limit-the-api-to-eagleeye-users)). Their current sign-in works until it ends, within 90 minutes.
+To stop access for 1 person, remove their direct assignment from **SSW.EagleEye.Api** ([Step 1](#step-1-limit-the-api-to-eagleeye-users)), and remove them from every assigned group they are in. This also stops their Portal access, since the Portal uses the same groups. Their current sign-in works until it ends, within 90 minutes.
 
 ## Troubleshooting
 
