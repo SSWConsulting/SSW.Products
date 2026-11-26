@@ -11,7 +11,7 @@ author: Luke Mao
 authorImage: /people/Luke-Mao.jpg
 sswPeopleLink: 'https://www.ssw.com.au/people/luke-mao/'
 bannerImage: /EagleEye/Blogs/what-is-eagleeye.png
-readLength: 2 minutes
+readLength: 3 minutes
 ---
 
 A customer emails your team about a late delivery. A week later they email again, and this time they're angry. Nobody escalates it. It's one email among thousands, in someone else's inbox. You find out when they cancel.
@@ -41,10 +41,26 @@ Decisions stall in issue comments too. EagleEye finds the issues waiting on some
 
 Figure: AI found the decision and who it's waiting on: "Waiting on Nadia and Rajiv for the call on whether to spend a sprint on the proper fix or patch it for now."
 
+## What else can it find?
+
+Whatever you can describe in a sentence. For example:
+
+* ⏳ A customer question nobody has answered yet
+* 💸 A customer disputing an invoice
+* 🚨 Emails and GitHub issues about a security incident
+* 🙌 A customer thanking someone on your team
+
 ## Your email stays in your company
 
 Email is sensitive. EagleEye runs in your company's own Microsoft Azure, not ours, and the AI service is yours too. The email text isn't kept, only the subject, people, date and tags. SSW can't see any of it.
 
+## What you need
+
+* Microsoft 365 for email, GitHub for issues and pull requests, or both
+* An Azure subscription. EagleEye installs from the Azure Marketplace, after a one-time app registration in Microsoft Entra
+
 ## See it for yourself
 
 Click around the [demo](https://demo.ssweagleeye.com), with sample data from a made-up company. EagleEye is free during the public beta, until 1 July 2027.
+
+Ready to try it on your own data? The [docs](/docs) walk you through setup.
