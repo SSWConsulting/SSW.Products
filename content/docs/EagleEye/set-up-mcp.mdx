@@ -91,7 +91,7 @@ The Settings card shows the MCP server URL and the sign-in client ID, and puts b
    * `MCP_CLIENT_ID` - the sign-in client ID from Step 4
 3. Click **Save**, then **Create**
 
-Marketplace updates keep `MCP_CLIENT_ID`, and set `MCP_SERVER_URL` from the API's custom domain once it has its certificate.
+Marketplace updates keep `MCP_CLIENT_ID`, and set `MCP_SERVER_URL` from the API's custom domain once it has its certificate. If an update warns that it could not read `MCP_CLIENT_ID`, add it again.
 
 ## Step 6 - Turn MCP on
 
@@ -114,4 +114,4 @@ Do this last. EagleEye has no admin role yet, so anyone who can open **Settings*
 ## Stop access
 
 * **For everyone** - In **Settings**, turn **Allow MCP access** off
-* **For 1 person** - Remove their direct assignment from **SSW.EagleEye.Api** ([Step 1](#step-1-limit-the-api-to-eagleeye-users)), and remove them from every assigned group they are in. This also stops their Portal access, since the Portal uses the same groups. Their current sign-in works until it ends, within 90 minutes
+* **For 1 person** - Remove their direct assignment from **SSW.EagleEye.Api** ([Step 1](#step-1-limit-the-api-to-eagleeye-users)), and remove them from every assigned group they are in. This also stops their Portal access, since the Portal uses the same groups. Their current sign-in works until its token expires, usually within 90 minutes. Global Administrators skip the assignment check, so this does not stop them
