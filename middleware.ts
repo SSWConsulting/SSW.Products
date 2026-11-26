@@ -33,6 +33,23 @@ function createYakShaverDownloadRedirect(
   return NextResponse.redirect(new URL("/install", request.url), 308);
 }
 
+// There's no public/favicon.ico: each product's icon is in public/favicons/.
+// Without this rewrite, /favicon.ico reaches the [product] page route as a page
+// called "favicon.ico", and that returns a 500.
+function createFaviconRewrite(
+  targetProduct: string | null | undefined,
+  pathname: string,
+  request: NextRequest
+): NextResponse | null {
+  if (!targetProduct || pathname !== "/favicon.ico") {
+    return null;
+  }
+
+  return NextResponse.rewrite(
+    new URL(`/favicons/${targetProduct}.ico`, request.url)
+  );
+}
+
 export function middleware(request: NextRequest) {
   const hostname = request.headers.get("x-original-host") || request.headers.get("host");
   const { pathname } = request.nextUrl;
@@ -111,6 +128,11 @@ function handleLocalRequest(
 
   const targetProduct =
     pathProduct ?? queryProduct ?? cookieProduct ?? process.env.DEFAULT_PRODUCT;
+
+  const faviconRewrite = createFaviconRewrite(targetProduct, pathname, request);
+  if (faviconRewrite) {
+    return faviconRewrite;
+  }
   const downloadRedirect = createYakShaverDownloadRedirect(
     targetProduct,
     pathname,
@@ -170,6 +192,11 @@ function handleProductionRequest(
   }
   
   if (targetProduct) {
+    const faviconRewrite = createFaviconRewrite(targetProduct, pathname, request);
+    if (faviconRewrite) {
+      return faviconRewrite;
+    }
+
     const downloadRedirect = createYakShaverDownloadRedirect(
       targetProduct,
       pathname,
@@ -197,5 +224,9 @@ function handleProductionRequest(
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|static|favicon.ico|.*\\..*).*)", "/sitemap.xml"],
+  matcher: [
+    "/((?!api|_next|static|favicon.ico|.*\\..*).*)",
+    "/sitemap.xml",
+    "/favicon.ico",
+  ],
 };
