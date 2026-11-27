@@ -1,0 +1,87 @@
+---
+seo:
+  title: YakShaver Anywhere
+  description: >-
+    Set up the YakShaver Anywhere website widget, share a reporting link or QR code, and replace your SmashingBarrier feedback button.
+title: YakShaver Anywhere
+date: '2026-10-10T00:00:00.000Z'
+---
+
+YakShaver Anywhere lets people record a problem and send it to your project's work item destination from a browser. Add a reporting button to your website, or share a link or QR code that opens a recorder on a phone. People reporting through these widgets and links don't need a YakShaver account.
+
+**YakSmasher was the earlier name for this feature.** In the portal, look for **YakShaver Widget** when setting up a website snippet or a link and QR code.
+
+## Choose how people report a problem
+
+* **Website snippet:** Add a yak button to your site. Visitors open the recorder and show the problem on their screen in a supported desktop browser.
+* **Link & QR code:** Share a reporting URL or print its QR code. People open it on their phone, film the problem with their camera, or upload an existing video. This works well for equipment faults, facilities requests, and other problems away from a computer.
+
+Both options send reports to the project you configure, so the reporter doesn't have to choose a backlog.
+
+## Before you start
+
+1. [Set up your YakShaver organization](/docs/setup-yakshaver-admin) and open the [YakShaver portal](https://portal.yakshaver.ai/).
+2. Choose the project that should receive reports and check its work item destination. Use a destination your team monitors.
+3. Make sure you have project admin access to manage its widgets. To install a website snippet, you'll also need access to the website's page template.
+
+## Add the widget to your website
+
+1. Open your project's edit page in the portal and find **YakShaver Widget**.
+2. Select **New YakShaver Widget**, then **Website snippet**.
+3. Give it an optional name so you can identify the website later.
+4. Under **Allowed Domains**, enter the website addresses allowed to use the widget, such as `https://www.example.com`. Use origins without page paths. Leaving this empty allows any website to use the key.
+5. Choose the **Progress Detail Level** for visitors, then select **Create embed**.
+6. Copy the generated **Snippet** and paste it just before the closing `</body>` tag in your website's page template. Use the snippet from your own project.
+7. Open the website and select the yak button in the bottom-right corner. Submit a short test recording and confirm that the report reaches the intended destination.
+
+Use the widget card's **Optional snippet settings** if you want to move the button, change its tooltip, or open the recorder from your own button.
+
+## Create a reporting link or QR code
+
+1. On the project's edit page, find **YakShaver Widget** and select **New YakShaver Widget**.
+2. Select **Link & QR code**.
+3. Add an optional name, choose the **Progress Detail Level**, and select **Create link**.
+4. Copy the reporting link or download its QR code from the new card.
+5. Open the link or scan the code on a phone. Submit a short test report and check its destination before sharing the link or printing the code for others.
+
+For example, put a QR code beside office equipment so someone can film a fault and send it to the team responsible for repairs.
+
+## Record and submit a report
+
+1. Open the website's yak button, follow a reporting link, or scan its QR code.
+2. Choose an available recording or upload option. Allow microphone access so you can explain the problem; allow camera or screen access when prompted for that recording mode.
+3. Show what happened, explain what you expected, and include enough context for the team to act. See [tips for creating an effective work item](/docs/yakshaver-tips).
+4. Preview the recording, add any written notes, and submit it.
+5. Follow the progress and confirmation shown on the page. The information and result links shown depend on the project's visitor progress settings.
+
+On mobile, use a link or QR code to film with the camera or upload a video. Mobile browsers don't offer the same screen-recording support as desktop browsers. The website widget offers video upload on iOS when screen recording isn't available.
+
+## Manage existing widgets and links
+
+Return to the project's **YakShaver Widget** section to manage each entry:
+
+* Use **Enabled** to pause or resume reporting through that snippet or link.
+* Update the allowed websites for a website snippet.
+* Adjust visitor progress detail to control how much processing information reporters see.
+* Rename a link without changing its URL or QR code.
+* Delete an entry when you no longer need it. Its snippet or link stops working; creating a replacement means installing a new snippet or sharing a new URL and QR code.
+
+## Moving from SmashingBarrier
+
+SmashingBarrier's website feedback functionality is now part of YakShaver through YakShaver Anywhere. To replace a SmashingBarrier reporting button:
+
+1. Choose the YakShaver project and destination that should receive future reports.
+2. Create and install a **Website snippet** using the steps above.
+3. Test the complete flow, from opening the button to receiving the report in the correct destination.
+4. Remove the old SmashingBarrier widget from your website once the replacement works, and update any reporting instructions to point people to YakShaver Anywhere.
+
+These steps set up future reports. For help with existing SmashingBarrier reports or your team's setup, [contact support](/docs/support).
+
+## Troubleshooting
+
+* **The button doesn't appear:** Check that the entry is enabled, the website's origin is allowed, and the snippet is installed in the page template. Some CMS HTML blocks don't run scripts.
+* **Screen recording won't start:** Use an HTTPS page and allow the browser's recording permissions. On a phone, use the camera or video upload instead. If your website restricts embedded content or recording permissions, ask its maintainer to check the portal card's **Not working on your site?** instructions.
+* **A link or QR code has stopped working:** Ask the project admin to check whether the entry was disabled or deleted. A deleted link must be replaced.
+* **You aren't sure whether a report arrived:** Check the page's status and the configured destination before submitting it again. Contact the project admin if the outcome is still unclear.
+
+For further help, see [troubleshooting](/docs/troubleshooting) or [contact support](/docs/support).
