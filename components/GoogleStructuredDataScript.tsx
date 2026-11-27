@@ -14,7 +14,8 @@ const GoogleStructuredDataScript: React.FC<{ jsonString?: string | null }> = ({ 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(parsed) }}
+      // Escape "<" so a value can't close the script tag early.
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(parsed).replace(/</g, "\\u003c") }}
     />
   );
 };

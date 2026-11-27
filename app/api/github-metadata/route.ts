@@ -2,6 +2,7 @@ import type { GitHubCommit } from '@utils/githubMetadata';
 import { NextResponse } from 'next/server';
 
 const CACHE_TTL = 300; // 5 minutes in seconds
+const ALLOWED_REPO = 'SSWConsulting/SSW.Products';
 
 async function fetchGitHub<T>(
   url: string,
@@ -39,6 +40,11 @@ export async function GET(request: Request) {
     );
   }
 
+  // The request carries our GitHub token, so only this repo's history.
+  if (`${owner}/${repo}`.toLowerCase() !== ALLOWED_REPO.toLowerCase()) {
+    return NextResponse.json({ error: 'Repository not allowed' }, { status: 400 });
+  }
+
   const headers: Record<string, string> = {
     Accept: 'application/vnd.github.v3+json',
     'User-Agent': 'SSW.Products-Docs/1.0',
@@ -61,7 +67,7 @@ export async function GET(request: Request) {
       fetchGitHub<GitHubCommit[]>(`${baseUrl}?${params}`, headers),
       path
         ? fetchGitHub<GitHubCommit[]>(
-            `${baseUrl}?path=${path}&per_page=100`,
+            `${baseUrl}?${new URLSearchParams({ path, per_page: '100' })}`,
             headers,
           ).catch(() => [])
         : Promise.resolve([]),

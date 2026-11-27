@@ -40,9 +40,11 @@ jobs:
             exit 0
           fi
 
-          # The products are the folders in content/pages: YakShaver, Tiger, ...
-          products=$(gh api "repos/$REPO/contents/content/pages?ref=$SHA" \
-            --jq '[.[] | select(.type == "dir") | .name] | join("|")')
+          # The products are the folders in content/pages on main: YakShaver,
+          # Tiger, ... Read them from main, not the PR, and keep plain names
+          # only, because they become part of the sed pattern below.
+          products=$(gh api "repos/$REPO/contents/content/pages" \
+            --jq '[.[] | select(.type == "dir" and (.name | test("^[A-Za-z0-9_-]+$"))) | .name] | join("|")')
           changed=$(gh api --paginate "repos/$REPO/pulls/$pr/files" --jq '.[].filename')
           touched=$(echo "$changed" \
             | sed -nE "s#^(content/[^/]+|public)/($products)/.*#\2#p" \
