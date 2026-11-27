@@ -63,6 +63,16 @@ EagleEye uses three app registrations, each with a single clear responsibility.
 
 Think of Engine as the worker that does the actual email processing.
 
+**Microsoft Graph application permissions** granted to `Engine` during installation:
+
+| Permission            | What it is used for                                         |
+| --------------------- | ----------------------------------------------------------- |
+| `Mail.Read`           | Read email in the scanned mailboxes                         |
+| `User.Read.All`       | Resolve the names and addresses of people                   |
+| `GroupMember.Read.All`| Read the membership of the selected scan group              |
+
+`Mail.Read` applies to every mailbox in your organization unless you limit it. To restrict it to the scan group, see [Restrict which mailboxes EagleEye can read](./restrict-mailbox-access).
+
 ### `Api` (SSW\.EagleEye.Api)
 
 **Purpose:** Backend API
@@ -92,6 +102,7 @@ Portal -> API -> Engine
 ## References
 
 * [Step 2 - App Registration](./step-2-app-registrations)
+* [Restrict which mailboxes EagleEye can read](./restrict-mailbox-access)
 * [Delete the Master App](./delete-master-app)
 * [Register an app in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app)
 * [Microsoft Graph permissions reference](https://learn.microsoft.com/en-us/graph/permissions-reference)
