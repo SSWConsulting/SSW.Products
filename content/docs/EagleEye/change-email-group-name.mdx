@@ -54,7 +54,15 @@ GROUP_NAME
 or something similar depending on your setup.
 
 1. Update the value to the new group name
-2. Save the changes
+2. Save the changes as a new revision
+
+<OutlineBox
+  content={<>
+    ⚠️ Note: If you find you can't update your Azure\_GroupName  environment variable, then it's likely your service principle isn't set.
+    
+    Go back to the properties tab and make sure the identity is the same as the other one inside your resource group. *See the first image for what that should be.*
+  </>}
+/>
 
 ![](/EagleEye/Guides/Azure-GroupName-API-Container-Environment-Variable.png)Figure: Azure | API Container | Containers | Azure\_GroupName Environment Variable
 
