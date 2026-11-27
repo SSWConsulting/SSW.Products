@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { LINK_CLASSES } from "@tina/tinamarkdownStyles/linkClasses";
 import LinkableHeading from "../LinkableHeading";
 
 interface HeadingSpecimenProps {
@@ -35,7 +36,7 @@ const RuleLink = ({ href, children }: { href: string; children: ReactNode }) => 
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="text-white underline transition-colors hover:text-ssw-red"
+    className={LINK_CLASSES}
   >
     {children}
   </a>

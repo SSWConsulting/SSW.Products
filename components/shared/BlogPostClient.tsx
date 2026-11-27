@@ -19,6 +19,7 @@ import { DocAndBlogMarkdownStyle } from "@tina/tinamarkdownStyles/DocAndBlogMark
 import { nodesToText, searchAstTree } from "@utils/astHelpers";
 import { isUncategorized } from "@utils/category";
 import MarkdownLink from "@tina/tinamarkdownStyles/Link";
+import { STANDALONE_LINK_CLASSES } from "@tina/tinamarkdownStyles/linkClasses";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useMemo } from "react";
@@ -172,7 +173,7 @@ export default function BlogPostClient({
               {previousBlog && (
                 <Link
                   href={`/blog/${previousBlog.slug}`}
-                  className="flex items-center text-white/60 transition-colors hover:text-white"
+                  className={cn("flex items-center text-white", STANDALONE_LINK_CLASSES)}
                 >
                   <FaArrowLeft className="mr-2 h-4 w-4" />
                   Previous article
@@ -181,7 +182,7 @@ export default function BlogPostClient({
               {nextBlog && (
                 <Link
                   href={nextBlog.slug ? `/blog/${nextBlog.slug}` : "#"}
-                  className="flex ml-auto items-center text-white/60 transition-colors hover:text-white"
+                  className={cn("flex ml-auto items-center text-white", STANDALONE_LINK_CLASSES)}
                 >
                   Next article
                   <FaArrowRight className="ml-2 h-4 w-4" />
